@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Container from 'react-bootstrap/esm/Container';
-import Row from 'react-bootstrap/esm/Row';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 const ButtonRow = () => {
   return (
