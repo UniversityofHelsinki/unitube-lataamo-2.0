@@ -1,10 +1,11 @@
 # Documentation
 
-[React bootstrap](https://react-bootstrap.netlify.app/docs/getting-started/introduction)
-[Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
-[PropTypes](https://www.npmjs.com/package/prop-types)
-[Jest](https://jestjs.io/docs/using-matchers)
-[Running Tests](https://create-react-app.dev/docs/running-tests/#srcsetuptestsjs)
+* [React bootstrap](https://react-bootstrap.netlify.app/docs/getting-started/introduction)
+* [Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
+* [PropTypes](https://www.npmjs.com/package/prop-types)
+* [Jest](https://jestjs.io/docs/using-matchers)
+* [Running Tests](https://create-react-app.dev/docs/running-tests/#srcsetuptestsjs)
+* [Testing library](https://testing-library.com/docs/queries/about)
 
 # Getting Started with Create React App
 
