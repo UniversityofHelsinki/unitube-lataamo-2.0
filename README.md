@@ -1,3 +1,11 @@
+# Documentation
+
+[React bootstrap](https://react-bootstrap.netlify.app/docs/getting-started/introduction)
+[Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
+[PropTypes](https://www.npmjs.com/package/prop-types)
+[Jest](https://jestjs.io/docs/using-matchers)
+[Running Tests](https://create-react-app.dev/docs/running-tests/#srcsetuptestsjs)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
