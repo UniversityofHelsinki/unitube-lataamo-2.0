@@ -26,7 +26,7 @@ const Loading = ({ children, renderChildren = false, loading }) => {
 
 Loading.propTypes = {
   children: PropTypes.object.isRequired,
-  renderChildren: PropTypes.bool.isRequired,
+  renderChildren: PropTypes.bool,
   loading: PropTypes.bool.isRequired
 };
 
