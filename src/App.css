@@ -1,3 +1,24 @@
+:root {
+  --hy-black: #222222;
+  --hy-white: #ffffff;
+  --hy-blue: #107eab;
+  --hy-blue-active: #0e688b;
+  --hy-dark-blue: #005379;
+  --hy-dark-blue-active: #003146;
+  --hy-light-silver: #f8f8f8;
+  --hy-medium-silver: #d2d2d2;
+  --hy-silver: #979797;
+  --hy-light-gray: #555555;
+  --hy-dark-gray: #424242;
+  --hy-red: #e5053a;
+  --hy-red-alert: #a31621;
+  --hy-purple: #420039;
+  --hy-orange: #f9a21a;
+  --hy-dark-orange: #d14600;
+  --hy-green: #96ba3c;
+  --hy-dark-green: #006400;
+}
+
 .no-margin {
   margin: 0px;
 }
