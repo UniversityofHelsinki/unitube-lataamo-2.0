@@ -1,10 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Loading.css';
+import HyLogo from './HyLogo';
 
-const Loading = ({ children, loading }) => {
-  if (loading) {
+const Loading = ({ children, renderChildren = false, loading }) => {
+
+  if (loading && renderChildren) {
     return (
-      <div>I will spin over my children until loading is done.</div>
+      <div className="loading">
+        {children}
+      </div>
+    );
+  } else if (loading) {
+    return (
+      <div className="loading">
+        <HyLogo className="spin" />
+      </div>
     );
   }
   return (
@@ -14,6 +25,7 @@ const Loading = ({ children, loading }) => {
 
 Loading.propTypes = {
   children: PropTypes.object.isRequired,
+  renderChildren: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired
 };
 

@@ -9,7 +9,6 @@ const RecordForm = () => {
     <Container>
       <Row>
         <Col>
-          moimoi
         </Col>
       </Row>
       <Row>
