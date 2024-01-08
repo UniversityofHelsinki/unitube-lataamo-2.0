@@ -6,6 +6,7 @@
   animation-direction: alternate;
   min-height: 100px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -18,7 +19,6 @@
   to {
     background-color: #D2D2D2;
   }
-
 }
 
 .spin {
@@ -26,7 +26,7 @@
   animation-duration: 2s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
-  animation-direction: alternate;
+  animation-direction: forwards;
 }
 
 @keyframes spin {

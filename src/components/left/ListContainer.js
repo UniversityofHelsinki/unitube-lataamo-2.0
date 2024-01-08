@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Loading from '../utilities/Loading';
 
 const ListContainer = () => {
   return (
-    <ul>
-      <li>tallenne</li>
-      <li>tallenne</li>
-      <li>tallenne</li>
-      <li>tallenne</li>
-      <li>tallenne</li>
-      <li>tallenne</li>
-    </ul>
+    <Loading loading={true}>
+      <ul>
+        <li>tallenne</li>
+        <li>tallenne</li>
+        <li>tallenne</li>
+        <li>tallenne</li>
+        <li>tallenne</li>
+        <li>tallenne</li>
+      </ul>
+    </Loading>
   );
 };
 

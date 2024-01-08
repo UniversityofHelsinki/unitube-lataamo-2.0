@@ -15,6 +15,7 @@ const Loading = ({ children, renderChildren = false, loading }) => {
     return (
       <div className="loading">
         <HyLogo className="spin" />
+        <p>Ladataan...</p>
       </div>
     );
   }
