@@ -9,6 +9,7 @@ const RecordForm = () => {
     <Container>
       <Row>
         <Col>
+          oikea
         </Col>
       </Row>
       <Row>

@@ -9,6 +9,7 @@ const RecordStaticInformation = () => {
     <Container>
       <Row>
         <Col>
+          vasen
         </Col>
       </Row>
       <Row>
