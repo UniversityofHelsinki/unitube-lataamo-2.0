@@ -1,8 +1,17 @@
 import React from 'react';
+import { IconContext } from 'react-icons';
+import { FaUserAlt } from 'react-icons/fa';
+
+
 import PropTypes from 'prop-types';
 const User = () => {
   return (
-    <span>pekka | kirjaudu ulos jne.</span>
+    <React.Fragment>
+      <IconContext.Provider value={{ color: 'grey', className: 'global-class-name' }}>
+        <FaUserAlt /> <span>Pekka | </span>
+        <a href="/Shibboleth.sso/Logout">logout</a>
+      </IconContext.Provider>
+    </React.Fragment>
   );
 };
 

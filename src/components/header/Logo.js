@@ -1,9 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const Logo = () => {
   return (
-    <h1>unitube-lataamo</h1>
+      <>
+        <a href="https://www.helsinki.fi/fi/" target="_blank" rel="noopener noreferrer">Helsingin Yliopisto</a>
+      </>
   );
 };
 
