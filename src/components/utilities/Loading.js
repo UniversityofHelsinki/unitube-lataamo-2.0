@@ -14,7 +14,7 @@ const Loading = ({ children, renderChildren = false, loading }) => {
   } else if (loading) {
     return (
       <div className="loading">
-        <HyLogo className="spinXXXX" />
+        <HyLogo className="spin" />
         <p>Ladataan...</p>
       </div>
     );
