@@ -1,6 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import PropTypes from 'prop-types';
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import translations from './translations';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -15,6 +18,15 @@ import { thunk } from 'redux-thunk';
 import lataamoReducer from './redux/reducers';
 
 const store = createStore(lataamoReducer, applyMiddleware(thunk));
+
+i18n
+  .use(initReactI18next)
+  .init({
+    resources: translations,
+    lng: 'fi',
+    fallbackLng: 'cimode',
+    supportedLngs: ['fi', 'en', 'sv']
+  });
 
 const App = () => {
   return (
@@ -41,7 +53,7 @@ const App = () => {
       </Container>
     </Provider>
   );
-}
+};
 
 App.propTypes = {
 };
