@@ -6,7 +6,7 @@
 * [Jest](https://jestjs.io/docs/using-matchers)
 * [Running Tests](https://create-react-app.dev/docs/running-tests/#srcsetuptestsjs)
 * [Testing library](https://testing-library.com/docs/queries/about)
-* [University Of Helsingi styleguide](https://universityofhelsinki.github.io/Styleguide/)
+* [University Of Helsinki styleguide](https://universityofhelsinki.github.io/Styleguide/)
 
 # Getting Started with Create React App
 
