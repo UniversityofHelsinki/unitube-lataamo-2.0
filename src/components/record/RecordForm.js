@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import RecordName from "./RecordName";
+import RecordInformation from "./RecordInformation";
 
 const RecordForm = () => {
   return (
@@ -20,7 +21,7 @@ const RecordForm = () => {
       </Row>
       <Row>
         <Col>
-            RecordDescription
+            <RecordInformation />
         </Col>
       </Row>
       <Row>
