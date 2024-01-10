@@ -2,7 +2,7 @@ import React from 'react';
 
 const InputField = () => {
     return (
-        <input id='inputtext' type="text" placeholder="inputText" className="form-control" />
+        <input type="text" placeholder="inputText" className="form-control" />
     );
 };
 

@@ -25,6 +25,7 @@ const RecordForm = () => {
       </Row>
       <Row>
         <Col>
+            Voimassaolo
         </Col>
       </Row>
       <Row>
