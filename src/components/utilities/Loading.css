@@ -11,6 +11,10 @@
   justify-content: center;
 }
 
+.loading > p {
+  color: var(--hy-black);
+}
+
 @keyframes loading {
   from {
     background-color: initial;

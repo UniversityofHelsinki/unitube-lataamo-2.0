@@ -1,0 +1,9 @@
+.left {
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: var(--hy-medium-silver);
+}
+
+.up-left {
+  background-color: var(--hy-light-silver);
+}

@@ -31,9 +31,9 @@ i18n
 const App = () => {
   return (
     <Provider store={store}>
-      <Container>
+      <Container className="root mx-0">
         <Row>
-          <Col>
+          <Col className="px-0">
             <Header />
           </Col>
         </Row>
@@ -46,7 +46,7 @@ const App = () => {
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col className="px-0">
             <Footer />
           </Col>
         </Row>
