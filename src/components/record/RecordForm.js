@@ -3,21 +3,24 @@ import PropTypes from 'prop-types';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import RecordName from "./RecordName";
 
 const RecordForm = () => {
   return (
     <Container>
       <Row>
         <Col>
-          oikea
+          BreadCrumb
         </Col>
       </Row>
       <Row>
         <Col>
+            <RecordName />
         </Col>
       </Row>
       <Row>
         <Col>
+            RecordDescription
         </Col>
       </Row>
       <Row>
