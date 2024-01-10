@@ -1,8 +1,9 @@
 import React from 'react';
+import { Form } from 'react-bootstrap';
 
 const InputField = () => {
     return (
-        <input type="text" placeholder="inputText" className="form-control" />
+        <Form.Control type="text" placeholder="inputText" className="form-control" />
     );
 };
 

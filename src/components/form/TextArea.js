@@ -1,9 +1,9 @@
 import React from 'react';
-import PropTypes from "prop-types";
+import { Form } from 'react-bootstrap';
 
 const TextArea = () => {
     return (
-        <textarea className="form-control">textArea</textarea>
+        <Form.Control as="textarea">textArea</Form.Control>
     );
 };
 

@@ -5,12 +5,14 @@ import Row from 'react-bootstrap/Row';
 import { useTranslation } from 'react-i18next';
 import FormElementHeader from "../form/FormElementHeader";
 import TextArea from "../form/TextArea";
+import { Form } from 'react-bootstrap';
 
 const RecordInformation = () => {
     const { t } = useTranslation();
 
     return (
         <Container>
+            <Form.Group>
             <Row>
                 <Col>
                     <FormElementHeader label={t('recordinformation')} />
@@ -21,6 +23,7 @@ const RecordInformation = () => {
                     <TextArea />
                 </Col>
             </Row>
+            </Form.Group>
         </Container>
     );
 };

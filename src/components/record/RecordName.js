@@ -5,22 +5,25 @@ import Row from 'react-bootstrap/Row';
 import { useTranslation } from 'react-i18next';
 import InputField from "../form/InputField";
 import FormElementHeader from "../form/FormElementHeader";
+import { Form } from 'react-bootstrap';
 
 const RecordName = () => {
     const { t } = useTranslation();
 
     return (
         <Container>
-            <Row>
-                <Col>
-                    <FormElementHeader label={t('recordname')} />
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <InputField />
-                </Col>
-            </Row>
+            <Form.Group>
+                <Row>
+                    <Col>
+                        <FormElementHeader label={t('recordname')} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <InputField />
+                    </Col>
+                </Row>
+            </Form.Group>
         </Container>
     );
 };

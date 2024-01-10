@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import { Form } from 'react-bootstrap';
 
 const FormElementHeader = ({label}) => {
     return (
-        <h2>{label}</h2>
+        <Form.Label as="h2">{label}</Form.Label>
     );
 };
 

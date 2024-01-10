@@ -5,42 +5,45 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import RecordName from "./RecordName";
 import RecordInformation from "./RecordInformation";
+import { Form } from 'react-bootstrap';
 
 const RecordForm = () => {
   return (
     <Container>
-      <Row>
-        <Col>
-          BreadCrumb
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-            <RecordName />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-            <RecordInformation />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-            Voimassaolo
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-        </Col>
-      </Row>
+      <Form>
+          <Row>
+            <Col>
+              BreadCrumb
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+                <RecordName />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+                <RecordInformation />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+                Voimassaolo
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+            </Col>
+          </Row>
+      </Form>
     </Container>
   );
 };
