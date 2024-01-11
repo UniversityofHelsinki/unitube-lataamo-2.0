@@ -13,6 +13,9 @@ const Record = () => {
   return (
     <Container>
       <Row>
+        breadcrumb
+      </Row>
+      <Row>
         <Col lg>
           <RecordStaticInformation />
         </Col>
