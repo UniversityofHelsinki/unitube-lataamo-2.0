@@ -38,10 +38,10 @@ const App = () => {
           </Col>
         </Row>
         <Row>
-          <Col sm={4}>
+          <Col md={4}>
             <Left />
           </Col>
-          <Col sm={8}>
+          <Col md={8}>
             <Right />
           </Col>
         </Row>

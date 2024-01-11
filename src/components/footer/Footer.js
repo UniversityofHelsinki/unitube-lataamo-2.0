@@ -13,8 +13,10 @@ const Footer = () => {
   return (
     <Container as="footer">
       <Row>
-        <Col className="text-end">
-          <HyLogo fill={Colors.white} />
+        <Col className="text-end footer-hy-logo">
+          <div>
+            <HyLogo fill={Colors.white} />
+          </div>
         </Col>
         <Col>
           <ContactDetails />

@@ -1,0 +1,17 @@
+.navigation .nav-link {
+  border-radius: 0;
+}
+
+.navigation .nav-link.active {
+  background-color: var(--hy-white);
+  color: var(--hy-blue);
+  border-top: 3px solid var(--hy-blue);
+}
+
+.navigation .nav-link {
+  background-color: var(--hy-blue);
+  color: var(--hy-white);
+  font-weight: 600;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
