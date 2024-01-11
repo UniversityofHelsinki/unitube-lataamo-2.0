@@ -14,7 +14,9 @@ const Footer = () => {
     <Container as="footer">
       <Row>
         <Col className="text-end">
-          <HyLogo fill={Colors.white} />
+          <div>
+            <HyLogo fill={Colors.white} />
+          </div>
         </Col>
         <Col>
           <ContactDetails />

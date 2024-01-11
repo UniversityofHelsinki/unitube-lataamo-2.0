@@ -32,9 +32,9 @@ const Left = () => {
     <Container className="left">
       <Row>
         <Col className="no-padding">
-          <Container className="border-bottom pb-4 up-left">
-            <Row className="border-bottom pb-2">
-              <Col>
+          <Container className="up-left border-bottom pb-4">
+            <Row className="pb-2">
+              <Col className="no-padding">
                 <Navigation />
               </Col>
             </Row>
