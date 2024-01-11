@@ -4,8 +4,8 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import RecordName from "./RecordName";
-import RecordInformation from "./RecordInformation";
 import { Form } from 'react-bootstrap';
+import RecordDescription from './RecordDescription';
 
 const RecordForm = () => {
   return (
@@ -13,17 +13,12 @@ const RecordForm = () => {
       <Form>
           <Row>
             <Col>
-              BreadCrumb
-            </Col>
-          </Row>
-          <Row>
-            <Col>
                 <RecordName />
             </Col>
           </Row>
           <Row>
             <Col>
-                <RecordInformation />
+                <RecordDescription />
             </Col>
           </Row>
           <Row>

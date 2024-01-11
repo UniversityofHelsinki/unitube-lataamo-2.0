@@ -3,7 +3,7 @@ import { Form } from 'react-bootstrap';
 
 const TextArea = () => {
     return (
-        <Form.Control as="textarea">textArea</Form.Control>
+        <Form.Control as="textarea"></Form.Control>
     );
 };
 

@@ -15,12 +15,12 @@ const RecordName = () => {
             <Form.Group>
                 <Row>
                     <Col>
-                        <FormElementHeader label={t('recordname')} />
+                        <FormElementHeader label={t('record_form_name_header')} />
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <InputField />
+                        <InputField placeholder={t('record_form_name_placeholder')}/>
                     </Col>
                 </Row>
             </Form.Group>
