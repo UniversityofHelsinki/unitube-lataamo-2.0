@@ -16,8 +16,12 @@ li > a {
   color: var(--hy-white);
 }
 
-@media (max-width: 576px) {
-  p {
+@media (max-width: 992px) {
+  footer {
     text-align: center;
+  }
+
+  .footer-hy-logo {
+    text-align: center !important;
   }
 }

@@ -31,22 +31,22 @@ i18n
 const App = () => {
   return (
     <Provider store={store}>
-      <Container>
+      <Container className="root mx-0">
         <Row>
-          <Col>
+          <Col className="px-0">
             <Header />
           </Col>
         </Row>
         <Row>
-          <Col sm={4}>
+          <Col md={4}>
             <Left />
           </Col>
-          <Col sm={8}>
+          <Col md={8}>
             <Right />
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col className="px-0">
             <Footer />
           </Col>
         </Row>

@@ -9,11 +9,11 @@ const Search = () => {
   return (
     <Container>
       <Row>
-        <Col>
-          <input type="text" placeholder="Hae" className="form-control" />
+        <Col className="no-padding">
+          <input type="search" placeholder="Hae" className="form-control" />
         </Col>
       </Row>
-      <Row>
+      <Row className="mt-1">
         <Col>
           <SearchOptions />
         </Col>
