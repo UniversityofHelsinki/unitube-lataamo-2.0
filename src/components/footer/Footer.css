@@ -17,7 +17,7 @@ li > a {
 }
 
 @media (max-width: 576px) {
-  p {
+  footer {
     text-align: center;
   }
 }

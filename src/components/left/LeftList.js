@@ -6,17 +6,19 @@ import Row from 'react-bootstrap/Row';
 import ListActions from './ListActions';
 import ListContainer from './ListContainer';
 
-const LeftList = () => {
+const LeftList = ({ children = [] }) => {
   return (
     <Container>
-      <Row>
+      <Row className="mb-2">
         <Col>
           <ListActions />
         </Col>
       </Row>
       <Row>
         <Col>
-          <ListContainer />
+          <ListContainer>
+            {children}
+          </ListContainer>
         </Col>
       </Row>
     </Container>

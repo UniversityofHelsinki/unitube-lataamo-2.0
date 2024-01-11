@@ -23,12 +23,17 @@
   margin: 0px;
 }
 
-.container {
-  border: 1px dotted;
+.no-padding {
+  padding: 0px;
+}
+
+.small-padding {
+  padding: 8px;
 }
 
 @media (min-width: 1600px) {
   .container {
-    max-width: 1520px;
+    max-width: 100%;
+    max-height: 100%;
   }
 }

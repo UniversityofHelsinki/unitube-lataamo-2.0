@@ -13,7 +13,7 @@ const Search = () => {
           <input type="text" placeholder="Hae" className="form-control" />
         </Col>
       </Row>
-      <Row>
+      <Row className="mt-1">
         <Col>
           <SearchOptions />
         </Col>
