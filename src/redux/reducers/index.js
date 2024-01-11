@@ -7,6 +7,8 @@ const example = (state = {}, action) => {
   return state;
 };
 
-export default combineReducers({
+const reducers = {
   example
-});
+};
+
+export default combineReducers(reducers);

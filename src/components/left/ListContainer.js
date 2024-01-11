@@ -4,7 +4,7 @@ import Loading from '../utilities/Loading';
 
 const ListContainer = () => {
   return (
-    <Loading loading={true}>
+    <Loading loading={false}>
       <ul>
         <li>tallenne</li>
         <li>tallenne</li>
