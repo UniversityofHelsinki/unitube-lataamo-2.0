@@ -57,7 +57,7 @@ const Left = () => {
             <LeftList>
               {recordCards}
             </LeftList>
-          </Loading> 
+          </Loading>
         </Col>
       </Row>
     </Container>
