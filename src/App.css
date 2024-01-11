@@ -31,6 +31,19 @@
   padding: 8px;
 }
 
+input[type="search"] {
+  border-radius: 0;
+  padding: 10px;
+}
+
+input[type="search"]:focus-visible {
+  outline: 2px solid var(--hy-blue);
+  border: 0px;
+  border-radius: 0;
+  box-shadow: initial;
+  transition: none;
+}
+
 @media (min-width: 576px) {
   .container {
     max-width: 100%;
