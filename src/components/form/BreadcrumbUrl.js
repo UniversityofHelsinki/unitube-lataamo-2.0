@@ -1,20 +1,21 @@
+import React from 'react';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import PropTypes from 'prop-types';
 
-function BreadcrumbUrl({crumbs}) {
-
-    const listCrumbs = (crumbs) => {
-        return crumbs.map(crumb => (
-            <Breadcrumb.Item href="#" active>{crumb}</Breadcrumb.Item>
-        ))
-    };
-
+const BreadcrumbUrl = ({crumbs}) => {
     return (
-        <Breadcrumb>
-            {listCrumbs(crumbs)}
-        </Breadcrumb>
+      <Breadcrumb>
+          {crumbs.map(crumb => (
+              <Breadcrumb.Item href="#" active>
+                {crumb}
+              </Breadcrumb.Item>
+          ))}
+      </Breadcrumb>
     );
 }
 
 BreadcrumbUrl.propTypes = {
+  crumbs: PropTypes.array.isRequired
 };
+
 export default BreadcrumbUrl;
