@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import CheckBox from './CheckBox';
+import BreadCrumb from './BreadCrumb';
 
 it('renders', () => {
-    render(<CheckBox label="Valinta" />);
+    render(<BreadCrumb />);
 });

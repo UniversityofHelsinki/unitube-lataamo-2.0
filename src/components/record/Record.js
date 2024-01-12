@@ -6,13 +6,14 @@ import Row from 'react-bootstrap/Row';
 import useRecord from '../../hooks/useRecord';
 import RecordForm from './RecordForm';
 import RecordStaticInformation from './RecordStaticInformation';
+import BreadCrumb from '../form/BreadCrumb';
 
 const Record = () => {
   const [record, loading] = useRecord();
   return (
     <Container>
       <Row>
-        breadcrumb
+        <BreadCrumb />
       </Row>
       <Row>
         <Col lg>
