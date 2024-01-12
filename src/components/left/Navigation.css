@@ -6,6 +6,8 @@
   background-color: var(--hy-white);
   color: var(--hy-blue);
   border-top: 3px solid var(--hy-blue);
+  text-decoration-line: underline;
+  text-decoration-thickness: 3px;
 }
 
 .navigation .nav-link {

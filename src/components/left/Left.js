@@ -10,9 +10,11 @@ import Navigation from './Navigation';
 import Search from './search/Search';
 import RecordCard from '../record/card/RecordCard';
 import Loading from '../utilities/Loading';
+import useSearchParams from '../../hooks/useSearchParams';
 
 const Left = () => {
   const [records, setRecords] = useState([]);
+  const [_, setSearchParams] = useSearchParams();
   const mockRecords = [{
     name: "video.mp4",
     description: "asdfsdfadf",
@@ -22,8 +24,11 @@ const Left = () => {
     description: "asdfsafasfdf",
     tags: ["asdfasdfasdf"]
   }];
-  const recordCards = records.map(record => (
-    <RecordCard record={record} />
+  const onClick = (record) => {
+    setSearchParams({ 'record': record.name });
+  };
+  const recordCards = records.map((record, i) => (
+    <RecordCard key={i} onClick={() => onClick(record)} record={record} />
   ));
   if (records.length === 0) {
     setTimeout(() => setRecords(mockRecords), 3000);
