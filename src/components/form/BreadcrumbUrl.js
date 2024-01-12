@@ -6,7 +6,7 @@ const BreadcrumbUrl = ({crumbs}) => {
     return (
       <Breadcrumb>
           {crumbs.map(crumb => (
-              <Breadcrumb.Item href="#" active>
+              <Breadcrumb.Item key={crumb} href="#" active>
                 {crumb}
               </Breadcrumb.Item>
           ))}
