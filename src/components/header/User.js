@@ -1,16 +1,17 @@
 import React from 'react';
 import { IconContext } from 'react-icons';
-import { FaUserAlt } from 'react-icons/fa';
-
+import { ReactComponent as Avatar } from './../utilities/icons/avatar.svg';
+import './User.css';
 
 import PropTypes from 'prop-types';
 const User = () => {
   return (
     <React.Fragment>
-      <IconContext.Provider value={{ color: 'grey', className: 'global-class-name' }}>
-        <FaUserAlt /> <span>Pekka | </span>
-        <a href="/Shibboleth.sso/Logout">logout</a>
-      </IconContext.Provider>
+        <Avatar className='avatar'/>
+        <span value={{ color: 'grey', className: 'global-class-name' }}>
+            <span>Pekka | </span>
+            <a href="/Shibboleth.sso/Logout">logout</a>
+        </span>
     </React.Fragment>
   );
 };
