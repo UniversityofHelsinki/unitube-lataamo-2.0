@@ -6,8 +6,9 @@ import RecordCardDetails from './RecordCardDetails';
 import RecordCardThumbnail from './RecordCardThumbnail';
 
 const RecordCard = ({ record, onClick, selected = false }) => {
+  const selectedClass = selected ? 'record-card-selected' : '';
   return (
-    <Container className="record-card" onClick={onClick}>
+    <Container className={`record-card ${selectedClass}`} onClick={onClick}>
       <Row>
         <Col className="no-padding col-sm-4 text-center">
           <RecordCardThumbnail record={record} />
@@ -17,7 +18,7 @@ const RecordCard = ({ record, onClick, selected = false }) => {
             <Row>
             </Row>
             <Row>
-              <Col className="small-padding">
+              <Col className='small-padding'>
                 <RecordCardDetails record={record} />
               </Col>
             </Row>

@@ -22,7 +22,11 @@ const Left = () => {
   };
 
   const recordCards = records?.map((record, i) => (
-    <RecordCard key={i} onClick={() => onClick(record)} record={record} />
+    <RecordCard 
+      key={i} 
+      onClick={() => onClick(record)} 
+      record={record} 
+      selected={record.name === _.record }/>
   ));
 
   return (
