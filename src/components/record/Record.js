@@ -8,7 +8,7 @@ import RecordForm from './RecordForm';
 import RecordStaticInformation from './RecordStaticInformation';
 
 const Record = () => {
-  const record = useRecord();
+  const [record, loading] = useRecord();
   return (
     <Container>
       <Row>

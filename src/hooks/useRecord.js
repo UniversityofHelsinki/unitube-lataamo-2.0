@@ -1,7 +1,8 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useSearchParams from "./useSearchParams";
 
-const getRecord = (record) => async (dispatch, getState) => {
+const getRecord = (record) => async (dispatch) => {
   dispatch({ type: 'SET_RECORD', payload: { id: record } });
 };
 
@@ -10,13 +11,16 @@ const useRecord = () => {
   const [searchParams] = useSearchParams();
   const currentRecord = useSelector((state) => state.records.record);
 
-  if (!currentRecord || currentRecord.id !== searchParams.record) {
-    if (searchParams.record) {
-      dispatch(getRecord(searchParams.record));
+  useEffect(() => {
+    if (!currentRecord || currentRecord.id !== searchParams.record) {
+      if (searchParams.record) {
+        dispatch(getRecord(searchParams.record));
+      }
     }
-  }
+  }, [searchParams.record]);
 
-  return currentRecord;
+
+  return [currentRecord, !currentRecord || currentRecord.id !== searchParams.record];
 };
 
 export default useRecord;

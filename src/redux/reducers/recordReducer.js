@@ -1,3 +1,4 @@
+
 const recordReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_RECORD':
