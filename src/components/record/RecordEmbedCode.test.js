@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import RecordDescription from './RecordDescription';
+import RecordEmbedCode from "./RecordEmbedCode";
 
 it('renders', () => {
-    render(<RecordDescription />);
+    render(<RecordEmbedCode />);
 });

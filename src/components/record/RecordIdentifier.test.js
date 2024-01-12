@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import RecordDescription from './RecordDescription';
+import RecordIdentifier from './RecordIdentifier';
 
 it('renders', () => {
-    render(<RecordDescription />);
+    render(<RecordIdentifier />);
 });

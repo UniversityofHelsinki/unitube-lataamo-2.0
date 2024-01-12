@@ -15,7 +15,7 @@ const RecordName = () => {
             <Form.Group>
                 <Row>
                     <Col>
-                        <FormElementHeader label={t('record_form_name_header')} />
+                        <FormElementHeader label={t('record_form_name_header')}  size={'h5'} />
                     </Col>
                 </Row>
                 <Row>
