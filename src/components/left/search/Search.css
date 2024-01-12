@@ -1,0 +1,32 @@
+.search > input {
+  border-radius: 0;
+  padding: 10px;
+  border-right: 0px;
+}
+
+.search input:focus-visible {
+  outline: 2px solid var(--hy-blue);
+  border: 0px;
+  border-radius: 0;
+  box-shadow: initial;
+  transition: none;
+}
+
+.search .form-control {
+    transition: none;
+}
+
+.search input:focus-visible + .input-group-text {
+  outline: 2px solid var(--hy-blue);
+  border: 0px;
+  background-color: var(--hy-blue);
+}
+
+.search input:focus-visible + .input-group-text > svg path {
+  fill: var(--hy-white);
+}
+
+.search .input-group-text {
+  background-color: var(--hy-white);
+  border-radius: 0;
+}

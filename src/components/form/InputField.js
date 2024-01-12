@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'react-bootstrap';
+import './InputField.css';
 
 const InputField = ({ placeholder }) => {
     return (
