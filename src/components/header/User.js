@@ -1,5 +1,4 @@
 import React from 'react';
-import { IconContext } from 'react-icons';
 import { ReactComponent as Avatar } from './../utilities/icons/avatar.svg';
 import './User.css';
 
