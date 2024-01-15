@@ -13,7 +13,7 @@ const Languages = () => {
   return (
     <ul className="languages">
       {['fi', 'en', 'sv'].map((language) => 
-        <li onClick={() => onClick(language)}>{t(`language_select_${language}`)}</li>
+        <li key={language} onClick={() => onClick(language)}>{t(`language_select_${language}`)}</li>
       )}
     </ul>
   );
