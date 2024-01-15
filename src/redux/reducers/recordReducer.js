@@ -7,7 +7,7 @@ const recordReducer = (state = {}, action) => {
       return { ...state, records: action.payload };
     default:
       return state;
-  }
+  };
 }
 
 export default recordReducer;

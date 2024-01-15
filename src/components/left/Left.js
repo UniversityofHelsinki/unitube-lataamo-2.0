@@ -12,22 +12,46 @@ import RecordCard from '../record/card/RecordCard';
 import Loading from '../utilities/Loading';
 import useSearchParams from '../../hooks/useSearchParams';
 import useRecords from '../../hooks/useRecords';
+import useLocation from '../../hooks/useLocation';
+import useCollections from '../../hooks/useCollections';
 
 const Left = () => {
-  const [records, loadingRecords] = useRecords();
+  const [path] = useLocation();
+  const [records, loadingRecords] = useRecords({ 
+    load: path === '/records'
+  });
+
+  const [collections, loadingCollections] = useCollections({ 
+    load: path === '/collections' 
+  });
+
   const [_, setSearchParams] = useSearchParams();
 
   const onClick = (record) => {
     setSearchParams({ 'record': record.name });
   };
 
-  const recordCards = records?.map((record, i) => (
+  const recordCards = (records || []).map((record, i) => (
     <RecordCard 
       key={i} 
       onClick={() => onClick(record)} 
       record={record} 
       selected={record.name === _.record }/>
   ));
+
+  const collectionElements = (collections || []).map((collection, i) =>
+    <span key={i} onClick={() => setSearchParams({ 'collection': collection.id })}>{collection.id}</span>
+  );
+
+  const listElements = {
+    '/records': recordCards, 
+    '/collections': collectionElements
+  };
+
+  const loading = {
+    '/records': loadingRecords,
+    '/collections': loadingCollections
+  };
 
   return (
     <Container className="left">
@@ -54,9 +78,9 @@ const Left = () => {
       </Row>
       <Row className="mt-2">
         <Col>
-          <Loading loading={loadingRecords}>
+          <Loading loading={loading[path]}>
             <LeftList>
-              {recordCards}
+              {listElements[path]}
             </LeftList>
           </Loading>
         </Col>

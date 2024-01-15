@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 const getRecords = () => async (dispatch) => {
@@ -13,13 +14,18 @@ const getRecords = () => async (dispatch) => {
   dispatch({ type: 'SET_RECORDS', payload: mockRecords });
 };
 
-const useRecords = () => {
+const useRecords = ({ load = false }) => {
   const dispatch = useDispatch();
   const records = useSelector((state) => state.records.records);
-  if (!records) {
-    dispatch(getRecords());
-  }
-  return [records, !records];
+
+  useEffect(() => {
+    if (load && !records) { 
+      dispatch(getRecords());
+    }
+  }, [load, records]);
+
+  const loading = !records;
+  return [records, loading];
 };
 
 export default useRecords;
