@@ -1,0 +1,8 @@
+.languages li {
+  display: inline-block;
+}
+
+.languages li:nth-child(2) {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}

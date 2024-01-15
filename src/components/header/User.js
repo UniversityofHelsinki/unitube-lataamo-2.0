@@ -1,8 +1,16 @@
 import React from 'react';
+import { ReactComponent as Avatar } from './../utilities/icons/avatar.svg';
 import PropTypes from 'prop-types';
+
 const User = () => {
   return (
-    <span>pekka | kirjaudu ulos jne.</span>
+    <>
+      <Avatar height="20px" width="20px" />
+      <span>
+          <span>Pekka | </span>
+      </span>
+    <a href="/Shibboleth.sso/Logout">logout</a>
+    </>
   );
 };
 

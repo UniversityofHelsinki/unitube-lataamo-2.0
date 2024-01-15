@@ -1,17 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { ReactComponent as ExternalLinkIcon } from './../utilities/icons/external-link.svg';
-import Colors from './../utilities/HyColors';
-
-const ExternalLink = ({ to, label }) => {
-  return (
-    <>
-      <a href={to} style={{ paddingRight: '8px' }}>{label}</a>
-      <ExternalLinkIcon height={12} width={12} fill={Colors.white} />
-    </>
-  );
-};
+import ExternalLink from '../utilities/ExternalLink';
 
 const FooterLinks = () => {
   const { t } = useTranslation();
