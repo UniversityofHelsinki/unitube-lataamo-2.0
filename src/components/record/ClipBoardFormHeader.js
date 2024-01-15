@@ -6,21 +6,24 @@ import { useTranslation } from 'react-i18next';
 import FormElementHeader from "../form/FormElementHeader";
 import PropTypes from "prop-types";
 
-const RecordDownLoadLinks = () => {
+const ClipBoardFormHeader = ({label, size}) => {
     const { t } = useTranslation();
 
     return (
         <Container>
             <Row>
                 <Col>
-                    <FormElementHeader label={t('record_download_links_header')} size={'h5'} />
+                    <FormElementHeader label={label} size={size} />
                 </Col>
+                <Col> Kopioi </Col>
             </Row>
         </Container>
     );
 };
 
-RecordDownLoadLinks.propTypes = {
-};
+ClipBoardFormHeader.propTypes = {
+    label: PropTypes.string.isRequired,
+    size: PropTypes.string.isRequired
+}
 
-export default RecordDownLoadLinks;
+export default ClipBoardFormHeader;

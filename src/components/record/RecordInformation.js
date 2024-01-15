@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import FormElementHeader from "../form/FormElementHeader";
 import TextArea from "../form/TextArea";
 import { Form } from 'react-bootstrap';
+import PropTypes from "prop-types";
 
 const RecordInformation = () => {
     const { t } = useTranslation();
