@@ -1,6 +1,7 @@
 import React from 'react';
 import { ReactComponent as Avatar } from './../utilities/icons/avatar.svg';
 import PropTypes from 'prop-types';
+import './User.css';
 
 const User = () => {
   return (

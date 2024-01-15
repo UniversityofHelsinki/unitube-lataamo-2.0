@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import RecordDescription from './RecordDescription.js';
+import CollectionCardRecords from './CollectionCardRecords';
 
 it('renders', () => {
-    render(<RecordDescription />);
+  render(<CollectionCardRecords />);
 });

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ReactComponent as ExternalLinkIcon } from './icons/external-link.svg';
 import Colors from './HyColors.js';
+import './ExternalLink.css';
 
 const ExternalLink = ({ to, label, fill }) => {
   return (

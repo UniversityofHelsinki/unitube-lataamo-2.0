@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import ListActions from './ListActions';
 import ListContainer from './ListContainer';
+import './LeftList.css';
 
 const LeftList = ({ children = [] }) => {
   return (
