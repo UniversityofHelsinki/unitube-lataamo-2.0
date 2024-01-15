@@ -1,10 +1,11 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import './Logo.css';
 
 const Logo = () => {
+  const { t } = useTranslation();
   return (
-      <>
-        <a href="https://www.helsinki.fi/fi/" target="_blank" rel="noopener noreferrer">Helsingin Yliopisto</a>
-      </>
+    <h1 className="logo">{t('unitube_lataamo')}</h1>
   );
 };
 

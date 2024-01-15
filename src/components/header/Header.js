@@ -6,25 +6,18 @@ import Row from 'react-bootstrap/Row';
 import Languages from './Languages';
 import Logo from './Logo';
 import User from './User';
-import HeaderText from "./HeaderText";
+import ExternalLink from '../utilities/ExternalLink';
+import { useTranslation } from 'react-i18next';
+import Colors from '../utilities/HyColors.js';
+import './Header.css';
 
 const Header = () => {
+  const { t } = useTranslation();
   return (
-    <Container>
+    <Container className="header">
       <Row className="justify-content-between">
         <Col className="text-start">
-        <Container>
-          <Row>
-            <Col>
-              <Logo />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-            <HeaderText />
-            </Col>
-          </Row>
-        </Container>
+          <ExternalLink to="https://helsinki.fi" label={t('university_of_helsinki')} fill={Colors.darkGray} />
         </Col>
         <Col className="text-end">
           <Container>
@@ -34,11 +27,14 @@ const Header = () => {
               </Col>
             </Row>
             <Row>
-              <Col>
-                <Languages />
-              </Col>
+              <Languages />
             </Row>
           </Container>
+        </Col>
+      </Row>
+      <Row className="header-second-row">
+        <Col>
+          <Logo />
         </Col>
       </Row>
     </Container>

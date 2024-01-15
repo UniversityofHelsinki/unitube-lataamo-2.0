@@ -1,4 +1,8 @@
 {
+  "unitube_lataamo": "Unitube Uploader",
   "navigation_records": "Records",
-  "navigation_streams": "Collections"
+  "navigation_streams": "Collections",
+  "language_select_fi": "Finnish",
+  "language_select_en": "English",
+  "language_select_sv": "Swedish"
 }
