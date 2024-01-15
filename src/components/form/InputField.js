@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Form } from 'react-bootstrap';
 import './InputField.css';
 
-const InputField = ({ placeholder }) => {
+const InputField = ({ placeholder, ...rest }) => {
     return (
         <Form.Control type="text" placeholder={placeholder} className="form-control" />
     );

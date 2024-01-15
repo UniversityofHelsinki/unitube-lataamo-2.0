@@ -19,8 +19,9 @@ const useRecord = () => {
     }
   }, [searchParams.record]);
 
+  const loading = !currentRecord || currentRecord.id !== searchParams.record;
 
-  return [currentRecord, !currentRecord || currentRecord.id !== searchParams.record];
+  return [currentRecord, loading];
 };
 
 export default useRecord;
