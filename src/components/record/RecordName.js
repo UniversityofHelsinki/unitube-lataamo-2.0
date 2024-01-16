@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import InputField from "../form/InputField";
 import FormElementHeader from "../form/FormElementHeader";
 import { Form } from 'react-bootstrap';
+import './RecordName.css';
 
 const RecordName = () => {
     const { t } = useTranslation();

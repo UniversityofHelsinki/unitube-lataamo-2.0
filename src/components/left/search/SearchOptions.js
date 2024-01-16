@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import CheckBox from '../../form/CheckBox';
+import './SearchOptions.css';
 
 const SearchOptions = () => {
   return (

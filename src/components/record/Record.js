@@ -7,6 +7,7 @@ import useRecord from '../../hooks/useRecord';
 import RecordForm from './RecordForm';
 import RecordStaticInformation from './RecordStaticInformation';
 import BreadCrumb from '../form/BreadCrumb';
+import './Record.css';
 
 const Record = () => {
   const [record, loading] = useRecord();

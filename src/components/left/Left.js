@@ -14,6 +14,7 @@ import useSearchParams from '../../hooks/useSearchParams';
 import useRecords from '../../hooks/useRecords';
 import useLocation from '../../hooks/useLocation';
 import useCollections from '../../hooks/useCollections';
+import CollectionCard from '../collection/card/CollectionCard';
 
 const Left = () => {
   const [path] = useLocation();
@@ -40,7 +41,11 @@ const Left = () => {
   ));
 
   const collectionElements = (collections || []).map((collection, i) =>
-    <span key={i} onClick={() => setSearchParams({ 'collection': collection.id })}>{collection.id}</span>
+    <CollectionCard 
+        collection={collection}
+        selected={collection.id === _.collection}
+        key={i} 
+        onClick={() => setSearchParams({ 'collection': collection.id })} />
   );
 
   const listElements = {

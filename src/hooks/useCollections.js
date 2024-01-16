@@ -2,7 +2,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const getCollections = () => async (dispatch) => {
-  const collections = [{ id: 'kokoelma' }, { id: 'kokoelma_2' }];
+  const collections = [
+    { id: 'kokoelma', records: [{ name: 'video.mp4' }, { name: 'toinen-video.mp4' }, { name: 'kolmas-videoooooooooooooo.mp4' }] }, 
+    { id: 'kokoelma_2', records: [] }
+  ];
   dispatch({ type: 'SET_COLLECTIONS', payload: collections });
 };
 

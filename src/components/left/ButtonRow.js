@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import './ButtonRow.css';
 
 const ButtonRow = () => {
   return (
