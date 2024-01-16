@@ -5,13 +5,14 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Record from '../record/Record';
 import './MainContent.css';
+import CollectionForm from '../collection/CollectionForm';
 
 const MainContent = () => {
   return (
       <Container>
         <Row>
           <Col>
-            <Record />
+            <CollectionForm />
           </Col>
         </Row>
       </Container>

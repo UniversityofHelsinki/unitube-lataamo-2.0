@@ -5,26 +5,26 @@ import { Col, Container, Row } from 'react-bootstrap';
 import './AutoComplete.css';
 import InputField from '../InputField';
 
-const AutoComplete = ({ options = [], onFilter, onSelect = console.log }) => {
+const AutoComplete = ({ options = [], onFilter, onSelect = console.log, placeholder }) => {
   const [typedValue, setTypedValue] = useState('');
-  const show = typedValue.length > 0;
+  const show = options.length > 0;
 
   const handleInput = (event) => {
     const newValue = (event.target.value || '').trim();
     setTypedValue(newValue);
-    onFilter(typedValue);
+    onFilter(newValue);
   };
 
-  const clearOnSelect = (option) => {
+  const clearOnSelect = (optionIndex) => {
     setTypedValue('');
-    onSelect(option);
+    onSelect(optionIndex);
   };
 
   return (
-    <Container className="auto-complete">
+    <Container className="auto-complete px-0">
       <Row>
         <Col>
-          <InputField placeholder="" type="search" value={typedValue} onChange={handleInput} />
+          <InputField placeholder={placeholder} type="search" value={typedValue} onChange={handleInput} />
           <AutoCompleteOptionContainer options={options} show={show} onSelect={clearOnSelect} />
         </Col>
       </Row>
@@ -36,6 +36,7 @@ AutoComplete.propTypes = {
   options: PropTypes.array.isRequired,
   onFilter: PropTypes.func.isRequired,
   onSelect: PropTypes.func,
+  placeholder: PropTypes.string.isRequired
 };
 
 export default AutoComplete;
