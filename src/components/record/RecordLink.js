@@ -3,7 +3,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { useTranslation } from 'react-i18next';
-import ClipBoardFormElement from "./ClipBoardFormElement";
+import ClipBoardFormElement from '../form/ClipBoardFormElement';
 import Colors from "../utilities/HyColors";
 import { ReactComponent as ExternalLinkIcon } from './../utilities/icons/external-link.svg';
 import PropTypes from "prop-types";

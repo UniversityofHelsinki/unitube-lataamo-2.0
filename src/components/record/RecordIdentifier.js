@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import ClipBoardFormElement from "./ClipBoardFormElement";
+import ClipBoardFormElement from '../form/ClipBoardFormElement';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";

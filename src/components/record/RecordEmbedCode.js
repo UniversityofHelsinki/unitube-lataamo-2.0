@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { useTranslation } from 'react-i18next';
 import PropTypes from "prop-types";
-import ClipBoardFormElement from "./ClipBoardFormElement";
+import ClipBoardFormElement from '../form/ClipBoardFormElement';
 import CodeBlockBox from "./CodeBlockBox";
 import './RecordEmbedCode.css';
 
