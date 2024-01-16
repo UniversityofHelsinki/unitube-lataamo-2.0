@@ -2,12 +2,12 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import RecordEmbedCode from "./RecordEmbedCode";
-import RecordDownLoadLinks from "./RecordDownloadLinks";
+import RecordEmbedCode from './RecordEmbedCode';
+import RecordDownLoadLinks from './RecordDownloadLinks';
 import './RecordStaticInformation.css'
-import VideoPreview from "./VideoPreview";
-import RecordIdentifier from "./RecordIdentifier";
-import RecordLink from "./RecordLink";
+import VideoPreview from './VideoPreview';
+import RecordIdentifier from './RecordIdentifier';
+import RecordLink from './RecordLink';
 
 
 const RecordStaticInformation = () => {
