@@ -5,9 +5,10 @@ import { Col, Container, Row } from 'react-bootstrap';
 import RecordCardDetails from './RecordCardDetails';
 import RecordCardThumbnail from './RecordCardThumbnail';
 
-const RecordCard = ({ record }) => {
+const RecordCard = ({ record, onClick, selected = false }) => {
+  const selectedClass = selected ? 'record-card-selected' : '';
   return (
-    <Container className="record-card">
+    <Container className={`record-card ${selectedClass}`} onClick={onClick}>
       <Row>
         <Col className="no-padding col-sm-4 text-center">
           <RecordCardThumbnail record={record} />
@@ -17,7 +18,7 @@ const RecordCard = ({ record }) => {
             <Row>
             </Row>
             <Row>
-              <Col className="small-padding">
+              <Col className='small-padding'>
                 <RecordCardDetails record={record} />
               </Col>
             </Row>
@@ -29,7 +30,9 @@ const RecordCard = ({ record }) => {
 };
 
 RecordCard.propTypes = {
-  record: PropTypes.object.isRequired
+  record: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
+  selected: PropTypes.bool,
 };
 
 export default RecordCard;

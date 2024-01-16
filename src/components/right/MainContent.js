@@ -4,11 +4,8 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Record from '../record/Record';
-import useRecord from '../../hooks/useRecord';
 
 const MainContent = () => {
-  const record = useRecord(123123);
-  console.log(record);
   return (
       <Container>
         <Row>

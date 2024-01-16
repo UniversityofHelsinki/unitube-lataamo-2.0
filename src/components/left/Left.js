@@ -10,24 +10,49 @@ import Navigation from './Navigation';
 import Search from './search/Search';
 import RecordCard from '../record/card/RecordCard';
 import Loading from '../utilities/Loading';
+import useSearchParams from '../../hooks/useSearchParams';
+import useRecords from '../../hooks/useRecords';
+import useLocation from '../../hooks/useLocation';
+import useCollections from '../../hooks/useCollections';
 
 const Left = () => {
-  const [records, setRecords] = useState([]);
-  const mockRecords = [{
-    name: "video.mp4",
-    description: "asdfsdfadf",
-    tags: ["käsittelyssä"],
-  }, {
-    name: "toinen-video.mp4",
-    description: "asdfsafasfdf",
-    tags: ["asdfasdfasdf"]
-  }];
-  const recordCards = records.map(record => (
-    <RecordCard record={record} />
+  const [path] = useLocation();
+  const [records, loadingRecords] = useRecords({ 
+    load: path === '/records'
+  });
+
+  const [collections, loadingCollections] = useCollections({ 
+    load: path === '/collections' 
+  });
+
+  const [_, setSearchParams] = useSearchParams();
+
+  const onClick = (record) => {
+    setSearchParams({ 'record': record.name });
+  };
+
+  const recordCards = (records || []).map((record, i) => (
+    <RecordCard 
+      key={i} 
+      onClick={() => onClick(record)} 
+      record={record} 
+      selected={record.name === _.record }/>
   ));
-  if (records.length === 0) {
-    setTimeout(() => setRecords(mockRecords), 3000);
-  }
+
+  const collectionElements = (collections || []).map((collection, i) =>
+    <span key={i} onClick={() => setSearchParams({ 'collection': collection.id })}>{collection.id}</span>
+  );
+
+  const listElements = {
+    '/records': recordCards, 
+    '/collections': collectionElements
+  };
+
+  const loading = {
+    '/records': loadingRecords,
+    '/collections': loadingCollections
+  };
+
   return (
     <Container className="left">
       <Row>
@@ -53,9 +78,9 @@ const Left = () => {
       </Row>
       <Row className="mt-2">
         <Col>
-          <Loading loading={records.length === 0}>
+          <Loading loading={loading[path]}>
             <LeftList>
-              {recordCards}
+              {listElements[path]}
             </LeftList>
           </Loading>
         </Col>

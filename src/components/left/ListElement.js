@@ -10,7 +10,8 @@ const ListElement = ({ children }) => {
 };
 
 ListElement.propTypes = {
-  children: PropTypes.array.isRequired
+  children: PropTypes.object.isRequired,
+  onClick: PropTypes.func
 };
 
 export default ListElement;

@@ -9,8 +9,7 @@ import RecordStaticInformation from './RecordStaticInformation';
 import BreadCrumb from '../form/BreadCrumb';
 
 const Record = () => {
-  const record = useRecord(123123);
-  console.log(record);
+  const [record, loading] = useRecord();
   return (
     <Container>
       <Row>
