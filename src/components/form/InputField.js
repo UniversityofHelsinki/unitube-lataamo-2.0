@@ -5,7 +5,7 @@ import './InputField.css';
 
 const InputField = ({ placeholder, ...rest }) => {
     return (
-        <Form.Control type="text" placeholder={placeholder} className="form-control" />
+        <Form.Control type={rest.type || "text"} placeholder={placeholder} { ...rest } />
     );
 };
 
