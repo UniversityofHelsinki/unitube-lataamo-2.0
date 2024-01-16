@@ -1,10 +1,11 @@
-import { CodeBlock, dracula } from 'react-code-blocks';
+import { CodeBlock, github } from 'react-code-blocks';
 import PropTypes from "prop-types";
 
-const CodeBlockBox = ({ code, language, showLineNumbers, theme }) => {
+const CodeBlockBox = ({ text, language, showLineNumbers, theme }) => {
+
     return (
         <CodeBlock
-            code={code}
+            text={text}
             language={language}
             showLineNumbers={showLineNumbers}
             theme={theme}

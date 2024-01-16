@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import { useTranslation } from 'react-i18next';
 import FormElementHeader from "../form/FormElementHeader";
 import PropTypes from "prop-types";
+import CopyLink from "./CopyLink";
 
 const ClipBoardFormHeader = ({label, size}) => {
     const { t } = useTranslation();
@@ -15,7 +16,9 @@ const ClipBoardFormHeader = ({label, size}) => {
                 <Col>
                     <FormElementHeader label={label} size={size} />
                 </Col>
-                <Col> Kopioi </Col>
+                <Col>
+                    <CopyLink />
+                </Col>
             </Row>
         </Container>
     );

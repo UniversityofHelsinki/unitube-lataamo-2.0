@@ -11,7 +11,7 @@ import './RecordEmbedCode.css';
 const RecordEmbedCode = () => {
     const { t } = useTranslation();
 
-    const code = '<iframe src="https://unitube.it.helsinki.fi/unitube/embed.html?id=45ce69e0-1793-4494-8674-fff6d48f4a2f" scrolling="no" allowfullscreen="true" frameBorder="0" marginHeight="0px" ' +
+    const text = '<iframe src="https://unitube.it.helsinki.fi/unitube/embed.html?id=45ce69e0-1793-4494-8674-fff6d48f4a2f" scrolling="no" allowfullscreen="true" frameBorder="0" marginHeight="0px" ' +
         'marginWidth="0px" height="360" width="640"></iframe>';
 
     return (
@@ -23,7 +23,7 @@ const RecordEmbedCode = () => {
             </Row>
             <Row>
                 <Col className="blocksize">
-                    <CodeBlockBox code={code} language={'jsx'} showLineNumbers={'true'} theme={'light'} />
+                    <CodeBlockBox text={text} language={'jsx'} showLineNumbers={'true'} theme={'github'} />
                 </Col>
             </Row>
         </Container>
