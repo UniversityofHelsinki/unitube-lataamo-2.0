@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import AutoCompleteOptionContainer from './AutoCompleteOptionContainer';
 import { Col, Container, Row } from 'react-bootstrap';
@@ -7,10 +7,11 @@ import InputField from '../InputField';
 
 const AutoComplete = ({ options = [], onFilter, onSelect = console.log, placeholder }) => {
   const [typedValue, setTypedValue] = useState('');
-  const show = options.length > 0;
+  const [focus, setFocus] = useState(false);
+  const containerRef = useRef();
 
   const handleInput = (event) => {
-    const newValue = (event.target.value || '').trim();
+    const newValue = (event.target.value || '');
     setTypedValue(newValue);
     onFilter(newValue);
   };
@@ -21,11 +22,13 @@ const AutoComplete = ({ options = [], onFilter, onSelect = console.log, placehol
   };
 
   return (
-    <Container className="auto-complete px-0">
+    <Container ref={containerRef} className="auto-complete px-0" onBlur={
+      e => setFocus(containerRef.current?.contains(e.relatedTarget))
+    } onFocus={(e => setFocus(true))}>
       <Row>
         <Col>
           <InputField placeholder={placeholder} type="search" value={typedValue} onChange={handleInput} />
-          <AutoCompleteOptionContainer options={options} show={show} onSelect={clearOnSelect} />
+          <AutoCompleteOptionContainer options={options} show={options.length > 0 && focus} onSelect={clearOnSelect} />
         </Col>
       </Row>
     </Container>

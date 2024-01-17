@@ -4,7 +4,7 @@ import './UserAutoComplete.css';
 import { Col, Container, Row } from 'react-bootstrap';
 import useUsers from '../../../../hooks/autocomplete/useUsers';
 import AutoComplete from '../AutoComplete';
-import UserAutoCompleteResult from './UserAutoCompleteResult';
+import UserAutoCompleteResult from './../result/UserAutoCompleteResult';
 import { useTranslation } from 'react-i18next';
 
 const UserAutoComplete = ({ onSelect }) => {

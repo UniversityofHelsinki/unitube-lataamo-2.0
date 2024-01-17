@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './GroupAutoComplete.css';
 import { Col, Container, Row } from 'react-bootstrap';
 import AutoComplete from '../AutoComplete';
 import useGroups from '../../../../hooks/autocomplete/useGroups';
-import GroupAutoCompleteResult from './GroupAutoCompleteResult';
+import GroupAutoCompleteResult from './../result/GroupAutoCompleteResult.js';
 import { useTranslation } from 'react-i18next';
 
 const GroupAutoComplete = ({ onSelect }) => {
   const [results, search, clearResults] = useGroups();
+  const [query, setQuery] = useState('');
   const { t } = useTranslation();
 
   const onSearch = (query) => {
@@ -17,6 +18,7 @@ const GroupAutoComplete = ({ onSelect }) => {
     } else {
       clearResults();
     }
+    setQuery(query);
   };
 
   const handleSelection = (i) => {
@@ -25,7 +27,7 @@ const GroupAutoComplete = ({ onSelect }) => {
   };
 
   const options = results.map(result =>
-    <GroupAutoCompleteResult group={result} />
+    <GroupAutoCompleteResult group={result} query={query} />
   );
 
   return (

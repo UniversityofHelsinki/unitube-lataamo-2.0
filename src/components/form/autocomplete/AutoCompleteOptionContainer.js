@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './AutoCompleteOptionContainer.css';
 import onKeyDown from '../../accessibility/keydown';
-import { Col, Container, Row } from 'react-bootstrap';
 
 const AutoCompleteOptionContainer = ({ options, show = false, onSelect }) => {
   const nothing = <></>;

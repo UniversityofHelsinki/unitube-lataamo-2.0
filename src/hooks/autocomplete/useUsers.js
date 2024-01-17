@@ -12,7 +12,12 @@ const searchUsers = (searchQuery) => async (dispatch) => {
     userName: "baabenom",
     email: "baabe.nomypeevo@helsinki.fi"
   }]
-  const r = response.filter(user => user.userName.includes(searchQuery));
+  const r = response.filter(user => 
+      user.userName.toLowerCase().includes(searchQuery) ||
+      user.firstName.toLowerCase().includes(searchQuery) ||
+      user.lastName.toLowerCase().includes(searchQuery) ||
+      user.email.toLowerCase().includes(searchQuery)
+  );
   dispatch({ type: 'SET_USERS', payload: r });
 };
 
