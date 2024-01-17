@@ -1,0 +1,16 @@
+.collection-card {
+  border: 1px solid var(--hy-silver);
+}
+
+.collection-card:hover {
+  cursor: pointer;
+}
+
+.collection-card-selected {
+  outline: 3px solid var(--hy-blue);
+  box-shadow: 5px 5px 10px var(--hy-blue);
+}
+
+.collection-card-header-row {
+  border-bottom: 1px solid var(--hy-medium-silver);
+}

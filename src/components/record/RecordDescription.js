@@ -7,6 +7,7 @@ import FormElementHeader from "../form/FormElementHeader";
 import TextArea from "../form/TextArea";
 import { Form } from 'react-bootstrap';
 import PropTypes from "prop-types";
+import './RecordDescription.css';
 
 const RecordDescription = () => {
     const { t } = useTranslation();

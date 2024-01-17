@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './ListElement.css';
 
 const ListElement = ({ children }) => {
   return (
@@ -10,7 +11,8 @@ const ListElement = ({ children }) => {
 };
 
 ListElement.propTypes = {
-  children: PropTypes.array.isRequired
+  children: PropTypes.object.isRequired,
+  onClick: PropTypes.func
 };
 
 export default ListElement;

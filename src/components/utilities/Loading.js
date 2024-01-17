@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './Loading.css';
 import HyLogo from './HyLogo';
 
-const Loading = ({ children, renderChildren = false, loading }) => {
+const Loading = ({ children, renderChildren = false, loading = false }) => {
 
   if (loading && renderChildren) {
     return (

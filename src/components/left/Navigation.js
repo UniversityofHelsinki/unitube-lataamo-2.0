@@ -5,17 +5,24 @@ import Row from 'react-bootstrap/Row';
 import { Nav } from 'react-bootstrap';
 import './Navigation.css';
 import { useTranslation } from 'react-i18next';
+import useLocation from '../../hooks/useLocation';
 
 const Navigation = () => {
   const { t } = useTranslation();
-  const [selectedTab, setSelectedTab] = useState("/records");
+  const [location, setLocation] = useLocation();
 
-  const onSelect = (selectedTab) => setSelectedTab(selectedTab);
+  if (!location || location === "/") {
+    setLocation("/records");
+  }
+
+  const onSelect = (path) => {
+    setLocation(path);
+  };
 
   return (
     <Container className="navigation">
       <Row className="text-center no-padding">
-        <Nav as="nav" justify fill variant="tabs" activeKey={selectedTab} className="no-padding" onSelect={onSelect}>
+        <Nav as="nav" justify fill variant="tabs" activeKey={location} className="no-padding" onSelect={onSelect}>
             <Nav.Item>
               <Nav.Link eventKey="/records" href="#">{t('navigation_records')}</Nav.Link>
             </Nav.Item>

@@ -16,9 +16,6 @@ const ClipBoardFormHeader = ({label, size}) => {
                 <Col>
                     <FormElementHeader label={label} size={size} />
                 </Col>
-                <Col>
-                    <CopyLink />
-                </Col>
             </Row>
         </Container>
     );

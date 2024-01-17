@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './RecordCardDetails.css';
 
 const RecordCardDetails = ({ record }) => {
   return (

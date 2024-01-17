@@ -1,8 +1,9 @@
 import React from 'react';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import PropTypes from 'prop-types';
+import './BreadCrumbUrl.css';
 
-const BreadcrumbUrl = ({crumbs}) => {
+const BreadCrumbUrl = ({crumbs}) => {
     return (
       <Breadcrumb>
           {crumbs.map(crumb => (
@@ -14,8 +15,8 @@ const BreadcrumbUrl = ({crumbs}) => {
     );
 }
 
-BreadcrumbUrl.propTypes = {
+BreadCrumbUrl.propTypes = {
   crumbs: PropTypes.array.isRequired
 };
 
-export default BreadcrumbUrl;
+export default BreadCrumbUrl;

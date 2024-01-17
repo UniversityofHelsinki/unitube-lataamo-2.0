@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import RecordName from "./RecordName";
 import { Form } from 'react-bootstrap';
 import RecordDescription from './RecordDescription';
+import './RecordForm.css';
 
 const RecordForm = () => {
   return (

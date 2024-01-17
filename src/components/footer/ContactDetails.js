@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './ContactDetails.css';
 
 const ContactDetails = () => {
   return (

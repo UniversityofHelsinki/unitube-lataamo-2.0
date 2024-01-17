@@ -10,5 +10,6 @@
   "record_identifier_header": "Tallenteen tunniste",
   "record_link_header": "Linkki",
   "record_embed_code_header": "Upotuskoodi",
-  "record_download_links_header": "Lataa tallenne"
+  "record_download_links_header": "Lataa tallenne",
+  "clipboard_copy": "Kopioi"
 }

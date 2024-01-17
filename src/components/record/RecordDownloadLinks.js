@@ -1,26 +1,51 @@
 import React from 'react';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import { useTranslation } from 'react-i18next';
-import FormElementHeader from "../form/FormElementHeader";
 import PropTypes from "prop-types";
+import { ReactComponent as DownloadIcon } from '../utilities/icons/download.svg';
+import './RecordDownloadLinks.css';
+import { Col, Container, Row } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import FormElementHeader from '../form/FormElementHeader';
 
-const RecordDownLoadLinks = () => {
-    const { t } = useTranslation();
-
-    return (
-        <Container>
-            <Row>
-                <Col>
-                    <FormElementHeader label={t('record_download_links_header')} size={'h5'} />
-                </Col>
-            </Row>
-        </Container>
-    );
+const DownloadLink = ({ to, label }) => {
+  return (
+    <>
+      <DownloadIcon width="2em" height="2em" />
+      <a className="ms-2" href={to}>{label}</a>
+    </>
+  );
 };
 
-RecordDownLoadLinks.propTypes = {
+const RecordDownloadLinks = ({ links }) => {
+  const { t } = useTranslation();
+  return (
+    <Container>
+      <Row>
+        <Col>
+          <FormElementHeader label={t('record_download_link_header')} />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <ul className="blockquote record-download-link-list">
+            {links.map((link) => (
+              <li key={link.to}>
+              <DownloadLink to={link.to} label={link.label} />
+              </li>
+            ))}
+          </ul>
+        </Col>
+      </Row>
+    </Container>
+  );
 };
 
-export default RecordDownLoadLinks;
+RecordDownloadLinks.propTypes = {
+  links: PropTypes.arrayOf(
+    PropTypes.shape({
+      to: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired
+    })
+  )
+};
+
+export default RecordDownloadLinks;

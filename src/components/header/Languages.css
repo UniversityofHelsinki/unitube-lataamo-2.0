@@ -1,8 +1,20 @@
 .languages li {
   display: inline-block;
+  margin: 0.1em;
 }
 
-.languages li:nth-child(2) {
-  margin-left: 0.5em;
-  margin-right: 0.5em;
+.languages .btn-link {
+  color: var(--hy-silver);
+  text-transform: uppercase;
+  text-decoration-line: initial;
+  padding: 0px;
+}
+
+.languages .btn-link:hover {
+  text-decoration-line: underline;
+}
+
+.languages .active.btn-link {
+  color: var(--hy-light-gray);
+  text-transform: uppercase;
 }

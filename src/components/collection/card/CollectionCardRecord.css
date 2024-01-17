@@ -1,0 +1,20 @@
+.collection-card-record {
+  height: 50px;
+  min-width: 180px;
+}
+
+.collection-card-record.container {
+  max-width: 100%;
+  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.collection-card-record-thumb {
+  background-color: var(--hy-medium-silver);
+}
+
+.collection-card-record-details {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

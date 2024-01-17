@@ -7,6 +7,7 @@ import InputField from "../form/InputField";
 import FormElementHeader from "../form/FormElementHeader";
 import { Form } from 'react-bootstrap';
 import PropTypes from "prop-types";
+import './RecordName.css';
 
 const RecordName = () => {
     const { t } = useTranslation();

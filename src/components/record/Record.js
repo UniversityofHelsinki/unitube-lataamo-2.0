@@ -7,17 +7,17 @@ import useRecord from '../../hooks/useRecord';
 import RecordForm from './RecordForm';
 import RecordStaticInformation from './RecordStaticInformation';
 import BreadCrumb from '../form/BreadCrumb';
+import './Record.css';
 
 const Record = () => {
-  const record = useRecord(123123);
-  console.log(record);
+  const [record, loading] = useRecord();
   return (
     <Container>
       <Row>
         <BreadCrumb />
       </Row>
       <Row>
-        <Col lg>
+        <Col lg={5}>
           <RecordStaticInformation />
         </Col>
         <Col lg>
