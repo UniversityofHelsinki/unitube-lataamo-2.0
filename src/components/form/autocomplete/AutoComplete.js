@@ -1,31 +1,34 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import AutoCompleteOptionContainer from './AutoCompleteOptionContainer';
 import { Col, Container, Row } from 'react-bootstrap';
 import './AutoComplete.css';
 import InputField from '../InputField';
 
-const AutoComplete = ({ options = [], onFilter, onSelect = console.log }) => {
+const AutoComplete = ({ options = [], onFilter, onSelect = console.log, placeholder }) => {
   const [typedValue, setTypedValue] = useState('');
-  const show = typedValue.length > 0;
+  const [focus, setFocus] = useState(false);
+  const containerRef = useRef();
 
   const handleInput = (event) => {
-    const newValue = (event.target.value || '').trim();
+    const newValue = (event.target.value || '');
     setTypedValue(newValue);
-    onFilter(typedValue);
+    onFilter(newValue);
   };
 
-  const clearOnSelect = (option) => {
+  const clearOnSelect = (optionIndex) => {
     setTypedValue('');
-    onSelect(option);
+    onSelect(optionIndex);
   };
 
   return (
-    <Container className="auto-complete">
+    <Container ref={containerRef} className="auto-complete px-0" onBlur={
+      e => setFocus(containerRef.current?.contains(e.relatedTarget))
+    } onFocus={(e => setFocus(true))}>
       <Row>
         <Col>
-          <InputField placeholder="" type="search" value={typedValue} onChange={handleInput} />
-          <AutoCompleteOptionContainer options={options} show={show} onSelect={clearOnSelect} />
+          <InputField placeholder={placeholder} type="search" value={typedValue} onChange={handleInput} />
+          <AutoCompleteOptionContainer options={options} show={options.length > 0 && focus} onSelect={clearOnSelect} />
         </Col>
       </Row>
     </Container>
@@ -36,6 +39,7 @@ AutoComplete.propTypes = {
   options: PropTypes.array.isRequired,
   onFilter: PropTypes.func.isRequired,
   onSelect: PropTypes.func,
+  placeholder: PropTypes.string.isRequired
 };
 
 export default AutoComplete;

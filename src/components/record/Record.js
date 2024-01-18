@@ -17,7 +17,7 @@ const Record = () => {
         <BreadCrumb />
       </Row>
       <Row>
-        <Col lg>
+        <Col lg={5}>
           <RecordStaticInformation />
         </Col>
         <Col lg>

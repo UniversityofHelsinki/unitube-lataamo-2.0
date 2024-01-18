@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import InputField from "../form/InputField";
 import FormElementHeader from "../form/FormElementHeader";
 import { Form } from 'react-bootstrap';
+import PropTypes from "prop-types";
 import './RecordName.css';
 
 const RecordName = () => {
@@ -16,7 +17,7 @@ const RecordName = () => {
             <Form.Group>
                 <Row>
                     <Col>
-                        <FormElementHeader label={t('record_form_name_header')} />
+                        <FormElementHeader label={t('record_form_name_header')}  size={'h5'} />
                     </Col>
                 </Row>
                 <Row>

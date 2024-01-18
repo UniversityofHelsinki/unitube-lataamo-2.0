@@ -6,9 +6,10 @@ import { useTranslation } from 'react-i18next';
 import FormElementHeader from "../form/FormElementHeader";
 import TextArea from "../form/TextArea";
 import { Form } from 'react-bootstrap';
+import PropTypes from "prop-types";
 import './RecordDescription.css';
 
-const RecordInformation = () => {
+const RecordDescription = () => {
     const { t } = useTranslation();
 
     return (
@@ -16,7 +17,7 @@ const RecordInformation = () => {
             <Form.Group>
             <Row>
                 <Col>
-                    <FormElementHeader label={t('record_form_description_header')} />
+                    <FormElementHeader label={t('record_form_description_header')}  size={'h5'} />
                 </Col>
             </Row>
             <Row>
@@ -29,7 +30,7 @@ const RecordInformation = () => {
     );
 };
 
-RecordInformation.propTypes = {
+RecordDescription.propTypes = {
 };
 
-export default RecordInformation;
+export default RecordDescription;

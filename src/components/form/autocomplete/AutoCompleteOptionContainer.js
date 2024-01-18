@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './AutoCompleteOptionContainer.css';
 import onKeyDown from '../../accessibility/keydown';
-import { Col, Container, Row } from 'react-bootstrap';
 
 const AutoCompleteOptionContainer = ({ options, show = false, onSelect }) => {
   const nothing = <></>;
@@ -14,7 +13,7 @@ const AutoCompleteOptionContainer = ({ options, show = false, onSelect }) => {
     <div className="auto-complete-option-container">
       <ul className="auto-complete-option-list" aria-live="polite" aria-atomic="true">
         {options.map((option, i) => 
-          <li key={i} tabIndex={0} onClick={() => onSelect(option)} onKeyDown={onKeyDown(() => onSelect(option))}>
+          <li key={i} tabIndex={0} onClick={() => onSelect(i)} onKeyDown={onKeyDown(() => onSelect(i))}>
             {option}
           </li>
         )}

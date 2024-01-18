@@ -4,11 +4,11 @@ import { ReactComponent as ExternalLinkIcon } from './icons/external-link.svg';
 import Colors from './HyColors.js';
 import './ExternalLink.css';
 
-const ExternalLink = ({ to, label, fill }) => {
+const ExternalLink = ({ to, label, fill, height = 12, width = 12 }) => {
   return (
     <>
       <a href={to} target="_blank" style={{ paddingRight: '8px' }}>{label}</a>
-      <ExternalLinkIcon height={12} width={12} fill={fill || Colors.white} />
+      <ExternalLinkIcon height={height} width={width} fill={fill || Colors.white} />
     </>
   );
     
@@ -17,7 +17,9 @@ const ExternalLink = ({ to, label, fill }) => {
 ExternalLink.propTypes = {
   to: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  fill: PropTypes.string
+  fill: PropTypes.string,
+  height: PropTypes.number,
+  width: PropTypes.number
 };
 
 export default ExternalLink;

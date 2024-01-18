@@ -18,7 +18,7 @@ const RecordCard = ({ record, onClick, selected = false }) => {
             <Row>
             </Row>
             <Row>
-              <Col className='small-padding'>
+              <Col className="small-padding">
                 <RecordCardDetails record={record} />
               </Col>
             </Row>

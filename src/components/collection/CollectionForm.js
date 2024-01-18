@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import './CollectionForm.css';
+import CollectionManagementRights from './management-rights/CollectionManagementRights';
 
 const CollectionForm = () => {
   return (
@@ -34,6 +35,7 @@ const CollectionForm = () => {
       </Row>
       <Row>
         <Col>
+          <CollectionManagementRights users={[{ userName: 'pekka' }, { userName: 'nomypa' }, { userName: 'keijoooooo' }]} groups={[ { grpName: 'grp-hy-huuhuu', description: 'pelottava' }]} />
         </Col>
         <Col>
         </Col>
