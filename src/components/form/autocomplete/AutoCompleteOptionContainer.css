@@ -1,0 +1,31 @@
+.auto-complete-option-container {
+  position: relative;
+}
+
+ul.auto-complete-option-list {
+  list-style: none;
+  padding-left: 0px;
+}
+
+.auto-complete-option-list {
+  position: absolute;
+  background-color: var(--hy-white);
+  border: 1px solid var(--hy-medium-silver);
+  border-bottom: 0px;
+  width: 100%;
+}
+
+.auto-complete-option-list li {
+  border-bottom: 1px solid var(--hy-medium-silver);
+  cursor: pointer;
+}
+
+.auto-complete-option-list li:hover {
+  border-bottom: 1px solid var(--hy-medium-silver);
+  background-color: var(--hy-medium-silver);
+}
+
+.auto-complete-option-list li:focus-visible {
+  border-bottom: 1px solid var(--hy-medium-silver);
+  background-color: var(--hy-medium-silver);
+}

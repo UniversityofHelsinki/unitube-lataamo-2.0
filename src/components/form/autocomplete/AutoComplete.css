@@ -1,0 +1,14 @@
+.auto-complete input[type="search"] {
+  width: 100%;
+  border-radius: 0;
+  padding: 10px;
+  padding-left: 10px;
+}
+
+.auto-complete input[type="search"]:focus-visible {
+  outline: 2px solid var(--hy-blue);
+  border: 0px;
+  border-radius: 0;
+  box-shadow: initial;
+  transition: none;
+}
