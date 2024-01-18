@@ -1,0 +1,6 @@
+.video-preview {
+    background-color: var(--hy-light-silver);
+    border-width: 1px;
+    border-style: solid;
+    border-right-color: var(--hy-silver);
+}

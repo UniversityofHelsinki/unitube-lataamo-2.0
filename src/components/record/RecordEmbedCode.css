@@ -1,0 +1,7 @@
+pre {
+  overflow: scroll;
+  white-space: pre-wrap;
+  height: 12em;
+  border: 2px solid var(--hy-blue);
+  padding: 10px;
+}

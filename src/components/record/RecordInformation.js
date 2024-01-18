@@ -7,9 +7,8 @@ import FormElementHeader from "../form/FormElementHeader";
 import TextArea from "../form/TextArea";
 import { Form } from 'react-bootstrap';
 import PropTypes from "prop-types";
-import './RecordDescription.css';
 
-const RecordDescription = () => {
+const RecordInformation = () => {
     const { t } = useTranslation();
 
     return (
@@ -17,7 +16,7 @@ const RecordDescription = () => {
             <Form.Group>
             <Row>
                 <Col>
-                    <FormElementHeader label={t('record_form_description_header')}  size={'h5'} />
+                    <FormElementHeader label={t('record_form_description_header')} size={'h5'} />
                 </Col>
             </Row>
             <Row>
@@ -30,7 +29,7 @@ const RecordDescription = () => {
     );
 };
 
-RecordDescription.propTypes = {
+RecordInformation.propTypes = {
 };
 
-export default RecordDescription;
+export default RecordInformation;
