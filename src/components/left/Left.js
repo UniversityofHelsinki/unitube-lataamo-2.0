@@ -26,10 +26,10 @@ const Left = () => {
     load: path === '/collections' 
   });
 
-  const [_, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const onClick = (record) => {
-    setSearchParams({ 'record': record.name });
+    setSearchParams({ 'record': record.identifier });
   };
 
   const recordCards = (records || []).map((record, i) => (
@@ -37,13 +37,13 @@ const Left = () => {
       key={i} 
       onClick={() => onClick(record)} 
       record={record} 
-      selected={record.name === _.record }/>
+      selected={record.identifier === searchParams.record }/>
   ));
 
   const collectionElements = (collections || []).map((collection, i) =>
     <CollectionCard 
         collection={collection}
-        selected={collection.id === _.collection}
+        selected={collection.id === searchParams.collection}
         key={i} 
         onClick={() => setSearchParams({ 'collection': collection.id })} />
   );

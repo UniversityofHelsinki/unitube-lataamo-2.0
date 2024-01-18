@@ -4,18 +4,12 @@ import PropTypes from 'prop-types';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import translations from './translations';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 import './App.css';
-import Footer from './components/footer/Footer';
-import Header from './components/header/Header';
-import Left from './components/left/Left';
-import Right from './components/right/Right';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import { thunk } from 'redux-thunk';
 import lataamoReducer from './redux/reducers';
+import Lataamo from './Lataamo';
 
 const store = createStore(lataamoReducer, applyMiddleware(thunk));
 
@@ -31,26 +25,7 @@ i18n
 const App = () => {
   return (
     <Provider store={store}>
-      <Container className="root mx-0">
-        <Row>
-          <Col className="px-0">
-            <Header />
-          </Col>
-        </Row>
-        <Row>
-          <Col md={4}>
-            <Left />
-          </Col>
-          <Col md={8}>
-            <Right />
-          </Col>
-        </Row>
-        <Row>
-          <Col className="px-0">
-            <Footer />
-          </Col>
-        </Row>
-      </Container>
+      <Lataamo />
     </Provider>
   );
 };
