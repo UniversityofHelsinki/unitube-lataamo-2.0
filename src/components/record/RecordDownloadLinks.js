@@ -21,7 +21,7 @@ const RecordDownloadLinks = ({ links }) => {
     <Container>
       <Row>
         <Col>
-          <FormElementHeader label={t('record_download_link_header')} />
+          <FormElementHeader label={t('record_download_links_header')} />
         </Col>
       </Row>
       <Row>
@@ -29,7 +29,7 @@ const RecordDownloadLinks = ({ links }) => {
           <ul className="blockquote record-download-link-list">
             {links.map((link) => (
               <li key={link.to}>
-              <DownloadLink to={link.to} label={link.label} />
+                <DownloadLink to={link.to} label={link.label} />
               </li>
             ))}
           </ul>

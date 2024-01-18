@@ -16,8 +16,8 @@ const ClipBoardFormElement = ({ label, content, children }) => {
 
     return (
         <Container>
-            <Row>
-                <Col sm={5}>
+            <Row className="align-items-center">
+                <Col>
                   <FormElementHeader label={label} />
                 </Col>
                 <Col>
