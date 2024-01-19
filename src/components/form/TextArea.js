@@ -4,7 +4,7 @@ import './TextArea.css';
 
 const TextArea = () => {
     return (
-        <Form.Control as="textarea"></Form.Control>
+        <Form.Control as="textarea"> </Form.Control>
     );
 };
 
