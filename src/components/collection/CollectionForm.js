@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import './CollectionForm.css';
 import useCollection from '../../hooks/useCollection';
 import Loading from '../utilities/Loading';
+import CollectionManagementRights from './management-rights/CollectionManagementRights';
 
 const CollectionForm = () => {
   const [collection, loading] = useCollection();
@@ -38,6 +39,7 @@ const CollectionForm = () => {
         </Row>
         <Row>
           <Col>
+            <CollectionManagementRights users={[{ userName: 'pekka' }, { userName: 'nomypa' }, { userName: 'keijoooooo' }]} groups={[ { grpName: 'grp-hy-huuhuu', description: 'pelottava' }]} />
           </Col>
           <Col>
           </Col>
