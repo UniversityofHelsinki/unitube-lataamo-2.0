@@ -9,7 +9,7 @@ import { ReactComponent as UserIcon } from '../../utilities/icons/avatar.svg';
 import { ReactComponent as GroupIcon } from '../../utilities/icons/avatar-group.svg';
 import GroupAutoComplete from '../../form/autocomplete/group/GroupAutoComplete';
 
-const CollectionManagementRights = ({ users, groups }) => {
+const CollectionManagementRights = ({ users = [], groups = [] }) => {
   const [selectedUsers, setSelectedUsers] = useState(users);
   const [selectedGroups, setSelectedGroups] = useState(groups);
   const { t } = useTranslation();

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -10,6 +10,15 @@ import CollectionManagementRights from './management-rights/CollectionManagement
 
 const CollectionForm = () => {
   const [collection, loading] = useCollection();
+
+  const users = collection?.persons?.map(person => 
+    ({ userName: person })
+  ) || [];
+
+  const groups = collection?.iamgroups?.map(group => 
+    ({ grpName: group })
+  ) || [];
+
   return (
     <Loading loading={loading}>
       <Container>
@@ -39,7 +48,7 @@ const CollectionForm = () => {
         </Row>
         <Row>
           <Col>
-            <CollectionManagementRights users={[{ userName: 'pekka' }, { userName: 'nomypa' }, { userName: 'keijoooooo' }]} groups={[ { grpName: 'grp-hy-huuhuu', description: 'pelottava' }]} />
+            <CollectionManagementRights users={users} groups={groups} />
           </Col>
           <Col>
           </Col>

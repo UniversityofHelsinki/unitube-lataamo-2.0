@@ -1,18 +1,15 @@
 import { useSelector, useDispatch } from 'react-redux';
 
 const searchGroups = (searchQuery) => async (dispatch) => {
-  const response = [{
-    grpName: 'grp-hy-asdf',
-    description: 'grp-hy-asdfsadfdfadf jooo hyvä ryhmä on'
-  }, {
-    grpName: 'grp-hy-ohtu',
-    description: 'grp-hy-ohtu-asdfsafsadfd joo hyvä ryhmä on tämäkin'
-  }, {
-    grpName: 'grp-hy-jeejee',
-    description: 'joo jep'
-  }]
-  const r = response.filter(group => group.grpName.includes(searchQuery));
-  dispatch({ type: 'SET_GROUPS', payload: r });
+  const URL = `${"http://localhost:3001"}/api/iamGroups/${searchQuery}`;
+  try {
+    const response = await fetch(encodeURI(URL));
+    if (response.status === 200) {
+      dispatch({ type: 'SET_GROUPS', payload: await response.json() });
+    }
+  } catch (error) {
+    dispatch({ type: 'SET_ERROR', payload: error.message });
+  }
 };
 
 const clearGroups = { type: 'CLEAR_GROUPS' };
