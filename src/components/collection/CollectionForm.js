@@ -7,6 +7,10 @@ import './CollectionForm.css';
 import useCollection from '../../hooks/useCollection';
 import Loading from '../utilities/Loading';
 import CollectionManagementRights from './management-rights/CollectionManagementRights';
+import BreadCrumb from "../form/BreadCrumb";
+import CollectionName from "./name/CollectionName";
+import CollectionDescription from "./description/CollectionDescription";
+import CollectionPublicity from "./publicity/CollectionPublicity";
 
 const CollectionForm = () => {
   const [collection, loading] = useCollection();
@@ -36,19 +40,27 @@ const CollectionForm = () => {
         </Row>
         <Row>
           <Col>
+              <BreadCrumb />
           </Col>
         </Row>
         <Row>
           <Col>
+              <CollectionName name={collection.title} />
           </Col>
         </Row>
         <Row>
           <Col>
+              <CollectionDescription description={collection.description} />
           </Col>
         </Row>
+          <Row>
+            <Col>
+                <CollectionPublicity />
+            </Col>
+          </Row>
         <Row>
           <Col>
-            <CollectionManagementRights users={users} groups={groups} />
+              <CollectionManagementRights users={users} groups={groups} />
           </Col>
           <Col>
           </Col>
