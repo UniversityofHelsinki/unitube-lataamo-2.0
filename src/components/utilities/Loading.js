@@ -12,7 +12,6 @@ const Loading = ({ children, renderChildren = false, loading = false }) => {
       </div>
     );
   } else if (loading) {
-    console.log('loading');
     return (
       <div className="loading">
         <HyLogo className="spin" />

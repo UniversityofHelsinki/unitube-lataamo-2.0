@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -8,18 +8,35 @@ import { Form } from 'react-bootstrap';
 import RecordDescription from './RecordDescription';
 import './RecordForm.css';
 
-const RecordForm = () => {
+const RecordForm = ({ record }) => {
+
+  const [modifiedRecord, setModifiedRecord] = useState({ ...record });
+
+  const onChange = (what, value) => {
+    setModifiedRecord({ ...modifiedRecord, [what]: value});
+  };
+
   return (
     <Container>
       <Form>
           <Row>
             <Col>
-                <RecordName />
+                <RecordName 
+                  name={modifiedRecord.title}
+                  onChange={
+                    (event) => onChange('title', event.target.value)
+                  }
+                />
             </Col>
           </Row>
           <Row>
             <Col>
-                <RecordDescription />
+                <RecordDescription 
+                  description={modifiedRecord.description} 
+                  onChange={
+                    (event) => onChange('description', event.target.value)
+                  }
+                />
             </Col>
           </Row>
           <Row>
@@ -45,6 +62,7 @@ const RecordForm = () => {
 };
 
 RecordForm.propTypes = {
+  record: PropTypes.object,
 };
 
 export default RecordForm;

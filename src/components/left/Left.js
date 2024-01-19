@@ -43,9 +43,9 @@ const Left = () => {
   const collectionElements = (collections || []).map((collection, i) =>
     <CollectionCard 
         collection={collection}
-        selected={collection.id === searchParams.collection}
+        selected={collection.identifier === searchParams.collection}
         key={i} 
-        onClick={() => setSearchParams({ 'collection': collection.id })} />
+        onClick={() => setSearchParams({ 'collection': collection.identifier })} />
   );
 
   const listElements = {

@@ -27,9 +27,6 @@ const useRecord = () => {
     }
   }, [searchParams.record, dispatch]);
 
-  console.log(currentRecord);
-  console.log(searchParams);
-
   const loading = !currentRecord || currentRecord.identifier !== searchParams.record;
 
   return [currentRecord, loading];

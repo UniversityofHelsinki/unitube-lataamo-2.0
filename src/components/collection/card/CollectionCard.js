@@ -10,11 +10,11 @@ const CollectionCard = ({ collection, onClick, selected = false}) => {
     <Container onClick={onClick} tabIndex={0} className={`collection-card ${selectedClass}`}>
       <Row className="collection-card-header-row">
         <Col>
-          <h4>{collection.id}</h4>
+          <h4>{collection.title}</h4>
         </Col>
       </Row>
       <Row>
-        <CollectionCardRecords records={collection.records} />
+        <CollectionCardRecords records={[]} />
       </Row>
     </Container>
   );

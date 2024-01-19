@@ -12,6 +12,7 @@ import Loading from '../utilities/Loading';
 
 const Record = () => {
   const [record, loading] = useRecord();
+
   return (
     <Loading loading={loading}>
       <Container>
@@ -23,7 +24,7 @@ const Record = () => {
             <RecordStaticInformation record={record} />
           </Col>
           <Col lg>
-            <RecordForm />
+            <RecordForm record={record} />
           </Col>
         </Row>
       </Container>
