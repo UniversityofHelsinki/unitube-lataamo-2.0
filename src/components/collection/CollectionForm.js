@@ -11,9 +11,11 @@ import BreadCrumb from "../form/BreadCrumb";
 import CollectionName from "./name/CollectionName";
 import CollectionDescription from "./description/CollectionDescription";
 import CollectionPublicity from "./publicity/CollectionPublicity";
+import useCollectionValidation from '../../hooks/validation/collection/useCollectionValidation';
 
 const CollectionForm = () => {
   const [collection, loading] = useCollection();
+  const [isValid, messages, validate] = useCollectionValidation();
 
   const users = collection?.persons?.map(person => 
     ({ userName: person })

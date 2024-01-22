@@ -7,10 +7,12 @@ import RecordName from "./RecordName";
 import { Form } from 'react-bootstrap';
 import RecordDescription from './RecordDescription';
 import './RecordForm.css';
+import useRecordValidation from '../../hooks/validation/record/useRecordValidation';
 
 const RecordForm = ({ record }) => {
 
   const [modifiedRecord, setModifiedRecord] = useState({ ...record });
+  const [isValid, messages, validate] = useRecordValidation();
 
   const onChange = (what, value) => {
     setModifiedRecord({ ...modifiedRecord, [what]: value});
