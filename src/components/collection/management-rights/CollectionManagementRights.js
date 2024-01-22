@@ -9,6 +9,7 @@ import { ReactComponent as UserIcon } from '../../utilities/icons/avatar.svg';
 import { ReactComponent as GroupIcon } from '../../utilities/icons/avatar-group.svg';
 import GroupAutoComplete from '../../form/autocomplete/group/GroupAutoComplete';
 import FormElementHeader from '../../form/FormElementHeader';
+import HelpDialog from '../../dialog/HelpDialog';
 
 const CollectionManagementRights = ({ users = [], groups = [] }) => {
   const [selectedUsers, setSelectedUsers] = useState(users);
@@ -42,7 +43,9 @@ const CollectionManagementRights = ({ users = [], groups = [] }) => {
       </Row>
       <Row className="mb-2">
         <Col>
-          <span>Mikä ihmeen hallinnointioikeus?</span>
+          <HelpDialog label={t('collection_management_rights_help_label')}>
+            {t('collection_management_rights_help_content')}
+          </HelpDialog>
         </Col>
       </Row>
       <Row className="mb-2">
