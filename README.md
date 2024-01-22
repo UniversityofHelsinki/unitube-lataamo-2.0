@@ -9,6 +9,18 @@
 * [i18n](https://www.i18next.com/overview/configuration-options)
 * [University Of Helsinki styleguide](https://universityofhelsinki.github.io/Styleguide/)
 
+# .env.development.local
+
+~~~
+REACT_APP_KATSOMO_PUBLISHED_SERIES_VIDEOS_LINK_URL=https://www-test.helsinki.fi/fi/unitube/search?unitube_q=
+REACT_APP_KATSOMO_UNLISTED_LINK_URL=https://www-test.helsinki.fi/fi/unitube/video/
+REACT_APP_KATSOMO_PUBLISHED_LINK_URL=https://www-test.helsinki.fi/fi/unitube/video/
+REACT_APP_LATAAMO_PROXY_SERVER=http://localhost:3001
+~~~
+
+Where `REACT_APP_LATAAMO_PROXY_SERVER` is the URL of
+[unitube-lataamo-proxy](https://version.helsinki.fi/tike-ohtu/unitube-lataamo-proxy).
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
