@@ -8,6 +8,7 @@
 * [Testing library](https://testing-library.com/docs/queries/about)
 * [i18n](https://www.i18next.com/overview/configuration-options)
 * [University Of Helsinki styleguide](https://universityofhelsinki.github.io/Styleguide/)
+* [University Of Helsinki Design System](https://static.helsinki.fi/ds/)
 
 # .env.development.local
 
