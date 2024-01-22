@@ -7,22 +7,36 @@ import RecordName from "./RecordName";
 import { Form } from 'react-bootstrap';
 import RecordDescription from './RecordDescription';
 import './RecordForm.css';
-import AutoComplete from '../form/autocomplete/AutoComplete';
 
-const RecordForm = () => {
-  const initialOpts = ['moi', 'hei', 'haaaa'];
-  const [options, setOptions] = useState(initialOpts);
+const RecordForm = ({ record }) => {
+
+  const [modifiedRecord, setModifiedRecord] = useState({ ...record });
+
+  const onChange = (what, value) => {
+    setModifiedRecord({ ...modifiedRecord, [what]: value});
+  };
+
   return (
     <Container>
       <Form>
           <Row>
             <Col>
-                <RecordName />
+                <RecordName 
+                  name={modifiedRecord.title}
+                  onChange={
+                    (event) => onChange('title', event.target.value)
+                  }
+                />
             </Col>
           </Row>
           <Row>
             <Col>
-                <RecordDescription />
+                <RecordDescription 
+                  description={modifiedRecord.description} 
+                  onChange={
+                    (event) => onChange('description', event.target.value)
+                  }
+                />
             </Col>
           </Row>
           <Row>
@@ -32,7 +46,6 @@ const RecordForm = () => {
           </Row>
           <Row>
             <Col>
-              <AutoComplete onFilter={(v) => setOptions(initialOpts.filter((io) => io.includes(v)))} options={options} />
             </Col>
           </Row>
           <Row>
@@ -49,6 +62,7 @@ const RecordForm = () => {
 };
 
 RecordForm.propTypes = {
+  record: PropTypes.object,
 };
 
 export default RecordForm;

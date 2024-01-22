@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -9,17 +10,17 @@ import RecordIdentifier from './RecordIdentifier';
 import RecordLink from './RecordLink';
 import './RecordStaticInformation.css';
 
-const RecordStaticInformation = () => {
+const RecordStaticInformation = ({ record }) => {
   return (
-    <Container>
+    <Container className="ps-0">
       <Row className="mb-4">
         <Col>
-            <VideoPreview record={null} />
+            <VideoPreview record={record} />
         </Col>
       </Row>
       <Row className="mb-4">
         <Col>
-            <RecordIdentifier id={'45ce69e0-1793-4494-8674-fff6d48f4a2f'} />
+            <RecordIdentifier identifier={record.identifier} />
         </Col>
       </Row>
       <Row className="mb-4">
@@ -29,8 +30,7 @@ const RecordStaticInformation = () => {
       </Row>
       <Row className="mb-4">
         <Col>
-            <RecordEmbedCode content={'<iframe src="https://unitube.it.helsinki.fi/unitube/embed.html?id=45ce69e0-1793-4494-8674-fff6d48f4a2f" scrolling="no" allowfullscreen="true" frameBorder="0" marginHeight="0px" marginWidth="0px" height="360" width="640"></iframe>dsajflfhljskfasfklafhlsadfhaklsfhaslkdjhaslkdjfhs lkashdf jklsadhflash dflasdfh sakldfjhsklfdjsahf dlkasdfh'}/>
-
+            <RecordEmbedCode identifier={record.identifier} />
         </Col>
       </Row>
       <Row className="mb-4">
@@ -43,6 +43,7 @@ const RecordStaticInformation = () => {
 };
 
 RecordStaticInformation.propTypes = {
+  record: PropTypes.object,
 };
 
 export default RecordStaticInformation;

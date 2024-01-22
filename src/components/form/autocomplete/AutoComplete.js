@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { memo, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import AutoCompleteOptionContainer from './AutoCompleteOptionContainer';
 import { Col, Container, Row } from 'react-bootstrap';
@@ -9,11 +9,17 @@ const AutoComplete = ({ options = [], onFilter, onSelect = console.log, placehol
   const [typedValue, setTypedValue] = useState('');
   const [focus, setFocus] = useState(false);
   const containerRef = useRef();
+  const typeTimeoutId = useRef();
 
   const handleInput = (event) => {
     const newValue = (event.target.value || '');
     setTypedValue(newValue);
-    onFilter(newValue);
+    if (typeTimeoutId.current) {
+      clearTimeout(typeTimeoutId.current);
+    }
+    typeTimeoutId.current = setTimeout(() => {
+      onFilter(newValue);
+    }, 500);
   };
 
   const clearOnSelect = (optionIndex) => {

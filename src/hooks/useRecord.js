@@ -3,7 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import useSearchParams from "./useSearchParams";
 
 const getRecord = (record) => async (dispatch) => {
-  dispatch({ type: 'SET_RECORD', payload: { id: record } });
+  const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/event/${record}`
+  try {
+    const response = await fetch(URL);
+    if (response.status === 200) {
+      dispatch({ type: 'SET_RECORD', payload: await response.json() });
+    }
+  } catch (error) {
+    dispatch({ type: 'SET_ERROR', payload: error.message });
+  }
 };
 
 const useRecord = () => {
@@ -12,14 +20,14 @@ const useRecord = () => {
   const currentRecord = useSelector((state) => state.records.record);
 
   useEffect(() => {
-    if (!currentRecord || currentRecord.id !== searchParams.record) {
+    if (!currentRecord || currentRecord.identifier !== searchParams.record) {
       if (searchParams.record) {
         dispatch(getRecord(searchParams.record));
       }
     }
-  }, [searchParams.record]);
+  }, [searchParams.record, dispatch]);
 
-  const loading = !currentRecord || currentRecord.id !== searchParams.record;
+  const loading = !currentRecord || currentRecord.identifier !== searchParams.record;
 
   return [currentRecord, loading];
 };

@@ -9,7 +9,7 @@ import { Form } from 'react-bootstrap';
 import PropTypes from "prop-types";
 import './RecordName.css';
 
-const RecordName = () => {
+const RecordName = ({ name, onChange }) => {
     const { t } = useTranslation();
 
     return (
@@ -22,7 +22,7 @@ const RecordName = () => {
                 </Row>
                 <Row>
                     <Col>
-                        <InputField placeholder={t('record_form_name_placeholder')}/>
+                        <InputField value={name} placeholder={t('record_form_name_placeholder')} onChange={onChange} />
                     </Col>
                 </Row>
             </Form.Group>
@@ -31,6 +31,8 @@ const RecordName = () => {
 };
 
 RecordName.propTypes = {
+  name: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 export default RecordName;

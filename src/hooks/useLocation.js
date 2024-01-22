@@ -1,4 +1,4 @@
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const useLocation = () => {
   const path = useSelector(

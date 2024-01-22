@@ -8,23 +8,27 @@ import RecordForm from './RecordForm';
 import RecordStaticInformation from './RecordStaticInformation';
 import BreadCrumb from '../form/BreadCrumb';
 import './Record.css';
+import Loading from '../utilities/Loading';
 
 const Record = () => {
   const [record, loading] = useRecord();
+
   return (
-    <Container>
-      <Row>
-        <BreadCrumb />
-      </Row>
-      <Row>
-        <Col lg={5}>
-          <RecordStaticInformation />
-        </Col>
-        <Col lg>
-          <RecordForm />
-        </Col>
-      </Row>
-    </Container>
+    <Loading loading={loading}>
+      <Container className="ps-0">
+        <Row>
+          <BreadCrumb />
+        </Row>
+        <Row>
+          <Col lg={5} className="ps-0">
+            <RecordStaticInformation record={record} />
+          </Col>
+          <Col lg>
+            <RecordForm record={record} />
+          </Col>
+        </Row>
+      </Container>
+    </Loading>
   );
 };
 

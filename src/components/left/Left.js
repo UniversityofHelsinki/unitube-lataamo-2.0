@@ -26,10 +26,10 @@ const Left = () => {
     load: path === '/collections' 
   });
 
-  const [_, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const onClick = (record) => {
-    setSearchParams({ 'record': record.name });
+    setSearchParams({ 'record': record.identifier });
   };
 
   const recordCards = (records || []).map((record, i) => (
@@ -37,15 +37,15 @@ const Left = () => {
       key={i} 
       onClick={() => onClick(record)} 
       record={record} 
-      selected={record.name === _.record }/>
+      selected={record.identifier === searchParams.record }/>
   ));
 
   const collectionElements = (collections || []).map((collection, i) =>
     <CollectionCard 
         collection={collection}
-        selected={collection.id === _.collection}
+        selected={collection.identifier === searchParams.collection}
         key={i} 
-        onClick={() => setSearchParams({ 'collection': collection.id })} />
+        onClick={() => setSearchParams({ 'collection': collection.identifier })} />
   );
 
   const listElements = {
@@ -62,28 +62,32 @@ const Left = () => {
     <Container className="left">
       <Row>
         <Col className="no-padding">
-          <Container className="up-left border-bottom pb-4">
-            <Row className="pb-2">
+          <Container className="up-left border-bottom">
+            <Row>
               <Col className="no-padding">
                 <Navigation />
               </Col>
             </Row>
-            <Row className="mt-2">
-              <Col>
-                <ButtonRow />
-              </Col>
-            </Row>
-            <Row className="mt-2">
-              <Col>
-                <Search />
-              </Col>
+            <Row className="border-start border-end border-black">
+              <Container className="left-tab-content mt-3">
+                <Row>
+                  <Col>
+                    <ButtonRow />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <Search />
+                  </Col>
+                </Row>
+              </Container>
             </Row>
           </Container>
         </Col>
       </Row>
-      <Row className="mt-2">
+      <Row className="border border-top-0 border-black">
         <Col>
-          <Loading loading={loading[path]}>
+          <Loading loading={Boolean(loading[path])}>
             <LeftList>
               {listElements[path]}
             </LeftList>

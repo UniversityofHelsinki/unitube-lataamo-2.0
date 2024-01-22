@@ -6,7 +6,7 @@ import {useTranslation} from "react-i18next";
 import InputField from "../../form/InputField";
 import FormElementHeader from "../../form/FormElementHeader";
 
-const CollectionName = () => {
+const CollectionName = ({ name }) => {
     const { t } = useTranslation();
 
     return (
@@ -14,12 +14,12 @@ const CollectionName = () => {
             <Form.Group>
                 <Row>
                     <Col>
-                        <FormElementHeader label={t('collection_form_name_header')}> {t('collection_form_name_header')} </FormElementHeader>
+                        <FormElementHeader label={t('collection_form_name_header')} />
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <InputField label={t('aaa')} placeholder={t('collection_form_name_placeholder')}/>
+                        <InputField label={t('aaa')} placeholder={t('collection_form_name_placeholder')} value={name} />
                     </Col>
                 </Row>
             </Form.Group>
@@ -28,7 +28,7 @@ const CollectionName = () => {
 };
 
 CollectionName.propTypes = {
-
+  name: PropTypes.string
 };
 
 export default CollectionName;

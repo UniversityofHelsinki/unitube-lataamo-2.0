@@ -7,7 +7,7 @@ const RecordCardDetails = ({ record }) => {
     <ul className="no-padding record-card-details">
       <li>
         <strong>
-          {record.name}
+          {record.title}
         </strong>
       </li>
       <li>{record.description}</li>

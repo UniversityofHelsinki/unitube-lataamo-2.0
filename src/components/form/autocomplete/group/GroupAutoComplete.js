@@ -26,7 +26,7 @@ const GroupAutoComplete = ({ onSelect }) => {
     clearResults();
   };
 
-  const options = results.map(result =>
+  const options = (results || []).slice(0, 100).map(result =>
     <GroupAutoCompleteResult group={result} query={query} />
   );
 

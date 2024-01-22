@@ -21,7 +21,7 @@ const UserAutoComplete = ({ onSelect }) => {
     setQuery(query);
   };
   
-  const options = results.map((user) =>
+  const options = (results || []).slice(0, 100).map((user) =>
     <UserAutoCompleteResult user={user} query={query} />
   );
 

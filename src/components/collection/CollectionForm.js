@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import './CollectionForm.css';
+import useCollection from '../../hooks/useCollection';
+import Loading from '../utilities/Loading';
 import CollectionManagementRights from './management-rights/CollectionManagementRights';
 import BreadCrumb from "../form/BreadCrumb";
 import CollectionName from "./name/CollectionName";
@@ -11,48 +13,60 @@ import CollectionDescription from "./description/CollectionDescription";
 import CollectionPublicity from "./publicity/CollectionPublicity";
 
 const CollectionForm = () => {
+  const [collection, loading] = useCollection();
+
+  const users = collection?.persons?.map(person => 
+    ({ userName: person })
+  ) || [];
+
+  const groups = collection?.iamgroups?.map(group => 
+    ({ grpName: group })
+  ) || [];
+
   return (
-    <Container>
-      <Row>
-        <Col>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-            <BreadCrumb />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-            <CollectionName />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-            <CollectionDescription />
-        </Col>
-      </Row>
+    <Loading loading={loading}>
+      <Container>
         <Row>
-            <Col>
-                <CollectionPublicity />
-            </Col>
+          <Col>
+              <BreadCrumb />
+          </Col>
         </Row>
-      <Row>
-        <Col>
-          <CollectionManagementRights users={[{ userName: 'pekka' }, { userName: 'nomypa' }, { userName: 'keijoooooo' }]} groups={[ { grpName: 'grp-hy-huuhuu', description: 'pelottava' }]} />
-        </Col>
-        <Col>
-        </Col>
-      </Row>
-    </Container>
+        <Row>
+          <Col>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+          </Col>
+        </Row>
+        <Row className="mb-3">
+          <Col>
+              <CollectionName name={collection?.title} />
+          </Col>
+        </Row>
+        <Row className="mb-3">
+          <Col>
+              <CollectionDescription description={collection?.description} />
+          </Col>
+        </Row>
+        <Row className="mb-3">
+          <Col>
+              <CollectionPublicity />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+              <CollectionManagementRights users={users} groups={groups} />
+          </Col>
+          <Col>
+          </Col>
+        </Row>
+      </Container>
+    </Loading>
   );
 };
 
