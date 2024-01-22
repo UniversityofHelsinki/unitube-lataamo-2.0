@@ -19,7 +19,7 @@ const MainContent = () => {
   }
 
   return (
-      <Container>
+      <Container className="main-content">
         <Row>
           <Col className="ps-0">
             {content}

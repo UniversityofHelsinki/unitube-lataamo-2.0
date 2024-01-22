@@ -25,9 +25,9 @@ const CollectionForm = () => {
 
   return (
     <Loading loading={loading}>
-      <Container>
+      <Container className="collection-form ps-0">
         <Row>
-          <Col>
+          <Col className="ps-0">
               <BreadCrumb />
           </Col>
         </Row>
@@ -44,22 +44,22 @@ const CollectionForm = () => {
           </Col>
         </Row>
         <Row className="mb-3">
-          <Col>
+          <Col className="ps-0">
               <CollectionName name={collection?.title} />
           </Col>
         </Row>
         <Row className="mb-3">
-          <Col>
+          <Col className="ps-0">
               <CollectionDescription description={collection?.description} />
           </Col>
         </Row>
         <Row className="mb-3">
-          <Col>
+          <Col className="ps-0">
               <CollectionPublicity />
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col className="ps-0">
               <CollectionManagementRights users={users} groups={groups} />
           </Col>
           <Col>
