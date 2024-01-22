@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 const getRecords = () => async (dispatch) => {
-  const URL = `${"http://localhost:3001"}/api/userInboxEvents`;
+  const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/userInboxEvents`;
   try {
     const response = await fetch(URL);
     if (response.status === 200) {

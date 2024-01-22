@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 
 const searchUsers = (searchQuery) => async (dispatch) => {
-  const URL = `${"http://localhost:3001"}/api/persons/${searchQuery}`;
+  const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/persons/${searchQuery}`;
   try {
     const response = await fetch(encodeURI(URL));
     if (response.status === 200) {

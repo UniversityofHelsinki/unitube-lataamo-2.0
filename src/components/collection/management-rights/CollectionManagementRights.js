@@ -8,6 +8,7 @@ import CollectionManagementRight from './CollectionManagementRight';
 import { ReactComponent as UserIcon } from '../../utilities/icons/avatar.svg';
 import { ReactComponent as GroupIcon } from '../../utilities/icons/avatar-group.svg';
 import GroupAutoComplete from '../../form/autocomplete/group/GroupAutoComplete';
+import FormElementHeader from '../../form/FormElementHeader';
 
 const CollectionManagementRights = ({ users = [], groups = [] }) => {
   const [selectedUsers, setSelectedUsers] = useState(users);
@@ -37,7 +38,7 @@ const CollectionManagementRights = ({ users = [], groups = [] }) => {
   return (
     <Container className="collection-management-rights">
       <Row>
-        <h2>{t('collection_management_rights_form_header')}</h2>
+        <FormElementHeader label={t('collection_management_rights_form_header')} />
       </Row>
       <Row className="mb-2">
         <Col>

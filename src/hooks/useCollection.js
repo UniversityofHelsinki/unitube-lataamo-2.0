@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useSearchParams from "./useSearchParams";
 
 const getCollection = (identifier) => async (dispatch) => {
-  const URL = `${"http://localhost:3001"}/api/series/${identifier}`;
+  const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/series/${identifier}`;
   try {
     const response = await fetch(URL);
     dispatch({ type: 'SET_COLLECTION', payload: await response.json() });

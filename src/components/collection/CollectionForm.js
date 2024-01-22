@@ -28,36 +28,36 @@ const CollectionForm = () => {
       <Container>
         <Row>
           <Col>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
               <BreadCrumb />
           </Col>
         </Row>
         <Row>
           <Col>
-              <CollectionName name={collection.title} />
           </Col>
         </Row>
         <Row>
           <Col>
-              <CollectionDescription description={collection.description} />
           </Col>
         </Row>
-          <Row>
-            <Col>
-                <CollectionPublicity />
-            </Col>
-          </Row>
+        <Row>
+          <Col>
+          </Col>
+        </Row>
+        <Row className="mb-3">
+          <Col>
+              <CollectionName name={collection?.title} />
+          </Col>
+        </Row>
+        <Row className="mb-3">
+          <Col>
+              <CollectionDescription description={collection?.description} />
+          </Col>
+        </Row>
+        <Row className="mb-3">
+          <Col>
+              <CollectionPublicity />
+          </Col>
+        </Row>
         <Row>
           <Col>
               <CollectionManagementRights users={users} groups={groups} />

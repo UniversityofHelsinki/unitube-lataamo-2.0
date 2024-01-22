@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useSearchParams from "./useSearchParams";
 
 const getRecord = (record) => async (dispatch) => {
-  const URL = `${"http://localhost:3001"}/api/event/${record}`
+  const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/event/${record}`
   try {
     const response = await fetch(URL);
     if (response.status === 200) {

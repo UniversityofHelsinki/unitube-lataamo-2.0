@@ -11,7 +11,7 @@ const logout = (url = "/Shibboleth.sso/Logout") => {
   
 
 const getUser = () => async (dispatch) => {
-  const URL = `${"http://localhost:3001"}/api/user`;
+  const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/user`;
   try {
     const response = await fetch(URL);
     if (response.status === 200) {

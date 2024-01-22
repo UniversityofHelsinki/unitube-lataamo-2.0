@@ -15,12 +15,12 @@ const Record = () => {
 
   return (
     <Loading loading={loading}>
-      <Container>
+      <Container className="ps-0">
         <Row>
           <BreadCrumb />
         </Row>
         <Row>
-          <Col lg={5}>
+          <Col lg={5} className="ps-0">
             <RecordStaticInformation record={record} />
           </Col>
           <Col lg>

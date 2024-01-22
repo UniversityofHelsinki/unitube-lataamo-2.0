@@ -8,9 +8,17 @@ import Right from './components/right/Right';
 import Footer from './components/footer/Footer';
 import useUser from './hooks/useUser';
 import Loading from './components/utilities/Loading';
+import useLocation from './hooks/useLocation';
+import useHistory from './hooks/useHistory';
 
 const Lataamo = () => {
+  useHistory();
   const [user] = useUser();
+  const [location, setLocation] = useLocation();
+
+  if (!location || location === "/") {
+    setLocation("/records");
+  }
 
   return (
       <Loading loading={!Boolean(user)}>

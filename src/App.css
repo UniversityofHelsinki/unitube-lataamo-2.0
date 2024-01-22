@@ -1,8 +1,9 @@
 :root {
   --hy-black: #222222;
   --hy-white: #ffffff;
-  --hy-blue: #107eab;
-  --hy-blue-active: #0e688b;
+  --hy-blue: #0e688b;
+  --hy-blue-light: #107eab;
+  --hy-blue-active: #005379;
   --hy-dark-blue: #005379;
   --hy-dark-blue-active: #003146;
   --hy-light-silver: #f8f8f8;

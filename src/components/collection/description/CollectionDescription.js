@@ -14,7 +14,7 @@ const CollectionDescription = ({ description }) => {
             <Form.Group>
                 <Row>
                     <Col>
-                        <FormElementHeader label={t('collection_form_description_header')}> {t('collection_form_description_header')} </FormElementHeader>
+                        <FormElementHeader label={t('collection_form_description_header')} />
                     </Col>
                 </Row>
                 <Row>

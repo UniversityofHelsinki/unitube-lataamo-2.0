@@ -12,7 +12,7 @@ import './RecordStaticInformation.css';
 
 const RecordStaticInformation = ({ record }) => {
   return (
-    <Container>
+    <Container className="ps-0">
       <Row className="mb-4">
         <Col>
             <VideoPreview record={record} />

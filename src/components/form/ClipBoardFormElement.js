@@ -20,7 +20,7 @@ const ClipBoardFormElement = ({ label, content, children }) => {
                 <Col>
                   <FormElementHeader label={label} />
                 </Col>
-                <Col>
+                <Col className="text-end pe-0">
                   <Button variant="link" aria-labelledby={labelId} onClick={() => copy(content)}>
                     <CopyIcon width="1.5em" height="1.5em" />
                     <span id={labelId} className="ms-2">{t('clipboard_copy')}</span>

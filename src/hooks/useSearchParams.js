@@ -16,7 +16,7 @@ const useSearchParams = () => {
       payload: newSearchParameters
     });
   };
-  
+
   return [searchParameters, updateSearchParams];
 };
 

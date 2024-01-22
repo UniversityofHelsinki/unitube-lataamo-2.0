@@ -14,7 +14,7 @@ const CollectionName = ({ name }) => {
             <Form.Group>
                 <Row>
                     <Col>
-                        <FormElementHeader label={t('collection_form_name_header')}> {t('collection_form_name_header')} </FormElementHeader>
+                        <FormElementHeader label={t('collection_form_name_header')} />
                     </Col>
                 </Row>
                 <Row>
