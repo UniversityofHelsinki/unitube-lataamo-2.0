@@ -11,24 +11,32 @@ const Navigation = () => {
   const { t } = useTranslation();
   const [location, setLocation] = useLocation();
 
-  if (!location || location === "/") {
-    setLocation("/records");
-  }
+  const activeProps = (path) => 
+    path === location ? { className: "nav-item-active" } : {};
 
   const onSelect = (path) => {
     setLocation(path);
   };
 
+  const tabs = [{
+    path: "/records",
+    label: t('navigation_records')
+  }, {
+    path: "/collections",
+    label: t('navigation_collections')
+  }];
+
   return (
     <Container className="navigation">
       <Row className="text-center no-padding">
         <Nav as="nav" justify fill variant="tabs" activeKey={location} className="no-padding" onSelect={onSelect}>
-            <Nav.Item>
-              <Nav.Link eventKey="/records" href="#">{t('navigation_records')}</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="/collections" href="#">{t('navigation_collections')}</Nav.Link>
-            </Nav.Item>
+            {tabs.map(({ path, label }) => (
+              <Nav.Item key={path} { ...activeProps(path) }>
+                <Nav.Link eventKey={path}>
+                  {label}
+                </Nav.Link>
+              </Nav.Item>
+            ))}
         </Nav>
       </Row>
     </Container>
