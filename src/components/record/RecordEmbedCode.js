@@ -12,7 +12,7 @@ const RecordEmbedCode = ({ identifier }) => {
 
     return (
       <ClipBoardFormElement label={t('record_embed_code_header')} content={content}>
-        <pre className="record-embed-code-block">{content}{content}{content}</pre>
+        <pre className="record-embed-code-block">{content}</pre>
       </ClipBoardFormElement>
     );
 };
