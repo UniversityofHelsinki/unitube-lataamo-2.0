@@ -34,7 +34,6 @@ const CollectionMoodleCourses = ({ moodleNumbers = [] }) => {
 
     const handleMoodleInputChange = (event) => {
         if(event.target.value === '' || containsOnlyNumbers(event)) {
-            event.persist();
             setMoodlenum(() => ({ ...moodlenum, moodleNumber:event.target.value }));
         }
     };
@@ -51,7 +50,7 @@ const CollectionMoodleCourses = ({ moodleNumbers = [] }) => {
             </Row>
             <Row className="mb-2">
                 <Col>
-                    <InputField type={'text'} label={t('aaa')} placeholder={t('collection-moodle-courses_placeholder')} value={moodlenum.moodleNumber} onChange={handleMoodleInputChange} />
+                    <InputField type={'text'} label={t('aaa')} placeholder={t('moodle_course_placeholder')} value={moodlenum.moodleNumber} onChange={handleMoodleInputChange} />
                 </Col>
                 <Col>
                     <Button className="col btn btn-primary" onClick={addMoodleCourse}>Lisää</Button>

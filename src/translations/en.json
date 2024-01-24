@@ -7,5 +7,6 @@
   "language_select_sv": "Swedish",
   "user_autocompletion_placeholder": "Etsi henkilöä...",
   "group_autocompletion_placeholder": "Etsi käyttöoikeusryhmää...",
+  "moodle_course_placeholder": "Course code",
   "clipboard_copy": "Copy"
 }
