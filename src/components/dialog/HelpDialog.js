@@ -19,7 +19,7 @@ const HelpDialog = ({ label, children }) => {
   const header = label;
 
   return (
-    <Dialog showComponent={showLink} show={show} hide={hideDialog} aria-labelledBy={headerId}>
+    <Dialog showComponent={showLink} show={show} hide={hideDialog} aria-labelledby={headerId}>
       <Modal.Header id={headerId} closeButton closeLabel={t('help_dialog_close_label')}>
         {header}
       </Modal.Header>

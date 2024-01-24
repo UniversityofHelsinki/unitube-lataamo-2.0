@@ -18,7 +18,7 @@ const CollectionPublicity = ({ published }) => {
           <Form.Group>
               <Row>
                   <Col>
-                      <FormElementHeader label={t('collection_form_publicity_header')} />
+                      <FormElementHeader>{t('collection_form_publicity_header')}</FormElementHeader>
                   </Col>
               </Row>
               <Row>
