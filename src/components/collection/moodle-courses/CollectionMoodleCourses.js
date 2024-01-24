@@ -42,7 +42,7 @@ const CollectionMoodleCourses = ({ moodleNumbers = [] }) => {
     return (
         <Container className="collection-moodle-courses">
             <Row>
-                <FormElementHeader label={t('collection_management_rights_form_header')} />
+                <FormElementHeader label={t('collection-moodle-courses_form_header')} />
             </Row>
             <Row className="mb-2">
                 <Col>
@@ -51,7 +51,7 @@ const CollectionMoodleCourses = ({ moodleNumbers = [] }) => {
             </Row>
             <Row className="mb-2">
                 <Col>
-                    <InputField type={'text'} label={t('aaa')} placeholder={t('collection_form_name_placeholder')} value={moodlenum.moodleNumber} onChange={handleMoodleInputChange} />
+                    <InputField type={'text'} label={t('aaa')} placeholder={t('collection-moodle-courses_placeholder')} value={moodlenum.moodleNumber} onChange={handleMoodleInputChange} />
                 </Col>
                 <Col>
                     <Button className="col btn btn-primary" onClick={addMoodleCourse}>Lisää</Button>
