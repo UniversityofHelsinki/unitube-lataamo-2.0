@@ -40,7 +40,7 @@ const CollectionMoodleCourses = ({ moodleNumbers = [] }) => {
     };
 
     return (
-        <Container className="collection-management-rights">
+        <Container className="collection-moodle-courses">
             <Row>
                 <FormElementHeader label={t('collection_management_rights_form_header')} />
             </Row>
@@ -59,7 +59,7 @@ const CollectionMoodleCourses = ({ moodleNumbers = [] }) => {
             </Row>
             <Row>
                 <Col>
-                    <ul className="collection-management-rights-list">
+                    <ul className="collection-moodle-courses-list">
                         {selectedMoodlenumbers.map((moodleNbr) =>
                             <li key={moodleNbr.moodleNumber}>
                                 <CollectionMoodleCourse label={moodleNbr.moodleNumber} onRemove={() => removeMoodleCourse(moodleNbr)} Icon={UserIcon} />
