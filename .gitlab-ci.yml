@@ -1,3 +1,5 @@
+image: node:18-alpine
+
 # Define the process for sonarqube check
 sonarqube-check:
   stage: test
