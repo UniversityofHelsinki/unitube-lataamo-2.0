@@ -6,18 +6,20 @@ import Row from 'react-bootstrap/Row';
 import useRecord from '../../hooks/useRecord';
 import RecordForm from './RecordForm';
 import RecordStaticInformation from './RecordStaticInformation';
-import BreadCrumb from '../form/BreadCrumb';
 import './Record.css';
 import Loading from '../utilities/Loading';
+import RecordsBreadCrumb from "../form/RecordsBreadCrumb";
+import {useTranslation} from "react-i18next";
 
 const Record = () => {
   const [record, loading] = useRecord();
+  const { t } = useTranslation();
 
-  return (
+ return (
     <Loading loading={loading}>
       <Container className="ps-0">
         <Row>
-          <BreadCrumb />
+          <RecordsBreadCrumb crumbs={[t('navigation_records'), record?.title]}/>
         </Row>
         <Row>
           <Col lg={5} className="ps-0">
