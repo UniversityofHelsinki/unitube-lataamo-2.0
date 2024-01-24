@@ -3,7 +3,7 @@ import PropTypes, {number} from 'prop-types';
 import './CollectionMoodleCourses.css';
 import {Button, Col, Container, Row} from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { ReactComponent as UserIcon } from '../../utilities/icons/avatar.svg';
+import { ReactComponent as CourseIcon } from '../../utilities/icons/opinder-logo.svg';
 import FormElementHeader from '../../form/FormElementHeader';
 import CollectionMoodleCourse from "./CollectionMoodleCourse";
 import InputField from "../../form/InputField";
@@ -61,7 +61,7 @@ const CollectionMoodleCourses = ({ moodleNumbers = [] }) => {
                     <ul className="collection-moodle-courses-list">
                         {selectedMoodlenumbers.map((moodleNbr) =>
                             <li key={moodleNbr.moodleNumber}>
-                                <CollectionMoodleCourse label={moodleNbr.moodleNumber} onRemove={() => removeMoodleCourse(moodleNbr)} Icon={UserIcon} />
+                                <CollectionMoodleCourse label={moodleNbr.moodleNumber} onRemove={() => removeMoodleCourse(moodleNbr)} Icon={CourseIcon} />
                             </li>)}
                     </ul>
                 </Col>
