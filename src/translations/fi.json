@@ -13,5 +13,12 @@
   "record_link_header": "Linkki",
   "record_embed_code_header": "Upotuskoodi",
   "record_download_links_header": "Lataa tallenne",
-  "clipboard_copy": "Kopioi"
+  "record_download_links_help_label": "Minkä tiedoston valitsen?",
+  "record_download_links_help_content": "Kaikista tallenteista on tarjolla kaksi eri versiota, joista toinen on yleensä korkealaatuisempi ja toinen pakatumpi versio.",
+  "clipboard_copy": "Kopioi",
+  "collection_management_rights_help_label": "Tietoa hallinnointioikeuksista",
+  "collection_management_rights_help_content": "Voit jakaa kokoelmaasi hallinnointioikeuksia yliopistolaisille henkilöille ja käyttäjäryhmille hakukenttien avulla. Lisäämilläsi henkilöillä ja ryhmien jäsenillä on yhtäläiset muokkaus- ja poisto-oikeudet tallenteisiin.",
+  "help_dialog_close_label": "Sulje",
+  "new_record_button": "Uusi tallenne",
+  "new_record_form_header": "Uusi tallenne"
 }
