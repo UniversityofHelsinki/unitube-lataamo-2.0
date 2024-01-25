@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
 import './TextArea.css';
+import PropTypes from "prop-types";
 
 const TextArea = ({ value, message, ...rest }) => {
     const messageType = ({
@@ -18,6 +19,11 @@ const TextArea = ({ value, message, ...rest }) => {
 };
 
 TextArea.propTypes = {
+    value: PropTypes.string,
+    message: PropTypes.shape({
+        content: PropTypes.string,
+        type: PropTypes.oneOf(['light', 'neutral', 'warning'])
+    })
 };
 
 export default TextArea;

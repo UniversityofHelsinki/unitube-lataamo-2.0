@@ -3,5 +3,5 @@ import { render } from '@testing-library/react';
 import GroupAutoComplete from './GroupAutoComplete';
 
 it('renders', () => {
-  render(<GroupAutoComplete />);
+  render(<GroupAutoComplete onSelect={() => {}} />);
 });

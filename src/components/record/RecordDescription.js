@@ -31,8 +31,12 @@ const RecordDescription = ({ description, onChange, message }) => {
 };
 
 RecordDescription.propTypes = {
-  description: PropTypes.string,
-  onChange: PropTypes.func
+    description: PropTypes.string,
+    onChange: PropTypes.func,
+    message: PropTypes.shape({
+        content: PropTypes.string,
+        type: PropTypes.oneOf(['light', 'neutral', 'warning'])
+    })
 };
 
 export default RecordDescription;

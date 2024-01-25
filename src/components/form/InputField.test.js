@@ -2,8 +2,11 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import InputField from './InputField';
 
-const placeholder = 'otsikko';
+const message = {
+    content: '',
+    type: []
+};
 
 it('renders', () => {
-    render(<InputField placeholder={placeholder}/>);
+    render(<InputField message={message}/>);
 });
