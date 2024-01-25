@@ -7,9 +7,6 @@ const beforeUnloadConfirmation = (event) => {
   event.preventDefault();
 };
 
-const listenerIsNotYetSet = () =>
-  window.onbeforeunload !== beforeUnloadConfirmation;
-
 const FormDialog = ({
   touched = false,
   show = false,
@@ -17,23 +14,20 @@ const FormDialog = ({
   closeable = true,
   showComponent,
   children,
+  reset,
   ...rest
 }) => {
 
   useEffect(() => {
-    if (touched && listenerIsNotYetSet()) {
-      window.onbeforeunload = beforeUnloadConfirmation;
+    if (!touched && !show) {
+      window.removeEventListener("beforeunload", beforeUnloadConfirmation);
+    } else if (touched) {
+      window.addEventListener("beforeunload", beforeUnloadConfirmation);
     }
-
-    return () => {
-      if (touched) {
-        window.removeEventListener('beforeunload', beforeUnloadConfirmation);
-      }
-    };
-  }, [touched]);
+  }, [touched, show]);
 
   return (
-    <Dialog showComponent={showComponent} show={show} hide={hide} closeable={closeable} { ...rest }>
+    <Dialog showComponent={showComponent} show={show} hide={hide} closeable={closeable} size="lg" fullscreen="sm-down" { ...rest }>
       {children}
     </Dialog>
   );
@@ -43,6 +37,7 @@ FormDialog.propTypes = {
   touched: PropTypes.bool,
   show: PropTypes.bool,
   hide: PropTypes.func,
+  reset: PropTypes.func,
   closeable: PropTypes.bool,
   showComponent: PropTypes.any,
   children: PropTypes.any

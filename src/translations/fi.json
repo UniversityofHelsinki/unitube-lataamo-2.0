@@ -15,10 +15,19 @@
   "record_download_links_header": "Lataa tallenne",
   "record_download_links_help_label": "Minkä tiedoston valitsen?",
   "record_download_links_help_content": "Kaikista tallenteista on tarjolla kaksi eri versiota, joista toinen on yleensä korkealaatuisempi ja toinen pakatumpi versio.",
+  "record_file_header": "Tiedosto",
+  "record_license_header": "Lisenssi",
+  "record_license_select_default": "Valitse",
   "clipboard_copy": "Kopioi",
   "collection_management_rights_help_label": "Tietoa hallinnointioikeuksista",
   "collection_management_rights_help_content": "Voit jakaa kokoelmaasi hallinnointioikeuksia yliopistolaisille henkilöille ja käyttäjäryhmille hakukenttien avulla. Lisäämilläsi henkilöillä ja ryhmien jäsenillä on yhtäläiset muokkaus- ja poisto-oikeudet tallenteisiin.",
   "help_dialog_close_label": "Sulje",
   "new_record_button": "Uusi tallenne",
-  "new_record_form_header": "Uusi tallenne"
+  "new_record_form_header": "Uusi tallenne",
+  "new_record_cancel_button_label": "Peruuta",
+  "new_record_save_button_label": "Lähetä",
+  "UNITUBE_ALLRIGHTS": "\"Kaikki oikeudet pidätetään\" Unituben käyttösääntöjen mukaan",
+  "CC_BY": "CC-BY – voi muokata ja hyödyntää vapaasti, lähde mainittava",
+  "CC_BY_NC_ND": "CC BY-NC-ND – vapaasti jaettava ei-kaupalliseen käyttöön",
+  "CC0": "CC0 – tekijänoikeudeton, vapaasti hyödynnettävissä"
 }
