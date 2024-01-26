@@ -1,5 +1,6 @@
 import { addMonths, addYears } from 'date-fns';
 import { DELETION_DATE_MAX_YEARS, DELETION_DATE_MIN_MONTHS } from '../../../Constants';
+import PropTypes from 'prop-types';
 
 const midnight = (date) => {
   return new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0, 0);
