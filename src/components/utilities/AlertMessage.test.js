@@ -3,5 +3,5 @@ import { render } from '@testing-library/react';
 import AlertMessage from './AlertMessage';
 
 it('renders', () => {
-  render(<AlertMessage />);
+  render(<AlertMessage type="warning">"asdf"</AlertMessage>);
 });
