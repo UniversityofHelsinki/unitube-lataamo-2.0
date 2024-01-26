@@ -7,7 +7,7 @@ import DropDown from '../form/DropDown';
 import { useTranslation } from 'react-i18next';
 import { DEFAULT_LICENSES } from '../../Constants.js';
 
-const RecordLicense = ({ license, onChange, message }) => {
+const RecordLicense = ({ license, onChange, message, disabled = false }) => {
   const { t } = useTranslation();
 
   const emptyLicense = '';
@@ -34,7 +34,7 @@ const RecordLicense = ({ license, onChange, message }) => {
       </Row>
       <Row>
         <Col>
-          <DropDown value={license} onChange={(e) => onChange(e.target.value)} options={licenses.map(asOption)} message={message} />
+          <DropDown value={license} onChange={(e) => onChange(e.target.value)} options={licenses.map(asOption)} message={message} disabled={disabled} />
         </Col>
       </Row>
     </Container>
@@ -47,7 +47,8 @@ RecordLicense.propTypes = {
     content: PropTypes.string,
     type: PropTypes.oneOf(['light', 'neutral', 'warning'])
   }),
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default RecordLicense;

@@ -24,6 +24,7 @@ const Dialog = ({
           show={show} 
           onHide={hide} 
           centered 
+          fullscreen="md-down"
           { ...closeableProps }
           { ...rest }>
         {children}

@@ -22,7 +22,9 @@ const RecordDownloadLinks = ({ links }) => {
     <Container>
       <Row>
         <Col>
-          <FormElementHeader label={t('record_download_links_header')} />
+          <FormElementHeader>
+            {t('record_download_links_header')}
+          </FormElementHeader>
         </Col>
       </Row>
       <Row className="mb-3">

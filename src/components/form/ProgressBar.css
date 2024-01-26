@@ -1,0 +1,21 @@
+.form-progress-bar {
+  width: 100%;
+  border-radius: 0px;
+}
+
+.form-progress-bar .progress-bar {
+  background-color: var(--hy-blue-light);
+}
+
+.form-progress-bar.done .progress-bar {
+  background-color: var(--hy-green);
+}
+
+.form-progress-bar.error .progress-bar {
+  background-color: var(--hy-red);
+}
+
+
+.form-progress-bar-information {
+  width: 100%;
+}
