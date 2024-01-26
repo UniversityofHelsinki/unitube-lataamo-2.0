@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './RecordCardDetails.css';
 
 const RecordCardDetails = ({ record }) => {
   return (
-    <ul className="no-padding">
+    <ul className="no-padding record-card-details">
       <li>
         <strong>
-          {record.name}
+          {record.title}
         </strong>
       </li>
       <li>{record.description}</li>

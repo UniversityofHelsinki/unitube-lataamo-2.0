@@ -1,8 +1,9 @@
 :root {
   --hy-black: #222222;
   --hy-white: #ffffff;
-  --hy-blue: #107eab;
-  --hy-blue-active: #0e688b;
+  --hy-blue: #0e688b;
+  --hy-blue-light: #107eab;
+  --hy-blue-active: #005379;
   --hy-dark-blue: #005379;
   --hy-dark-blue-active: #003146;
   --hy-light-silver: #f8f8f8;
@@ -31,17 +32,9 @@
   padding: 8px;
 }
 
-input[type="search"] {
-  border-radius: 0;
-  padding: 10px;
-}
-
-input[type="search"]:focus-visible {
-  outline: 2px solid var(--hy-blue);
-  border: 0px;
-  border-radius: 0;
-  box-shadow: initial;
-  transition: none;
+.blockquote {
+  border-left: 0.5em solid var(--hy-medium-silver);
+  padding-left: 0.5em;
 }
 
 @media (min-width: 576px) {
@@ -50,3 +43,4 @@ input[type="search"]:focus-visible {
     max-height: 100%;
   }
 }
+

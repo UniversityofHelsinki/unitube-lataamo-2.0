@@ -1,0 +1,8 @@
+.collection-name {
+    border: 1px solid var(--hy-silver);
+}
+
+.collection-name-label {
+    color: var(--hy-black);
+    width: max-content;
+}

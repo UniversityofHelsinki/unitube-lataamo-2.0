@@ -2,7 +2,7 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import BreadcrumbUrl from "./BreadcrumbUrl";
+import BreadCrumbUrl from './BreadCrumbUrl';
 import './BreadCrumb.css';
 
 const BreadCrumb = () => {
@@ -12,7 +12,7 @@ const BreadCrumb = () => {
         <Container className="breadcrumb">
           <Row>
             <Col>
-                <BreadcrumbUrl crumbs={crumbs} />
+                <BreadCrumbUrl crumbs={crumbs} />
             </Col>
           </Row>
         </Container>

@@ -1,14 +1,17 @@
 import { combineReducers } from 'redux';
 
-const example = (state = {}, action) => {
-  if (action.type === "GET_RECORD") {
-    return { ...state, record: { name: "video", id: action.payload }};
-  }
-  return state;
-};
+import locationReducer from './locationReducer';
+import recordReducer from './recordReducer';
+import collectionReducer from './collectionReducer';
+import userReducer from './userReducer';
+import autoCompleteReducer from './autoCompleteReducer';
 
 const reducers = {
-  example
+  location: locationReducer,
+  records: recordReducer,
+  collections: collectionReducer,
+  users: userReducer,
+  autocompletion: autoCompleteReducer,
 };
 
 export default combineReducers(reducers);

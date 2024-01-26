@@ -4,5 +4,10 @@
   "navigation_streams": "Collections",
   "language_select_fi": "Finnish",
   "language_select_en": "English",
-  "language_select_sv": "Swedish"
+  "language_select_sv": "Swedish",
+  "user_autocompletion_placeholder": "Etsi henkilöä...",
+  "group_autocompletion_placeholder": "Etsi käyttöoikeusryhmää...",
+  "clipboard_copy": "Copy",
+  "new_record_cancel_button_label": "Cancel",
+  "new_record_save_button_label": "Send"
 }

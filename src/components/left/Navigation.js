@@ -5,23 +5,38 @@ import Row from 'react-bootstrap/Row';
 import { Nav } from 'react-bootstrap';
 import './Navigation.css';
 import { useTranslation } from 'react-i18next';
+import useLocation from '../../hooks/useLocation';
 
 const Navigation = () => {
   const { t } = useTranslation();
-  const [selectedTab, setSelectedTab] = useState("/records");
+  const [location, setLocation] = useLocation();
 
-  const onSelect = (selectedTab) => setSelectedTab(selectedTab);
+  const activeProps = (path) => 
+    path === location ? { className: "nav-item-active" } : {};
+
+  const onSelect = (path) => {
+    setLocation(path);
+  };
+
+  const tabs = [{
+    path: "/records",
+    label: t('navigation_records')
+  }, {
+    path: "/collections",
+    label: t('navigation_collections')
+  }];
 
   return (
     <Container className="navigation">
       <Row className="text-center no-padding">
-        <Nav as="nav" justify fill variant="tabs" activeKey={selectedTab} className="no-padding" onSelect={onSelect}>
-            <Nav.Item>
-              <Nav.Link eventKey="/records" href="#">{t('navigation_records')}</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="/collections" href="#">{t('navigation_collections')}</Nav.Link>
-            </Nav.Item>
+        <Nav as="nav" justify fill variant="tabs" activeKey={location} className="no-padding" onSelect={onSelect}>
+            {tabs.map(({ path, label }) => (
+              <Nav.Item key={path} { ...activeProps(path) }>
+                <Nav.Link eventKey={path}>
+                  {label}
+                </Nav.Link>
+              </Nav.Item>
+            ))}
         </Nav>
       </Row>
     </Container>

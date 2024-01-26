@@ -1,0 +1,8 @@
+.collection-description {
+    border: 1px solid var(--hy-silver);
+}
+
+.collection-description-label {
+    color: var(--hy-black);
+    width: max-content;
+}

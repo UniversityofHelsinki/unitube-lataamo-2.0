@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import ExternalLink from '../utilities/ExternalLink';
+import './FooterLinks.css'
 
 const FooterLinks = () => {
   const { t } = useTranslation();

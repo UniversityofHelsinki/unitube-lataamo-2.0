@@ -1,3 +1,12 @@
 .record-card {
   border: 1px solid var(--hy-silver);
 }
+
+.record-card:hover {
+  cursor: pointer;
+}
+
+.record-card-selected {
+  outline: 3px solid var(--hy-blue);
+  box-shadow: 5px 5px 10px var(--hy-blue);
+}

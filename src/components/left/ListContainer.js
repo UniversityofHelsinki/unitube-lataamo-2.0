@@ -5,9 +5,9 @@ import './ListContainer.css';
 
 const ListContainer = ({ children = [] }) => {
   return (
-    <ul className="no-padding">
-      {children.map((element) => 
-        <li className="list-element" tabIndex={0}>
+    <ul className="no-padding list-container">
+      {children.map((element, i) => 
+        <li key={i} className="list-element" tabIndex={0}>
           <ListElement>
             {element}
           </ListElement>

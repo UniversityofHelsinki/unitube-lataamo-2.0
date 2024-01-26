@@ -4,16 +4,25 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Record from '../record/Record';
-import useRecord from '../../hooks/useRecord';
+import './MainContent.css';
+import useSearchParams from '../../hooks/useSearchParams';
+import CollectionForm from '../collection/CollectionForm';
 
 const MainContent = () => {
-  const record = useRecord(123123);
-  console.log(record);
+  const [searchParams] = useSearchParams();
+
+  let content = <></>;
+  if (searchParams.record) {
+    content = <Record />;
+  } else if (searchParams.collection) {
+    content = <CollectionForm />;
+  }
+
   return (
-      <Container>
+      <Container className="main-content">
         <Row>
-          <Col>
-            <Record />
+          <Col className="ps-0">
+            {content}
           </Col>
         </Row>
       </Container>

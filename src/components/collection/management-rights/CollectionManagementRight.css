@@ -1,0 +1,16 @@
+.collection-management-right {
+  border: 1px solid var(--hy-silver);
+}
+
+.collection-management-right-label {
+  color: var(--hy-black);
+  width: max-content;
+}
+
+.collection-management-right-remove-icon-col {
+  padding-bottom: 4px;
+}
+
+.collection-management-right-remove-icon-col polygon {
+  fill: var(--hy-red);
+}
