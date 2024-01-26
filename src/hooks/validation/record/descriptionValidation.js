@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const validateDescription = (description, _record) => {
   if (description.length === 0) {
     return 'record_validation_description_is_empty';

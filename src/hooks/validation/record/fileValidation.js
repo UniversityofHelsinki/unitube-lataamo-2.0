@@ -1,4 +1,5 @@
 import { MAX_FILE_SIZE_LIMIT, MIN_VIDEO_DURATION } from "../../../Constants";
+import PropTypes from 'prop-types';
 
 const validateSize = (file) => {
   return file.size > MAX_FILE_SIZE_LIMIT;
