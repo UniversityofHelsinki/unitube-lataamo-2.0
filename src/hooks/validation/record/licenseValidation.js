@@ -6,4 +6,9 @@ const validateLicense = (license, _record) => {
   }
 };
 
+validateLicense.PropTypes = {
+    license: PropTypes.string,
+    record: PropTypes.object
+}
+
 export default validateLicense;

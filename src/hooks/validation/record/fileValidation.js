@@ -46,4 +46,9 @@ const validateFile = async (file, record) => {
   return false;
 };
 
+validateFile.PropTypes = {
+    file: PropTypes.object,
+    record: PropTypes.object
+};
+
 export default validateFile;

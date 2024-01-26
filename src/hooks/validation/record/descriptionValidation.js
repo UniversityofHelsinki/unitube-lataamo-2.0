@@ -7,4 +7,9 @@ const validateDescription = (description, _record) => {
   return false;
 };
 
+validateDescription.PropTypes = {
+  description: PropTypes.string,
+  record: PropTypes.object
+};
+
 export default validateDescription;
