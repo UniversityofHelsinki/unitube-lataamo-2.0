@@ -6,5 +6,5 @@ import AutoComplete from './AutoComplete';
   const placeholder = '';
 
 it('renders', () => {
-  render(<AutoComplete options={} onFilter={() => {}} placeholder={placeholder} onSelect={() => {}} />);
+  render(<AutoComplete options={options} onFilter={() => {}} placeholder={placeholder} onSelect={() => {}} />);
 });
