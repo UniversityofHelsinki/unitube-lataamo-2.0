@@ -4,9 +4,11 @@ import './CollectionMoodleCourse.css'
 import { ReactComponent as RemoveIcon } from '../../utilities/icons/remove.svg';
 import onKeyDown from "../../accessibility/keydown";
 import PropTypes from "prop-types";
+import {useTranslation} from "react-i18next";
 
 const CollectionMoodleCourse = ({ onRemove, Icon, label }) => {
     const labelId = useId();
+    const { t } = useTranslation();
     return (
         <Container className="collection-moodle-course py-1" tabIndex={0} aria-labelledby={labelId}>
             <Row className="collection-moodle-course-row justify-content-between align-items-center">
@@ -17,7 +19,7 @@ const CollectionMoodleCourse = ({ onRemove, Icon, label }) => {
                     <p className="mb-0 collection-moodle-course-label" id={labelId}>{label}</p>
                 </Col>
                 <Col className="text-end px-0 collection-moodle-course-remove-icon-col">
-                    <RemoveIcon tabIndex={0} role="button" aria-label="..." tabIndex={0} onClick={onRemove} onKeyDown={onKeyDown(onRemove)} width="30px" height="15px" />
+                    <RemoveIcon tabIndex={0} input-type="button" aria-label={t('remove')} onClick={onRemove} onKeyDown={onKeyDown(onRemove)} width="30px" height="15px" />
                 </Col>
             </Row>
         </Container>
@@ -26,7 +28,8 @@ const CollectionMoodleCourse = ({ onRemove, Icon, label }) => {
 
 CollectionMoodleCourse.propTypes = {
     label: PropTypes.string.isRequired,
-    onRemove: PropTypes.func.isRequired
+    onRemove: PropTypes.func.isRequired,
+    Icon: PropTypes.any.isRequired
 };
 
 export default CollectionMoodleCourse;
