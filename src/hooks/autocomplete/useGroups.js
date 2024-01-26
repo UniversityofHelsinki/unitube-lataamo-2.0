@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from "prop-types";
 
 const searchGroups = (searchQuery) => async (dispatch) => {
   const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/iamGroups/${searchQuery}`;
@@ -19,8 +20,8 @@ const useGroups = () => {
   const dispatch = useDispatch();
 
   return [
-    groups, 
-    (searchQuery) => dispatch(searchGroups(searchQuery)), 
+    groups,
+    (searchQuery) => dispatch(searchGroups(searchQuery)),
     () => dispatch(clearGroups)
   ];
 

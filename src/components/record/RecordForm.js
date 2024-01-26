@@ -8,14 +8,19 @@ import { Form } from 'react-bootstrap';
 import RecordDescription from './RecordDescription';
 import './RecordForm.css';
 import useRecordValidation from '../../hooks/validation/record/useRecordValidation';
+import RecordEndDate from './RecordEndDate';
 
 const RecordForm = ({ record }) => {
 
   const [modifiedRecord, setModifiedRecord] = useState({ ...record });
-  const [isValid, messages, validate] = useRecordValidation();
+  const [isValid, messages, validate] = useRecordValidation([
+    'title', 'description'
+  ]);
 
-  const onChange = (what, value) => {
-    setModifiedRecord({ ...modifiedRecord, [what]: value});
+  const onChange = async (what, value) => {
+    const newRecord = { ...modifiedRecord, [what]: value };
+    setModifiedRecord(newRecord);
+    await validate(newRecord);
   };
 
   return (
@@ -26,8 +31,9 @@ const RecordForm = ({ record }) => {
                 <RecordName 
                   name={modifiedRecord.title}
                   onChange={
-                    (event) => onChange('title', event.target.value)
+                    (title) => onChange('title', title)
                   }
+                  message={messages.title}
                 />
             </Col>
           </Row>
@@ -36,14 +42,21 @@ const RecordForm = ({ record }) => {
                 <RecordDescription 
                   description={modifiedRecord.description} 
                   onChange={
-                    (event) => onChange('description', event.target.value)
+                    (description) => onChange('description', description)
                   }
+                  message={messages.description}
                 />
             </Col>
           </Row>
           <Row>
             <Col>
-                Voimassaolo
+              <RecordEndDate 
+                endDate={modifiedRecord.deletionDate}
+                onChange={
+                  (date) => onChange('deletionDate', (date || new Date()).toISOString())
+                }
+                message={messages.deletionDate} 
+              />
             </Col>
           </Row>
           <Row>

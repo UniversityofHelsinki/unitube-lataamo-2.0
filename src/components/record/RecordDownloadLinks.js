@@ -5,6 +5,7 @@ import './RecordDownloadLinks.css';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import FormElementHeader from '../form/FormElementHeader';
+import HelpDialog from '../dialog/HelpDialog';
 
 const DownloadLink = ({ to, label }) => {
   return (
@@ -22,6 +23,13 @@ const RecordDownloadLinks = ({ links }) => {
       <Row>
         <Col>
           <FormElementHeader label={t('record_download_links_header')} />
+        </Col>
+      </Row>
+      <Row className="mb-3">
+        <Col>
+          <HelpDialog label={t('record_download_links_help_label')}>
+            {t('record_download_links_help_content')}
+          </HelpDialog>
         </Col>
       </Row>
       <Row>

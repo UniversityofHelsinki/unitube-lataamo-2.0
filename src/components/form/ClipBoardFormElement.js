@@ -18,7 +18,7 @@ const ClipBoardFormElement = ({ label, content, children }) => {
         <Container>
             <Row className="align-items-center">
                 <Col>
-                  <FormElementHeader label={label} />
+                  <FormElementHeader>{label}</FormElementHeader>
                 </Col>
                 <Col className="text-end pe-0">
                   <Button variant="link" aria-labelledby={labelId} onClick={() => copy(content)}>

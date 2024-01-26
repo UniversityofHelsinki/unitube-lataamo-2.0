@@ -9,7 +9,7 @@ import { Form } from 'react-bootstrap';
 import PropTypes from "prop-types";
 import './RecordName.css';
 
-const RecordName = ({ name, onChange }) => {
+const RecordName = ({ name, onChange, message }) => {
     const { t } = useTranslation();
 
     return (
@@ -17,12 +17,12 @@ const RecordName = ({ name, onChange }) => {
             <Form.Group>
                 <Row>
                     <Col>
-                        <FormElementHeader label={t('record_form_name_header')}  size={'h5'} />
+                        <FormElementHeader>{t('record_form_name_header')}</FormElementHeader>
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <InputField value={name} placeholder={t('record_form_name_placeholder')} onChange={onChange} />
+                        <InputField value={name} placeholder={t('record_form_name_placeholder')} onChange={(e) => onChange(e.target.value)} message={message} />
                     </Col>
                 </Row>
             </Form.Group>
@@ -31,8 +31,12 @@ const RecordName = ({ name, onChange }) => {
 };
 
 RecordName.propTypes = {
-  name: PropTypes.string,
-  onChange: PropTypes.func,
+    name: PropTypes.string,
+    onChange: PropTypes.func,
+    message: PropTypes.shape({
+        content: PropTypes.string,
+        type: PropTypes.oneOf(['light', 'neutral', 'warning'])
+    })
 };
 
 export default RecordName;
