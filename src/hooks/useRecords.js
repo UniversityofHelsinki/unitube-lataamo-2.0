@@ -18,13 +18,17 @@ const useRecords = ({ load = false }) => {
   const records = useSelector((state) => state.records.records);
 
   useEffect(() => {
-    if (load && !records) { 
+    if (load && !records) {
       dispatch(getRecords());
     }
   }, [load, records]);
 
   const loading = !records;
   return [records, loading];
+};
+
+useRecords.PropTypes = {
+  load: PropTypes.bool
 };
 
 export default useRecords;
