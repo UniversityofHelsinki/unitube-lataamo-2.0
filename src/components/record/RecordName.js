@@ -31,8 +31,12 @@ const RecordName = ({ name, onChange, message }) => {
 };
 
 RecordName.propTypes = {
-  name: PropTypes.string,
-  onChange: PropTypes.func,
+    name: PropTypes.string,
+    onChange: PropTypes.func,
+    message: PropTypes.shape({
+        content: PropTypes.string,
+        type: PropTypes.oneOf(['light', 'neutral', 'warning'])
+    })
 };
 
 export default RecordName;

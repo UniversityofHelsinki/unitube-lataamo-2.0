@@ -18,4 +18,9 @@ const validateDeletionDate = (ISO, record) => {
   return false;
 };
 
+validateDeletionDate.PropTypes = {
+  ISO: PropTypes.string,
+  record: PropTypes.object
+};
+
 export default validateDeletionDate;

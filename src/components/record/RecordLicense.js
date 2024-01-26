@@ -42,7 +42,12 @@ const RecordLicense = ({ license, onChange, message }) => {
 };
 
 RecordLicense.propTypes = {
-  license: PropTypes.string.isRequired
+  license: PropTypes.string.isRequired,
+  message: PropTypes.shape({
+    content: PropTypes.string,
+    type: PropTypes.oneOf(['light', 'neutral', 'warning'])
+  }),
+  onChange: PropTypes.func.isRequired
 };
 
 export default RecordLicense;

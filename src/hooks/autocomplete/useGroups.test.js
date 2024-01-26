@@ -1,8 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import RecordForm from './RecordForm';
+import useGroups from './useGroups';
 
-  const record = {};
 it('renders', () => {
-  render(<RecordForm record={record} />);
+    render(<useGroups />);
 });
