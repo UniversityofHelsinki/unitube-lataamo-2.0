@@ -12,17 +12,22 @@ import CollectionName from "./name/CollectionName";
 import CollectionDescription from "./description/CollectionDescription";
 import CollectionPublicity from "./publicity/CollectionPublicity";
 import useCollectionValidation from '../../hooks/validation/collection/useCollectionValidation';
+import CollectionMoodleCourses from "./moodle-courses/CollectionMoodleCourses";
 
 const CollectionForm = () => {
   const [collection, loading] = useCollection();
   const [isValid, messages, validate] = useCollectionValidation();
 
-  const users = collection?.persons?.map(person => 
+  const users = collection?.persons?.map(person =>
     ({ userName: person })
   ) || [];
 
-  const groups = collection?.iamgroups?.map(group => 
+  const groups = collection?.iamgroups?.map(group =>
     ({ grpName: group })
+  ) || [];
+
+  const moodleNumbers = collection?.moodleNumbers?.map(moodleNbr =>
+      ({ moodleNumber: moodleNbr })
   ) || [];
 
   return (
@@ -65,6 +70,7 @@ const CollectionForm = () => {
               <CollectionManagementRights users={users} groups={groups} />
           </Col>
           <Col>
+            <CollectionMoodleCourses moodleNumbers={moodleNumbers} />
           </Col>
         </Row>
       </Container>

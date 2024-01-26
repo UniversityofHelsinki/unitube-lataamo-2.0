@@ -1,0 +1,16 @@
+.collection-moodle-course {
+    border: 1px solid var(--hy-silver);
+}
+
+.collection-moodle-course-label {
+    color: var(--hy-black);
+    width: max-content;
+}
+
+.collection-moodle-course-remove-icon-col {
+    padding-bottom: 4px;
+}
+
+.collection-moodle-course-remove-icon-col polygon {
+    fill: var(--hy-red);
+}
