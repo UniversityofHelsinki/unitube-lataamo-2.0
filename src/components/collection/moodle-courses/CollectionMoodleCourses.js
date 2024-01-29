@@ -7,6 +7,7 @@ import { ReactComponent as CourseIcon } from '../../utilities/icons/opinder-logo
 import FormElementHeader from '../../form/FormElementHeader';
 import CollectionMoodleCourse from "./CollectionMoodleCourse";
 import InputField from "../../form/InputField";
+import HelpDialog from '../../dialog/HelpDialog';
 
 const CollectionMoodleCourses = ({ moodleNumbers = [] }) => {
     const [selectedMoodlenumbers, setSelectedMoodlenumbers] = useState(moodleNumbers);
@@ -41,11 +42,13 @@ const CollectionMoodleCourses = ({ moodleNumbers = [] }) => {
     return (
         <Container className="collection-moodle-courses">
             <Row>
-                <FormElementHeader label={t('collection-moodle-courses_form_header')} />
+                <FormElementHeader>{t('collection_moodle_courses_form_header')}</FormElementHeader>
             </Row>
             <Row className="mb-2">
                 <Col>
-                    <span>Mistä löydän kurssitunnistenumeron?</span>
+                  <HelpDialog label={t('collection_moodle_courses_help_label')}>
+                    {t('collection_moodle_courses_help_content')}
+                  </HelpDialog>
                 </Col>
             </Row>
             <Row className="mb-2">
