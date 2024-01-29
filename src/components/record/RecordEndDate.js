@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import DatePicker from '../form/DatePicker';
 import { addMonths, addYears } from 'date-fns';
 import { DELETION_DATE_MAX_YEARS, DELETION_DATE_MIN_MONTHS } from '../../Constants';
+import HelpDialog from '../dialog/HelpDialog';
 
 const RecordEndDate = ({ endDate, onChange, message, disabled = false }) => {
   const { t } = useTranslation();
@@ -25,6 +26,13 @@ const RecordEndDate = ({ endDate, onChange, message, disabled = false }) => {
           <FormElementHeader>
             {t('record_form_end_date_header')}
           </FormElementHeader>
+        </Col>
+      </Row>
+      <Row className="mb-3">
+        <Col>
+          <HelpDialog label={t('record_end_date_help_label')}>
+            {t('record_end_date_help_content')}
+          </HelpDialog>
         </Col>
       </Row>
       <Row>
