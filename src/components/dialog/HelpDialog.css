@@ -1,0 +1,27 @@
+.help-dialog-fallback {
+  position: relative;
+  z-index: 1;
+}
+
+.help-dialog-fallback-container {
+  position: absolute;
+}
+
+.help-dialog-fallback-container .container {
+  margin-bottom: 0px;
+}
+
+.help-dialog-fallback-container {
+  max-width: 75%;
+  border: 1px solid var(--hy-medium-silver);
+  background-color: var(--hy-white);
+}
+
+.help-dialog-fallback-header {
+  border-bottom: 1px solid var(--hy-medium-silver);
+  padding: 0.5em;
+}
+
+.help-dialog-fallback-content {
+  padding: 1em;
+}
