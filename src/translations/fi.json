@@ -46,5 +46,6 @@
   "new_record_footer_alert_processing": "Tallenne on käsittelyssä. Sivuston voi sulkea.",
   "new_record_progress_calculating_time_left": "Lasketaan lähetykseen kuluvaa aikaa...",
   "record_end_date_help_label": "Tietoa voimassaolopäivästä",
-  "record_end_date_help_content": "Tallenteet poistuvat Unitubesta viimeisen voimassaolopäivän jälkeen. Pisin mahdollinen voimassaoloaika on kolme vuotta eteenpäin. Voit muuttaa voimassaoloaikaa milloin vain tallenteen tiedoissa! Otathan huomioon myös palvelun käyttösäännöt."
+  "record_end_date_help_content": "Tallenteet poistuvat Unitubesta viimeisen voimassaolopäivän jälkeen. Pisin mahdollinen voimassaoloaika on kolme vuotta eteenpäin. Voit muuttaa voimassaoloaikaa milloin vain tallenteen tiedoissa! Otathan huomioon myös palvelun käyttösäännöt.",
+  "unitube_lataamo": "Unitube-Lataamo"
 }

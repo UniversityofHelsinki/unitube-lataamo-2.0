@@ -5,7 +5,7 @@ import './Logo.css';
 const Logo = () => {
   const { t } = useTranslation();
   return (
-    <h1 className="logo">{t('unitube_lataamo')}</h1>
+    <h2 className="logo">{t('unitube_lataamo')}</h2>
   );
 };
 
