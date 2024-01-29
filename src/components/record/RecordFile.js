@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import InputField from '../form/InputField';
 import { ACCEPTED_MIME_TYPES } from '../../Constants';
 
-const RecordFile = ({ message, onChange }) => {
+const RecordFile = ({ file, message, onChange, disabled = false }) => {
   const { t } = useTranslation();
 
   return (
@@ -19,7 +19,7 @@ const RecordFile = ({ message, onChange }) => {
       </Row>
       <Row>
         <Col>
-          <InputField onChange={(e) => onChange(e.target.files[0])} type="file" message={message} accept={ACCEPTED_MIME_TYPES} />
+          <InputField onChange={(e) => onChange(e.target.files[0])} type="file" message={message} accept={ACCEPTED_MIME_TYPES} disabled={disabled} />
         </Col>
       </Row>
     </Container>
@@ -27,11 +27,13 @@ const RecordFile = ({ message, onChange }) => {
 };
 
 RecordFile.propTypes = {
+  file: PropTypes.object,
   onChange: PropTypes.func.isRequired,
   message: PropTypes.shape({
     content: PropTypes.string,
     type: PropTypes.oneOf(['light', 'neutral', 'warning'])
-  })
+  }),
+  disabled: PropTypes.bool
 };
 
 export default RecordFile;

@@ -30,5 +30,19 @@
   "UNITUBE_ALLRIGHTS": "\"Kaikki oikeudet pidätetään\" Unituben käyttösääntöjen mukaan",
   "CC_BY": "CC-BY – voi muokata ja hyödyntää vapaasti, lähde mainittava",
   "CC_BY_NC_ND": "CC BY-NC-ND – vapaasti jaettava ei-kaupalliseen käyttöön",
-  "CC0": "CC0 – tekijänoikeudeton, vapaasti hyödynnettävissä"
+  "CC0": "CC0 – tekijänoikeudeton, vapaasti hyödynnettävissä",
+  "minutes_left": "minuuttia jäljellä",
+  "minutes_and": "minuuttia ja",
+  "seconds_left": "sekuntia jäljellä",
+  "new_record_upload_error": "Virhe!",
+  "new_record_upload_done": "Valmis!",
+  "new_record_upload_aborted": "Lähetys keskeytetty.",
+  "new_record_upload_processing": "Tallennetta käsitellään.",
+  "new_record_footer_button_error": "Yritä uudestaan",
+  "new_record_footer_button_done": "Tyhjennä",
+  "new_record_footer_button_sending": "Lähetetään...",
+  "new_record_footer_button_processing": "Käsitellään...",
+  "new_record_footer_alert_sending": "Sivuston sulkeminen keskeyttää lähetyksen!",
+  "new_record_footer_alert_processing": "Tallenne on käsittelyssä. Sivuston voi sulkea.",
+  "new_record_progress_calculating_time_left": "Lasketaan lähetykseen kuluvaa aikaa..."
 }

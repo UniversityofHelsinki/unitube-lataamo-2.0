@@ -9,7 +9,7 @@ import { Form } from 'react-bootstrap';
 import PropTypes from "prop-types";
 import './RecordDescription.css';
 
-const RecordDescription = ({ description, onChange, message }) => {
+const RecordDescription = ({ description, onChange, message, disabled = false }) => {
     const { t } = useTranslation();
 
     return (
@@ -22,7 +22,7 @@ const RecordDescription = ({ description, onChange, message }) => {
             </Row>
             <Row>
                 <Col>
-                    <TextArea value={description} onChange={(e) => onChange(e.target.value)} message={message} />
+                    <TextArea value={description} onChange={(e) => onChange(e.target.value)} message={message} disabled={disabled} />
                 </Col>
             </Row>
             </Form.Group>

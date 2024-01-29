@@ -14,7 +14,7 @@ const RecordForm = ({ record }) => {
 
   const [modifiedRecord, setModifiedRecord] = useState({ ...record });
   const [isValid, messages, validate] = useRecordValidation([
-    'title', 'description'
+    'title', 'description', 'deletionDate'
   ]);
 
   const onChange = async (what, value) => {

@@ -8,7 +8,7 @@ import DatePicker from '../form/DatePicker';
 import { addMonths, addYears } from 'date-fns';
 import { DELETION_DATE_MAX_YEARS, DELETION_DATE_MIN_MONTHS } from '../../Constants';
 
-const RecordEndDate = ({ endDate, onChange, message }) => {
+const RecordEndDate = ({ endDate, onChange, message, disabled = false }) => {
   const { t } = useTranslation();
 
   const calendarOpenDate = (() => {
@@ -36,6 +36,7 @@ const RecordEndDate = ({ endDate, onChange, message }) => {
             maxDate={addYears(new Date(), DELETION_DATE_MAX_YEARS)} 
             onChange={onChange}
             message={message}
+            disabled={disabled}
           />
         </Col>
       </Row>
@@ -49,7 +50,8 @@ RecordEndDate.propTypes = {
   message: PropTypes.shape({
     content: PropTypes.string,
     type: PropTypes.oneOf(['light', 'neutral', 'warning'])
-  })
+  }),
+  disabled: PropTypes.bool,
 };
 
 export default RecordEndDate;
