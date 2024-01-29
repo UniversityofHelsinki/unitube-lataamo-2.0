@@ -4,9 +4,13 @@
 
 .record-card:hover {
   cursor: pointer;
+  background-color: var(--hy-light-silver);
 }
 
 .record-card-selected {
-  outline: 3px solid var(--hy-blue);
-  box-shadow: 5px 5px 10px var(--hy-blue);
+  background-color: var(--hy-light-silver);
 }
+
+.record-card:hover .record-card-details strong {
+  text-decoration: underline;
+} 
