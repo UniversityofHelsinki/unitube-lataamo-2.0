@@ -1,18 +1,38 @@
 image: node:18-alpine
+
+# Cache node modules - speeds up future builds
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules
 #
 ## Define the stages
 stages:
+  - compile
   - build
 
 ## Define the process for build stage
 build-stage:
-  stage: build
+  stage: compile
   tags:
     - ohtu-build-3
   script:
     - npm ci
+
+build_oc_test:
+  stage: build
+  tags:
+    - ohtu-build-3
   only:
-    - master
+    - oc-test
+  script:
+    - yes | cp -f -v .env.oc-test .env.production || true
+    - CI=false npm run build
+  artifacts:
+    expire_in: 1h
+    name: lataamo-build
+    paths:
+      - build
 
 ## Define the process for sonarqube check
 #sonarqube-check:
