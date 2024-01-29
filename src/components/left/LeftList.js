@@ -9,8 +9,8 @@ import './LeftList.css';
 
 const LeftList = ({ children = [] }) => {
   return (
-    <Container>
-      <Row className="mb-2">
+    <Container className="left-list-container">
+      <Row className="mb-2 left-list-actions-container">
         <Col>
           <ListActions />
         </Col>
