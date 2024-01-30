@@ -9,6 +9,7 @@ import RecordDescription from './RecordDescription';
 import './RecordForm.css';
 import useRecordValidation from '../../hooks/validation/record/useRecordValidation';
 import RecordEndDate from './RecordEndDate';
+import RecordCollections from "./RecordCollections";
 
 const RecordForm = ({ record }) => {
 
@@ -28,7 +29,7 @@ const RecordForm = ({ record }) => {
       <Form>
           <Row>
             <Col>
-                <RecordName 
+                <RecordName
                   name={modifiedRecord.title}
                   onChange={
                     (title) => onChange('title', title)
@@ -39,8 +40,8 @@ const RecordForm = ({ record }) => {
           </Row>
           <Row>
             <Col>
-                <RecordDescription 
-                  description={modifiedRecord.description} 
+                <RecordDescription
+                  description={modifiedRecord.description}
                   onChange={
                     (description) => onChange('description', description)
                   }
@@ -50,12 +51,12 @@ const RecordForm = ({ record }) => {
           </Row>
           <Row>
             <Col>
-              <RecordEndDate 
+              <RecordEndDate
                 endDate={modifiedRecord.deletionDate}
                 onChange={
                   (date) => onChange('deletionDate', (date || new Date()).toISOString())
                 }
-                message={messages.deletionDate} 
+                message={messages.deletionDate}
               />
             </Col>
           </Row>
@@ -65,6 +66,7 @@ const RecordForm = ({ record }) => {
           </Row>
           <Row>
             <Col>
+                <RecordCollections onChange={(value) => onChange('identifier', value)} />
             </Col>
           </Row>
           <Row>

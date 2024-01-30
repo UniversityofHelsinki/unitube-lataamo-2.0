@@ -19,6 +19,8 @@
   "record_file_header": "Tiedosto",
   "record_license_header": "Lisenssi",
   "record_license_select_default": "Valitse",
+  "record_collection_select_default": "Valitse",
+  "record_collection_header": "Kokoelma",
   "clipboard_copy": "Kopioi",
   "collection_management_rights_help_label": "Tietoa hallinnointioikeuksista",
   "collection_management_rights_help_content": "Voit jakaa kokoelmaasi hallinnointioikeuksia yliopistolaisille henkilöille ja käyttäjäryhmille hakukenttien avulla. Lisäämilläsi henkilöillä ja ryhmien jäsenillä on yhtäläiset muokkaus- ja poisto-oikeudet tallenteisiin.",
