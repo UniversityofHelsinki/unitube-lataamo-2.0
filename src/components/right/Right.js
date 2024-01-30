@@ -9,16 +9,15 @@ import './Right.css';
 const Right = () => {
   return (
     <Container className="right">
-      <Row>
-        <Col>
+      <Row className="right-main-content-row">
+        <Col className="right-main-content-col">
           <MainContent />
         </Col>
       </Row>
-      <Row>
+      <Row className="sticky-bottom">
         <Col>
         </Col>
         <Col>
-          asdfasdf
         </Col>
       </Row>
     </Container>
