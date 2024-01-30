@@ -15,8 +15,8 @@ const VideoPlayer = ({ video }) => {
     }
 
     return (
-        <div className="embed-responsive embed-responsive-16by9">
-            <video crossOrigin="anonymous" preload="metadata" controlsList='nodownload' controls
+        <div>
+            <video width="100%" crossOrigin="anonymous" preload="metadata" controlsList='nodownload' controls
                     onContextMenu={e => e.preventDefault()} src={playVideo(video.url)}>
                 <track kind="captions" src="" srcLang="en" label="English"/>
             </video>
