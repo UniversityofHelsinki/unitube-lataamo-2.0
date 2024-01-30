@@ -2,16 +2,36 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Col, Container, Row } from 'react-bootstrap';
 import './VideoPreview.css';
+import useVideo from '../../hooks/useVideo.js';
 
-const PlaceholderBox = () =>
-    (<div style={{ minWidth: '100px', minHeight: '100px' }} />);
+const playVideo = (url) => {
+    return `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/video/play/` + url;
+};
+
+const VideoPlayer = ({ video }) => {
+    if (!video || !video.url) {
+        // You can render a placeholder or loading state here
+        return <div>Loading...</div>;
+    }
+
+    return (
+        <video controls>
+            <source crossOrigin="anonymous" preload="metadata" controlsList='nodownload' controls onContextMenu={e => e.preventDefault()} src={playVideo(video.url)} />
+            <track kind="captions" src="" srcLang="en" label="English"/>
+        </video>
+    );
+};
 
 const VideoPreview = ({ record }) => {
+    const video = useVideo(record.identifier);
+
+    console.log(video);
+
     return (
         <Container className="no-margin no-padding video-preview">
             <Row>
                 <Col className="no-padding">
-                    <PlaceholderBox />
+                    <VideoPlayer video={video[0]} />
                 </Col>
             </Row>
         </Container>
@@ -19,6 +39,7 @@ const VideoPreview = ({ record }) => {
 };
 
 VideoPreview.propTypes = {
+    record: PropTypes.object.isRequired, // Adjust the prop type based on your actual structure
 };
 
 export default VideoPreview;
