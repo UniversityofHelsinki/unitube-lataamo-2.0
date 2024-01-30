@@ -11,8 +11,8 @@ const DropDown = ({ options, message, ...rest }) => {
               <option key={option.value} value={option.value}>{option.label}</option>
             )}
         </Form.Select>
-        <Message type={message.type}>
-          {message.content}
+        <Message type={message?.type}>
+          {message?.content}
         </Message>
       </>
     );
