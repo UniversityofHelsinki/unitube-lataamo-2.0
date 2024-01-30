@@ -8,7 +8,7 @@ const login = (url = process.env.REACT_APP_LATAAMO_LOGIN) => {
 const logout = (url = "/Shibboleth.sso/Logout") => {
   window.location.replace(url);
 };
-  
+
 
 const getUser = () => async (dispatch) => {
   const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/user`;
@@ -22,6 +22,7 @@ const getUser = () => async (dispatch) => {
       dispatch({ type: 'SET_ERROR', payload: await response.status });
     }
   } catch (error) {
+    console.log(error.message);
     dispatch({ type: 'SET_ERROR', payload: error.message });
   }
 };

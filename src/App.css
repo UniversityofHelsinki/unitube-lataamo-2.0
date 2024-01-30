@@ -18,6 +18,17 @@
   --hy-dark-orange: #d14600;
   --hy-green: #96ba3c;
   --hy-dark-green: #006400;
+  --huds-brand-main: #0e688b;
+  --huds-brand-main-light: #107eab;
+  --huds-brand-main-active: #005379;
+  --huds-brand-main-dark: #003146;
+  --huds-brand-main-nearly-black: #000222;
+  --huds-grayscale-white: #fff;
+  --huds-grayscale-light: #f8f8f8;
+  --huds-grayscale-medium: #d2d2d2;
+  --huds-grayscale-medium-dark: #979797;
+  --huds-grayscale-dark: #555555;
+  --huds-grayscale-black: #000;
 }
 
 .no-margin {
@@ -44,3 +55,24 @@
   }
 }
 
+.btn {
+  border-radius: 0px;
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--huds-brand-main);
+}
+
+.btn-primary:disabled {
+  --bs-btn-disabled-bg: var(--huds-grayscale-medium);
+  --bs-btn-disabled-color: var(--huds-grayscale-dark);
+  border: 1px solid var(--huds-grayscale-medium);
+}
+
+.btn-primary:hover {
+  --bs-btn-hover-bg: var(--hy-dark-blue);
+}
+
+.btn-primary:active {
+  --bs-btn-active-bg: var(--hy-black);
+}

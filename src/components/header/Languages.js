@@ -16,9 +16,8 @@ const Languages = () => {
     <ul className="languages">
       {['fi', 'en', 'sv'].map((language) => 
         <li 
-          key={language}
-          onClick={() => onClick(language)}>
-            <Button variant="link" active={language === currentLanguage}>
+          key={language}>
+            <Button onClick={() => onClick(language)} variant="link" active={language === currentLanguage}>
               {t(`language_select_${language}`)}
             </Button>
         </li>

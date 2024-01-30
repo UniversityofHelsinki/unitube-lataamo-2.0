@@ -53,6 +53,9 @@ const Left = () => {
     '/collections': collectionElements
   };
 
+  const actionElement = {
+  };
+
   const loading = {
     '/records': loadingRecords,
     '/collections': loadingCollections
@@ -86,7 +89,7 @@ const Left = () => {
         </Col>
       </Row>
       <Row className="border border-top-0 border-black">
-        <Col>
+        <Col className="pe-0">
           <Loading loading={Boolean(loading[path])}>
             <LeftList>
               {listElements[path]}

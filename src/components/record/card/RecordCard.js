@@ -4,11 +4,16 @@ import './RecordCard.css';
 import { Col, Container, Row } from 'react-bootstrap';
 import RecordCardDetails from './RecordCardDetails';
 import RecordCardThumbnail from './RecordCardThumbnail';
+import onKeyDown from '../../accessibility/keydown';
 
 const RecordCard = ({ record, onClick, selected = false }) => {
   const selectedClass = selected ? 'record-card-selected' : '';
   return (
-    <Container className={`record-card ${selectedClass}`} onClick={onClick}>
+    <Container 
+      className={`record-card ${selectedClass}`} 
+      onClick={onClick} 
+      onKeyDown={onKeyDown(onClick)}
+      tabIndex={0}>
       <Row>
         <Col className="no-padding col-sm-4 text-center">
           <RecordCardThumbnail record={record} />

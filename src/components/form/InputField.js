@@ -2,19 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'react-bootstrap';
 import './InputField.css';
+import Message from './Message';
 
 const InputField = ({ message, ...rest }) => {
 
-  const messageType = ({
-    'light': 'text-secondary',
-    'neutral': '',
-    'warning': 'text-danger'
-  })[message?.type];
-
   return (
       <>
-        <Form.Control type={ rest.type || "text"} { ...rest } />
-        <Form.Text className={messageType}>{message?.content}</Form.Text>
+        <Form.Control type={ rest.type || "text" } { ...rest } />
+        <Message type={message?.type}>{message?.content}</Message>
       </>
   );
 };
