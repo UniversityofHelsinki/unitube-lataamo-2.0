@@ -26,7 +26,8 @@ const VideoPlayer = ({ video }) => {
                onContextMenu={e => e.preventDefault()}>
             <source src={playVideo(video.url)}/>
             <track data-test-id="caption-track"
-                   src={video.vttFile && video.vttFile.url ? getVTTFile(video.vttFile.url) : ''} kind="captions" default/>
+                   src={video.vttFile && video.vttFile.url ? getVTTFile(video.vttFile.url) : ''} kind="captions"
+                   srcLang="fi" label={t('subtitles_on')} default/>
         </video>
     );
 };
