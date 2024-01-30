@@ -1,14 +1,9 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import PropTypes from "prop-types";
+import Message from './Message';
 
 const DropDown = ({ options, message, ...rest }) => {
-  const messageType = ({
-    'light': 'text-secondary',
-    'neutral': '',
-    'warning': 'text-danger'
-  })[message?.type];
-
     return (
       <>
         <Form.Select { ...rest }>
@@ -16,7 +11,9 @@ const DropDown = ({ options, message, ...rest }) => {
               <option key={option.value} value={option.value}>{option.label}</option>
             )}
         </Form.Select>
-        <Form.Text className={messageType}>{message?.content}</Form.Text>
+        <Message type={message.type}>
+          {message.content}
+        </Message>
       </>
     );
 }

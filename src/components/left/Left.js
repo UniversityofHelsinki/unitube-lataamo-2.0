@@ -63,7 +63,7 @@ const Left = () => {
 
   return (
     <Container className="left">
-      <Row>
+      <Row className="left-up-left-container">
         <Col className="no-padding">
           <Container className="up-left border-bottom">
             <Row>
@@ -89,7 +89,7 @@ const Left = () => {
         </Col>
       </Row>
       <Row className="border border-top-0 border-black">
-        <Col className="pe-0">
+        <Col className="pe-0 left-list-col">
           <Loading loading={Boolean(loading[path])}>
             <LeftList>
               {listElements[path]}

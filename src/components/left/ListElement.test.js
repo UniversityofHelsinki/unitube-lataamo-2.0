@@ -3,5 +3,9 @@ import { render } from '@testing-library/react';
 import ListElement from './ListElement';
 
 it('renders', () => {
-  render(<ListElement children={<span></span>} />); />);
+  render(
+    <ListElement>
+      <span>sadfasf</span>
+    </ListElement>
+  );
 });

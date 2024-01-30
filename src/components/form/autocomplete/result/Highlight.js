@@ -19,6 +19,9 @@ const highlight = (input, what, results = []) => {
 };
 
 const Highlight = ({ input, what }) => {
+  if (!input || !what) {
+    return input;
+  }
   return (
     <>
       {highlight(input, what)}
