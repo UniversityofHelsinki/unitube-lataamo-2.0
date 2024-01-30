@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Col, Container, Row } from 'react-bootstrap';
+import {Col, Container, Row} from 'react-bootstrap';
 import './VideoPreview.css';
 import useVideo from '../../hooks/useVideo.js';
 
@@ -15,14 +15,16 @@ const VideoPlayer = ({ video }) => {
     }
 
     return (
-        <video controls>
-            <source crossOrigin="anonymous" preload="metadata" controlsList='nodownload' controls onContextMenu={e => e.preventDefault()} src={playVideo(video.url)} />
-            <track kind="captions" src="" srcLang="en" label="English"/>
-        </video>
+        <div className="embed-responsive embed-responsive-16by9">
+            <video crossOrigin="anonymous" preload="metadata" controlsList='nodownload' controls
+                    onContextMenu={e => e.preventDefault()} src={playVideo(video.url)}>
+                <track kind="captions" src="" srcLang="en" label="English"/>
+            </video>
+        </div>
     );
 };
 
-const VideoPreview = ({ record }) => {
+const VideoPreview = ({record}) => {
     const video = useVideo(record.identifier);
 
     console.log(video);
