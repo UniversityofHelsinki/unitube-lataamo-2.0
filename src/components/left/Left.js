@@ -53,6 +53,9 @@ const Left = () => {
     '/collections': collectionElements
   };
 
+  const actionElement = {
+  };
+
   const loading = {
     '/records': loadingRecords,
     '/collections': loadingCollections

@@ -8,7 +8,7 @@ import './Right.css';
 
 const Right = () => {
   return (
-    <Container>
+    <Container className="right">
       <Row>
         <Col>
           <MainContent />
@@ -18,6 +18,7 @@ const Right = () => {
         <Col>
         </Col>
         <Col>
+          asdfasdf
         </Col>
       </Row>
     </Container>
