@@ -1,2 +1,7 @@
 .right {
+  position: sticky;
+  top: 0px;
+}
+
+.right-main-content-col {
 }

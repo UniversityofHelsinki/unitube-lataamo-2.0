@@ -1,11 +1,7 @@
 .left {
-  overflow: auto;
-  max-height: 100%;
 }
 
 .left-up-left-container {
-  position: sticky;
-  top: 0px;
 }
 
 .up-left {
@@ -15,5 +11,8 @@
 .left-tab-content-row {
 }
 
-.left-list-col {
+.left-down {
+  overflow: auto;
+  max-height: 48vh;
 }
+
