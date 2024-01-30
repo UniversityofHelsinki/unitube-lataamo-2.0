@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './RecordLicense.css';
+import './RecordCollections.css';
 import FormElementHeader from '../form/FormElementHeader';
 import { Col, Container, Form, Row } from 'react-bootstrap';
 import DropDown from '../form/DropDown';
