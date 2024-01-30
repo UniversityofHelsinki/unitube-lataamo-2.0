@@ -15,7 +15,7 @@ const VideoPlayer = ({ video }) => {
     }
 
     return (
-            <video width="100%" height="300px" crossOrigin="anonymous" preload="metadata" controlsList='nodownload' controls
+            <video data-testid="video-player" width="100%" height="300px" crossOrigin="anonymous" preload="metadata" controlsList='nodownload' controls
                     onContextMenu={e => e.preventDefault()} src={playVideo(video.url)}>
                 <track kind="captions" src="" srcLang="en" label="English"/>
             </video>
