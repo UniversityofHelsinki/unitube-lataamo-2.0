@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Col, Container, Row} from 'react-bootstrap';
 import './VideoPreview.css';
-import useVideo from '../../hooks/useVideo.js';
+import useVideos from '../../hooks/useVideos.js';
 
 const playVideo = (url) => {
     return `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/video/play/` + url;
@@ -15,22 +15,18 @@ const VideoPlayer = ({ video }) => {
     }
 
     return (
-        <div>
-            <video width="100%" crossOrigin="anonymous" preload="metadata" controlsList='nodownload' controls
+            <video width="100%" height="300px" crossOrigin="anonymous" preload="metadata" controlsList='nodownload' controls
                     onContextMenu={e => e.preventDefault()} src={playVideo(video.url)}>
                 <track kind="captions" src="" srcLang="en" label="English"/>
             </video>
-        </div>
     );
 };
 
 const VideoPreview = ({record}) => {
-    const video = useVideo(record.identifier);
-
-    console.log(video);
+    const video = useVideos(record.identifier);
 
     return (
-        <Container className="no-margin no-padding video-preview">
+        <Container className="no-margin no-padding">
             <Row>
                 <Col className="no-padding">
                     <VideoPlayer video={video[0]} />
