@@ -21,7 +21,7 @@ const MainContent = () => {
   return (
       <Container className="main-content">
         <Row>
-          <Col className="ps-0">
+          <Col className="ps-0 main-content-col">
             {content}
           </Col>
         </Row>
