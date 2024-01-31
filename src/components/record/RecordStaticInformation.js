@@ -35,7 +35,7 @@ const RecordStaticInformation = ({ record }) => {
       </Row>
       <Row className="mb-4">
         <Col>
-            <RecordDownLoadLinks links={[ { to: 'adsf', label: '1923 kpbs - 32mb'}, { to: 'asfdsfasdf', label: '12923 kbps - 720p - 231 MB'}]}/>
+            <RecordDownLoadLinks links={[ { to: encodeURI(record.media[0].url), label: '1923 kpbs - 32mb'}, { to: encodeURI(record.media[0].url), label: '12923 kbps - 720p - 231 MB'}]}/>
         </Col>
       </Row>
     </Container>

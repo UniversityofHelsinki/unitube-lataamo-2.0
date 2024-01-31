@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import RecordIdentifier from './RecordIdentifier';
 
-    const identifier = '';
 it('renders', () => {
-    render(<RecordIdentifier identifier={identifier} />);
+    render(<RecordIdentifier identifier="ffff-eeee-0000-a2a2-efef" />);
 });

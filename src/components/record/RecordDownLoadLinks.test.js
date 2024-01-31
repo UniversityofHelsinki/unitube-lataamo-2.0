@@ -6,5 +6,15 @@ const to = '';
 const label = '';
 
 it('renders', () => {
-    render(<RecordDownLoadLinks to={to} label={label} />);
+    render(<RecordDownLoadLinks 
+      links={[{
+        to: '#first',
+        label: 'first'
+      }, {
+        to: '#second',
+        label: 'second'
+      }, {
+        to: '#third',
+        label: 'third'
+      }]}/>);
 });

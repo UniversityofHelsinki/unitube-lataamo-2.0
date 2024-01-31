@@ -29,6 +29,8 @@
   --huds-grayscale-medium-dark: #979797;
   --huds-grayscale-dark: #555555;
   --huds-grayscale-black: #000;
+
+  --header-height: 150px;
 }
 
 .no-margin {
