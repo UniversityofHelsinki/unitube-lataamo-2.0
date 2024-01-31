@@ -16,8 +16,9 @@ const DownloadLink = ({ to, label }) => {
   );
 };
 
-const RecordDownloadLinks = ({ links }) => {
+const RecordDownloadLinks = ({ media, publications }) => {
   const { t } = useTranslation();
+  console.log(media);
   return (
     <Container>
       <Row>
@@ -37,9 +38,9 @@ const RecordDownloadLinks = ({ links }) => {
       <Row>
         <Col>
           <ul className="blockquote record-download-link-list">
-            {links.map((link) => (
-              <li key={link.to}>
-                <DownloadLink to={link.to} label={link.label} />
+            {media.map((link, i) => (
+              <li key={link.to || i}>
+                <DownloadLink to={link.url} label={link.type} />
               </li>
             ))}
           </ul>
@@ -50,12 +51,8 @@ const RecordDownloadLinks = ({ links }) => {
 };
 
 RecordDownloadLinks.propTypes = {
-  links: PropTypes.arrayOf(
-    PropTypes.shape({
-      to: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired
-    })
-  )
+  media: PropTypes.array,
+  publications: PropTypes.object,
 };
 
 export default RecordDownloadLinks;
