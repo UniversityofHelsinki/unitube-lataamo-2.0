@@ -9,6 +9,7 @@
 
 .collection-moodle-course-remove-icon-col {
     padding-bottom: 4px;
+    cursor: pointer;
 }
 
 .collection-moodle-course-remove-icon-col polygon {
