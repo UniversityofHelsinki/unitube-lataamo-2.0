@@ -1,7 +1,17 @@
 .right {
-  position: sticky;
-  top: 0px;
+  position: relative;
 }
 
 .right-main-content-col {
+  max-height: calc(100vh - var(--header-height));
+  height: calc(100vh - var(--header-height));
+  overflow: auto;
+}
+
+.right-bottom {
+  position: absolute;
+  bottom: 0px;
+  height: 80px;
+  width: 100%;
+  background-color: var(--hy-white);
 }

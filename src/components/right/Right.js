@@ -14,10 +14,12 @@ const Right = () => {
           <MainContent />
         </Col>
       </Row>
-      <Row className="sticky-bottom">
-        <Col>
+      <Row className="right-bottom">
+        <Col className="right-bottom-notification-col">
+          <h5>olen alapalkinilmoitusosa</h5>
         </Col>
-        <Col>
+        <Col className="right-bottom-button-col text-end">
+          <h5>olen alapalkin nappulaosa</h5>
         </Col>
       </Row>
     </Container>
