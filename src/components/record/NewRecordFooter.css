@@ -1,0 +1,29 @@
+.new-record-footer {
+  width: 100%;
+}
+
+.new-record-footer.container {
+  margin-bottom: 0px;
+}
+
+.new-record-footer-progress-bar {
+  max-width: 80%;
+  display: inline-block;
+}
+
+.new-record-footer-button {
+  max-width: 20%;
+  display: inline-block;
+}
+
+.new-record-footer-button button {
+  max-width: 100%;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.new-record-footer .alert-message.transparent path {
+  height: 32px;
+  fill: var(--hy-red);
+}

@@ -5,21 +5,73 @@ import Dialog from './Dialog';
 import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
+const alreadyInDialog = () => {
+  const body = document.querySelector('body');
+  return body.classList
+    .contains('modal-open');
+};
+
+const DialogFallback = ({ children, onHide, headerLabel }) => {
+  const headerId = useId();
+
+  const hide = (e) => {
+    e.preventDefault();
+    onHide(e);
+  };
+
+  return (<div className="help-dialog-fallback">
+      <div className="help-dialog-fallback-container">
+        <Container>
+          <Row className="help-dialog-fallback-header align-items-center">
+            <Col>
+              <span id={headerId}>{headerLabel}</span>
+            </Col>
+            <Col className="text-end px-0">
+              <Button variant="link" className="btn-close" onClick={hide} />
+            </Col>
+          </Row>
+          <Row className="help-dialog-fallback-content">
+            <Col>
+              <p className="my-0">
+                {children}
+              </p>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    </div>)
+};
+
 const HelpDialog = ({ label, children }) => {
   const [show, setShow] = useState(false);
   const { t } = useTranslation();
 
-  const showDialog = () => setShow(true);
   const hideDialog = () => setShow(false);
+  const toggle = () => setShow(!show);
   
   const headerId = useId();
 
-  const showLink = <Button variant="link" onClick={showDialog} className="p-0">{label}</Button>;
+  const showLink = <Button variant="link" onClick={toggle} className="p-0">{label}</Button>;
 
   const header = label;
 
+  if (alreadyInDialog()) {
+    if (!show) {
+      return showLink;
+    }
+
+    return (
+      <>
+        {showLink}
+        <DialogFallback onHide={hideDialog} headerLabel={header}>
+          {children}
+        </DialogFallback>
+      </>
+    );
+  }
+
   return (
-    <Dialog showComponent={showLink} show={show} hide={hideDialog} aria-labelledBy={headerId}>
+    <Dialog showComponent={showLink} show={show} hide={hideDialog} aria-labelledby={headerId}>
       <Modal.Header id={headerId} closeButton closeLabel={t('help_dialog_close_label')}>
         {header}
       </Modal.Header>

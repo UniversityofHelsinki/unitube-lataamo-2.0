@@ -1,0 +1,8 @@
+.left-list-container {
+}
+
+.left-list-actions-container {
+  position: sticky;
+  top: 0px;
+  background-color: var(--hy-white);
+}

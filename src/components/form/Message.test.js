@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import NewRecord from './NewRecord';
+import Message from './Message';
 
 it('renders', () => {
-  render(<NewRecord />);
+  render(<Message type="neutral">asdf</Message>);
 });

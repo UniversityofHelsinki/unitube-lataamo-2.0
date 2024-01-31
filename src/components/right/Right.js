@@ -8,16 +8,18 @@ import './Right.css';
 
 const Right = () => {
   return (
-    <Container>
-      <Row>
-        <Col>
+    <Container className="right">
+      <Row className="right-main-content-row">
+        <Col className="right-main-content-col">
           <MainContent />
         </Col>
       </Row>
-      <Row>
-        <Col>
+      <Row className="right-bottom">
+        <Col className="right-bottom-notification-col">
+          <h5>olen alapalkinilmoitusosa</h5>
         </Col>
-        <Col>
+        <Col className="right-bottom-button-col text-end">
+          <h5>olen alapalkin nappulaosa</h5>
         </Col>
       </Row>
     </Container>

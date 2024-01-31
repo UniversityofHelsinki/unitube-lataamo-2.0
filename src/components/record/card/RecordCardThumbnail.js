@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Col, Container, Row } from 'react-bootstrap';
 import './RecordCardThumbnail.css';
 
-const PlaceholderBox = () => 
+const PlaceholderBox = () =>
   (<div style={{ minWidth: '160px', minHeight: '160px' }} />);
 
 const RecordCardThumbnail = ({ record }) => {
@@ -19,6 +19,7 @@ const RecordCardThumbnail = ({ record }) => {
 };
 
 RecordCardThumbnail.propTypes = {
+    record: PropTypes.object
 };
 
 export default RecordCardThumbnail;

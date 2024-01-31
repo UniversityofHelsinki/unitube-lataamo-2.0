@@ -1,0 +1,54 @@
+.alert-message {
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.5em;
+  font-size: 0.8em;
+}
+
+.alert-message svg {
+  max-height: 16px;
+  margin-right: 0.5em;
+}
+
+.alert-message.status {
+  background-color: var(--hy-green);
+}
+
+.alert-message.status path {
+  fill: var(--hy-black);
+}
+
+.alert-message.status polygon {
+  fill: var(--hy-black);
+}
+
+.alert-message.warning {
+  background-color: var(--hy-red-alert);
+  color: var(--hy-white);
+}
+
+.alert-message.warning path {
+  fill: var(--hy-white);
+}
+
+.alert-message.info {
+  background-color: var(--hy-orange);
+}
+
+.alert-message.info svg {
+  transform: rotate(180deg);
+}
+
+.alert-message.info svg path {
+  fill: var(--hy-orange);
+}
+
+.alert-message.transparent path {
+  fill: var(--hy-black);
+}
+
+.alert-message p {
+  margin-bottom: 0px;
+  display: inline-block;
+}

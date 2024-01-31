@@ -12,3 +12,8 @@ input[type="text"]:focus-visible {
   box-shadow: initial;
   transition: none;
 }
+
+.form-text {
+  width: 100%;
+  display: inline-block;
+}

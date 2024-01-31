@@ -3,15 +3,15 @@ import PropTypes from "prop-types";
 import { Form } from 'react-bootstrap';
 import './FormElementHeader.css';
 
-const FormElementHeader = ({label, size='h5' }) => {
+const FormElementHeader = ({ size='h5', children, ...rest }) => {
     return (
-        <Form.Label as={size}>{label}</Form.Label>
+        <Form.Label as={size} { ...rest }>{children}</Form.Label>
     );
 };
 
 FormElementHeader.propTypes = {
-    label: PropTypes.string.isRequired,
-    size: PropTypes.string
+    size: PropTypes.string,
+    children: PropTypes.any
 };
 
 export default FormElementHeader;

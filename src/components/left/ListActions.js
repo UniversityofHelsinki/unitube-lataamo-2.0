@@ -7,7 +7,7 @@ import './ListActions.css';
 
 const ListActions = () => {
   return (
-    <Container>
+    <Container className="list-actions">
       <Row className="justify-content-end text-end">
         <Col>
           <span>järjestä</span>
