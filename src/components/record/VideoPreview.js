@@ -4,31 +4,33 @@ import {Col, Container, Row} from 'react-bootstrap';
 import './VideoPreview.css';
 import useVideos from '../../hooks/useVideos.js';
 import {useTranslation} from "react-i18next";
+import Loading from "../utilities/Loading";
 
 const playVideo = (url) => {
     return `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/video/play/` + url;
 };
 
-export const getVTTFile = (url) => {
-    return `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/vttFile/` + url;
+export const getVTTFile = (vttFile) => {
+    if (vttFile && vttFile.url) {
+        return `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/vttFile/` + vttFile.url;
+    } else {
+        return '';
+    }
 };
 
 const VideoPlayer = ({ video }) => {
     const { t } = useTranslation();
-    if (!video || !video.url) {
-        // You can render a placeholder or loading state here
-        return <div>Loading...</div>;
-    }
-
     return (
+        <Loading loading={!video} >
         <video data-testid="video-player" width="100%" maxLength="500px" crossOrigin="anonymous" preload="metadata"
                controlsList='nodownload' controls
                onContextMenu={e => e.preventDefault()}>
-            <source src={playVideo(video.url)}/>
-            <track data-test-id="caption-track"
-                   src={video.vttFile && video.vttFile.url ? getVTTFile(video.vttFile.url) : ''} kind="captions"
+            <source data-testid="source" src={playVideo(video?.url)}/>
+            <track data-testid="caption-track"
+                   src={getVTTFile(video?.vttFile)} kind="captions"
                    srcLang="fi" label={t('subtitles_on')} default/>
         </video>
+        </Loading>
     );
 };
 

@@ -1,58 +1,62 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import {render, screen, within} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import VideoPreview from './VideoPreview';
-import useVideos from "../../hooks/useVideos";
 
-jest.mock('../../hooks/useVideos', () => ({
+jest.mock('../../hooks/useVideos.js', () => ({
     __esModule: true,
     default: jest.fn(),
 }));
 
-describe('VideoPreview', () => {
-    it('renders VideoPreview with a video', () => {
-        const mockVideo = {
-            url: 'mockVideoUrl',
-            vttFile: { url: 'mockVTTFileUrl' }
-        };
+describe('VideoPreview component', () => {
+    const mockVideo = {
+        url: 'mock-video-url',
+        vttFile: {
+            url: 'mock-vtt-url',
+        },
+    };
 
-        // Mocking the response of useVideos hook
-        useVideos.mockReturnValue([mockVideo]);
+    beforeEach(() => {
+        jest.resetAllMocks();
+    });
 
-        render(<VideoPreview record={{ identifier: 'mockIdentifier' }} />);
+    test('renders loading state when no video is provided', () => {
+        const mockUseVideos = jest.fn().mockReturnValue([]);
+        require('../../hooks/useVideos.js').default = mockUseVideos;
 
-        // Assert that the video player is rendered
-        expect(screen.getByTestId('video-player')).toBeInTheDocument();
+        render(<VideoPreview record={{ identifier: 'mock-identifier' }} />);
 
-        // Additional assertions
-        expect(screen.queryByText('Loading...')).not.toBeInTheDocument(); // Ensure loading text is not present
-        expect(screen.getByText(/English/i)).toBeInTheDocument();
+        expect(screen.getByText('Ladataan...')).toBeInTheDocument();
+        expect(mockUseVideos).toHaveBeenCalledWith('mock-identifier');
+    });
 
-        // Add assertions for captions track
+    test('renders video player when video is provided', () => {
+        const mockUseVideos = jest.fn().mockReturnValue([{ ...mockVideo }]);
+        require('../../hooks/useVideos.js').default = mockUseVideos;
+
+        render(<VideoPreview record={{ identifier: 'mock-identifier' }} />);
+
+        const videoPlayer = screen.getByTestId('video-player');
+        expect(videoPlayer).toBeInTheDocument();
+
+        const sourceElement = within(videoPlayer).getByTestId('source');
+        expect(sourceElement).toHaveAttribute('src', `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/video/play/mock-video-url`);
+
         const captionTrack = screen.getByTestId('caption-track');
         expect(captionTrack).toBeInTheDocument();
-        expect(captionTrack).toHaveAttribute('src', 'mockVTTFileUrl');
-        expect(captionTrack).toHaveAttribute('kind', 'subtitles'); // Update kind based on your actual implementation
-        expect(captionTrack).toHaveAttribute('srcLang', 'fi');
-        expect(captionTrack).toHaveAttribute('label', 'YourSubtitlesLabel');
-        expect(captionTrack).toHaveAttribute('default');
-
-        // You can add more assertions based on your specific implementation
+        expect(captionTrack).toHaveAttribute('src', `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/vttFile/mock-vtt-url`);
+        expect(captionTrack).toHaveAttribute('label', 'On');
     });
 
-    it('renders VideoPreview without a video', () => {
-        // Mocking the response of useVideos hook with an empty array
-        useVideos.mockReturnValue([]);
+    test('handles play button click', () => {
+        const mockUseVideos = jest.fn().mockReturnValue([{ ...mockVideo }]);
+        require('../../hooks/useVideos.js').default = mockUseVideos;
 
-        render(<VideoPreview record={{ identifier: 'mockIdentifier' }} />);
+        render(<VideoPreview record={{ identifier: 'mock-identifier' }} />);
 
-        // Add assertions for the absence of video player or for rendering a placeholder
-        expect(screen.getByText('Loading...')).toBeInTheDocument();
-        expect(screen.queryByTestId('video-player')).not.toBeInTheDocument(); // Ensure video player is not present
-
-        // Add assertions for the absence of captions track
-        expect(screen.queryByTestId('caption-track')).not.toBeInTheDocument();
-
-        // You can add more assertions based on your specific implementation
+        const videoPlayer = screen.getByTestId('video-player');
+        userEvent.click(videoPlayer);
+        expect(videoPlayer).toHaveAttribute('controls');
     });
+
 });
