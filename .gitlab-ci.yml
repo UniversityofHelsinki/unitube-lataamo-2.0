@@ -64,7 +64,7 @@ sonarqube-check:
     paths:
       - .sonar/cache
   script:
-    - sonar-scanner -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info
+    - sonar-scanner -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info -Dsonar.scm.provider=git
   allow_failure: true
   only:
     - master
