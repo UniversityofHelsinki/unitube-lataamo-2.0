@@ -22,7 +22,7 @@ const VideoPlayer = ({ video }) => {
     const { t } = useTranslation();
     return (
         <Loading loading={!video} >
-        <video data-testid="video-player" width="100%" maxLength="500px" crossOrigin="anonymous" preload="metadata"
+        <video data-testid="video-player" className="video-player" crossOrigin="anonymous" preload="metadata"
                controlsList='nodownload' controls
                onContextMenu={e => e.preventDefault()}>
             <source data-testid="source" src={playVideo(video?.url)}/>
@@ -41,8 +41,8 @@ const VideoPreview = ({record}) => {
         <Container className="no-margin no-padding">
             <Row>
             <Col className="no-padding">
-                    <VideoPlayer video={videos[0]} />
-                </Col>
+                <VideoPlayer video={videos[0]} />
+            </Col>
             </Row>
         </Container>
     );
