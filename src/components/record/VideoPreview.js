@@ -33,13 +33,13 @@ const VideoPlayer = ({ video }) => {
 };
 
 const VideoPreview = ({record}) => {
-    const video = useVideos(record.identifier);
+    const videos = useVideos(record.identifier);
 
     return (
         <Container className="no-margin no-padding">
             <Row>
             <Col className="no-padding">
-                    <VideoPlayer video={video[0]} />
+                    <VideoPlayer video={videos[0]} />
                 </Col>
             </Row>
         </Container>
