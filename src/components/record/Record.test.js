@@ -7,7 +7,8 @@ const reducers = {
   records: {
     record: {
       identifier: 'asdfasdf',
-      deletionDate: new Date().toISOString()
+      deletionDate: new Date().toISOString(),
+      media: [{ url: '' }]
     }
   },
   location: {

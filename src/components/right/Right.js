@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import MainContent from './MainContent';
 import './Right.css';
+import { Button } from 'react-bootstrap';
 
 const Right = () => {
   return (
@@ -14,12 +15,13 @@ const Right = () => {
           <MainContent />
         </Col>
       </Row>
-      <Row className="right-bottom">
+      <Row className="right-bottom align-items-center">
         <Col className="right-bottom-notification-col">
-          <h5>olen alapalkinilmoitusosa</h5>
+          <h5>olen alapalkin ilmoitusosaaaaaaaaaaaaaa</h5>
         </Col>
         <Col className="right-bottom-button-col text-end">
-          <h5>olen alapalkin nappulaosa</h5>
+          <Button variant="danger" disabled className="mx-2">Kumoa muutokset</Button>
+          <Button variant="primary">Tallenna</Button>
         </Col>
       </Row>
     </Container>

@@ -11,7 +11,8 @@
 .right-bottom {
   position: absolute;
   bottom: 0px;
-  height: 80px;
+  height: var(--right-bottom-bar-height);
   width: 100%;
   background-color: var(--hy-white);
+  border-top: 3px solid var(--hy-medium-silver);
 }

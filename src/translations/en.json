@@ -10,5 +10,6 @@
   "clipboard_copy": "Copy",
   "new_record_cancel_button_label": "Cancel",
   "new_record_save_button_label": "Send",
-  "moodle_course_placeholder": "Course code"
+  "moodle_course_placeholder": "Course code",
+  "subtitles_on": "On"
 }

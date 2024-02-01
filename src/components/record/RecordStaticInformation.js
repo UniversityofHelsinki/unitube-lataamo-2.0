@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import RecordEmbedCode from './RecordEmbedCode';
-import RecordDownLoadLinks from './RecordDownloadLinks';
+import RecordDownloadLinks from './RecordDownloadLinks';
 import VideoPreview from './VideoPreview';
 import RecordIdentifier from './RecordIdentifier';
 import RecordLink from './RecordLink';
@@ -35,7 +35,7 @@ const RecordStaticInformation = ({ record }) => {
       </Row>
       <Row className="mb-4">
         <Col>
-            <RecordDownLoadLinks links={[ { to: encodeURI(record.media[0].url), label: '1923 kpbs - 32mb'}, { to: encodeURI(record.media[0].url), label: '12923 kbps - 720p - 231 MB'}]}/>
+            <RecordDownloadLinks media={record.media || []} publications={record.publications || {}} />
         </Col>
       </Row>
     </Container>
