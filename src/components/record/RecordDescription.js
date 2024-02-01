@@ -8,21 +8,23 @@ import TextArea from "../form/TextArea";
 import { Form } from 'react-bootstrap';
 import PropTypes from "prop-types";
 import './RecordDescription.css';
+import { useId } from 'react';
 
 const RecordDescription = ({ description, onChange, message, disabled = false }) => {
     const { t } = useTranslation();
+    const id = useId();
 
     return (
         <Container>
             <Form.Group>
             <Row>
                 <Col>
-                    <FormElementHeader>{t('record_form_description_header')}</FormElementHeader>
+                    <FormElementHeader componentId={id}>{t('record_form_description_header')}</FormElementHeader>
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <TextArea value={description} onChange={(e) => onChange(e.target.value)} message={message} disabled={disabled} />
+                    <TextArea id={id} value={description} onChange={(e) => onChange(e.target.value)} message={message} disabled={disabled} />
                 </Col>
             </Row>
             </Form.Group>

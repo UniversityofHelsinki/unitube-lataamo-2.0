@@ -8,21 +8,23 @@ import FormElementHeader from "../form/FormElementHeader";
 import { Form } from 'react-bootstrap';
 import PropTypes from "prop-types";
 import './RecordName.css';
+import { useId } from 'react';
 
 const RecordName = ({ name, onChange, message, disabled = false }) => {
     const { t } = useTranslation();
+    const id = useId();
 
     return (
         <Container>
             <Form.Group>
                 <Row>
                     <Col>
-                        <FormElementHeader>{t('record_form_name_header')}</FormElementHeader>
+                        <FormElementHeader componentId={id}>{t('record_form_name_header')}</FormElementHeader>
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <InputField value={name} placeholder={t('record_form_name_placeholder')} onChange={(e) => onChange(e.target.value)} message={message} disabled={disabled} />
+                        <InputField value={name} placeholder={t('record_form_name_placeholder')} onChange={(e) => onChange(e.target.value)} message={message} disabled={disabled} id={id} />
                     </Col>
                 </Row>
             </Form.Group>

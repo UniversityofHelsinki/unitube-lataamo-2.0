@@ -11,8 +11,14 @@ const RadioButtonGroup = ({ options, onChange, value, ...rest }) => {
     return (
         <>
             {options.map(option =>
-                <Form.Check className="radio-button-group" type="radio" checked={value === option.value} key={option.value} value={option.value}
-                            label={t(option.label) } onChange={(e) => onChange(e.target.value)}  />
+                <Form.Check 
+                  className="radio-button-group" 
+                  type="radio" 
+                  checked={value === option.value} 
+                  key={option.value} value={option.value}
+                  id={option.value}
+                  label={t(option.label)} 
+                  onChange={(e) => onChange(e.target.value)}  />
             )}
         </>
     );

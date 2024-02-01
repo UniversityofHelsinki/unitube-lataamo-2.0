@@ -11,6 +11,7 @@ import RadioButtonGroup from '../../form/RadioButtonGroup';
 const CollectionPublicity = ({ published }) => {
   const { t } = useTranslation();
   const [level, setLevel] = useState(published);
+  const id = useId();
 
   const onChange = (what, checked) => {
     setLevel(checked);
@@ -21,12 +22,12 @@ const CollectionPublicity = ({ published }) => {
           <Form.Group>
               <Row>
                   <Col>
-                      <FormElementHeader>{t('collection_form_publicity_header')}</FormElementHeader>
+                      <FormElementHeader componentId={id}>{t('collection_form_publicity_header')}</FormElementHeader>
                   </Col>
               </Row>
               <Row>
                   <Col>
-                    <RadioButtonGroup options={ PUBLICITIES } value={level} onChange={(value) => onChange('published', value)} />
+                    <RadioButtonGroup id={id} options={ PUBLICITIES } value={level} onChange={(value) => onChange('published', value)} />
                   </Col>
               </Row>
           </Form.Group>
