@@ -12,7 +12,9 @@ import CollectionDescription from "./description/CollectionDescription";
 import CollectionPublicity from "./publicity/CollectionPublicity";
 import useCollectionValidation from '../../hooks/validation/collection/useCollectionValidation';
 import CollectionsBreadCrumb from "../form/CollectionsBreadCrumb";
+import CollectionMoodleCourses from "./moodle-courses/CollectionMoodleCourses";
 import {useTranslation} from "react-i18next";
+
 
 const CollectionForm = () => {
   const [collection, loading] = useCollection();
@@ -25,6 +27,10 @@ const CollectionForm = () => {
 
   const groups = collection?.iamgroups?.map(group =>
     ({ grpName: group })
+  ) || [];
+
+  const moodleNumbers = collection?.moodleNumbers?.map(moodleNbr =>
+      ({ moodleNumber: moodleNbr })
   ) || [];
 
   return (
@@ -59,7 +65,7 @@ const CollectionForm = () => {
         </Row>
         <Row className="mb-3">
           <Col className="ps-0">
-              <CollectionPublicity />
+              <CollectionPublicity published={collection?.published}/>
           </Col>
         </Row>
         <Row>
@@ -67,6 +73,7 @@ const CollectionForm = () => {
               <CollectionManagementRights users={users} groups={groups} />
           </Col>
           <Col>
+            <CollectionMoodleCourses moodleNumbers={moodleNumbers} />
           </Col>
         </Row>
       </Container>

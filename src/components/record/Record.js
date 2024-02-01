@@ -26,7 +26,7 @@ const Record = () => {
             <RecordStaticInformation record={record} />
           </Col>
           <Col lg>
-           <RecordForm record={record} />
+            <RecordForm record={record} />
           </Col>
         </Row>
       </Container>

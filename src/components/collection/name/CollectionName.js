@@ -8,18 +8,19 @@ import FormElementHeader from "../../form/FormElementHeader";
 
 const CollectionName = ({ name }) => {
     const { t } = useTranslation();
+    const id = useId();
 
     return (
         <Container>
             <Form.Group>
                 <Row>
                     <Col>
-                        <FormElementHeader label={t('collection_form_name_header')} />
+                        <FormElementHeader componentId={id}>{t('collection_form_name_header')}</FormElementHeader> 
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <InputField label={t('aaa')} placeholder={t('collection_form_name_placeholder')} value={name} />
+                        <InputField id={id} label={t('aaa')} placeholder={t('collection_form_name_placeholder')} value={name} />
                     </Col>
                 </Row>
             </Form.Group>

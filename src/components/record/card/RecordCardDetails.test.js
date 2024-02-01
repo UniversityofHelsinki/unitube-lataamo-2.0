@@ -3,5 +3,5 @@ import { render } from '@testing-library/react';
 import RecordCardDetails from './RecordCardDetails';
 
 it('renders', () => {
-  render(<RecordCardDetails />);
+  render(<RecordCardDetails record={{ title: 'asdf', description: 'asdfasdf' }} />);
 });

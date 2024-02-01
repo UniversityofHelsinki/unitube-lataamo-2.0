@@ -3,5 +3,5 @@ import { render } from '@testing-library/react';
 import GroupAutoCompleteResult from './GroupAutoCompleteResult';
 
 it('renders', () => {
-  render(<GroupAutoCompleteResult />);
+  render(<GroupAutoCompleteResult group={{ grpName: 'grp-hy-test' }} query="grp-" />);
 });

@@ -7,10 +7,13 @@
 }
 
 .collection-card-selected {
-  outline: 3px solid var(--hy-blue);
-  box-shadow: 5px 5px 10px var(--hy-blue);
+  background-color: var(--hy-light-silver);
 }
 
 .collection-card-header-row {
   border-bottom: 1px solid var(--hy-medium-silver);
+}
+
+.collection-card:hover .collection-card-header-row h4 {
+  text-decoration: underline;
 }

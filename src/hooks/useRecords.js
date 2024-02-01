@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const getRecords = () => async (dispatch) => {
   const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/userInboxEvents`;
@@ -18,13 +19,17 @@ const useRecords = ({ load = false }) => {
   const records = useSelector((state) => state.records.records);
 
   useEffect(() => {
-    if (load && !records) { 
+    if (load && !records) {
       dispatch(getRecords());
     }
   }, [load, records]);
 
   const loading = !records;
   return [records, loading];
+};
+
+useRecords.PropTypes = {
+  load: PropTypes.bool
 };
 
 export default useRecords;

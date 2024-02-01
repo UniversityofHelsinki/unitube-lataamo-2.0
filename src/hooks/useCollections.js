@@ -11,12 +11,6 @@ const getCollections = () => async (dispatch) => {
   } catch (error) {
     dispatch({ type: 'SET_ERROR', payload: error.message });
   }
-  /*
-  const collections = [
-    { id: 'kokoelma', records: [{ name: 'video.mp4' }, { name: 'toinen-video.mp4' }, { name: 'kolmas-videoooooooooooooo.mp4' }] }, 
-    { id: 'kokoelma_2', records: [] }
-  ];
-  */
 };
 
 const useCollections = ({ load = false }) => {

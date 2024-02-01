@@ -3,5 +3,7 @@ import { render } from '@testing-library/react';
 import RecordForm from './RecordForm';
 
 it('renders', () => {
-  render(<RecordForm />);
+  render(
+    <RecordForm record={{ deletionDate: new Date().toISOString() }} />
+  );
 });

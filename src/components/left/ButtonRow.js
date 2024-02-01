@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import './ButtonRow.css';
-import NewRecord from './NewRecord';
 import { Col } from 'react-bootstrap';
+import NewRecord from '../record/NewRecord';
 
 const ButtonRow = () => {
 

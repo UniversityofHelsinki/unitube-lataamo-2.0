@@ -14,9 +14,11 @@ const AutoCompleteOptionContainer = ({ options, show = false, onSelect }) => {
       <div className="auto-complete-option-container">
           <ul className="auto-complete-option-list" aria-live="polite" aria-atomic="true">
               {options.map((option, i) => 
-                <li key={i} tabIndex={0} onClick={() => onSelect(i)} onKeyDown={onKeyDown(() => onSelect(i))}>
+                /* eslint-disable */
+              <li key={i} tabIndex={0} onClick={() => onSelect(i)} onKeyDown={onKeyDown(() => onSelect(i))}>
                   {option}
                 </li>
+              /* eslint-enable */
               )}
           </ul>
       </div>
