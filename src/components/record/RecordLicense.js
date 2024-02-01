@@ -6,6 +6,7 @@ import { Col, Container, Form, Row } from 'react-bootstrap';
 import DropDown from '../form/DropDown';
 import { useTranslation } from 'react-i18next';
 import { DEFAULT_LICENSES } from '../../Constants.js';
+import HelpDialog from "../dialog/HelpDialog";
 
 const RecordLicense = ({ license, onChange, message, disabled = false }) => {
   const { t } = useTranslation();
@@ -30,6 +31,13 @@ const RecordLicense = ({ license, onChange, message, disabled = false }) => {
       <Row>
         <Col>
           <FormElementHeader>{t('record_license_header')}</FormElementHeader>
+        </Col>
+      </Row>
+      <Row className="mb-3">
+        <Col>
+          <HelpDialog  label={t('record_license_help_label')} >
+            {t('record_license_help_content')}
+          </HelpDialog>
         </Col>
       </Row>
       <Row>
