@@ -7,16 +7,19 @@ import './CollectionForm.css';
 import useCollection from '../../hooks/useCollection';
 import Loading from '../utilities/Loading';
 import CollectionManagementRights from './management-rights/CollectionManagementRights';
-import BreadCrumb from "../form/BreadCrumb";
 import CollectionName from "./name/CollectionName";
 import CollectionDescription from "./description/CollectionDescription";
 import CollectionPublicity from "./publicity/CollectionPublicity";
 import useCollectionValidation from '../../hooks/validation/collection/useCollectionValidation';
+import CollectionsBreadCrumb from "../form/CollectionsBreadCrumb";
 import CollectionMoodleCourses from "./moodle-courses/CollectionMoodleCourses";
+import {useTranslation} from "react-i18next";
+
 
 const CollectionForm = () => {
   const [collection, loading] = useCollection();
   const [isValid, messages, validate] = useCollectionValidation();
+  const { t } = useTranslation();
 
   const users = collection?.persons?.map(person =>
     ({ userName: person })
@@ -35,7 +38,7 @@ const CollectionForm = () => {
       <Container className="collection-form ps-0">
         <Row>
           <Col className="ps-0">
-              <BreadCrumb />
+              <CollectionsBreadCrumb crumbs={[t('navigation_collections'), collection?.title]}/>
           </Col>
         </Row>
         <Row>
