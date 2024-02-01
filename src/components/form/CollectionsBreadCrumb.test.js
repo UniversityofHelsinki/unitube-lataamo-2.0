@@ -3,5 +3,5 @@ import { render } from '@testing-library/react';
 import CollectionsBreadCrumb from "./CollectionsBreadCrumb";
 
 it('renders', () => {
-    render(<CollectionsBreadCrumb />);
+    render(<CollectionsBreadCrumb crumbs={['eka', 'toka']} />);
 });
