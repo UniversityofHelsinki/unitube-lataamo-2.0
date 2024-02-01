@@ -5,7 +5,7 @@ import './FormElementHeader.css';
 
 const FormElementHeader = ({ size='h5', children, componentId, ...rest }) => {
     return (
-        <Form.Label { ...rest } for={componentId}>{children}</Form.Label>
+        <Form.Label className="form-element-header" { ...rest } for={componentId}>{children}</Form.Label>
     );
 };
 
