@@ -23,14 +23,13 @@
   "scripts": {
     "start": "PORT=8000 react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --coverage",
     "eject": "react-scripts eject",
     "eslint": "eslint ."
   },
   "jest": {
-    "collectCoverage": true,
-    "coverageReporters": ["lcov", "text-summary"],
-    "coverageDirectory": "coverage"
+    "collectCoverageFrom": ["src"],
+    "coverageReporters": ["lcov", "text-summary"]
   },
   "eslintConfig": {
     "extends": [

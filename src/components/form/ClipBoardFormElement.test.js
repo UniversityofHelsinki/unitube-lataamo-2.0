@@ -5,5 +5,9 @@ import ClipBoardFormElement from "./ClipBoardFormElement";
 const label = 'Otsikko';
 const content = 'sisältö';
 it('renders', () => {
-    render(<ClipBoardFormElement label={label} content={content}><p></p></ClipBoardFormElement>);
+    render(
+      <ClipBoardFormElement 
+        label={label} 
+        content={content}>
+      </ClipBoardFormElement>);
 });

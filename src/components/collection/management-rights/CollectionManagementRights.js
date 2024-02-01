@@ -10,6 +10,7 @@ import { ReactComponent as GroupIcon } from '../../utilities/icons/avatar-group.
 import GroupAutoComplete from '../../form/autocomplete/group/GroupAutoComplete';
 import FormElementHeader from '../../form/FormElementHeader';
 import HelpDialog from '../../dialog/HelpDialog';
+import { useId } from 'react';
 
 const CollectionManagementRights = ({ users = [], groups = [] }) => {
   const [selectedUsers, setSelectedUsers] = useState(users);

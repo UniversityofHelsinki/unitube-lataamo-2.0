@@ -1,2 +1,15 @@
 .right {
+  height: calc(100vh - var(--header-height));
+}
+
+.right-main-content-row {
+  max-height: calc(100% - var(--right-bottom-bar-height));
+  height: calc(100% - var(--right-bottom-bar-height));
+  overflow: auto;
+}
+
+.right-bottom {
+  height: var(--right-bottom-bar-height);
+  background-color: var(--hy-white);
+  border-top: 3px solid var(--hy-medium-silver);
 }

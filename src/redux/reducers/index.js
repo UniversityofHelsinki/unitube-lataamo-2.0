@@ -5,6 +5,7 @@ import recordReducer from './recordReducer';
 import collectionReducer from './collectionReducer';
 import userReducer from './userReducer';
 import autoCompleteReducer from './autoCompleteReducer';
+import videoReducer from './videoReducer';
 
 const reducers = {
   location: locationReducer,
@@ -12,6 +13,7 @@ const reducers = {
   collections: collectionReducer,
   users: userReducer,
   autocompletion: autoCompleteReducer,
+  video: videoReducer,
 };
 
 export default combineReducers(reducers);

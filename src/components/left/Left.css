@@ -1,9 +1,18 @@
 .left {
 }
 
+.left-up-left-container {
+}
+
 .up-left {
   background-color: var(--hy-white);
 }
 
 .left-tab-content-row {
 }
+
+.left-down {
+  overflow: auto;
+  max-height: 48vh;
+}
+

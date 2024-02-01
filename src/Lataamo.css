@@ -1,0 +1,16 @@
+.root {
+}
+
+.root-main-row {
+}
+
+.root-main-row-left-col {
+}
+
+.root-main-row-right-col {
+}
+
+.header-row {
+  box-sizing: border-box;
+  height: var(--header-height);
+}

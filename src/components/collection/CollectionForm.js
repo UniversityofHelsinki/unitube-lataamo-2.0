@@ -62,7 +62,7 @@ const CollectionForm = () => {
         </Row>
         <Row className="mb-3">
           <Col className="ps-0">
-              <CollectionPublicity />
+              <CollectionPublicity published={collection?.published}/>
           </Col>
         </Row>
         <Row>

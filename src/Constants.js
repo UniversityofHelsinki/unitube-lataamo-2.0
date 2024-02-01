@@ -18,4 +18,19 @@ export const ProgressStatus = {
   PROCESSING: 'processing'
 };
 
+export const PUBLICITIES = [
+  {
+    label: 'collection_unpublished_series',
+    value: '',
+  },
+  {
+    label: 'collection_publicity_shareable',
+    value: 'ROLE_USER_UNLISTED',
+  },
+  {
+    label: 'collection_publicity_public',
+    value: 'ROLE_ANONYMOUS',
+  },
+];
+
 export const MONITOR_POLLING_RATE_MS = 3000;

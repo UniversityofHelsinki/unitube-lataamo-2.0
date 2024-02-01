@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ListElement from './ListElement';
 import './ListContainer.css';
 
-const ListContainer = ({ children = [] }) => {
+const ListContainer = ({ children }) => {
   return (
     <ul className="no-padding list-container">
       {children.map((element, i) => 
@@ -18,7 +18,6 @@ const ListContainer = ({ children = [] }) => {
 };
 
 ListContainer.propTypes = {
-  children: PropTypes.array,
 };
 
 export default ListContainer;

@@ -5,7 +5,7 @@ import Colors from "../utilities/HyColors";
 import PropTypes from "prop-types";
 import ExternalLink from '../utilities/ExternalLink';
 
-const RecordLink = ({ to, label}) => {
+const RecordLink = ({ to, label }) => {
     const { t } = useTranslation();
 
     return (

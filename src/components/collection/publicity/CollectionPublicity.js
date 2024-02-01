@@ -3,14 +3,18 @@ import PropTypes from 'prop-types';
 import './CollectionPublicity.css';
 import {Col, Container, Form, Row} from 'react-bootstrap';
 import {useTranslation} from "react-i18next";
-import CheckBox from "../../form/CheckBox";
 import FormElementHeader from "../../form/FormElementHeader";
+import { PUBLICITIES  } from '../../../Constants.js';
+import RadioButtonGroup from '../../form/RadioButtonGroup';
+
 
 const CollectionPublicity = ({ published }) => {
   const { t } = useTranslation();
   const [level, setLevel] = useState(published);
+  const id = useId();
 
   const onChange = (what, checked) => {
+    setLevel(checked);
   };
 
   return (
@@ -18,27 +22,12 @@ const CollectionPublicity = ({ published }) => {
           <Form.Group>
               <Row>
                   <Col>
-                      <FormElementHeader>{t('collection_form_publicity_header')}</FormElementHeader>
+                      <FormElementHeader componentId={id}>{t('collection_form_publicity_header')}</FormElementHeader>
                   </Col>
               </Row>
               <Row>
                   <Col>
-                      <CheckBox
-                          type="checkbox"
-                          id="collection-publicity-shareable"
-                          name="collection-publicity-shareable"
-                          label={t('collection_publicity_shareable')}
-                      />
-                  </Col>
-              </Row>
-              <Row>
-                  <Col>
-                      <CheckBox
-                          type="checkbox"
-                          id="collection-publicity-public"
-                          name="collection-publicity-public"
-                          label={t('collection_publicity_public')}
-                      />
+                    <RadioButtonGroup id={id} options={ PUBLICITIES } value={level} onChange={(value) => onChange('published', value)} />
                   </Col>
               </Row>
           </Form.Group>

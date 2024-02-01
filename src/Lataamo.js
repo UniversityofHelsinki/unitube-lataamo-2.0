@@ -23,16 +23,16 @@ const Lataamo = () => {
   return (
       <Loading loading={!Boolean(user)}>
         <Container className="root mx-0">
-            <Row>
+            <Row className="header-row">
               <Col className="px-0">
                 <Header />
               </Col>
             </Row>
-            <Row>
-              <Col md={4}>
+            <Row className="root-main-row">
+              <Col md={4} className="root-main-row-left-col">
                 <Left />
               </Col>
-              <Col md={8}>
+              <Col md={8} className="root-main-row-right-col">
                 <Right />
               </Col>
             </Row>

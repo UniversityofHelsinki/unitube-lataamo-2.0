@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 import PropTypes from 'prop-types';
 import './RecordEndDate.css';
 import FormElementHeader from '../form/FormElementHeader';
@@ -11,6 +11,7 @@ import HelpDialog from '../dialog/HelpDialog';
 
 const RecordEndDate = ({ endDate, onChange, message, disabled = false }) => {
   const { t } = useTranslation();
+  const id = useId();
 
   const calendarOpenDate = (() => {
     if (endDate > addMonths(new Date(), DELETION_DATE_MIN_MONTHS)) {
@@ -23,7 +24,7 @@ const RecordEndDate = ({ endDate, onChange, message, disabled = false }) => {
     <Container className="record-end-date">
       <Row>
         <Col>
-          <FormElementHeader>
+          <FormElementHeader componentId={id}>
             {t('record_form_end_date_header')}
           </FormElementHeader>
         </Col>
@@ -45,6 +46,7 @@ const RecordEndDate = ({ endDate, onChange, message, disabled = false }) => {
             onChange={onChange}
             message={message}
             disabled={disabled}
+            id={id}
           />
         </Col>
       </Row>
