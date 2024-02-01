@@ -1,18 +1,15 @@
 .right {
-  position: relative;
+  height: calc(100vh - var(--header-height));
 }
 
-.right-main-content-col {
-  max-height: calc(100vh - var(--header-height));
-  height: calc(100vh - var(--header-height));
+.right-main-content-row {
+  max-height: calc(100% - var(--right-bottom-bar-height));
+  height: calc(100% - var(--right-bottom-bar-height));
   overflow: auto;
 }
 
 .right-bottom {
-  position: absolute;
-  bottom: 0px;
   height: var(--right-bottom-bar-height);
-  width: 100%;
   background-color: var(--hy-white);
   border-top: 3px solid var(--hy-medium-silver);
 }
