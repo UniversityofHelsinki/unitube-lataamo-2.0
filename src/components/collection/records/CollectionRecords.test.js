@@ -3,5 +3,5 @@ import { render } from '@testing-library/react';
 import CollectionRecords from './CollectionRecords';
 
 it('renders', () => {
-  render(<CollectionRecords />);
+  render(<CollectionRecords records={['eka', 'toka']} />);
 });
