@@ -1,0 +1,22 @@
+.collection-record {
+  margin: 0px;
+  border: 1px solid var(--hy-medium-silver);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.collection-record-thumb {
+  background-color: var(--hy-light-silver);
+  height: 64px;
+  width: 64px;
+}
+
+.collection-record-details {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.collection-record-remove {
+}
+
+

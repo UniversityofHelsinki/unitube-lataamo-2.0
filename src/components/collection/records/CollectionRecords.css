@@ -1,0 +1,5 @@
+.collection-records-record-col li {
+  list-style: none;
+  display: inline-block;
+  margin-right: 1em;
+}

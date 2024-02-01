@@ -20,7 +20,7 @@ const Right = () => {
           <h5>olen alapalkin ilmoitusosaaaaaaaaaaaaaa</h5>
         </Col>
         <Col className="right-bottom-button-col text-end">
-          <Button variant="danger" disabled className="mx-2">Kumoa muutokset</Button>
+          <Button variant="danger" disabled className="mx-2">Kumoa muutokset (emme ole käytössä)</Button>
           <Button variant="primary">Tallenna</Button>
         </Col>
       </Row>
