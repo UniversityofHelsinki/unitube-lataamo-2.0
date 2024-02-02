@@ -36,7 +36,7 @@ const CollectionForm = () => {
   return (
     <Loading loading={loading}>
       <Container className="collection-form ps-0">
-        <Row>
+        <Row className="breadcrumb-container">
           <Col className="ps-0">
             <CollectionsBreadCrumb collection={collection || {}} />
           </Col>

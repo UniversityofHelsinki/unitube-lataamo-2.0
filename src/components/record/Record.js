@@ -18,7 +18,7 @@ const Record = () => {
  return (
     <Loading loading={loading}>
       <Container className="ps-0">
-        <Row>
+        <Row className="breadcrumb-container">
           <RecordsBreadCrumb record={record} />
         </Row>
         <Row>
