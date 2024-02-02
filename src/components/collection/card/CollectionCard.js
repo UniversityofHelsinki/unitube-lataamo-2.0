@@ -14,7 +14,7 @@ const CollectionCard = ({ collection, onClick, selected = false}) => {
         </Col>
       </Row>
       <Row>
-        <CollectionCardRecords records={[]} />
+        <CollectionCardRecords records={collection.eventColumns} />
       </Row>
     </Container>
   );
