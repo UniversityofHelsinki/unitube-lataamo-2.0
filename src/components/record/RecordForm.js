@@ -26,7 +26,7 @@ const RecordForm = ({ record }) => {
   return (
     <Container>
       <Form>
-          <Row>
+          <Row className="mb-4">
             <Col>
                 <RecordName 
                   name={modifiedRecord.title}
@@ -37,7 +37,7 @@ const RecordForm = ({ record }) => {
                 />
             </Col>
           </Row>
-          <Row>
+          <Row className="mb-4">
             <Col>
                 <RecordDescription 
                   description={modifiedRecord.description} 
@@ -48,7 +48,7 @@ const RecordForm = ({ record }) => {
                 />
             </Col>
           </Row>
-          <Row>
+          <Row className="mb-4">
             <Col>
               <RecordEndDate 
                 endDate={modifiedRecord.deletionDate}
