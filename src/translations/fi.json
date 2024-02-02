@@ -52,7 +52,7 @@
   "new_record_upload_aborted": "Lähetys keskeytetty.",
   "new_record_upload_processing": "Tallennetta käsitellään.",
   "new_record_footer_button_error": "Yritä uudestaan",
-  "new_record_footer_button_done": "Tyhjennä",
+  "new_record_footer_button_done": "Lisää uusi",
   "new_record_footer_button_sending": "Lähetetään...",
   "new_record_footer_button_processing": "Käsitellään...",
   "new_record_footer_alert_sending": "Sivuston sulkeminen keskeyttää lähetyksen!",

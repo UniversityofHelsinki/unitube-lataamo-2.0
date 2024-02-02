@@ -34,7 +34,7 @@ const GroupAutoComplete = ({ onSelect }) => {
     <Container className="px-0">
       <Row>
         <Col>
-          <AutoComplete options={options} onFilter={onSearch} onSelect={handleSelection} placeholder={t('group_autocompletion_placeholder')} />
+          <AutoComplete options={options} onFilter={onSearch} onSelect={handleSelection} placeholder={t('group_autocompletion_placeholder')} ariaLabel={t('collection_group_autocomplete_label')} />
         </Col>
       </Row>
     </Container>
