@@ -12,8 +12,8 @@ const Breadcrumb = ({crumbs}) => {
             <Row>
                 <Col>
                   <BsBreadCrumb>
-                      {crumbs.map(crumb => (
-                          <BsBreadCrumb.Item key={crumb} href="#" active>
+                      {crumbs.map((crumb, i) => (
+                          <BsBreadCrumb.Item key={i}>
                             {crumb}
                           </BsBreadCrumb.Item>
                       ))}

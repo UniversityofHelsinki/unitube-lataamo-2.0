@@ -1,0 +1,14 @@
+.crumb {
+  padding: 0px;
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--hy-blue);
+}
+
+.crumb[disabled] {
+  color: var(--hy-dark-gray);
+}
+
+.crumb:hover {
+  text-decoration: underline;
+}

@@ -19,7 +19,7 @@ const Record = () => {
     <Loading loading={loading}>
       <Container className="ps-0">
         <Row>
-          <RecordsBreadCrumb crumbs={[t('navigation_records'), record?.title]}/>
+          <RecordsBreadCrumb record={record} />
         </Row>
         <Row>
           <Col lg={5} className="ps-0">

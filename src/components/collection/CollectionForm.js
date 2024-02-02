@@ -14,7 +14,7 @@ import useCollectionValidation from '../../hooks/validation/collection/useCollec
 import CollectionsBreadCrumb from "../form/CollectionsBreadCrumb";
 import CollectionMoodleCourses from "./moodle-courses/CollectionMoodleCourses";
 import {useTranslation} from "react-i18next";
-
+import CollectionRecords from './records/CollectionRecords';
 
 const CollectionForm = () => {
   const [collection, loading] = useCollection();
@@ -38,11 +38,12 @@ const CollectionForm = () => {
       <Container className="collection-form ps-0">
         <Row>
           <Col className="ps-0">
-              <CollectionsBreadCrumb crumbs={[t('navigation_collections'), collection?.title]}/>
+              <CollectionsBreadCrumb collection={collection || {}} />
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col className="ps-0">
+            <CollectionRecords records={collection?.eventColumns || []} />
           </Col>
         </Row>
         <Row>

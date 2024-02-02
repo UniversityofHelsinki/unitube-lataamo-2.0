@@ -1,22 +1,47 @@
 .collection-record {
-  margin: 0px;
+  --collection-record-height: 80px;
+  --collection-record-width: 220px;
+  --collection-record-thumbnail-width: var(--collection-record-height);
+  --collection-record-details-width: calc(var(--collection-record-thumbnail-width) * 2);
+  --collection-record-remove-width: calc(var(--collection-record-width) - var(--collection-record-thumbnail-width) - var(--collection-record-details-width));
+  height: var(--collection-record-height);
   border: 1px solid var(--hy-medium-silver);
-  box-sizing: border-box;
-  overflow: hidden;
+  width: var(--collection-record-width);
 }
 
-.collection-record-thumb {
+.collection-record .row {
+  height: 100%;
+}
+
+.collection-record:hover {
+  outline: 1px solid var(--hy-medium-silver);
+}
+
+.collection-record-thumbnail {
+  min-width: var(--collection-record-height);
+  max-width: var(--collection-record-thumbnail-width);
   background-color: var(--hy-light-silver);
-  height: 64px;
-  width: 64px;
+  height: 100%;
 }
 
 .collection-record-details {
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  width: calc(var(--collection-record-width) - var(--collection-record-thumbnail-width) - 40px);
+  max-width: calc(var(--collection-record-width) - 40px);
 }
 
 .collection-record-remove {
+  height: 100%;
+  cursor: pointer;
 }
 
+.collection-record-remove svg {
+  width: 20px;
+}
+
+.collection-record-remove svg polygon {
+  fill: var(--hy-red);
+}
 
