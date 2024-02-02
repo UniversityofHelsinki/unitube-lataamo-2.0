@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 import PropTypes from 'prop-types';
 import './RecordLicense.css';
 import FormElementHeader from '../form/FormElementHeader';
@@ -10,6 +10,7 @@ import HelpDialog from "../dialog/HelpDialog";
 
 const RecordLicense = ({ license, onChange, message, disabled = false }) => {
   const { t } = useTranslation();
+  const id = useId();
 
   const emptyLicense = '';
 
@@ -30,19 +31,19 @@ const RecordLicense = ({ license, onChange, message, disabled = false }) => {
     <Container>
       <Row>
         <Col>
-          <FormElementHeader>{t('record_license_header')}</FormElementHeader>
+          <FormElementHeader componentId={id}>{t('record_license_header')}</FormElementHeader>
         </Col>
       </Row>
       <Row className="mb-3">
         <Col>
-          <HelpDialog  label={t('record_license_help_label')} >
+          <HelpDialog label={t('record_license_help_label')} >
             {t('record_license_help_content')}
           </HelpDialog>
         </Col>
       </Row>
       <Row>
         <Col>
-          <DropDown value={license} onChange={(e) => onChange(e.target.value)} options={licenses.map(asOption)} message={message} disabled={disabled} />
+          <DropDown id={id} value={license} onChange={(e) => onChange(e.target.value)} options={licenses.map(asOption)} message={message} disabled={disabled} />
         </Col>
       </Row>
     </Container>

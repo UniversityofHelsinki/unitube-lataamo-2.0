@@ -12,6 +12,7 @@ const alreadyInDialog = () => {
 };
 
 const DialogFallback = ({ children, onHide, headerLabel }) => {
+  const { t } = useTranslation();
   const headerId = useId();
   const contentId = useId();
 
@@ -28,7 +29,7 @@ const DialogFallback = ({ children, onHide, headerLabel }) => {
               <span id={headerId}>{headerLabel}</span>
             </Col>
             <Col className="text-end px-0">
-              <Button variant="link" className="btn-close" onClick={hide} />
+              <Button aria-label={t('close')} variant="link" className="btn-close" onClick={hide} />
             </Col>
           </Row>
           <Row className="help-dialog-fallback-content">
