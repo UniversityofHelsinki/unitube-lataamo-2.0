@@ -10,7 +10,7 @@ const playVideo = (url) => {
     return `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/video/play/` + url;
 };
 
-export const getVTTFile = (vttFile) => {
+const getVTTFile = (vttFile) => {
     if (vttFile && vttFile.url) {
         return `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/vttFile/` + vttFile.url;
     } else {
