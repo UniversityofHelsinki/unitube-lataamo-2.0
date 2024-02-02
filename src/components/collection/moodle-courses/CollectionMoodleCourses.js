@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useId, useState } from 'react';
 import PropTypes, {number} from 'prop-types';
 import './CollectionMoodleCourses.css';
 import {Button, Col, Container, Row} from 'react-bootstrap';
@@ -15,6 +15,7 @@ const CollectionMoodleCourses = ({ moodleNumbers = [] }) => {
         moodleNumber: ''
     });
     const { t } = useTranslation();
+    const id = useId();
     const addMoodleCourse = () => {
         if (moodlenum && moodlenum?.moodleNumber?.length >0)
         if (!selectedMoodlenumbers.map(m => m.moodleNumber).includes(moodlenum.moodleNumber)) {
@@ -42,7 +43,7 @@ const CollectionMoodleCourses = ({ moodleNumbers = [] }) => {
     return (
         <Container className="collection-moodle-courses ps-0">
             <Row>
-                <FormElementHeader>{t('collection_moodle_courses_form_header')}</FormElementHeader>
+                <FormElementHeader componentId={id}>{t('collection_moodle_courses_form_header')}</FormElementHeader>
             </Row>
             <Row className="mb-2">
                 <Col>
@@ -53,7 +54,7 @@ const CollectionMoodleCourses = ({ moodleNumbers = [] }) => {
             </Row>
             <Row className="mb-2">
                 <Col>
-                    <InputField type={'text'} label={t('aaa')} placeholder={t('moodle_course_placeholder')} value={moodlenum.moodleNumber} onChange={handleMoodleInputChange} />
+                    <InputField id={id} type={'text'} label={t('aaa')} placeholder={t('moodle_course_placeholder')} value={moodlenum.moodleNumber} onChange={handleMoodleInputChange} />
                 </Col>
                 <Col className="ps-0">
                     <Button className="btn btn-primary collection-moodle-courses-add-button" onClick={addMoodleCourse}>Lisää</Button>
