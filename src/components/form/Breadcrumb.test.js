@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import BreadCrumb from './BreadCrumb';
+import Breadcrumb from './Breadcrumb';
 
 it('renders', () => {
-    render(<BreadCrumb />);
+    render(<Breadcrumb crumbs={['eka', 'toka']} />);
 });

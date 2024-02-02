@@ -2,18 +2,14 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 import './TextArea.css';
 import PropTypes from "prop-types";
+import Message from './Message';
 
 const TextArea = ({ value, message, ...rest }) => {
-    const messageType = ({
-      'light': 'text-secondary',
-      'neutral': '',
-      'warning': 'text-danger'
-    })[message?.type];
 
     return (
       <>
         <Form.Control value={value} as="textarea" {...rest}></Form.Control>
-        <Form.Text className={messageType}>{message?.content}</Form.Text>
+        <Message type={message?.type}>{message?.content}</Message>
       </>
     );
 };

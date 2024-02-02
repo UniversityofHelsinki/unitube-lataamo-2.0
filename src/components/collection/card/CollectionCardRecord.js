@@ -8,7 +8,7 @@ const CollectionCardRecord = ({ record }) => {
     <Container className="collection-card-record">
       <Row style={{ height: '100%' }}>
         <Col className="col-sm-4 collection-card-record-thumb"></Col>
-        <Col className="col-sm-8 collection-card-record-details">{record.name}</Col>
+        <Col className="col-sm-8 collection-card-record-details">{record.title}</Col>
       </Row>
     </Container>
   );

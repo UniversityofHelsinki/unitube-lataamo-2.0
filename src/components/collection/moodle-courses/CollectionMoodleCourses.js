@@ -40,7 +40,7 @@ const CollectionMoodleCourses = ({ moodleNumbers = [] }) => {
     };
 
     return (
-        <Container className="collection-moodle-courses">
+        <Container className="collection-moodle-courses ps-0">
             <Row>
                 <FormElementHeader>{t('collection_moodle_courses_form_header')}</FormElementHeader>
             </Row>
@@ -55,8 +55,8 @@ const CollectionMoodleCourses = ({ moodleNumbers = [] }) => {
                 <Col>
                     <InputField type={'text'} label={t('aaa')} placeholder={t('moodle_course_placeholder')} value={moodlenum.moodleNumber} onChange={handleMoodleInputChange} />
                 </Col>
-                <Col>
-                    <Button className="col btn btn-primary" onClick={addMoodleCourse}>Lisää</Button>
+                <Col className="ps-0">
+                    <Button className="btn btn-primary collection-moodle-courses-add-button" onClick={addMoodleCourse}>Lisää</Button>
                 </Col>
             </Row>
             <Row>

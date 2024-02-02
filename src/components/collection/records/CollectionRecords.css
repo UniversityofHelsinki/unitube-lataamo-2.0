@@ -1,0 +1,10 @@
+.collection-records-record-col li {
+  list-style: none;
+  display: inline-block;
+  margin-right: 0.5em;
+}
+
+.collection-records-list-row {
+  max-height: 175px;
+  overflow: auto;
+}

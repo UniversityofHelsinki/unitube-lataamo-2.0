@@ -1,0 +1,27 @@
+.breadcrumb .active {
+  color: var(--hy-blue);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.breadcrumb {
+  color: var(--hy-silver);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.breadcrumb-divider {
+  margin-right: 0.75em;
+  margin-left: 0.75em;
+  vertical-align: middle;
+}
+
+.breadcrumb ol {
+  padding-left: 0px;
+  list-style: none;
+  margin-bottom: 0px;
+}
+
+.breadcrumb li {
+  display: inline-block;
+}
