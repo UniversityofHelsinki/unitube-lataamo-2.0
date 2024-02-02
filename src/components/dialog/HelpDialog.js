@@ -13,13 +13,14 @@ const alreadyInDialog = () => {
 
 const DialogFallback = ({ children, onHide, headerLabel }) => {
   const headerId = useId();
+  const contentId = useId();
 
   const hide = (e) => {
     e.preventDefault();
     onHide(e);
   };
 
-  return (<div className="help-dialog-fallback">
+  return (<div className="help-dialog-fallback" role="dialog" aria-labelledby={headerId} aria-describedby={contentId}>
       <div className="help-dialog-fallback-container">
         <Container>
           <Row className="help-dialog-fallback-header align-items-center">
@@ -32,7 +33,7 @@ const DialogFallback = ({ children, onHide, headerLabel }) => {
           </Row>
           <Row className="help-dialog-fallback-content">
             <Col>
-              <p className="my-0">
+              <p className="my-0" id={contentId}>
                 {children}
               </p>
             </Col>
@@ -51,7 +52,7 @@ const HelpDialog = ({ label, children }) => {
   
   const headerId = useId();
 
-  const showLink = <Button variant="link" onClick={toggle} className="p-0">{label}</Button>;
+  const showLink = <Button variant="link" onClick={toggle} className="p-0" aria-haspopup="dialog">{label}</Button>;
 
   const header = label;
 
