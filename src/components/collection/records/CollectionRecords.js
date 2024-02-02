@@ -12,7 +12,7 @@ const CollectionRecords = ({ records }) => {
   const id = useId();
 
   return (
-    <Container>
+    <Container className="ps-0">
       <Row>
         <Col>
           <FormElementHeader componentId={id}>

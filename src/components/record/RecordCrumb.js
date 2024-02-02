@@ -5,15 +5,17 @@ import Crumb from '../form/Crumb';
 import useSearchParams from '../../hooks/useSearchParams';
 
 const RecordCrumb = ({ record }) => {
-  const [_, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const openRecord = () => {
     setSearchParams({
       record: record.identifier
     });
   };
 
+  const isActive = searchParams.record === record.identifier;
+
   return (
-    <Crumb onClick={openRecord}>
+    <Crumb onClick={openRecord} active={isActive}>
       {record.title}
     </Crumb>
   );

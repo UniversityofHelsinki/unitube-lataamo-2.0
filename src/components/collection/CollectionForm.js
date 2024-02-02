@@ -38,11 +38,11 @@ const CollectionForm = () => {
       <Container className="collection-form ps-0">
         <Row>
           <Col className="ps-0">
-              <CollectionsBreadCrumb collection={collection || {}} />
+            <CollectionsBreadCrumb collection={collection || {}} />
           </Col>
         </Row>
         <Row>
-          <Col className="ps-0">
+          <Col className="ps-1">
             <CollectionRecords records={collection?.eventColumns || []} />
           </Col>
         </Row>
@@ -55,23 +55,23 @@ const CollectionForm = () => {
           </Col>
         </Row>
         <Row className="mb-3">
-          <Col className="ps-0">
+          <Col className="ps-1">
               <CollectionName name={collection?.title} />
           </Col>
         </Row>
         <Row className="mb-3">
-          <Col className="ps-0">
+          <Col className="ps-1">
               <CollectionDescription description={collection?.description} />
           </Col>
         </Row>
         <Row className="mb-3">
-          <Col className="ps-0">
+          <Col className="ps-1">
               <CollectionPublicity published={collection?.published}/>
           </Col>
         </Row>
         <Row>
-          <Col className="ps-0">
-              <CollectionManagementRights users={users} groups={groups} />
+          <Col className="ps-1">
+            <CollectionManagementRights users={users} groups={groups} />
           </Col>
           <Col>
             <CollectionMoodleCourses moodleNumbers={moodleNumbers} />

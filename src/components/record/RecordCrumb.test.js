@@ -5,7 +5,7 @@ import { MockProvider } from '../../redux/reducers/MockProvider';
 
 it('renders', () => {
   render(
-    <MockProvider mockReducers={{ location: { location: '', searchParams: {}}}}>
+    <MockProvider mockReducers={{ location: { path: '', searchParameters: {}}}}>
       <RecordCrumb record={{ id: '123-456-789', title: 'asdf.mp4' }} />
     </MockProvider>
   );

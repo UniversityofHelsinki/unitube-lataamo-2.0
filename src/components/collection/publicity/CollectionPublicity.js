@@ -18,7 +18,7 @@ const CollectionPublicity = ({ published }) => {
   };
 
   return (
-      <Container>
+      <Container className="ps-0">
           <Form.Group>
               <Row>
                   <Col>

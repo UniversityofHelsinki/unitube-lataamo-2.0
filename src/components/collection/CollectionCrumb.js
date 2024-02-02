@@ -5,7 +5,7 @@ import Crumb from '../form/Crumb';
 import useSearchParams from '../../hooks/useSearchParams';
 
 const CollectionCrumb = ({ collection }) => {
-  const [_, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   
   const openCollection = () => {
     setSearchParams({
@@ -13,8 +13,10 @@ const CollectionCrumb = ({ collection }) => {
     });
   };
 
+  const isActive = searchParams.collection === collection.identifier;
+
   return (
-    <Crumb onClick={openCollection}>
+    <Crumb onClick={openCollection} active={isActive}>
       {collection.title}
     </Crumb>
   );

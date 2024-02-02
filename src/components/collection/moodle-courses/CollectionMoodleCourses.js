@@ -40,7 +40,7 @@ const CollectionMoodleCourses = ({ moodleNumbers = [] }) => {
     };
 
     return (
-        <Container className="collection-moodle-courses">
+        <Container className="collection-moodle-courses ps-0">
             <Row>
                 <FormElementHeader>{t('collection_moodle_courses_form_header')}</FormElementHeader>
             </Row>

@@ -5,7 +5,7 @@ import { MockProvider } from '../../redux/reducers/MockProvider';
 
 it('renders', () => {
     render(
-      <MockProvider mockReducers={{ location: { location: '', searchParams: {}}}}>
+      <MockProvider mockReducers={{ location: { path: '', searchParameters: {}}}}>
         <CollectionsBreadCrumb collection={{ identifier: 'asdf', title: 'mo' }} />
       </MockProvider>
     );
