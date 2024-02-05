@@ -19,6 +19,9 @@ const reducers = {
       record: 'asdfasdf'
     },
     path: '/records'
+  },
+  collections: {
+    collections: [{ identifier: 'asdf-asdf', title: 'asdfasdf' }]
   }
 };
 
