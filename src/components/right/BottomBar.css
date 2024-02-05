@@ -1,0 +1,5 @@
+.bottom-bar {
+  height: var(--right-bottom-bar-height);
+  background-color: var(--hy-white);
+  border-top: 3px solid var(--hy-medium-silver);
+}
