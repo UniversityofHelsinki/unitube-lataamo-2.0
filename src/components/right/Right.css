@@ -1,15 +1,16 @@
-.right {
-  height: calc(100vh - var(--header-height));
+.breadcrumb-container::after {
+  content: "";
+  background-color: var(--hy-light-silver);
+  height: 3px;
+  width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 1em;
 }
 
-.right-main-content-row {
-  max-height: calc(100% - var(--right-bottom-bar-height));
-  height: calc(100% - var(--right-bottom-bar-height));
-  overflow: auto;
-}
-
-.right-bottom {
-  height: var(--right-bottom-bar-height);
+.breadcrumb-container {
+  position: sticky;
+  top: 0px;
   background-color: var(--hy-white);
-  border-top: 3px solid var(--hy-medium-silver);
+  z-index: 1;
 }
