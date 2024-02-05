@@ -28,9 +28,7 @@
     "eslint": "eslint ."
   },
   "jest": {
-    "collectCoverageFrom": [
-      "src"
-    ],
+    "collectCoverage": true,
     "coverageReporters": [
       "lcov",
       "text-summary"
