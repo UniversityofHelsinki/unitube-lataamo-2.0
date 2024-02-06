@@ -71,7 +71,7 @@ sonarqube-check:
   allow_failure: true
   only:
     - oc-test
-
+    - master
 # common script for all deploy jobs
 # substitute variables
 #   $SSH_PRIVATE_KEY  <-- from Gitlab CI env variables
