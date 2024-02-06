@@ -12,6 +12,7 @@ stages:
   - build
   - test
   - sonarqube
+  - deploy
 
 ## Define the process for compile stage
 compile-stage:
