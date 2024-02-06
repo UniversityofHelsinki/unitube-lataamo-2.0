@@ -29,7 +29,9 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "src"
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.d.ts",
+      "!src/**/node_modules/**"
     ],
     "coverageReporters": [
       "lcov",
