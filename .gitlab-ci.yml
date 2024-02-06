@@ -47,7 +47,8 @@ test:
   coverage: /All files\s*\|\s*([\d\.]+)/
   artifacts:
     paths:
-      - coverage/
+      - coverage
+    expire_in: 1 hour
 
 sonarqube-check:
   stage: sonarqube
@@ -66,7 +67,7 @@ sonarqube-check:
   before_script:
     - git fetch --unshallow || true
   script:
-    - sonar-scanner -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info -Dsonar.scm.provider=git
+    - sonar-scanner -Dsonar.scm.provider=git
   allow_failure: true
   only:
     - master
