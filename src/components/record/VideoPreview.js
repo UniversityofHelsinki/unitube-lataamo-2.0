@@ -18,11 +18,19 @@ const getVTTFile = (vttFile) => {
     }
 };
 
+const getCoverImage = (coverImage) => {
+    if (coverImage) {
+        return `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/coverImage/`+ coverImage;
+    } else {
+        return '';
+    }
+}
+
 const VideoPlayer = ({ video }) => {
     const { t } = useTranslation();
     return (
         <Loading loading={!video} >
-        <video data-testid="video-player" className="video-player" crossOrigin="anonymous" preload="metadata"
+        <video data-testid="video-player" poster={getCoverImage(video?.coverImage)} className="video-player" crossOrigin="anonymous" preload="metadata"
                controlsList='nodownload' controls
                onContextMenu={e => e.preventDefault()}>
             <source data-testid="source" src={playVideo(video?.url)}/>
