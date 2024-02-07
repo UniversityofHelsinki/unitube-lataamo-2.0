@@ -2,6 +2,7 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import PropTypes from "prop-types";
 import Message from './Message';
+import './DropDown.css';
 
 const DropDown = ({ options, message, ...rest }) => {
     return (

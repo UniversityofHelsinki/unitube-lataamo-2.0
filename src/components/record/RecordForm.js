@@ -9,6 +9,7 @@ import RecordDescription from './RecordDescription';
 import './RecordForm.css';
 import useRecordValidation from '../../hooks/validation/record/useRecordValidation';
 import RecordEndDate from './RecordEndDate';
+import RecordCollections from "./RecordCollections";
 import RecordSubtitle from "./RecordSubtitle";
 
 const RecordForm = ({ record }) => {
@@ -66,6 +67,7 @@ const RecordForm = ({ record }) => {
           </Row>
           <Row>
             <Col>
+                <RecordCollections onChange={(value) => onChange('identifier', value)} />
             </Col>
           </Row>
           <Row>

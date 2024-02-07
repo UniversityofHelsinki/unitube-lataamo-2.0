@@ -12,9 +12,10 @@ stages:
   - build
   - test
   - sonarqube
+  - deploy
 
 ## Define the process for compile stage
-build-stage:
+compile-stage:
   stage: compile
   tags:
     - ohtu-build-3
@@ -33,7 +34,7 @@ build_oc_test:
     - CI=false npm run build
   artifacts:
     expire_in: 1h
-    name: lataamo-build
+    name: lataamo-2.0-build
     paths:
       - build
 
@@ -42,12 +43,12 @@ test:
   tags:
     - ohtu-build-3
   script:
-    - npm install
     - npm test
   coverage: /All files\s*\|\s*([\d\.]+)/
   artifacts:
     paths:
-      - coverage/
+      - coverage
+    expire_in: 1 hour
 
 sonarqube-check:
   stage: sonarqube
@@ -63,8 +64,52 @@ sonarqube-check:
     key: "${CI_JOB_NAME}"
     paths:
       - .sonar/cache
+  before_script:
+    - git fetch --unshallow || true
   script:
-    - sonar-scanner -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info -Dsonar.scm.provider=git
+    - sonar-scanner -Dsonar.scm.provider=git
   allow_failure: true
   only:
+    - oc-test
     - master
+# common script for all deploy jobs
+# substitute variables
+#   $SSH_PRIVATE_KEY  <-- from Gitlab CI env variables
+#   $LATAAMO_USER     <-- from Gitlab CI env variables
+#   $SERVER           <-- define within each deploy job  <-- from Gitlab CI env variables
+.deploy_script:
+  script:
+    - ls -la
+    - echo "====== Install rsync and openssh ========="
+    - apk add --no-cache rsync openssh
+    - echo "====== Activate the ssh-agent ========"
+    - eval $(ssh-agent -s)
+    - echo "======= Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store ====="
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+    - echo "====== Add target servers secret key ======"
+    - mkdir ~/.ssh
+    - echo $SSH_PRIVATE_KEY  >> ~/.ssh/id_rsa
+    - chmod 700 ~/.ssh && chmod 600 ~/.ssh/*
+    - echo "====== Test ssh connection and make react-app folder if not exist ======"
+    - ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -T $LATAAMO_USER@$SERVER "mkdir -p /home/lataamo/react-app"
+    - echo "====== Sync local and remote directory ======"
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - rsync -azPq -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --delete ./build/ $LATAAMO_USER@$SERVER:/home/lataamo/react-app
+    - rsync -azPq -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" maintenance.html $LATAAMO_USER@$SERVER:/home/lataamo/react-app
+
+
+# deploy to oc test environment
+deploy_oc_test:
+  stage: deploy
+  tags:
+    - ohtu-build-3
+  environment:
+    name: development
+    url: https://$LATAAMO_OC_TEST
+  only:
+    - oc-test
+  variables:
+    SERVER: $LATAAMO_OC_TEST
+  before_script:
+    - echo "====== Deploy to development server ========"
+  extends: .deploy_script
