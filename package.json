@@ -61,6 +61,7 @@
     ]
   },
   "devDependencies": {
+    "axe-core": "^4.8.4",
     "cross-env": "^7.0.3",
     "eslint-plugin-jsx-a11y": "^6.8.0"
   }
