@@ -25,7 +25,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --coverage",
     "eject": "react-scripts eject",
-    "eslint": "eslint ."
+    "eslint": "eslint .",
+    "test:accessibility": "axe"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -61,7 +62,6 @@
     ]
   },
   "devDependencies": {
-    "axe-core": "^4.8.4",
     "cross-env": "^7.0.3",
     "eslint-plugin-jsx-a11y": "^6.8.0"
   }

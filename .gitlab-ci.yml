@@ -50,18 +50,6 @@ test:
       - coverage
     expire_in: 1 hour
 
-
-accessibility:
-  stage: test
-  tags:
-    - ohtu-build-3
-  script:
-    - npx axe build/ --noexit
-  only:
-    - master
-    - oc-test
-
-
 sonarqube-check:
   stage: sonarqube
   tags:
