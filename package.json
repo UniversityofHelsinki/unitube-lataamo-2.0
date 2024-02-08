@@ -61,8 +61,11 @@
     ]
   },
   "devDependencies": {
+    "axe-core": "^4.8.4",
+    "axe-puppeteer": "^1.1.1",
     "cross-env": "^7.0.3",
     "eslint-plugin-jsx-a11y": "^6.8.0",
+    "puppeteer": "^22.0.0",
     "react-axe": "^3.5.4"
   }
 }
