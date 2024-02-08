@@ -13,9 +13,8 @@ const Toggle = ({ children, index, labels, ...rest }) => {
         <ul style={{"list-style": "none", "paddingLeft": "inherit"}}>
             {children.map((item, index) => {
                 const checked =  index === visibleComponentIndex;
-                const checkedProps = checked ? {defaultChecked : true} : {};
-                    return (<li key={index}>
-                                <input style={{ "marginRight": "0.25em"}} name={`${id}`}  id={`${id}-${index}`} type='radio' value={index} {...checkedProps}
+                 return (<li key={index}>
+                                <input style={{ "marginRight": "0.25em"}} name={`${id}`}  id={`${id}-${index}`} type='radio' value={index} defaultChecked={checked}
                                        onChange={() => changeVisibleComponent(index)} />
                                 <label htmlFor={`${id}-${index}`}>{labels[index]}</label>
                                 {checked && item}
