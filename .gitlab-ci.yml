@@ -50,6 +50,16 @@ test:
       - coverage
     expire_in: 1 hour
 
+
+accessibility:
+  stage: test
+  script:
+    - npx axe build/ --noexit
+  only:
+    - master
+    - oc-test
+
+
 sonarqube-check:
   stage: sonarqube
   tags:
