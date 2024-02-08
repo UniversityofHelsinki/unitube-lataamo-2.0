@@ -53,6 +53,8 @@ test:
 
 accessibility:
   stage: test
+  tags:
+    - ohtu-build-3
   script:
     - npx axe build/ --noexit
   only:
