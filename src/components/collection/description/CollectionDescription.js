@@ -11,7 +11,7 @@ const CollectionDescription = ({ description }) => {
     const id = useId();
 
     return (
-        <Container>
+        <Container className="ps-0">
             <Form.Group>
                 <Row>
                     <Col>

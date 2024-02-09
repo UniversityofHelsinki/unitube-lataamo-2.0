@@ -73,12 +73,12 @@ const Left = () => {
             </Row>
             <Row className="border-start border-end border-black">
               <Container className="left-tab-content mt-3">
-                <Row>
+                <Row className="mb-3">
                   <Col>
                     <ButtonRow />
                   </Col>
                 </Row>
-                <Row>
+                <Row className="mb-3">
                   <Col>
                     <Search />
                   </Col>

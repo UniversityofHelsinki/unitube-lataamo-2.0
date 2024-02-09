@@ -8,7 +8,10 @@ const reducers = {
     record: {
       identifier: 'asdfasdf',
       deletionDate: new Date().toISOString(),
-      media: [{ url: '' }]
+      media: [{ url: '' }],
+      series: {
+        title: 'asdf'
+      }
     }
   },
   location: {
@@ -16,6 +19,9 @@ const reducers = {
       record: 'asdfasdf'
     },
     path: '/records'
+  },
+  collections: {
+    collections: [{ identifier: 'asdf-asdf', title: 'asdfasdf' }]
   }
 };
 

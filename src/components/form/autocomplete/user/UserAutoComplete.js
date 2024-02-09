@@ -34,7 +34,7 @@ const UserAutoComplete = ({ onSelect }) => {
     <Container className="px-0">
       <Row>
         <Col>
-          <AutoComplete options={options} onFilter={onSearch} onSelect={handleSelection} placeholder={t('user_autocompletion_placeholder')} />
+          <AutoComplete options={options} onFilter={onSearch} onSelect={handleSelection} placeholder={t('user_autocompletion_placeholder')} ariaLabel={t('collection_user_autocomplete_label')}/>
         </Col>
       </Row>
     </Container>

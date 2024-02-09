@@ -38,7 +38,7 @@ const CollectionManagementRights = ({ users = [], groups = [] }) => {
   };
 
   return (
-    <Container className="collection-management-rights">
+    <Container className="collection-management-rights ps-0">
       <Row>
         <FormElementHeader>{t('collection_management_rights_form_header')}</FormElementHeader>
       </Row>

@@ -1,3 +1,9 @@
 .record-card-details {
   list-style: none;
 }
+
+.record-card-details li {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

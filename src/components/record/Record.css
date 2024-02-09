@@ -1,0 +1,9 @@
+.record {
+  height: calc(100vh - var(--header-height));
+}
+
+.record-row {
+  max-height: calc(100% - var(--right-bottom-bar-height));
+  height: calc(100% - var(--right-bottom-bar-height));
+  overflow: auto;
+}

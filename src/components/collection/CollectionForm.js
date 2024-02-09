@@ -14,7 +14,8 @@ import useCollectionValidation from '../../hooks/validation/collection/useCollec
 import CollectionsBreadCrumb from "../form/CollectionsBreadCrumb";
 import CollectionMoodleCourses from "./moodle-courses/CollectionMoodleCourses";
 import {useTranslation} from "react-i18next";
-
+import CollectionRecords from './records/CollectionRecords';
+import CollectionBottomBar from './CollectionBottomBar';
 
 const CollectionForm = () => {
   const [collection, loading] = useCollection();
@@ -35,45 +36,57 @@ const CollectionForm = () => {
 
   return (
     <Loading loading={loading}>
-      <Container className="collection-form ps-0">
-        <Row>
-          <Col className="ps-0">
-              <CollectionsBreadCrumb crumbs={[t('navigation_collections'), collection?.title]}/>
-          </Col>
-        </Row>
-        <Row>
+      <Container className="collection-container">
+        <Row className="collection-form-row">
           <Col>
+            <Container className="collection-form ps-0">
+              <Row className="breadcrumb-container">
+                <Col className="ps-0">
+                  <CollectionsBreadCrumb collection={collection || {}} />
+                </Col>
+              </Row>
+              <Row>
+                <Col className="ps-1">
+                  <CollectionRecords records={collection?.eventColumns || []} />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                </Col>
+              </Row>
+              <Row className="mb-3">
+                <Col className="ps-1">
+                    <CollectionName name={collection?.title} />
+                </Col>
+              </Row>
+              <Row className="mb-3">
+                <Col className="ps-1">
+                    <CollectionDescription description={collection?.description} />
+                </Col>
+              </Row>
+              <Row className="mb-3">
+                <Col className="ps-1">
+                    <CollectionPublicity published={collection?.published}/>
+                </Col>
+              </Row>
+              <Row>
+                <Col className="ps-1">
+                  <CollectionManagementRights users={users} groups={groups} />
+                </Col>
+                <Col>
+                  <CollectionMoodleCourses moodleNumbers={moodleNumbers} />
+                </Col>
+              </Row>
+            </Container>
           </Col>
         </Row>
-        <Row>
+        <Row className="collection-bottom-bar">
           <Col>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-          </Col>
-        </Row>
-        <Row className="mb-3">
-          <Col className="ps-0">
-              <CollectionName name={collection?.title} />
-          </Col>
-        </Row>
-        <Row className="mb-3">
-          <Col className="ps-0">
-              <CollectionDescription description={collection?.description} />
-          </Col>
-        </Row>
-        <Row className="mb-3">
-          <Col className="ps-0">
-              <CollectionPublicity published={collection?.published}/>
-          </Col>
-        </Row>
-        <Row>
-          <Col className="ps-0">
-              <CollectionManagementRights users={users} groups={groups} />
-          </Col>
-          <Col>
-            <CollectionMoodleCourses moodleNumbers={moodleNumbers} />
+            <CollectionBottomBar />
           </Col>
         </Row>
       </Container>

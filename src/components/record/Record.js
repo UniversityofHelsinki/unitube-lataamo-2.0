@@ -10,6 +10,7 @@ import './Record.css';
 import Loading from '../utilities/Loading';
 import RecordsBreadCrumb from "../form/RecordsBreadCrumb";
 import {useTranslation} from "react-i18next";
+import RecordBottomBar from './RecordBottomBar';
 
 const Record = () => {
   const [record, loading] = useRecord();
@@ -17,16 +18,27 @@ const Record = () => {
 
  return (
     <Loading loading={loading}>
-      <Container className="ps-0">
-        <Row>
-          <RecordsBreadCrumb crumbs={[t('navigation_records'), record?.title]}/>
-        </Row>
-        <Row>
-          <Col lg={5} className="ps-0">
-            <RecordStaticInformation record={record} />
+      <Container className="record">
+        <Row className="record-row">
+          <Col>
+            <Container className="ps-0">
+              <Row className="breadcrumb-container">
+                <RecordsBreadCrumb record={record} />
+              </Row>
+              <Row>
+                <Col lg={5} className="ps-0">
+                  <RecordStaticInformation record={record} />
+                </Col>
+                <Col lg>
+                  <RecordForm record={record} />
+                </Col>
+              </Row>
+            </Container>
           </Col>
-          <Col lg>
-            <RecordForm record={record} />
+        </Row>
+        <Row className="record-bottom-bar">
+          <Col>
+            <RecordBottomBar />
           </Col>
         </Row>
       </Container>

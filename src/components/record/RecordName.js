@@ -9,6 +9,7 @@ import { Form } from 'react-bootstrap';
 import PropTypes from "prop-types";
 import './RecordName.css';
 import { useId } from 'react';
+import HelpDialog from "../dialog/HelpDialog";
 
 const RecordName = ({ name, onChange, message, disabled = false }) => {
     const { t } = useTranslation();
@@ -20,6 +21,13 @@ const RecordName = ({ name, onChange, message, disabled = false }) => {
                 <Row>
                     <Col>
                         <FormElementHeader componentId={id}>{t('record_form_name_header')}</FormElementHeader>
+                    </Col>
+                </Row>
+                <Row className="mb-3">
+                    <Col>
+                        <HelpDialog  label={t('record_name_help_label')} >
+                            {t('record_name_help_content')}
+                        </HelpDialog>
                     </Col>
                 </Row>
                 <Row>

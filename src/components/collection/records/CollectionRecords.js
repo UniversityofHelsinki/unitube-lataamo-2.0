@@ -12,7 +12,7 @@ const CollectionRecords = ({ records }) => {
   const id = useId();
 
   return (
-    <Container>
+    <Container className="ps-0">
       <Row>
         <Col>
           <FormElementHeader componentId={id}>
@@ -20,10 +20,12 @@ const CollectionRecords = ({ records }) => {
           </FormElementHeader>
         </Col>
       </Row>
-      <Row>
+      <Row className="collection-records-list-row">
         <Col as="ul" className="collection-records-record-col">
           {records.map((record, i) =>
-            <li key={record.i}><CollectionRecord record={record} /></li>
+            <li key={record.identifier}>
+              <CollectionRecord record={record} onRemove={() => console.log(record)} aria-label={record.title} />
+            </li>
           )}
         </Col>
       </Row>
