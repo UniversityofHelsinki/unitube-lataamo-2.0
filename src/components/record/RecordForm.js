@@ -10,6 +10,7 @@ import './RecordForm.css';
 import useRecordValidation from '../../hooks/validation/record/useRecordValidation';
 import RecordEndDate from './RecordEndDate';
 import RecordCollections from "./RecordCollections";
+import RecordSubtitle from "./RecordSubtitle";
 
 const RecordForm = ({ record }) => {
 
@@ -71,6 +72,7 @@ const RecordForm = ({ record }) => {
           </Row>
           <Row>
             <Col>
+                <RecordSubtitle onChange={(what, value) => onChange(what, value)} message={messages.file} file={record.file} />
             </Col>
           </Row>
       </Form>
