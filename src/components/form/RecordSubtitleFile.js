@@ -22,7 +22,7 @@ const RecordSubtitleFile = ({ onChange, message, disabled = false }) => {
             </Row>
             <Row>
                 <Col>
-                    <InputField id={id} onChange={(e) => onChange(e.target.files[0])} type="file" message={message} accept={ACCEPTED_VTT_MIME_TYPES} disabled={disabled} />
+                    <InputField aria-label={t('choose_file')} id={id} onChange={(e) => onChange(e.target.files[0])} type="file" message={message} accept={ACCEPTED_VTT_MIME_TYPES} disabled={disabled} />
                 </Col>
             </Row>
 

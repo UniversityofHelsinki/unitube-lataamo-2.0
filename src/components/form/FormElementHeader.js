@@ -3,14 +3,13 @@ import PropTypes from "prop-types";
 import { Form } from 'react-bootstrap';
 import './FormElementHeader.css';
 
-const FormElementHeader = ({ size='h5', children, componentId, ...rest }) => {
+const FormElementHeader = ({ children, componentId, ...rest }) => {
     return (
         <Form.Label className="form-element-header" { ...rest } htmlFor={componentId}>{children}</Form.Label>
     );
 };
 
 FormElementHeader.propTypes = {
-  size: PropTypes.string,
   children: PropTypes.any,
   componentId: PropTypes.string,
 };

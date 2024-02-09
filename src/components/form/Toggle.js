@@ -2,7 +2,7 @@ import React, {useId, useState} from 'react';
 import PropTypes from "prop-types";
 import './Toggle.css';
 
-const Toggle = ({ children, index, labels, ...rest }) => {
+const Toggle = ({ children, labels}) => {
     const [visibleComponentIndex, setVisibleComponentIndex] = useState(-1);
     const id = useId();
     const changeVisibleComponent = ( index ) => {
@@ -10,10 +10,10 @@ const Toggle = ({ children, index, labels, ...rest }) => {
     };
 
     return (
-        <ul style={{"list-style": "none", "paddingLeft": "inherit"}}>
+        <ul style={{"listStyle": "none", "paddingLeft": "inherit"}}>
             {children.map((item, index) => {
                 const checked =  index === visibleComponentIndex;
-                 return (<li key={index}>
+                 return (<li key={`${id}-${index}`}>
                                 <input style={{ "marginRight": "0.25em"}} name={`${id}`}  id={`${id}-${index}`} type='radio' value={index} defaultChecked={checked}
                                        onChange={() => changeVisibleComponent(index)} />
                                 <label htmlFor={`${id}-${index}`}>{labels[index]}</label>
@@ -26,7 +26,6 @@ const Toggle = ({ children, index, labels, ...rest }) => {
 
 Toggle.propTypes = {
     children: PropTypes.any,
-    index: PropTypes.number,
     labels: PropTypes.array
 };
 export default Toggle;
