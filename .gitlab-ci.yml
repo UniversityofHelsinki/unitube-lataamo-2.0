@@ -52,13 +52,10 @@ test:
 
 
 accessibility_test:
+  image: puppeteer/puppeteer:latest
   stage: test
   tags:
     - ohtu-build-3
-  before_script:
-    - apk add --no-cache chromium nss freetype freetype-dev harfbuzz ca-certificates ttf-freefont
-    - export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD="true"
-    - export PUPPETEER_EXECUTABLE_PATH="/usr/bin/chromium-browser"
   script:
     - node accessibility-test.js
   only:
