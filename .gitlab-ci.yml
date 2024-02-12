@@ -50,18 +50,6 @@ test:
       - coverage
     expire_in: 1 hour
 
-
-accessibility_test:
-  image: puppeteer/puppeteer:latest
-  stage: test
-  tags:
-    - ohtu-build-3
-  script:
-    - node accessibility-test.js
-  only:
-    - lataamo-950
-
-
 sonarqube-check:
   stage: sonarqube
   tags:
