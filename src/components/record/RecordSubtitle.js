@@ -23,7 +23,7 @@ const RecordSubtitle = ({ onChange, message, file }) => {
                 <Row>
                     <Col>
                         <Toggle labels={[t('record_subtitle_file_header'), t('record_automatic_subtitle_header')]}>
-                            <RecordSubtitleFile onChange={(value) => onChange('file', value)} />
+                            <RecordSubtitleFile  onChange={(value) => onChange(value)} message={message} />
                             <RecordAutomaticSubtitleFile onChange={(what, value) => onChange(what, value)} />
                         </Toggle>
                     </Col>

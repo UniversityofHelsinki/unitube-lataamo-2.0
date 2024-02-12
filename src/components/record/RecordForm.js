@@ -16,7 +16,7 @@ const RecordForm = ({ record }) => {
 
   const [modifiedRecord, setModifiedRecord] = useState({ ...record });
   const [isValid, messages, validate] = useRecordValidation([
-    'title', 'description', 'deletionDate'
+    'title', 'description', 'deletionDate', 'subtitleFile'
   ]);
 
   const onChange = async (what, value) => {
@@ -72,7 +72,7 @@ const RecordForm = ({ record }) => {
           </Row>
           <Row>
             <Col>
-                <RecordSubtitle onChange={(what, value) => onChange(what, value)} message={messages.file} file={record.file} />
+                <RecordSubtitle onChange={(value) => onChange('subtitleFile', value)} message={messages.subtitleFile} file={record.file} />
             </Col>
           </Row>
       </Form>
