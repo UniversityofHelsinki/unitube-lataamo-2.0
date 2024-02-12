@@ -7,12 +7,12 @@ import InputField from '../form/InputField';
 import { ACCEPTED_VTT_MIME_TYPES } from '../../Constants';
 import HelpDialog from "../dialog/HelpDialog";
 
-const RecordSubtitleFile = ({ onChange, message, disabled = false }) => {
+const RecordSubtitleFile = ({ onChange, message, disabled = false, value }) => {
     const { t } = useTranslation();
     const id = useId();
 
     return (
-        <Container>
+        <Container className="px-0 mb-3">
             <Row className="mb-3">
                 <Col>
                     <HelpDialog label={t('record_subtitle_file_help_label')} >

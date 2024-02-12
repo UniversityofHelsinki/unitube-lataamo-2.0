@@ -3,3 +3,11 @@
   background-color: var(--hy-white);
   border-top: 3px solid var(--hy-medium-silver);
 }
+
+.bottom-bar-row {
+  height: 100%;
+}
+
+.bottom-bar-buttons-col button {
+  margin-left: 10px;
+}

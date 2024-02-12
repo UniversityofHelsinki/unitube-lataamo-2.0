@@ -70,19 +70,8 @@ const useUploadRecord = () => {
     status: ProgressStatus.NOT_STARTED,
     percentage: 0
   });
-  const [job, startJob] = useMonitor();
+  const [startJob] = useMonitor();
   const dispatch = useDispatch();
-
-  if (job.status === "FINISHED" && progress.status === ProgressStatus.PROCESSING) {
-    setProgress({
-      status: ProgressStatus.DONE,
-      percentage: 100,
-      timeLeft: 0
-    });
-    setTimeout(() => {
-      dispatch({ type: 'SET_RECORDS' });
-    });
-  }
 
   const sendRecord = async (record) => {
     const data = new FormData();
@@ -90,13 +79,27 @@ const useUploadRecord = () => {
       data.append(key, record[key]);
     });
     const job = await send(data, setProgress)(dispatch);
-    if (job) {
-      await startJob(job);
-      setProgress({
-        status: monitorStatuses[job.status],
-        percentage: 100
-      });
+    setProgress({
+      status: monitorStatuses[job.status],
+      percentage: 100,
+    });
+
+    if (job && job.status !== 'FINISHED') {
+      try {
+        const jobResult = await startJob(job);
+        setProgress({
+          status: monitorStatuses[jobResult.status],
+          percentage: 100
+        });
+      } catch (error) {
+        setProgress({
+          status: ProgressStatus.ERROR,
+          percentage: 100,
+          message: error.message
+        });
+      }
     }
+
   };
 
   const reset = () => setProgress({
