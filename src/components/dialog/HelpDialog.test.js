@@ -1,7 +1,6 @@
 import React from 'react';
 import { createEvent, fireEvent, render, screen } from '@testing-library/react';
 import HelpDialog from './HelpDialog';
-import Dialog from './Dialog';
 
 it('renders', () => {
   render(
