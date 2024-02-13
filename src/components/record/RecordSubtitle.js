@@ -10,7 +10,7 @@ import ElementHeader from "../form/ElementHeader";
 import HelpDialog from '../dialog/HelpDialog';
 
 
-const RecordSubtitle = ({ onChange, message, file, automaticSubtitles }) => {
+const RecordSubtitle = ({ onChange, message, file, automaticSubtitles, disabled }) => {
     const { t } = useTranslation();
 
     const handleChange = (what, value) => {
@@ -39,8 +39,8 @@ const RecordSubtitle = ({ onChange, message, file, automaticSubtitles }) => {
                 <Row>
                     <Col>
                         <Toggle labels={[t('record_subtitle_file_header'), t('record_automatic_subtitle_header')]}>
-                            <RecordSubtitleFile onChange={(value) => handleChange('subtitleFile', value)} value={file} />
-                            <RecordAutomaticSubtitleFile onChange={(value) => handleChange('automaticSubtitles', value)} value={automaticSubtitles} />
+                            <RecordSubtitleFile onChange={(value) => handleChange('subtitleFile', value)} value={file} disabled={disabled} />
+                            <RecordAutomaticSubtitleFile onChange={(value) => handleChange('automaticSubtitles', value)} value={automaticSubtitles}  disabled={disabled} />
                         </Toggle>
                     </Col>
                 </Row>
@@ -56,7 +56,7 @@ RecordSubtitle.propTypes = {
         type: PropTypes.oneOf(['light', 'neutral', 'warning'])
     }),
     file: PropTypes.object,
-
+    disabled: PropTypes.bool,
 };
 
 export default RecordSubtitle;

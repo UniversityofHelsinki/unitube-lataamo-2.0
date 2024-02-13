@@ -3,4 +3,14 @@
   border-right-width: 1px;
   border-right-style: solid;
   border-right-color: var(--hy-silver);
+
+}
+
+.record-card-thumbnail img {
+  min-width: 160px;
+  min-height: 160px;
+  max-width: 160px;
+  max-height: 160px;
+  object-fit: cover;
+  display: block;
 }

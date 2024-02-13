@@ -27,7 +27,7 @@ const useSubtitleUpload = () => {
     console.log('tiedosto:', input.file);
     const formData = new FormData();
     formData.append('video_text_track_file', input.file);
-    formData.append('eventId', input.record.identifier);
+    formData.append('eventId', input.identifier);
     await upload(formData);
   };
 

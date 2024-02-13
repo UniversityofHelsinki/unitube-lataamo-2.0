@@ -8,8 +8,7 @@ const PlaceholderBox = () =>
 
 const CoverImage = ({ coverImage }) => {
     return (
-        <img alt="coverImage" src={coverImage}
-             style={{ height: '160px', width: '160px', maxWidth: '160px', maxHeight: '160px', objectFit: 'cover' }} />
+        <img alt="coverImage" src={coverImage} />
     );
 }
 

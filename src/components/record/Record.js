@@ -69,10 +69,16 @@ const Record = () => {
   const handleSave = async (event) => {
     event.preventDefault();
 
+    const userGaveSubtitles = record.subtitleFile;
+    const userGaveAutomaticSubtitles = record.automaticSubtitles;
+
+    const subtitles = userGaveSubtitles ? { file: record.subtitleFile, identifier: record.identifier } : undefined;
+    const automaticSubtitles = userGaveAutomaticSubtitles ? { ...(record.automaticSubtitles), identifier: record.identifier } : undefined;
+
     const success = await save({
        record,
-       subtitles: record.subtitleFile && { file: record.subtitleFile, record } || undefined,
-       orderSubtitles: record.automaticSubtitles
+       subtitles,
+       orderSubtitles: automaticSubtitles
     });
 
     if (success) {
@@ -94,7 +100,7 @@ const Record = () => {
             <Col>
               <Container className="ps-0">
                 <Row className="breadcrumb-container">
-                  <RecordsBreadCrumb record={record} />
+                  <RecordsBreadCrumb record={originalRecord} />
                 </Row>
                 <Row>
                   <Col lg={5} className="ps-0">
