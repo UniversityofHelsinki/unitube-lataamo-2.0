@@ -9,7 +9,11 @@ expect.extend(toHaveNoViolations);
 describe('ProgressBar', () => {
     it('should not have any accessibility violations', async () => {
 
-        const { container } = render(<ProgressBar now={12} label="asdf-label" alertMessage={<></>} type="error" />);
+        const { container, rerender } = render(
+          <ProgressBar now={12} label="asdf-label" alertMessage={<></>} type="error" />
+        );
+        rerender(
+          <ProgressBar now={12} label="asdf-label" alertMessage={<></>} type="error" />);
         const results = await axe(container);
 
         // use the matcher function in the test
