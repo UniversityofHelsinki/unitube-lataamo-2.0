@@ -15,7 +15,8 @@ describe('RecordsBreadCrumb', () => {
                 record={{
                     identifier: 'asdf',
                     series:
-                        { title: 'asdf', identifier: 'asdf' }
+                        { title: 'asdf', identifier: 'asdf' },
+                    title: 'asdf'
                 }}
             />
         </MockProvider>);

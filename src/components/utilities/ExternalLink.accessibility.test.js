@@ -8,8 +8,8 @@ expect.extend(toHaveNoViolations);
 
 describe('ExternalLink', () => {
 
-    const to = '';
-    const label = '';
+    const to = 'asdf';
+    const label = 'asdfsa';
     const fill = '';
     const height = 0;
     const width = 0;

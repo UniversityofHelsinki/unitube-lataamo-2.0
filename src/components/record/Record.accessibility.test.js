@@ -13,7 +13,8 @@ describe('Record', () => {
             record: {
                 identifier: 'asdfasdf',
                 deletionDate: new Date().toISOString(),
-                media: [{ url: '' }],
+                media: [{ url: 'https://example.com', type: 'asdf' }],
+                title: 'asdf',
                 series: {
                     title: 'asdf'
                 }

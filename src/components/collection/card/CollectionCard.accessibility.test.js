@@ -9,7 +9,7 @@ expect.extend(toHaveNoViolations);
 
 describe('CollectionCard', () => {
     it('should not have any accessibility violations', async () => {
-        const collection = {};
+        const collection = { identifier: 'asdf', title: 'asdf' };
         const selected = false;
 
         const { container } = render(<CollectionCard collection={collection} onClick={() => {}} selected={selected}/>);

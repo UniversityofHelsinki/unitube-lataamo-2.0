@@ -18,7 +18,7 @@ describe('RecordStaticInformation', () => {
                     filesize: 33554432,
                     duration: 3600,
                     codec: 'h264',
-                    container: 'mp4' } ],
+                    container: 'mp4', type: 'asdf' } ],
         };
 
     it('should not have any accessibility violations', async () => {

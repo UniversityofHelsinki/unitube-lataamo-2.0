@@ -16,7 +16,13 @@ describe('RecordCollections', () => {
 
     it('should not have any accessibility violations', async () => {
 
-        const { container } = render(<MockProvider>
+        const { container } = render(
+          <MockProvider mockReducers={
+            { 
+              collections: {
+                collection: { identifier: 'asdf', title: 'asdfasdfa' } 
+              }
+            }}>
             <RecordCollections message={message} onChange={() => {}} />
         </MockProvider>);
         const results = await axe(container);

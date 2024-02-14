@@ -12,19 +12,25 @@ describe('Right', () => {
     const reducers = {
         location: {
             searchParameters: {
-                collection: 'asdfasdf'
+                record: 'asdfasdf'
             },
             path: '/records'
         },
         records: {
             record: {
                 identifier: 'asdfasdf',
-                deletionDate: new Date().toISOString()
+                deletionDate: new Date().toISOString(),
+                title: 'asdfsfd',
+                media: [{ url: 'asdf', type: 'asdf' }],
+                series: {
+                  title: 'asdfsadfsdf'
+                }
             }
         },
         collections: {
             collection: {
-                identifier: 'asdfasdf'
+                identifier: 'asdfasdf',
+                title: 'asdfsafsd'
             }
         },
         autocompletion: {

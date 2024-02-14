@@ -9,7 +9,7 @@ expect.extend(toHaveNoViolations);
 describe('Crumb', () => {
     it('should not have any accessibility violations', async () => {
 
-        const { container } = render(<Crumb label="test" onClick={() => {}} />);
+        const { container } = render(<Crumb onClick={() => {}}>asdf</Crumb>);
         const results = await axe(container);
 
         // use the matcher function in the test

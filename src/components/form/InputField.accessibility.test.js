@@ -10,6 +10,7 @@ describe('InputField', () => {
     it('should not have any accessibility violations', async () => {
 
         const { container } = render(<InputField
+            aria-label="asdf"
             message={{ content: 'asdf', type: 'neutral' }}
         />);
         const results = await axe(container);
