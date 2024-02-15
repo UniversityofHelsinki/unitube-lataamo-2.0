@@ -10,7 +10,18 @@ expect.extend(toHaveNoViolations);
 describe('RadioButtonGroup', () => {
     it('should not have any accessibility violations', async () => {
 
-        const { container } = render(<RadioButtonGroup label="Valinta" options={PUBLICITIES} onChange={() => {}} value={''} />);
+        const { container } = render(
+          <div>
+            {PUBLICITIES.map(p => 
+              <label key={`${p.label}-p`} htmlFor={`publicity-${p.value}`}>{p.value}</label>
+            )}
+            <RadioButtonGroup
+              label="Valinta"
+              options={PUBLICITIES}
+              onChange={() => {}} value={''}
+            />
+          </div>
+        );
         const results = await axe(container);
 
         // use the matcher function in the test

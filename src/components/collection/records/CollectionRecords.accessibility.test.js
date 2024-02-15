@@ -10,7 +10,7 @@ describe('CollectionRecords', () => {
     it('should not have any accessibility violations', async () => {
 
         const { container } = render(<MockProvider mockReducers={{ location: { location: '', searchParams: {}}}}>
-            <CollectionRecords records={[{ identifier: 'sadf', name: 'asdfasf' }, { identifier: 'fdsa', title: 'hei' }]} />
+            <CollectionRecords records={[{ identifier: 'sadf', title: 'asdfasf' }, { identifier: 'fdsa', title: 'hei' }]} />
         </MockProvider>);
         const results = await axe(container);
 

@@ -9,7 +9,12 @@ expect.extend(toHaveNoViolations);
 describe('CheckBox', () => {
     it('should not have any accessibility violations', async () => {
 
-        const { container } = render(<CheckBox label="Valinta" />);
+        const { container } = render(
+          <div>
+            <label htmlFor="checkbox">asdf</label>
+            <CheckBox id="checkbox" label="Valinta" />
+          </div>
+        );
         const results = await axe(container);
 
         // use the matcher function in the test

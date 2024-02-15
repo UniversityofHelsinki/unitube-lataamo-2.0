@@ -16,7 +16,7 @@ const RadioButtonGroup = ({ options, onChange, value, ...rest }) => {
                   type="radio" 
                   checked={value === option.value} 
                   key={option.value} value={option.value}
-                  id={option.value}
+                  id={`publicity-${option.value}`}
                   label={t(option.label)} 
                   onChange={(e) => onChange(e.target.value)}  />
             )}

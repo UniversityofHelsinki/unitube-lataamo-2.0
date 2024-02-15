@@ -12,7 +12,9 @@ describe('AutoComplete', () => {
 
     it('should not have any accessibility violations', async () => {
 
-        const { container } = render(<AutoComplete options={options} onFilter={() => {}} placeholder={placeholder} onSelect={() => {}} />);
+        const { container } = render(
+          <AutoComplete options={options} onFilter={() => {}} placeholder={placeholder} onSelect={() => {}} ariaLabel={'asdf'} />
+        );
         const results = await axe(container);
 
         // use the matcher function in the test
