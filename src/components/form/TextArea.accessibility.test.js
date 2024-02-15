@@ -1,10 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import TextArea from './TextArea';
-import {axe, toHaveNoViolations} from "jest-axe";
+import {axe} from "jest-axe";
 
-// extend expect with toHaveNoViolations function
-expect.extend(toHaveNoViolations);
 
 describe('TextArea', () => {
     it('should not have any accessibility violations', async () => {

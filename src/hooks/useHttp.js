@@ -1,8 +1,4 @@
-import { useDispatch } from "react-redux";
-
 const useHttp = (url) => {
-  const dispatch = useDispatch();
-
   const get = async (dispatch) => {
     try {
       const response = await fetch(url);
@@ -10,11 +6,14 @@ const useHttp = (url) => {
         return await response.json();
       }
     } catch (error) {
-      dispatch({ type: 'SET_ERROR', error.message });
+      console.log(error);
+      throw new Error('http error in GET', {
+        cause: error
+      });
     }
   };
 
-  return [() => dispatch(get)];
+  return [() => get];
 
 };
 

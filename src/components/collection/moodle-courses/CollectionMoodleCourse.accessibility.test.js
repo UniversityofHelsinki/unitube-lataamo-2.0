@@ -2,10 +2,8 @@ import {render} from "@testing-library/react";
 import CollectionMoodleCourse from "./CollectionMoodleCourse";
 import React from "react";
 import { ReactComponent as CourseIcon } from '../../utilities/icons/avatar.svg';
-import {axe, toHaveNoViolations} from "jest-axe";
+import {axe} from "jest-axe";
 
-// extend expect with toHaveNoViolations function
-expect.extend(toHaveNoViolations);
 
 describe('CollectionMoodleCourse', () => {
     it('should not have any accessibility violations', async () => {

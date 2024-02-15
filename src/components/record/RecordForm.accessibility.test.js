@@ -2,10 +2,8 @@ import {render} from "@testing-library/react";
 import {MockProvider} from "../../redux/reducers/MockProvider";
 import RecordForm from "./RecordForm";
 import React from "react";
-import {axe, toHaveNoViolations} from "jest-axe";
+import {axe} from "jest-axe";
 
-// extend expect with toHaveNoViolations function
-expect.extend(toHaveNoViolations);
 
 describe('RecordForm', () => {
     it('should not have any accessibility violations', async () => {

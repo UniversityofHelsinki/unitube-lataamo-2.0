@@ -1,10 +1,8 @@
 import {render} from "@testing-library/react";
 import GroupAutoCompleteResult from "./GroupAutoCompleteResult";
 import React from "react";
-import {axe, toHaveNoViolations} from "jest-axe";
+import {axe} from "jest-axe";
 
-// extend expect with toHaveNoViolations function
-expect.extend(toHaveNoViolations);
 
 describe('GroupAutoCompleteResult', () => {
     it('should not have any accessibility violations', async () => {

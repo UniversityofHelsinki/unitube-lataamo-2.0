@@ -2,10 +2,8 @@ import {render} from "@testing-library/react";
 import CollectionManagementRight from "./CollectionManagementRight";
 import React from "react";
 import { ReactComponent as GroupIcon } from '../../utilities/icons/avatar-group.svg';
-import {axe, toHaveNoViolations} from "jest-axe";
+import {axe} from "jest-axe";
 
-// extend expect with toHaveNoViolations function
-expect.extend(toHaveNoViolations);
 
 describe('CollectionManagementRight', () => {
     it('should not have any accessibility violations', async () => {

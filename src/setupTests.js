@@ -4,8 +4,11 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
 import i18n from 'i18next';
+import { toHaveNoViolations } from 'jest-axe';
 import { initReactI18next } from 'react-i18next';
 import translations from './translations';
+
+expect.extend(toHaveNoViolations);
 
 i18n
   .use(initReactI18next)
@@ -15,5 +18,4 @@ i18n
     fallbackLng: 'cimode',
     supportedLngs: ['fi', 'en', 'sv']
   });
-
 

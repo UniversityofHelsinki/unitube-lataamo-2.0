@@ -1,10 +1,8 @@
 import {render} from "@testing-library/react";
-import {axe, toHaveNoViolations} from "jest-axe";
+import {axe} from "jest-axe";
 import React from "react";
 import CollectionPublicity from "./CollectionPublicity";
 
-// extend expect with toHaveNoViolations function
-expect.extend(toHaveNoViolations);
 
 describe('CollectionPublicity', () => {
     it('should not have any accessibility violations', async () => {

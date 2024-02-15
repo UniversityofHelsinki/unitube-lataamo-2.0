@@ -1,10 +1,8 @@
 import {render} from "@testing-library/react";
 import ListActions from "./ListActions";
 import React from "react";
-import {axe, toHaveNoViolations} from "jest-axe";
+import {axe} from "jest-axe";
 
-// extend expect with toHaveNoViolations function
-expect.extend(toHaveNoViolations);
 
 describe('ListActions', () => {
     it('should not have any accessibility violations', async () => {
