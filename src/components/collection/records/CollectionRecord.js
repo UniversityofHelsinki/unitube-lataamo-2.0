@@ -25,14 +25,14 @@ const CollectionRecord = ({ record, onRemove }) => {
 
 
   return (
-    <Container className="collection-record" aria-describedby={id} tabIndex={0} role="button" onClick={openRecord} onKeyDown={onKeyDown(openRecord)}>
+    <Container className="collection-record" aria-describedby={id}>
       <Row>
         <Col className="px-0">
           <div className="collection-record-thumbnail">
           </div>
         </Col>
         <Col className="px-0 align-self-center">
-          <div className="ps-2 collection-record-details">
+          <div className="ps-2 collection-record-details" role="button" onClick={openRecord} onKeyDown={onKeyDown(openRecord)} tabIndex={0} aria-describedby={id}>
             <span id={id}>{record.title}</span>
           </div>
         </Col>

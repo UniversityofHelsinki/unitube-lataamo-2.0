@@ -16,8 +16,10 @@ const Breadcrumb = ({crumbs}) => {
                     <ol>
                       {crumbs.map((crumb, i) => 
                         <React.Fragment key={i}>
-                          {i == 0 ? <></> : <span className="breadcrumb-divider">/</span>}
-                          <li>{crumb}</li>
+                          <li>
+                            {i > 0 ? <span className="breadcrumb-divider">/</span> : <></>}
+                            {crumb}
+                          </li>
                         </React.Fragment>
                       )}
                     </ol>
