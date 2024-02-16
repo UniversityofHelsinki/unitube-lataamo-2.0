@@ -5,22 +5,15 @@ import FormElementHeader from '../form/FormElementHeader';
 import { Col, Container, Row } from 'react-bootstrap';
 import DropDown from '../form/DropDown';
 import { useTranslation } from 'react-i18next';
-import useCollections from "../../hooks/useCollections";
 import Loading from '../utilities/Loading';
 import HelpDialog from '../dialog/HelpDialog';
+import useCollectionDropdown from '../../hooks/collection/useCollectionDropdown';
 
 const RecordCollections = ({ collection, onChange, message, disabled = false }) => {
     const id = useId();
     const { t } = useTranslation();
 
-    const [collections, loadingCollections] = useCollections({
-        load: true
-    });
-
-    const noCollection = {
-      value: '',
-      label: t('record_collection_select_default')
-    };
+    const [collections, loadingCollections] = useCollectionDropdown();
 
     return (
         <Loading loading={loadingCollections}>
@@ -46,7 +39,7 @@ const RecordCollections = ({ collection, onChange, message, disabled = false }) 
                         aria-labelledby={id}
                         onChange={(e) => onChange(e.target.value)}
                         options={
-                          ([noCollection, ...(collections || [])]).map((c) => ({
+                          (collections || []).map((c) => ({
                             value: c.identifier,
                             label: c.title,
                             selected: c.identifier === collection
