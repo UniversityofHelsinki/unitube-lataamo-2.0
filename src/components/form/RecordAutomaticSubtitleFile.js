@@ -75,7 +75,7 @@ const RecordAutomaticSubtitle = ({ onChange, message, disabled = false, value = 
             </Row>
             <Row>
                 <Col>
-                    <DropDown id={id} value={value.language} onChange={(e) => handleChange('translationLanguage', e.target.value)} options={languages.map(asLanguageOption)} message={message} disabled={disabled} />
+                    <DropDown id={id} value={value.translationLanguage} onChange={(e) => handleChange('translationLanguage', e.target.value)} options={languages.map(asLanguageOption)} message={message} disabled={disabled} />
                 </Col>
             </Row>
         </Container>
