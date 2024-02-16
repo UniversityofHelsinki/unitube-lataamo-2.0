@@ -43,8 +43,6 @@ const Record = () => {
   const onChange = async (what, value) => {
     const newRecord = { ...record, [what]: value };
 
-    console.log(what, value);
-
     const newModifiedFields = {
       ...modifiedFields,
       [what]: newRecord[what] !== record[what]
