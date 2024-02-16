@@ -4,22 +4,18 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import './Right.css';
-import { Button } from 'react-bootstrap';
 import useSearchParams from '../../hooks/useSearchParams';
 import Record from '../record/Record';
 import CollectionForm from '../collection/CollectionForm';
-import useRecord from '../../hooks/useRecord';
-import useCollection from '../../hooks/useCollection';
 
 const Right = () => {
   const [searchParams] = useSearchParams();
-  const [collection, loadingCollection] = useCollection();
 
   let content = <></>;
   if (searchParams.record) {
     content = <Record />;
   } else if (searchParams.collection) {
-    content = <CollectionForm collection={collection} loading={loadingCollection} />;
+    content = <CollectionForm />;
   }
 
   return (

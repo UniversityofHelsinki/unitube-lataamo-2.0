@@ -18,14 +18,14 @@ const RadioButtonGroup = ({ options, onChange, value, ...rest }) => {
                   key={option.value} value={option.value}
                   id={`publicity-${option.value}`}
                   label={t(option.label)} 
-                  onChange={(e) => onChange(e.target.value)}  />
+                  onChange={(e) => onChange(e.target.value)} 
+                  { ...rest } />
             )}
         </>
     );
 }
 
 RadioButtonGroup.propTypes = {
-    label: PropTypes.string.isRequired,
     options: PropTypes.array.isRequired,
     onChange: PropTypes.func.isRequired,
     value: PropTypes.string.isRequired,

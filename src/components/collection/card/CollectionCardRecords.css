@@ -1,4 +1,6 @@
 .collection-card-records {
+  overflow: auto;
+  max-height: 140px;
 }
 
 .collection-card-records-record-column {

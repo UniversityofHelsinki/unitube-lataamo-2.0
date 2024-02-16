@@ -9,36 +9,40 @@ import CollectionMoodleCourse from "./CollectionMoodleCourse";
 import InputField from "../../form/InputField";
 import HelpDialog from '../../dialog/HelpDialog';
 
-const CollectionMoodleCourses = ({ moodleNumbers = [] }) => {
-    const [selectedMoodlenumbers, setSelectedMoodlenumbers] = useState(moodleNumbers);
-    const [moodlenum, setMoodlenum] = useState({
-        moodleNumber: ''
-    });
+const CollectionMoodleCourses = ({ moodleNumbers = [], onMoodleNumberChange, disabled }) => {
+    const [value, setValue] = useState(null);
     const { t } = useTranslation();
     const id = useId();
+
+    const clearInputField = () => setValue(null);
+
     const addMoodleCourse = () => {
-        if (moodlenum && moodlenum?.moodleNumber?.length >0)
-        if (!selectedMoodlenumbers.map(m => m.moodleNumber).includes(moodlenum.moodleNumber)) {
-            setSelectedMoodlenumbers([ ...selectedMoodlenumbers, moodlenum ]);
+        if (!moodleNumbers.includes(value)) {
+            const newMoodleNumbers = [ ...moodleNumbers, value ];
+            if (onMoodleNumberChange) {
+              onMoodleNumberChange(newMoodleNumbers);
+              clearInputField();
+            }
         }
-        setMoodlenum({ moodleNumber: '' });
-    };
-    const removeMoodleCourse = (moodleNbr) => {
-        setSelectedMoodlenumbers(selectedMoodlenumbers.filter(m => m.moodleNumber !== moodleNbr.moodleNumber));
     };
 
-    const containsOnlyNumbers = (event) => {
-        if (/^\d+$/.test(event.target.value)) {
-            return true;
+    const removeMoodleCourse = (moodleNbr) => {
+        if (onMoodleNumberChange) {
+          onMoodleNumberChange(
+            moodleNumbers.filter(m => m !== moodleNbr)
+          );
         }
-        return false;
+    };
+
+    const containsOnlyNumbers = (value) => {
+        return /^\d+$/.test(value);
     };
 
     const handleMoodleInputChange = (event) => {
-        if(event.target.value === '' || containsOnlyNumbers(event)) {
-            setMoodlenum(() => ({ ...moodlenum, moodleNumber:event.target.value }));
-        }
+        setValue(event.target.value);
     };
+
+    const inputFieldContainsValidMoodleCourse = value && value?.length > 0 && containsOnlyNumbers(value);
 
     return (
         <Container className="collection-moodle-courses ps-0">
@@ -54,19 +58,20 @@ const CollectionMoodleCourses = ({ moodleNumbers = [] }) => {
             </Row>
             <Row className="mb-2">
                 <Col>
-                    <InputField id={id} type={'text'} label={t('aaa')} placeholder={t('moodle_course_placeholder')} value={moodlenum.moodleNumber} onChange={handleMoodleInputChange} />
+                    <InputField id={id} type={'text'} label={t('aaa')} placeholder={t('moodle_course_placeholder')} value={value || ''} onChange={handleMoodleInputChange} disabled={disabled} />
                 </Col>
                 <Col className="ps-0">
-                    <Button className="btn btn-primary collection-moodle-courses-add-button" onClick={addMoodleCourse}>Lisää</Button>
+                    <Button className="btn btn-primary collection-moodle-courses-add-button" onClick={addMoodleCourse} disabled={!inputFieldContainsValidMoodleCourse}>Lisää</Button>
                 </Col>
             </Row>
             <Row>
                 <Col>
                     <ul className="collection-moodle-courses-list">
-                        {selectedMoodlenumbers.map((moodleNbr) =>
-                            <li key={moodleNbr.moodleNumber}>
-                                <CollectionMoodleCourse label={moodleNbr.moodleNumber} onRemove={() => removeMoodleCourse(moodleNbr)} Icon={CourseIcon} />
-                            </li>)}
+                        {moodleNumbers.map((moodleNbr) =>
+                            <li key={moodleNbr}>
+                                <CollectionMoodleCourse label={moodleNbr} onRemove={() => removeMoodleCourse(moodleNbr)} Icon={CourseIcon} />
+                            </li>
+                        )}
                     </ul>
                 </Col>
             </Row>
@@ -76,6 +81,8 @@ const CollectionMoodleCourses = ({ moodleNumbers = [] }) => {
 
 CollectionMoodleCourses.propTypes = {
     moodleNumbers: PropTypes.array,
+    onMoodleNumberChange: PropTypes.func,
+    disabled: PropTypes.bool
 };
 
 export default CollectionMoodleCourses;

@@ -6,9 +6,13 @@ import {useTranslation} from "react-i18next";
 import TextArea from "../../form/TextArea";
 import FormElementHeader from "../../form/FormElementHeader";
 
-const CollectionDescription = ({ description }) => {
+const CollectionDescription = ({ description, onChange, message, disabled }) => {
     const { t } = useTranslation();
     const id = useId();
+    
+    const changeDescription = (event) => {
+      onChange(event.target.value);
+    };
 
     return (
         <Container className="ps-0">
@@ -20,7 +24,7 @@ const CollectionDescription = ({ description }) => {
                 </Row>
                 <Row>
                     <Col>
-                        <TextArea id={id} value={description} />
+                        <TextArea id={id} value={description} onChange={changeDescription} message={message} disabled={disabled} />
                     </Col>
                 </Row>
             </Form.Group>
@@ -30,6 +34,9 @@ const CollectionDescription = ({ description }) => {
 
 CollectionDescription.propTypes = {
   description: PropTypes.string,
+  onChange: PropTypes.func,
+  message: PropTypes.object,
+  disabled: PropTypes.bool,
 };
 
 export default CollectionDescription;

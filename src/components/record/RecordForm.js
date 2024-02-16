@@ -73,7 +73,7 @@ const RecordForm = ({
             <Col>
                 <RecordCollections 
                   collection={record.isPartOf || record.is_part_of}
-                  onChange={(value) => onChange('isPartOf', value)} 
+                  onChange={(value) => onChange('isPartOf', console.log(value) || value)} 
                   disabled={disabled}
                 />
             </Col>

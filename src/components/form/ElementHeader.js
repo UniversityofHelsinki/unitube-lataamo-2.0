@@ -4,7 +4,9 @@ import './ElementHeader.css';
 
 const ElementHeader = ({ children, label, ...rest }) => {
     return (
-        <span className="element-header" aria-label={label} { ...rest }>{children}</span>
+        <span className="element-header" aria-label={label} { ...rest }>
+          {children}
+        </span>
     );
 };
 

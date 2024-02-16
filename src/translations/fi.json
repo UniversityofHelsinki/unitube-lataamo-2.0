@@ -25,8 +25,8 @@
   "collection_management_rights_help_label": "Tietoa hallinnointioikeuksista",
   "collection_management_rights_help_content": "Voit jakaa kokoelmaasi hallinnointioikeuksia yliopistolaisille henkilöille ja käyttäjäryhmille hakukenttien avulla. Lisäämilläsi henkilöillä ja ryhmien jäsenillä on yhtäläiset muokkaus- ja poisto-oikeudet tallenteisiin.",
   "collection_unpublished_series": "Ei julkaistu.",
-  "collection_publicity_shareable": "Sarjan tallenteita voi jakaa ja upottaa muualle linkkien avulla. Kuka tahansa tällaisen linkin saava voi katsoa tai jakaa tallenteen. Sarjan tallenteet tai linkit niihin eivät näy hakukoneiden tai HY:n verkkosivujen listauksissa.",
-  "collection_publicity_public": "Sarja on julkinen, ja sen tallenteet voivat näkyä yliopiston verkkosivujen julkisessa listauksessa ja hakukoneiden tuloksissa.",
+  "collection_publicity_shareable": "Kokoelman tallenteita voi jakaa ja upottaa muualle linkkien avulla. Kuka tahansa tällaisen linkin saava voi katsoa tai jakaa tallenteen. Kokoelman tallenteet tai linkit niihin eivät näy hakukoneiden tai HY:n verkkosivujen listauksissa.",
+  "collection_publicity_public": "Kokoelma on julkinen, ja sen tallenteet voivat näkyä yliopiston verkkosivujen julkisessa listauksessa ja hakukoneiden tuloksissa.",
   "help_dialog_close_label": "Sulje",
   "new_record_button": "Uusi tallenne",
   "new_record_form_header": "Uusi tallenne",
@@ -83,5 +83,14 @@
   "breadcrumb_collections": "Kokoelmat",
   "undo_button": "Kumoa muutokset",
   "save_button": "Tallenna",
-  "unsaved_changes": "Tallentamattomia muutoksia!"
+  "unsaved_changes": "Tallentamattomia muutoksia!",
+  "collection_records_form_header": "Kokoelman tallenteet",
+  "collection_form_name_header": "Nimi",
+  "collection_form_description_header": "Kuvaus",
+  "collection_form_publicity_header": "Julkisuus",
+  "collection_management_rights_form_header": "Hallinnointioikeudet",
+  "collection_moodle_courses_form_header": "Kokoelman Moodle-kurssit",
+  "collection_bottom_bar_in_progress": "Tallennetaan kokoelman tietoja...",
+  "collection_bottom_bar_republishing_metadata": "Päivitetään kokoelman metatietoja",
+  "collection_bottom_bar_done": "Valmis!"
 }

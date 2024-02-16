@@ -8,39 +8,50 @@ import CollectionManagementRight from './CollectionManagementRight';
 import { ReactComponent as UserIcon } from '../../utilities/icons/avatar.svg';
 import { ReactComponent as GroupIcon } from '../../utilities/icons/avatar-group.svg';
 import GroupAutoComplete from '../../form/autocomplete/group/GroupAutoComplete';
-import FormElementHeader from '../../form/FormElementHeader';
 import HelpDialog from '../../dialog/HelpDialog';
-import { useId } from 'react';
+import ElementHeader from '../../form/ElementHeader';
 
-const CollectionManagementRights = ({ users = [], groups = [] }) => {
-  const [selectedUsers, setSelectedUsers] = useState(users);
-  const [selectedGroups, setSelectedGroups] = useState(groups);
+const CollectionManagementRights = ({ users = [], groups = [], onUserChange, onGroupChange, disabled }) => {
   const { t } = useTranslation();
 
   const selectUser = (user) => {
-    if (!selectedUsers.map(u => u.userName).includes(user.userName)) {
-      setSelectedUsers([ ...selectedUsers, user ]);
+    if (!users.includes(user.userName)) {
+      const newSelectedUsers = [ ...users, user.userName ];
+      if (onUserChange) {
+        onUserChange(newSelectedUsers);
+      }
     }
   };
 
   const selectGroup = (group) => {
-    if (!selectedGroups.map(g => g.grpName).includes(group.grpName)) {
-      setSelectedGroups([ ...selectedGroups, group ]);
+    if (!groups.includes(group.grpName)) {
+      const newSelectedGroups = [ ...groups, group.grpName ];
+      if (onGroupChange) {
+        onGroupChange(newSelectedGroups);
+      }
     }
   };
 
   const removeUser = (user) => {
-    setSelectedUsers(selectedUsers.filter(u => u.userName !== user.userName));
+    const userRemovedUsers = users.filter(u => u !== user);
+    if (onUserChange) {
+      onUserChange(userRemovedUsers);
+    }
   };
 
   const removeGroup = (group) => {
-    setSelectedGroups(selectedGroups.filter(g => g.grpName !== group.grpName));
+    const groupRemovedGroups = groups.filter(g => g !== group);
+    if (onGroupChange) {
+      onGroupChange(groupRemovedGroups);
+    }
   };
 
   return (
     <Container className="collection-management-rights ps-0">
       <Row>
-        <FormElementHeader>{t('collection_management_rights_form_header')}</FormElementHeader>
+        <ElementHeader label={(t('collection_management_rights_form_header'))}>
+          {t('collection_management_rights_form_header')}
+        </ElementHeader>
       </Row>
       <Row className="mb-2">
         <Col>
@@ -51,30 +62,30 @@ const CollectionManagementRights = ({ users = [], groups = [] }) => {
       </Row>
       <Row className="mb-2">
         <Col>
-          <UserAutoComplete onSelect={selectUser} />
+          <UserAutoComplete onSelect={selectUser} disabled={disabled} />
         </Col>
       </Row>
       <Row>
         <Col>
           <ul className="collection-management-rights-list">
-            {selectedUsers.map((user) =>
-              <li key={user.userName}>
-                <CollectionManagementRight label={user.userName} onRemove={() => removeUser(user)} Icon={UserIcon} />
+            {users.map((user) =>
+              <li key={user}>
+                <CollectionManagementRight label={user} onRemove={() => removeUser(user)} Icon={UserIcon} />
               </li>)}
           </ul>
         </Col>
       </Row>
       <Row className="mb-2">
         <Col>
-          <GroupAutoComplete onSelect={selectGroup} />
+          <GroupAutoComplete onSelect={selectGroup} disabled={disabled} />
         </Col>
       </Row>
       <Row>
         <Col>
           <ul className="collection-management-rights-list collection-management-rights-groups-list">
-            {selectedGroups.map((group) => 
-              <li key={group.grpName}>
-                <CollectionManagementRight label={group.grpName} onRemove={() => removeGroup(group)} Icon={GroupIcon} />
+            {groups.map((group) => 
+              <li key={group}>
+                <CollectionManagementRight label={group} onRemove={() => removeGroup(group)} Icon={GroupIcon} />
               </li>)}
           </ul>
         </Col>
@@ -85,7 +96,9 @@ const CollectionManagementRights = ({ users = [], groups = [] }) => {
 
 CollectionManagementRights.propTypes = {
   users: PropTypes.array,
-  groups: PropTypes.array
+  groups: PropTypes.array,
+  onUserChange: PropTypes.func,
+  onGroupChange: PropTypes.func
 };
 
 export default CollectionManagementRights;

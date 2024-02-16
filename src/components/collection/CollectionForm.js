@@ -16,81 +16,116 @@ import CollectionMoodleCourses from "./moodle-courses/CollectionMoodleCourses";
 import {useTranslation} from "react-i18next";
 import CollectionRecords from './records/CollectionRecords';
 import CollectionBottomBar from './CollectionBottomBar';
+import useCollectionModification from '../../hooks/useCollectionModification';
+import useCollectionUpdate from '../../hooks/collection/useCollectionUpdate';
 
 const CollectionForm = () => {
-  const [collection, loading] = useCollection();
+  const [originalCollection, loading, reload] = useCollection();
+  const [collection, onChange, modified, undo] = useCollectionModification(originalCollection);
+  const [progress, update, resetProgress] = useCollectionUpdate();
   const [isValid, messages, validate] = useCollectionValidation();
   const { t } = useTranslation();
 
-  const users = collection?.persons?.map(person =>
-    ({ userName: person })
-  ) || [];
+  const users = collection?.persons || [];
 
-  const groups = collection?.iamgroups?.map(group =>
-    ({ grpName: group })
-  ) || [];
+  const groups = collection?.iamgroups || [];
 
-  const moodleNumbers = collection?.moodleNumbers?.map(moodleNbr =>
-      ({ moodleNumber: moodleNbr })
-  ) || [];
+  const saveCollection = async (event) => {
+    event.preventDefault();
+    await update(collection);
+    reload();
+  };
+
+  const disabled = !['NOT_STARTED', 'DONE'].includes(progress.status);
 
   return (
-    <Loading loading={loading}>
+    <form onSubmit={saveCollection}>
       <Container className="collection-container">
-        <Row className="collection-form-row">
-          <Col>
-            <Container className="collection-form ps-0">
-              <Row className="breadcrumb-container">
-                <Col className="ps-0">
-                  <CollectionsBreadCrumb collection={collection || {}} />
-                </Col>
-              </Row>
-              <Row>
-                <Col className="ps-1">
-                  <CollectionRecords records={collection?.eventColumns || []} />
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                </Col>
-              </Row>
-              <Row className="mb-3">
-                <Col className="ps-1">
-                    <CollectionName name={collection?.title} />
-                </Col>
-              </Row>
-              <Row className="mb-3">
-                <Col className="ps-1">
-                    <CollectionDescription description={collection?.description} />
-                </Col>
-              </Row>
-              <Row className="mb-3">
-                <Col className="ps-1">
-                    <CollectionPublicity published={collection?.published}/>
-                </Col>
-              </Row>
-              <Row>
-                <Col className="ps-1">
-                  <CollectionManagementRights users={users} groups={groups} />
-                </Col>
-                <Col>
-                  <CollectionMoodleCourses moodleNumbers={moodleNumbers} />
-                </Col>
-              </Row>
-            </Container>
-          </Col>
-        </Row>
+          <Row className="collection-form-row">
+            <Loading loading={loading}>
+            <Col>
+              <Container className="collection-form ps-0">
+                <Row className="breadcrumb-container">
+                  <Col className="ps-0">
+                    <CollectionsBreadCrumb collection={collection || {}} />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col className="ps-1">
+                    <CollectionRecords records={collection?.eventColumns || []} />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                  </Col>
+                </Row>
+                <Row className="mb-3">
+                  <Col className="ps-1">
+                      <CollectionName 
+                          name={collection?.title} 
+                          onChange={(title) => onChange('title', title)}
+                          message={messages.title}
+                          disabled={disabled}
+                      />
+                  </Col>
+                </Row>
+                <Row className="mb-3">
+                  <Col className="ps-1">
+                      <CollectionDescription 
+                        description={collection?.description} 
+                        onChange={(description) => onChange('description', description)}
+                        message={messages.description}
+                        disabled={disabled}
+                      />
+                  </Col>
+                </Row>
+                <Row className="mb-3">
+                  <Col className="ps-1">
+                      <CollectionPublicity 
+                        publicity={collection?.published}
+                        onChange={(publicity) => onChange('published', publicity)}
+                        message={messages.publicity}
+                        disabled={disabled}
+                      />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col className="ps-1">
+                    <CollectionManagementRights 
+                      users={users} 
+                      groups={groups}
+                      onUserChange={(users) => onChange('persons', users)}
+                      onGroupChange={(groups) => onChange('iamgroups', groups)}
+                      disabled={disabled}
+                    />
+                  </Col>
+                  <Col>
+                    <CollectionMoodleCourses 
+                      moodleNumbers={collection?.moodleNumbers} 
+                      onMoodleNumberChange={(moodleNumbers) => onChange('moodleNumbers', moodleNumbers)}
+                      disabled={disabled}
+                    />
+                  </Col>
+                </Row>
+              </Container>
+            </Col>
+            </Loading>
+          </Row>
         <Row className="collection-bottom-bar">
           <Col>
-            <CollectionBottomBar />
+            <CollectionBottomBar 
+              progress={progress} 
+              modified={modified} 
+              disabled={disabled}
+              undo={undo} />
           </Col>
         </Row>
       </Container>
-    </Loading>
+    </form>
   );
 };
 

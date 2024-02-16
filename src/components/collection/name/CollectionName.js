@@ -6,9 +6,13 @@ import {useTranslation} from "react-i18next";
 import InputField from "../../form/InputField";
 import FormElementHeader from "../../form/FormElementHeader";
 
-const CollectionName = ({ name }) => {
+const CollectionName = ({ name, onChange, message, disabled }) => {
     const { t } = useTranslation();
     const id = useId();
+
+    const nameChanged = (event) => {
+      onChange(event.target.value);
+    };
 
     return (
         <Container className="ps-0">
@@ -20,7 +24,7 @@ const CollectionName = ({ name }) => {
                 </Row>
                 <Row>
                     <Col>
-                        <InputField id={id} label={t('aaa')} placeholder={t('collection_form_name_placeholder')} value={name} />
+                        <InputField id={id} label={name} placeholder={t('collection_form_name_placeholder')} value={name} onChange={nameChanged} message={message} disabled={disabled} />
                     </Col>
                 </Row>
             </Form.Group>
@@ -29,7 +33,9 @@ const CollectionName = ({ name }) => {
 };
 
 CollectionName.propTypes = {
-  name: PropTypes.string
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+  message: PropTypes.object
 };
 
 export default CollectionName;

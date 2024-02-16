@@ -23,6 +23,20 @@ export const ProgressStatus = {
   PROCESSING: 'processing'
 };
 
+export const MONITOR_POLLING_RATE_MS = 3000;
+
+export const STATUS = {
+  PUBLISHED: 'status_published',
+  UNLISTED: 'status_unlisted',
+  PRIVATE: 'status_private',
+  MOODLE: 'status_moodle'
+};
+
+export const ROLE_KATSOMO_TUOTANTO = 'ROLE_USER_KATSOMO_TUOTANTO';
+export const ROLE_KATSOMO = 'ROLE_KATSOMO';
+export const ROLE_ANONYMOUS = 'ROLE_ANONYMOUS';
+export const ROLE_USER_UNLISTED = 'ROLE_USER_UNLISTED';
+
 export const PUBLICITIES = [
   {
     label: 'collection_unpublished_series',
@@ -30,12 +44,10 @@ export const PUBLICITIES = [
   },
   {
     label: 'collection_publicity_shareable',
-    value: 'ROLE_USER_UNLISTED',
+    value: ROLE_USER_UNLISTED,
   },
   {
     label: 'collection_publicity_public',
-    value: 'ROLE_ANONYMOUS',
+    value: ROLE_ANONYMOUS,
   },
 ];
-
-export const MONITOR_POLLING_RATE_MS = 3000;
