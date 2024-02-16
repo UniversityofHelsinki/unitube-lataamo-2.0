@@ -35,7 +35,7 @@ const VideoPlayer = ({ video }) => {
     }, [video])
 
     return (
-        <Loading loading={!currentVideo || currentVideo.id !== video.id}>
+        <Loading loading={!currentVideo || currentVideo.id !== video?.id}>
           <video data-testid="video-player" poster={getCoverImage(video?.coverImage)} className="video-player" crossOrigin="anonymous" preload="metadata"
                  controlsList='nodownload' controls
                  onContextMenu={e => e.preventDefault()}>
