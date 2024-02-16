@@ -26,7 +26,7 @@ const useSubtitleOrder = () => {
 
   const doOrder = async (input) => {
     const job = await order(input);
-    if (job && job.status !== 'FINISHED') {
+    if (job && job.status !== 'FINISHED' && job.status !== 'NOT_FOUND') {
       await startMonitoring(job);
     }
   };

@@ -1,3 +1,5 @@
+import useMonitor from "../useMonitor";
+
 const upload = async (data) => {
   const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/videoTextTrack`;
   try {
@@ -22,13 +24,18 @@ const upload = async (data) => {
 };
 
 const useSubtitleUpload = () => {
+  const [startMonitoring] = useMonitor();
 
   const save = async (input) => {
-    console.log('tiedosto:', input.file);
     const formData = new FormData();
     formData.append('video_text_track_file', input.file);
     formData.append('eventId', input.identifier);
-    await upload(formData);
+    const job = await upload(formData);
+
+    if (job && job.status !== 'FINISHED' || job.status !== 'NOT_FOUND') {
+      await startMonitoring(job);
+    }
+
   };
 
   return [save];
