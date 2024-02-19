@@ -17,6 +17,7 @@ const RecordForm = ({
   onChange,
   disabled
 }) => {
+  console.log(validationMessages);
 
   return (
     <Container>
@@ -79,7 +80,7 @@ const RecordForm = ({
           </Row>
           <Row className="mb-4">
             <Col>
-                <RecordSubtitle onChange={(what, value) => onChange(what, value)} message={validationMessages?.file} file={record.subtitleFile} automaticSubtitles={record.automaticSubtitles} disabled={disabled} />
+              <RecordSubtitle onChange={(what, value) => onChange(what, value)} message={{ subtitleFile: validationMessages?.subtitleFile, automaticSubtitles: validationMessages?.automaticSubtitles }} file={record.subtitleFile} automaticSubtitles={record.automaticSubtitles} disabled={disabled} />
             </Col>
           </Row>
     </Container>

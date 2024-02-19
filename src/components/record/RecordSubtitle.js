@@ -21,6 +21,8 @@ const RecordSubtitle = ({ onChange, message, file, automaticSubtitles, disabled 
       }
     };
 
+  console.log(message);
+
     return (
         <Container>
             <Form.Group>
@@ -39,8 +41,8 @@ const RecordSubtitle = ({ onChange, message, file, automaticSubtitles, disabled 
                 <Row>
                     <Col>
                         <Toggle labels={[t('record_subtitle_file_header'), t('record_automatic_subtitle_header')]}>
-                            <RecordSubtitleFile onChange={(value) => handleChange('subtitleFile', value)} value={file} disabled={disabled} />
-                            <RecordAutomaticSubtitleFile onChange={(value) => handleChange('automaticSubtitles', value)} value={automaticSubtitles}  disabled={disabled} />
+                            <RecordSubtitleFile onChange={(value) => handleChange('subtitleFile', value)} value={file} disabled={disabled} message={message.subtitleFile} />
+                            <RecordAutomaticSubtitleFile onChange={(value) => handleChange('automaticSubtitles', value)} value={automaticSubtitles}  disabled={disabled} message={message.automaticSubtitles} />
                         </Toggle>
                     </Col>
                 </Row>
