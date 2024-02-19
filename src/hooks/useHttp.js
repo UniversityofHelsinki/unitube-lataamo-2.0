@@ -10,7 +10,9 @@ const useHttp = (url) => {
         return await response.json();
       }
     } catch (error) {
-      dispatch({ type: 'SET_ERROR', message: error.message });
+      throw new Error('http error in GET', {
+        cause: error
+      });
     }
   };
 
