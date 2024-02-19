@@ -89,11 +89,6 @@ const Record = () => {
   const saveInProgress 
     = progress.status !== 'NOT_STARTED' && progress.status !== 'DONE';
 
-  if (loading) {
-    return <></>;
-  }
-
-
  return (
       <form onSubmit={handleSave}>
       <Container className="record" >
