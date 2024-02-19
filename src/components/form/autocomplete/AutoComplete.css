@@ -7,7 +7,6 @@
 
 .auto-complete input[type="search"]:focus-visible {
   outline: 2px solid var(--hy-blue);
-  border: 0px;
   border-radius: 0;
   box-shadow: initial;
   transition: none;

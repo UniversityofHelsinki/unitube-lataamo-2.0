@@ -4,7 +4,7 @@ import './ElementHeader.css';
 
 const ElementHeader = ({ children, label, ...rest }) => {
     return (
-        <span className="element-header" aria-label={label} { ...rest }>
+        <span className="element-header form-label" aria-label={label} { ...rest }>
           {children}
         </span>
     );

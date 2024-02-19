@@ -6,6 +6,7 @@ import {useTranslation} from "react-i18next";
 import { PUBLICITIES  } from '../../../Constants.js';
 import RadioButtonGroup from '../../form/RadioButtonGroup';
 import ElementHeader from '../../form/ElementHeader';
+import HelpDialog from '../../dialog/HelpDialog';
 
 
 const CollectionPublicity = ({ publicity, onChange, message, disabled }) => {
@@ -24,6 +25,13 @@ const CollectionPublicity = ({ publicity, onChange, message, disabled }) => {
                         {t('collection_form_publicity_header')}
                       </ElementHeader>
                   </Col>
+              </Row>
+              <Row className="mb-3">
+                <Col>
+                  <HelpDialog label={t('collection_form_publicity_help_label')}>
+                    {t('collection_form_publicity_help_content')}
+                  </HelpDialog>
+                </Col>
               </Row>
               <Row>
                   <Col>

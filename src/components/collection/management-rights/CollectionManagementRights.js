@@ -49,11 +49,13 @@ const CollectionManagementRights = ({ users = [], groups = [], onUserChange, onG
   return (
     <Container className="collection-management-rights ps-0">
       <Row>
-        <ElementHeader label={(t('collection_management_rights_form_header'))}>
-          {t('collection_management_rights_form_header')}
-        </ElementHeader>
+        <Col>
+          <ElementHeader label={(t('collection_management_rights_form_header'))}>
+            {t('collection_management_rights_form_header')}
+          </ElementHeader>
+        </Col>
       </Row>
-      <Row className="mb-2">
+      <Row className="mb-3">
         <Col>
           <HelpDialog label={t('collection_management_rights_help_label')}>
             {t('collection_management_rights_help_content')}

@@ -47,9 +47,11 @@ const CollectionMoodleCourses = ({ moodleNumbers = [], onMoodleNumberChange, dis
     return (
         <Container className="collection-moodle-courses ps-0">
             <Row>
+              <Col>
                 <FormElementHeader componentId={id}>{t('collection_moodle_courses_form_header')}</FormElementHeader>
+              </Col>
             </Row>
-            <Row className="mb-2">
+            <Row className="mb-3">
                 <Col>
                   <HelpDialog label={t('collection_moodle_courses_help_label')}>
                     {t('collection_moodle_courses_help_content')}

@@ -50,7 +50,7 @@ const CollectionForm = () => {
                     <CollectionsBreadCrumb collection={collection || {}} />
                   </Col>
                 </Row>
-                <Row>
+                <Row className="mb-3">
                   <Col className="ps-1">
                     <CollectionRecords records={collection?.eventColumns || []} />
                   </Col>
@@ -93,7 +93,7 @@ const CollectionForm = () => {
                       />
                   </Col>
                 </Row>
-                <Row>
+                <Row className="mb-3">
                   <Col className="ps-1">
                     <CollectionManagementRights 
                       users={users} 

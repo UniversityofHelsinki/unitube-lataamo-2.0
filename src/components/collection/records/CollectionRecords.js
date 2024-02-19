@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Col, Container, Row } from 'react-bootstrap';
 import CollectionRecord from './CollectionRecord';
 import ElementHeader from '../../form/ElementHeader';
+import HelpDialog from '../../dialog/HelpDialog';
 
 const CollectionRecords = ({ records }) => {
   const { t } = useTranslation();
@@ -13,9 +14,16 @@ const CollectionRecords = ({ records }) => {
     <Container className="ps-0">
       <Row>
         <Col>
-          <ElementHeader label={t('collection_records_form_header')}>
-            {t('collection_records_form_header')}
+          <ElementHeader label={t('collection_form_collection_records_form_header')}>
+            {t('collection_form_collection_records_form_header')}
           </ElementHeader>
+        </Col>
+      </Row>
+      <Row className="mb-3">
+        <Col>
+          <HelpDialog label={t('collection_form_collection_records_help_label')}>
+            {t('collection_form_collection_records_help_content')}
+          </HelpDialog>
         </Col>
       </Row>
       <Row className="collection-records-list-row">

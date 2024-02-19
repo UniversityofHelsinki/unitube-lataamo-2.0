@@ -5,6 +5,7 @@ import {Col, Container, Form, Row} from 'react-bootstrap';
 import {useTranslation} from "react-i18next";
 import InputField from "../../form/InputField";
 import FormElementHeader from "../../form/FormElementHeader";
+import HelpDialog from '../../dialog/HelpDialog';
 
 const CollectionName = ({ name, onChange, message, disabled }) => {
     const { t } = useTranslation();
@@ -21,6 +22,13 @@ const CollectionName = ({ name, onChange, message, disabled }) => {
                     <Col>
                         <FormElementHeader componentId={id}>{t('collection_form_name_header')}</FormElementHeader> 
                     </Col>
+                </Row>
+                <Row className="mb-3">
+                  <Col>
+                    <HelpDialog label={t('collection_form_name_help_label')}>
+                      {t('collection_form_name_help_content')}
+                    </HelpDialog>
+                  </Col>
                 </Row>
                 <Row>
                     <Col>
