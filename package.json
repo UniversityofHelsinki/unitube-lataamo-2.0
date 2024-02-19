@@ -33,7 +33,8 @@
       "!src/**/*.d.ts",
       "!src/**/node_modules/**",
       "!**/*.test.{js,jsx,ts,tsx}",
-      "!**/*.spec.{js,jsx,ts,tsx}"
+      "!**/*.spec.{js,jsx,ts,tsx}",
+      "!**/*accessibility.test.js"
     ],
     "coverageReporters": [
       "lcov",
