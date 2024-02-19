@@ -7,9 +7,9 @@ import './DropDown.css';
 const DropDown = ({ options, message, ...rest }) => {
     return (
       <>
-        <Form.Select { ...rest }>
-            {options.map(option => 
-              <option key={option.value} value={option.value}>{option.label}</option>
+        <Form.Select { ...rest } value={rest.value || ''}>
+            {options.map((option, i) => 
+              <option key={option.value || i} value={option.value}>{option.label}</option>
             )}
         </Form.Select>
         <Message type={message?.type}>

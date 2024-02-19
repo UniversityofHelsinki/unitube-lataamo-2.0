@@ -7,24 +7,40 @@ import Toggle from "../form/Toggle";
 import RecordSubtitleFile from "../form/RecordSubtitleFile";
 import RecordAutomaticSubtitleFile from "../form/RecordAutomaticSubtitleFile";
 import ElementHeader from "../form/ElementHeader";
+import HelpDialog from '../dialog/HelpDialog';
 
 
-const RecordSubtitle = ({ onChange, message, file }) => {
+const RecordSubtitle = ({ onChange, message, file, automaticSubtitles, disabled }) => {
     const { t } = useTranslation();
+
+    const handleChange = (what, value) => {
+      if (what === 'subtitleFile') {
+        onChange('subtitleFile', value);
+      } else if (what === 'automaticSubtitles') {
+        onChange('automaticSubtitles', value);
+      }
+    };
 
     return (
         <Container>
             <Form.Group>
-                <Row className="record-subtitle-row">
+                <Row className="record-subtitle-row mb-2">
                     <Col>
                         <ElementHeader label={t('record_subtitle_header')}> {t('record_subtitle_header')} </ElementHeader>
                     </Col>
                 </Row>
+                <Row className="mb-2">
+                  <Col>
+                    <HelpDialog label={t('record_subtitle_help_label')}>
+                      {t('record_subtitle_help_content')}
+                    </HelpDialog>
+                  </Col>
+                </Row>
                 <Row>
                     <Col>
                         <Toggle labels={[t('record_subtitle_file_header'), t('record_automatic_subtitle_header')]}>
-                            <RecordSubtitleFile  onChange={(value) => onChange(value)} message={message} />
-                            <RecordAutomaticSubtitleFile onChange={(what, value) => onChange(what, value)} />
+                            <RecordSubtitleFile onChange={(value) => handleChange('subtitleFile', value)} value={file} disabled={disabled} />
+                            <RecordAutomaticSubtitleFile onChange={(value) => handleChange('automaticSubtitles', value)} value={automaticSubtitles}  disabled={disabled} />
                         </Toggle>
                     </Col>
                 </Row>
@@ -40,7 +56,7 @@ RecordSubtitle.propTypes = {
         type: PropTypes.oneOf(['light', 'neutral', 'warning'])
     }),
     file: PropTypes.object,
-
+    disabled: PropTypes.bool,
 };
 
 export default RecordSubtitle;

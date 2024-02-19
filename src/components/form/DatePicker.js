@@ -7,7 +7,7 @@ import { fi, enUS, sv } from 'date-fns/locale/';
 import './DatePicker.css';
 import { useTranslation } from 'react-i18next';
 import { DATE_FORMAT } from '../../Constants';
-import { Form } from 'react-bootstrap';
+import Message from './Message';
 
 registerLocale('fi', fi);
 registerLocale('en', enUS);
@@ -28,13 +28,6 @@ const DatePicker = ({ message, ...rest }) => {
     }
   };
 
-  const messageType = ({
-    'light': 'text-secondary',
-    'neutral': '',
-    'warning': 'text-danger'
-  })[message?.type];
-
-
   return (
     <>
     <ReactDatePicker
@@ -46,7 +39,7 @@ const DatePicker = ({ message, ...rest }) => {
       showPopperArrow={false}
       showMonthYearDropdown
       { ...rest } />
-      <Form.Text className={messageType}>{message?.content}</Form.Text>
+      <Message type={message?.type}>{message?.content}</Message>
     </>
   );
 };

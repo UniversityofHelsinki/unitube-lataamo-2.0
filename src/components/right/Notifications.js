@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Notifications.css';
 
-const Notifications = () => {
+const Notifications = ({ children }) => {
   return (
-    <span>ilmoitus</span>
+    <div className="notifications">
+      {children}
+    </div>
   );
 };
 
