@@ -12,7 +12,6 @@ const useModification = (object, validate) => {
   }
 
   const onChange = (what, value) => {
-    console.log(what, value);
     const newModifiedObject = {
       ...modifiedObject,
       [what]: value
@@ -42,7 +41,8 @@ const useModification = (object, validate) => {
     })();
 
     if (validate) {
-      validate(newModifiedObject);
+      const previousObject = modifiedObject;
+      validate(newModifiedObject, previousObject);
     }
 
     setModifiedObject(newModifiedObject);

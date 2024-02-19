@@ -5,10 +5,12 @@ const useValidation = (validationFunctions, fields) => {
   const [messages, setMessages] = useState({});
   const { t } = useTranslation();
 
-  const validate = async (object) => {
+  const validate = async (object, previousObject = {}) => {
     const newMessages = { ...messages };
     await Promise.all(fields.map(async field => {
-      if (validationFunctions[field]) {
+      const valueHasChanged = object[field] !== previousObject[field];
+      console.log('vaihtui value', field, valueHasChanged);
+      if (validationFunctions[field] && valueHasChanged) {
         const message = await Promise.resolve(
           validationFunctions[field](object[field], object)
         );
