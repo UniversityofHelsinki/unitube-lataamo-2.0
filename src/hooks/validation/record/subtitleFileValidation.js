@@ -18,9 +18,11 @@ const subtitleFileValidation = async (file, record) => {
         }
         return "record_validation_subtitle_unknown_error";
     };
-    const data = new FormData();
-    data.append('video_text_track_file', file);
-    return await send(data);
+    if (file) {
+        const data = new FormData();
+        data.append('video_text_track_file', file);
+        return await send(data);
+    }
 };
 
 export default subtitleFileValidation;
