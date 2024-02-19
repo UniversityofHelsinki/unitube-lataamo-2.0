@@ -18,7 +18,6 @@ const DownloadLink = ({ to, label }) => {
 
 const RecordDownloadLinks = ({ media, publications }) => {
   const { t } = useTranslation();
-  console.log(media);
   return (
     <Container>
       <Row>

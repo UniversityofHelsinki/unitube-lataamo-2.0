@@ -32,7 +32,7 @@
   "new_record_form_header": "Uusi tallenne",
   "new_record_cancel_button_label": "Peruuta",
   "new_record_save_button_label": "Lähetä",
-  "record_upload_help_label": "Tietoa tiedoston valinnasta",
+  "record_upload_help_label": "Ohjeita tiedoston valitsemiseen",
   "record_upload_help_content": "Klikkaa valintapainiketta ja etsi avautuvasta ikkunasta koneeltasi tai laitteeltasi tallenne, jonka haluat ladata palveluun. Tuettuja tiedostomuotoja ovat yleisimmät videotiedostot kuten .avi, .mov ja .mp4.",
   "record_name_help_label": "Tietoa nimestä",
   "record_name_help_content": "Nimi näkyy kaikissa niissä paikoissa, joihin tallenne on julkaistu.",
@@ -42,7 +42,7 @@
   "record_license_help_content": "Valitse tallenteen julkaisulle soveltuva lisenssi. Varmista tallenteen tekijänoikeuksien haltijan (jos se on joku muu kuin sinä) lupa julkaisuun valitsemallasi lisenssillä! Kun valitset jonkin lisenssin, ruudulla näkyy lyhyt selite sen käyttötarkoituksesta. Lisää tietoa lisensseistä osoitteessa www.creativecommons.fi!",
   "record_automatic_subtitle_help_header_label": "Mikä ihmeen automaattitekstitys?",
   "record_automatic_subtitle_help_header_label_content": "Tietoa automaattisesta tekstityksestä",
-  "record_subtitle_header": "Tekstitys",
+  "record_subtitle_header": "Lisää tekstitys",
   "record_subtitle_file_header": "Tekstitystiedosto",
   "record_subtitle_file_help_label": "Ohje tekstitystiedoston lataamiseen",
   "record_subtitle_file_help_content": "Lisää tästä tallenteelle .vtt-tai .srt-muotoinen tekstitystiedosto. Lue lisää tekstitystiedostojen luomisesta ja lisäämisestä Unitube-tallenteille Helpdesk-sivuston ohjeista!",
@@ -78,5 +78,8 @@
   "unitube_lataamo": "Unitube-Lataamo",
   "subtitles_on": "On",
   "breadcrumb_records": "Tallenteet",
-  "breadcrumb_collections": "Kokoelmat"
+  "breadcrumb_collections": "Kokoelmat",
+  "undo_button": "Kumoa muutokset",
+  "save_button": "Tallenna",
+  "unsaved_changes": "Tallentamattomia muutoksia!"
 }

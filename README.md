@@ -6,6 +6,8 @@
 * [Jest](https://jestjs.io/docs/using-matchers)
 * [Running Tests](https://create-react-app.dev/docs/running-tests/#srcsetuptestsjs)
 * [Testing library](https://testing-library.com/docs/queries/about)
+* [jest-dom matchers](https://github.com/testing-library/jest-dom?tab=readme-ov-file#custom-matchers)
+* [jest matchers](https://github.com/testing-library/jest-dom?tab=readme-ov-file#custom-matchers)
 * [i18n](https://www.i18next.com/overview/configuration-options)
 * [DatePicker props](https://github.com/Hacker0x01/react-datepicker/blob/main/docs/datepicker.md)
 * [University Of Helsinki styleguide](https://universityofhelsinki.github.io/Styleguide/)

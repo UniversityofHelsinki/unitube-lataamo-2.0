@@ -4,84 +4,92 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import RecordName from "./RecordName";
-import { Form } from 'react-bootstrap';
 import RecordDescription from './RecordDescription';
 import './RecordForm.css';
-import useRecordValidation from '../../hooks/validation/record/useRecordValidation';
 import RecordEndDate from './RecordEndDate';
 import RecordCollections from "./RecordCollections";
 import RecordSubtitle from "./RecordSubtitle";
+import RecordLicense from './RecordLicense';
 
-const RecordForm = ({ record }) => {
-
-  const [modifiedRecord, setModifiedRecord] = useState({ ...record });
-  const [isValid, messages, validate] = useRecordValidation([
-    'title', 'description', 'deletionDate'
-  ]);
-
-  const onChange = async (what, value) => {
-    const newRecord = { ...modifiedRecord, [what]: value };
-    setModifiedRecord(newRecord);
-    await validate(newRecord);
-  };
+const RecordForm = ({ 
+  record,
+  validationMessages,
+  onChange,
+  disabled
+}) => {
 
   return (
     <Container>
-      <Form>
           <Row className="mb-4">
             <Col>
                 <RecordName
-                  name={modifiedRecord.title}
+                  name={record.title}
                   onChange={
                     (title) => onChange('title', title)
                   }
-                  message={messages.title}
+                  message={validationMessages?.title}
+                  disabled={disabled}
                 />
             </Col>
           </Row>
           <Row className="mb-4">
             <Col>
                 <RecordDescription
-                  description={modifiedRecord.description}
+                  description={record.description}
                   onChange={
                     (description) => onChange('description', description)
                   }
-                  message={messages.description}
+                  message={validationMessages?.description}
+                  disabled={disabled}
                 />
             </Col>
           </Row>
           <Row className="mb-4">
             <Col>
               <RecordEndDate
-                endDate={modifiedRecord.deletionDate}
+                endDate={record.deletionDate}
                 onChange={
                   (date) => onChange('deletionDate', (date || new Date()).toISOString())
                 }
-                message={messages.deletionDate}
+                message={validationMessages?.deletionDate}
+                disabled={disabled}
+              />
+            </Col>
+          </Row>
+          <Row className="mb-4">
+            <Col>
+              <RecordLicense
+                license={record.license}
+                onChange={
+                  (license) => onChange('license', license)
+                }
+                message={validationMessages?.license} 
+                disabled={disabled}
               />
             </Col>
           </Row>
           <Row>
             <Col>
+                <RecordCollections 
+                  collection={record.isPartOf || record.is_part_of}
+                  onChange={(value) => onChange('isPartOf', value)} 
+                  disabled={disabled}
+                />
             </Col>
           </Row>
-          <Row>
+          <Row className="mb-4">
             <Col>
-                <RecordCollections onChange={(value) => onChange('identifier', value)} />
+                <RecordSubtitle onChange={(what, value) => onChange(what, value)} message={validationMessages?.file} file={record.subtitleFile} automaticSubtitles={record.automaticSubtitles} disabled={disabled} />
             </Col>
           </Row>
-          <Row>
-            <Col>
-                <RecordSubtitle onChange={(what, value) => onChange(what, value)} message={messages.file} file={record.file} />
-            </Col>
-          </Row>
-      </Form>
     </Container>
   );
 };
 
 RecordForm.propTypes = {
   record: PropTypes.object,
+  onChange: PropTypes.func,
+  validationMessages: PropTypes.object
 };
 
 export default RecordForm;

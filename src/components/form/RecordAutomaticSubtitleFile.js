@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import React, { useId, useState } from 'react';
 import PropTypes from 'prop-types';
 import './RecordAutomaticSubtitleFile.css';
 import FormElementHeader from '../form/FormElementHeader';
@@ -8,10 +8,15 @@ import { useTranslation } from 'react-i18next';
 import {DEFAULT_LANGUAGE_MODELS, DEFAULT_LANGUAGES} from '../../Constants.js';
 import HelpDialog from "../dialog/HelpDialog";
 
-const RecordAutomaticSubtitle = ({ languagemodel, language, onChange, message, disabled = false }) => {
+const RecordAutomaticSubtitle = ({ onChange, message, disabled = false, value = {} }) => {
     const { t } = useTranslation();
     const id = useId();
     const empty = '';
+    
+    const handleChange = (what, fieldValue) => {
+      const newValue = { ...value, [what]: fieldValue };
+      onChange(newValue);
+    };
 
     const language_models = [
         empty,
@@ -35,9 +40,10 @@ const RecordAutomaticSubtitle = ({ languagemodel, language, onChange, message, d
         }
         return { value: '', label: t('record_automatic_subtitle_default_language') };
     };
+  
 
     return (
-        <Container>
+        <Container className="px-0 mb-3">
             <Row className="mb-3">
                 <Col>
                     <HelpDialog label={t('record_automatic_subtitle_help_header_label')} >
@@ -59,7 +65,7 @@ const RecordAutomaticSubtitle = ({ languagemodel, language, onChange, message, d
             </Row>
             <Row>
                 <Col>
-                    <DropDown id={id} value={languagemodel} onChange={(e) => onChange('languagemodel', e.target.value)} options={language_models.map(asLanguageModelOption)} message={message} disabled={disabled} />
+                    <DropDown id={id} value={value.translationModel} onChange={(e) => handleChange('translationModel', e.target.value)} options={language_models.map(asLanguageModelOption)} message={message} disabled={disabled} />
                 </Col>
             </Row>
             <Row>
@@ -69,7 +75,7 @@ const RecordAutomaticSubtitle = ({ languagemodel, language, onChange, message, d
             </Row>
             <Row>
                 <Col>
-                    <DropDown id={id} value={language} onChange={(e) => onChange('language', e.target.value)} options={languages.map(asLanguageOption)} message={message} disabled={disabled} />
+                    <DropDown id={id} value={value.translationLanguage} onChange={(e) => handleChange('translationLanguage', e.target.value)} options={languages.map(asLanguageOption)} message={message} disabled={disabled} />
                 </Col>
             </Row>
         </Container>
@@ -77,7 +83,7 @@ const RecordAutomaticSubtitle = ({ languagemodel, language, onChange, message, d
 };
 
 RecordAutomaticSubtitle.propTypes = {
-    languagemodel: PropTypes.string,
+    languageModel: PropTypes.string,
     language: PropTypes.string,
     message: PropTypes.shape({
         content: PropTypes.string,
