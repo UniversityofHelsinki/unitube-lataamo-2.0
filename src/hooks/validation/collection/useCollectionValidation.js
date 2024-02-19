@@ -1,22 +1,16 @@
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
+import useValidation from "../useValidation";
+import descriptionValidation from "./descriptionValidation";
+import publicityValidation from "./publicityValidation";
+import titleValidation from "./titleValidation";
 
-const useCollectionValidation = () => {
-  const [messages, setMessages] = useState({});
-  const [isValid, setIsValid] = useState({});
-  const { t } = useTranslation();
+const validationFunctions = {
+  title: titleValidation,
+  description: descriptionValidation,
+  published: publicityValidation,
+};
 
-  const validateName = (name) => {
-    if (name.length === 0) {
-      setMessages({ ...messages, name: t('record_validaton_name_is_empty')});
-      setIsValid(false);
-    }
-  };
-
-  const validate = (record) => {
-    validateName(record.name);
-  };
-
+const useCollectionValidation = (fields) => {
+  const [isValid, messages, validate] = useValidation(validationFunctions, fields);
   return [isValid, messages, validate];
 };
 

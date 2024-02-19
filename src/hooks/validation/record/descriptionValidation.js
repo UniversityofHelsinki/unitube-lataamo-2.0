@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { FIELD_IS_VALID } from '../../../Constants';
 
 const validateDescription = (description, _record) => {
   if (description.length === 0) {
@@ -6,7 +7,7 @@ const validateDescription = (description, _record) => {
   } else if (description.length > 1500) {
     return 'record_validation_description_is_too_long';
   }
-  return false;
+  return FIELD_IS_VALID;
 };
 
 validateDescription.PropTypes = {

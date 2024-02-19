@@ -29,7 +29,7 @@ const CollectionBottomBar = ({ progress, collection, modified, isValid, undo, di
         <Button onClick={undo} variant="danger" disabled={!modified || disabled}>
           {t('undo_button')}
         </Button>
-        <Button type="submit" disabled={!modified || disabled}>
+        <Button type="submit" disabled={!modified || !isValid || disabled}>
           {t('save_button')}
         </Button>
       </div>}
@@ -41,6 +41,7 @@ CollectionBottomBar.propTypes = {
   progress: PropTypes.object,
   collection: PropTypes.object,
   modified: PropTypes.bool,
+  disabled: PropTypes.bool,
   isValid: PropTypes.bool,
   undo: PropTypes.func,
 };

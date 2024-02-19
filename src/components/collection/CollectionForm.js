@@ -21,9 +21,9 @@ import useCollectionUpdate from '../../hooks/collection/useCollectionUpdate';
 
 const CollectionForm = () => {
   const [originalCollection, loading, reload] = useCollection();
-  const [collection, onChange, modified, undo] = useCollectionModification(originalCollection);
   const [progress, update, resetProgress] = useCollectionUpdate();
-  const [isValid, messages, validate] = useCollectionValidation();
+  const [isValid, messages, validate] = useCollectionValidation(['title', 'description']);
+  const [collection, onChange, modified, undo] = useCollectionModification(originalCollection, validate);
   const { t } = useTranslation();
 
   const users = collection?.persons || [];
@@ -121,6 +121,7 @@ const CollectionForm = () => {
               progress={progress} 
               modified={modified} 
               disabled={disabled}
+              isValid={isValid}
               undo={undo} />
           </Col>
         </Row>

@@ -12,57 +12,17 @@ import RecordsBreadCrumb from "../form/RecordsBreadCrumb";
 import RecordBottomBar from './RecordBottomBar';
 import useRecordValidation from '../../hooks/validation/record/useRecordValidation';
 import useRecordSave from '../../hooks/record/useRecordSave';
+import useRecordModification from '../../hooks/useRecordModification';
 
 const Record = () => {
   const [originalRecord, loading, reload] = useRecord();
-  const [modified, setModified] = useState(false);
-  const [modifiedRecord, setModifiedRecord] = useState(null);
-  const [modifiedFields, setModifiedFields] = useState({});
   const [progress, save, resetProgress] = useRecordSave();
 
   const [isValid, messages, validate] = useRecordValidation([
     'title', 'description', 'deletionDate', 'license', 'subtitleFile'
   ]);
 
-  const record = modifiedRecord || originalRecord;
-
-  const reset = () => {
-    setModified(false);
-    setModifiedFields({});
-  };
-
-  useEffect(() => {
-    if (originalRecord && originalRecord.identifier !== modifiedRecord?.identifier) {
-      setModifiedRecord({ ...originalRecord });
-      setModified(false);
-      setModifiedFields({});
-      resetProgress();
-    }
-  }, [originalRecord]);
-
-  const onChange = async (what, value) => {
-    const newRecord = { ...record, [what]: value };
-
-    const newModifiedFields = {
-      ...modifiedFields,
-      [what]: newRecord[what] !== record[what]
-    };
-
-    const recordDoesNotEqualOriginal =
-      Object.values(newModifiedFields).reduce((a, c) => c || a, false);
-
-    setModified(recordDoesNotEqualOriginal);
-    setModifiedFields(newModifiedFields);
-    setModifiedRecord(newRecord);
-
-    await validate(newRecord);
-  };
-
-  const undo = async () => {
-    setModifiedRecord({ ...originalRecord });
-    setModified(false);
-    await validate({ ...originalRecord });
-  };
+  const [record, onChange, modified, undo] = useRecordModification(originalRecord, validate);
 
   const handleSave = async (event) => {
     event.preventDefault();
@@ -80,7 +40,6 @@ const Record = () => {
     });
 
     if (success) {
-      reset();
       reload();
     }
 

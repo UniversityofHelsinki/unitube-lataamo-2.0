@@ -51,3 +51,5 @@ export const PUBLICITIES = [
     value: ROLE_ANONYMOUS,
   },
 ];
+
+export const FIELD_IS_VALID = false;
