@@ -13,7 +13,6 @@ import CollectionPublicity from "./publicity/CollectionPublicity";
 import useCollectionValidation from '../../hooks/validation/collection/useCollectionValidation';
 import CollectionsBreadCrumb from "../form/CollectionsBreadCrumb";
 import CollectionMoodleCourses from "./moodle-courses/CollectionMoodleCourses";
-import {useTranslation} from "react-i18next";
 import CollectionRecords from './records/CollectionRecords';
 import CollectionBottomBar from './CollectionBottomBar';
 import useCollectionModification from '../../hooks/useCollectionModification';
@@ -24,7 +23,6 @@ const CollectionForm = () => {
   const [progress, update, resetProgress] = useCollectionUpdate();
   const [isValid, messages, validate] = useCollectionValidation(['title', 'description']);
   const [collection, onChange, modified, undo] = useCollectionModification(originalCollection, validate);
-  const { t } = useTranslation();
 
   const users = collection?.persons || [];
 
@@ -47,7 +45,7 @@ const CollectionForm = () => {
               <Container className="collection-form ps-0">
                 <Row className="breadcrumb-container">
                   <Col className="ps-0">
-                    <CollectionsBreadCrumb collection={collection || {}} />
+                    <CollectionsBreadCrumb collection={originalCollection || {}} />
                   </Col>
                 </Row>
                 <Row className="mb-3">

@@ -9,6 +9,10 @@ const useModification = (object, validate) => {
     setModifiedObject({ ...object });
     setTouchedFields([]);
     setModified(false);
+    if (object) {
+      const validateAllFieldsAtFirst = () => validate(object, {}, true);
+      validateAllFieldsAtFirst();
+    }
   }
 
   const onChange = (what, value) => {

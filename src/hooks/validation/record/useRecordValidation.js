@@ -18,6 +18,7 @@ const validationFunctions = {
 
 const useRecordValidation = (fields) => {
   const [isValid, messages, validate] = useValidation(validationFunctions, fields);
+
   return [isValid, messages, validate];
 };
 
