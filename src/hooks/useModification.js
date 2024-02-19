@@ -11,7 +11,8 @@ const useModification = (object, validate) => {
     setModified(false);
   }
 
-  const onChange = async (what, value) => {
+  const onChange = (what, value) => {
+    console.log(what, value);
     const newModifiedObject = {
       ...modifiedObject,
       [what]: value
@@ -41,7 +42,7 @@ const useModification = (object, validate) => {
     })();
 
     if (validate) {
-      await validate(newModifiedObject);
+      validate(newModifiedObject);
     }
 
     setModifiedObject(newModifiedObject);
