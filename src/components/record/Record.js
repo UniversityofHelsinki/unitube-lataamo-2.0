@@ -21,7 +21,7 @@ const Record = () => {
   const [progress, save, resetProgress] = useRecordSave();
 
   const [isValid, messages, validate] = useRecordValidation([
-    'title', 'description', 'deletionDate', 'license'
+    'title', 'description', 'deletionDate', 'license', 'subtitleFile'
   ]);
 
   const record = modifiedRecord || originalRecord;
@@ -48,7 +48,7 @@ const Record = () => {
       [what]: newRecord[what] !== record[what]
     };
 
-    const recordDoesNotEqualOriginal = 
+    const recordDoesNotEqualOriginal =
       Object.values(newModifiedFields).reduce((a, c) => c || a, false);
 
     setModified(recordDoesNotEqualOriginal);
@@ -86,7 +86,7 @@ const Record = () => {
 
   };
 
-  const saveInProgress 
+  const saveInProgress
     = progress.status !== 'NOT_STARTED' && progress.status !== 'DONE';
 
  return (
@@ -104,10 +104,10 @@ const Record = () => {
                     <RecordStaticInformation record={originalRecord} />
                   </Col>
                   <Col lg>
-                    <RecordForm 
-                      record={record} 
-                      onChange={onChange} 
-                      validationMessages={messages} 
+                    <RecordForm
+                      record={record}
+                      onChange={onChange}
+                      validationMessages={messages}
                       disabled={saveInProgress} />
                   </Col>
                 </Row>
@@ -117,10 +117,10 @@ const Record = () => {
           </Row>
           <Row className="record-bottom-bar">
             <Col>
-              <RecordBottomBar 
-                  record={record} 
-                  progress={progress} 
-                  modified={modified} 
+              <RecordBottomBar
+                  record={record}
+                  progress={progress}
+                  modified={modified}
                   undo={undo}
                   isValid={isValid} />
             </Col>

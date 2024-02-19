@@ -46,6 +46,8 @@
   "record_subtitle_file_header": "Tekstitystiedosto",
   "record_subtitle_file_help_label": "Ohje tekstitystiedoston lataamiseen",
   "record_subtitle_file_help_content": "Lisää tästä tallenteelle .vtt-tai .srt-muotoinen tekstitystiedosto. Lue lisää tekstitystiedostojen luomisesta ja lisäämisestä Unitube-tallenteille Helpdesk-sivuston ohjeista!",
+  "record_validation_subtitle_invalid_format": "Virheellinen tiedoston formaatti",
+  "record_validation_subtitle_unknown_error": "Tuntematon virhe tiedoston validoinnissa",
   "record_automatic_subtitle_header": "Automaattitekstitys",
   "record_automatic_subtitle_help_label": "Tietoa eri kielimalleista",
   "record_automatic_subtitle_help_label_content": "Valitse haluatko käyttää Microsoftin omaa vai OpenAI:n Whisper-kielimallia. Microsoftin etu on esim. vaihtuvan kielen hahmottaminen lennosta, kun taas OpenAI tekee helpommin luettavia tekstipalkkeja!",
