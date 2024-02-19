@@ -89,6 +89,10 @@ const Record = () => {
   const saveInProgress 
     = progress.status !== 'NOT_STARTED' && progress.status !== 'DONE';
 
+  if (loading) {
+    return <></>;
+  }
+
 
  return (
       <form onSubmit={handleSave}>
@@ -102,7 +106,7 @@ const Record = () => {
                 </Row>
                 <Row>
                   <Col lg={5} className="ps-0">
-                    <RecordStaticInformation record={record} />
+                    <RecordStaticInformation record={originalRecord} />
                   </Col>
                   <Col lg>
                     <RecordForm 
