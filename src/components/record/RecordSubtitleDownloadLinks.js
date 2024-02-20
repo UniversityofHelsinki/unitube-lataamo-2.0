@@ -1,27 +1,41 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from "prop-types";
 import { ReactComponent as DownloadIcon } from '../utilities/icons/download.svg';
 import { ReactComponent as RemoveIcon } from '../utilities/icons/remove.svg';
+import { ReactComponent as UndoIcon } from '../utilities/icons/rotate-left.svg';
 import './RecordSubtitleDownloadLinks.css';
-import { Col, Container, Row } from 'react-bootstrap';
+import {Button, Col, Container, Row} from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import FormElementHeader from '../form/FormElementHeader';
+import ElementHeader from "../form/ElementHeader";
 
 const DownloadLink = ({ to, label }) => {
+    const [markedForDeletion, setMarkedForDeletion] = useState(false);
+    const linkClass = markedForDeletion ? "record-subtitle-download-link-deleted" : "record-subtitle-download-link";
+    const handleClick = (markedForDeletion) => {
+        setMarkedForDeletion(!markedForDeletion);
+    };
     return (
-        <>
-            <DownloadIcon width="2em" height="2em" />
-            <a className="ms-2" href={to}>{label}</a>
-        </>
+        <div className="record-subtitle-download-link-item">
+            <div className="record-subtitle-download-link-item-link">
+                <DownloadIcon width="2em" height="2em" />
+                <a title={label} className={`ms-2 ${linkClass}`} href={to}>{label}</a>
+            </div>
+            <div>
+                <RemoveSubtitleButton onClick={() => handleClick(markedForDeletion)} markedForDeletion={markedForDeletion} />
+            </div>
+        </div>
     );
 };
 
-const DeleteSubtitle = () => {
+const RemoveSubtitleButton = ({ onClick, markedForDeletion }) => {
+    const { t } = useTranslation();
+    const label = markedForDeletion ? t('undo') : t('delete');
+    const iconProps = {width: "2em", height: "1.2em"};
+    const icon = markedForDeletion ? <UndoIcon {...iconProps} /> : <RemoveIcon {...iconProps} />;
     return (
-        <RemoveIcon width="1.5em" height="2em" />
+        <Button className="remove-subtitle-button" onClick={onClick} variant="link">{icon}{label}</Button>
     );
 };
-
 
 const RecordSubtitleDownloadLinks = ({ subtitles }) => {
     const { t } = useTranslation();
@@ -29,9 +43,9 @@ const RecordSubtitleDownloadLinks = ({ subtitles }) => {
         <Container>
             <Row>
                 <Col>
-                    <FormElementHeader>
+                    <ElementHeader>
                         {t('record_subtitle_download_links_header')}
-                    </FormElementHeader>
+                    </ElementHeader>
                 </Col>
             </Row>
             <Row className="mb-3">
@@ -41,7 +55,6 @@ const RecordSubtitleDownloadLinks = ({ subtitles }) => {
                     <ul className="blockquote record-subtitle-download-link-list">
                         {subtitles.map((subtitle, i) => (
                             <li key={subtitle.id || i}>
-                                <DeleteSubtitle />
                                 <DownloadLink to={`${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/vttFile/` + subtitle.url} label={subtitle.filename} />
                             </li>
                         ))}
@@ -53,7 +66,7 @@ const RecordSubtitleDownloadLinks = ({ subtitles }) => {
 };
 
 RecordSubtitleDownloadLinks.propTypes = {
-    subtitles: PropTypes.array,
+    subtitles: PropTypes.array
 };
 
 export default RecordSubtitleDownloadLinks;

@@ -1,3 +1,28 @@
 .record-subtitle-download-link-list {
     list-style: none;
 }
+
+.remove-subtitle-button polygon {
+    fill: var(--hy-red);
+}
+
+.record-subtitle-download-link-deleted {
+    text-decoration: line-through;
+}
+
+.record-subtitle-download-link {
+
+}
+
+.record-subtitle-download-link-item {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.record-subtitle-download-link-item-link {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 160px;
+}

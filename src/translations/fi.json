@@ -79,5 +79,7 @@
   "unitube_lataamo": "Unitube-Lataamo",
   "subtitles_on": "On",
   "breadcrumb_records": "Tallenteet",
-  "breadcrumb_collections": "Kokoelmat"
+  "breadcrumb_collections": "Kokoelmat",
+  "undo": "Kumoa",
+  "delete": "Poista"
 }
