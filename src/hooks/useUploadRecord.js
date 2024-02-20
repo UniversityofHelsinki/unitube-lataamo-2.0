@@ -17,7 +17,7 @@ const send = (record, setProgress) => async (dispatch) => {
       const done = {
         percentage: 100,
         timeLeft: 0,
-        status: ProgressStatus.DONE
+        status: ProgressStatus.NEW_RECORD.DONE
       };
       setProgress(done);
     });
@@ -31,7 +31,7 @@ const send = (record, setProgress) => async (dispatch) => {
         const progress = {
           percentage,
           timeLeft: Math.ceil((currentTime - startTime) / percentage * (100 - percentage) / 1000),
-          status: ProgressStatus.SENDING
+          status: ProgressStatus.NEW_RECORD.SENDING
         };
         setProgress(progress);
         previousPercentage = percentage;
@@ -42,7 +42,7 @@ const send = (record, setProgress) => async (dispatch) => {
       console.error(event);
       const progress = {
         percentage: previousPercentage,
-        status: ProgressStatus.ERROR
+        status: ProgressStatus.NEW_RECORD.ERROR
       };
       setProgress(progress);
     };
@@ -60,14 +60,14 @@ const send = (record, setProgress) => async (dispatch) => {
 };
 
 const monitorStatuses = {
-  'FINISHED': ProgressStatus.DONE,
-  'STARTED': ProgressStatus.PROCESSING,
-  'NOT_FOUND': ProgressStatus.ERROR
+  'FINISHED': ProgressStatus.NEW_RECORD.DONE,
+  'STARTED': ProgressStatus.NEW_RECORD.PROCESSING,
+  'NOT_FOUND': ProgressStatus.NEW_RECORD.ERROR
 };
 
 const useUploadRecord = () => {
   const [progress, setProgress] = useState({
-    status: ProgressStatus.NOT_STARTED,
+    status: ProgressStatus.NEW_RECORD.NOT_STARTED,
     percentage: 0
   });
   const [startJob] = useMonitor();
@@ -93,7 +93,7 @@ const useUploadRecord = () => {
         });
       } catch (error) {
         setProgress({
-          status: ProgressStatus.ERROR,
+          status: ProgressStatus.NEW_RECORD.ERROR,
           percentage: 100,
           message: error.message
         });
@@ -103,7 +103,7 @@ const useUploadRecord = () => {
   };
 
   const reset = () => setProgress({
-    status: ProgressStatus.NOT_STARTED,
+    status: ProgressStatus.NEW_RECORD.NOT_STARTED,
     percentage: 0
   });
 

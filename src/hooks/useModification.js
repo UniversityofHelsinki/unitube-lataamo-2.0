@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useModification = (object, validate) => {
+const useModification = (object, validate, resetProgress) => {
   const [modifiedObject, setModifiedObject] = useState(null);
   const [touchedFields, setTouchedFields] = useState([]);
   const [modified, setModified] = useState(false);
@@ -9,6 +9,12 @@ const useModification = (object, validate) => {
     setModifiedObject({ ...object });
     setTouchedFields([]);
     setModified(false);
+    const objectHasChanged = modifiedObject?.identifier && object?.identifier;
+
+    if (resetProgress && objectHasChanged) {
+      resetProgress();
+    }
+
     if (object) {
       const validateAllFieldsAtFirst = () => validate(object, {}, true);
       validateAllFieldsAtFirst();
@@ -57,7 +63,7 @@ const useModification = (object, validate) => {
   const undo = async () => {
     setModifiedObject({ ...object });
     setModified(false);
-    await validate({ ...object });
+    await validate({ ...object }, {}, true);
   };
 
   return [modifiedObject, onChange, modified, undo];

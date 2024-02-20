@@ -17,7 +17,6 @@ const RecordForm = ({
   onChange,
   disabled
 }) => {
-  console.log(validationMessages);
 
   return (
     <Container>
@@ -73,7 +72,7 @@ const RecordForm = ({
             <Col>
                 <RecordCollections 
                   collection={record.isPartOf || record.is_part_of}
-                  onChange={(value) => onChange('isPartOf', console.log(value) || value)} 
+                  onChange={(value) => onChange('isPartOf', value)} 
                   disabled={disabled}
                 />
             </Col>

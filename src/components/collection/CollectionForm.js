@@ -17,12 +17,13 @@ import CollectionRecords from './records/CollectionRecords';
 import CollectionBottomBar from './CollectionBottomBar';
 import useCollectionModification from '../../hooks/useCollectionModification';
 import useCollectionUpdate from '../../hooks/collection/useCollectionUpdate';
+import { ProgressStatus } from '../../Constants';
 
 const CollectionForm = () => {
   const [originalCollection, loading, reload] = useCollection();
   const [progress, update, resetProgress] = useCollectionUpdate();
   const [isValid, messages, validate] = useCollectionValidation(['title', 'description']);
-  const [collection, onChange, modified, undo] = useCollectionModification(originalCollection, validate);
+  const [collection, onChange, modified, undo] = useCollectionModification(originalCollection, validate, resetProgress);
 
   const users = collection?.persons || [];
 
@@ -34,7 +35,15 @@ const CollectionForm = () => {
     reload();
   };
 
-  const disabled = !['NOT_STARTED', 'DONE'].includes(progress.status);
+  const disabled = ![
+    ProgressStatus.COLLECTION_SAVE.NOT_STARTED, 
+    ProgressStatus.COLLECTION_SAVE.DONE
+  ].includes(progress.status);
+
+  const undoChanges = () => {
+    resetProgress();
+    undo();
+  };
 
   return (
     <form onSubmit={saveCollection}>
@@ -50,7 +59,7 @@ const CollectionForm = () => {
                 </Row>
                 <Row className="mb-3">
                   <Col className="ps-1">
-                    <CollectionRecords records={collection?.eventColumns || []} />
+                    <CollectionRecords records={collection?.eventColumns || []} disabled={disabled} />
                   </Col>
                 </Row>
                 <Row>
@@ -120,7 +129,7 @@ const CollectionForm = () => {
               modified={modified} 
               disabled={disabled}
               isValid={isValid}
-              undo={undo} />
+              undo={undoChanges} />
           </Col>
         </Row>
       </Container>

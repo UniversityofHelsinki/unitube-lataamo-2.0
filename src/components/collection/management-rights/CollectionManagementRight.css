@@ -14,3 +14,7 @@
 .collection-management-right-remove-icon-col polygon {
   fill: var(--hy-red);
 }
+
+.collection-management-right-disabled .collection-management-right-remove-icon-col polygon {
+  fill: var(--hy-medium-silver);
+}

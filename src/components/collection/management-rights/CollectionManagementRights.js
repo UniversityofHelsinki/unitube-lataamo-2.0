@@ -72,7 +72,7 @@ const CollectionManagementRights = ({ users = [], groups = [], onUserChange, onG
           <ul className="collection-management-rights-list">
             {users.map((user) =>
               <li key={user}>
-                <CollectionManagementRight label={user} onRemove={() => removeUser(user)} Icon={UserIcon} />
+                <CollectionManagementRight label={user} onRemove={() => removeUser(user)} Icon={UserIcon} disabled={disabled} />
               </li>)}
           </ul>
         </Col>
@@ -87,7 +87,7 @@ const CollectionManagementRights = ({ users = [], groups = [], onUserChange, onG
           <ul className="collection-management-rights-list collection-management-rights-groups-list">
             {groups.map((group) => 
               <li key={group}>
-                <CollectionManagementRight label={group} onRemove={() => removeGroup(group)} Icon={GroupIcon} />
+                <CollectionManagementRight label={group} onRemove={() => removeGroup(group)} Icon={GroupIcon} disabled={disabled} />
               </li>)}
           </ul>
         </Col>

@@ -71,7 +71,7 @@ const CollectionMoodleCourses = ({ moodleNumbers = [], onMoodleNumberChange, dis
                     <ul className="collection-moodle-courses-list">
                         {moodleNumbers.map((moodleNbr) =>
                             <li key={moodleNbr}>
-                                <CollectionMoodleCourse label={moodleNbr} onRemove={() => removeMoodleCourse(moodleNbr)} Icon={CourseIcon} />
+                                <CollectionMoodleCourse label={moodleNbr} onRemove={() => removeMoodleCourse(moodleNbr)} Icon={CourseIcon} disabled={disabled} />
                             </li>
                         )}
                     </ul>

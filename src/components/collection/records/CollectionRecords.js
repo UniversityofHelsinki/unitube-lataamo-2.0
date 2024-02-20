@@ -7,8 +7,17 @@ import CollectionRecord from './CollectionRecord';
 import ElementHeader from '../../form/ElementHeader';
 import HelpDialog from '../../dialog/HelpDialog';
 
-const CollectionRecords = ({ records }) => {
+const CollectionRecords = ({ records, disabled, onChange = console.log }) => {
   const { t } = useTranslation();
+
+  const doNothing = () => {};
+  const removeRecord = () => {
+    if (disabled) {
+      doNothing();
+      return;
+    }
+    onChange();
+  };
 
   return (
     <Container className="ps-0">
@@ -30,7 +39,12 @@ const CollectionRecords = ({ records }) => {
         <Col as="ul" className="collection-records-record-col">
           {records.map((record, i) =>
             <li key={record.id}>
-              <CollectionRecord record={record} onRemove={() => console.log(record)} aria-label={record.title} />
+              <CollectionRecord 
+                record={record} 
+                onRemove={removeRecord} 
+                disabled={disabled}
+                aria-label={record.title} 
+              />
             </li>
           )}
         </Col>
@@ -45,6 +59,8 @@ const CollectionRecords = ({ records }) => {
 
 CollectionRecords.propTypes = {
   records: PropTypes.array,
+  disabled: PropTypes.bool,
+  onChange: PropTypes.func
 };
 
 export default CollectionRecords;

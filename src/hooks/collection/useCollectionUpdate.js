@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ROLE_ANONYMOUS, ROLE_KATSOMO, ROLE_KATSOMO_TUOTANTO, ROLE_USER_UNLISTED, STATUS } from "../../Constants";
+import { ProgressStatus, ROLE_ANONYMOUS, ROLE_KATSOMO, ROLE_KATSOMO_TUOTANTO, ROLE_USER_UNLISTED, STATUS } from "../../Constants";
 import useRepublishMetadata from "./useRepublishMetadata";
 
 const put = async (collection) => {
@@ -63,30 +63,41 @@ const convertToBody = (collection) => {
 
 const useCollectionUpdate = () => {
   const [progress, setProgress] = useState({
-    status: 'NOT_STARTED',
+    status: ProgressStatus.COLLECTION_SAVE.NOT_STARTED,
     percentage: 0
   });
   const [republishMetadata] = useRepublishMetadata();
 
   const save = async (collection) => {
     const body = convertToBody(collection);
-    console.log('asdf', body);
-    setProgress({ status: 'IN_PROGRESS', percentage: 0 });
+    setProgress({
+      status: ProgressStatus.COLLECTION_SAVE.IN_PROGRESS,
+      percentage: 0 
+    });
     try {
       await put(body);
-      setProgress({ status: 'REPUBLISHING_METADATA', percentage: 100 });
+      setProgress({
+        status: ProgressStatus.COLLECTION_SAVE.REPUBLISHING_METADATA,
+        percentage: 100 
+      });
       await republishMetadata(body);
-      setProgress({ status: 'DONE', percentage: 100 });
+      setProgress({
+        status: ProgressStatus.COLLECTION_SAVE.DONE, 
+        percentage: 100 
+      });
     } catch (error) {
       setProgress({
-        status: 'ERROR',
+        status: ProgressStatus.COLLECTION_SAVE.ERROR,
         percentage: 100,
         message: error.message
       });
     }
   };
 
-  const reset = () => setProgress({ status: 'NOT_STARTED', percentage: 0 });
+  const reset = () => setProgress({
+    status: ProgressStatus.COLLECTION_SAVE.NOT_STARTED, 
+    percentage: 0 
+  });
 
   return [progress, save, reset];
 };

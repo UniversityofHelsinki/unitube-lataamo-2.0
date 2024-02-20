@@ -6,16 +6,25 @@ import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import UnsavedChanges from '../right/UnsavedChanges';
 import CollectionBottomBarProgress from './CollectionBottomBarProgress';
+import { ProgressStatus } from '../../Constants';
 
 const CollectionBottomBar = ({ progress, collection, modified, isValid, undo, disabled }) => {
   const { t } = useTranslation();
 
-  const notifications = (() => {
-    if (progress.status !== 'NOT_STARTED') {
-      return <CollectionBottomBarProgress progress={progress} />;
-    }
+  const savingHasBegun = progress.status !== ProgressStatus.COLLECTION_SAVE.NOT_STARTED;
+  const savingInProgress = ![
+    ProgressStatus.COLLECTION_SAVE.NOT_STARTED,
+    ProgressStatus.COLLECTION_SAVE.DONE,
+    ProgressStatus.COLLECTION_SAVE.ERROR
+  ].includes(progress.status);
+  const savingIsDone = savingHasBegun && !savingInProgress;
 
-    if (modified) {
+  const notifications = (() => {
+    if (savingIsDone && modified) {
+      return <UnsavedChanges />;
+    } else if (savingHasBegun || savingIsDone) {
+      return <CollectionBottomBarProgress progress={progress} />;
+    } else if (modified) {
       return <UnsavedChanges />;
     }
 

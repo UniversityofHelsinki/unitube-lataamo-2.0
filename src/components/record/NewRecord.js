@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import PropTypes from 'prop-types';
 import './NewRecord.css';
 import { Button, Col, Container, Form, Modal, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
@@ -52,7 +51,7 @@ const NewRecord = () => {
   const onChange = async (what, content) => {
     const modified = { ...record, [what]: content };
     setRecord(modified);
-    await validate(modified);
+    await validate(modified, record, true);
     if (!touched) {
       setTouched(true);
     }
@@ -63,7 +62,7 @@ const NewRecord = () => {
     setRecord(newRecord);
     setTouched(false);
     resetProgress();
-    await validate(newRecord);
+    await validate(newRecord, record);
   };
 
   const hide = () => {
@@ -72,23 +71,23 @@ const NewRecord = () => {
   };
 
   const onProgressButtonClick = async () => {
-    if (progress.status === ProgressStatus.DONE) {
+    if (progress.status === ProgressStatus.NEW_RECORD.DONE) {
       if (formRef.current) {
         formRef.current.reset();
       }
       await reset();
-    } else if (progress.status === ProgressStatus.ERROR) {
+    } else if (progress.status === ProgressStatus.NEW_RECORD.ERROR) {
       await send(record);
     }
   };
 
-  const closeable = progress.status !== ProgressStatus.SENDING;
+  const closeable = progress.status !== ProgressStatus.NEW_RECORD.SENDING;
   const closeButton = closeable ? { closeButton: true } : {};
 
   const disabled = {
-    [ProgressStatus.SENDING]: true,
-    [ProgressStatus.PROCESSING]: true,
-    [ProgressStatus.DONE]: true,
+    [ProgressStatus.NEW_RECORD.SENDING]: true,
+    [ProgressStatus.NEW_RECORD.PROCESSING]: true,
+    [ProgressStatus.NEW_RECORD.DONE]: true,
   }[progress.status] || false;
 
   return (
