@@ -8,11 +8,20 @@ import {axe} from "jest-axe";
 describe('NewRecordFooter', () => {
     it('should not have any accessibility violations', async () => {
 
-        const { container } = render(<NewRecordFooter
+        const { container, rerender } = render(
+          <NewRecordFooter
             onClick={() => {}}
             onCancel={() => {}}
-            progress={{ status: ProgressStatus.NOT_STARTED, percentage: 0 }}
-            isValid={true} />);
+            progress={{ status: ProgressStatus.NEW_RECORD.SENDING, percentage: 0 }}
+            isValid={true} />
+        );
+        rerender(
+          <NewRecordFooter
+            onClick={() => {}}
+            onCancel={() => {}}
+            progress={{ status: ProgressStatus.NEW_RECORD.SENDING, percentage: 0 }}
+            isValid={true} />
+        );
         const results = await axe(container);
 
         // use the matcher function in the test
