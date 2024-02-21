@@ -8,6 +8,13 @@ const statuses = {
   'done': ProgressStatus.RECORD_SAVE.DONE
 };
 
+const progressPercentage = {
+  [ProgressStatus.RECORD_SAVE.IN_PROGRESS_RECORD]: ({ idx, operationCount }) => Math.ceil(idx / operationCount * 100),
+  [ProgressStatus.RECORD_SAVE.IN_PROGRESS_ORDERSUBTITLES]: () => 100,
+  [ProgressStatus.RECORD_SAVE.IN_PROGRESS_SUBTITLES]: () => 100,
+  [ProgressStatus.RECORD_SAVE.DONE]: () => 100,
+};
+
 const useRecordSave = () => {
   const [updateRecord] = useRecordUpdate();
   const [uploadSubtitles] = useSubtitleUpload();
@@ -40,7 +47,9 @@ const useRecordSave = () => {
         const status = statuses[key] || ProgressStatus.RECORD_SAVE[`IN_PROGRESS_${key.toUpperCase()}`];
         const currentProgress = {
           status,
-          percentage: Math.ceil(i / operationCount * 100)
+          percentage: progressPercentage[status]({ 
+            idx: i, progress, operationCount 
+          })
         };
         setProgress(currentProgress);
         try {
