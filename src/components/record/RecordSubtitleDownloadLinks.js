@@ -29,7 +29,7 @@ const DownloadLink = ({ to, label }) => {
 
 const RemoveSubtitleButton = ({ onClick, markedForDeletion }) => {
     const { t } = useTranslation();
-    const label = markedForDeletion ? t('undo') : t('delete');
+    const label = markedForDeletion ? t('record_subtitle_undo_button') : t('record_subtitle_delete_button');
     const iconProps = {width: "2em", height: "1.2em"};
     const icon = markedForDeletion ? <UndoIcon {...iconProps} /> : <RemoveIcon {...iconProps} />;
     return (
