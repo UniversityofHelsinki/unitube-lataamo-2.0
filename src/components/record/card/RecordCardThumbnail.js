@@ -10,7 +10,6 @@ const RecordCardThumbnail = ({ record }) => {
         const fetchThumbnail = async () => {
             if (record?.cover_image) {
                 const thumbnailUrl = `${process.env.REACT_APP_LATAAMO_THUMBNAIL_SERVER}/api/thumbnail/v1/${encodeURIComponent(record.cover_image)}`;
-                console.log(thumbnailUrl);
                 try {
                     const response = await fetch(thumbnailUrl);
                     if (response.ok) {
