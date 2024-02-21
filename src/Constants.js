@@ -1,6 +1,6 @@
 export const DEFAULT_LICENSES = ['UNITUBE_ALLRIGHTS', 'CC_BY', 'CC_BY_NC_ND', 'CC0'];
-export const DEFAULT_LANGUAGE_MODELS = ['ms_whisper', 'ms_asr'];
-export const DEFAULT_LANGUAGES = ['language_select_fi', 'language_select_sv', 'language_select_en'];
+export const DEFAULT_LANGUAGE_MODELS = ['MS_WHISPER', 'MS_ASR'];
+export const DEFAULT_LANGUAGES = ['fi-FI', 'sv-SE', 'en-US'];
 
 export const MAX_FILE_SIZE_LIMIT = 2.5e+10;
 export const MIN_VIDEO_DURATION = 1;

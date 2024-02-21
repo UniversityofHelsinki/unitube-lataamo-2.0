@@ -12,7 +12,7 @@ const RecordSubtitleFile = ({ onChange, message, disabled = false }) => {
     const id = useId();
 
     return (
-        <Container>
+        <Container className="px-0 mb-3">
             <Row className="mb-3">
                 <Col>
                     <HelpDialog label={t('record_subtitle_file_help_label')} >

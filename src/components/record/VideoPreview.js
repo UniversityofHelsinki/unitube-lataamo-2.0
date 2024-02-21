@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {Col, Container, Row} from 'react-bootstrap';
 import './VideoPreview.css';
@@ -27,16 +27,22 @@ const getCoverImage = (coverImage) => {
 
 const VideoPlayer = ({ video }) => {
     const { t } = useTranslation();
+    const [currentVideo, setCurrentVideo] = useState(video);
+
+    useEffect(() => {
+      setCurrentVideo(video);
+    }, [video])
+
     return (
-        <Loading loading={!video} >
-        <video data-testid="video-player" poster={getCoverImage(video?.coverImage)} className="video-player" crossOrigin="anonymous" preload="metadata"
-               controlsList='nodownload' controls
-               onContextMenu={e => e.preventDefault()}>
-            <source data-testid="source" src={playVideo(video?.url)}/>
-            <track data-testid="caption-track"
-                   src={getVTTFile(video?.vttFile)} kind="captions"
-                   srcLang="fi" label={t('subtitles_on')} default/>
-        </video>
+        <Loading loading={!currentVideo || currentVideo.id !== video?.id}>
+          <video data-testid="video-player" poster={getCoverImage(video?.coverImage)} className="video-player" crossOrigin="anonymous" preload="metadata"
+                 controlsList='nodownload' controls
+                 onContextMenu={e => e.preventDefault()}>
+              <source data-testid="source" src={playVideo(video?.url)}/>
+              <track data-testid="caption-track"
+                     src={getVTTFile(video?.vttFile)} kind="captions"
+                     srcLang="fi" label={t('subtitles_on')} default/>
+          </video>
         </Loading>
     );
 };
@@ -54,7 +60,7 @@ const VideoPreview = ({videos}) => {
 };
 
 VideoPreview.propTypes = {
-    record: PropTypes.object.isRequired, // Adjust the prop type based on your actual structure
+    record: PropTypes.object.isRequired
 };
 
 export default VideoPreview;

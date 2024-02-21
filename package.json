@@ -23,7 +23,7 @@
   "scripts": {
     "start": "cross-env PORT=8000 react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --coverage",
+    "test": "react-scripts test --watchAll=false --coverage",
     "eject": "react-scripts eject",
     "eslint": "eslint ."
   },
@@ -31,7 +31,10 @@
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
       "!src/**/*.d.ts",
-      "!src/**/node_modules/**"
+      "!src/**/node_modules/**",
+      "!**/*.test.{js,jsx,ts,tsx}",
+      "!**/*.spec.{js,jsx,ts,tsx}",
+      "!**/*accessibility.test.js"
     ],
     "coverageReporters": [
       "lcov",
