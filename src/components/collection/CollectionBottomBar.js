@@ -38,7 +38,7 @@ const CollectionBottomBar = ({ progress, collection, modified, isValid, undo, di
         <Button onClick={undo} variant="danger" disabled={!modified || disabled}>
           {t('undo_button')}
         </Button>
-        <Button type="submit" disabled={!modified || !isValid || disabled}>
+        <Button type="submit" disabled={!isValid || disabled}>
           {t('save_button')}
         </Button>
       </div>}

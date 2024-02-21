@@ -68,14 +68,16 @@ const useCollectionUpdate = () => {
   });
   const [republishMetadata] = useRepublishMetadata();
 
-  const save = async (collection) => {
+  const save = async (collection, modified) => {
     const body = convertToBody(collection);
-    setProgress({
-      status: ProgressStatus.COLLECTION_SAVE.IN_PROGRESS,
-      percentage: 0 
-    });
     try {
-      await put(body);
+      if (modified) {
+        setProgress({
+          status: ProgressStatus.COLLECTION_SAVE.IN_PROGRESS,
+          percentage: 0 
+        });
+        await put(body);
+      }
       setProgress({
         status: ProgressStatus.COLLECTION_SAVE.REPUBLISHING_METADATA,
         percentage: 100 

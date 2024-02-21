@@ -31,11 +31,11 @@ const CollectionForm = () => {
 
   const saveCollection = async (event) => {
     event.preventDefault();
-    await update(collection);
+    await update(collection, modified);
     reload();
   };
 
-  const disabled = ![
+  const saveInProgress = ![
     ProgressStatus.COLLECTION_SAVE.NOT_STARTED, 
     ProgressStatus.COLLECTION_SAVE.DONE
   ].includes(progress.status);
@@ -59,7 +59,7 @@ const CollectionForm = () => {
                 </Row>
                 <Row className="mb-3">
                   <Col className="ps-1">
-                    <CollectionRecords records={collection?.eventColumns || []} disabled={disabled} />
+                    <CollectionRecords records={collection?.eventColumns || []} disabled={saveInProgress} />
                   </Col>
                 </Row>
                 <Row>
@@ -76,7 +76,7 @@ const CollectionForm = () => {
                           name={collection?.title} 
                           onChange={(title) => onChange('title', title)}
                           message={messages.title}
-                          disabled={disabled}
+                          disabled={saveInProgress}
                       />
                   </Col>
                 </Row>
@@ -86,7 +86,7 @@ const CollectionForm = () => {
                         description={collection?.description} 
                         onChange={(description) => onChange('description', description)}
                         message={messages.description}
-                        disabled={disabled}
+                        disabled={saveInProgress}
                       />
                   </Col>
                 </Row>
@@ -96,7 +96,7 @@ const CollectionForm = () => {
                         publicity={collection?.published}
                         onChange={(publicity) => onChange('published', publicity)}
                         message={messages.publicity}
-                        disabled={disabled}
+                        disabled={saveInProgress}
                       />
                   </Col>
                 </Row>
@@ -107,14 +107,14 @@ const CollectionForm = () => {
                       groups={groups}
                       onUserChange={(users) => onChange('persons', users)}
                       onGroupChange={(groups) => onChange('iamgroups', groups)}
-                      disabled={disabled}
+                      disabled={saveInProgress}
                     />
                   </Col>
                   <Col>
                     <CollectionMoodleCourses 
                       moodleNumbers={collection?.moodleNumbers} 
                       onMoodleNumberChange={(moodleNumbers) => onChange('moodleNumbers', moodleNumbers)}
-                      disabled={disabled}
+                      disabled={saveInProgress}
                     />
                   </Col>
                 </Row>
@@ -127,7 +127,7 @@ const CollectionForm = () => {
             <CollectionBottomBar 
               progress={progress} 
               modified={modified} 
-              disabled={disabled}
+              disabled={saveInProgress}
               isValid={isValid}
               undo={undoChanges} />
           </Col>
