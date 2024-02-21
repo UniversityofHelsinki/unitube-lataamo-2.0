@@ -28,8 +28,9 @@ const Toggle = ({ children, labels, onSelect }) => {
                       id={`${id}-${index}`} 
                       type='radio' 
                       value={index} 
-                      defaultChecked={checked}
+                      checked={checked}
                       onChange={() => changeVisibleComponent(index)} 
+                      onClick={() => checked && changeVisibleComponent(index)}
                     />
                      <label className="form-check-label align-middle" htmlFor={`${id}-${index}`}>
                        <ElementHeader label={labels[index]}>{labels[index]}</ElementHeader>

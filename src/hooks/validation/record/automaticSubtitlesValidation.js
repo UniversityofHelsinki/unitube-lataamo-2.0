@@ -35,7 +35,6 @@ const validateAutomaticSubtitles = (input, _record) => {
   const translationLanguage = input.translationLanguage;
   const translationModelIsValid = validateTranslationModel(translationModel);
   const translationLanguageIsValid = validateTranslationLanguage(translationLanguage);
-  console.log(translationModelIsValid, translationLanguageIsValid);
   return translationModelIsValid || translationLanguageIsValid;
 
 };

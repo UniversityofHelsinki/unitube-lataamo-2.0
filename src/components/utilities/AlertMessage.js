@@ -25,7 +25,7 @@ const AlertMessage = ({ children, type, slim = false }) => {
 };
 
 AlertMessage.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.node,
   type: PropTypes.oneOf(['warning', 'info', 'status', 'transparent']),
   slim: PropTypes.bool
 };
