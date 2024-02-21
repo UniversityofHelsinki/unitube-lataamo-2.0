@@ -52,7 +52,7 @@ const VideoPreview = ({videos}) => {
         <Container className="no-margin no-padding">
             <Row>
             <Col className="no-padding">
-                <VideoPlayer video={videos[0]} />
+                { videos && videos.length > 0 && <VideoPlayer video={videos[0]} /> }
             </Col>
             </Row>
         </Container>
