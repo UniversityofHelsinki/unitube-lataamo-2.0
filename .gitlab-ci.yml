@@ -108,6 +108,7 @@ deploy_oc_test:
     url: https://$LATAAMO_OC_TEST
   only:
     - oc-test
+    - lataamo-1011
   variables:
     SERVER: $LATAAMO_OC_TEST
   before_script:
