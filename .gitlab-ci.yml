@@ -29,6 +29,7 @@ build_oc_test:
     - ohtu-build-3
   only:
     - oc-test
+    - lataamo-1011
   script:
     - yes | cp -f -v .env.oc-test .env.production || true
     - CI=false npm run build
