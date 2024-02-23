@@ -24,8 +24,12 @@ const useRecords = ({ load = false }) => {
     }
   }, [load, records]);
 
+  const reload = () => {
+    dispatch({ type: 'SET_RECORDS' });
+  };
+
   const loading = !records;
-  return [records, loading];
+  return [records, loading, reload];
 };
 
 useRecords.PropTypes = {

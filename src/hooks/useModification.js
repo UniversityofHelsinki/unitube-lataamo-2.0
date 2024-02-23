@@ -15,7 +15,7 @@ const useModification = (object, validate, resetProgress) => {
       resetProgress();
     }
 
-    if (object) {
+    if (object && validate) {
       const validateAllFieldsAtFirst = () => validate(object, {}, true);
       validateAllFieldsAtFirst();
     }
@@ -63,7 +63,14 @@ const useModification = (object, validate, resetProgress) => {
   const undo = async () => {
     setModifiedObject({ ...object });
     setModified(false);
-    await validate({ ...object }, {}, true);
+    if (validate) {
+      await validate({ ...object }, {}, true);
+    }
+
+    if (resetProgress) {
+      resetProgress();
+    }
+
   };
 
   return [modifiedObject, onChange, modified, undo];

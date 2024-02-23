@@ -28,20 +28,20 @@ const convert = (file) => {
 
 const validateFile = async (file, record) => {
   if (!file) {
-    return 'record_file_validation_is_empty';
+    return 'record_validation_file_is_empty';
   }
 
   if (validateSize(file)) {
-    return 'record_file_size_exceeded';
+    return 'record_validation_file_size_exceeded';
   }
 
   const video = await convert(file);
   if (!video) {
-    return 'record_file_validation_invalid_file_format';
+    return 'record_validation_file_invalid_format';
   }
 
   if (validateDuration(video)) {
-    return 'record_file_validation_duration_too_short';
+    return 'record_validation_file_duration_too_short';
   }
 
   return FIELD_IS_VALID;

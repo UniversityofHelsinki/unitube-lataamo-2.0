@@ -23,6 +23,12 @@ export const ProgressStatus = {
     ABORTED: 'aborted',
     PROCESSING: 'processing'
   },
+  NEW_COLLECTION: {
+    NOT_STARTED: 'not_started',
+    SENDING: 'sending',
+    ERROR: 'error',
+    DONE: 'done'
+  },
   RECORD_SAVE: {
     NOT_STARTED: 'not_started',
     IN_PROGRESS_RECORD: 'in_progress_record',

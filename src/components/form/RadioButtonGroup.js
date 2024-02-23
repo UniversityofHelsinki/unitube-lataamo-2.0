@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 import Form from 'react-bootstrap/Form';
 import PropTypes from "prop-types";
 import './RadioButtonGroup.css';
@@ -7,6 +7,7 @@ import {useTranslation} from "react-i18next";
 
 const RadioButtonGroup = ({ options, onChange, value, ...rest }) => {
     const { t } = useTranslation();
+    const id = useId();
 
     return (
         <>
@@ -16,7 +17,7 @@ const RadioButtonGroup = ({ options, onChange, value, ...rest }) => {
                   type="radio" 
                   checked={value === option.value} 
                   key={option.value} value={option.value}
-                  id={`publicity-${option.value}`}
+                  id={`publicity-${option.value}-${id}`}
                   label={t(option.label)} 
                   onChange={(e) => onChange(e.target.value)} 
                   { ...rest } />

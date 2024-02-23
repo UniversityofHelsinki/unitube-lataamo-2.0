@@ -1,0 +1,14 @@
+.new-collection-footer-progress-row {
+  max-width: 80%;
+}
+
+.new-collection-footer-button-row {
+}
+
+.new-collection-footer-button-row button {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 60%;
+}
+

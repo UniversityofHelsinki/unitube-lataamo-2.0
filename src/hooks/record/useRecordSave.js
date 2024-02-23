@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ProgressStatus } from "../../Constants";
+import useRecords from "../useRecords";
 import useRecordUpdate from "./useRecordUpdate";
 import useSubtitleOrder from "./useSubtitleOrder";
 import useSubtitleUpload from "./useSubtitleUpload";
@@ -19,6 +20,7 @@ const useRecordSave = () => {
   const [updateRecord] = useRecordUpdate();
   const [uploadSubtitles] = useSubtitleUpload();
   const [orderSubtitles] = useSubtitleOrder();
+  const [_records, _loadingRecords, reloadRecords] = useRecords({ load: false });
   const [progress, setProgress] = useState({ 
     status: ProgressStatus.RECORD_SAVE.NOT_STARTED, 
     percentage: 0 
@@ -65,6 +67,7 @@ const useRecordSave = () => {
         i = i+1;
       }
     }
+    reloadRecords();
     return true;
   };
 

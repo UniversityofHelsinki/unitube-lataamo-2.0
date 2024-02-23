@@ -7,6 +7,15 @@ import CollectionRecord from './CollectionRecord';
 import ElementHeader from '../../form/ElementHeader';
 import HelpDialog from '../../dialog/HelpDialog';
 
+const NoRecords = () => {
+  const { t } = useTranslation();
+  return (
+    <div className="collection-records-no-records">
+      <p>{t('collection_has_no_records')}</p>
+    </div>
+  );
+};
+
 const CollectionRecords = ({ records, disabled, onChange = console.log }) => {
   const { t } = useTranslation();
 
@@ -18,6 +27,22 @@ const CollectionRecords = ({ records, disabled, onChange = console.log }) => {
     }
     onChange();
   };
+
+  const recordsList = (() => {
+    if (!records || records.length === 0) {
+      return <NoRecords />;
+    }
+    return records.map((record, i) =>
+      <li key={record.id}>
+        <CollectionRecord 
+          record={record} 
+          onRemove={removeRecord} 
+          disabled={disabled}
+          aria-label={record.title} 
+        />
+      </li>
+    );
+  })();
 
   return (
     <Container className="ps-0">
@@ -37,16 +62,7 @@ const CollectionRecords = ({ records, disabled, onChange = console.log }) => {
       </Row>
       <Row className="collection-records-list-row">
         <Col as="ul" className="collection-records-record-col">
-          {records.map((record, i) =>
-            <li key={record.id}>
-              <CollectionRecord 
-                record={record} 
-                onRemove={removeRecord} 
-                disabled={disabled}
-                aria-label={record.title} 
-              />
-            </li>
-          )}
+          {recordsList}
         </Col>
       </Row>
       <Row>

@@ -12,6 +12,7 @@
 }
 
 .help-dialog-fallback-container {
+  min-width: 400px;
   max-width: 75%;
   border: 1px solid var(--hy-medium-silver);
   background-color: var(--hy-white);

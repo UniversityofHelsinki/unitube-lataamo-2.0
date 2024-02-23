@@ -25,9 +25,13 @@ const useCollections = ({ load = false }) => {
     }
   }, [load, collections]);
 
+  const reload = () => {
+    dispatch({ type: 'SET_COLLECTIONS' });
+  };
+
   const loading = !collections;
 
-  return [collections, loading];
+  return [collections, loading, reload];
 
 };
 

@@ -20,7 +20,7 @@ const RecordForm = ({
 
   return (
     <Container>
-          <Row className="mb-4">
+          <Row className="mb-2">
             <Col>
                 <RecordName
                   name={record.title}
@@ -32,7 +32,7 @@ const RecordForm = ({
                 />
             </Col>
           </Row>
-          <Row className="mb-4">
+          <Row className="mb-2">
             <Col>
                 <RecordDescription
                   description={record.description}
@@ -44,7 +44,7 @@ const RecordForm = ({
                 />
             </Col>
           </Row>
-          <Row className="mb-4">
+          <Row className="mb-2">
             <Col>
               <RecordEndDate
                 endDate={record.deletionDate}
@@ -56,7 +56,7 @@ const RecordForm = ({
               />
             </Col>
           </Row>
-          <Row className="mb-4">
+          <Row className="mb-2">
             <Col>
               <RecordLicense
                 license={record.license}
@@ -77,7 +77,7 @@ const RecordForm = ({
                 />
             </Col>
           </Row>
-          <Row className="mb-4">
+          <Row className="mb-2">
             <Col>
               <RecordSubtitle 
                 onChange={(what, value) => onChange(what, value)} 
