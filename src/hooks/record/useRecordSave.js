@@ -4,14 +4,25 @@ import useRecordUpdate from "./useRecordUpdate";
 import useSubtitleOrder from "./useSubtitleOrder";
 import useSubtitleUpload from "./useSubtitleUpload";
 
+const statuses = {
+  'done': ProgressStatus.RECORD_SAVE.DONE
+};
+
 const useRecordSave = () => {
   const [updateRecord] = useRecordUpdate();
   const [uploadSubtitles] = useSubtitleUpload();
   const [orderSubtitles] = useSubtitleOrder();
-  const [progress, setProgress] = useState({ status: 'NOT_STARTED', percentage: 0 });
+  const [progress, setProgress] = useState({ 
+    status: ProgressStatus.RECORD_SAVE.NOT_STARTED, 
+    percentage: 0 
+  });
+
+  const reset = () => {
+    setProgress({ status: ProgressStatus.RECORD_SAVE.NOT_STARTED, percentage: 0 });
+  };
 
   const done = () => {
-    setProgress({ status: 'DONE', percentage: 100 });
+    setProgress({ status: ProgressStatus.RECORD_SAVE.DONE, percentage: 100 });
   };
 
   const saveFunctions = new Map();
@@ -26,7 +37,7 @@ const useRecordSave = () => {
       Object.values(inputs).filter(value => value).length;
     for (const [key, saveFn] of saveFunctions) {
       if (inputs[key] || key === 'done') {
-        const status = `IN_PROGRESS_${key.toUpperCase()}`;
+        const status = statuses[key] || ProgressStatus.RECORD_SAVE[`IN_PROGRESS_${key.toUpperCase()}`];
         const currentProgress = {
           status,
           percentage: Math.ceil(i / operationCount * 100)
@@ -37,7 +48,7 @@ const useRecordSave = () => {
         } catch (error) {
           setProgress({
             ...currentProgress,
-            status: `ERROR`,
+            status: ProgressStatus.RECORD_SAVE.ERROR,
             message: error.message
           });
           return false;
@@ -46,10 +57,6 @@ const useRecordSave = () => {
       }
     }
     return true;
-  };
-
-  const reset = () => {
-    setProgress({ status: 'NOT_STARTED', percentage: 0 });
   };
 
   return [progress, save, reset];

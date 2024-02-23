@@ -17,7 +17,6 @@ const RecordForm = ({
   onChange,
   disabled
 }) => {
-  console.log(validationMessages);
 
   return (
     <Container>

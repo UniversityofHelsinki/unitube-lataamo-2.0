@@ -1,5 +1,5 @@
 import { addMonths, addYears } from 'date-fns';
-import { DELETION_DATE_MAX_YEARS, DELETION_DATE_MIN_MONTHS } from '../../../Constants';
+import { DELETION_DATE_MAX_YEARS, DELETION_DATE_MIN_MONTHS, FIELD_IS_VALID } from '../../../Constants';
 import PropTypes from 'prop-types';
 
 const midnight = (date) => {
@@ -16,7 +16,7 @@ const validateDeletionDate = (ISO, record) => {
   } else if (midnight(date) > addYears(today, DELETION_DATE_MAX_YEARS)) {
     return 'record_deletion_date_too_late';
   }
-  return false;
+  return FIELD_IS_VALID;
 };
 
 validateDeletionDate.PropTypes = {

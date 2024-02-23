@@ -1,7 +1,10 @@
 .collection-card-records {
+  overflow: auto;
+  max-height: 140px;
 }
 
 .collection-card-records-record-column {
   margin-bottom: 0.4em;
   max-width: 50%;
+  min-width: 50%;
 }

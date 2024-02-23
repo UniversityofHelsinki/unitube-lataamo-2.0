@@ -1,4 +1,4 @@
-import { MAX_FILE_SIZE_LIMIT, MIN_VIDEO_DURATION } from "../../../Constants";
+import { FIELD_IS_VALID, MAX_FILE_SIZE_LIMIT, MIN_VIDEO_DURATION } from "../../../Constants";
 import PropTypes from 'prop-types';
 
 const validateSize = (file) => {
@@ -44,7 +44,7 @@ const validateFile = async (file, record) => {
     return 'record_file_validation_duration_too_short';
   }
 
-  return false;
+  return FIELD_IS_VALID;
 };
 
 validateFile.PropTypes = {

@@ -4,26 +4,29 @@ import './RecordBottomBarProgress.css';
 import { useTranslation } from 'react-i18next';
 import ProgressBar from '../form/ProgressBar';
 import AlertMessage from '../utilities/AlertMessage';
+import { ProgressStatus } from '../../Constants';
 
 const RecordBottomBarProgress = ({ progress }) => {
   const { t } = useTranslation();
 
   const progressLabels = {
-    'NOT_STARTED': '',
-    'IN_PROGRESS_RECORD': t('record_bottom_bar_progress_saving_record'),
-    'IN_PROGRESS_SUBTITLES': t('record_bottom_bar_progress_saving_subtitles'),
-    'IN_PROGRESS_ORDERSUBTITLES': t('record_bottom_bar_progress_ordering_subtitles'),
-    'DONE': t('record_bottom_bar_progress_done'),
-    'ERROR': progress.message || t('record_bottom_bar_progress_error')
+    [ProgressStatus.RECORD_SAVE.NOT_STARTED]: '',
+    [ProgressStatus.RECORD_SAVE.IN_PROGRESS_RECORD]: t('record_bottom_bar_progress_saving_record'),
+    [ProgressStatus.RECORD_SAVE.IN_PROGRESS_SUBTITLES]: t('record_bottom_bar_progress_saving_subtitles'),
+    [ProgressStatus.RECORD_SAVE.IN_PROGRESS_ORDERSUBTITLES]: t('record_bottom_bar_progress_ordering_subtitles'),
+    [ProgressStatus.RECORD_SAVE.DONE]: t('record_bottom_bar_progress_done'),
+    [ProgressStatus.RECORD_SAVE.ERROR]: progress.message || t('record_bottom_bar_progress_error')
   };
 
   const progressClass = ({
-    'DONE': 'done',
-    'ERROR': 'error',
+    [ProgressStatus.RECORD_SAVE.DONE]: 'done',
+    [ProgressStatus.RECORD_SAVE.ERROR]: 'error',
   })[progress.status] || '';
 
-  const animated = !['DONE', 'ERROR'].includes(progress.status) ? { animated: true } : {};
-
+  const animated = ![
+    ProgressStatus.RECORD_SAVE.DONE, 
+    ProgressStatus.RECORD_SAVE.ERROR
+  ].includes(progress.status) ? { animated: true } : {};
 
   return (
     <ProgressBar 

@@ -21,8 +21,6 @@ const RecordSubtitle = ({ onChange, message, file, automaticSubtitles, disabled 
       }
     };
 
-  console.log(message);
-
     return (
         <Container>
             <Form.Group>
