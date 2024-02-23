@@ -29,7 +29,6 @@ build_oc_test:
     - ohtu-build-3
   only:
     - oc-test
-    - lataamo-1011
   script:
     - yes | cp -f -v .env.oc-test .env.production || true
     - CI=false npm run build
@@ -109,7 +108,6 @@ deploy_oc_test:
     url: https://$LATAAMO_OC_TEST
   only:
     - oc-test
-    - lataamo-1011
   variables:
     SERVER: $LATAAMO_OC_TEST
   before_script:
