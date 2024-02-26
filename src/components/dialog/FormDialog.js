@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import './FormDialog.css';
 import Dialog from './Dialog';
@@ -40,7 +40,7 @@ FormDialog.propTypes = {
   reset: PropTypes.func,
   closeable: PropTypes.bool,
   showComponent: PropTypes.any,
-  children: PropTypes.any
+  children: PropTypes.node
 };
 
 export default FormDialog;

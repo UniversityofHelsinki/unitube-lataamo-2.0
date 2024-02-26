@@ -8,3 +8,7 @@
   max-width: 50%;
   min-width: 50%;
 }
+
+.collection-card-records-no-records {
+  width: 100%;
+}

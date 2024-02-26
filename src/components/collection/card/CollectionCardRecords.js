@@ -5,8 +5,11 @@ import CollectionCardRecord from './CollectionCardRecord';
 import './CollectionCardRecords.css';
 
 const CollectionCardRecords = ({ records = [] }) => {
+
+  const letItScrollWithSpace = (event) => event.stopPropagation();
+
   return (
-    <Container className="collection-card-records">
+    <Container className="collection-card-records" onKeyDown={letItScrollWithSpace}>
       <Row className="justify-content-between mt-2">
           {records.map((record, i) => 
               <Col key={i} className="collection-card-records-record-column">

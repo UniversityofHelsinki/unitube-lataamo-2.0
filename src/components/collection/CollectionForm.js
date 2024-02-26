@@ -57,7 +57,7 @@ const CollectionForm = () => {
                     <CollectionsBreadCrumb collection={originalCollection || {}} />
                   </Col>
                 </Row>
-                <Row className="mb-3">
+                <Row className="mb-2">
                   <Col className="ps-1">
                     <CollectionRecords records={collection?.eventColumns || []} disabled={saveInProgress} />
                   </Col>
@@ -70,7 +70,7 @@ const CollectionForm = () => {
                   <Col>
                   </Col>
                 </Row>
-                <Row className="mb-3">
+                <Row className="mb-2">
                   <Col className="ps-1">
                       <CollectionName 
                           name={collection?.title} 
@@ -80,7 +80,7 @@ const CollectionForm = () => {
                       />
                   </Col>
                 </Row>
-                <Row className="mb-3">
+                <Row className="mb-2">
                   <Col className="ps-1">
                       <CollectionDescription 
                         description={collection?.description} 
@@ -90,7 +90,7 @@ const CollectionForm = () => {
                       />
                   </Col>
                 </Row>
-                <Row className="mb-3">
+                <Row className="mb-2">
                   <Col className="ps-1">
                       <CollectionPublicity 
                         publicity={collection?.published}
@@ -100,7 +100,7 @@ const CollectionForm = () => {
                       />
                   </Col>
                 </Row>
-                <Row className="mb-3">
+                <Row className="mb-2">
                   <Col className="ps-1">
                     <CollectionManagementRights 
                       users={users} 

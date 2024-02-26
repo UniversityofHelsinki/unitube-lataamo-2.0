@@ -8,6 +8,7 @@ import FormElementHeader from '../../form/FormElementHeader';
 import CollectionMoodleCourse from "./CollectionMoodleCourse";
 import InputField from "../../form/InputField";
 import HelpDialog from '../../dialog/HelpDialog';
+import { onEnter } from '../../accessibility/keydown';
 
 const CollectionMoodleCourses = ({ moodleNumbers = [], onMoodleNumberChange, disabled }) => {
     const [value, setValue] = useState(null);
@@ -44,6 +45,12 @@ const CollectionMoodleCourses = ({ moodleNumbers = [], onMoodleNumberChange, dis
 
     const inputFieldContainsValidMoodleCourse = value && value?.length > 0 && containsOnlyNumbers(value);
 
+    const onEnterAddMoodleCourse = (event) => {
+      if (inputFieldContainsValidMoodleCourse) {
+        onEnter(addMoodleCourse)(event);
+      }
+    };
+
     return (
         <Container className="collection-moodle-courses ps-0">
             <Row>
@@ -60,9 +67,9 @@ const CollectionMoodleCourses = ({ moodleNumbers = [], onMoodleNumberChange, dis
             </Row>
             <Row className="mb-2">
                 <Col>
-                    <InputField id={id} type={'text'} label={t('aaa')} placeholder={t('moodle_course_placeholder')} value={value || ''} onChange={handleMoodleInputChange} disabled={disabled} />
+                    <InputField id={id} type={'text'} label={t('aaa')} placeholder={t('moodle_course_placeholder')} value={value || ''} onChange={handleMoodleInputChange} disabled={disabled} onKeyDown={onEnterAddMoodleCourse} hideMessage={true} />
                 </Col>
-                <Col className="ps-0">
+                <Col sm={2} className="ps-0">
                     <Button className="btn btn-primary collection-moodle-courses-add-button" onClick={addMoodleCourse} disabled={!inputFieldContainsValidMoodleCourse}>Lisää</Button>
                 </Col>
             </Row>

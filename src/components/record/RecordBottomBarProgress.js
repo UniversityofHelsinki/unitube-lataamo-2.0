@@ -28,12 +28,23 @@ const RecordBottomBarProgress = ({ progress }) => {
     ProgressStatus.RECORD_SAVE.ERROR
   ].includes(progress.status) ? { animated: true } : {};
 
+  const alertMessage = (() => {
+    if (progress.status === ProgressStatus.RECORD_SAVE.IN_PROGRESS_SUBTITLES || progress.status === ProgressStatus.RECORD_SAVE.IN_PROGRESS_ORDERSUBTITLES) {
+      return (
+        <AlertMessage type="transparent" slim={true}>
+          {t('record_bottom_bar_progress_user_can_close')}
+        </AlertMessage>
+      );
+    }
+    return <></>;
+  })();
+
   return (
     <ProgressBar 
       type={progressClass}
       now={progress.percentage}
       label={progressLabels[progress.status]}
-      alertMessage={<></>}
+      alertMessage={alertMessage}
       { ...animated }
     />
   );

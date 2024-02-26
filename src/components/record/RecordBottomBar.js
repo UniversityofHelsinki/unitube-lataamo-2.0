@@ -50,7 +50,8 @@ const RecordBottomBar = ({ progress, record, modified, undo, isValid }) => {
           <UndoButton onClick={undo} disabled={!modified || savingInProgress}/>
           <SaveButton disabled={!modified || !isValid || savingInProgress} />
         </div>
-      )} />
+      )} 
+    />
   );
 };
 

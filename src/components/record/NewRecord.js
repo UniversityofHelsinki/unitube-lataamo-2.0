@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import './NewRecord.css';
-import { Button, Col, Container, Form, Modal, Row } from 'react-bootstrap';
+import { Button, Form, Modal } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { addMonths } from 'date-fns';
 import FormDialog from '../dialog/FormDialog';
@@ -13,6 +13,7 @@ import RecordEndDate from './RecordEndDate';
 import useUploadRecord from '../../hooks/useUploadRecord';
 import NewRecordFooter from './NewRecordFooter';
 import { ProgressStatus } from '../../Constants';
+import useRecords from '../../hooks/useRecords';
 
 const emptyRecord = {
   title: '',
@@ -29,6 +30,7 @@ const NewRecord = () => {
     ['file', 'title', 'description', 'license', 'deletionDate']
   );
   const [send, progress, resetProgress] = useUploadRecord();
+  const [_records, _loadingRecords, reloadRecords] = useRecords({ load: false });
   const [touched, setTouched] = useState(false);
   const formRef = useRef();
 
@@ -46,6 +48,7 @@ const NewRecord = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
     await send({ ...record, archivedDate: record.deletionDate });
+    reloadRecords();
   };
 
   const onChange = async (what, content) => {
@@ -95,7 +98,7 @@ const NewRecord = () => {
       <Modal.Header { ...closeButton }>{t('new_record_form_header')}</Modal.Header>
       <Form className="new-record-form" onSubmit={onSubmit} ref={formRef}>
         <Modal.Body>
-            <RecordFile onChange={(file) => onChange('file', file)} message={messages.file} file={record.file} disabled={disabled} />
+            <RecordFile onChange={(file) => onChange('file', file)} message={messages.file} disabled={disabled} />
             <RecordName name={record.title} message={messages.title} onChange={(title) => onChange('title', title)} disabled={disabled} />
             <RecordDescription message={messages.description} onChange={(description) => onChange('description', description)} description={record.description} disabled={disabled} />
             <RecordLicense license={record.license} aria-label={t('new_record_license_label')} onChange={(license) => onChange('license', license)} message={messages.license} disabled={disabled} />

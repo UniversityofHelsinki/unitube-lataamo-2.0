@@ -11,12 +11,9 @@ it('shows the message', () => {
   expect(screen.getByText('asdf')).toBeInTheDocument();
 });
 
-it('does not show anything if type is not specified', () => {
-});
-
-it('does not show anything if type is not specified', () => {
+it('does show empty block even if type is not specified', () => {
   render(<Message type={undefined}>
     asfd
   </Message>);
-  expect(screen.queryByText('asfd')).not.toBeInTheDocument();
+  expect(screen.queryByText('asfd')).toBeInTheDocument();
 });

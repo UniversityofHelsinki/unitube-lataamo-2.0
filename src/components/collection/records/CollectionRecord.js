@@ -41,7 +41,7 @@ const CollectionRecord = ({ record, onRemove, disabled }) => {
         </Col>
         <Col className="px-0 align-self-center">
           <div className="ps-2 collection-record-details" role="button" onClick={openRecord} onKeyDown={onKeyDown(openRecord)} tabIndex={0} aria-describedby={id} aria-disabled={disabled}>
-            <span id={id}>{record.title}</span>
+            <span id={id} title={record.title}>{record.title}</span>
           </div>
         </Col>
         <Col className="px-0 text-end collection-record-remove-col">

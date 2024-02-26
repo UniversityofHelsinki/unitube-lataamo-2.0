@@ -5,7 +5,7 @@ import { MockProvider } from '../../redux/reducers/MockProvider';
 
 it('renders', () => {
   render(
-    <MockProvider>
+    <MockProvider mockReducers={{ records: { records: [] }}}>
       <NewRecord />
     </MockProvider>
   );

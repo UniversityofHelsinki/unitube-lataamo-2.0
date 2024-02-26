@@ -6,6 +6,7 @@ import validateFile from "./fileValidation.js";
 import validateDeletionDate from "./deletionDateValidation.js";
 import subtitleFileValidation from "./subtitleFileValidation";
 import useValidation from "../useValidation.js";
+import validateAutomaticSubtitles from './automaticSubtitlesValidation.js';
 
 const validationFunctions = {
   file: validateFile,
@@ -13,7 +14,8 @@ const validationFunctions = {
   description: validateDescription,
   license: validateLicense,
   deletionDate: validateDeletionDate,
-  subtitleFile: subtitleFileValidation
+  subtitleFile: subtitleFileValidation,
+  automaticSubtitles: validateAutomaticSubtitles
 };
 
 const useRecordValidation = (fields) => {

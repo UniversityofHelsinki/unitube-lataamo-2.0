@@ -20,7 +20,7 @@ const Record = () => {
   const [progress, save, resetProgress] = useRecordSave();
 
   const [isValid, messages, validate] = useRecordValidation([
-    'title', 'description', 'deletionDate', 'license', 'subtitleFile'
+    'title', 'description', 'deletionDate', 'license', 'subtitleFile', 'automaticSubtitles'
   ]);
   const [record, onChange, modified, undo] = useRecordModification(originalRecord, validate, resetProgress);
 
@@ -69,7 +69,7 @@ const Record = () => {
               <Col>
                 <Container className="ps-0">
                   <Row className="breadcrumb-container">
-                    <RecordsBreadCrumb record={originalRecord} />
+                      <RecordsBreadCrumb record={originalRecord} />
                   </Row>
                   <Row>
                     <Col lg={5} className="ps-0">
@@ -80,7 +80,8 @@ const Record = () => {
                         record={record} 
                         onChange={onChange} 
                         validationMessages={messages} 
-                        disabled={saveInProgress} />
+                        disabled={saveInProgress} 
+                      />
                     </Col>
                   </Row>
                 </Container>

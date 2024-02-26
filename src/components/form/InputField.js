@@ -4,12 +4,12 @@ import { Form } from 'react-bootstrap';
 import './InputField.css';
 import Message from './Message';
 
-const InputField = ({ message, ...rest }) => {
+const InputField = ({ message, hideMessage, ...rest }) => {
 
   return (
       <>
         <Form.Control type={ rest.type || "text" } { ...rest } />
-        <Message type={message?.type}>{message?.content}</Message>
+        {!hideMessage && <Message type={message?.type}>{message?.content}</Message>}
       </>
   );
 };

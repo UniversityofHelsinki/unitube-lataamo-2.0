@@ -12,7 +12,6 @@ const RecordAutomaticSubtitle = ({ onChange, message, disabled = false, value = 
     const { t } = useTranslation();
     const id = useId();
     const empty = '';
-  console.log(value);
     
     const handleChange = (what, fieldValue) => {
       const newValue = { ...value, [what]: fieldValue };
