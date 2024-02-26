@@ -63,9 +63,6 @@ const VideoPreview = ({videos}) => {
     return (
         <Container className="no-margin no-padding">
             <Row>
-                <Col className="no-padding">
-                    <VideoPlayer video={videos[0]} />
-                </Col>
             <Col className="no-padding">
                 { videos && videos.length > 0 && <VideoPlayer video={videos[0]} /> }
             </Col>
