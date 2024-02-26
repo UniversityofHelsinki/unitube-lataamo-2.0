@@ -24,31 +24,31 @@ const NewRecordProgress = ({ progress }) => {
   })();
 
   const progressLabel = {
-    [ProgressStatus.ERROR]: t('new_record_upload_error'),
-    [ProgressStatus.DONE]: t('new_record_upload_done'),
-    [ProgressStatus.SENDING]: timeLeftLabel,
-    [ProgressStatus.ABORTED]: t('new_record_upload_aborted'),
-    [ProgressStatus.PROCESSING]: t('new_record_upload_processing')
+    [ProgressStatus.NEW_RECORD.ERROR]: t('new_record_upload_error'),
+    [ProgressStatus.NEW_RECORD.DONE]: t('new_record_upload_done'),
+    [ProgressStatus.NEW_RECORD.SENDING]: timeLeftLabel,
+    [ProgressStatus.NEW_RECORD.ABORTED]: t('new_record_upload_aborted'),
+    [ProgressStatus.NEW_RECORD.PROCESSING]: t('new_record_upload_processing')
   }[progress.status] || '';
 
   const progressClass = {
-    [ProgressStatus.ERROR]: 'error',
-    [ProgressStatus.DONE]: 'done',
-    [ProgressStatus.SENDING]: 'sending',
-    [ProgressStatus.NOT_STARTED]: 'not-started',
-    [ProgressStatus.ABORTED]: 'aborted',
-    [ProgressStatus.PROCESSING]: 'processing'
+    [ProgressStatus.NEW_RECORD.ERROR]: 'error',
+    [ProgressStatus.NEW_RECORD.DONE]: 'done',
+    [ProgressStatus.NEW_RECORD.SENDING]: 'sending',
+    [ProgressStatus.NEW_RECORD.NOT_STARTED]: 'not-started',
+    [ProgressStatus.NEW_RECORD.ABORTED]: 'aborted',
+    [ProgressStatus.NEW_RECORD.PROCESSING]: 'processing'
   }[progress.status];
 
   const alertMessage = (() => {
-    if (progress.status === ProgressStatus.SENDING) {
+    if (progress.status === ProgressStatus.NEW_RECORD.SENDING) {
       return (
         <AlertMessage type="transparent">
           {t('new_record_footer_alert_sending')}
         </AlertMessage>
       );
     } 
-    if (progress.status === ProgressStatus.PROCESSING) {
+    if (progress.status === ProgressStatus.NEW_RECORD.PROCESSING) {
         return (
           <AlertMessage type="transparent">
           {t('new_record_footer_alert_processing')}
@@ -58,7 +58,7 @@ const NewRecordProgress = ({ progress }) => {
     return <></>;
   })();
 
-  const processingProgressBarProps = progress.status === ProgressStatus.PROCESSING ? {
+  const processingProgressBarProps = progress.status === ProgressStatus.NEW_RECORD.PROCESSING ? {
     variant: 'striped',
     animated: true
   } : {};

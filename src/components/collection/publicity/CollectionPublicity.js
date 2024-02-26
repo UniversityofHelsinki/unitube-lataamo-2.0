@@ -3,18 +3,17 @@ import PropTypes from 'prop-types';
 import './CollectionPublicity.css';
 import {Col, Container, Form, Row} from 'react-bootstrap';
 import {useTranslation} from "react-i18next";
-import FormElementHeader from "../../form/FormElementHeader";
 import { PUBLICITIES  } from '../../../Constants.js';
 import RadioButtonGroup from '../../form/RadioButtonGroup';
+import ElementHeader from '../../form/ElementHeader';
+import HelpDialog from '../../dialog/HelpDialog';
 
 
-const CollectionPublicity = ({ published }) => {
+const CollectionPublicity = ({ publicity, onChange, message, disabled }) => {
   const { t } = useTranslation();
-  const [level, setLevel] = useState(published);
-  const id = useId();
 
-  const onChange = (what, checked) => {
-    setLevel(checked);
+  const changePublicity = (publicity) => {
+    onChange(publicity);
   };
 
   return (
@@ -22,12 +21,21 @@ const CollectionPublicity = ({ published }) => {
           <Form.Group>
               <Row>
                   <Col>
-                      <FormElementHeader componentId={id}>{t('collection_form_publicity_header')}</FormElementHeader>
+                      <ElementHeader label={t('collection_form_publicity_header')}>
+                        {t('collection_form_publicity_header')}
+                      </ElementHeader>
                   </Col>
+              </Row>
+              <Row className="mb-3">
+                <Col>
+                  <HelpDialog label={t('collection_form_publicity_help_label')}>
+                    {t('collection_form_publicity_help_content')}
+                  </HelpDialog>
+                </Col>
               </Row>
               <Row>
                   <Col>
-                    <RadioButtonGroup id={id} options={ PUBLICITIES } value={level} onChange={(value) => onChange('published', value)} />
+                    <RadioButtonGroup options={PUBLICITIES} value={publicity} onChange={changePublicity} disabled={disabled} />
                   </Col>
               </Row>
           </Form.Group>
@@ -36,7 +44,10 @@ const CollectionPublicity = ({ published }) => {
 };
 
 CollectionPublicity.propTypes = {
-  published: PropTypes.string
+  published: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  message: PropTypes.object,
+  disabled: PropTypes.bool
 };
 
 export default CollectionPublicity;

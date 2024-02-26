@@ -17,4 +17,5 @@
 .collection-card-record-details {
   text-overflow: ellipsis;
   overflow: hidden;
+  white-space: nowrap;
 }

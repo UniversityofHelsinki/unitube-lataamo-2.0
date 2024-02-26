@@ -15,6 +15,8 @@ import useRecords from '../../hooks/useRecords';
 import useLocation from '../../hooks/useLocation';
 import useCollections from '../../hooks/useCollections';
 import CollectionCard from '../collection/card/CollectionCard';
+import RecordActions from './RecordActions';
+import CollectionActions from './CollectionActions';
 
 const Left = () => {
   const [path] = useLocation();
@@ -54,6 +56,8 @@ const Left = () => {
   };
 
   const actionElement = {
+    '/records': <RecordActions />,
+    '/collections': <CollectionActions />
   };
 
   const loading = {
@@ -72,18 +76,9 @@ const Left = () => {
               </Col>
             </Row>
             <Row className="border-start border-end border-black">
-              <Container className="left-tab-content mt-3">
-                <Row className="mb-3">
-                  <Col>
-                    <ButtonRow />
-                  </Col>
-                </Row>
-                <Row className="mb-3">
-                  <Col>
-                    <Search />
-                  </Col>
-                </Row>
-              </Container>
+              <Col className="mt-3 mb-3">
+                {actionElement[path]}
+              </Col>
             </Row>
           </Container>
         </Col>

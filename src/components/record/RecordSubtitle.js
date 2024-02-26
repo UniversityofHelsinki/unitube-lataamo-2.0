@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './RecordSubtitle.css';
 import {Col, Container, Form, Row} from 'react-bootstrap';
@@ -12,16 +12,21 @@ import HelpDialog from '../dialog/HelpDialog';
 
 const RecordSubtitle = ({ onChange, message, file, automaticSubtitles, disabled }) => {
     const { t } = useTranslation();
+    const [selected, setSelected] = useState(null);
 
     const handleChange = (what, value) => {
-      if (what === 'subtitleFile') {
-        onChange('subtitleFile', value);
-      } else if (what === 'automaticSubtitles') {
-        onChange('automaticSubtitles', value);
-      }
+      onChange(what, value);
     };
 
-  console.log(message);
+    const options = ['subtitleFile', 'automaticSubtitles'];
+    const onSelect = (index) => {
+      setSelected(options[index]);
+      options.forEach((option, i) => {
+        if (i !== index) {
+          onChange(option, undefined);
+        }
+      });
+    };
 
     return (
         <Container>
@@ -40,9 +45,28 @@ const RecordSubtitle = ({ onChange, message, file, automaticSubtitles, disabled 
                 </Row>
                 <Row>
                     <Col>
-                        <Toggle labels={[t('record_subtitle_file_header'), t('record_automatic_subtitle_header')]}>
-                            <RecordSubtitleFile onChange={(value) => handleChange('subtitleFile', value)} value={file} disabled={disabled} message={message.subtitleFile} />
-                            <RecordAutomaticSubtitleFile onChange={(value) => handleChange('automaticSubtitles', value)} value={automaticSubtitles}  disabled={disabled} message={message.automaticSubtitles} />
+                        <Toggle 
+                          labels={[
+                            t('record_subtitle_file_header'), 
+                            t('record_automatic_subtitle_header')
+                          ]}
+                          onSelect={onSelect}>
+                            <RecordSubtitleFile 
+                              onChange={(value) => 
+                                handleChange('subtitleFile', value)
+                              } 
+                              value={file} 
+                              disabled={disabled} 
+                              message={message.subtitleFile} 
+                            />
+                            <RecordAutomaticSubtitleFile 
+                              onChange={(value) => 
+                                handleChange('automaticSubtitles', value)
+                              } 
+                              value={automaticSubtitles} 
+                              disabled={disabled} 
+                              message={message.automaticSubtitles} 
+                            />
                         </Toggle>
                     </Col>
                 </Row>

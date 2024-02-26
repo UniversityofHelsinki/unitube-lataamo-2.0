@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 import PropTypes from 'prop-types';
 import './RecordCard.css';
 import { Col, Container, Row } from 'react-bootstrap';
@@ -8,12 +8,16 @@ import onKeyDown from '../../accessibility/keydown';
 
 const RecordCard = ({ record, onClick, selected = false }) => {
   const selectedClass = selected ? 'record-card-selected' : '';
+  const labelId = useId();
   return (
     <Container 
       className={`record-card ${selectedClass}`} 
+      role="button"
       onClick={onClick} 
       onKeyDown={onKeyDown(onClick)}
-      tabIndex={0}>
+      tabIndex={0}
+      aria-labelledby={labelId}
+    >
       <Row>
         <Col className="no-padding col-sm-4 text-center">
           <RecordCardThumbnail record={record} />
@@ -24,7 +28,7 @@ const RecordCard = ({ record, onClick, selected = false }) => {
             </Row>
             <Row>
               <Col className="small-padding">
-                <RecordCardDetails record={record} />
+                <RecordCardDetails labelId={labelId} record={record} />
               </Col>
             </Row>
           </Container>

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {Col, Container, Row} from 'react-bootstrap';
 import './VideoPreview.css';
-import useVideos from '../../hooks/useVideos.js';
 import {useTranslation} from "react-i18next";
 import Loading from "../utilities/Loading";
 
@@ -60,15 +59,16 @@ const VideoPlayer = ({ video }) => {
     );
 };
 
-const VideoPreview = ({record}) => {
-    const videos = useVideos(record.identifier);
-
+const VideoPreview = ({videos}) => {
     return (
         <Container className="no-margin no-padding">
             <Row>
                 <Col className="no-padding">
                     <VideoPlayer video={videos[0]} />
                 </Col>
+            <Col className="no-padding">
+                { videos && videos.length > 0 && <VideoPlayer video={videos[0]} /> }
+            </Col>
             </Row>
         </Container>
     );

@@ -18,7 +18,7 @@ const CancelButton = ({ onClick, disabled, label }) => {
 const NewRecordFooter = ({ progress, onCancel, isValid, onClick }) => {
   const { t } = useTranslation();
 
-  if (progress.status === ProgressStatus.NOT_STARTED) {
+  if (progress.status === ProgressStatus.NEW_RECORD.NOT_STARTED) {
       return (<>
         <CancelButton onClick={onCancel} disabled={false} label={t('new_record_cancel_button_label')} />
         <SendButton disabled={!isValid} label={t('new_record_save_button_label')} />
@@ -26,17 +26,17 @@ const NewRecordFooter = ({ progress, onCancel, isValid, onClick }) => {
   }
 
   const buttonLabel = ({
-    [ProgressStatus.ERROR]: t('new_record_footer_button_error'),
-    [ProgressStatus.DONE]: t('new_record_footer_button_done'),
-    [ProgressStatus.SENDING]: t('new_record_footer_button_sending'),
-    [ProgressStatus.PROCESSING]: t('new_record_footer_button_processing')
+    [ProgressStatus.NEW_RECORD.ERROR]: t('new_record_footer_button_error'),
+    [ProgressStatus.NEW_RECORD.DONE]: t('new_record_footer_button_done'),
+    [ProgressStatus.NEW_RECORD.SENDING]: t('new_record_footer_button_sending'),
+    [ProgressStatus.NEW_RECORD.PROCESSING]: t('new_record_footer_button_processing')
   })[progress.status] || '';
 
   const buttonDisabled = ({
-    [ProgressStatus.ERROR]: false,
-    [ProgressStatus.DONE]: false,
-    [ProgressStatus.SENDING]: true,
-    [ProgressStatus.PROCESSING]: true
+    [ProgressStatus.NEW_RECORD.ERROR]: false,
+    [ProgressStatus.NEW_RECORD.DONE]: false,
+    [ProgressStatus.NEW_RECORD.SENDING]: true,
+    [ProgressStatus.NEW_RECORD.PROCESSING]: true
   })[progress.status] ? { disabled: true } : {};
 
 

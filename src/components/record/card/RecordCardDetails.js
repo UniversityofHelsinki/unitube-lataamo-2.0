@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './RecordCardDetails.css';
 
-const RecordCardDetails = ({ record }) => {
+const RecordCardDetails = ({ record, labelId }) => {
   return (
     <ul className="no-padding record-card-details">
       <li>
-        <strong>
+        <strong id={labelId}>
           {record.title}
         </strong>
       </li>
@@ -16,7 +16,8 @@ const RecordCardDetails = ({ record }) => {
 };
 
 RecordCardDetails.propTypes = {
-  record: PropTypes.object.isRequired
+  record: PropTypes.object.isRequired,
+  labelId: PropTypes.string,
 };
 
 export default RecordCardDetails;

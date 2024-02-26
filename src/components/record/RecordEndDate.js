@@ -39,7 +39,7 @@ const RecordEndDate = ({ endDate, onChange, message, disabled = false }) => {
       <Row>
         <Col>
           <DatePicker 
-            selected={new Date(endDate === undefined ? null : endDate)} 
+            selected={endDate && new Date(endDate)} 
             openToDate={calendarOpenDate}
             minDate={addMonths(new Date(), DELETION_DATE_MIN_MONTHS)}
             maxDate={addYears(new Date(), DELETION_DATE_MAX_YEARS)} 
@@ -55,7 +55,7 @@ const RecordEndDate = ({ endDate, onChange, message, disabled = false }) => {
 };
 
 RecordEndDate.propTypes = {
-  endDate: PropTypes.string.isRequired,
+  endDate: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   message: PropTypes.shape({
     content: PropTypes.string,

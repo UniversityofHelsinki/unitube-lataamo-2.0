@@ -8,3 +8,12 @@
   max-height: 175px;
   overflow: auto;
 }
+
+.collection-records-no-records {
+  width: 100%;
+  background-color: var(--hy-light-silver);
+}
+
+.collection-records-no-records p {
+  padding: 10px;
+}

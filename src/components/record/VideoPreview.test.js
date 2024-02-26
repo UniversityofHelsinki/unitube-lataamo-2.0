@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, screen, within} from '@testing-library/react';
+import { render, screen, within} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import VideoPreview from './VideoPreview';
 
@@ -20,21 +20,27 @@ describe('VideoPreview component', () => {
         jest.resetAllMocks();
     });
 
-    test('renders loading state when no video is provided', () => {
-        const mockUseVideos = jest.fn().mockReturnValue([]);
-        require('../../hooks/useVideos.js').default = mockUseVideos;
 
-        render(<VideoPreview record={{ identifier: 'mock-identifier' }} />);
-
-        expect(screen.getByText('Ladataan...')).toBeInTheDocument();
-        expect(mockUseVideos).toHaveBeenCalledWith('mock-identifier');
-    });
 
     test('renders video player when video is provided', () => {
-        const mockUseVideos = jest.fn().mockReturnValue([{ ...mockVideo }]);
-        require('../../hooks/useVideos.js').default = mockUseVideos;
-
-        render(<VideoPreview record={{ identifier: 'mock-identifier' }} />);
+        render(<VideoPreview videos={[{
+            "id": "c42dbb0b-3b42-41a8-b912-ac051fe8aa52",
+            "type": "text/vtt",
+            "mimetype": "text/vtt",
+            "tags": {
+                "tag": "archive"
+            },
+            "url": "mock-video-url",
+            "checksum": {
+                "type": "md5",
+                "$": "1119c82aa88d57d7ddd2e7aa804b25a5"
+            },
+            "track": "WEBVTT\n\n00:00:00.500 --> 00:00:02.000\nThe Web is always changing\n\n00:00:02.500 --> 00:00:04.300\nand the way we access it is changing\n",
+            "filename": "sample.vtt",
+            "vttFile": {
+                "url": "mock-vtt-url"
+            }
+        }]} />);
 
         const videoPlayer = screen.getByTestId('video-player');
         expect(videoPlayer).toBeInTheDocument();
@@ -49,10 +55,24 @@ describe('VideoPreview component', () => {
     });
 
     test('handles play button click', () => {
-        const mockUseVideos = jest.fn().mockReturnValue([{ ...mockVideo }]);
-        require('../../hooks/useVideos.js').default = mockUseVideos;
-
-        render(<VideoPreview record={{ identifier: 'mock-identifier' }} />);
+        render(<VideoPreview videos={[{
+            "id": "c42dbb0b-3b42-41a8-b912-ac051fe8aa52",
+            "type": "text/vtt",
+            "mimetype": "text/vtt",
+            "tags": {
+                "tag": "archive"
+            },
+            "url": "mock-video-url",
+            "checksum": {
+                "type": "md5",
+                "$": "1119c82aa88d57d7ddd2e7aa804b25a5"
+            },
+            "track": "WEBVTT\n\n00:00:00.500 --> 00:00:02.000\nThe Web is always changing\n\n00:00:02.500 --> 00:00:04.300\nand the way we access it is changing\n",
+            "filename": "sample.vtt",
+            "vttFile": {
+                "url": 'mock-vtt-url',
+            },
+        }]} />);
 
         const videoPlayer = screen.getByTestId('video-player');
         userEvent.click(videoPlayer);

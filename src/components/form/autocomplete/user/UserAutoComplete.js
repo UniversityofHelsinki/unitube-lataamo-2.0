@@ -7,7 +7,7 @@ import AutoComplete from '../AutoComplete';
 import UserAutoCompleteResult from './../result/UserAutoCompleteResult';
 import { useTranslation } from 'react-i18next';
 
-const UserAutoComplete = ({ onSelect }) => {
+const UserAutoComplete = ({ onSelect, disabled }) => {
   const [results, search, clearResults] = useUsers();
   const [query, setQuery] = useState('');
   const { t } = useTranslation();
@@ -34,7 +34,7 @@ const UserAutoComplete = ({ onSelect }) => {
     <Container className="px-0">
       <Row>
         <Col>
-          <AutoComplete options={options} onFilter={onSearch} onSelect={handleSelection} placeholder={t('user_autocompletion_placeholder')} ariaLabel={t('collection_user_autocomplete_label')}/>
+          <AutoComplete options={options} onFilter={onSearch} onSelect={handleSelection} placeholder={t('user_autocompletion_placeholder')} ariaLabel={t('collection_user_autocomplete_label')} disabled={disabled} />
         </Col>
       </Row>
     </Container>
@@ -42,7 +42,8 @@ const UserAutoComplete = ({ onSelect }) => {
 };
 
 UserAutoComplete.propTypes = {
-  onSelect: PropTypes.func.isRequired
+  onSelect: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default UserAutoComplete;

@@ -10,10 +10,14 @@
   background-color: var(--hy-light-silver);
 }
 
-.collection-card-header-row {
-  border-bottom: 1px solid var(--hy-medium-silver);
+.collection-card-record-row {
+  border-top: 1px solid var(--hy-medium-silver);
 }
 
-.collection-card:hover .collection-card-header-row h4 {
+.collection-card-header-row span {
+  font-size: 1.1em;
+}
+
+.collection-card:hover .collection-card-header-row span {
   text-decoration: underline;
 }

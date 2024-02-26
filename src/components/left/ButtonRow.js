@@ -6,13 +6,13 @@ import './ButtonRow.css';
 import { Col } from 'react-bootstrap';
 import NewRecord from '../record/NewRecord';
 
-const ButtonRow = () => {
+const ButtonRow = ({ children }) => {
 
   return (
     <Container>
       <Row>
         <Col className="px-0">
-          <NewRecord />
+          {children}
         </Col>
       </Row>
     </Container>
@@ -20,6 +20,7 @@ const ButtonRow = () => {
 };
 
 ButtonRow.propTypes = {
+  children: PropTypes.node
 };
 
 export default ButtonRow;

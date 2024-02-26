@@ -5,7 +5,7 @@ import { ReactComponent as WarningIcon } from './icons/warning.svg';
 import { ReactComponent as AlertIcon } from './icons/alert.svg';
 import { ReactComponent as DoneIcon } from './icons/done.svg';
 
-const AlertMessage = ({ children, type }) => {
+const AlertMessage = ({ children, type, slim = false }) => {
 
   const Icon = {
     'warning': WarningIcon,
@@ -14,8 +14,10 @@ const AlertMessage = ({ children, type }) => {
     'transparent': WarningIcon
   }[type];
 
+  const slimClass = slim ? 'alert-message-slim' : '';
+
   return (
-    <div className={`alert-message ${type}`}>
+    <div className={`alert-message ${type} ${slimClass}`}>
       <Icon />
       <p>{children}</p>
     </div>
@@ -23,6 +25,9 @@ const AlertMessage = ({ children, type }) => {
 };
 
 AlertMessage.propTypes = {
+  children: PropTypes.node,
+  type: PropTypes.oneOf(['warning', 'info', 'status', 'transparent']),
+  slim: PropTypes.bool
 };
 
 export default AlertMessage;

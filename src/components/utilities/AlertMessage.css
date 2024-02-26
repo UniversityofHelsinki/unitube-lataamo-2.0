@@ -6,6 +6,10 @@
   font-size: 0.8em;
 }
 
+.alert-message-slim {
+  padding: 0px;
+}
+
 .alert-message svg {
   max-height: 16px;
   margin-right: 0.5em;

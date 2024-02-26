@@ -7,7 +7,7 @@ import {axe} from "jest-axe";
 describe('NewRecord', () => {
     it('should not have any accessibility violations', async () => {
 
-        const { container } = render(<MockProvider>
+      const { container } = render(<MockProvider mockReducers={{ records: { records: [] }}}>
             <NewRecord />
         </MockProvider>);
         const results = await axe(container);

@@ -7,7 +7,7 @@ import useGroups from '../../../../hooks/autocomplete/useGroups';
 import GroupAutoCompleteResult from './../result/GroupAutoCompleteResult.js';
 import { useTranslation } from 'react-i18next';
 
-const GroupAutoComplete = ({ onSelect }) => {
+const GroupAutoComplete = ({ onSelect, disabled }) => {
   const [results, search, clearResults] = useGroups();
   const [query, setQuery] = useState('');
   const { t } = useTranslation();
@@ -34,7 +34,7 @@ const GroupAutoComplete = ({ onSelect }) => {
     <Container className="px-0">
       <Row>
         <Col>
-          <AutoComplete options={options} onFilter={onSearch} onSelect={handleSelection} placeholder={t('group_autocompletion_placeholder')} ariaLabel={t('collection_group_autocomplete_label')} />
+          <AutoComplete options={options} onFilter={onSearch} onSelect={handleSelection} placeholder={t('group_autocompletion_placeholder')} ariaLabel={t('collection_group_autocomplete_label')} disabled={disabled} />
         </Col>
       </Row>
     </Container>
@@ -42,7 +42,8 @@ const GroupAutoComplete = ({ onSelect }) => {
 };
 
 GroupAutoComplete.propTypes = {
-  onSelect: PropTypes.func.isRequired
+  onSelect: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default GroupAutoComplete;

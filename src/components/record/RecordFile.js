@@ -8,7 +8,7 @@ import InputField from '../form/InputField';
 import { ACCEPTED_MIME_TYPES } from '../../Constants';
 import HelpDialog from "../dialog/HelpDialog";
 
-const RecordFile = ({ file, message, onChange, disabled = false }) => {
+const RecordFile = ({ message, onChange, disabled = false }) => {
   const { t } = useTranslation();
   const id = useId();
 
@@ -37,7 +37,6 @@ const RecordFile = ({ file, message, onChange, disabled = false }) => {
 };
 
 RecordFile.propTypes = {
-  file: PropTypes.object,
   onChange: PropTypes.func.isRequired,
   message: PropTypes.shape({
     content: PropTypes.string,

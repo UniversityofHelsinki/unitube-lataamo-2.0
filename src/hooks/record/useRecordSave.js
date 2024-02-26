@@ -1,17 +1,37 @@
 import { useState } from "react";
 import { ProgressStatus } from "../../Constants";
+import useRecords from "../useRecords";
 import useRecordUpdate from "./useRecordUpdate";
 import useSubtitleOrder from "./useSubtitleOrder";
 import useSubtitleUpload from "./useSubtitleUpload";
+
+const statuses = {
+  'done': ProgressStatus.RECORD_SAVE.DONE
+};
+
+const progressPercentage = {
+  [ProgressStatus.RECORD_SAVE.IN_PROGRESS_RECORD]: ({ idx, operationCount }) => Math.ceil(idx / operationCount * 100),
+  [ProgressStatus.RECORD_SAVE.IN_PROGRESS_ORDERSUBTITLES]: () => 100,
+  [ProgressStatus.RECORD_SAVE.IN_PROGRESS_SUBTITLES]: () => 100,
+  [ProgressStatus.RECORD_SAVE.DONE]: () => 100,
+};
 
 const useRecordSave = () => {
   const [updateRecord] = useRecordUpdate();
   const [uploadSubtitles] = useSubtitleUpload();
   const [orderSubtitles] = useSubtitleOrder();
-  const [progress, setProgress] = useState({ status: 'NOT_STARTED', percentage: 0 });
+  const [_records, _loadingRecords, reloadRecords] = useRecords({ load: false });
+  const [progress, setProgress] = useState({ 
+    status: ProgressStatus.RECORD_SAVE.NOT_STARTED, 
+    percentage: 0 
+  });
+
+  const reset = () => {
+    setProgress({ status: ProgressStatus.RECORD_SAVE.NOT_STARTED, percentage: 0 });
+  };
 
   const done = () => {
-    setProgress({ status: 'DONE', percentage: 100 });
+    setProgress({ status: ProgressStatus.RECORD_SAVE.DONE, percentage: 100 });
   };
 
   const saveFunctions = new Map();
@@ -26,10 +46,12 @@ const useRecordSave = () => {
       Object.values(inputs).filter(value => value).length;
     for (const [key, saveFn] of saveFunctions) {
       if (inputs[key] || key === 'done') {
-        const status = `IN_PROGRESS_${key.toUpperCase()}`;
+        const status = statuses[key] || ProgressStatus.RECORD_SAVE[`IN_PROGRESS_${key.toUpperCase()}`];
         const currentProgress = {
           status,
-          percentage: Math.ceil(i / operationCount * 100)
+          percentage: progressPercentage[status]({ 
+            idx: i, progress, operationCount 
+          })
         };
         setProgress(currentProgress);
         try {
@@ -37,7 +59,7 @@ const useRecordSave = () => {
         } catch (error) {
           setProgress({
             ...currentProgress,
-            status: `ERROR`,
+            status: ProgressStatus.RECORD_SAVE.ERROR,
             message: error.message
           });
           return false;
@@ -45,11 +67,8 @@ const useRecordSave = () => {
         i = i+1;
       }
     }
+    reloadRecords();
     return true;
-  };
-
-  const reset = () => {
-    setProgress({ status: 'NOT_STARTED', percentage: 0 });
   };
 
   return [progress, save, reset];
