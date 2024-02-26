@@ -3,7 +3,8 @@
   border-right-width: 1px;
   border-right-style: solid;
   border-right-color: var(--hy-silver);
-
+  max-height: 160px;
+  max-width: 160px;
 }
 
 .record-card-thumbnail img {

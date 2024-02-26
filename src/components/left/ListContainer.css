@@ -1,3 +1,7 @@
+.list-container {
+  overflow: hidden
+}
+
 ul.list-container {
   list-style: none;
 }

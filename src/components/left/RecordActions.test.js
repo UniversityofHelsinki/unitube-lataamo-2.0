@@ -6,7 +6,7 @@ import { MockProvider } from '../../redux/reducers/MockProvider';
 it('renders', () => {
   render(
     <MockProvider mockReducers={{ records: { records: [] } }}>
-      <RecordActions />
+      <RecordActions options={{ showDeleted: false, showRecordsInCollections: false }} onOptionChange={() => {}} />
     </MockProvider>
   );
 });

@@ -4,10 +4,8 @@ import './Left.css';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import ButtonRow from './ButtonRow';
 import LeftList from './LeftList';
 import Navigation from './Navigation';
-import Search from './search/Search';
 import RecordCard from '../record/card/RecordCard';
 import Loading from '../utilities/Loading';
 import useSearchParams from '../../hooks/useSearchParams';
@@ -17,11 +15,19 @@ import useCollections from '../../hooks/useCollections';
 import CollectionCard from '../collection/card/CollectionCard';
 import RecordActions from './RecordActions';
 import CollectionActions from './CollectionActions';
+import useDeletedRecords from '../../hooks/useDeletedRecords';
 
 const Left = () => {
   const [path] = useLocation();
   const [records, loadingRecords] = useRecords({ 
     load: path === '/records'
+  });
+  const [deletedRecords, loadingDeletedRecords] = useDeletedRecords({
+    load: path === '/records'
+  });
+  const [recordOptions, setRecordOptions] = useState({
+    showDeleted: false,
+    showRecordsInCollections: false
   });
 
   const [collections, loadingCollections] = useCollections({ 
@@ -34,13 +40,22 @@ const Left = () => {
     setSearchParams({ 'record': record.identifier });
   };
 
-  const recordCards = (records || []).map((record, i) => (
-    <RecordCard 
-      key={i} 
-      onClick={() => onClick(record)} 
-      record={record} 
-      selected={record.identifier === searchParams.record }/>
-  ));
+  const recordCards = (() => {
+    const usedRecords = (() => {
+      if (recordOptions.showDeleted) {
+        return [ ...(deletedRecords || []), ...(records || []) ];
+      }
+      return records || [];
+    })();
+  
+    return usedRecords.map((record, i) => 
+      <RecordCard 
+        key={i} 
+        onClick={() => onClick(record)} 
+        record={record} 
+        selected={record.identifier === searchParams.record }/>
+    );
+  })();
 
   const collectionElements = (collections || []).map((collection, i) =>
     <CollectionCard 
@@ -56,12 +71,12 @@ const Left = () => {
   };
 
   const actionElement = {
-    '/records': <RecordActions />,
+    '/records': <RecordActions options={recordOptions} onOptionChange={(options) => setRecordOptions(options)} />,
     '/collections': <CollectionActions />
   };
 
   const loading = {
-    '/records': loadingRecords,
+    '/records': loadingRecords || loadingDeletedRecords,
     '/collections': loadingCollections
   };
 

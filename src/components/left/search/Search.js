@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import SearchOptions from './SearchOptions';
 import { ReactComponent as SearchIcon } from '../../utilities/icons/search.svg';
 import './Search.css';
 import { Form, InputGroup } from 'react-bootstrap';
 
-const Search = () => {
+const Search = ({ options }) => {
   return (
     <Container>
       <Row>
@@ -19,16 +18,13 @@ const Search = () => {
           </InputGroup>
         </Col>
       </Row>
-      <Row className="mt-1">
-        <Col>
-          <SearchOptions />
-        </Col>
-      </Row>
     </Container>
   );
 };
 
 Search.propTypes = {
+  onQueryChange: PropTypes.func,
+  onOptionChange: PropTypes.func
 };
 
 export default Search;

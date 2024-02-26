@@ -5,8 +5,9 @@ import { Col, Container, Row } from 'react-bootstrap';
 import ButtonRow from './ButtonRow';
 import Search from './search/Search';
 import NewRecord from '../record/NewRecord';
+import RecordActionOptions from './RecordActionOptions';
 
-const RecordActions = () => {
+const RecordActions = ({ options, onOptionChange }) => {
   return (
       <Container>
         <Row className="mb-3">
@@ -18,7 +19,12 @@ const RecordActions = () => {
         </Row>
         <Row>
           <Col>
-            <Search />
+            <Search options={options} onOptionChange={onOptionChange} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <RecordActionOptions onOptionChange={onOptionChange} options={options} />
           </Col>
         </Row>
       </Container>
