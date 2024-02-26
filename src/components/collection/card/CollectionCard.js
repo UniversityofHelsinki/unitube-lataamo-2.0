@@ -8,9 +8,9 @@ const CollectionCard = ({ collection, onClick, selected = false}) => {
   const selectedClass = selected ? 'collection-card-selected' : '';
   return (
     <Container onClick={onClick} tabIndex={0} className={`collection-card ${selectedClass}`}>
-      <Row className="collection-card-header-row">
+      <Row className="collection-card-header-row py-2">
         <Col>
-          <h4>{collection.title}</h4>
+          <span>{collection.title}</span>
         </Col>
       </Row>
       <Row>

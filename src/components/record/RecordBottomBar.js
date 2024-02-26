@@ -5,9 +5,8 @@ import BottomBar from '../right/BottomBar';
 import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import UnsavedChanges from '../right/UnsavedChanges';
-import { ProgressStatus } from '../../Constants';
-import ProgressBar from '../form/ProgressBar';
 import RecordBottomBarProgress from './RecordBottomBarProgress';
+import { ProgressStatus } from '../../Constants';
 
 const UndoButton = ({ onClick, disabled }) => {
   const { t } = useTranslation();
@@ -27,14 +26,16 @@ const SaveButton = ({ disabled }) => {
 
 const RecordBottomBar = ({ progress, record, modified, undo, isValid }) => {
 
-  const savingHasBegun = progress.status !== 'NOT_STARTED';
-  const savingInProgress = savingHasBegun && progress.status !== 'DONE';
-  const notification = (() => {
-    if (savingHasBegun) {
-      return <RecordBottomBarProgress progress={progress} />
-    }
+  const savingHasBegun = progress.status !== ProgressStatus.RECORD_SAVE.NOT_STARTED;
+  const savingInProgress = savingHasBegun && progress.status !== ProgressStatus.RECORD_SAVE.DONE && progress.status !== ProgressStatus.RECORD_SAVE.ERROR;
+  const savingIsDone = savingHasBegun && !savingInProgress;
 
-    if (modified) {
+  const notification = (() => {
+    if (savingIsDone && modified) {
+      return <UnsavedChanges />;
+    } else if (savingIsDone || savingHasBegun) {
+      return <RecordBottomBarProgress progress={progress} />
+    } else if (modified) {
       return <UnsavedChanges />;
     }
 

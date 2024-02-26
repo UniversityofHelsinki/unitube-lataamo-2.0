@@ -5,7 +5,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import './AutoComplete.css';
 import InputField from '../InputField';
 
-const AutoComplete = ({ options = [], onFilter, onSelect = console.log, placeholder, ariaLabel }) => {
+const AutoComplete = ({ options = [], onFilter, onSelect = console.log, placeholder, ariaLabel, disabled }) => {
   const [typedValue, setTypedValue] = useState('');
   const [focus, setFocus] = useState(false);
   const containerRef = useRef();
@@ -33,7 +33,7 @@ const AutoComplete = ({ options = [], onFilter, onSelect = console.log, placehol
     } onFocus={(e => setFocus(true))}>
       <Row>
         <Col>
-          <InputField aria-label={ariaLabel} placeholder={placeholder} type="search" value={typedValue} onChange={handleInput} message={{}} />
+          <InputField aria-label={ariaLabel} placeholder={placeholder} type="search" value={typedValue} onChange={handleInput} message={{}} disabled={disabled} />
           <AutoCompleteOptionContainer options={options} show={options.length > 0 && focus} onSelect={clearOnSelect} />
         </Col>
       </Row>
@@ -46,7 +46,8 @@ AutoComplete.propTypes = {
   onFilter: PropTypes.func.isRequired,
   onSelect: PropTypes.func,
   placeholder: PropTypes.string.isRequired,
-  ariaLabel: PropTypes.string.isRequired
+  ariaLabel: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default AutoComplete;

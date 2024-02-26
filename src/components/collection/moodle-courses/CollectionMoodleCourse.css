@@ -15,3 +15,7 @@
 .collection-moodle-course-remove-icon-col polygon {
     fill: var(--hy-red);
 }
+
+.collection-moodle-course-disabled .collection-moodle-course-remove-icon-col polygon {
+    fill: var(--hy-medium-silver);
+}

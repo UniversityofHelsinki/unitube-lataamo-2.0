@@ -32,6 +32,10 @@
   max-width: calc(var(--collection-record-width) - 40px);
 }
 
+.collection-record-details:hover {
+  text-decoration: underline;
+}
+
 .collection-record-remove {
   height: 100%;
   cursor: pointer;
@@ -45,3 +49,6 @@
   fill: var(--hy-red);
 }
 
+.collection-record-disabled svg polygon {
+  fill: var(--hy-medium-silver);
+}

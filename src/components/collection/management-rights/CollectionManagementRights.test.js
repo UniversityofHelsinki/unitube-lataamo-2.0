@@ -3,8 +3,8 @@ import { render } from '@testing-library/react';
 import CollectionManagementRights from './CollectionManagementRights';
 import { MockProvider } from '../../../redux/reducers/MockProvider';
 
-const users = [{ userName: 'baabenom' }];
-const groups = [{ grpName: 'grp-hy-test' }];
+const users = ['baabenom'];
+const groups = ['grp-hy-test'];
 
 const reducers = {
   autocompletion: {

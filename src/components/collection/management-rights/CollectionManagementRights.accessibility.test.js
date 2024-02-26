@@ -6,8 +6,8 @@ import {MockProvider} from "../../../redux/reducers/MockProvider";
 
 
 describe('CollectionManagementRights', () => {
-    const users = [{ userName: 'baabenom' }];
-    const groups = [{ grpName: 'grp-hy-test' }];
+    const users = ['baabenom'];
+    const groups = ['grp-hy-test'];
 
     const reducers = {
         autocompletion: {

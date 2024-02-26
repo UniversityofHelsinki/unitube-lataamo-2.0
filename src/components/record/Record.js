@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -12,56 +12,30 @@ import RecordsBreadCrumb from "../form/RecordsBreadCrumb";
 import RecordBottomBar from './RecordBottomBar';
 import useRecordValidation from '../../hooks/validation/record/useRecordValidation';
 import useRecordSave from '../../hooks/record/useRecordSave';
+import useRecordModification from '../../hooks/useRecordModification';
+import { ProgressStatus } from '../../Constants';
 
 const Record = () => {
   const [originalRecord, loading, reload] = useRecord();
-  const [modified, setModified] = useState(false);
-  const [modifiedRecord, setModifiedRecord] = useState(null);
-  const [modifiedFields, setModifiedFields] = useState({});
   const [progress, save, resetProgress] = useRecordSave();
 
   const [isValid, messages, validate] = useRecordValidation([
     'title', 'description', 'deletionDate', 'license', 'subtitleFile'
   ]);
+  const [record, onChange, modified, undo] = useRecordModification(originalRecord, validate, resetProgress);
 
-  const record = modifiedRecord || originalRecord;
+  const formRef = useRef();
 
-  const reset = () => {
-    setModified(false);
-    setModifiedFields({});
-  };
-
-  useEffect(() => {
-    if (originalRecord && originalRecord.identifier !== modifiedRecord?.identifier) {
-      setModifiedRecord({ ...originalRecord });
-      setModified(false);
-      setModifiedFields({});
-      resetProgress();
+  const resetFileFields = () => {
+    if (formRef.current) {
+      formRef.current.reset();
     }
-  }, [originalRecord]);
-
-  const onChange = async (what, value) => {
-    const newRecord = { ...record, [what]: value };
-
-    const newModifiedFields = {
-      ...modifiedFields,
-      [what]: newRecord[what] !== record[what]
-    };
-
-    const recordDoesNotEqualOriginal =
-      Object.values(newModifiedFields).reduce((a, c) => c || a, false);
-
-    setModified(recordDoesNotEqualOriginal);
-    setModifiedFields(newModifiedFields);
-    setModifiedRecord(newRecord);
-
-    await validate(newRecord);
   };
 
-  const undo = async () => {
-    setModifiedRecord({ ...originalRecord });
-    setModified(false);
-    await validate({ ...originalRecord });
+  const undoRecord = () => {
+    resetFileFields();
+    resetProgress();
+    undo();
   };
 
   const handleSave = async (event) => {
@@ -80,52 +54,50 @@ const Record = () => {
     });
 
     if (success) {
-      reset();
       reload();
     }
 
   };
 
-  const saveInProgress
-    = progress.status !== 'NOT_STARTED' && progress.status !== 'DONE';
+  const saveInProgress = progress.status !== ProgressStatus.RECORD_SAVE.NOT_STARTED && progress.status !== ProgressStatus.RECORD_SAVE.DONE;
 
  return (
-      <form onSubmit={handleSave}>
-      <Container className="record" >
-          <Row className="record-row">
-            <Loading loading={loading}>
-            <Col>
-              <Container className="ps-0">
-                <Row className="breadcrumb-container">
-                  <RecordsBreadCrumb record={originalRecord} />
-                </Row>
-                <Row>
-                  <Col lg={5} className="ps-0">
-                    <RecordStaticInformation record={originalRecord} />
-                  </Col>
-                  <Col lg>
-                    <RecordForm
-                      record={record}
-                      onChange={onChange}
-                      validationMessages={messages}
-                      disabled={saveInProgress} />
-                  </Col>
-                </Row>
-              </Container>
-            </Col>
-            </Loading>
-          </Row>
-          <Row className="record-bottom-bar">
-            <Col>
-              <RecordBottomBar
-                  record={record}
-                  progress={progress}
-                  modified={modified}
-                  undo={undo}
-                  isValid={isValid} />
-            </Col>
-          </Row>
-      </Container>
+      <form ref={formRef} onSubmit={handleSave}>
+        <Container className="record" >
+            <Row className="record-row">
+              <Loading loading={loading}>
+              <Col>
+                <Container className="ps-0">
+                  <Row className="breadcrumb-container">
+                    <RecordsBreadCrumb record={originalRecord} />
+                  </Row>
+                  <Row>
+                    <Col lg={5} className="ps-0">
+                      <RecordStaticInformation record={originalRecord} />
+                    </Col>
+                    <Col lg>
+                      <RecordForm 
+                        record={record} 
+                        onChange={onChange} 
+                        validationMessages={messages} 
+                        disabled={saveInProgress} />
+                    </Col>
+                  </Row>
+                </Container>
+              </Col>
+              </Loading>
+            </Row>
+            <Row className="record-bottom-bar">
+              <Col>
+                <RecordBottomBar 
+                    record={record} 
+                    progress={progress} 
+                    modified={modified} 
+                    undo={undoRecord}
+                    isValid={isValid} />
+              </Col>
+            </Row>
+        </Container>
       </form>
   );
 };
