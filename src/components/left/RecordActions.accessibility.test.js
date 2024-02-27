@@ -8,7 +8,7 @@ describe('RecordActions', () => {
   it('has no accessibility violations', async () => {
         const { container } = render(
           <MockProvider mockReducers={{ records: { records: [] } }}>
-            <RecordActions />
+            <RecordActions options={{ showDeleted: false, showRecordsInCollections: false }} onOptionChange={() => {}} />
           </MockProvider>
         );
         const results = await axe(container);

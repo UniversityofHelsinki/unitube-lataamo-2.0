@@ -2,8 +2,12 @@
   list-style: none;
 }
 
+.record-card-details-deleted {
+  text-decoration: line-through;
+}
+
 .record-card-details li {
-  text-overflow: ellipsis;
-  white-space: nowrap;
   overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
