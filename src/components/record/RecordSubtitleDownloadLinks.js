@@ -19,7 +19,7 @@ const DownloadLink = ({ to, label }) => {
         <div className="record-subtitle-download-link-item">
             <div className="record-subtitle-download-link-item-link">
                 <DownloadIcon width="2em" height="2em"/>
-                <a title="{label}" className={`ms-2 ${linkClass}`} download href={to}>{label}</a>
+                <a title={label} className={`ms-2 ${linkClass}`} download href={to}>{label}</a>
             </div>
             <div>
                 <RemoveSubtitleButton onClick={() => handleClick(markedForDeletion)} markedForDeletion={markedForDeletion}/>
