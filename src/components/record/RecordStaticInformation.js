@@ -14,7 +14,7 @@ import useVideos from "../../hooks/useVideos";
 
 const RecordStaticInformation = ({ record }) => {
     const videos = useVideos(record.identifier);
-    const subtitles = videos?.map((video) => video.vttFile) || [];
+    const subtitles = videos?.map((video) => video.vttFile).filter(file => file !== undefined && file !== '');
     return (
     <Container className="ps-0">
       <Row className="mb-4">
@@ -42,11 +42,13 @@ const RecordStaticInformation = ({ record }) => {
             <RecordDownloadLinks media={record.media || []} publications={record.publications || {}} />
         </Col>
       </Row>
+        {subtitles && subtitles.length > 0 && (
         <Row className="mb-4">
             <Col>
                 <RecordSubtitleDownloadLinks media={record.media || []} subtitles={subtitles} />
             </Col>
         </Row>
+        )}
     </Container>
   );
 };
