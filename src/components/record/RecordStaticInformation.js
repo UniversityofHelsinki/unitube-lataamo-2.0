@@ -46,8 +46,7 @@ const RecordStaticInformation = ({record, onChange}) => {
                 <Row className="mb-4">
                     <Col>
                         <RecordSubtitleDownloadLinks
-                            onChange={onChange} record
-                            media={record.media || []} subtitles={subtitles} />
+                            onChange={onChange} media={record.media || []} subtitles={subtitles} />
                     </Col>
                 </Row>
             )}
