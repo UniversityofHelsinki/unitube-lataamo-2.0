@@ -40,17 +40,21 @@ const Record = () => {
 
   const handleSave = async (event) => {
     event.preventDefault();
-
     const userGaveSubtitles = record.subtitleFile;
     const userGaveAutomaticSubtitles = record.automaticSubtitles;
 
     const subtitles = userGaveSubtitles ? { file: record.subtitleFile, identifier: record.identifier } : undefined;
     const automaticSubtitles = userGaveAutomaticSubtitles ? { ...(record.automaticSubtitles), identifier: record.identifier } : undefined;
 
+    const markedSubtitlesForDeletion = { eventId: record.identifier, deleteSubtitle: record.deleteSubtitle };
+
+    debugger;
+
     const success = await save({
        record,
        subtitles,
-       orderSubtitles: automaticSubtitles
+       orderSubtitles: automaticSubtitles,
+       deleteSubtitle: markedSubtitlesForDeletion
     });
 
     if (success) {
@@ -73,14 +77,14 @@ const Record = () => {
                   </Row>
                   <Row>
                     <Col lg={5} className="ps-0">
-                      <RecordStaticInformation record={originalRecord} />
+                      <RecordStaticInformation record={originalRecord} onChange={onChange}  />
                     </Col>
                     <Col lg>
-                      <RecordForm 
-                        record={record} 
-                        onChange={onChange} 
-                        validationMessages={messages} 
-                        disabled={saveInProgress} 
+                      <RecordForm
+                        record={record}
+                        onChange={onChange}
+                        validationMessages={messages}
+                        disabled={saveInProgress}
                       />
                     </Col>
                   </Row>
@@ -90,10 +94,10 @@ const Record = () => {
             </Row>
             <Row className="record-bottom-bar">
               <Col>
-                <RecordBottomBar 
-                    record={record} 
-                    progress={progress} 
-                    modified={modified} 
+                <RecordBottomBar
+                    record={record}
+                    progress={progress}
+                    modified={modified}
                     undo={undoRecord}
                     isValid={isValid} />
               </Col>

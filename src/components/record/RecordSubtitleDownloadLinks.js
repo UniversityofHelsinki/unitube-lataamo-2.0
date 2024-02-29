@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from "prop-types";
 import {ReactComponent as DownloadIcon} from '../utilities/icons/download.svg';
 import {ReactComponent as RemoveIcon} from '../utilities/icons/remove.svg';
@@ -8,11 +8,23 @@ import {Button, Col, Container, Row} from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 import ElementHeader from "../form/ElementHeader";
 
-const DownloadLink = ({ to, label }) => {
+/**
+ * Functional component that represents a download link for a subtitle.
+ *
+ * @param {Object} props - The component props.
+ * @param {Function} props.onChange - Callback function to handle changes.
+ * @param {String} props.to - The URL of the download link.
+ * @param {String} props.label - The label of the download link.
+ * @returns {JSX.Element} The download link component.
+ */
+const DownloadLink = ({ onChange, to, label }) => {
     const [markedForDeletion, setMarkedForDeletion] = useState(false);
     const linkClass = markedForDeletion ? "record-subtitle-download-link-deleted" : "record-subtitle-download-link";
-    const handleClick = (markedForDeletion) => {
-        setMarkedForDeletion(!markedForDeletion);
+
+    const handleClick = () => {
+        const updatedMarkedForDeletion = !markedForDeletion;
+        setMarkedForDeletion(updatedMarkedForDeletion);
+        onChange('deleteSubtitle', updatedMarkedForDeletion);
     };
 
     return (
@@ -22,12 +34,27 @@ const DownloadLink = ({ to, label }) => {
                 <a title={label} className={`ms-2 ${linkClass}`} download href={to}>{label}</a>
             </div>
             <div>
-                <RemoveSubtitleButton onClick={() => handleClick(markedForDeletion)} markedForDeletion={markedForDeletion}/>
+                <RemoveSubtitleButton onClick={handleClick} markedForDeletion={markedForDeletion}/>
             </div>
         </div>
     );
 };
 
+
+/**
+ * A button component used for removing subtitles.
+ *
+ * @component
+ * @example
+ * <RemoveSubtitleButton
+ *    onClick={() => handleRemoveSubtitle()}
+ *    markedForDeletion={true}
+ * />
+ *
+ * @param {Function} onClick - The function to be called when the button is clicked.
+ * @param {boolean} markedForDeletion - A flag indicating whether the subtitle is marked for deletion.
+ * @returns {JSX.Element} The rendered RemoveSubtitleButton component.
+ */
 const RemoveSubtitleButton = ({onClick, markedForDeletion }) => {
     const { t } = useTranslation();
     const label = markedForDeletion ? t('record_subtitle_undo_button') : t('record_subtitle_delete_button');
@@ -38,8 +65,15 @@ const RemoveSubtitleButton = ({onClick, markedForDeletion }) => {
     );
 };
 
-const RecordSubtitleDownloadLinks = ({ subtitles }) => {
-    console.log(subtitles);
+/**
+ * Renders a list of subtitle download links for a record.
+ *
+ * @param {Object} props - The component props.
+ * @param {Array} props.subtitles - The list of subtitles to display.
+ * @param {function} props.onChange - The onChange event handler.
+ * @returns {JSX.Element|null} The subtitle download links component.
+ */
+const RecordSubtitleDownloadLinks = ({ subtitles, onChange }) => {
     const { t } = useTranslation();
     return (
         <>
@@ -59,7 +93,7 @@ const RecordSubtitleDownloadLinks = ({ subtitles }) => {
                             <ul className="blockquote record-subtitle-download-link-list">
                                 {subtitles.map((subtitle, i) => (
                                     <li key={subtitle.id || i}>
-                                        <DownloadLink to={`${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/vttFile/` + subtitle.url} label={subtitle.filename} />
+                                        <DownloadLink onChange={onChange}  to={`${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/vttFile/` + subtitle.url} label={subtitle.filename} />
                                     </li>
                                 ))}
                             </ul>
@@ -71,8 +105,14 @@ const RecordSubtitleDownloadLinks = ({ subtitles }) => {
     );
 };
 
+/**
+ * Validates the propTypes of the RecordSubtitleDownloadLinks component.
+ *
+ * @param {object} props - The props object containing the component's properties.
+ */
 RecordSubtitleDownloadLinks.propTypes = {
-    subtitles: PropTypes.array
+    subtitles: PropTypes.array,
+    onChange: PropTypes.func
 };
 
 export default RecordSubtitleDownloadLinks;
