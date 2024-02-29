@@ -42,11 +42,12 @@ const Record = () => {
     event.preventDefault();
     const userGaveSubtitles = record.subtitleFile;
     const userGaveAutomaticSubtitles = record.automaticSubtitles;
+    const userDeletedSubtitles = record.deleteSubtitle;
 
     const subtitles = userGaveSubtitles ? { file: record.subtitleFile, identifier: record.identifier } : undefined;
     const automaticSubtitles = userGaveAutomaticSubtitles ? { ...(record.automaticSubtitles), identifier: record.identifier } : undefined;
 
-    const markedSubtitlesForDeletion = { eventId: record.identifier, deleteSubtitle: record.deleteSubtitle };
+    const markedSubtitlesForDeletion = userDeletedSubtitles ? { eventId: record.identifier, deleteSubtitle: true } : undefined;
 
     debugger;
 

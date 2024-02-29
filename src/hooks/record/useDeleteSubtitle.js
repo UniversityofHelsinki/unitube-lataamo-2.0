@@ -17,10 +17,10 @@ const useDeleteSubtitle = () => {
         }
     };
 
-    const deleteSubtitle = async (eventId, deleteSubtitle) => {
+    const deleteSubtitle = async (input) => {
         debugger;
-        if (deleteSubtitle) {
-            await actionDeleteVideoVTTFile(eventId);
+        if (input.deleteSubtitle) {
+            await actionDeleteVideoVTTFile(input.eventId);
         }
     };
 
