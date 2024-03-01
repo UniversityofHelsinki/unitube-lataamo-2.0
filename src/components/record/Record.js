@@ -49,8 +49,6 @@ const Record = () => {
 
     const markedSubtitlesForDeletion = userDeletedSubtitles ? { eventId: record.identifier, deleteSubtitle: true } : undefined;
 
-    debugger;
-
     const success = await save({
        record,
        subtitles,

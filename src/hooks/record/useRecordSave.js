@@ -14,6 +14,7 @@ const progressPercentage = {
   [ProgressStatus.RECORD_SAVE.IN_PROGRESS_RECORD]: ({ idx, operationCount }) => Math.ceil(idx / operationCount * 100),
   [ProgressStatus.RECORD_SAVE.IN_PROGRESS_ORDERSUBTITLES]: () => 100,
   [ProgressStatus.RECORD_SAVE.IN_PROGRESS_SUBTITLES]: () => 100,
+  [ProgressStatus.RECORD_SAVE.IN_PROGRESS_DELETESUBTITLE]: () => 100,
   [ProgressStatus.RECORD_SAVE.DONE]: () => 100,
 };
 
@@ -40,8 +41,8 @@ const useRecordSave = () => {
   saveFunctions.set('record', updateRecord);
   saveFunctions.set('subtitles', uploadSubtitles);
   saveFunctions.set('orderSubtitles', orderSubtitles);
-  saveFunctions.set('done', done);
   saveFunctions.set('deleteSubtitle', deleteSubtitle);
+  saveFunctions.set('done', done);
 
   const save = async (inputs) => {
     let i = 0;
