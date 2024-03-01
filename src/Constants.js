@@ -83,3 +83,5 @@ export const PUBLICITIES = [
 ];
 
 export const FIELD_IS_VALID = false;
+
+export const DELETED_SERIES_REG_EXP = (user) => new RegExp(`^trash ${user}$`);

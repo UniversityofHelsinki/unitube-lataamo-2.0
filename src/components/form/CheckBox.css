@@ -1,0 +1,14 @@
+input[type="checkbox"] {
+  background-image: url('./CheckBox.square.svg');
+  background-color: var(--hy-white);
+  fill: var(--hy-blue);
+  width: 1em;
+  height: 1em;
+  border: none;
+  outline: none;
+}
+
+input[type="checkbox"]:checked {
+  background-image: url('./CheckBox.square-checked.svg');
+  background-color: var(--hy-white);
+}

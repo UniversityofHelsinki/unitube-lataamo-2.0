@@ -1,0 +1,9 @@
+ul.card-tags {
+  list-style: none;
+  padding: 0px;
+}
+
+ul.card-tags li {
+  display: inline-block;
+  margin-right: 4px;
+}

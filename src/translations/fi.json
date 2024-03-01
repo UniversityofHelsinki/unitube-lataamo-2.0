@@ -144,5 +144,9 @@
   "collection_has_no_records": "Kokoelmalla ei ole tallenteita. Voit lisätä tallenteita kokoelmaan alla olevasta painikkeesta tai siirtymällä Tallenteet-välilehdelle sen tallenteen tietoihin, jonka haluat siirtää tähän kokoelmaan.",
   "collection_has_no_records_lite": "Ei tallenteita.",
   "collection_validation_title_is_empty": "Nimi ei voi olla tyhjä.",
-  "collection_validation_description_is_empty": "Kuvaus ei voi olla tyhjä."
+  "collection_validation_description_is_empty": "Kuvaus ei voi olla tyhjä.",
+  "tag_deleted": "Poistettu",
+  "search_options_show_deleted": "Näytä poistetut",
+  "search_options_show_records_in_collections": "Näytä myös kokoelmiin kuuluvat tallenteet",
+  "record_card_action_restore": "Palauta"
 }
