@@ -47,7 +47,9 @@ const Record = () => {
     const subtitles = userGaveSubtitles ? { file: record.subtitleFile, identifier: record.identifier } : undefined;
     const automaticSubtitles = userGaveAutomaticSubtitles ? { ...(record.automaticSubtitles), identifier: record.identifier } : undefined;
 
-    const markedSubtitlesForDeletion = userDeletedSubtitles ? { eventId: record.identifier, deleteSubtitle: true } : undefined;
+      const markedSubtitlesForDeletion = (userDeletedSubtitles && userGaveSubtitles === undefined && userGaveAutomaticSubtitles === undefined)
+          ? { eventId: record.identifier, deleteSubtitle: true }
+          : undefined;
 
     const success = await save({
        record,
