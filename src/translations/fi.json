@@ -78,6 +78,7 @@
   "record_automatic_subtitle_default_language": "Valitse kieli",
   "record_bottom_bar_progress_saving_subtitles": "Käsitellään tekstityksiä",
   "record_bottom_bar_progress_ordering_subtitles": "Käsitellään automaattitekstityksiä",
+  "record_bottom_bar_progress_deleting_subtitle": "Käsitellään tekstityksen poistoa",
   "record_bottom_bar_progress_done": "Valmis!",
   "record_bottom_bar_progress_user_can_close": "Voit sulkea lomakkeen",
   "ms_whisper": "OpenAI:n Whisper L -kielimalli (Microsoftin Azure-palvelu)",

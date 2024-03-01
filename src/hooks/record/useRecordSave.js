@@ -39,9 +39,9 @@ const useRecordSave = () => {
 
   const saveFunctions = new Map();
   saveFunctions.set('record', updateRecord);
+  saveFunctions.set('deleteSubtitle', deleteSubtitle);
   saveFunctions.set('subtitles', uploadSubtitles);
   saveFunctions.set('orderSubtitles', orderSubtitles);
-  saveFunctions.set('deleteSubtitle', deleteSubtitle);
   saveFunctions.set('done', done);
 
   const save = async (inputs) => {
