@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -12,7 +12,7 @@ import RecordLink from './RecordLink';
 import RecordSubtitleDownloadLinks from "./RecordSubtitleDownloadLinks";
 import useVideos from "../../hooks/useVideos";
 
-const RecordStaticInformation = ({record, onChange}) => {
+const RecordStaticInformation = ({record, onChange, resetSubtitleDownloadLinks}) => {
     const videos = useVideos(record.identifier);
     const subtitles = videos?.map((video) => video.vttFile).filter(file => file !== undefined && file !== '');
     return (
@@ -46,7 +46,7 @@ const RecordStaticInformation = ({record, onChange}) => {
                 <Row className="mb-4">
                     <Col>
                         <RecordSubtitleDownloadLinks
-                            onChange={onChange} media={record.media || []} subtitles={subtitles} />
+                            onChange={onChange} media={record.media || []} subtitles={subtitles} resetSubtitleDownloadLinks={resetSubtitleDownloadLinks}  />
                     </Col>
                 </Row>
             )}

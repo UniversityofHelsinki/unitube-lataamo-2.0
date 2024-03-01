@@ -17,9 +17,13 @@ import ElementHeader from "../form/ElementHeader";
  * @param {String} props.label - The label of the download link.
  * @returns {JSX.Element} The download link component.
  */
-const DownloadLink = ({ onChange, to, label }) => {
+const DownloadLink = ({ onChange, to, label, resetSubtitleDownloadLinks }) => {
     const [markedForDeletion, setMarkedForDeletion] = useState(false);
     const linkClass = markedForDeletion ? "record-subtitle-download-link-deleted" : "record-subtitle-download-link";
+
+    useEffect(() => {
+        setMarkedForDeletion(false);
+    }, [resetSubtitleDownloadLinks]);
 
     const handleClick = () => {
         const updatedMarkedForDeletion = !markedForDeletion;
@@ -73,7 +77,7 @@ const RemoveSubtitleButton = ({onClick, markedForDeletion }) => {
  * @param {function} props.onChange - The onChange event handler.
  * @returns {JSX.Element|null} The subtitle download links component.
  */
-const RecordSubtitleDownloadLinks = ({ subtitles, onChange }) => {
+const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloadLinks }) => {
     const { t } = useTranslation();
     return (
         <>
@@ -93,7 +97,7 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange }) => {
                             <ul className="blockquote record-subtitle-download-link-list">
                                 {subtitles.map((subtitle, i) => (
                                     <li key={subtitle.id || i}>
-                                        <DownloadLink onChange={onChange}  to={`${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/vttFile/` + subtitle.url} label={subtitle.filename} />
+                                        <DownloadLink onChange={onChange}  to={`${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/vttFile/` + subtitle.url} label={subtitle.filename} resetSubtitleDownloadLinks={resetSubtitleDownloadLinks} />
                                     </li>
                                 ))}
                             </ul>
