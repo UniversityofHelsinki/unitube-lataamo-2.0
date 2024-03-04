@@ -116,7 +116,8 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloa
  */
 RecordSubtitleDownloadLinks.propTypes = {
     subtitles: PropTypes.array,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    resetSubtitleDownloadLinks: PropTypes.bool
 };
 
 export default RecordSubtitleDownloadLinks;

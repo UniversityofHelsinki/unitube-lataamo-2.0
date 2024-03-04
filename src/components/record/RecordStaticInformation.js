@@ -56,7 +56,8 @@ const RecordStaticInformation = ({record, onChange, resetSubtitleDownloadLinks})
 
 RecordStaticInformation.propTypes = {
     record: PropTypes.object,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    resetSubtitleDownloadLinks: PropTypes.bool
 };
 
 export default RecordStaticInformation;
