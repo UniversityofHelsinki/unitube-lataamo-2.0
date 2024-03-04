@@ -1,11 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe } from 'jest-axe';
 
 import RecordSubtitleDownloadLinks from './RecordSubtitleDownloadLinks';
-
-// Extend Jest matchers
-expect.extend(toHaveNoViolations);
 
 describe('RecordSubtitleDownloadLinks', () => {
 
