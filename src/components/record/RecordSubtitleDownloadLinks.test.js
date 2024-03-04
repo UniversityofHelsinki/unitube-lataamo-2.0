@@ -25,7 +25,6 @@ describe('RecordSubtitleDownloadLinks', () => {
 
         // Check if the subtitle links are rendered by finding them by their filenames.
         expect(getByText('Subtitle 1')).toBeInTheDocument();
-        console.log(getByText('Subtitle 1'));
         expect(getByText('Subtitle 2')).toBeInTheDocument();
     });
 });
