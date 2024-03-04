@@ -159,5 +159,7 @@
   "delete_record_footer_error": "Virhe!",
   "delete_record_form_body_header": "Vahvista tallenteen poisto",
   "delete_record_form_help_header": "Tietoa tallenteen poistamisesta",
-  "delete_record_form_help_content": "Poistetut tallenteet löytyvät Tallenteet-välilehdeltä Näytä poistetut -valintapainiketta painamalla. Poistettujen tallenteiden sisältö häviää lopullisesti palvelusta automaattisesti tietyn ajan kuluttua."
+  "delete_record_form_help_content": "Poistetut tallenteet löytyvät Tallenteet-välilehdeltä Näytä poistetut -valintapainiketta painamalla. Poistettujen tallenteiden sisältö häviää lopullisesti palvelusta automaattisesti tietyn ajan kuluttua.",
+  "left_user_has_no_records": "Ei tallenteita. Voit lisätä uuden tallenteen Uusi tallenne -lomakkeella. Kokoelmiin kuuluvat tallenteet löytyvät Kokoelmat-välilehdeltä.",
+  "left_user_has_no_collections": "Ei kokoelmia. Lisää uusi kokoelma Uusi kokoelma -lomakkeella."
 }

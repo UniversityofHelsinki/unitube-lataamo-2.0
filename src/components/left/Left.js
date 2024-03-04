@@ -16,6 +16,35 @@ import CollectionCard from '../collection/card/CollectionCard';
 import RecordActions from './RecordActions';
 import CollectionActions from './CollectionActions';
 import useDeletedRecords from '../../hooks/useDeletedRecords';
+import { useTranslation } from 'react-i18next';
+
+const No = ({ children }) => {
+  return (
+    <div className="left-no">
+      <p>
+        {children}
+      </p>
+    </div>
+  );
+};
+
+const NoRecords = () => {
+  const { t } = useTranslation();
+  return (
+    <No>
+      {t('left_user_has_no_records')}
+    </No>
+  );
+};
+
+const NoCollections = () => {
+  const { t } = useTranslation();
+  return (
+    <No>
+      {t('left_user_has_no_collections')}
+    </No>
+  );
+};
 
 const Left = () => {
   const [path] = useLocation();
@@ -63,8 +92,13 @@ const Left = () => {
         onClick={() => setSearchParams({ 'collection': collection.identifier })} />
   );
 
+  const emptyElements = {
+    '/records': <NoRecords />,
+    '/collections': <NoCollections />
+  };
+
   const listElements = {
-    '/records': recordCards, 
+    '/records': recordCards,
     '/collections': collectionElements
   };
 
@@ -100,7 +134,12 @@ const Left = () => {
         <Col className="pe-0">
           <Loading loading={Boolean(loading[path])}>
             <LeftList>
-              {listElements[path]}
+              {(() => {
+                if (listElements[path].length > 0) {
+                  return listElements[path];
+                }
+                return [emptyElements[path]];
+              })()}
             </LeftList>
           </Loading>
         </Col>
