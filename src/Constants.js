@@ -50,7 +50,12 @@ export const ProgressStatus = {
     DONE: 'done',
     ERROR: 'error'
   },
-
+  RECORD_RESTORE: {
+    NOT_STARTED: 'not_started',
+    IN_PROGRESS: 'in_progress',
+    DONE: 'done',
+    ERROR: 'error'
+  }
 };
 
 export const MONITOR_POLLING_RATE_MS = 3000;
