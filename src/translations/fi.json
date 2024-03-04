@@ -139,6 +139,7 @@
   "search_options_show_deleted": "Näytä poistetut",
   "search_options_show_records_in_collections": "Näytä myös kokoelmiin kuuluvat tallenteet",
   "record_card_action_restore": "Palauta",
+  "record_card_action_delete": "Poista",
   "restore_record_header": "Palauta tallenne",
   "restore_record_footer_cancel_button": "Peruuta",
   "restore_record_footer_save_button": "Palauta",
@@ -146,5 +147,17 @@
   "restore_record_footer_done": "Valmis!",
   "restore_record_footer_done_alert": "Voit sulkea lomakkeen",
   "restore_record_footer_error": "Virhe!",
-  "restore_record_footer_error_button": "Yritä uudestaan"
+  "restore_record_footer_error_button": "Yritä uudestaan",
+  "record_thumbnail_alt_text": "Tallenteen {{title}} pienoiskuva",
+  "record_delete_form_header": "Poista tallenne",
+  "delete_record_footer_cancel_button": "Peruuta",
+  "delete_record_footer_submit_button": "Poista",
+  "delete_record_footer_error_button": "Yritä uudestaan",
+  "delete_record_footer_in_progress": "Poistetaan...",
+  "delete_record_footer_done": "Valmis!",
+  "delete_record_footer_done_alert": "Voit sulkea lomakkeen",
+  "delete_record_footer_error": "Virhe!",
+  "delete_record_form_body_header": "Vahvista tallenteen poisto",
+  "delete_record_form_help_header": "Tietoa tallenteen poistamisesta",
+  "delete_record_form_help_content": "Poistetut tallenteet löytyvät Tallenteet-välilehdeltä Näytä poistetut -valintapainiketta painamalla. Poistettujen tallenteiden sisältö häviää lopullisesti palvelusta automaattisesti tietyn ajan kuluttua."
 }

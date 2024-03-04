@@ -22,9 +22,7 @@ const Left = () => {
   const [records, loadingRecords] = useRecords({ 
     load: path === '/records'
   });
-  const [deletedRecords, loadingDeletedRecords] = useDeletedRecords({
-    load: path === '/records'
-  });
+  const [deletedRecords, loadingDeletedRecords] = useDeletedRecords();
   const [recordOptions, setRecordOptions] = useState({
     showDeleted: false,
     showRecordsInCollections: false
@@ -50,7 +48,7 @@ const Left = () => {
   
     return usedRecords.map((record, i) => 
       <RecordCard 
-        key={i} 
+        key={record.identifier} 
         onClick={() => onClick(record)} 
         record={record} 
         selected={record.identifier === searchParams.record }/>
@@ -61,7 +59,7 @@ const Left = () => {
     <CollectionCard 
         collection={collection}
         selected={collection.identifier === searchParams.collection}
-        key={i} 
+        key={collection.identifier} 
         onClick={() => setSearchParams({ 'collection': collection.identifier })} />
   );
 

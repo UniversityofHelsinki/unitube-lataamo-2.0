@@ -10,32 +10,36 @@ const logout = (url = "/Shibboleth.sso/Logout") => {
 };
 
 
-const getUser = () => async (dispatch) => {
+const getUser = async () => {
   const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/user`;
   try {
     const response = await fetch(URL);
-    if (response.status === 200) {
-      dispatch({ type: 'SET_USER', payload: await response.json() });
+    if (response.ok) {
+      return await response.json();
     } else if (response.status === 401) {
       login();
     } else {
-      dispatch({ type: 'SET_ERROR', payload: await response.status });
+      throw new Error(`Unexpected status code ${response.status} from ${URL}`);
     }
   } catch (error) {
     console.log(error.message);
-    dispatch({ type: 'SET_ERROR', payload: error.message });
+    throw new Error(`Error occurred while fetching user from ${URL}`, {
+      cause: error
+    });
   }
 };
 
 const useUser = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.users.user);
+  const loadingUser = useSelector((state) => state.users.loadingUser);
 
-  useEffect(() => {
-    if (!user) {
-      dispatch(getUser());
-    }
-  }, [user, dispatch]);
+  if (!user && !loadingUser) {
+    dispatch({ type: 'SET_LOADING_USER', payload: true });
+    (async () => {
+      dispatch({ type: 'SET_USER', payload: await getUser()});
+    })();
+  }
 
   return [user, login, logout];
 

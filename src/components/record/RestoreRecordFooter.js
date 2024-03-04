@@ -24,14 +24,6 @@ const RestoreRecordFooter = ({ progress, hide }) => {
     [ProgressStatus.RECORD_RESTORE.ERROR]: 'error',
   }[progress.status] || '';
 
-  const progressBarProps = {
-    label: progressBarLabel,
-    now: progress.percentage,
-    animated,
-    alertMessage: <></>,
-    type: progressBarType
-  };
-
   const alertMessage = {
     [ProgressStatus.RECORD_RESTORE.DONE]: (
       <AlertMessage type="transparent" slim={true}>
@@ -39,6 +31,14 @@ const RestoreRecordFooter = ({ progress, hide }) => {
       </AlertMessage>
     )
   }[progress.status] || <></>;
+
+  const progressBarProps = {
+    label: progressBarLabel,
+    now: progress.percentage,
+    animated,
+    alertMessage,
+    type: progressBarType
+  };
 
   const restoreInProgress = progress.status === ProgressStatus.RECORD_RESTORE.IN_PROGRESS;
   const restoreDone = progress.status === ProgressStatus.RECORD_RESTORE.DONE;
@@ -55,7 +55,7 @@ const RestoreRecordFooter = ({ progress, hide }) => {
     <div className="restore-record-footer">
       {(restoreInProgress || restoreDone || restoreError) && 
       <div className="restore-record-footer-progress-bar">
-        <ProgressBar { ...progressBarProps } alertMessage={alertMessage} />
+        <ProgressBar { ...progressBarProps } />
       </div>}
       <div className="restore-record-footer-buttons">
         <Button variant="outline-secondary" onClick={hide} disabled={restoreInProgress || restoreDone}>
