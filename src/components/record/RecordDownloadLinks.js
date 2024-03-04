@@ -11,7 +11,7 @@ const DownloadLink = ({ to, label }) => {
   return (
     <>
       <DownloadIcon width="2em" height="2em" />
-      <a className="ms-2" href={to}>{label}</a>
+      <a download className="ms-2" href={to}>{label}</a>
     </>
   );
 };
@@ -39,7 +39,7 @@ const RecordDownloadLinks = ({ media, publications }) => {
           <ul className="blockquote record-download-link-list">
             {media.map((link, i) => (
               <li key={link.to || i}>
-                <DownloadLink to={link.url} label={link.type} />
+                <DownloadLink to={`${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/download/${link.url}`} label={link.type} />
               </li>
             ))}
           </ul>
