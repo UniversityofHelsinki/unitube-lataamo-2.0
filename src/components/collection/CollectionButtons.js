@@ -1,12 +1,12 @@
-import React, {useState, useRef} from 'react';
+import React, {useState} from 'react';
 import { addMonths } from 'date-fns';
 import './CollectionButtons.css';
-import {Button, Col, Container, Form, Modal, Row} from 'react-bootstrap';
+import {Button, Form, Modal} from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import FormDialog from "../dialog/FormDialog";
 import CollectionRecordsDeletionDates from "./records/CollectionRecordsDeletionDates";
 import useModification from "../../hooks/useModification";
-import useRecordsDeletionDatesUpdate from '../../hooks/record/useRedordsDeletionDatesUpdate';
+import useRecordsDeletionDatesUpdate from '../../hooks/record/useRecordsDeletionDatesUpdate';
 import {DELETION_DATE_MIN_MONTHS, ProgressStatus} from "../../Constants";
 import DeletionDatesCollectionRecordsFooter from "./records/DeletionDatesCollectionRecordsFooter";
 import useValidation from "../../hooks/validation/useValidation.js";
@@ -18,7 +18,7 @@ const CollectionButtons = ({ identifier }) => {
     const [showForm, setShowForm] = useState(false);
     const datePlusSixMonths = addMonths(new Date(),  DELETION_DATE_MIN_MONTHS);
     const [updateExpiryDates, progress, resetProgress] = useRecordsDeletionDatesUpdate();
-    const [collectionData, onChange, modified, undo] = useModification( {identifier: identifier, deletionDate: datePlusSixMonths.toISOString()}, resetProgress );
+    const [collectionData, onChange] = useModification( {identifier: identifier, deletionDate: datePlusSixMonths.toISOString()}, resetProgress );
     const validationFunctions = {
         deletionDate: validateDeletionDate,
     };
@@ -58,6 +58,7 @@ const CollectionButtons = ({ identifier }) => {
                     variant="primary"
                     className="collection-buttons-update-end-dates-button"
                     onClick={show}
+                    aria-haspopup="dialog"
                 >
                     {t('update_collection_end_dates')}
                 </Button>

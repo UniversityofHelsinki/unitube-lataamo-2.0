@@ -111,7 +111,7 @@
   "undo_button": "Kumoa muutokset",
   "save_button": "Tallenna",
   "cancel_button": "Peruuta",
-  "update_collection_end_dates": "Päivitä kaikille tallenteille sama voimassaolopvm",
+  "update_collection_end_dates": "Päivitä kaikille kokoelman tallenteille sama voimassaolopäivä",
   "collection_records_deletion_dates_header": "Viimeinen voimassaolopäivä",
   "collection_records_deletion_dates_help_label": "Tietoa voimassaolopäivästä",
   "collection_records_deletion_dates_help_content": "Tallenteet poistuvat Unitubesta viimeisen voimassaolopäivän jälkeen. Pisin mahdollinen voimassaoloaika on kolme vuotta eteenpäin. Voit muuttaa voimassaoloaikaa milloin vain tallenteen tiedoissa! Otathan huomioon myös palvelun käyttösäännöt.",
