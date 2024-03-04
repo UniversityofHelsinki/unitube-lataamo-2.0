@@ -14,20 +14,21 @@ const DownloadLink = ({ to, label }) => {
     const handleClick = (markedForDeletion) => {
         setMarkedForDeletion(!markedForDeletion);
     };
+
     return (
         <div className="record-subtitle-download-link-item">
             <div className="record-subtitle-download-link-item-link">
-                <DownloadIcon width="2em" height="2em" />
-                <a title={label} className={`ms-2 ${linkClass}`} href={to}>{label}</a>
+                <DownloadIcon width="2em" height="2em"/>
+                <a title={label} className={`ms-2 ${linkClass}`} download href={to}>{label}</a>
             </div>
             <div>
-                <RemoveSubtitleButton onClick={() => handleClick(markedForDeletion)} markedForDeletion={markedForDeletion} />
+                <RemoveSubtitleButton onClick={() => handleClick(markedForDeletion)} markedForDeletion={markedForDeletion}/>
             </div>
         </div>
     );
 };
 
-const RemoveSubtitleButton = ({ onClick, markedForDeletion }) => {
+const RemoveSubtitleButton = ({onClick, markedForDeletion }) => {
     const { t } = useTranslation();
     const label = markedForDeletion ? t('record_subtitle_undo_button') : t('record_subtitle_delete_button');
     const iconProps = {width: "2em", height: "1.2em"};

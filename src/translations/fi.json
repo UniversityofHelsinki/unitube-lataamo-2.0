@@ -25,6 +25,8 @@
   "record_license_select_default": "Valitse",
   "record_collection_select_default": "Valitse",
   "record_collection_header": "Kokoelma",
+  "record_collections_help_label": "Tietoa tallenteen kokoelmista",
+  "record_collections_help_content": "Jotta tallenteen voi julkaista, se pitää liittää johonkin kokoelmaan. Tallenteiden näkyvyys ja hallintaoikeudet määritellään myös kokoelmien kautta. Voit valita jonkin kokoelman, johon sinulla on hallintaoikeudet.",
   "clipboard_copy": "Kopioi",
   "collection_management_rights_help_label": "Tietoa hallinnointioikeuksista",
   "collection_management_rights_help_content": "Voit jakaa kokoelmaasi hallinnointioikeuksia yliopistolaisille henkilöille ja käyttäjäryhmille hakukenttien avulla. Lisäämilläsi henkilöillä ja ryhmien jäsenillä on yhtäläiset muokkaus- ja poisto-oikeudet tallenteisiin.",
@@ -137,5 +139,13 @@
   "search_options_show_deleted": "Näytä poistetut",
   "search_options_show_records_in_collections": "Näytä myös kokoelmiin kuuluvat tallenteet",
   "record_card_action_restore": "Palauta",
+  "restore_record_header": "Palauta tallenne",
+  "restore_record_footer_cancel_button": "Peruuta",
+  "restore_record_footer_save_button": "Palauta",
+  "restore_record_footer_in_progress": "Palautetaan tallennetta...",
+  "restore_record_footer_done": "Valmis!",
+  "restore_record_footer_done_alert": "Voit sulkea lomakkeen",
+  "restore_record_footer_error": "Virhe!",
+  "restore_record_footer_error_button": "Yritä uudestaan",
   "record_card_valid_until": "Voimassa {{deletionDate}} asti"
 }
