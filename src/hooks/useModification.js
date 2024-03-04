@@ -11,11 +11,13 @@ const useModification = (object, validate, resetProgress) => {
     setModified(false);
     const objectHasChanged = modifiedObject?.identifier && object?.identifier;
 
-    if (resetProgress && objectHasChanged) {
+    const resetProgressIsPresent = Boolean(resetProgress);
+    if (resetProgressIsPresent && objectHasChanged) {
       resetProgress();
     }
 
-    if (object && validate) {
+    const validateFunctionIsPresent = Boolean(validate);
+    if (object && validateFunctionIsPresent) {
       const validateAllFieldsAtFirst = () => validate(object, {}, true);
       validateAllFieldsAtFirst();
     }
