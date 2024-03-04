@@ -94,7 +94,7 @@ const NewCollection = () => {
       <Form className="new-collection-form ms-3 me-3" onSubmit={onSubmit}>
         <Modal.Body>
           <CollectionName name={collection?.title} onChange={(title) => onChange('title', title)} disabled={fieldsDisabled} message={messages?.title} />
-          <CollectionDescription description={collection?.description} onChange={(description) => onChange('description', description)} disabled={fieldsDisabled} message={{}} message={messages?.description} />
+          <CollectionDescription description={collection?.description} onChange={(description) => onChange('description', description)} disabled={fieldsDisabled} message={messages?.description} />
           <CollectionPublicity publicity={collection?.published} onChange={(publicity) => onChange('published', publicity)} disabled={fieldsDisabled} messages={messages?.published} />
           <Container>
             <Row>
