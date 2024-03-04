@@ -20,12 +20,14 @@ const RecordDescription = ({ description, onChange, message, disabled = false })
             <Form.Group>
             <Row>
                 <Col>
-                    <FormElementHeader componentId={id}>{t('record_form_description_header')}</FormElementHeader>
+                    <FormElementHeader componentId={id}>
+                      {t('record_form_description_header')}
+                    </FormElementHeader>
                 </Col>
             </Row>
             <Row className="mb-3">
                 <Col>
-                    <HelpDialog  label={t('record_description_help_label')} >
+                    <HelpDialog label={t('record_description_help_label')} >
                         {t('record_description_help_content')}
                     </HelpDialog>
                 </Col>
