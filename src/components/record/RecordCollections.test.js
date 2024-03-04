@@ -1,6 +1,7 @@
 import React from 'react';
 import RecordCollections from "./RecordCollections";
 import {MockProvider} from "../../redux/reducers/MockProvider";
+import { render } from '@testing-library/react';
 
 const  message = {
     content: '',
@@ -8,7 +9,7 @@ const  message = {
 };
 
 it('renders', () => {
-    <MockProvider>
-        <RecordCollections message={message} onChange={() => {}} />
-    </MockProvider>
+    render(<MockProvider>
+      <RecordCollections collection="asdf-asdf" message={message} onChange={() => {}} />
+    </MockProvider>);
 });

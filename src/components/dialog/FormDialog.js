@@ -14,7 +14,6 @@ const FormDialog = ({
   closeable = true,
   showComponent,
   children,
-  reset,
   ...rest
 }) => {
 
@@ -37,7 +36,6 @@ FormDialog.propTypes = {
   touched: PropTypes.bool,
   show: PropTypes.bool,
   hide: PropTypes.func,
-  reset: PropTypes.func,
   closeable: PropTypes.bool,
   showComponent: PropTypes.any,
   children: PropTypes.node
