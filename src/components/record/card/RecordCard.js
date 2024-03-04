@@ -1,7 +1,6 @@
 import React, { useId } from 'react';
 import PropTypes from 'prop-types';
 import './RecordCard.css';
-import { Col, Container, Row } from 'react-bootstrap';
 import RecordCardDetails from './RecordCardDetails';
 import RecordCardThumbnail from './RecordCardThumbnail';
 import onKeyDown from '../../accessibility/keydown';
@@ -10,14 +9,17 @@ import CardTags from '../../utilities/CardTags';
 import useUser from '../../../hooks/useUser';
 import { DELETED_SERIES_REG_EXP } from '../../../Constants';
 import RecordCardActions from './RecordCardActions';
+import {useTranslation} from "react-i18next";
 
 const RecordCard = ({ record, onClick, selected = false }) => {
   const selectedClass = selected ? 'record-card-selected' : '';
   const [user] = useUser();
   const labelId = useId();
+  const { t } = useTranslation();
 
   const tags = useRecordTags(record);
   const isDeleted = DELETED_SERIES_REG_EXP(user.eppn).test(record.series);
+  const deletionDateLabel = new Date(record.deletionDate).toLocaleDateString('fi-FI');
 
   return (
     <div className={`record-card ${selectedClass}`}>
@@ -36,7 +38,7 @@ const RecordCard = ({ record, onClick, selected = false }) => {
             <RecordCardDetails labelId={labelId} record={record} deleted={isDeleted} />
           </div>
           <div className="record-card-content-row-content-bottom">
-            voimassa x asti
+             {!isDeleted ? t('record_card_valid_until', {deletionDate: deletionDateLabel}) : null}
           </div>
         </div>
       </div>
