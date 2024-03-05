@@ -1,5 +1,5 @@
 import React from 'react';
-import { act, render, renderHook, screen } from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react';
 import useModification from './useModification';
 
 const defaultObject = {
@@ -7,6 +7,7 @@ const defaultObject = {
 };
 
 describe('useModification', () => {
+
   it('returns the object', () => {
     const { result } = renderHook(() => useModification(defaultObject));
     const [object] = result.current;

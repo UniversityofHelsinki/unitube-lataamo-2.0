@@ -1,0 +1,8 @@
+.record-bottom-bar-buttons {
+  display: flex;
+  justify-content: end;
+}
+
+.record-bottom-bar-buttons button {
+  flex: 1 1 max-content;
+}

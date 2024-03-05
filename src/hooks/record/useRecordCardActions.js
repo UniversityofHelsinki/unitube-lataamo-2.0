@@ -1,10 +1,10 @@
 import React from "react";
 import { DELETED_SERIES_REG_EXP } from "../../Constants";
 import useUser from "../useUser";
-import { ReactComponent as RestoreIcon } from '../../components/utilities/icons/rotate-left.svg';
 import RecordCardAction from "../../components/record/card/RecordCardAction";
 import { useTranslation } from "react-i18next";
 import RestoreRecord from "../../components/record/RestoreRecord";
+import DeleteRecord from "../../components/record/DeleteRecord";
 
 const useRecordCardActions = (record) => {
   const [user] = useUser();
@@ -18,11 +18,18 @@ const useRecordCardActions = (record) => {
     );
   };
 
+  const DeleteAction = () => {
+    return (
+      <DeleteRecord record={record} />
+    );
+  };
+
+
   if (isDeleted) {
     return [ ...defaultActions, RestoreAction ];
   }
   
-  return [ ...defaultActions ];
+  return [ ...defaultActions, DeleteAction ];
 };
 
 export default useRecordCardActions;
