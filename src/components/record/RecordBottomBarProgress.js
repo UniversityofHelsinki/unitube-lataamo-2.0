@@ -14,6 +14,7 @@ const RecordBottomBarProgress = ({ progress }) => {
     [ProgressStatus.RECORD_SAVE.IN_PROGRESS_RECORD]: t('record_bottom_bar_progress_saving_record'),
     [ProgressStatus.RECORD_SAVE.IN_PROGRESS_SUBTITLES]: t('record_bottom_bar_progress_saving_subtitles'),
     [ProgressStatus.RECORD_SAVE.IN_PROGRESS_ORDERSUBTITLES]: t('record_bottom_bar_progress_ordering_subtitles'),
+    [ProgressStatus.RECORD_SAVE.IN_PROGRESS_DELETESUBTITLE]: t('record_bottom_bar_progress_deleting_subtitle'),
     [ProgressStatus.RECORD_SAVE.DONE]: t('record_bottom_bar_progress_done'),
     [ProgressStatus.RECORD_SAVE.ERROR]: progress.message || t('record_bottom_bar_progress_error')
   };
@@ -24,7 +25,7 @@ const RecordBottomBarProgress = ({ progress }) => {
   })[progress.status] || '';
 
   const animated = ![
-    ProgressStatus.RECORD_SAVE.DONE, 
+    ProgressStatus.RECORD_SAVE.DONE,
     ProgressStatus.RECORD_SAVE.ERROR
   ].includes(progress.status) ? { animated: true } : {};
 
@@ -40,7 +41,7 @@ const RecordBottomBarProgress = ({ progress }) => {
   })();
 
   return (
-    <ProgressBar 
+    <ProgressBar
       type={progressClass}
       now={progress.percentage}
       label={progressLabels[progress.status]}
@@ -51,7 +52,7 @@ const RecordBottomBarProgress = ({ progress }) => {
 };
 
 RecordBottomBarProgress.propTypes = {
-  progress: PropTypes.shape({ 
+  progress: PropTypes.shape({
     status: PropTypes.string.isRequired,
     percentage: PropTypes.number
   })

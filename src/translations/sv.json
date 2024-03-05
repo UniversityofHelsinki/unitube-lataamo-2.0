@@ -72,6 +72,7 @@
   "record_automatic_subtitle_default_language": "Select language",
   "record_bottom_bar_progress_saving_subtitles": "Processing subtitles",
   "record_bottom_bar_progress_ordering_subtitles": "Processing automatic transcription",
+  "record_bottom_bar_progress_deleting_subtitle": "Processing removal of subtitles",
   "record_bottom_bar_progress_done": "Done!",
   "record_bottom_bar_progress_user_can_close": "You may close the form",
   "ms_whisper": "The OpenAI Whisper L language model (Microsoft Azure service",
