@@ -1,5 +1,6 @@
 import React from 'react';
-import { ReactComponent as WarningIcon } from './icons/warning.svg';
+import {ReactComponent as WarningIcon} from './icons/warning.svg';
+import HyColors from "./HyColors";
 
 const ThreeMonthsWarning = ({ deletionDate }) => {
     // Parse the deletionDate string into a Date object
@@ -12,7 +13,7 @@ const ThreeMonthsWarning = ({ deletionDate }) => {
     const isDeletionDateNear = deletionDateObject <= threeMonthsFromNow;
 
     return isDeletionDateNear ? (
-        <WarningIcon height={20} width={20} fill="orange" />
+        <WarningIcon height={20} width={20} fill={ HyColors.orange } />
     ) : null;
 };
 
