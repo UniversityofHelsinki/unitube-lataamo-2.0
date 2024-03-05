@@ -16,3 +16,15 @@
   max-height: 48vh;
 }
 
+.left-no {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--hy-light-silver);
+  text-align: center;
+}
+
+.left-no p {
+  padding: 10px;
+}
+

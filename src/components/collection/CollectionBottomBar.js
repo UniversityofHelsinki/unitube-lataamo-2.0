@@ -34,14 +34,14 @@ const CollectionBottomBar = ({ progress, collection, modified, isValid, undo, di
   return (
     <BottomBar 
       notifications={notifications}
-      buttons={<div className="collection-bottom-bar-buttons">
+      buttons={<>
         <Button onClick={undo} variant="danger" disabled={!modified || disabled}>
           {t('undo_button')}
         </Button>
         <Button type="submit" disabled={!isValid || disabled}>
           {t('save_button')}
         </Button>
-      </div>}
+      </>}
     />
   );
 };

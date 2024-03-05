@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const get = async () => {
   const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/userTrashEvents`;
@@ -14,16 +15,28 @@ const get = async () => {
   }
 };
 
-const useDeletedRecords = ({ load = false }) => {
-  const [deletedRecords, setDeletedRecords] = useState(null);
+const useDeletedRecords = () => {
+  const dispatch = useDispatch();
+  const { 
+    deletedRecords, 
+    loadingDeletedRecords 
+  } = useSelector((state) => state.records); 
 
-  if (!deletedRecords) {
-    (async () => {
-      setDeletedRecords(await get());
-    })();
-  }
+  const shouldLoad = !deletedRecords && !loadingDeletedRecords;
 
-  return [deletedRecords, Boolean(!deletedRecords)];
+  useEffect(() => {
+    if (shouldLoad) {
+      dispatch({ type: 'SET_LOADING_DELETED_RECORDS', payload: true });
+      (async () => {
+        dispatch({ type: 'SET_DELETED_RECORDS', payload: await get() });
+      })();
+    }
+  }, [shouldLoad, dispatch]);
+
+  const loading = Boolean(!deletedRecords);
+  const reload = () => dispatch({ type: 'SET_DELETED_RECORDS' });
+
+  return [deletedRecords, loading, reload];
 
 };
 
