@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const login = (url = process.env.REACT_APP_LATAAMO_LOGIN) => {
