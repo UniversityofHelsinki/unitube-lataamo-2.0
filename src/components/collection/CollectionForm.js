@@ -18,6 +18,7 @@ import CollectionBottomBar from './CollectionBottomBar';
 import useCollectionModification from '../../hooks/useCollectionModification';
 import useCollectionUpdate from '../../hooks/collection/useCollectionUpdate';
 import { ProgressStatus } from '../../Constants';
+import CollectionButtons from "./CollectionButtons";
 
 const CollectionForm = () => {
   const [originalCollection, loading, reload] = useCollection();
@@ -66,10 +67,13 @@ const CollectionForm = () => {
                   <Col>
                   </Col>
                 </Row>
-                <Row>
-                  <Col>
+                <Row className="mb-3">
+                  <Col className="ps-1">
+                    <CollectionButtons
+                        identifier={collection?.identifier}/>
                   </Col>
                 </Row>
+
                 <Row className="mb-2">
                   <Col className="ps-1">
                       <CollectionName 
