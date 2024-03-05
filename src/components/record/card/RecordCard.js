@@ -10,6 +10,7 @@ import useUser from '../../../hooks/useUser';
 import { DELETED_SERIES_REG_EXP } from '../../../Constants';
 import RecordCardActions from './RecordCardActions';
 import {useTranslation} from "react-i18next";
+import ThreeMonthsWarning from "../../utilities/WarningIcon";
 
 const RecordCard = ({ record, onClick, selected = false }) => {
   const selectedClass = selected ? 'record-card-selected' : '';
@@ -25,7 +26,7 @@ const RecordCard = ({ record, onClick, selected = false }) => {
     <div className={`record-card ${selectedClass}`}>
       <div className="record-card-left"
         role="button"
-        onClick={onClick} 
+        onClick={onClick}
         onKeyDown={onKeyDown(onClick)}
         tabIndex={0}
         aria-labelledby={labelId}>
@@ -38,7 +39,8 @@ const RecordCard = ({ record, onClick, selected = false }) => {
             <RecordCardDetails labelId={labelId} record={record} deleted={isDeleted} />
           </div>
           <div className="record-card-content-row-content-bottom">
-             {!isDeleted ? t('record_card_valid_until', {deletionDate: deletionDateLabel}) : null}
+             {!isDeleted ? t('record_card_valid_until', {deletionDate: deletionDateLabel})  : null}
+            <ThreeMonthsWarning deletionDate={record.deletionDate} />
           </div>
         </div>
       </div>
