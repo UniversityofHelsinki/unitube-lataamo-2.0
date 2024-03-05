@@ -6,18 +6,16 @@ import Notifications from './Notifications';
 
 const BottomBar = ({ notifications, buttons }) => {
   return (
-    <Container className="bottom-bar">
-      <Row className="bottom-bar-row align-items-center">
-        <Col sm={8} className="bottom-bar-notitfications-col text-center">
+    <div className="bottom-bar">
+        <div className="bottom-bar-notifications text-center">
           <Notifications>
             {notifications}
           </Notifications>
-        </Col>
-        <Col className="bottom-bar-buttons-col text-end">
+        </div>
+        <div className="bottom-bar-buttons">
           {buttons}
-        </Col>
-      </Row>
-    </Container>
+        </div>
+    </div>
   );
 };
 

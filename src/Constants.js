@@ -34,6 +34,7 @@ export const ProgressStatus = {
     IN_PROGRESS_RECORD: 'in_progress_record',
     IN_PROGRESS_SUBTITLES: 'in_progress_subtitles',
     IN_PROGRESS_ORDERSUBTITLES: 'in_progress_ordersubtitles',
+    IN_PROGRESS_DELETESUBTITLE :'in_progress_deletesubtitle',
     DONE: 'done',
     ERROR: 'error'
   },
@@ -50,12 +51,18 @@ export const ProgressStatus = {
     DONE: 'done',
     ERROR: 'error'
   },
+  RECORD_DELETE: {
+    NOT_STARTED: 'not_started',
+    IN_PROGRESS: 'in_progress',
+    DONE: 'done',
+    ERROR: 'error'
+  },
   RECORD_RESTORE: {
     NOT_STARTED: 'not_started',
     IN_PROGRESS: 'in_progress',
     DONE: 'done',
     ERROR: 'error'
-  }
+  },
 };
 
 export const MONITOR_POLLING_RATE_MS = 3000;

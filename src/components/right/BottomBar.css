@@ -2,12 +2,27 @@
   height: var(--right-bottom-bar-height);
   background-color: var(--hy-white);
   border-top: 3px solid var(--hy-medium-silver);
+
+  display: flex;
+  width: 100%;
+  align-items: center;
 }
 
-.bottom-bar-row {
-  height: 100%;
+.bottom-bar-notifications {
+  flex: 1 2 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.bottom-bar-buttons-col button {
+.bottom-bar-buttons {
+  flex: 1 1 20%; 
+  display: flex;
+}
+
+.bottom-bar-buttons button {
   margin-left: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

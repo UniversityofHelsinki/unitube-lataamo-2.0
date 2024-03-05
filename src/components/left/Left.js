@@ -16,15 +16,42 @@ import CollectionCard from '../collection/card/CollectionCard';
 import RecordActions from './RecordActions';
 import CollectionActions from './CollectionActions';
 import useDeletedRecords from '../../hooks/useDeletedRecords';
+import { useTranslation } from 'react-i18next';
+
+const No = ({ children }) => {
+  return (
+    <div className="left-no">
+      <p>
+        {children}
+      </p>
+    </div>
+  );
+};
+
+const NoRecords = () => {
+  const { t } = useTranslation();
+  return (
+    <No>
+      {t('left_user_has_no_records')}
+    </No>
+  );
+};
+
+const NoCollections = () => {
+  const { t } = useTranslation();
+  return (
+    <No>
+      {t('left_user_has_no_collections')}
+    </No>
+  );
+};
 
 const Left = () => {
   const [path] = useLocation();
   const [records, loadingRecords] = useRecords({ 
     load: path === '/records'
   });
-  const [deletedRecords, loadingDeletedRecords] = useDeletedRecords({
-    load: path === '/records'
-  });
+  const [deletedRecords, loadingDeletedRecords] = useDeletedRecords();
   const [recordOptions, setRecordOptions] = useState({
     showDeleted: false,
     showRecordsInCollections: false
@@ -50,7 +77,7 @@ const Left = () => {
   
     return usedRecords.map((record, i) => 
       <RecordCard 
-        key={i} 
+        key={record.identifier} 
         onClick={() => onClick(record)} 
         record={record} 
         selected={record.identifier === searchParams.record }/>
@@ -61,12 +88,17 @@ const Left = () => {
     <CollectionCard 
         collection={collection}
         selected={collection.identifier === searchParams.collection}
-        key={i} 
+        key={collection.identifier} 
         onClick={() => setSearchParams({ 'collection': collection.identifier })} />
   );
 
+  const emptyElements = {
+    '/records': <NoRecords />,
+    '/collections': <NoCollections />
+  };
+
   const listElements = {
-    '/records': recordCards, 
+    '/records': recordCards,
     '/collections': collectionElements
   };
 
@@ -102,7 +134,16 @@ const Left = () => {
         <Col className="pe-0">
           <Loading loading={Boolean(loading[path])}>
             <LeftList>
-              {listElements[path]}
+              {(() => {
+                if (listElements[path].length > 0) {
+                  return listElements[path];
+                }
+                return [
+                  <React.Fragment key="empty">
+                    {emptyElements[path]}
+                  </React.Fragment>
+                ];
+              })()}
             </LeftList>
           </Loading>
         </Col>

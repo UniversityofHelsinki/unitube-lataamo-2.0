@@ -2,33 +2,41 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const getRecords = () => async (dispatch) => {
+const getRecords = async () => {
   const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/userInboxEvents`;
   try {
     const response = await fetch(URL);
-    if (response.status === 200) {
-      dispatch({ type: 'SET_RECORDS', payload: await response.json() });
+    if (response.ok) {
+      return await response.json();
     }
+    throw new Error(`Unexpected status code from ${URL}`);
   } catch (error) {
-    dispatch({ type: '', payload: error.message });
+    console.error(error);
+    throw new Error(`Error occurred while getting records ${URL}`, {
+      cause: error
+    });
   }
 };
 
 const useRecords = ({ load = false }) => {
   const dispatch = useDispatch();
   const records = useSelector((state) => state.records.records);
+  const loadingRecords = useSelector((state) => state.records.loadingRecords);
 
   useEffect(() => {
-    if (load && !records) {
-      dispatch(getRecords());
+    if (!records && !loadingRecords && load) {
+      dispatch({ type: 'SET_LOADING_RECORDS', payload: true });
+      (async () => {
+        dispatch({ type: 'SET_RECORDS', payload: await getRecords() });
+      })();
     }
-  }, [load, records]);
+  }, [records, loadingRecords]);
 
   const reload = () => {
     dispatch({ type: 'SET_RECORDS' });
   };
 
-  const loading = !records;
+  const loading = loadingRecords;
   return [records, loading, reload];
 };
 
