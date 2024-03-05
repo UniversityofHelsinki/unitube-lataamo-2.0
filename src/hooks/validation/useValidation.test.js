@@ -64,7 +64,7 @@ describe('useValidation', () => {
 
       const [__isValid, messages] = result.current;
 
-      expect(messages['firstName']).toBeDefined();
+      expect(messages['firstName'].content).toEqual('can_not_be_empty');
     });
 
     it('is empty before calling validate()', () => {

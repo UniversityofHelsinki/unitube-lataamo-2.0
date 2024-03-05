@@ -44,6 +44,18 @@ export const ProgressStatus = {
     DONE: 'done',
     ERROR: 'error'
   },
+  COLLECTION_RECORDS_DELETION_DATE_SAVE: {
+    NOT_STARTED: 'not_started',
+    IN_PROGRESS: 'in_progress',
+    DONE: 'done',
+    ERROR: 'error'
+  },
+  RECORD_DELETE: {
+    NOT_STARTED: 'not_started',
+    IN_PROGRESS: 'in_progress',
+    DONE: 'done',
+    ERROR: 'error'
+  },
   RECORD_RESTORE: {
     NOT_STARTED: 'not_started',
     IN_PROGRESS: 'in_progress',

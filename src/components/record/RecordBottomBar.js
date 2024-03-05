@@ -45,11 +45,10 @@ const RecordBottomBar = ({ progress, record, modified, undo, isValid }) => {
   return (
     <BottomBar 
       notifications={notification}
-      buttons={(
-        <div className="record-bottom-bar-buttons">
-          <UndoButton onClick={undo} disabled={!modified || savingInProgress}/>
-          <SaveButton disabled={!modified || !isValid || savingInProgress} />
-        </div>
+      buttons={(<>
+        <UndoButton onClick={undo} disabled={!modified || savingInProgress}/>
+        <SaveButton disabled={!modified || !isValid || savingInProgress} />
+      </>
       )} 
     />
   );

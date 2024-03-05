@@ -131,6 +131,8 @@
   "collection_validation_title_is_empty": "Name can not be empty.",
   "collection_validation_description_is_empty": "Description can not be empty.",
   "navigation_streams": "Collections",
+  "record_card_action_restore": "Restore",
+  "record_card_action_delete": "Delete",
   "restore_record_header": "Restore recording",
   "restore_record_footer_cancel_button": "Cancel",
   "restore_record_footer_save_button": "Restore",
@@ -138,5 +140,6 @@
   "restore_record_footer_done": "Done!",
   "restore_record_footer_done_alert": "You can close the form.",
   "restore_record_footer_error": "Error!",
-  "restore_record_footer_error_button": "Try again"
+  "restore_record_footer_error_button": "Try again",
+  "record_thumbnail_alt_text": "Thumbnail of"
 }

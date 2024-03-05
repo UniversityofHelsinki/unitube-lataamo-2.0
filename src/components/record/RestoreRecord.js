@@ -13,6 +13,7 @@ import useModification from '../../hooks/useModification';
 import RestoreRecordFooter from './RestoreRecordFooter';
 import { ProgressStatus } from '../../Constants';
 import useRecords from '../../hooks/useRecords';
+import useCollections from '../../hooks/useCollections';
 
 const RestoreRecord = ({ record }) => {
   const { t } = useTranslation();
@@ -24,6 +25,7 @@ const RestoreRecord = ({ record }) => {
     resetProgress
   );
   const [_records, _loadingRecords, reloadRecords] = useRecords({ load: false });
+  const [_collections, _loadingCollections, reloadCollections] = useCollections({ load: false });
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
@@ -40,6 +42,7 @@ const RestoreRecord = ({ record }) => {
     
     if (progress.status === ProgressStatus.RECORD_RESTORE.DONE) {
       reloadRecords();
+      reloadCollections();
     }
 
   }

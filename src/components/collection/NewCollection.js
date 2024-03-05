@@ -87,7 +87,7 @@ const NewCollection = () => {
     <FormDialog 
       hide={hide} 
       showComponent={theButton} 
-      reset={() => {}} show={showForm}
+      show={showForm}
       size="xl"
     >
       <Modal.Header { ...closeButton }>{t('new_collection_form_header')}</Modal.Header>
