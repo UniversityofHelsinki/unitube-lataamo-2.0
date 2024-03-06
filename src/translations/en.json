@@ -142,5 +142,6 @@
   "restore_record_footer_done_alert": "You can close the form.",
   "restore_record_footer_error": "Error!",
   "restore_record_footer_error_button": "Try again",
-  "record_thumbnail_alt_text": "Thumbnail of"
+  "record_thumbnail_alt_text": "Thumbnail of",
+  "tag_expiring": "Expiring"
 }

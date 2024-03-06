@@ -128,5 +128,6 @@
   "collection_has_no_records_lite": "No recordings.",
   "collection_validation_title_is_empty": "Name can not be empty.",
   "collection_validation_description_is_empty": "Description can not be empty.",
-  "navigation_streams": "Collections"
+  "navigation_streams": "Collections",
+  "tag_expiring": "Expiring"
 }
