@@ -129,5 +129,6 @@
   "collection_validation_title_is_empty": "Name can not be empty.",
   "collection_validation_description_is_empty": "Description can not be empty.",
   "navigation_streams": "Collections",
+  "record_card_valid_until" : "Valid until {{- deletionDate}}",
   "tag_expiring": "Expiring"
 }

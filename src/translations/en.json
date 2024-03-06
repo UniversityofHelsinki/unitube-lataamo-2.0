@@ -143,5 +143,6 @@
   "restore_record_footer_error": "Error!",
   "restore_record_footer_error_button": "Try again",
   "record_thumbnail_alt_text": "Thumbnail of",
+  "record_card_valid_until" : "Valid until {{- deletionDate}}",
   "tag_expiring": "Expiring"
 }

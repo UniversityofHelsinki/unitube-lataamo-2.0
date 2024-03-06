@@ -19,7 +19,10 @@ const RecordCard = ({ record, onClick, selected = false }) => {
 
   const tags = useRecordTags(record);
   const isDeleted = DELETED_SERIES_REG_EXP(user.eppn).test(record.series);
-  const deletionDateLabel = new Date(record.deletionDate).toLocaleDateString('fi-FI');
+  const userLang = navigator.language;
+  const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+
+  const date = new Intl.DateTimeFormat(userLang, options).format(new Date(record.deletionDate));
 
   return (
     <div className={`record-card ${selectedClass}`}>
@@ -38,7 +41,7 @@ const RecordCard = ({ record, onClick, selected = false }) => {
             <RecordCardDetails labelId={labelId} record={record} deleted={isDeleted} />
           </div>
           <div className="record-card-content-row-content-bottom">
-             {!isDeleted ? t('record_card_valid_until', {deletionDate: deletionDateLabel})  : null}
+             {!isDeleted ? t('record_card_valid_until', {deletionDate: date})  : null}
           </div>
         </div>
       </div>

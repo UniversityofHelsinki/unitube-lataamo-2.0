@@ -174,6 +174,6 @@
   "delete_record_form_help_content": "Poistetut tallenteet löytyvät Tallenteet-välilehdeltä Näytä poistetut -valintapainiketta painamalla. Poistettujen tallenteiden sisältö häviää lopullisesti palvelusta automaattisesti tietyn ajan kuluttua.",
   "left_user_has_no_records": "Ei tallenteita. Voit lisätä uuden tallenteen Uusi tallenne -lomakkeella. Kokoelmiin kuuluvat tallenteet löytyvät Kokoelmat-välilehdeltä.",
   "left_user_has_no_collections": "Ei kokoelmia. Lisää uusi kokoelma Uusi kokoelma -lomakkeella.",
-  "record_card_valid_until": "Voimassa {{deletionDate}} asti",
+  "record_card_valid_until": "Voimassa {{- deletionDate}} asti",
   "tag_expiring": "Vanhenemassa"
 }
