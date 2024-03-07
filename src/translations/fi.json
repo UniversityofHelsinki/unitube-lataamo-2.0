@@ -152,6 +152,7 @@
   "search_options_show_deleted": "Näytä poistetut",
   "search_options_show_records_in_collections": "Näytä myös kokoelmiin kuuluvat tallenteet",
   "record_card_action_restore": "Palauta",
+  "record_card_action_delete": "Poista",
   "restore_record_header": "Palauta tallenne",
   "restore_record_footer_cancel_button": "Peruuta",
   "restore_record_footer_save_button": "Palauta",
