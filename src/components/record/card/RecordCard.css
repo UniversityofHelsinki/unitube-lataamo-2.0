@@ -37,10 +37,6 @@
   overflow: hidden;
 }
 
-.record-card:hover {
-  background-color: var(--hy-light-silver);
-}
-
 .record-card-selected {
-  background-color: var(--hy-light-silver);
+  background-color: var(--hy-medium-silver);
 }
