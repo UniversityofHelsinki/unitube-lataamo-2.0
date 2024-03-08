@@ -10,17 +10,17 @@ import useUser from '../../../hooks/useUser';
 import { DELETED_SERIES_REG_EXP } from '../../../Constants';
 import RecordCardActions from './RecordCardActions';
 import {useTranslation} from "react-i18next";
-import ThreeMonthsWarning from "../../utilities/WarningIcon";
 
 const RecordCard = ({ record, onClick, selected = false }) => {
   const selectedClass = selected ? 'record-card-selected' : '';
   const [user] = useUser();
   const labelId = useId();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const tags = useRecordTags(record);
   const isDeleted = DELETED_SERIES_REG_EXP(user.eppn).test(record.series);
-  const deletionDateLabel = new Date(record.deletionDate).toLocaleDateString('fi-FI');
+  const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+  const date = record.deletionDate && !isDeleted ? new Intl.DateTimeFormat(i18n.language, options).format(new Date(record.deletionDate)) : null;
 
   return (
     <div className={`record-card ${selectedClass}`}>
@@ -39,8 +39,7 @@ const RecordCard = ({ record, onClick, selected = false }) => {
             <RecordCardDetails labelId={labelId} record={record} deleted={isDeleted} />
           </div>
           <div className="record-card-content-row-content-bottom">
-             {!isDeleted ? t('record_card_valid_until', {deletionDate: deletionDateLabel})  : null}
-            <ThreeMonthsWarning deletionDate={record.deletionDate} />
+             {!isDeleted ? t('record_card_valid_until', {deletionDate: date})  : null}
           </div>
         </div>
       </div>

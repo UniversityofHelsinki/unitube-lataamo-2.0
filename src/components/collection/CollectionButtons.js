@@ -13,12 +13,12 @@ import useValidation from "../../hooks/validation/useValidation.js";
 import validateDeletionDate from "../../hooks/validation/record/deletionDateValidation";
 import PropTypes from "prop-types";
 
-const CollectionButtons = ({ identifier }) => {
+const CollectionButtons = ({ collection }) => {
     const { t } = useTranslation();
     const [showForm, setShowForm] = useState(false);
     const datePlusSixMonths = addMonths(new Date(),  DELETION_DATE_MIN_MONTHS);
     const [updateExpiryDates, progress, resetProgress] = useRecordsDeletionDatesUpdate();
-    const [collectionData, onChange] = useModification( {identifier: identifier, deletionDate: datePlusSixMonths.toISOString()}, resetProgress );
+    const [collectionData, onChange] = useModification( {identifier: collection?.identifier, deletionDate: datePlusSixMonths.toISOString()}, resetProgress );
     const validationFunctions = {
         deletionDate: validateDeletionDate,
     };
@@ -43,7 +43,7 @@ const CollectionButtons = ({ identifier }) => {
     const onSubmit = async (event) => {
         event.stopPropagation();
         event.preventDefault();
-        const seriesId = identifier;
+        const seriesId = collection?.identifier;
         const updatedDeletionDate = { deletionDate : collectionData?.deletionDate};
         await updateExpiryDates(seriesId, updatedDeletionDate);
     };
@@ -51,10 +51,14 @@ const CollectionButtons = ({ identifier }) => {
     const formDisabled = progress.status !== ProgressStatus.COLLECTION_RECORDS_DELETION_DATE_SAVE.NOT_STARTED;
     const closeable = progress.status !== ProgressStatus.COLLECTION_RECORDS_DELETION_DATE_SAVE.IN_PROGRESS;
 
+    if (collection?.eventsCount === 0) {
+        return <></>;
+    }
+
     const theButton = (
-        <>
             <div className="collection-buttons-bar-buttons">
                 <Button
+                    size="sm"
                     variant="primary"
                     className="collection-buttons-update-end-dates-button"
                     onClick={show}
@@ -63,7 +67,6 @@ const CollectionButtons = ({ identifier }) => {
                     {t('update_collection_end_dates')}
                 </Button>
             </div>
-        </>
     );
 
     return (
@@ -89,7 +92,7 @@ const CollectionButtons = ({ identifier }) => {
 };
 
 CollectionButtons.propTypes = {
-    identifier: PropTypes.string
+    collection: PropTypes.object
 };
 
 export default CollectionButtons;
