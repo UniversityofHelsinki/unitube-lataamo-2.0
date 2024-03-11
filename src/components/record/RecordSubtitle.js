@@ -10,23 +10,29 @@ import ElementHeader from "../form/ElementHeader";
 import HelpDialog from '../dialog/HelpDialog';
 
 
-const RecordSubtitle = ({ onChange, message, file, automaticSubtitles, disabled }) => {
+const RecordSubtitle = ({ onChange, message, subtitles, disabled }) => {
     const { t } = useTranslation();
-    const [selected, setSelected] = useState(null);
-
-    const handleChange = (what, value) => {
-      onChange(what, value);
-    };
-
     const options = ['subtitleFile', 'automaticSubtitles'];
+    const selected = options.indexOf(subtitles?.type);
+
     const onSelect = (index) => {
-      setSelected(options[index]);
-      options.forEach((option, i) => {
-        if (i !== index) {
-          onChange(option, undefined);
-        }
-      });
+      if (selected === index) {
+        onChange(undefined);
+      } else {
+        onChange({ type: options[index] });
+      }
     };
+
+    const getValue = (type) => {
+      if (subtitles && subtitles.type === type) {
+        return subtitles;
+      }
+      return undefined;
+    };
+
+    const subtitleFileMessages = typeof message?.content === 'string' ? message : undefined;
+    const automaticFileMessages = typeof message?.content === 'object' ? message : undefined;
+
 
     return (
         <Container>
@@ -50,22 +56,19 @@ const RecordSubtitle = ({ onChange, message, file, automaticSubtitles, disabled 
                             t('record_subtitle_file_header'), 
                             t('record_automatic_subtitle_header')
                           ]}
-                          onSelect={onSelect}>
+                          onSelect={onSelect}
+                          selected={selected}
+                          disabled={disabled}>
                             <RecordSubtitleFile 
-                              onChange={(value) => 
-                                handleChange('subtitleFile', value)
-                              } 
-                              value={file} 
+                              onChange={(file) => onChange({ type: 'subtitleFile', file })}
                               disabled={disabled} 
-                              message={message.subtitleFile} 
+                              message={subtitleFileMessages} 
                             />
                             <RecordAutomaticSubtitleFile 
-                              onChange={(value) => 
-                                handleChange('automaticSubtitles', value)
-                              } 
-                              value={automaticSubtitles} 
+                              onChange={(value) => onChange({ type: 'automaticSubtitles', ...value })} 
+                              value={getValue('automaticSubtitles')} 
                               disabled={disabled} 
-                              message={message.automaticSubtitles} 
+                              message={automaticFileMessages} 
                             />
                         </Toggle>
                     </Col>
@@ -78,7 +81,7 @@ const RecordSubtitle = ({ onChange, message, file, automaticSubtitles, disabled 
 RecordSubtitle.propTypes = {
     onChange: PropTypes.func.isRequired,
     message: PropTypes.shape({
-        content: PropTypes.string,
+        content: PropTypes.any,
         type: PropTypes.oneOf(['light', 'neutral', 'warning'])
     }),
     file: PropTypes.object,

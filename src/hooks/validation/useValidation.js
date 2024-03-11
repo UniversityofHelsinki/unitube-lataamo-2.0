@@ -10,12 +10,19 @@ const useValidation = (validationFunctions, fields) => {
     await Promise.all(fields.map(async field => {
       const valueHasChanged = object[field] !== previousObject[field];
       const fieldHasValidations = Boolean(validationFunctions[field]);
-      if (fieldHasValidations && valueHasChanged || validateAllFields) {
+      if (fieldHasValidations && (valueHasChanged || validateAllFields)) {
         const message = await Promise.resolve(
           validationFunctions[field](object[field], object)
         );
 
-        if (message) {
+        if (message && typeof message === 'object') {
+          const translated = Object.fromEntries(
+            Object.keys(message)
+              .filter(key => message[key])
+              .map(key => [key, t(message[key])])
+            );
+          newMessages[field] = { content: translated, type: 'warning' };
+        } else if (message) {
           newMessages[field] = { content: t(message), type: 'warning' };
         } else {
           delete newMessages[field];

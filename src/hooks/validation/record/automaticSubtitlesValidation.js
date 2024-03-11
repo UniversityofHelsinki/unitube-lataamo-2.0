@@ -33,10 +33,16 @@ const validateAutomaticSubtitles = (input, _record) => {
 
   const translationModel = input.translationModel;
   const translationLanguage = input.translationLanguage;
-  const translationModelIsValid = validateTranslationModel(translationModel);
-  const translationLanguageIsValid = validateTranslationLanguage(translationLanguage);
-  return translationModelIsValid || translationLanguageIsValid;
+  const translationModelValidity = validateTranslationModel(translationModel);
+  const translationLanguageValidity = validateTranslationLanguage(translationLanguage);
 
+  if (translationModelValidity || translationLanguageValidity) {
+    return {
+      translationModel: translationModelValidity,
+      translationLanguage: translationLanguageValidity
+    };
+  }
+  return FIELD_IS_VALID;
 };
 
 export default validateAutomaticSubtitles;

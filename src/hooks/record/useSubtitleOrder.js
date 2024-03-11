@@ -22,16 +22,16 @@ const order = async (body) => {
 };
 
 const useSubtitleOrder = () => {
-  const [startMonitoring] = useMonitor();
+  const [startMonitoring, abortMonitoring] = useMonitor();
 
   const doOrder = async (input) => {
     const job = await order(input);
-    if (job && job.status !== 'FINISHED' && job.status !== 'NOT_FOUND') {
+    if (job && job.status !== 'FINISHED' && job.status !== 'NOT_FOUND' && job.status !== 'ERROR') {
       await startMonitoring(job);
     }
   };
 
-  return [doOrder];
+  return [doOrder, abortMonitoring];
 };
 
 export default useSubtitleOrder;

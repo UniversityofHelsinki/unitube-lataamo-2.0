@@ -20,10 +20,9 @@ const Record = () => {
   const [progress, save, resetProgress] = useRecordSave();
 
   const [isValid, messages, validate] = useRecordValidation([
-    'title', 'description', 'deletionDate', 'license', 'subtitleFile', 'automaticSubtitles'
+    'title', 'description', 'deletionDate', 'license', 'subtitles'
   ]);
   const [record, onChange, modified, undo] = useRecordModification(originalRecord, validate, resetProgress);
-
   const formRef = useRef();
 
   const resetFileFields = () => {
@@ -41,16 +40,10 @@ const Record = () => {
   const handleSave = async (event) => {
     event.preventDefault();
 
-    const userGaveSubtitles = record.subtitleFile;
-    const userGaveAutomaticSubtitles = record.automaticSubtitles;
-
-    const subtitles = userGaveSubtitles ? { file: record.subtitleFile, identifier: record.identifier } : undefined;
-    const automaticSubtitles = userGaveAutomaticSubtitles ? { ...(record.automaticSubtitles), identifier: record.identifier } : undefined;
-
     const success = await save({
-       record,
-       subtitles,
-       orderSubtitles: automaticSubtitles
+      record,
+      subtitles: record.subtitles?.type === 'subtitleFile' ? { ...record.subtitles, identifier: record.identifier } : undefined,
+      orderSubtitles: record.subtitles?.type === 'automaticSubtitles' ? { ...record.subtitles, identifier: record.identifier } : undefined
     });
 
     if (success) {

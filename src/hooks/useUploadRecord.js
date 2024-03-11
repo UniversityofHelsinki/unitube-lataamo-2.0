@@ -79,6 +79,7 @@ const useUploadRecord = () => {
       data.append(key, record[key]);
     });
     const job = await send(data, setProgress)(dispatch);
+    const eventId = job.eventId;
     setProgress({
       status: monitorStatuses[job.status],
       percentage: 100,
@@ -92,14 +93,18 @@ const useUploadRecord = () => {
           percentage: 100
         });
       } catch (error) {
+        console.error(error);
         setProgress({
           status: ProgressStatus.NEW_RECORD.ERROR,
           percentage: 100,
           message: error.message
         });
+        throw new Error('record_file_upload_error', {
+          cause: error
+        });
       }
     }
-
+    return eventId;
   };
 
   const reset = () => setProgress({
