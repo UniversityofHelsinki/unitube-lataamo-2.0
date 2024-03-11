@@ -42,6 +42,15 @@ const RecordAutomaticSubtitle = ({ onChange, message, disabled = false, value = 
     };
   
 
+    const validationMessages = (type) => {
+      if (message?.content) {
+        return {
+          content: message.content[type],
+          type: 'warning'
+        };
+      }
+    };
+
     return (
         <Container className="px-0 mb-3">
             <Row className="mb-3">
@@ -65,7 +74,7 @@ const RecordAutomaticSubtitle = ({ onChange, message, disabled = false, value = 
             </Row>
             <Row>
                 <Col>
-                    <DropDown id={id} value={value.translationModel} onChange={(e) => handleChange('translationModel', e.target.value)} options={language_models.map(asLanguageModelOption)} message={message} disabled={disabled} />
+                    <DropDown id={id} value={value.translationModel} onChange={(e) => handleChange('translationModel', e.target.value)} options={language_models.map(asLanguageModelOption)} message={validationMessages('translationModel')} disabled={disabled} />
                 </Col>
             </Row>
             <Row>
@@ -75,7 +84,7 @@ const RecordAutomaticSubtitle = ({ onChange, message, disabled = false, value = 
             </Row>
             <Row>
                 <Col>
-                    <DropDown id={id} value={value.translationLanguage} onChange={(e) => handleChange('translationLanguage', e.target.value)} options={languages.map(asLanguageOption)} message={message} disabled={disabled} />
+                    <DropDown id={id} value={value.translationLanguage} onChange={(e) => handleChange('translationLanguage', e.target.value)} options={languages.map(asLanguageOption)} message={validationMessages('translationLanguage')} disabled={disabled} />
                 </Col>
             </Row>
         </Container>
@@ -86,7 +95,7 @@ RecordAutomaticSubtitle.propTypes = {
     languageModel: PropTypes.string,
     language: PropTypes.string,
     message: PropTypes.shape({
-        content: PropTypes.string,
+        content: PropTypes.object,
         type: PropTypes.oneOf(['light', 'neutral', 'warning'])
     }),
     onChange: PropTypes.func.isRequired,

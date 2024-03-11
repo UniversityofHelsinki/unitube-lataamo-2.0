@@ -24,7 +24,7 @@ const upload = async (data) => {
 };
 
 const useSubtitleUpload = () => {
-  const [startMonitoring] = useMonitor();
+  const [startMonitoring, abortMonitoring] = useMonitor();
 
   const save = async (input) => {
     const formData = new FormData();
@@ -38,7 +38,7 @@ const useSubtitleUpload = () => {
 
   };
 
-  return [save];
+  return [save, abortMonitoring];
 };
 
 export default useSubtitleUpload;

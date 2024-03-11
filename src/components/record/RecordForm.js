@@ -80,13 +80,9 @@ const RecordForm = ({
           <Row className="mb-2">
             <Col>
               <RecordSubtitle 
-                onChange={(what, value) => onChange(what, value)} 
-                message={{ 
-                  subtitleFile: validationMessages?.subtitleFile, 
-                  automaticSubtitles: validationMessages?.automaticSubtitles 
-                }} 
-                file={record.subtitleFile} 
-                automaticSubtitles={record.automaticSubtitles} 
+                onChange={(value) => onChange('subtitles', value)}
+                message={validationMessages?.subtitles}
+                subtitles={record.subtitles}
                 disabled={disabled} 
               />
             </Col>
