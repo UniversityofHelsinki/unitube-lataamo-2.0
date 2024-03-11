@@ -5,7 +5,6 @@ import validateLicense from "./licenseValidation";
 import validateFile from "./fileValidation.js";
 import validateDeletionDate from "./deletionDateValidation.js";
 import useValidation from "../useValidation.js";
-import useSubtitleValidation from './useSubtitleValidation.js';
 import validateSubtitles from './subtitleValidation.js';
 
 const validationFunctions = {
