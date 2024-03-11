@@ -41,6 +41,7 @@ export const ProgressStatus = {
     IN_PROGRESS_RECORD: 'in_progress_record',
     IN_PROGRESS_SUBTITLES: 'in_progress_subtitles',
     IN_PROGRESS_ORDERSUBTITLES: 'in_progress_ordersubtitles',
+    IN_PROGRESS_DELETESUBTITLE :'in_progress_deletesubtitle',
     DONE: 'done',
     ERROR: 'error'
   },

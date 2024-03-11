@@ -75,6 +75,7 @@
   "record_automatic_subtitle_default_language": "Select language",
   "record_bottom_bar_progress_saving_subtitles": "Processing subtitles",
   "record_bottom_bar_progress_ordering_subtitles": "Processing automatic transcription",
+  "record_bottom_bar_progress_deleting_subtitle": "Processing removal of subtitles",
   "record_bottom_bar_progress_done": "Done!",
   "record_bottom_bar_progress_user_can_close": "You may close the form",
   "ms_whisper": "The OpenAI Whisper L language model (Microsoft Azure service",
@@ -126,7 +127,7 @@
   "collection_bottom_bar_in_progress": "Saving collection's details...",
   "collection_bottom_bar_republishing_metadata": "Republishing collection's metadata...",
   "collection_bottom_bar_done": "Done!",
-  "collection_has_no_records": "Collection has no recordings. You can add recordings into a collection by using the button below. You may also navigate to the recording's details you want to transfer under this collection.", 
+  "collection_has_no_records": "Collection has no recordings. You can add recordings into a collection by using the button below. You may also navigate to the recording's details you want to transfer under this collection.",
   "collection_has_no_records_lite": "No recordings.",
   "collection_validation_title_is_empty": "Name can not be empty.",
   "collection_validation_description_is_empty": "Description can not be empty.",
@@ -141,5 +142,7 @@
   "restore_record_footer_done_alert": "You can close the form.",
   "restore_record_footer_error": "Error!",
   "restore_record_footer_error_button": "Try again",
-  "record_thumbnail_alt_text": "Thumbnail of"
+  "record_thumbnail_alt_text": "Thumbnail of",
+  "record_card_valid_until" : "Valid until {{- deletionDate}}",
+  "tag_expiring": "Expiring"
 }

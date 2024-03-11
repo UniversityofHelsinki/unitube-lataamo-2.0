@@ -7,7 +7,7 @@
 
 .record-card:hover .record-card-details strong {
   text-decoration: underline;
-} 
+}
 
 .record-card-left {
   max-width: 100%;
@@ -25,7 +25,7 @@
 }
 
 .record-card-content-row-content {
-  max-width: 190px;
+  max-width: 290px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -37,10 +37,6 @@
   overflow: hidden;
 }
 
-.record-card:hover {
-  background-color: var(--hy-light-silver);
-}
-
 .record-card-selected {
-  background-color: var(--hy-light-silver);
+  background-color: var(--hy-medium-silver);
 }

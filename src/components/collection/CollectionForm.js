@@ -70,7 +70,7 @@ const CollectionForm = () => {
                 <Row className="mb-3">
                   <Col className="ps-1">
                     <CollectionButtons
-                        identifier={collection?.identifier}/>
+                        collection={collection}/>
                   </Col>
                 </Row>
 

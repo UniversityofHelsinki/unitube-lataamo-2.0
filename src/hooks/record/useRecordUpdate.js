@@ -2,7 +2,7 @@
 const put = async (record) => {
   const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/userVideos/${record.identifier}`;
   try {
-    const response = await fetch(URL, { 
+    const response = await fetch(URL, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',
