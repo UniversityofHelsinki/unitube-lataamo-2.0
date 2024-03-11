@@ -16,12 +16,14 @@ import useRecords from '../../hooks/useRecords';
 import RecordSubtitle from './RecordSubtitle';
 import useRecordModification from '../../hooks/useRecordModification';
 import useNewRecordSave from '../../hooks/record/useNewRecordSave';
+import RecordCollections from './RecordCollections';
 
 const emptyRecord = {
   identifier: '',
   title: '',
   description: '',
   license: '',
+  selectedSeries: '',
   deletionDate: addMonths(new Date(), 12).toISOString()
 };
 
@@ -94,6 +96,7 @@ const NewRecord = () => {
             <RecordDescription message={messages.description} onChange={(description) => onChange('description', description)} description={record.description} disabled={disabled} />
             <RecordLicense license={record.license} aria-label={t('new_record_license_label')} onChange={(license) => onChange('license', license)} message={messages.license} disabled={disabled} />
             <RecordEndDate endDate={record.deletionDate} onChange={(date) => onChange('deletionDate', (date || new Date()).toISOString())} message={messages.deletionDate} disabled={disabled} />
+            <RecordCollections collection={record.selectedSeries} onChange={(collection) => onChange('selectedSeries', collection)} message={messages.selectedSeries} disabled={disabled} />
             <RecordSubtitle onChange={(subtitles) => onChange('subtitles', subtitles)} subtitles={record.subtitles} disabled={disabled} message={messages.subtitles} />
         </Modal.Body>
         <Modal.Footer>
