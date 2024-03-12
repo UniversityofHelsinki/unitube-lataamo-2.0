@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { MONITOR_POLLING_RATE_MS } from "../Constants";
 
 const fetchStatus = async (job) => {
@@ -7,6 +8,7 @@ const fetchStatus = async (job) => {
     if (response.ok) {
       return await response.json();
     }
+    throw new Error(`Unexpected status code ${response.status} from ${URL}`);
   } catch (error) {
     console.error(error);
     throw new Error('monitor_error', {
@@ -15,32 +17,50 @@ const fetchStatus = async (job) => {
   }
 };
 
-const useMonitor = () => {
-
-  const start = async (job) => {
+const initialize = () => {
+  let abortSignal = false;
+  let aborted = false;
+  const start = (job) => {
     const thereIsAJob = (status) => 
-      !["FINISHED", "NOT_FOUND"].includes(status);
+      !["FINISHED", "NOT_FOUND", "ERROR"].includes(status);
 
-    if (thereIsAJob(job.status)) {
-      return await new Promise((resolve, reject) => {
-        const monitor = () => {
-          setTimeout(async () => {
+    const process = new Promise((resolve, reject) => {
+      const monitor = () => {
+        setTimeout(async () => {
+          try {
             const current = await fetchStatus(job.id);
+            
             if (thereIsAJob(current.status)) {
-              monitor();
+              if (!abortSignal) {
+                monitor();
+              }
             } else {
               resolve(current);
             }
-          }, MONITOR_POLLING_RATE_MS);
-        };
-        monitor();
-      });
-    }
 
+          } catch (error) {
+            console.error(error);
+            reject(error);
+          }
+        }, MONITOR_POLLING_RATE_MS);
+      };
+
+      monitor();
+
+    });
+    return process;
   };
 
-  return [start];
+  const abortFn = () => { 
+    abortSignal = true;
+  };
 
+  return [start, abortFn];
+};
+
+const useMonitor = () => {
+  const [functions] = useState(initialize);
+  return functions;
 };
 
 export default useMonitor;

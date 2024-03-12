@@ -5,24 +5,6 @@ const useModification = (object, validate, resetProgress) => {
   const [touchedFields, setTouchedFields] = useState([]);
   const [modified, setModified] = useState(false);
 
-  if (modifiedObject?.identifier !== object?.identifier) {
-    setModifiedObject({ ...object });
-    setTouchedFields([]);
-    setModified(false);
-    const objectHasChanged = modifiedObject?.identifier && object?.identifier;
-
-    const resetProgressIsPresent = Boolean(resetProgress);
-    if (resetProgressIsPresent && objectHasChanged) {
-      resetProgress();
-    }
-
-    const validateFunctionIsPresent = Boolean(validate);
-    if (object && validateFunctionIsPresent) {
-      const validateAllFieldsAtFirst = () => validate(object, {}, true);
-      validateAllFieldsAtFirst();
-    }
-  }
-
   const onChange = (what, value) => {
     const newModifiedObject = {
       ...modifiedObject,
@@ -74,6 +56,26 @@ const useModification = (object, validate, resetProgress) => {
     }
 
   };
+
+  if (modifiedObject?.identifier !== object?.identifier) {
+    const objectHasChanged = modifiedObject?.identifier && object?.identifier;
+
+    const resetProgressIsPresent = Boolean(resetProgress);
+    if (resetProgressIsPresent && objectHasChanged) {
+      resetProgress();
+    }
+
+    const validateFunctionIsPresent = Boolean(validate);
+    if (object && validateFunctionIsPresent) {
+      const validateAllFieldsAtFirst = () => validate(object, {}, true);
+      validateAllFieldsAtFirst();
+    }
+
+    setModifiedObject({ ...object });
+    setTouchedFields([]);
+    setModified(false);
+    return [{ ...object }, onChange, false, undo];
+  }
 
   return [modifiedObject, onChange, modified, undo];
 };

@@ -20,12 +20,11 @@ const Record = () => {
     const [progress, save, resetProgress] = useRecordSave();
     const [resetSubtitleDownloadLinks, setResetSubtitleDownloadLinks] = useState(false);
 
-    const [isValid, messages, validate] = useRecordValidation([
-        'title', 'description', 'deletionDate', 'license', 'subtitleFile', 'automaticSubtitles'
-    ]);
-    const [record, onChange, modified, undo] = useRecordModification(originalRecord, validate, resetProgress);
-
-    const formRef = useRef();
+  const [isValid, messages, validate] = useRecordValidation([
+    'title', 'description', 'deletionDate', 'license', 'subtitles'
+  ]);
+  const [record, onChange, modified, undo] = useRecordModification(originalRecord, validate, resetProgress);
+  const formRef = useRef();
 
     const resetFileFields = () => {
         if (formRef.current) {
@@ -41,28 +40,19 @@ const Record = () => {
     };
 
     const handleSave = async (event) => {
-        event.preventDefault();
-        const userGaveSubtitles = record.subtitleFile;
-        const userGaveAutomaticSubtitles = record.automaticSubtitles;
-        const userDeletedSubtitles = record.deleteSubtitle;
+      event.preventDefault();
+      const userDeletedSubtitles = record.deleteSubtitle;
 
-        const subtitles = userGaveSubtitles ? { file: record.subtitleFile, identifier: record.identifier } : undefined;
-        const automaticSubtitles = userGaveAutomaticSubtitles ? { ...(record.automaticSubtitles), identifier: record.identifier } : undefined;
+      const success = await save({
+        record,
+        subtitles: record.subtitles?.type === 'subtitleFile' ? { ...record.subtitles, identifier: record.identifier } : undefined,
+        orderSubtitles: record.subtitles?.type === 'automaticSubtitles' ? { ...record.subtitles, identifier: record.identifier } : undefined,
+        deleteSubtitle: (userDeletedSubtitles && !record.subtitles) ? { eventId: record.identifier, deleteSubtitle: true } : undefined
+      });
 
-        const markedSubtitlesForDeletion = (userDeletedSubtitles && userGaveSubtitles === undefined && userGaveAutomaticSubtitles === undefined)
-            ? { eventId: record.identifier, deleteSubtitle: true }
-            : undefined;
-
-        const success = await save({
-            record,
-            subtitles,
-            orderSubtitles: automaticSubtitles,
-            deleteSubtitle: markedSubtitlesForDeletion
-        });
-
-        if (success) {
-            reload();
-        }
+      if (success) {
+        reload();
+      }
 
     };
 

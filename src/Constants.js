@@ -18,10 +18,17 @@ export const ProgressStatus = {
   NEW_RECORD: {
     NOT_STARTED: 'not_started',
     SENDING: 'sending',
+    SENDING_SUBTITLES: 'sending_subtitles',
+    SENDING_SUBTITLE_ORDER: 'sending_subtitle_order',
     ERROR: 'error',
     DONE: 'done',
     ABORTED: 'aborted',
     PROCESSING: 'processing'
+  },
+  NEW_RECORD_SAVE: {
+    NOT_STARTED: 'not_started',
+    ERROR: 'error',
+    DONE: 'done'
   },
   NEW_COLLECTION: {
     NOT_STARTED: 'not_started',
