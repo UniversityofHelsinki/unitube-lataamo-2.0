@@ -41,7 +41,7 @@ const useCollectionSave = () => {
   });
 
   const [_searchParams, setSearchParams] = useSearchParams();
-  const [_collections, _loading, reloadCollections] = useCollections({ load: false });
+  const [_collections, _loading, reloadCollections] = useCollections();
 
   const resetProgress = () => setProgress({
     status: ProgressStatus.NEW_COLLECTION.NOT_STARTED,

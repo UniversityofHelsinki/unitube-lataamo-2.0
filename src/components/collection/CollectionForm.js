@@ -21,7 +21,7 @@ import { ProgressStatus } from '../../Constants';
 import CollectionButtons from "./CollectionButtons";
 
 const CollectionForm = () => {
-  const [originalCollection, loading, reload] = useCollection();
+  const [originalCollection, loading, reload] = useCollection(true);
   const [progress, update, resetProgress] = useCollectionUpdate();
   const [isValid, messages, validate] = useCollectionValidation(['title', 'description']);
   const [collection, onChange, modified, undo] = useCollectionModification(originalCollection, validate, resetProgress);

@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './RecordActions.css';
+import './RecordListActions.css';
 import { Col, Container, Row } from 'react-bootstrap';
 import ButtonRow from './ButtonRow';
 import Search from './search/Search';
 import NewRecord from '../record/NewRecord';
 import RecordActionOptions from './RecordActionOptions';
 
-const RecordActions = ({ options, onOptionChange }) => {
+const RecordListActions = ({ options, onOptionChange }) => {
   return (
       <Container>
         <Row className="mb-3">
@@ -31,7 +31,7 @@ const RecordActions = ({ options, onOptionChange }) => {
   );
 };
 
-RecordActions.propTypes = {
+RecordListActions.propTypes = {
 };
 
-export default RecordActions;
+export default RecordListActions;

@@ -13,7 +13,7 @@ const getCollections = () => async (dispatch) => {
   }
 };
 
-const useCollections = ({ load = false }) => {
+const useCollections = (load = false) => {
   const dispatch = useDispatch();
   const collections = useSelector(
     (state) => state.collections.collections

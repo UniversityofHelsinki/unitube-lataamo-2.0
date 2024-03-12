@@ -183,5 +183,6 @@
   "new_record_footer_button_sending_subtitle_order": "Lähetetään...",
   "new_record_footer_button_sending_subtitles": "Lähetetään...",
   "record_card_valid_until": "Voimassa {{- deletionDate}} asti",
-  "tag_expiring": "Vanhenemassa"
+  "tag_expiring": "Vanhenemassa",
+  "loading": "Ladataan..."
 }

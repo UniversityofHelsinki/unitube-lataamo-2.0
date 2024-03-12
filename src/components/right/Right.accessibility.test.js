@@ -14,17 +14,6 @@ describe('Right', () => {
             },
             path: '/records'
         },
-        records: {
-            record: {
-                identifier: 'asdfasdf',
-                deletionDate: new Date().toISOString(),
-                title: 'asdfsfd',
-                media: [{ url: 'asdf', type: 'asdf' }],
-                series: {
-                  title: 'asdfsadfsdf'
-                }
-            }
-        },
         collections: {
             collection: {
                 identifier: 'asdfasdf',

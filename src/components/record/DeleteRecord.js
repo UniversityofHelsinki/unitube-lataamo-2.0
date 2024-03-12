@@ -13,6 +13,8 @@ import HelpDialog from '../dialog/HelpDialog';
 import { ProgressStatus } from '../../Constants';
 import useRecords from '../../hooks/useRecords';
 import useDeletedRecords from '../../hooks/useDeletedRecords';
+import useSearchParams from '../../hooks/useSearchParams';
+import useRecord from '../../hooks/useRecord';
 
 const DeleteRecord = ({ record }) => {
   const { t } = useTranslation();
@@ -22,6 +24,7 @@ const DeleteRecord = ({ record }) => {
     load: false
   });
   const [_deletedRecords, _loadingDeletedRecords, reloadDeletedRecords] = useDeletedRecords();
+  const [visibleRecord, _loadingVisibleRecord, reloadVisibleRecord] = useRecord();
 
   const hide = () => {
     setShowForm(false);
@@ -29,6 +32,9 @@ const DeleteRecord = ({ record }) => {
     if (progress.status === ProgressStatus.RECORD_DELETE.DONE) {
       reloadRecords();
       reloadDeletedRecords();
+      if (visibleRecord?.identifier === record.identifier) {
+        reloadVisibleRecord();
+      }
     }
   };
 
@@ -52,6 +58,7 @@ const DeleteRecord = ({ record }) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+    event.stopPropagation();
     await deleteRecord(record);
   };
 
