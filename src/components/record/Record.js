@@ -15,10 +15,14 @@ import useRecordSave from '../../hooks/record/useRecordSave';
 import useRecordModification from '../../hooks/useRecordModification';
 import {ProgressStatus} from '../../Constants';
 import RecordTopRow from './RecordTopRow';
+import useCollections from '../../hooks/useCollections';
+import useCollection from '../../hooks/useCollection';
 
 const Record = () => {
     const [originalRecord, loading, reload] = useRecord(true);
     const [progress, save, resetProgress] = useRecordSave();
+    const [_collections, _loadingCollections, reloadCollections] = useCollections();
+    const [visibleCollection, _loadingVisibleCollection, reloadVisibleCollection] = useCollection();
     const [resetSubtitleDownloadLinks, setResetSubtitleDownloadLinks] = useState(false);
 
   const [isValid, messages, validate] = useRecordValidation([
@@ -53,6 +57,10 @@ const Record = () => {
 
       if (success) {
         reload();
+        reloadCollections();
+        if (visibleCollection?.identifier === record.isPartOf || visibleCollection?.identifier === record.is_part_of) {
+          reloadVisibleCollection();
+        }
       }
 
     };

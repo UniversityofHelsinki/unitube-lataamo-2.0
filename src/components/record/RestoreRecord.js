@@ -15,6 +15,7 @@ import { ProgressStatus } from '../../Constants';
 import useRecords from '../../hooks/useRecords';
 import useCollections from '../../hooks/useCollections';
 import useRecord from '../../hooks/useRecord';
+import useCollection from '../../hooks/useCollection';
 
 const RestoreRecord = ({ record }) => {
   const { t } = useTranslation();
@@ -28,6 +29,7 @@ const RestoreRecord = ({ record }) => {
   const [_records, _loadingRecords, reloadRecords] = useRecords(false);
   const [visibleRecord, _loadingRecord, reloadVisibleRecord] = useRecord();
   const [_collections, _loadingCollections, reloadCollections] = useCollections();
+  const [visibleCollection, _loadingVisibleCollection, reloadVisibleCollection] = useCollection();
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
@@ -47,6 +49,9 @@ const RestoreRecord = ({ record }) => {
       reloadCollections();
       if (visibleRecord?.identifier === record.identifier) {
         reloadVisibleRecord();
+      }
+      if (visibleCollection?.identifier === modifiedRecord.isPartOf) {
+        reloadVisibleCollection();
       }
     }
 

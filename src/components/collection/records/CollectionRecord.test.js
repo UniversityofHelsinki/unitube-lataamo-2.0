@@ -5,10 +5,11 @@ import { MockProvider } from '../../../redux/reducers/MockProvider';
 
 it('renders', () => {
   render(
-    <MockProvider mockReducers={{ location: { location: '', searchParams: {}}}}>
+    <MockProvider>
       <CollectionRecord 
         record={{ identifier: 'asdf', title: 'hei' }}
-        onRemove={() => {}}
+        disabled={false}
+        reloadCollectionOnRemove={false}
       />
     </MockProvider>
   );

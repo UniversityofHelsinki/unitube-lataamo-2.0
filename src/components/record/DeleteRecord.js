@@ -13,13 +13,16 @@ import HelpDialog from '../dialog/HelpDialog';
 import { ProgressStatus } from '../../Constants';
 import useRecords from '../../hooks/useRecords';
 import useDeletedRecords from '../../hooks/useDeletedRecords';
-import useSearchParams from '../../hooks/useSearchParams';
 import useRecord from '../../hooks/useRecord';
+import useCollections from '../../hooks/useCollections';
+import useCollection from '../../hooks/useCollection';
 
-const DeleteRecord = ({ record }) => {
+const DeleteRecord = ({ record, showLabel = true, reloadCollectionOnRemove = false, disabled = false }) => {
   const { t } = useTranslation();
   const [showForm, setShowForm] = useState(false);
   const [deleteRecord, progress, resetProgress] = useRecordDelete();
+  const [_collections, _loadingCollections, reloadCollections] = useCollections();
+  const [_visibleCollection, _loadingCollection, reloadCollection] = useCollection();
   const [_records, _loadingRecords, reloadRecords] = useRecords();
   const [_deletedRecords, _loadingDeletedRecords, reloadDeletedRecords] = useDeletedRecords();
   const [visibleRecord, _loadingVisibleRecord, reloadVisibleRecord] = useRecord();
@@ -30,8 +33,12 @@ const DeleteRecord = ({ record }) => {
     if (progress.status === ProgressStatus.RECORD_DELETE.DONE) {
       reloadRecords();
       reloadDeletedRecords();
+      reloadCollections();
       if (visibleRecord?.identifier === record.identifier) {
         reloadVisibleRecord();
+      }
+      if (reloadCollectionOnRemove) {
+        reloadCollection();
       }
     }
   };
@@ -51,6 +58,8 @@ const DeleteRecord = ({ record }) => {
       icon={<DeleteIcon { ...iconProps } />}
       label={t('record_card_action_delete')}
       onClick={show}
+      showLabel={showLabel}
+      disabled={disabled}
     />
   );
 
@@ -104,6 +113,10 @@ const DeleteRecord = ({ record }) => {
 };
 
 DeleteRecord.propTypes = {
+  record: PropTypes.object,
+  showLabel: PropTypes.bool,
+  reloadCollectionOnRemove: PropTypes.bool,
+  disabled: PropTypes.bool
 };
 
 export default DeleteRecord;
