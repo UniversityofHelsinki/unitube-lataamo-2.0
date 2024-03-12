@@ -35,12 +35,10 @@ const CollectionCardThumbnail = ({ record }) => {
 
     const label = t('record_thumbnail_alt_text', { title: record.title });
 
-    const thumbnail = thumbnailUrl ? <img alt={label} title={label} src={thumbnailUrl} /> : <div/>;
+    const thumbnail = thumbnailUrl ? <img alt={label} title={label} src={thumbnailUrl} /> : <></>;
 
     return (
-        <div>
-            {thumbnail}
-        </div>
+      thumbnail
     );
 };
 
