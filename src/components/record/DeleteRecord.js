@@ -20,9 +20,7 @@ const DeleteRecord = ({ record }) => {
   const { t } = useTranslation();
   const [showForm, setShowForm] = useState(false);
   const [deleteRecord, progress, resetProgress] = useRecordDelete();
-  const [_records, _loadingRecords, reloadRecords] = useRecords({
-    load: false
-  });
+  const [_records, _loadingRecords, reloadRecords] = useRecords();
   const [_deletedRecords, _loadingDeletedRecords, reloadDeletedRecords] = useDeletedRecords();
   const [visibleRecord, _loadingVisibleRecord, reloadVisibleRecord] = useRecord();
 
