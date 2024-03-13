@@ -13,10 +13,38 @@ const RecordCollections = ({ collection, onChange, message, disabled = false }) 
     const id = useId();
     const { t } = useTranslation();
 
-    const [collections, loadingCollections] = useCollectionDropdown();
+    const [collections, loadingCollections, collectionsWithVisibility, loadingCollectionsWithVisibility] = useCollectionDropdown();
+
+    const translateVisibilities = (visibilities) => {
+        let translatedVisibilities = "";
+
+        visibilities?.forEach(obj => {
+            translatedVisibilities = translatedVisibilities  + `${t(obj)}` + ',';
+        });
+        return translatedVisibilities.slice(0, -1);
+    }
+
+    const addCollectionsVisibility = (collections) => {
+        let collectionsCopy = (collections === null  || collections === undefined) ? null : collections.map(a => ({...a}));
+        if (collectionsCopy === null || collectionsWithVisibility === undefined) {
+            return null;
+        }
+        collections?.forEach(obj => {
+            const index = collectionsWithVisibility?.findIndex(o => o.identifier === obj.identifier);
+            if (index !== -1) {
+                let elem = collectionsWithVisibility[index];
+                let objwithvisibility = {...obj, 'visibility': translateVisibilities(elem.visibility)}
+                Object.assign(obj, objwithvisibility);
+            } else {
+                let objwithvisibility = {...obj, 'visibility': t('status_private')}
+                Object.assign(obj, objwithvisibility);
+            }
+        })
+        return collectionsCopy;
+    }
 
     return (
-        <Loading loading={loadingCollections}>
+        <Loading loading={loadingCollections && loadingCollectionsWithVisibility}>
           <Container>
               <Row>
                   <Col>
@@ -39,9 +67,9 @@ const RecordCollections = ({ collection, onChange, message, disabled = false }) 
                         aria-labelledby={id}
                         onChange={(e) => onChange(e.target.value)}
                         options={
-                          (collections || []).map((c) => ({
+                          (addCollectionsVisibility(collections) || []).map((c) => ({
                             value: c.identifier,
-                            label: c.title,
+                            label: `${c.title} (${c.visibility})`,
                             selected: c.identifier === collection
                           }))
                         } 

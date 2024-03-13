@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import useCollections from "../useCollections";
 
 const get = async () => {
   const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/getUserSeriesDropDownList`;
@@ -14,6 +15,9 @@ const get = async () => {
 };
 
 const useCollectionDropdown = () => {
+  const [collections, loadingCollections] = useCollections({
+    load: true
+  });
   const [content, setContent] = useState(null);
 
   useEffect(() => {
@@ -23,7 +27,7 @@ const useCollectionDropdown = () => {
   }, []);
 
   const loading = !content;
-  return [content, loading];
+  return [content, loading, collections, loadingCollections];
 };
 
 export default useCollectionDropdown;
