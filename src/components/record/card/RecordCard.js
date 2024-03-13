@@ -2,7 +2,6 @@ import React, { useId } from 'react';
 import PropTypes from 'prop-types';
 import './RecordCard.css';
 import RecordCardDetails from './RecordCardDetails';
-import RecordCardThumbnail from './RecordCardThumbnail';
 import onKeyDown from '../../accessibility/keydown';
 import useRecordTags from '../../../hooks/record/useRecordTags';
 import CardTags from '../../utilities/CardTags';
@@ -10,6 +9,7 @@ import useUser from '../../../hooks/useUser';
 import { DELETED_SERIES_REG_EXP } from '../../../Constants';
 import RecordCardActions from './RecordCardActions';
 import {useTranslation} from "react-i18next";
+import Thumbnail from "../../utilities/Thumbnail";
 
 const RecordCard = ({ record, onClick, selected = false }) => {
   const selectedClass = selected ? 'record-card-selected' : '';
@@ -30,7 +30,7 @@ const RecordCard = ({ record, onClick, selected = false }) => {
         onKeyDown={onKeyDown(onClick)}
         tabIndex={0}
         aria-labelledby={labelId}>
-        <RecordCardThumbnail record={record} />
+        <Thumbnail record={record} width="160" length="160" altText="record_thumbnail_alt_text"></Thumbnail>
         <div className="record-card-content-row-content px-2">
           <div className="record-card-content-row-content-top">
             <div className="record-card-content-row-content-top-up">
