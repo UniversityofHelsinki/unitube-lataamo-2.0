@@ -2,13 +2,17 @@
   max-width: 80%;
 }
 
-.new-collection-footer-button-row {
+.new-collection-footer {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-content: center;
 }
 
-.new-collection-footer-button-row button {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: 60%;
+.new-collection-footer-progress-bar {
+  flex-grow: 1;
 }
 
+.new-collection-footer-buttons button {
+  margin-left: 8px;
+}

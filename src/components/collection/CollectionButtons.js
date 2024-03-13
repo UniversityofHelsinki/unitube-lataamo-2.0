@@ -13,7 +13,7 @@ import useValidation from "../../hooks/validation/useValidation.js";
 import validateDeletionDate from "../../hooks/validation/record/deletionDateValidation";
 import PropTypes from "prop-types";
 
-const CollectionButtons = ({ collection }) => {
+const CollectionButtons = ({ collection, disabled }) => {
     const { t } = useTranslation();
     const [showForm, setShowForm] = useState(false);
     const datePlusSixMonths = addMonths(new Date(),  DELETION_DATE_MIN_MONTHS);
@@ -63,6 +63,7 @@ const CollectionButtons = ({ collection }) => {
                     className="collection-buttons-update-end-dates-button"
                     onClick={show}
                     aria-haspopup="dialog"
+                    disabled={disabled}
                 >
                     {t('update_collection_end_dates')}
                 </Button>

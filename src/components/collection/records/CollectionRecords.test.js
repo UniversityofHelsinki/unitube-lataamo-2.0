@@ -5,7 +5,7 @@ import { MockProvider } from '../../../redux/reducers/MockProvider';
 
 it('renders', () => {
   render(
-    <MockProvider mockReducers={{ location: { location: '', searchParams: {}}}}>
+    <MockProvider>
       <CollectionRecords records={[{ identifier: 'sadf', name: 'asdfasf' }, { identifier: 'fdsa', title: 'hei' }]} />
     </MockProvider>
   );
