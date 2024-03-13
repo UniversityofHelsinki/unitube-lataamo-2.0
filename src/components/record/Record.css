@@ -7,3 +7,25 @@
   height: calc(100% - var(--right-bottom-bar-height));
   overflow: auto;
 }
+
+.top-row-container::after {
+  content: "";
+  background-color: var(--hy-light-silver);
+  height: 3px;
+  width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 1em;
+}
+
+.top-row-container {
+  position: sticky;
+  top: 0px;
+  background-color: var(--hy-white);
+  z-index: 1;
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+}

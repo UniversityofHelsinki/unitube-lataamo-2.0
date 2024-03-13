@@ -46,7 +46,6 @@ const useRecordDelete = () => {
       percentage: defaultAnimatedPercentage
     });
     try {
-      console.log(record, convertToBody(record));
       await put(convertToBody(record), record.identifier);
       setProgress({
         status: ProgressStatus.RECORD_DELETE.DONE,

@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Loading.css';
 import HyLogo from './HyLogo';
+import { useTranslation } from 'react-i18next';
 
-const Loading = ({ children, renderChildren = false, loading = false }) => {
+const Loading = ({ children, renderChildren = false, loading = false, logo = true }) => {
+  const { t } = useTranslation();
 
   if (loading && renderChildren) {
     return (
@@ -11,11 +13,17 @@ const Loading = ({ children, renderChildren = false, loading = false }) => {
         {children}
       </div>
     );
-  } else if (loading) {
+  } else if (loading && logo) {
     return (
       <div className="loading">
         <HyLogo className="spin" />
-        <p>Ladataan...</p>
+        <p>{t('loading')}</p>
+      </div>
+    );
+  } else if (loading) {
+    return (
+      <div className="loading">
+        <p>{t('loading')}</p>
       </div>
     );
   }

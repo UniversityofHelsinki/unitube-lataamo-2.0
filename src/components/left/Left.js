@@ -13,7 +13,7 @@ import useRecords from '../../hooks/useRecords';
 import useLocation from '../../hooks/useLocation';
 import useCollections from '../../hooks/useCollections';
 import CollectionCard from '../collection/card/CollectionCard';
-import RecordActions from './RecordActions';
+import RecordListActions from './RecordListActions';
 import CollectionActions from './CollectionActions';
 import useDeletedRecords from '../../hooks/useDeletedRecords';
 import { useTranslation } from 'react-i18next';
@@ -48,18 +48,18 @@ const NoCollections = () => {
 
 const Left = () => {
   const [path] = useLocation();
-  const [records, loadingRecords] = useRecords({ 
-    load: path === '/records'
-  });
+  const [records, loadingRecords] = useRecords(
+    path === '/records'
+  );
   const [deletedRecords, loadingDeletedRecords] = useDeletedRecords();
   const [recordOptions, setRecordOptions] = useState({
     showDeleted: false,
     showRecordsInCollections: false
   });
 
-  const [collections, loadingCollections] = useCollections({ 
-    load: path === '/collections' 
-  });
+  const [collections, loadingCollections] = useCollections(
+    path === '/collections' 
+  );
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -103,7 +103,7 @@ const Left = () => {
   };
 
   const actionElement = {
-    '/records': <RecordActions options={recordOptions} onOptionChange={(options) => setRecordOptions(options)} />,
+    '/records': <RecordListActions options={recordOptions} onOptionChange={(options) => setRecordOptions(options)} />,
     '/collections': <CollectionActions />
   };
 

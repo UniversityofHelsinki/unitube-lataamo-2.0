@@ -14,6 +14,7 @@ import RestoreRecordFooter from './RestoreRecordFooter';
 import { ProgressStatus } from '../../Constants';
 import useRecords from '../../hooks/useRecords';
 import useCollections from '../../hooks/useCollections';
+import useRecord from '../../hooks/useRecord';
 
 const RestoreRecord = ({ record }) => {
   const { t } = useTranslation();
@@ -24,8 +25,9 @@ const RestoreRecord = ({ record }) => {
     null, 
     resetProgress
   );
-  const [_records, _loadingRecords, reloadRecords] = useRecords({ load: false });
-  const [_collections, _loadingCollections, reloadCollections] = useCollections({ load: false });
+  const [_records, _loadingRecords, reloadRecords] = useRecords(false);
+  const [visibleRecord, _loadingRecord, reloadVisibleRecord] = useRecord();
+  const [_collections, _loadingCollections, reloadCollections] = useCollections();
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
@@ -43,6 +45,9 @@ const RestoreRecord = ({ record }) => {
     if (progress.status === ProgressStatus.RECORD_RESTORE.DONE) {
       reloadRecords();
       reloadCollections();
+      if (visibleRecord?.identifier === record.identifier) {
+        reloadVisibleRecord();
+      }
     }
 
   }
@@ -66,6 +71,7 @@ const RestoreRecord = ({ record }) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+    event.stopPropagation();
     await restore(modifiedRecord);
   };
   
