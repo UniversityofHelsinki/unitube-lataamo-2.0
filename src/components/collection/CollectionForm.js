@@ -70,7 +70,8 @@ const CollectionForm = () => {
                 <Row className="mb-3">
                   <Col className="ps-1">
                     <CollectionButtons
-                        collection={collection}/>
+                        collection={collection}
+                        disabled={saveInProgress}/>
                   </Col>
                 </Row>
 
