@@ -8,7 +8,13 @@ describe('DeleteRecord', () => {
   it('has no accessibility violations', async () => {
         const { container } = render(
           <MockProvider>
-            <DeleteRecord record={{ identifier: 'asdfasdf', title: 'asdf' }}/>
+            <DeleteRecord record={{ 
+              identifier: 'asdfasdf', 
+              title: 'asdf' 
+            }}
+            showLabel={true}
+            reloadCollectionOnRemove={false}
+            />
           </MockProvider>
         );
         const results = await axe(container);

@@ -8,7 +8,7 @@ import {axe} from "jest-axe";
 describe('CollectionRecord', () => {
     it('should not have any accessibility violations', async () => {
 
-        const { container } = render(   <MockProvider mockReducers={{ location: { location: '', searchParams: {}}}}>
+        const { container } = render(<MockProvider>
             <CollectionRecord
                 record={{ identifier: 'asdf', title: 'hei' }}
                 onRemove={() => {}}
