@@ -1,12 +1,12 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import RecordActions from './RecordActions';
+import RecordListActions from './RecordListActions';
 import { MockProvider } from '../../redux/reducers/MockProvider';
 
 it('renders', () => {
   render(
     <MockProvider mockReducers={{ records: { records: [] } }}>
-      <RecordActions options={{ showDeleted: false, showRecordsInCollections: false }} onOptionChange={() => {}} />
+      <RecordListActions options={{ showDeleted: false, showRecordsInCollections: false }} onOptionChange={() => {}} />
     </MockProvider>
   );
 });

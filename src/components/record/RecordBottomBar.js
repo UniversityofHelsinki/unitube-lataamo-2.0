@@ -28,12 +28,13 @@ const RecordBottomBar = ({ progress, record, modified, undo, isValid }) => {
 
   const savingHasBegun = progress.status !== ProgressStatus.RECORD_SAVE.NOT_STARTED;
   const savingInProgress = savingHasBegun && progress.status !== ProgressStatus.RECORD_SAVE.DONE && progress.status !== ProgressStatus.RECORD_SAVE.ERROR;
+  const savingHasFailed = progress.status === ProgressStatus.RECORD_SAVE.ERROR;
   const savingIsDone = savingHasBegun && !savingInProgress;
 
   const notification = (() => {
-    if (savingIsDone && modified) {
+    if (savingIsDone && modified && !savingHasFailed) {
       return <UnsavedChanges />;
-    } else if (savingIsDone || savingHasBegun) {
+    } else if (savingIsDone || savingHasBegun || savingHasFailed) {
       return <RecordBottomBarProgress progress={progress} />
     } else if (modified) {
       return <UnsavedChanges />;

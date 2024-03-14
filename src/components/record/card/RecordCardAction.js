@@ -3,11 +3,19 @@ import PropTypes from 'prop-types';
 import './RecordCardAction.css';
 import { Button } from 'react-bootstrap';
 
-const RecordCardAction = ({ icon, label, onClick }) => {
+const RecordCardAction = ({ icon, label, onClick, showLabel = true, disabled = false }) => {
+
+  const marginClass = (() => {
+    if (showLabel) {
+      return 'ms-1';
+    }
+    return '';
+  })();
+
   return (
-    <Button variant="link" onClick={onClick} className="record-card-action p-0 m-0">
+    <Button variant="link" onClick={onClick} className="record-card-action p-0 m-0" aria-label={label} disabled={disabled}>
       {icon}
-      {label}
+      <span className={marginClass}>{showLabel && label}</span>
     </Button>
   );
 };
@@ -15,7 +23,9 @@ const RecordCardAction = ({ icon, label, onClick }) => {
 RecordCardAction.propTypes = {
   icon: PropTypes.node,
   label: PropTypes.string,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  showLabel: PropTypes.bool,
+  disabled: PropTypes.bool
 };
 
 export default RecordCardAction;

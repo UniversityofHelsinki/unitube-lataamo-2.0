@@ -11,7 +11,7 @@ import Colors from '../utilities/HyColors';
 
 const Footer = () => {
   return (
-    <Container as="footer">
+    <Container>
       <Row>
         <Col className="text-end footer-hy-logo">
           <div>

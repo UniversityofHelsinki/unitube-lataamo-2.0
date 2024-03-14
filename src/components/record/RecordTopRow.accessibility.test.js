@@ -1,20 +1,18 @@
 import { render } from "@testing-library/react";
 import { MockProvider } from "../../redux/reducers/MockProvider";
-import DeleteRecord from "./DeleteRecord.js";
+import RecordTopRow from "./RecordTopRow.js";
 import React from "react";
 import { axe } from "jest-axe";
 
-describe('DeleteRecord', () => {
+describe('RecordTopRow', () => {
   it('has no accessibility violations', async () => {
-        const { container } = render(
+        const { container, rerender } = render(
           <MockProvider>
-            <DeleteRecord record={{ 
-              identifier: 'asdfasdf', 
-              title: 'asdf' 
-            }}
-            showLabel={true}
-            reloadCollectionOnRemove={false}
-            />
+            <RecordTopRow record={{ 
+              deletionDate: new Date().toISOString(),
+              title: 'asdf',
+              isPartOf: 'asd'
+            }} />
           </MockProvider>
         );
         const results = await axe(container);

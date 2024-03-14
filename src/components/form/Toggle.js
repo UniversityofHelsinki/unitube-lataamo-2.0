@@ -3,24 +3,17 @@ import PropTypes from "prop-types";
 import './Toggle.css';
 import ElementHeader from './ElementHeader';
 
-const Toggle = ({ children, labels, onSelect }) => {
-    const nothingSelected = -1;
-    const [visibleComponentIndex, setVisibleComponentIndex] = useState(nothingSelected);
+const Toggle = ({ children, labels, onSelect, selected, disabled }) => {
     const id = useId();
 
     const changeVisibleComponent = (index) => {
-        setVisibleComponentIndex(index);
         onSelect(index);
-        if (index === visibleComponentIndex) {
-          setVisibleComponentIndex(nothingSelected);
-          onSelect(nothingSelected);
-        }
     };
 
     return (
         <ul className="toggle form-check">
             {children.map((item, index) => {
-                const checked = index === visibleComponentIndex;
+                const checked = index === selected;
                  return (<li key={`${id}-${index}`} className="mb-1">
                     <input 
                       className="form-check-input" 
@@ -31,6 +24,7 @@ const Toggle = ({ children, labels, onSelect }) => {
                       checked={checked}
                       onChange={() => changeVisibleComponent(index)} 
                       onClick={() => checked && changeVisibleComponent(index)}
+                      disabled={disabled}
                     />
                      <label className="form-check-label align-middle" htmlFor={`${id}-${index}`}>
                        <ElementHeader label={labels[index]}>{labels[index]}</ElementHeader>
