@@ -16,6 +16,7 @@ import useDeletedRecords from '../../hooks/useDeletedRecords';
 import useRecord from '../../hooks/useRecord';
 import useCollections from '../../hooks/useCollections';
 import useCollection from '../../hooks/useCollection';
+import useVisibleRecords from '../../hooks/useVisibleRecords';
 
 const DeleteRecord = ({ record, showLabel = true, reloadCollectionOnRemove = false, disabled = false }) => {
   const { t } = useTranslation();
@@ -23,7 +24,7 @@ const DeleteRecord = ({ record, showLabel = true, reloadCollectionOnRemove = fal
   const [deleteRecord, progress, resetProgress] = useRecordDelete();
   const [_collections, _loadingCollections, reloadCollections] = useCollections();
   const [_visibleCollection, _loadingCollection, reloadCollection] = useCollection();
-  const [_records, _loadingRecords, reloadRecords] = useRecords();
+  const [_records, _loadingRecords, reloadRecords] = useVisibleRecords({});
   const [_deletedRecords, _loadingDeletedRecords, reloadDeletedRecords] = useDeletedRecords();
   const [visibleRecord, _loadingVisibleRecord, reloadVisibleRecord] = useRecord();
 

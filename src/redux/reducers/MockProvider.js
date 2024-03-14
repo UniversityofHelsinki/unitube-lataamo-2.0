@@ -63,7 +63,7 @@ const defaultMockReducers = {
   },
   records: {
     records: [mockRecord],
-    record: mockRecord 
+    record: mockRecord
   },
   collections: {
     collections: [mockCollection],

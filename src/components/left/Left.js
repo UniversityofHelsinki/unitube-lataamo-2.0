@@ -15,8 +15,8 @@ import useCollections from '../../hooks/useCollections';
 import CollectionCard from '../collection/card/CollectionCard';
 import RecordListActions from './RecordListActions';
 import CollectionActions from './CollectionActions';
-import useDeletedRecords from '../../hooks/useDeletedRecords';
 import { useTranslation } from 'react-i18next';
+import useVisibleRecords from '../../hooks/useVisibleRecords';
 
 const No = ({ children }) => {
   return (
@@ -48,13 +48,15 @@ const NoCollections = () => {
 
 const Left = () => {
   const [path] = useLocation();
-  const [records, loadingRecords] = useRecords(
-    path === '/records'
-  );
-  const [deletedRecords, loadingDeletedRecords] = useDeletedRecords();
   const [recordOptions, setRecordOptions] = useState({
     showDeleted: false,
     showRecordsInCollections: false
+  });
+
+  const [records, loadingRecords, _reloadRecords] = useVisibleRecords({
+    showDeleted: recordOptions.showDeleted,
+    showAll: recordOptions.showRecordsInCollections,
+    load: path === '/records'
   });
 
   const [collections, loadingCollections] = useCollections(
@@ -67,24 +69,15 @@ const Left = () => {
     setSearchParams({ 'record': record.identifier });
   };
 
-  const recordCards = (() => {
-    const usedRecords = (() => {
-      if (recordOptions.showDeleted) {
-        return [ ...(deletedRecords || []), ...(records || []) ];
-      }
-      return records || [];
-    })();
-  
-    return usedRecords.map((record, i) => 
-      <RecordCard 
-        key={record.identifier} 
-        onClick={() => onClick(record)} 
-        record={record} 
-        selected={record.identifier === searchParams.record }/>
-    );
-  })();
+  const recordCards = (records || []).map((record, _i) => 
+    <RecordCard 
+      key={record.identifier} 
+      onClick={() => onClick(record)} 
+      record={record} 
+      selected={record.identifier === searchParams.record }/>
+  );
 
-  const collectionElements = (collections || []).map((collection, i) =>
+  const collectionCards = (collections || []).map((collection, i) =>
     <CollectionCard 
         collection={collection}
         selected={collection.identifier === searchParams.collection}
@@ -99,7 +92,7 @@ const Left = () => {
 
   const listElements = {
     '/records': recordCards,
-    '/collections': collectionElements
+    '/collections': collectionCards
   };
 
   const actionElement = {
@@ -108,7 +101,7 @@ const Left = () => {
   };
 
   const loading = {
-    '/records': loadingRecords || loadingDeletedRecords,
+    '/records': loadingRecords,
     '/collections': loadingCollections
   };
 

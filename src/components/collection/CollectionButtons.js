@@ -77,13 +77,13 @@ const CollectionButtons = ({ collection }) => {
             closeable={closeable}
         >
             <Modal.Header closeButton={closeable}>{t('update_collection_end_dates')}</Modal.Header>
-            <Form className="collection-buttons-update-end-dates-form ms-3 me-3" onSubmit={onSubmit}>
+            <Form className="collection-buttons-update-end-dates-form" onSubmit={onSubmit}>
                 <Modal.Body>
                     <CollectionRecordsDeletionDates deletionDate={collectionData?.deletionDate}
                         onChange={(deletionDate) => changeDeletionDay('deletionDate', deletionDate.toISOString())}
                         disabled={formDisabled} message={messages.deletionDate} />
                 </Modal.Body>
-                <Modal.Footer className="ps-0 pe-0">
+                <Modal.Footer>
                     <DeletionDatesCollectionRecordsFooter progress={progress} hide={hide} />
                 </Modal.Footer>
             </Form>

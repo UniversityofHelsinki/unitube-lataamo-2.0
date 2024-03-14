@@ -10,6 +10,8 @@ import useUser from '../../../hooks/useUser';
 import { DELETED_SERIES_REG_EXP } from '../../../Constants';
 import RecordActions from './RecordActions';
 import {useTranslation} from "react-i18next";
+import { Badge } from 'react-bootstrap';
+import useDefaultCollection from '../../../hooks/record/useDefaultCollection';
 
 const RecordCard = ({ record, onClick, selected = false }) => {
   const selectedClass = selected ? 'record-card-selected' : '';
@@ -22,8 +24,21 @@ const RecordCard = ({ record, onClick, selected = false }) => {
   const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
   const date = record.deletionDate && !isDeleted ? new Intl.DateTimeFormat(i18n.language, options).format(new Date(record.deletionDate)) : null;
 
+  const seriesBadge = (() => {
+    const belongsToDefaultCollection = record.series === `inbox ${user.eppn}`;
+    if (isDeleted || belongsToDefaultCollection) {
+      return <></>;
+    }
+    return <Badge bg="primary">{record.series}</Badge>;
+  })();
+
   return (
     <div className={`record-card ${selectedClass}`}>
+      <div className="record-card-badge-overlay">
+        <div className="record-card-badge" title={record.series}>
+          {seriesBadge}
+        </div>
+      </div>
       <div className="record-card-left"
         role="button"
         onClick={onClick}
