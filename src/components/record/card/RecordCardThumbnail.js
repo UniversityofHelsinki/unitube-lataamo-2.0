@@ -10,7 +10,7 @@ const RecordCardThumbnail = ({ record }) => {
   useEffect(() => {
       const fetchThumbnail = async () => {
           if (record?.cover_image) {
-              const thumbnailUrl = `${process.env.REACT_APP_LATAAMO_THUMBNAIL_SERVER}/thumbnail/v1/${record.cover_image}`;
+              const thumbnailUrl = `${process.env.REACT_APP_LATAAMO_THUMBNAIL_SERVER}/thumbnail/v1/${record.cover_image}/160/160`;
               try {
                   const response = await fetch(thumbnailUrl);
                   if (response.ok) {
