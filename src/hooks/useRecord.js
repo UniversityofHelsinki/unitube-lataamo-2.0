@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import useSearchParams from "./useSearchParams";
 
 const getRecordEndDate = async (record) => {
@@ -30,25 +31,30 @@ const getRecord = async (record) => {
   }
 };
 
-const useRecord = () => {
+const useRecord = (load = false) => {
   const [searchParams] = useSearchParams();
-  const [record, setRecord] = useState(null); 
+  const dispatch = useDispatch();
+  const record = useSelector((state) => state.records.record);
 
-  const thereIsRecord = record?.identifier;
-  const recordHasChanged 
-    = thereIsRecord && record.identifier !== searchParams.record;
+  const thereIsRecord = Boolean(record?.identifier);
+  const recordHasChanged = thereIsRecord && searchParams.record !== record.identifier;
 
   useEffect(() => {
-    if (!thereIsRecord || recordHasChanged) {
+    if (load && (!thereIsRecord || recordHasChanged)) {
       (async () => {
-        setRecord(await getRecord(searchParams.record));
+        dispatch({ 
+          type: 'SET_RECORD', 
+          payload: await getRecord(searchParams.record) 
+        });
       })();
     }
-  }, [record, searchParams.record]);
+  }, [searchParams.record, record?.identifier, dispatch]);
 
-  const loading = !thereIsRecord || recordHasChanged;
-  const reload = () => setRecord(null);
-  return [record, loading, reload];
+  const reload = () => {
+    dispatch({ type: 'SET_RECORD' });
+  };
+
+  return [record, !thereIsRecord || recordHasChanged, reload];
 };
 
 export default useRecord;

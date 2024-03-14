@@ -7,7 +7,7 @@ import useRecordTags from '../../../hooks/record/useRecordTags';
 import CardTags from '../../utilities/CardTags';
 import useUser from '../../../hooks/useUser';
 import { DELETED_SERIES_REG_EXP } from '../../../Constants';
-import RecordCardActions from './RecordCardActions';
+import RecordActions from './RecordActions';
 import {useTranslation} from "react-i18next";
 import Thumbnail from "../../utilities/Thumbnail";
 
@@ -44,7 +44,7 @@ const RecordCard = ({ record, onClick, selected = false }) => {
         </div>
       </div>
       <div className="record-card-right me-2">
-        <RecordCardActions record={record} />
+        <RecordActions record={record} />
       </div>
     </div>
   );

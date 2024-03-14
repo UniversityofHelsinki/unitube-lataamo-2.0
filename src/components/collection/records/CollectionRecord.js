@@ -7,8 +7,9 @@ import onKeyDown from '../../accessibility/keydown';
 import { useTranslation } from 'react-i18next';
 import useSearchParams from '../../../hooks/useSearchParams';
 import Thumbnail from "../../utilities/Thumbnail";
+import DeleteRecord from '../../record/DeleteRecord';
 
-const CollectionRecord = ({ record, onRemove, disabled }) => {
+const CollectionRecord = ({ record, disabled, onRemove, reloadCollectionOnRemove }) => {
   const { t } = useTranslation();
   const id = useId();
   const [_, setSearchParams] = useSearchParams();
@@ -49,9 +50,9 @@ const CollectionRecord = ({ record, onRemove, disabled }) => {
         <Col className="px-0 text-end collection-record-remove-col">
           <div
             className="collection-record-remove pe-1">
+            <DeleteRecord record={record} showLabel={false} disabled={disabled} reloadCollectionOnRemove={reloadCollectionOnRemove} />
             <span
               role="button"
-              onClick={removeRecord}
               onKeyDown={onKeyDown(removeRecord)}
               aria-label={t('collection_record_remove_label')}
               aria-disabled={disabled}
@@ -69,6 +70,7 @@ CollectionRecord.propTypes = {
   record: PropTypes.object,
   onRemove: PropTypes.func,
   disabled: PropTypes.bool,
+  reloadCollectionOnRemove: PropTypes.bool
 };
 
 export default CollectionRecord;

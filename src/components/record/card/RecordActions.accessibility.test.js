@@ -1,14 +1,14 @@
 import { render } from "@testing-library/react";
-import RecordCardActions from "./RecordCardActions.js";
+import RecordActions from "./RecordActions.js";
 import React from "react";
 import { axe } from "jest-axe";
 import { MockProvider } from "../../../redux/reducers/MockProvider.js";
 
-describe('RecordCardActions', () => {
+describe('RecordActions', () => {
   it('has no accessibility violations', async () => {
         const { container } = render(
-          <MockProvider mockReducers={{ users: { user: { eppn: 'baabenom' } }}}>
-            <RecordCardActions record={{ series: 'asdf' }}/>
+          <MockProvider>
+            <RecordActions options={{ showDeleted: false, showRecordsInCollections: false }} onOptionChange={() => {}} record={{ series: 'asdf' }}/>
           </MockProvider>
         );
         const results = await axe(container);

@@ -1,19 +1,20 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-const getCollections = () => async (dispatch) => {
+const getCollections = async () => {
   const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/userSeries`;
   try {
     const response = await fetch(URL);
     if (response.status === 200) {
-      dispatch({ type: 'SET_COLLECTIONS', payload: await response.json() });
+      return await response.json();
     }
+    throw new Error(`Unexpected status code ${response.status} from ${URL}`);
   } catch (error) {
-    dispatch({ type: 'SET_ERROR', payload: error.message });
+    console.error(error);
   }
 };
 
-const useCollections = ({ load = false }) => {
+const useCollections = (load = false) => {
   const dispatch = useDispatch();
   const collections = useSelector(
     (state) => state.collections.collections
@@ -21,7 +22,12 @@ const useCollections = ({ load = false }) => {
 
   useEffect(() => {
     if (load && !collections) {
-      dispatch(getCollections());
+      (async () => {
+        dispatch({ 
+          type: 'SET_COLLECTIONS',
+          payload: await getCollections()
+        });
+      })();
     }
   }, [load, collections]);
 

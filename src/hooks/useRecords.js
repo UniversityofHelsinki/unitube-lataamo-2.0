@@ -18,26 +18,26 @@ const getRecords = async () => {
   }
 };
 
-const useRecords = ({ load = false }) => {
+const useRecords = (load = false) => {
   const dispatch = useDispatch();
   const records = useSelector((state) => state.records.records);
-  const loadingRecords = useSelector((state) => state.records.loadingRecords);
 
   useEffect(() => {
-    if (!records && !loadingRecords && load) {
-      dispatch({ type: 'SET_LOADING_RECORDS', payload: true });
+    if (load && !records) {
       (async () => {
-        dispatch({ type: 'SET_RECORDS', payload: await getRecords() });
+        dispatch({ 
+          type: 'SET_RECORDS', 
+          payload: await getRecords() 
+        });
       })();
     }
-  }, [records, loadingRecords]);
+  }, [load, records, dispatch]);
 
   const reload = () => {
     dispatch({ type: 'SET_RECORDS' });
   };
 
-  const loading = loadingRecords;
-  return [records, loading, reload];
+  return [records, !records, reload];
 };
 
 useRecords.PropTypes = {

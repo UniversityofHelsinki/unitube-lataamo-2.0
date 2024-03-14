@@ -11,8 +11,8 @@
 }
 
 .collection-card-record-thumb {
-  background-color: var(--hy-medium-silver);
-  max-width: 50px;
+    background-color: var(--hy-dark-gray);
+    max-width: 50px;
 }
 
 .collection-card-record-thumb img {

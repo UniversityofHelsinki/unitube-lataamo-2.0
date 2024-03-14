@@ -29,6 +29,8 @@ const NewRecordFooter = ({ progress, onCancel, isValid, onClick }) => {
     [ProgressStatus.NEW_RECORD.ERROR]: t('new_record_footer_button_error'),
     [ProgressStatus.NEW_RECORD.DONE]: t('new_record_footer_button_done'),
     [ProgressStatus.NEW_RECORD.SENDING]: t('new_record_footer_button_sending'),
+    [ProgressStatus.NEW_RECORD.SENDING_SUBTITLES]: t('new_record_footer_button_sending_subtitles'),
+    [ProgressStatus.NEW_RECORD.SENDING_SUBTITLE_ORDER]: t('new_record_footer_button_sending_subtitle_order'),
     [ProgressStatus.NEW_RECORD.PROCESSING]: t('new_record_footer_button_processing')
   })[progress.status] || '';
 
@@ -36,6 +38,8 @@ const NewRecordFooter = ({ progress, onCancel, isValid, onClick }) => {
     [ProgressStatus.NEW_RECORD.ERROR]: false,
     [ProgressStatus.NEW_RECORD.DONE]: false,
     [ProgressStatus.NEW_RECORD.SENDING]: true,
+    [ProgressStatus.NEW_RECORD.SENDING_SUBTITLES]: true,
+    [ProgressStatus.NEW_RECORD.SENDING_SUBTITLE_ORDER]: true,
     [ProgressStatus.NEW_RECORD.PROCESSING]: true
   })[progress.status] ? { disabled: true } : {};
 
