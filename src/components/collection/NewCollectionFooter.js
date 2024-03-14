@@ -16,7 +16,7 @@ const NewCollectionFooter = ({ onCancel, progress, isValid }) => {
     return <></>;
   })();
 
-  const progressStatusState =  {
+  const cancelButtonLabel =  {
     [ProgressStatus.NEW_COLLECTION.DONE]: t('new_collection_form_footer_close'),
     [ProgressStatus.NEW_COLLECTION.SENDING]: t('new_collection_form_footer_cancel'),
     [ProgressStatus.NEW_COLLECTION.ERROR]: t('new_collection_form_footer_cancel'),
@@ -41,7 +41,7 @@ const NewCollectionFooter = ({ onCancel, progress, isValid }) => {
       </div>
       <div className="new-collection-footer-buttons">
         <Button variant="outline-secondary" onClick={onCancel}>
-          {progressStatusState}
+          {cancelButtonLabel}
         </Button>
         <Button variant="primary" type="submit" disabled={submitButtonDisabled || !isValid}>
           {submitButtonLabel}

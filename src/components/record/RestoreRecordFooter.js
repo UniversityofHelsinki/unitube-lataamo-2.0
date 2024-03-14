@@ -44,7 +44,7 @@ const RestoreRecordFooter = ({ progress, hide }) => {
   const restoreDone = progress.status === ProgressStatus.RECORD_RESTORE.DONE;
   const restoreError = progress.status === ProgressStatus.RECORD_RESTORE.ERROR;
 
-  const progressStatusState =  {
+  const cancelButtonLabel =  {
     [ProgressStatus.RECORD_RESTORE.DONE]: t('restore_record_footer_close_button'),
     [ProgressStatus.RECORD_RESTORE.IN_PROGRESS]: t('restore_record_footer_cancel_button'),
     [ProgressStatus.RECORD_RESTORE.ERROR]: t('restore_record_footer_cancel_button'),
@@ -66,7 +66,7 @@ const RestoreRecordFooter = ({ progress, hide }) => {
       </div>}
       <div className="restore-record-footer-buttons">
         <Button variant="outline-secondary" onClick={hide} disabled={restoreInProgress}>
-          {progressStatusState}
+          {cancelButtonLabel}
         </Button>
         <Button variant="primary" type="submit" disabled={restoreInProgress || restoreDone}>
           {submitButtonLabel}

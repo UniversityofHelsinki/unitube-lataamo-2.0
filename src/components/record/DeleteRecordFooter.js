@@ -38,7 +38,7 @@ const DeleteRecordFooter = ({ progress, hide }) => {
     type: progressBarType
   };
 
-  const progressStatusState =  {
+  const cancelButtonLabel =  {
     [ProgressStatus.RECORD_DELETE.DONE]: t('delete_record_footer_close_button'),
     [ProgressStatus.RECORD_DELETE.IN_PROGRESS]: t('delete_record_footer_cancel_button'),
     [ProgressStatus.RECORD_DELETE.ERROR]: t('delete_record_footer_cancel_button'),
@@ -57,7 +57,7 @@ const DeleteRecordFooter = ({ progress, hide }) => {
       </div>}
       <div className="delete-record-footer-buttons">
         <Button variant="outline-secondary" onClick={hide} disabled={deleteInProgress}>
-          {progressStatusState}
+          {cancelButtonLabel}
         </Button>
         <Button variant="danger" type="submit" disabled={deleteInProgress || deleteDone}>
           {t('delete_record_footer_submit_button')}
