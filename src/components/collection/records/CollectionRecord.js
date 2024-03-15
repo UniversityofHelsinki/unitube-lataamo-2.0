@@ -6,9 +6,10 @@ import { ReactComponent as RemoveIcon } from '../../utilities/icons/remove.svg';
 import onKeyDown from '../../accessibility/keydown';
 import { useTranslation } from 'react-i18next';
 import useSearchParams from '../../../hooks/useSearchParams';
+import Thumbnail from "../../utilities/Thumbnail";
 import DeleteRecord from '../../record/DeleteRecord';
 
-const CollectionRecord = ({ record, disabled, reloadCollectionOnRemove }) => {
+const CollectionRecord = ({ record, disabled, onRemove, reloadCollectionOnRemove }) => {
   const { t } = useTranslation();
   const id = useId();
   const [_, setSearchParams] = useSearchParams();
@@ -22,6 +23,14 @@ const CollectionRecord = ({ record, disabled, reloadCollectionOnRemove }) => {
     });
   };
 
+  const removeRecord = (event) => {
+    event.stopPropagation();
+    if (disabled) {
+      return;
+    }
+    onRemove(event);
+  };
+
   const disabledClass = disabled ? 'collection-record-disabled' : '';
 
 
@@ -30,6 +39,7 @@ const CollectionRecord = ({ record, disabled, reloadCollectionOnRemove }) => {
       <Row>
         <Col className="px-0">
           <div className="collection-record-thumbnail">
+            <Thumbnail width="80" length="80" record={record} altText={'collection_record_thumbnail_alt_text'}></Thumbnail>
           </div>
         </Col>
         <Col className="px-0 align-self-center">
@@ -38,9 +48,17 @@ const CollectionRecord = ({ record, disabled, reloadCollectionOnRemove }) => {
           </div>
         </Col>
         <Col className="px-0 text-end collection-record-remove-col">
-          <div 
+          <div
             className="collection-record-remove pe-1">
             <DeleteRecord record={record} showLabel={false} disabled={disabled} reloadCollectionOnRemove={reloadCollectionOnRemove} />
+            <span
+              role="button"
+              onKeyDown={onKeyDown(removeRecord)}
+              aria-label={t('collection_record_remove_label')}
+              aria-disabled={disabled}
+              tabIndex={0}>
+              <RemoveIcon />
+            </span>
           </div>
         </Col>
       </Row>
