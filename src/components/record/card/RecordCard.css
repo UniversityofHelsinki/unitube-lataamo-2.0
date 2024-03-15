@@ -1,8 +1,52 @@
-.record-card {
-  border: 1px solid var(--hy-silver);
+.record-card-left-side-col {
+  max-width: fit-content;
+}
+
+.record-card-content {
   display: flex;
   justify-content: space-between;
-  max-height: 160px;
+  height: 100%;
+  min-height: 160px;
+  border: 1px solid var(--hy-silver);
+  border-left: unset;
+}
+
+.record-card-content-details:hover {
+  cursor: pointer;
+}
+
+.record-card-content-details:hover strong {
+  text-decoration: underline;
+}
+
+.record-card-content-details {
+  flex-grow: 1;
+  flex-basis: min-content;
+  flex-shrink: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.record-card-content-actions {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: max-content;
+}
+
+.record-card-content-details-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  overflow: hidden;
+}
+
+.record-card-content-details-top p,strong {
+  display: block;
+  max-width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .record-card-badge-overlay {
@@ -45,19 +89,6 @@
 .record-card-thumbnail {
   max-width: 160px;
   max-height: 160px;
-}
-
-.record-card-content-row-content {
-  max-width: 290px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  flex-grow: 1;
-}
-
-.record-card-content-row-content-top {
-  overflow: hidden;
 }
 
 .record-card-selected {

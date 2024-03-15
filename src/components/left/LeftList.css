@@ -3,6 +3,7 @@
 
 .left-list-actions-container {
   position: sticky;
+  z-index: 1;
   top: 0px;
   background-color: var(--hy-white);
 }
