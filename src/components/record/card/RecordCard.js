@@ -2,7 +2,6 @@ import React, { useId } from 'react';
 import PropTypes from 'prop-types';
 import './RecordCard.css';
 import RecordCardDetails from './RecordCardDetails';
-import RecordCardThumbnail from './RecordCardThumbnail';
 import onKeyDown from '../../accessibility/keydown';
 import useRecordTags from '../../../hooks/record/useRecordTags';
 import CardTags from '../../utilities/CardTags';
@@ -11,6 +10,7 @@ import { DELETED_SERIES_REG_EXP } from '../../../Constants';
 import RecordActions from './RecordActions';
 import {useTranslation} from "react-i18next";
 import { Badge, Col, Container, Row } from 'react-bootstrap';
+import Thumbnail from "../../utilities/Thumbnail";
 
 const RecordCard = ({ record, onClick, selected = false }) => {
   const selectedClass = selected ? 'record-card-selected' : '';
@@ -64,7 +64,9 @@ const RecordCard = ({ record, onClick, selected = false }) => {
                 {seriesBadge}
               </div>
             </div>
-            <RecordCardThumbnail record={record} />
+            <div className="record-card-thumbnail">
+              <Thumbnail record={record} width="160" length="160" altText="record_thumbnail_alt_text" />
+            </div>
           </div>
         </Col>
       </Row>
