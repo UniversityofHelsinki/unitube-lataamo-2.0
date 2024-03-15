@@ -92,6 +92,8 @@
   "minutes_left": "minuuttia jäljellä",
   "minutes_and": "minuuttia ja",
   "seconds_left": "sekuntia jäljellä",
+  "new_collection_progress_bar_done": "Valmis!",
+  "new_collection_progress_bar_sending": "Lähetetään...",
   "new_record_upload_error": "Virhe!",
   "new_record_upload_done": "Valmis!",
   "new_record_upload_aborted": "Lähetys keskeytetty.",
