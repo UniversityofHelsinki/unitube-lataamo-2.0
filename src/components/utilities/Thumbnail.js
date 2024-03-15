@@ -35,7 +35,7 @@ const Thumbnail = ({ record, width, length, altText }) => {
 
     const label = t(altText, { title: record.title });
 
-    const thumbnail = thumbnailUrl ? <img alt={label} title={label} src={"https://upload.wikimedia.org/wikipedia/commons/4/4a/Mobile_black_bare_160X160.png"} /> : <></>;
+    const thumbnail = thumbnailUrl ? <img alt={label} title={label} src={thumbnailUrl} /> : <></>;
 
     return (
         thumbnail
