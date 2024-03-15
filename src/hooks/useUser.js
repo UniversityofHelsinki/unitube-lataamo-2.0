@@ -32,16 +32,16 @@ const getUser = async () => {
 const useUser = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.users.user);
-  const loadingUser = useSelector((state) => state.users.loadingUser);
+  //const loadingUser = useSelector((state) => state.users.loadingUser);
 
-  if (!user && !loadingUser) {
+  const load = async () => {
     dispatch({ type: 'SET_LOADING_USER', payload: true });
     (async () => {
       dispatch({ type: 'SET_USER', payload: await getUser()});
     })();
-  }
+  };
 
-  return [user, login, logout];
+  return [user, load];
 
 };
 

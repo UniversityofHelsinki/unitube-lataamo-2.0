@@ -10,11 +10,21 @@ import useUser from './hooks/useUser';
 import Loading from './components/utilities/Loading';
 import useLocation from './hooks/useLocation';
 import useHistory from './hooks/useHistory';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 const Lataamo = () => {
   useHistory();
-  const [user] = useUser();
+  const [user, loadUser] = useUser();
+  const [userLoadingInitiated, setUserLoadingInitiated] = useState(false);
   const [location, setLocation] = useLocation();
+
+  useEffect(() => {
+    if (!user && !userLoadingInitiated) {
+      loadUser();
+    }
+    return () => setUserLoadingInitiated(true);
+  }, []);
 
   if (!location || location === "/") {
     setLocation("/records");
