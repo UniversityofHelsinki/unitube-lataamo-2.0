@@ -13,7 +13,7 @@ const RecordCollections = ({ collection, onChange, message, disabled = false }) 
     const id = useId();
     const { t } = useTranslation();
 
-    const [collections, loadingCollections] = useCollectionDropdown();
+    const [collections, loadingCollections] = useCollectionDropdown(true);
 
     return (
         <Loading loading={loadingCollections}>

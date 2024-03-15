@@ -5,6 +5,29 @@
   max-height: 160px;
 }
 
+.record-card-badge-overlay {
+  position: relative;
+}
+
+.record-card-badge {
+  position: absolute;
+  top: 16px;
+  left: 0px;
+  max-width: 160px;
+}
+
+.record-card-badge .badge {
+  border-radius: 0;
+  max-width: 152px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.record-card-badge .badge.bg-primary {
+  background-color: var(--huds-brand-main) !important;
+}
+
 .record-card:hover .record-card-details strong {
   text-decoration: underline;
 }
