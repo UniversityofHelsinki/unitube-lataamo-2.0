@@ -19,4 +19,3 @@ i18n
     supportedLngs: ['fi', 'en', 'sv']
   });
 
-
