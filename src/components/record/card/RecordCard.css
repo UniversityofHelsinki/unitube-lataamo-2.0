@@ -102,7 +102,24 @@
   border: 1px solid var(--hy-silver);
 }
 
+
 .record-card-thumbnail img {
   max-width: 152px;
   max-height: 152px;
 }
+
+.record-card-left-side {
+  position: relative;
+}
+
+.record-card-length {
+  background-color: var(--hy-light-silver);
+  border: 1px solid var(--hy-silver);
+  font-size: 0.8em;
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  padding: 2px;
+}
+
+

@@ -59,10 +59,11 @@ const RecordCard = ({ record, onClick, selected = false }) => {
         </Col>
         <Col className="record-card-left-side-col pe-0 order-1">
           <div className="record-card-left-side">
-            <div className="record-card-badge-overlay">
               <div className="record-card-badge" title={record.series}>
                 {seriesBadge}
               </div>
+              <div className="record-card-length">
+                <span title={record.duration}>{record.duration}</span>
             </div>
             <div className="record-card-thumbnail">
               <Thumbnail record={record} width="160" length="160" altText="record_thumbnail_alt_text" />

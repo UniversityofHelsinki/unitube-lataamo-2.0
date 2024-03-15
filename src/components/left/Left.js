@@ -70,19 +70,21 @@ const Left = () => {
   };
 
   const recordCards = (records || []).map((record, _i) => 
-    <RecordCard 
+    [<RecordCard 
       key={record.identifier} 
       onClick={() => onClick(record)} 
       record={record} 
-      selected={record.identifier === searchParams.record }/>
+      selected={record.identifier === searchParams.record }/>,
+      record.identifier]
   );
 
   const collectionCards = (collections || []).map((collection, i) =>
-    <CollectionCard 
+    [<CollectionCard 
         collection={collection}
         selected={collection.identifier === searchParams.collection}
         key={collection.identifier} 
-        onClick={() => setSearchParams({ 'collection': collection.identifier })} />
+        onClick={() => setSearchParams({ 'collection': collection.identifier })} />,
+      collection.identifier]
   );
 
   const emptyElements = {
