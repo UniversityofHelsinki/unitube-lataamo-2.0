@@ -9,8 +9,7 @@ import useUser from '../../../hooks/useUser';
 import { DELETED_SERIES_REG_EXP } from '../../../Constants';
 import RecordActions from './RecordActions';
 import {useTranslation} from "react-i18next";
-import { Badge } from 'react-bootstrap';
-import useDefaultCollection from '../../../hooks/record/useDefaultCollection';
+import { Badge, Col, Container, Row } from 'react-bootstrap';
 import Thumbnail from "../../utilities/Thumbnail";
 
 const RecordCard = ({ record, onClick, selected = false }) => {
@@ -33,35 +32,46 @@ const RecordCard = ({ record, onClick, selected = false }) => {
   })();
 
   return (
-    <div className={`record-card ${selectedClass}`}>
-      <div className="record-card-badge-overlay">
-        <div className="record-card-badge" title={record.series}>
-          {seriesBadge}
-        </div>
-      </div>
-      <div className="record-card-left"
-        role="button"
-        onClick={onClick}
-        onKeyDown={onKeyDown(onClick)}
-        tabIndex={0}
-        aria-labelledby={labelId}>
-        <Thumbnail record={record} width="160" length="160" altText="record_thumbnail_alt_text"></Thumbnail>
-        <div className="record-card-content-row-content px-2">
-          <div className="record-card-content-row-content-top">
-            <div className="record-card-content-row-content-top-up">
-              <CardTags tags={tags} />
+    <Container className="p-0">
+      <Row>
+        <Col className={`record-card-right-side-col ps-0 order-2 ${selectedClass}`}>
+          <div className="record-card-content ps-1 pe-1">
+            <div className="record-card-content-details"
+              role="button"
+              onClick={onClick}
+              onKeyDown={onKeyDown(onClick)}
+              tabIndex={0}
+              aria-labelledby={labelId}>
+              <div className="record-card-content-details-top">
+                <CardTags tags={tags} />
+                <div>
+                  <RecordCardDetails labelId={labelId} record={record} deleted={isDeleted} />
+                </div>
+              </div>
+              <div className="record-card-content-details-bottom">
+                {!isDeleted && t('record_card_valid_until', {deletionDate: date})}
+              </div>
             </div>
-            <RecordCardDetails labelId={labelId} record={record} deleted={isDeleted} />
+            <div className="record-card-content-actions">
+              <RecordActions record={record} />
+            </div>
           </div>
-          <div className="record-card-content-row-content-bottom">
-             {!isDeleted ? t('record_card_valid_until', {deletionDate: date})  : null}
+        </Col>
+        <Col className="record-card-left-side-col pe-0 order-1">
+          <div className="record-card-left-side">
+              <div className="record-card-badge" title={record.series}>
+                {seriesBadge}
+              </div>
+              <div className="record-card-length">
+                <span title={record.duration}>{record.duration}</span>
+            </div>
+            <div className="record-card-thumbnail">
+              <Thumbnail record={record} width="160" length="160" altText="record_thumbnail_alt_text" />
+            </div>
           </div>
-        </div>
-      </div>
-      <div className="record-card-right me-2">
-        <RecordActions record={record} />
-      </div>
-    </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

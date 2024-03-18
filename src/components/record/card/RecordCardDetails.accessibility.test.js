@@ -7,7 +7,7 @@ import {axe} from "jest-axe";
 describe('RecordCardDetails', () => {
     it('should not have any accessibility violations', async () => {
 
-        const { container } = render(<RecordCardDetails record={{ title: 'asdf', description: 'asdfasdf' }} />);
+      const { container } = render(<RecordCardDetails record={{ title: 'asdf', description: 'asdfasdf', created: new Date().toISOString() }} />);
         const results = await axe(container);
 
         // use the matcher function in the test

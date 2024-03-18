@@ -186,5 +186,6 @@
   "new_record_footer_button_sending_subtitles": "Lähetetään...",
   "record_card_valid_until": "Voimassa {{- deletionDate}} asti",
   "tag_expiring": "Vanhenemassa",
-  "loading": "Ladataan..."
+  "loading": "Ladataan...",
+  "record_card_details_created": "Luotu {{- created}}"
 }

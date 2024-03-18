@@ -10,6 +10,7 @@ const mockRecord = {
   title: 'Test recording',
   description: 'Test description',
   deletionDate: new Date().toISOString(),
+  created: new Date().toISOString(),
   license: 'UNITUBE-ALLRIGHTS',
   series: 'test-series-id'
 };
