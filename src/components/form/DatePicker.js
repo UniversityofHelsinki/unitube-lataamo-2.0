@@ -37,6 +37,7 @@ const DatePicker = ({ message, ...rest }) => {
       dropdownMode="select"
       onChange={onChange}
       showPopperArrow={false}
+      preventOpenOnFocus={true}
       showMonthYearDropdown
       { ...rest } />
       <Message type={message?.type}>{message?.content}</Message>
