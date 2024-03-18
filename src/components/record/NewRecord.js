@@ -10,28 +10,33 @@ import RecordLicense from './RecordLicense';
 import RecordFile from './RecordFile';
 import useRecordValidation from '../../hooks/validation/record/useRecordValidation';
 import RecordEndDate from './RecordEndDate';
-import useUploadRecord from '../../hooks/useUploadRecord';
 import NewRecordFooter from './NewRecordFooter';
 import { ProgressStatus } from '../../Constants';
 import useRecords from '../../hooks/useRecords';
+import RecordSubtitle from './RecordSubtitle';
+import useRecordModification from '../../hooks/useRecordModification';
+import useNewRecordSave from '../../hooks/record/useNewRecordSave';
+import RecordCollections from './RecordCollections';
+import useVisibleRecords from '../../hooks/useVisibleRecords';
 
 const emptyRecord = {
+  identifier: '',
   title: '',
   description: '',
   license: '',
+  selectedSeries: '',
   deletionDate: addMonths(new Date(), 12).toISOString()
 };
 
 const NewRecord = () => {
   const { t } = useTranslation();
   const [showDialog, setShowDialog] = useState(false);
-  const [record, setRecord] = useState({ ...emptyRecord });
   const [isValid, messages, validate] = useRecordValidation(
-    ['file', 'title', 'description', 'license', 'deletionDate']
+    ['file', 'title', 'description', 'license', 'deletionDate', 'subtitles']
   );
-  const [send, progress, resetProgress] = useUploadRecord();
-  const [_records, _loadingRecords, reloadRecords] = useRecords({ load: false });
-  const [touched, setTouched] = useState(false);
+  const [send, progress, resetProgress] = useNewRecordSave();
+  const [record, onChange, modified, undo] = useRecordModification({ ...emptyRecord }, validate, resetProgress);
+  const [_records, _loadingRecords, reloadRecords] = useVisibleRecords({});
   const formRef = useRef();
 
   const theButton = (
@@ -44,28 +49,14 @@ const NewRecord = () => {
     </Button>
   );
 
-
   const onSubmit = async (event) => {
     event.preventDefault();
-    await send({ ...record, archivedDate: record.deletionDate });
+    await send({ ...record, archivedDate: record.deletionDate }, record.subtitles);
     reloadRecords();
   };
 
-  const onChange = async (what, content) => {
-    const modified = { ...record, [what]: content };
-    setRecord(modified);
-    await validate(modified, record, true);
-    if (!touched) {
-      setTouched(true);
-    }
-  };
-
   const reset = async () => {
-    const newRecord = { ...emptyRecord };
-    setRecord(newRecord);
-    setTouched(false);
-    resetProgress();
-    await validate(newRecord, record);
+    await undo();
   };
 
   const hide = () => {
@@ -84,17 +75,20 @@ const NewRecord = () => {
     }
   };
 
-  const closeable = progress.status !== ProgressStatus.NEW_RECORD.SENDING;
+  const closeable = progress.status !== ProgressStatus.NEW_RECORD.SENDING || progress.status !== ProgressStatus.NEW_RECORD.SENDING_SUBTITLES || progress.status !== ProgressStatus.NEW_RECORD.SENDING_SUBTITLE_ORDER;
   const closeButton = closeable ? { closeButton: true } : {};
 
   const disabled = {
     [ProgressStatus.NEW_RECORD.SENDING]: true,
+    [ProgressStatus.NEW_RECORD.SENDING_SUBTITLES]: true,
+    [ProgressStatus.NEW_RECORD.SENDING_SUBTITLE_ORDER]: true,
     [ProgressStatus.NEW_RECORD.PROCESSING]: true,
+    [ProgressStatus.NEW_RECORD.ERROR]: true,
     [ProgressStatus.NEW_RECORD.DONE]: true,
   }[progress.status] || false;
 
   return (
-    <FormDialog touched={touched} closeable={closeable} showComponent={theButton} show={showDialog} hide={hide}>
+    <FormDialog touched={modified} closeable={closeable} showComponent={theButton} show={showDialog} hide={hide}>
       <Modal.Header { ...closeButton }>{t('new_record_form_header')}</Modal.Header>
       <Form className="new-record-form" onSubmit={onSubmit} ref={formRef}>
         <Modal.Body>
@@ -103,9 +97,11 @@ const NewRecord = () => {
             <RecordDescription message={messages.description} onChange={(description) => onChange('description', description)} description={record.description} disabled={disabled} />
             <RecordLicense license={record.license} aria-label={t('new_record_license_label')} onChange={(license) => onChange('license', license)} message={messages.license} disabled={disabled} />
             <RecordEndDate endDate={record.deletionDate} onChange={(date) => onChange('deletionDate', (date || new Date()).toISOString())} message={messages.deletionDate} disabled={disabled} />
+            <RecordCollections collection={record.selectedSeries} onChange={(collection) => onChange('selectedSeries', collection)} message={messages.selectedSeries} disabled={disabled} />
+            <RecordSubtitle onChange={(subtitles) => onChange('subtitles', subtitles)} subtitles={record.subtitles} disabled={disabled} message={messages.subtitles} />
         </Modal.Body>
         <Modal.Footer>
-          <NewRecordFooter onCancel={hide} progress={progress} isValid={touched && isValid} onClick={onProgressButtonClick} />
+          <NewRecordFooter onCancel={hide} progress={progress} isValid={isValid} onClick={onProgressButtonClick} />
         </Modal.Footer>
       </Form>
     </FormDialog>

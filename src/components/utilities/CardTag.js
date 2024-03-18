@@ -7,7 +7,7 @@ const background = {
   blue: 'primary',
   grey: 'secondary',
   green: 'success',
-  yellow: 'warning',
+  orange: 'warning',
   red: 'danger',
   brightblue: 'info',
   white: 'light',
@@ -22,8 +22,7 @@ const CardTag = ({ label, color }) => {
 
 CardTag.propTypes = {
   label: PropTypes.string.isRequired,
-  color: PropTypes.oneOf([
-    'blue', 'grey', 'green', 'red', 'yellow', 'brightblue', 'white', 'black']).isRequired
+  color: PropTypes.oneOf(Object.keys(background)).isRequired
 };
 
 export default CardTag;

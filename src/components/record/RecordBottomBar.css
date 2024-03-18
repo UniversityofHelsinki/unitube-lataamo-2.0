@@ -1,6 +1,6 @@
 .record-bottom-bar-buttons {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .record-bottom-bar-buttons button {

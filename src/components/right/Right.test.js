@@ -10,17 +10,6 @@ const reducers = {
     },
     path: '/records'
   },
-  records: {
-    record: {
-      identifier: 'asdfasdf',
-      deletionDate: new Date().toISOString()
-    }
-  },
-  collections: {
-    collection: {
-      identifier: 'asdfasdf'
-    }
-  },
   autocompletion: {
     users: [{ userName: 'baabenom' }],
     groups: [{ grpName: 'grp-hy-test' }]

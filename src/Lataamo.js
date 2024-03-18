@@ -10,11 +10,21 @@ import useUser from './hooks/useUser';
 import Loading from './components/utilities/Loading';
 import useLocation from './hooks/useLocation';
 import useHistory from './hooks/useHistory';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 const Lataamo = () => {
   useHistory();
-  const [user] = useUser();
+  const [user, loadUser] = useUser();
+  const [userLoadingInitiated, setUserLoadingInitiated] = useState(false);
   const [location, setLocation] = useLocation();
+
+  useEffect(() => {
+    if (!user && !userLoadingInitiated) {
+      loadUser();
+    }
+    return () => setUserLoadingInitiated(true);
+  }, []);
 
   if (!location || location === "/") {
     setLocation("/records");
@@ -24,20 +34,20 @@ const Lataamo = () => {
       <Loading loading={!Boolean(user)}>
         <Container className="root mx-0">
             <Row className="header-row">
-              <Col className="px-0">
+              <Col as="header" role="banner" className="px-0">
                 <Header />
               </Col>
             </Row>
             <Row className="root-main-row">
-              <Col md={4} className="root-main-row-left-col">
+              <Col as="aside" role="complementary" md={4} className="root-main-row-left-col">
                 <Left />
               </Col>
-              <Col md={8} className="root-main-row-right-col">
+              <Col as="main" role="main" md={8} className="root-main-row-right-col">
                 <Right />
               </Col>
             </Row>
             <Row>
-              <Col className="px-0">
+              <Col as="footer" role="contentinfo" className="px-0">
                 <Footer />
               </Col>
             </Row>

@@ -7,17 +7,6 @@ import {axe} from "jest-axe";
 describe('Record', () => {
 
     const reducers = {
-        records: {
-            record: {
-                identifier: 'asdfasdf',
-                deletionDate: new Date().toISOString(),
-                media: [{ url: 'https://example.com', type: 'asdf' }],
-                title: 'asdf',
-                series: {
-                    title: 'asdf'
-                }
-            }
-        },
         location: {
             searchParameters: {
                 record: 'asdfasdf'

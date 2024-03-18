@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -14,18 +14,22 @@ import useRecordValidation from '../../hooks/validation/record/useRecordValidati
 import useRecordSave from '../../hooks/record/useRecordSave';
 import useRecordModification from '../../hooks/useRecordModification';
 import {ProgressStatus} from '../../Constants';
+import RecordTopRow from './RecordTopRow';
+import useCollections from '../../hooks/useCollections';
+import useCollection from '../../hooks/useCollection';
 
 const Record = () => {
-    const [originalRecord, loading, reload] = useRecord();
+    const [originalRecord, loading, reload] = useRecord(true);
     const [progress, save, resetProgress] = useRecordSave();
+    const [_collections, _loadingCollections, reloadCollections] = useCollections();
+    const [visibleCollection, _loadingVisibleCollection, reloadVisibleCollection] = useCollection();
     const [resetSubtitleDownloadLinks, setResetSubtitleDownloadLinks] = useState(false);
 
-    const [isValid, messages, validate] = useRecordValidation([
-        'title', 'description', 'deletionDate', 'license', 'subtitleFile', 'automaticSubtitles'
-    ]);
-    const [record, onChange, modified, undo] = useRecordModification(originalRecord, validate, resetProgress);
-
-    const formRef = useRef();
+  const [isValid, messages, validate] = useRecordValidation([
+    'title', 'description', 'deletionDate', 'license', 'subtitles'
+  ]);
+  const [record, onChange, modified, undo] = useRecordModification(originalRecord, validate, resetProgress);
+  const formRef = useRef();
 
     const resetFileFields = () => {
         if (formRef.current) {
@@ -41,72 +45,74 @@ const Record = () => {
     };
 
     const handleSave = async (event) => {
-        event.preventDefault();
-        const userGaveSubtitles = record.subtitleFile;
-        const userGaveAutomaticSubtitles = record.automaticSubtitles;
-        const userDeletedSubtitles = record.deleteSubtitle;
+      event.preventDefault();
+      const userDeletedSubtitles = record.deleteSubtitle;
 
-        const subtitles = userGaveSubtitles ? { file: record.subtitleFile, identifier: record.identifier } : undefined;
-        const automaticSubtitles = userGaveAutomaticSubtitles ? { ...(record.automaticSubtitles), identifier: record.identifier } : undefined;
+      const success = await save({
+        record,
+        subtitles: record.subtitles?.type === 'subtitleFile' ? { ...record.subtitles, identifier: record.identifier } : undefined,
+        orderSubtitles: record.subtitles?.type === 'automaticSubtitles' ? { ...record.subtitles, identifier: record.identifier } : undefined,
+        deleteSubtitle: (userDeletedSubtitles && !record.subtitles) ? { eventId: record.identifier, deleteSubtitle: true } : undefined
+      });
 
-        const markedSubtitlesForDeletion = (userDeletedSubtitles && userGaveSubtitles === undefined && userGaveAutomaticSubtitles === undefined)
-            ? { eventId: record.identifier, deleteSubtitle: true }
-            : undefined;
-
-        const success = await save({
-            record,
-            subtitles,
-            orderSubtitles: automaticSubtitles,
-            deleteSubtitle: markedSubtitlesForDeletion
-        });
-
-        if (success) {
-            reload();
+      if (success) {
+        reload();
+        reloadCollections();
+        if (visibleCollection?.identifier === record.isPartOf || visibleCollection?.identifier === record.is_part_of) {
+          reloadVisibleCollection();
         }
+      }
 
     };
 
     const saveInProgress = progress.status !== ProgressStatus.RECORD_SAVE.NOT_STARTED && progress.status !== ProgressStatus.RECORD_SAVE.DONE;
 
     return (
-        <form ref={formRef} onSubmit={handleSave}>
-            <Container className="record" >
-                <Row className="record-row">
-                    <Loading loading={loading}>
-                        <Col>
-                            <Container className="ps-0">
-                                <Row className="breadcrumb-container">
-                                    <RecordsBreadCrumb record={originalRecord} />
-                                </Row>
-                                <Row>
-                                    <Col lg={5} className="ps-0">
-                                        <RecordStaticInformation record={originalRecord} onChange={onChange} resetSubtitleDownloadLinks={resetSubtitleDownloadLinks}  />
-                                    </Col>
-                                    <Col lg>
-                                        <RecordForm
-                                            record={record}
-                                            onChange={onChange}
-                                            validationMessages={messages}
-                                            disabled={saveInProgress}
-                                        />
-                                    </Col>
-                                </Row>
-                            </Container>
-                        </Col>
-                    </Loading>
-                </Row>
-                <Row className="record-bottom-bar">
-                    <Col>
-                        <RecordBottomBar
-                            record={record}
-                            progress={progress}
-                            modified={modified}
-                            undo={undoRecord}
-                            isValid={isValid} />
+      <form ref={formRef} onSubmit={handleSave}>
+        <Container className="record" >
+          <Row className="record-row">
+            <Loading loading={loading}>
+              <Col>
+                <Container className="ps-0">
+                  <Row className="top-row-container">
+                    <div className="top-row">
+                      <div>
+                        <RecordsBreadCrumb record={originalRecord} />
+                      </div>
+                      <div className="top-row-record-actions">
+                        <RecordTopRow record={originalRecord} />
+                      </div>
+                    </div>
+                  </Row>
+                  <Row>
+                    <Col lg={5} className="ps-0">
+                      <RecordStaticInformation record={originalRecord} onChange={onChange} resetSubtitleDownloadLinks={resetSubtitleDownloadLinks}  />
                     </Col>
-                </Row>
-            </Container>
-        </form>
+                    <Col lg>
+                      <RecordForm
+                        record={record}
+                        onChange={onChange}
+                        validationMessages={messages}
+                        disabled={saveInProgress}
+                      />
+                    </Col>
+                  </Row>
+                </Container>
+              </Col>
+            </Loading>
+          </Row>
+          <Row className="record-bottom-bar">
+            <Col>
+              <RecordBottomBar
+                record={record}
+                progress={progress}
+                modified={modified}
+                undo={undoRecord}
+                isValid={isValid} />
+            </Col>
+          </Row>
+        </Container>
+      </form>
     );
 };
 

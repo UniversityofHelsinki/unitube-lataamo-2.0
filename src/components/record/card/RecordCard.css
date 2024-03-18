@@ -1,8 +1,75 @@
-.record-card {
-  border: 1px solid var(--hy-silver);
+.record-card-left-side-col {
+  max-width: fit-content;
+}
+
+.record-card-content {
   display: flex;
   justify-content: space-between;
-  max-height: 160px;
+  height: 100%;
+  min-height: 160px;
+  border: 1px solid var(--hy-silver);
+  border-left: unset;
+}
+
+.record-card-content-details:hover {
+  cursor: pointer;
+}
+
+.record-card-content-details:hover strong {
+  text-decoration: underline;
+}
+
+.record-card-content-details {
+  flex-grow: 1;
+  flex-basis: min-content;
+  flex-shrink: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.record-card-content-actions {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: max-content;
+}
+
+.record-card-content-details-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  overflow: hidden;
+}
+
+.record-card-content-details-top p,strong {
+  display: block;
+  max-width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.record-card-badge-overlay {
+  position: relative;
+}
+
+.record-card-badge {
+  position: absolute;
+  top: 16px;
+  left: 0px;
+  max-width: 160px;
+}
+
+.record-card-badge .badge {
+  border-radius: 0;
+  max-width: 152px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.record-card-badge .badge.bg-primary {
+  background-color: var(--huds-brand-main) !important;
 }
 
 .record-card:hover .record-card-details strong {
@@ -19,28 +86,40 @@
   cursor: pointer;
 }
 
-.record-card-thumbnail {
-  max-width: 160px;
-  max-height: 160px;
-}
-
-.record-card-content-row-content {
-  max-width: 290px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  flex-grow: 1;
-}
-
-.record-card-content-row-content-top {
-  overflow: hidden;
-}
-
-.record-card:hover {
-  background-color: var(--hy-light-silver);
-}
-
 .record-card-selected {
-  background-color: var(--hy-light-silver);
+  background-color: var(--hy-medium-silver);
 }
+
+.record-card-thumbnail {
+  background-color: var(--hy-white);
+  max-height: 100%;
+  height: 160px;
+  width: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8px;
+  border: 1px solid var(--hy-silver);
+}
+
+
+.record-card-thumbnail img {
+  max-width: 152px;
+  max-height: 152px;
+}
+
+.record-card-left-side {
+  position: relative;
+}
+
+.record-card-length {
+  background-color: var(--hy-light-silver);
+  border: 1px solid var(--hy-silver);
+  font-size: 0.8em;
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  padding: 2px;
+}
+
+

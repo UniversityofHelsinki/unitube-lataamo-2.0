@@ -14,6 +14,9 @@ import RestoreRecordFooter from './RestoreRecordFooter';
 import { ProgressStatus } from '../../Constants';
 import useRecords from '../../hooks/useRecords';
 import useCollections from '../../hooks/useCollections';
+import useRecord from '../../hooks/useRecord';
+import useCollection from '../../hooks/useCollection';
+import useVisibleRecords from '../../hooks/useVisibleRecords';
 
 const RestoreRecord = ({ record }) => {
   const { t } = useTranslation();
@@ -24,8 +27,10 @@ const RestoreRecord = ({ record }) => {
     null, 
     resetProgress
   );
-  const [_records, _loadingRecords, reloadRecords] = useRecords({ load: false });
-  const [_collections, _loadingCollections, reloadCollections] = useCollections({ load: false });
+  const [_records, _loadingRecords, reloadRecords] = useVisibleRecords({});
+  const [visibleRecord, _loadingRecord, reloadVisibleRecord] = useRecord();
+  const [_collections, _loadingCollections, reloadCollections] = useCollections();
+  const [visibleCollection, _loadingVisibleCollection, reloadVisibleCollection] = useCollection();
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
@@ -43,6 +48,12 @@ const RestoreRecord = ({ record }) => {
     if (progress.status === ProgressStatus.RECORD_RESTORE.DONE) {
       reloadRecords();
       reloadCollections();
+      if (visibleRecord?.identifier === record.identifier) {
+        reloadVisibleRecord();
+      }
+      if (visibleCollection?.identifier === modifiedRecord.isPartOf) {
+        reloadVisibleCollection();
+      }
     }
 
   }
@@ -66,6 +77,7 @@ const RestoreRecord = ({ record }) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+    event.stopPropagation();
     await restore(modifiedRecord);
   };
   

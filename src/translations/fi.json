@@ -92,6 +92,8 @@
   "minutes_left": "minuuttia jäljellä",
   "minutes_and": "minuuttia ja",
   "seconds_left": "sekuntia jäljellä",
+  "new_collection_progress_bar_done": "Valmis!",
+  "new_collection_progress_bar_sending": "Lähetetään...",
   "new_record_upload_error": "Virhe!",
   "new_record_upload_done": "Valmis!",
   "new_record_upload_aborted": "Lähetys keskeytetty.",
@@ -175,5 +177,15 @@
   "delete_record_form_help_content": "Poistetut tallenteet löytyvät Tallenteet-välilehdeltä Näytä poistetut -valintapainiketta painamalla. Poistettujen tallenteiden sisältö häviää lopullisesti palvelusta automaattisesti tietyn ajan kuluttua.",
   "left_user_has_no_records": "Ei tallenteita. Voit lisätä uuden tallenteen Uusi tallenne -lomakkeella. Kokoelmiin kuuluvat tallenteet löytyvät Kokoelmat-välilehdeltä.",
   "left_user_has_no_collections": "Ei kokoelmia. Lisää uusi kokoelma Uusi kokoelma -lomakkeella.",
-  "record_card_valid_until": "Voimassa {{deletionDate}} asti"
+  "record_automatic_subtitles_translation_language_empty": "Valitse kieli",
+  "record_automatic_subtitles_translation_model_empty": "Valitse kielimalli",
+  "record_validation_subtitle_file_empty": "Valitse tiedosto",
+  "new_record_upload_sending_subtitles": "Lähetetään ja käsitellään tekstityksiä...",
+  "new_record_upload_sending_subtitle_order": "Lähetetään ja käsitellään automaattitekstityksiä...",
+  "new_record_footer_button_sending_subtitle_order": "Lähetetään...",
+  "new_record_footer_button_sending_subtitles": "Lähetetään...",
+  "record_card_valid_until": "Voimassa {{- deletionDate}} asti",
+  "tag_expiring": "Vanhenemassa",
+  "loading": "Ladataan...",
+  "record_card_details_created": "Luotu {{- created}}"
 }

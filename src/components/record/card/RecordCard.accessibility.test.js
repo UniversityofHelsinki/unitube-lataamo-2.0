@@ -12,9 +12,9 @@ describe('RecordCard', () => {
         const { container } = render(
           <MockProvider mockReducers={{ users: { user: { eppn: 'baabenom' } }}}>
               <RecordCard
-                record={{ identifier: 'asdf', title: 'hello', series: 'asdf' }}
+                record={{ identifier: 'asdf', title: 'hello', series: 'asdf', deletionDate: new Date().toISOString(), created: new Date().toISOString() }}
                 onClick={() => {}}
-                selected={false} 
+                selected={false}
             />
           </MockProvider>
         );

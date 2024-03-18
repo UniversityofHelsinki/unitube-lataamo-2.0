@@ -16,6 +16,10 @@ const CardTags = ({ tags }) => {
 };
 
 CardTags.propTypes = {
+  tags: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    color: PropTypes.string
+  }))
 };
 
 export default CardTags;

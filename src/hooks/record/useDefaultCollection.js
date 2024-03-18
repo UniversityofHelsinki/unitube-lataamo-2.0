@@ -3,7 +3,7 @@ import useUser from "../useUser";
 
 const useDefaultCollection = () => {
   const [user] = useUser();
-  const [collections] = useCollectionDropdown();
+  const [collections] = useCollectionDropdown(true);
 
   const defaultCollectionTitle = `inbox ${user.eppn}`;
 

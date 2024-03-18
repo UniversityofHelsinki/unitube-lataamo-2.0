@@ -7,9 +7,12 @@ it('renders', () => {
   render(
     <MockProvider>
       <DeleteRecord record={{ 
-        identifier: 'asdf-asdf', 
-        title: 'asdf'
-      }} />
+          identifier: 'asdf-asdf', 
+          title: 'asdf',
+        }}
+        showLabel={true}
+        reloadCollectionOnRemove={false}
+      />
     </MockProvider>
   );
 });
