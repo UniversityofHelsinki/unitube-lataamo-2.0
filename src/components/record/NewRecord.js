@@ -17,6 +17,7 @@ import RecordSubtitle from './RecordSubtitle';
 import useRecordModification from '../../hooks/useRecordModification';
 import useNewRecordSave from '../../hooks/record/useNewRecordSave';
 import RecordCollections from './RecordCollections';
+import useVisibleRecords from '../../hooks/useVisibleRecords';
 
 const emptyRecord = {
   identifier: '',
@@ -35,7 +36,7 @@ const NewRecord = () => {
   );
   const [send, progress, resetProgress] = useNewRecordSave();
   const [record, onChange, modified, undo] = useRecordModification({ ...emptyRecord }, validate, resetProgress);
-  const [_records, _loadingRecords, reloadRecords] = useRecords({ load: false });
+  const [_records, _loadingRecords, reloadRecords] = useVisibleRecords({});
   const formRef = useRef();
 
   const theButton = (

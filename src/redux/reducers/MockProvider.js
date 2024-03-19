@@ -10,6 +10,7 @@ const mockRecord = {
   title: 'Test recording',
   description: 'Test description',
   deletionDate: new Date().toISOString(),
+  created: new Date().toISOString(),
   license: 'UNITUBE-ALLRIGHTS',
   series: 'test-series-id'
 };
@@ -63,7 +64,7 @@ const defaultMockReducers = {
   },
   records: {
     records: [mockRecord],
-    record: mockRecord 
+    record: mockRecord
   },
   collections: {
     collections: [mockCollection],

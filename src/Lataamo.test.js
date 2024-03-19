@@ -12,7 +12,15 @@ const reducers = {
     searchParameters: {} 
   },
   records: {
-    records: []
+    records: [{
+      identifier: 'test-record-id',
+      title: 'Test recording',
+      description: 'Test description',
+      deletionDate: new Date().toISOString(),
+      created: new Date().toISOString(),
+      license: 'UNITUBE-ALLRIGHTS',
+      series: 'test-series-id'
+    }]
   },
   collections: {
     collections: []
