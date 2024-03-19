@@ -31,7 +31,7 @@ const useNewRecordSave = () => {
             status: ProgressStatus.NEW_RECORD.SENDING_SUBTITLE_ORDER,
             percentage: 100
           });
-          await orderSubtitles({ subtitles, identifier: eventId });
+          await orderSubtitles({ ...subtitles, identifier: eventId });
         } else if (subtitles.type === 'subtitleFile') {
           console.log('record save, subtitles', subtitles);
           setProgress({
