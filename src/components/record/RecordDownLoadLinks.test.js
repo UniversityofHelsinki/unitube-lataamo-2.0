@@ -3,5 +3,5 @@ import { render } from '@testing-library/react';
 import RecordDownLoadLinks from "./RecordDownloadLinks";
 
 it('renders', () => {
-    render(<RecordDownLoadLinks media={[]} publications={{}} />);
+    render(<RecordDownLoadLinks downloadableMedia={{}} />);
 });

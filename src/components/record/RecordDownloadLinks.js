@@ -4,41 +4,31 @@ import { ReactComponent as DownloadIcon } from '../utilities/icons/download.svg'
 import './RecordDownloadLinks.css';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import FormElementHeader from '../form/FormElementHeader';
 import HelpDialog from '../dialog/HelpDialog';
+import ElementHeader from '../form/ElementHeader';
 
-const DownloadLink = ({ to, label, resolution, bitrate, size }) => {
+const DownloadLink = ({ i, to, width, height, size, bitrate}) => {
+  const resolution = `${width}x${height}`;
+  const sizeMB = `${Math.ceil(size / 2**20)} MB`;
+  const bitrateKbps = `${Math.ceil(size / 2**10)} kbps`;
   return (
     <>
       <DownloadIcon width="2em" height="2em" />
-      <a download className="ms-2" href={to}>{resolution} - {bitrate} - {size}</a>
+      <a download className="ms-2" href={to}>{i+1}. {resolution} - {sizeMB} - {bitrateKbps}</a>
     </>
   );
 };
 
-const getResolution = (mediaFileMetadata) => {
-    return mediaFileMetadata?.streams?.video[0]?.resolution;
-}
-const getBitrate = (mediaFileMetadata) => {
-    return Math.ceil( ((mediaFileMetadata?.size / 1000) * 8) / (mediaFileMetadata?.duration / 1000) ) + ` kbps`;
-}
-const getSize = (mediaFileMetadata) => {
-    return Math.ceil( mediaFileMetadata?.size / 1000000) + ` MB`;
-}
-
-const RecordDownloadLinks = ({ media, publications, mediaFileMetadata }) => {
+const RecordDownloadLinks = ({ downloadableMedia }) => {
   const { t } = useTranslation();
-  const resolution = getResolution(mediaFileMetadata);
-  const bitrate = getBitrate(mediaFileMetadata);
-  const size = getSize(mediaFileMetadata);
 
   return (
     <Container>
       <Row>
         <Col>
-          <FormElementHeader>
+          <ElementHeader label={t('record_download_links_header')}>
             {t('record_download_links_header')}
-          </FormElementHeader>
+          </ElementHeader>
         </Col>
       </Row>
       <Row className="mb-3">
@@ -51,9 +41,16 @@ const RecordDownloadLinks = ({ media, publications, mediaFileMetadata }) => {
       <Row>
         <Col>
           <ul className="blockquote record-download-link-list">
-            {media.map((link, i) => (
-              <li key={link.to || i}>
-                <DownloadLink to={`${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/download/${link.url}`} label={link.type} resolution={resolution} bitrate={bitrate} size={size} />
+            {Object.values(downloadableMedia).map((media, i) => (
+              <li key={media.url || i}>
+                <DownloadLink 
+                  i={i}
+                  to={media.url} 
+                  width={media.width} 
+                  height={media.height} 
+                  size={media.size} 
+                  bitrate={media.bitrate}
+                />
               </li>
             ))}
           </ul>
@@ -64,8 +61,7 @@ const RecordDownloadLinks = ({ media, publications, mediaFileMetadata }) => {
 };
 
 RecordDownloadLinks.propTypes = {
-  media: PropTypes.array,
-  publications: PropTypes.object,
+  downloadableMedia: PropTypes.object
 };
 
 export default RecordDownloadLinks;
