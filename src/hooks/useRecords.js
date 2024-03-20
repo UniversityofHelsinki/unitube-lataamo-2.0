@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 const getRecords = async () => {
   const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/userInboxEvents`;
@@ -37,7 +38,8 @@ const useRecords = (load = false) => {
     dispatch({ type: 'SET_RECORDS' });
   };
 
-  return [records, !records, reload];
+  const loading = load && !records;
+  return [records, loading, reload];
 };
 
 useRecords.PropTypes = {

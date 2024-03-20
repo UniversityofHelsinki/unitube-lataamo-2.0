@@ -4,13 +4,11 @@ const recordReducer = (state = { loadingRecords: false }, action) => {
     case 'SET_RECORD':
       return { ...state, record: action.payload };
     case 'SET_RECORDS':
-      return { ...state, records: action.payload, loadingRecords: false };
-    case 'SET_LOADING_RECORDS':
-      return { ...state, loadingRecords: action.payload };
+      return { ...state, records: action.payload };
     case 'SET_DELETED_RECORDS':
-      return { ...state, deletedRecords: action.payload, loadingDeletedRecords: false };
-    case 'SET_LOADING_DELETED_RECORDS':
-      return { ...state, loadingDeletedRecords: action.payload };
+      return { ...state, deletedRecords: action.payload };
+    case 'SET_ALL_RECORDS':
+      return { ...state, allRecords: action.payload };
     default:
       return state;
   };

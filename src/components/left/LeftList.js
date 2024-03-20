@@ -4,7 +4,6 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import ListActions from './ListActions';
-import ListContainer from './ListContainer';
 import './LeftList.css';
 
 const LeftList = ({ children = [] }) => {
@@ -17,9 +16,13 @@ const LeftList = ({ children = [] }) => {
       </Row>
       <Row>
         <Col>
-          <ListContainer>
-            {children}
-          </ListContainer>
+          <ul className="no-padding left-list-list-container">
+            {children.map(([element, identifier], i) => 
+              <li key={`${identifier}-${i}`} className="left-list-list-element">
+                {element}
+              </li>
+            )}
+          </ul>
         </Col>
       </Row>
     </Container>

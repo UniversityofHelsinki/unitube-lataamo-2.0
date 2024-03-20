@@ -39,7 +39,7 @@ const RecordStaticInformation = ({record, onChange, resetSubtitleDownloadLinks})
             </Row>
             <Row className="mb-4">
                 <Col>
-                    <RecordDownloadLinks media={record.media || []} publications={record.publications || {}} />
+                    <RecordDownloadLinks downloadableMedia={record.downloadableMedia} />
                 </Col>
             </Row>
             {subtitles && subtitles.length > 0 && (

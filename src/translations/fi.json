@@ -93,6 +93,8 @@
   "minutes_left": "minuuttia jäljellä",
   "minutes_and": "minuuttia ja",
   "seconds_left": "sekuntia jäljellä",
+  "new_collection_progress_bar_done": "Valmis!",
+  "new_collection_progress_bar_sending": "Lähetetään...",
   "new_record_upload_error": "Virhe!",
   "new_record_upload_done": "Valmis!",
   "new_record_upload_aborted": "Lähetys keskeytetty.",
@@ -187,5 +189,6 @@
   "new_record_footer_button_sending_subtitles": "Lähetetään...",
   "record_card_valid_until": "Voimassa {{- deletionDate}} asti",
   "tag_expiring": "Vanhenemassa",
-  "loading": "Ladataan..."
+  "loading": "Ladataan...",
+  "record_card_details_created": "Luotu {{- created}}"
 }

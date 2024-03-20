@@ -16,6 +16,7 @@ import useRecords from '../../hooks/useRecords';
 import useCollections from '../../hooks/useCollections';
 import useRecord from '../../hooks/useRecord';
 import useCollection from '../../hooks/useCollection';
+import useVisibleRecords from '../../hooks/useVisibleRecords';
 
 const RestoreRecord = ({ record }) => {
   const { t } = useTranslation();
@@ -26,7 +27,7 @@ const RestoreRecord = ({ record }) => {
     null, 
     resetProgress
   );
-  const [_records, _loadingRecords, reloadRecords] = useRecords(false);
+  const [_records, _loadingRecords, reloadRecords] = useVisibleRecords({});
   const [visibleRecord, _loadingRecord, reloadVisibleRecord] = useRecord();
   const [_collections, _loadingCollections, reloadCollections] = useCollections();
   const [visibleCollection, _loadingVisibleCollection, reloadVisibleCollection] = useCollection();

@@ -19,8 +19,6 @@ const NoRecords = () => {
 const CollectionRecords = ({ records, disabled }) => {
   const { t } = useTranslation();
 
-  const doNothing = () => {};
-
   const recordsList = (() => {
     if (!records || records.length === 0) {
       return <NoRecords />;
