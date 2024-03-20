@@ -10,11 +10,12 @@ import ElementHeader from '../form/ElementHeader';
 const DownloadLink = ({ i, to, width, height, size, bitrate}) => {
   const resolution = `${width}x${height}`;
   const sizeMB = `${Math.ceil(size / 2**20)} MB`;
-  const bitrateKbps = `${Math.ceil(size / 2**10)} kbps`;
+  const bitrateKbps = `${Math.ceil(bitrate / 2**10)} kbps`;
   return (
     <>
       <DownloadIcon width="2em" height="2em" />
-      <a download className="ms-2" href={to}>{i+1}. {resolution} - {sizeMB} - {bitrateKbps}</a>
+      <span className="ms-1">{i+1}.</span>
+      <a download className="ms-2" href={to}>{resolution} - {sizeMB} - {bitrateKbps}</a>
     </>
   );
 };
@@ -40,7 +41,7 @@ const RecordDownloadLinks = ({ downloadableMedia }) => {
       </Row>
       <Row>
         <Col>
-          <ul className="blockquote record-download-link-list">
+          <ol className="blockquote record-download-link-list">
             {Object.values(downloadableMedia).map((media, i) => (
               <li key={media.url || i}>
                 <DownloadLink 
@@ -53,7 +54,7 @@ const RecordDownloadLinks = ({ downloadableMedia }) => {
                 />
               </li>
             ))}
-          </ul>
+          </ol>
         </Col>
       </Row>
     </Container>
