@@ -81,7 +81,7 @@ const CollectionButtons = ({ collection, disabled }) => {
             <Form className="collection-buttons-update-end-dates-form" onSubmit={onSubmit}>
                 <Modal.Body>
                     <CollectionRecordsDeletionDates deletionDate={collectionData?.deletionDate}
-                        onChange={(deletionDate) => changeDeletionDay('deletionDate', deletionDate.toISOString())}
+                        onChange={(deletionDate) => changeDeletionDay('deletionDate', deletionDate)}
                         disabled={formDisabled} message={messages.deletionDate} />
                 </Modal.Body>
                 <Modal.Footer>

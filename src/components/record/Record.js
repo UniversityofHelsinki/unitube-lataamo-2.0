@@ -85,10 +85,10 @@ const Record = () => {
                     </div>
                   </Row>
                   <Row>
-                    <Col lg={5} className="ps-0">
+                    <Col xl={5} className="ps-0">
                       <RecordStaticInformation record={originalRecord} onChange={onChange} resetSubtitleDownloadLinks={resetSubtitleDownloadLinks}  />
                     </Col>
-                    <Col lg>
+                    <Col xl>
                       <RecordForm
                         record={record}
                         onChange={onChange}
