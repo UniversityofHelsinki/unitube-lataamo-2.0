@@ -14,6 +14,8 @@ export const DATE_FORMAT = "dd.MM.yyyy";
 export const DELETION_DATE_MIN_MONTHS = 6;
 export const DELETION_DATE_MAX_YEARS = 3;
 
+export const DEFAULT_LANGUAGE = 'fi';
+
 export const ProgressStatus = {
   NEW_RECORD: {
     NOT_STARTED: 'not_started',
