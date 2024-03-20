@@ -189,6 +189,11 @@
   "new_record_footer_button_sending_subtitles": "Lähetetään...",
   "record_card_valid_until": "Voimassa {{- deletionDate}} asti",
   "tag_expiring": "Vanhenemassa",
+  "status_published": "Jaettu julkisesti",
+  "status_private": "Ei julkinen",
+  "status_moodle": "Jaettu Moodlessa",
+  "status_unlisted": "Jaettu linkillä",
   "loading": "Ladataan...",
-  "record_card_details_created": "Luotu {{- created}}"
+  "record_card_details_created": "Luotu {{- created}}",
+  "collections_default": "Tallenteet"
 }

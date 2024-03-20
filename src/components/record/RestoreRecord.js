@@ -12,7 +12,6 @@ import useRecordRestore from '../../hooks/record/useRecordRestore';
 import useModification from '../../hooks/useModification';
 import RestoreRecordFooter from './RestoreRecordFooter';
 import { ProgressStatus } from '../../Constants';
-import useRecords from '../../hooks/useRecords';
 import useCollections from '../../hooks/useCollections';
 import useRecord from '../../hooks/useRecord';
 import useCollection from '../../hooks/useCollection';

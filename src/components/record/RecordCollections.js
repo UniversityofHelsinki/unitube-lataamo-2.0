@@ -9,10 +9,13 @@ import Loading from '../utilities/Loading';
 import HelpDialog from '../dialog/HelpDialog';
 import useCollectionDropdown from '../../hooks/collection/useCollectionDropdown';
 
+const translateVisibilities = (t, visibilities) => {
+  return visibilities.map(visibility => t(visibility)).join(', ');
+};
+
 const RecordCollections = ({ collection, onChange, message, disabled = false }) => {
     const id = useId();
     const { t } = useTranslation();
-
     const [collections, loadingCollections] = useCollectionDropdown(true);
 
     return (
@@ -41,7 +44,7 @@ const RecordCollections = ({ collection, onChange, message, disabled = false }) 
                         options={
                           (collections || []).map((c) => ({
                             value: c.identifier,
-                            label: c.title,
+                            label: `${/^inbox \w{1,8}$/.test(c.title) ? t('collections_default') : c.title} (${translateVisibilities(t, c.visibility || [])})`,
                             selected: c.identifier === collection
                           }))
                         } 

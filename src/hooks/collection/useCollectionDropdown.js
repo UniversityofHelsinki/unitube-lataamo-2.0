@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const get = async () => {
-  const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/getUserSeriesDropDownList`;
+  const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/userSeriesWithOutTrash`;
   try {
     const response = await fetch(URL);
     if (response.ok) {
