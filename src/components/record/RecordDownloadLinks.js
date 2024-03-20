@@ -46,7 +46,7 @@ const RecordDownloadLinks = ({ downloadableMedia }) => {
               <li key={media.url || i}>
                 <DownloadLink 
                   i={i}
-                  to={media.url} 
+                  to={`${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/download/${media.url}`} 
                   width={media.width} 
                   height={media.height} 
                   size={media.size} 
