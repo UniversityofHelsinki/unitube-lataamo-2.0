@@ -16,17 +16,8 @@ const NoRecords = () => {
   );
 };
 
-const CollectionRecords = ({ records, disabled, onChange = console.log }) => {
+const CollectionRecords = ({ records, disabled }) => {
   const { t } = useTranslation();
-
-  const doNothing = () => {};
-  const removeRecord = () => {
-    if (disabled) {
-      doNothing();
-      return;
-    }
-    onChange();
-  };
 
   const recordsList = (() => {
     if (!records || records.length === 0) {
@@ -36,8 +27,8 @@ const CollectionRecords = ({ records, disabled, onChange = console.log }) => {
       <li key={record.id}>
         <CollectionRecord 
           record={record} 
-          onRemove={removeRecord} 
           disabled={disabled}
+          reloadCollectionOnRemove={true}
           aria-label={record.title} 
         />
       </li>
@@ -76,7 +67,6 @@ const CollectionRecords = ({ records, disabled, onChange = console.log }) => {
 CollectionRecords.propTypes = {
   records: PropTypes.array,
   disabled: PropTypes.bool,
-  onChange: PropTypes.func
 };
 
 export default CollectionRecords;

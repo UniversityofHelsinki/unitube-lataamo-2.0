@@ -16,6 +16,13 @@ const NewCollectionFooter = ({ onCancel, progress, isValid }) => {
     return <></>;
   })();
 
+  const cancelButtonLabel =  {
+    [ProgressStatus.NEW_COLLECTION.DONE]: t('new_collection_form_footer_close'),
+    [ProgressStatus.NEW_COLLECTION.SENDING]: t('new_collection_form_footer_cancel'),
+    [ProgressStatus.NEW_COLLECTION.ERROR]: t('new_collection_form_footer_cancel'),
+    [ProgressStatus.NEW_COLLECTION.NOT_STARTED]: t('new_collection_form_footer_cancel')
+  }[progress.status]
+
   const submitButtonLabel = {
     [ProgressStatus.NEW_COLLECTION.NOT_STARTED]: t('new_collection_form_footer_submit'),
     [ProgressStatus.NEW_COLLECTION.SENDING]: t('new_collection_form_footer_sending'),
@@ -28,21 +35,19 @@ const NewCollectionFooter = ({ onCancel, progress, isValid }) => {
   }[progress.status] || false;
 
   return (
-    <Container className="new-collection-footer">
-      <Row className="pe-0">
-        <Col sm={8} className="new-collection-footer-progress-row">
-          {progressBar}
-        </Col>
-        <Col sm={4} className="new-collection-footer-button-row text-end pe-0">
-          <Button variant="outline-secondary" className="me-2" onClick={onCancel}>
-            {t('new_collection_form_footer_cancel')}
-          </Button>
-          <Button variant="primary" type="submit" disabled={submitButtonDisabled || !isValid}>
-            {submitButtonLabel}
-          </Button>
-        </Col>
-      </Row>
-    </Container>
+    <div className="new-collection-footer">
+      <div className="new-collection-footer-progress-bar">
+        {progressBar}
+      </div>
+      <div className="new-collection-footer-buttons">
+        <Button variant="outline-secondary" onClick={onCancel}>
+          {cancelButtonLabel}
+        </Button>
+        <Button variant="primary" type="submit" disabled={submitButtonDisabled || !isValid}>
+          {submitButtonLabel}
+        </Button>
+      </div>
+    </div>
   );
 };
 

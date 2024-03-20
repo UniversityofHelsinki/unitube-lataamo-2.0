@@ -6,8 +6,10 @@ import { ReactComponent as RemoveIcon } from '../../utilities/icons/remove.svg';
 import onKeyDown from '../../accessibility/keydown';
 import { useTranslation } from 'react-i18next';
 import useSearchParams from '../../../hooks/useSearchParams';
+import Thumbnail from "../../utilities/Thumbnail";
+import DeleteRecord from '../../record/DeleteRecord';
 
-const CollectionRecord = ({ record, onRemove, disabled }) => {
+const CollectionRecord = ({ record, disabled, reloadCollectionOnRemove }) => {
   const { t } = useTranslation();
   const id = useId();
   const [_, setSearchParams] = useSearchParams();
@@ -21,14 +23,6 @@ const CollectionRecord = ({ record, onRemove, disabled }) => {
     });
   };
 
-  const removeRecord = (event) => {
-    event.stopPropagation();
-    if (disabled) {
-      return;
-    }
-    onRemove(event);
-  };
-
   const disabledClass = disabled ? 'collection-record-disabled' : '';
 
 
@@ -37,6 +31,7 @@ const CollectionRecord = ({ record, onRemove, disabled }) => {
       <Row>
         <Col className="px-0">
           <div className="collection-record-thumbnail">
+            <Thumbnail width="80" length="80" record={record} altText={'collection_record_thumbnail_alt_text'}></Thumbnail>
           </div>
         </Col>
         <Col className="px-0 align-self-center">
@@ -45,17 +40,9 @@ const CollectionRecord = ({ record, onRemove, disabled }) => {
           </div>
         </Col>
         <Col className="px-0 text-end collection-record-remove-col">
-          <div 
+          <div
             className="collection-record-remove pe-1">
-            <span
-              role="button" 
-              onClick={removeRecord} 
-              onKeyDown={onKeyDown(removeRecord)}
-              aria-label={t('collection_record_remove_label')} 
-              aria-disabled={disabled}
-              tabIndex={0}>
-              <RemoveIcon />
-            </span>
+            <DeleteRecord record={record} showLabel={false} disabled={disabled} reloadCollectionOnRemove={reloadCollectionOnRemove} />
           </div>
         </Col>
       </Row>
@@ -65,8 +52,8 @@ const CollectionRecord = ({ record, onRemove, disabled }) => {
 
 CollectionRecord.propTypes = {
   record: PropTypes.object,
-  onRemove: PropTypes.func,
   disabled: PropTypes.bool,
+  reloadCollectionOnRemove: PropTypes.bool
 };
 
 export default CollectionRecord;

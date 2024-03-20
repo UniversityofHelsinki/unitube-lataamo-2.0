@@ -23,6 +23,19 @@ const put = async (body, identifier) => {
   }
 };
 
+const getRecord = async (identifier) => {
+  const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/event/${identifier}`
+  try {
+    const response = await fetch(URL);
+    if (response.ok) {
+      return await response.json();
+    }
+    throw new Error(`Unexpected status code ${response.status} while fetching record from ${URL} for record deletion.`);
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
 
 const convertToBody = (record) => ({
   identifier: record.identifier,
@@ -30,6 +43,10 @@ const convertToBody = (record) => ({
   description: record.description,
   license: record.license
 });
+
+const doesNotContainEverythingNeeded = (record) => {
+  return !record.identifier && record.id;
+};
 
 const useRecordDelete = () => {
 
@@ -46,8 +63,12 @@ const useRecordDelete = () => {
       percentage: defaultAnimatedPercentage
     });
     try {
-      console.log(record, convertToBody(record));
-      await put(convertToBody(record), record.identifier);
+      if (doesNotContainEverythingNeeded(record)) {
+        const completeRecord = await getRecord(record.id);
+        await put(convertToBody(completeRecord), completeRecord.identifier);
+      } else {
+        await put(convertToBody(record), record.identifier);
+      }
       setProgress({
         status: ProgressStatus.RECORD_DELETE.DONE,
         percentage: 100

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import useSearchParams from "./useSearchParams";
 
 const getCollection = async (identifier) => {
@@ -11,24 +12,28 @@ const getCollection = async (identifier) => {
   }
 };
 
-const useCollection = () => {
+const useCollection = (load = false) => {
+  const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
-  const [collection, setCollection] = useState(null);
+  const collection = useSelector((state) => state.collections.collection);
 
   const thereIsCollection = collection?.identifier;
   const collectionHasChanged = thereIsCollection && 
     collection.identifier !== searchParams.collection;
 
   useEffect(() => {
-    if (!thereIsCollection || collectionHasChanged) {
+    if (load && (!thereIsCollection || collectionHasChanged)) {
       (async () => {
-        setCollection(await getCollection(searchParams.collection));
+        dispatch({ 
+          type: 'SET_COLLECTION', 
+          payload: await getCollection(searchParams.collection) 
+        });
       })();
     }
-  }, [collection, searchParams.collection]);
+  }, [searchParams.collection, collection?.identifier, dispatch]);
 
   const loading = !thereIsCollection || collectionHasChanged;
-  const reload = () => setCollection(null);
+  const reload = () => dispatch({ type: 'SET_COLLECTION' });
 
   return [collection, loading, reload];
 

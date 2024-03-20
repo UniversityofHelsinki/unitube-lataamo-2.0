@@ -4,27 +4,32 @@ import { ReactComponent as DownloadIcon } from '../utilities/icons/download.svg'
 import './RecordDownloadLinks.css';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import FormElementHeader from '../form/FormElementHeader';
 import HelpDialog from '../dialog/HelpDialog';
+import ElementHeader from '../form/ElementHeader';
 
-const DownloadLink = ({ to, label }) => {
+const DownloadLink = ({ i, to, width, height, size, bitrate}) => {
+  const resolution = `${width}x${height}`;
+  const sizeMB = `${Math.ceil(size / 2**20)} MB`;
+  const bitrateKbps = `${Math.ceil(bitrate / 2**10)} kbps`;
   return (
     <>
       <DownloadIcon width="2em" height="2em" />
-      <a download className="ms-2" href={to}>{label}</a>
+      <span className="ms-1">{i+1}.</span>
+      <a download className="ms-2" href={to}>{resolution} - {bitrateKbps} - {sizeMB}</a>
     </>
   );
 };
 
-const RecordDownloadLinks = ({ media, publications }) => {
+const RecordDownloadLinks = ({ downloadableMedia }) => {
   const { t } = useTranslation();
+
   return (
     <Container>
       <Row>
         <Col>
-          <FormElementHeader>
+          <ElementHeader label={t('record_download_links_header')}>
             {t('record_download_links_header')}
-          </FormElementHeader>
+          </ElementHeader>
         </Col>
       </Row>
       <Row className="mb-3">
@@ -36,13 +41,20 @@ const RecordDownloadLinks = ({ media, publications }) => {
       </Row>
       <Row>
         <Col>
-          <ul className="blockquote record-download-link-list">
-            {media.map((link, i) => (
-              <li key={link.to || i}>
-                <DownloadLink to={`${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/download/${link.url}`} label={link.type} />
+          <ol className="blockquote record-download-link-list">
+            {Object.values(downloadableMedia).map((media, i) => (
+              <li key={media.url || i}>
+                <DownloadLink 
+                  i={i}
+                  to={`${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/download/${media.url}`} 
+                  width={media.width} 
+                  height={media.height} 
+                  size={media.size} 
+                  bitrate={media.bitrate}
+                />
               </li>
             ))}
-          </ul>
+          </ol>
         </Col>
       </Row>
     </Container>
@@ -50,8 +62,7 @@ const RecordDownloadLinks = ({ media, publications }) => {
 };
 
 RecordDownloadLinks.propTypes = {
-  media: PropTypes.array,
-  publications: PropTypes.object,
+  downloadableMedia: PropTypes.object
 };
 
 export default RecordDownloadLinks;

@@ -41,6 +41,7 @@
   "new_collection_button": "Uusi kokoelma",
   "new_collection_form_header": "Uusi kokoelma",
   "new_collection_form_footer_cancel": "Peruuta",
+  "new_collection_form_footer_close": "Sulje",
   "new_collection_form_footer_submit": "Tallenna",
   "new_collection_form_footer_sending": "Tallennetaan...",
   "new_collection_form_footer_error": "Yritä uudestaan",
@@ -92,6 +93,8 @@
   "minutes_left": "minuuttia jäljellä",
   "minutes_and": "minuuttia ja",
   "seconds_left": "sekuntia jäljellä",
+  "new_collection_progress_bar_done": "Valmis!",
+  "new_collection_progress_bar_sending": "Lähetetään...",
   "new_record_upload_error": "Virhe!",
   "new_record_upload_done": "Valmis!",
   "new_record_upload_aborted": "Lähetys keskeytetty.",
@@ -155,6 +158,7 @@
   "record_card_action_delete": "Poista",
   "restore_record_header": "Palauta tallenne",
   "restore_record_footer_cancel_button": "Peruuta",
+  "restore_record_footer_close_button": "Sulje",
   "restore_record_footer_save_button": "Palauta",
   "restore_record_footer_in_progress": "Palautetaan tallennetta...",
   "restore_record_footer_done": "Valmis!",
@@ -163,6 +167,7 @@
   "restore_record_footer_error_button": "Yritä uudestaan",
   "record_thumbnail_alt_text": "Tallenteen {{title}} pienoiskuva",
   "record_delete_form_header": "Poista tallenne",
+  "delete_record_footer_close_button": "Sulje",
   "delete_record_footer_cancel_button": "Peruuta",
   "delete_record_footer_submit_button": "Poista",
   "delete_record_footer_error_button": "Yritä uudestaan",
@@ -187,5 +192,8 @@
   "status_published": "Jaettu julkisesti",
   "status_private": "Ei julkinen",
   "status_moodle": "Jaettu Moodlessa",
-  "status_unlisted": "Jaettu linkillä"
+  "status_unlisted": "Jaettu linkillä",
+  "loading": "Ladataan...",
+  "record_card_details_created": "Luotu {{- created}}",
+  "collections_default": "Tallenteet"
 }

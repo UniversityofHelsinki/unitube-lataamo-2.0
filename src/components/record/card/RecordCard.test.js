@@ -7,7 +7,7 @@ it('renders', () => {
   render(
     <MockProvider mockReducers={{ users: { user: { eppn: 'baabenom' }}}}>
       <RecordCard
-        record={{ identifier: 'asdf', title: 'hello', series: 'asdf', deletionDate: '2023-03-01' }}
+        record={{ identifier: 'asdf', title: 'hello', series: 'asdf', deletionDate: new Date().toISOString(), created: new Date().toISOString() }}
         onClick={() => {}}
         selected={false} />
     </MockProvider>

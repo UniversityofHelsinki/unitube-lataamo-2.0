@@ -3,6 +3,19 @@
 
 .left-list-actions-container {
   position: sticky;
+  z-index: 1;
   top: 0px;
   background-color: var(--hy-white);
+}
+
+.left-list-list-container {
+  overflow: hidden
+}
+
+ul.left-list-list-container {
+  list-style: none;
+}
+
+.left-list-list-element {
+  margin-bottom: 10px;
 }

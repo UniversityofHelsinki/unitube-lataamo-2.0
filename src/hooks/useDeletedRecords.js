@@ -15,25 +15,19 @@ const get = async () => {
   }
 };
 
-const useDeletedRecords = () => {
+const useDeletedRecords = (load = false) => {
   const dispatch = useDispatch();
-  const { 
-    deletedRecords, 
-    loadingDeletedRecords 
-  } = useSelector((state) => state.records); 
-
-  const shouldLoad = !deletedRecords && !loadingDeletedRecords;
+  const deletedRecords = useSelector((state) => state.records.deletedRecords); 
 
   useEffect(() => {
-    if (shouldLoad) {
-      dispatch({ type: 'SET_LOADING_DELETED_RECORDS', payload: true });
+    if (load && !deletedRecords) {
       (async () => {
         dispatch({ type: 'SET_DELETED_RECORDS', payload: await get() });
       })();
     }
-  }, [shouldLoad, dispatch]);
+  }, [deletedRecords, load, dispatch]);
 
-  const loading = Boolean(!deletedRecords);
+  const loading = load && !deletedRecords;
   const reload = () => dispatch({ type: 'SET_DELETED_RECORDS' });
 
   return [deletedRecords, loading, reload];

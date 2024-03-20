@@ -1,18 +1,16 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import DeleteRecord from './DeleteRecord';
+import RecordTopRow from './RecordTopRow';
 import { MockProvider } from '../../redux/reducers/MockProvider';
 
 it('renders', () => {
   render(
     <MockProvider>
-      <DeleteRecord record={{ 
-          identifier: 'asdf-asdf', 
-          title: 'asdf',
-        }}
-        showLabel={true}
-        reloadCollectionOnRemove={false}
-      />
+      <RecordTopRow record={{ 
+        deletionDate: new Date().toISOString(),
+        title: 'asdf',
+        isPartOf: 'asd'
+      }} />
     </MockProvider>
   );
 });

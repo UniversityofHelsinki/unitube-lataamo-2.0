@@ -38,6 +38,13 @@ const DeleteRecordFooter = ({ progress, hide }) => {
     type: progressBarType
   };
 
+  const cancelButtonLabel =  {
+    [ProgressStatus.RECORD_DELETE.DONE]: t('delete_record_footer_close_button'),
+    [ProgressStatus.RECORD_DELETE.IN_PROGRESS]: t('delete_record_footer_cancel_button'),
+    [ProgressStatus.RECORD_DELETE.ERROR]: t('delete_record_footer_cancel_button'),
+    [ProgressStatus.RECORD_DELETE.NOT_STARTED]: t('delete_record_footer_cancel_button')
+  }[progress.status]
+
   const deleteInProgress = progress.status === ProgressStatus.RECORD_DELETE.IN_PROGRESS;
   const deleteDone = progress.status === ProgressStatus.RECORD_DELETE.DONE;
   const deleteError = progress.status === ProgressStatus.RECORD_DELETE.ERROR;
@@ -49,9 +56,8 @@ const DeleteRecordFooter = ({ progress, hide }) => {
         <ProgressBar { ...progressBarProps } />
       </div>}
       <div className="delete-record-footer-buttons">
-        <Button variant="outline-secondary" onClick={hide} disabled={deleteInProgress || deleteDone}>
-          {t('delete_record_footer_cancel_button')}
-          
+        <Button variant="outline-secondary" onClick={hide} disabled={deleteInProgress}>
+          {cancelButtonLabel}
         </Button>
         <Button variant="danger" type="submit" disabled={deleteInProgress || deleteDone}>
           {t('delete_record_footer_submit_button')}

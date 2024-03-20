@@ -7,7 +7,7 @@ import {axe} from "jest-axe";
 describe('RecordDownLoadLinks', () => {
     it('should not have any accessibility violations', async () => {
 
-        const { container } = render(<RecordDownLoadLinks media={[]} publications={{}} />);
+        const { container } = render(<RecordDownLoadLinks downloadableMedia={{}} />);
         const results = await axe(container);
 
         // use the matcher function in the test

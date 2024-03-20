@@ -9,42 +9,17 @@ import Loading from '../utilities/Loading';
 import HelpDialog from '../dialog/HelpDialog';
 import useCollectionDropdown from '../../hooks/collection/useCollectionDropdown';
 
+const translateVisibilities = (t, visibilities) => {
+  return visibilities.map(visibility => t(visibility)).join(', ');
+};
+
 const RecordCollections = ({ collection, onChange, message, disabled = false }) => {
     const id = useId();
     const { t } = useTranslation();
-
-    const [collections, loadingCollections, collectionsWithVisibility, loadingCollectionsWithVisibility] = useCollectionDropdown();
-
-    const translateVisibilities = (visibilities) => {
-        let translatedVisibilities = "";
-
-        visibilities?.forEach(obj => {
-            translatedVisibilities = translatedVisibilities  + `${t(obj)}` + ',';
-        });
-        return translatedVisibilities.slice(0, -1);
-    }
-
-    const addCollectionsVisibility = (collections) => {
-        let collectionsCopy = (collections === null  || collections === undefined) ? null : collections.map(a => ({...a}));
-        if (collectionsCopy === null || collectionsWithVisibility === undefined) {
-            return null;
-        }
-        collections?.forEach(obj => {
-            const index = collectionsWithVisibility?.findIndex(o => o.identifier === obj.identifier);
-            if (index !== -1) {
-                let elem = collectionsWithVisibility[index];
-                let objwithvisibility = {...obj, 'visibility': translateVisibilities(elem.visibility)}
-                Object.assign(obj, objwithvisibility);
-            } else {
-                let objwithvisibility = {...obj, 'visibility': t('status_private')}
-                Object.assign(obj, objwithvisibility);
-            }
-        })
-        return collectionsCopy;
-    }
+    const [collections, loadingCollections] = useCollectionDropdown(true);
 
     return (
-        <Loading loading={loadingCollections && loadingCollectionsWithVisibility}>
+        <Loading loading={loadingCollections}>
           <Container>
               <Row>
                   <Col>
@@ -67,9 +42,9 @@ const RecordCollections = ({ collection, onChange, message, disabled = false }) 
                         aria-labelledby={id}
                         onChange={(e) => onChange(e.target.value)}
                         options={
-                          (addCollectionsVisibility(collections) || []).map((c) => ({
+                          (collections || []).map((c) => ({
                             value: c.identifier,
-                            label: `${c.title} (${c.visibility})`,
+                            label: `${/^inbox \w{1,8}$/.test(c.title) ? t('collections_default') : c.title} (${translateVisibilities(t, c.visibility || [])})`,
                             selected: c.identifier === collection
                           }))
                         } 

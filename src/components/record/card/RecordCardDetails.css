@@ -11,3 +11,8 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.record-card-details-created {
+  margin-bottom: 0px;
+  font-size: 0.9em;
+}
