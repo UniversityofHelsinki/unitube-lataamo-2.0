@@ -35,7 +35,7 @@ const Thumbnail = ({ record, width, length, altText }) => {
 
     const label = t(altText, { title: record.title });
 
-    const thumbnail = thumbnailUrl ? <img alt={label} title={label} src={thumbnailUrl} /> : <></>;
+    const thumbnail = thumbnailUrl ? <img alt={label} title={label} src={thumbnailUrl} aria-hidden /> : <></>;
 
     return (
         thumbnail

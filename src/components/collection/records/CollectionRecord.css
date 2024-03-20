@@ -22,6 +22,8 @@
   max-width: var(--collection-record-thumbnail-width);
   background-color: var(--hy-light-silver);
   height: 100%;
+  overflow: hidden;
+  text-overflow: hidden;
 }
 
 .collection-record-details {

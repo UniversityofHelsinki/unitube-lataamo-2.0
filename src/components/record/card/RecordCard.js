@@ -52,7 +52,7 @@ const RecordCard = ({ record, onClick, selected = false }) => {
                 {!isDeleted && t('record_card_valid_until', {deletionDate: date})}
               </div>
             </div>
-            <div className="record-card-content-actions">
+            <div className="record-card-content-actions mt-1">
               <RecordActions record={record} />
             </div>
           </div>
