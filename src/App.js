@@ -18,6 +18,7 @@ const defaultLanguage = () => {
   try {
     const savedLanguage = localStorage.getItem('language');
     if (savedLanguage) {
+      document.documentElement.lang = savedLanguage;
       return savedLanguage;
     }
   } catch (error) {
