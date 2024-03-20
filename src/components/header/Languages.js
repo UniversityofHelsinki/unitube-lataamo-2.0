@@ -8,22 +8,16 @@ import useLocalStorage from "../../hooks/useLocalStorage";
 const Languages = () => {
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language;
-  const [getLanguage, setLanguage] = useLocalStorage();
+  const [_get, set] = useLocalStorage();
 
-  const updateLanguage = async (language) =>{
-    await i18n.changeLanguage(language);
-    setLanguage(language, language);
-  }
-
-  const languageSelected = getLanguage(['fi','en','sv']);
-  if (languageSelected !== null && currentLanguage !== languageSelected) {
-    updateLanguage(languageSelected);
+  const saveLanguage = async (language) => {
+    set('language', language);
   }
 
   const onClick = async (language) => {
     document.documentElement.lang = language;
     await i18n.changeLanguage(language);
-    setLanguage(language, language);
+    saveLanguage(language);
   };
 
   return (
