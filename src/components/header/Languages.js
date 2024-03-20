@@ -12,14 +12,13 @@ const Languages = () => {
 
   const updateLanguage = async (language) =>{
     await i18n.changeLanguage(language);
+    setLanguage(language, language);
   }
 
-  const languageSelected = getLanguage(['fi','sv','en']);
+  const languageSelected = getLanguage(['fi','en','sv']);
   if (languageSelected !== null && currentLanguage !== languageSelected) {
-    updateLanguage(currentLanguage);
+    updateLanguage(languageSelected);
   }
-
-
 
   const onClick = async (language) => {
     document.documentElement.lang = language;

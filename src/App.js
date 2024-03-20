@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
@@ -23,6 +23,11 @@ i18n
   });
 
 const App = () => {
+
+    useEffect(() => {
+        localStorage.setItem('reloadLoadDone', 1);
+    }, []);
+
   return (
     <Provider store={store}>
       <Lataamo />

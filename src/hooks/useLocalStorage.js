@@ -1,16 +1,21 @@
 const getLanguage = (keys) => {
     try {
+        if (!localStorage.getItem('reloadLoadDone')) {
+            return null;
+        }
         const value = localStorage.length;
         let currentLanguage = null;
         if (value > 0) {
             keys.forEach((key) => {
             if (localStorage.getItem(key)) {
                     currentLanguage = localStorage.getItem(key);
-                    //return localStorage.getItem(key);
                 }
             });
         }
         localStorage.clear();
+        if (currentLanguage !== null) {
+            localStorage.setItem(currentLanguage, currentLanguage);
+        }
         return currentLanguage;
     } catch {
         return null;
