@@ -15,7 +15,7 @@ const DownloadLink = ({ i, to, width, height, size, bitrate}) => {
     <>
       <DownloadIcon width="2em" height="2em" />
       <span className="ms-1">{i+1}.</span>
-      <a download className="ms-2" href={to}>{resolution} - {sizeMB} - {bitrateKbps}</a>
+      <a download className="ms-2" href={to}>{resolution} - {bitrateKbps} - {sizeMB}</a>
     </>
   );
 };
