@@ -14,11 +14,11 @@ const useVisibleRecords = ({ showDeleted = false, showAll = false, load = false 
   };
 
   if (showAll && showDeleted) {
-    return [[ ...(deletedRecords || []), ...(allRecords || []) ], load && loadingDeletedRecords || loadingAllRecords, reload];
+    return [[ ...(deletedRecords || []), ...(allRecords || []) ], load && (loadingDeletedRecords || loadingAllRecords), reload];
   } else if (showAll) {
     return [allRecords || [], load && loadingAllRecords, reload];
   } else if (showDeleted) {
-    return [[ ...(deletedRecords || []), ...(records || []) ], load && loadingRecords || loadingDeletedRecords, reload];
+    return [[ ...(deletedRecords || []), ...(records || []) ], load && (loadingRecords || loadingDeletedRecords), reload];
   }
 
   return [records, loadingRecords, reload];
