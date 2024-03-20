@@ -24,6 +24,7 @@ const defaultLanguage = () => {
   } catch (error) {
     console.error(error.message);
   }
+  document.documentElement.lang = DEFAULT_LANGUAGE;
   return DEFAULT_LANGUAGE;
 };
 
