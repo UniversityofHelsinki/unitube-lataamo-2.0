@@ -16,17 +16,35 @@ const FormDialog = ({
   children,
   ...rest
 }) => {
+  const dialogRef = useRef();
+  const focusSetRef = useRef(false);
+  const focusSet = focusSetRef.current;
 
   useEffect(() => {
     if (!touched && !show) {
       window.removeEventListener("beforeunload", beforeUnloadConfirmation);
+      focusSetRef.current = false;
     } else if (touched) {
       window.addEventListener("beforeunload", beforeUnloadConfirmation);
     }
+
+    const dialogElement = dialogRef.current?.dialog;
+    if (show && dialogElement && !focusSet) {
+      const firstInputElement = dialogElement.querySelector("input:enabled");
+      const firstFocusableElement = dialogElement.querySelector("*:enabled");
+      if (firstInputElement) {
+        firstInputElement.focus();
+        focusSetRef.current = true;
+      } else if (firstFocusableElement) {
+        firstFocusableElement.focus();
+        focusSetRef.current = true;
+      }
+    }
+
   }, [touched, show]);
 
   return (
-    <Dialog showComponent={showComponent} show={show} hide={hide} closeable={closeable} size="lg" fullscreen="sm-down" { ...rest }>
+    <Dialog ref={dialogRef} showComponent={showComponent} show={show} hide={hide} closeable={closeable} size="lg" fullscreen="sm-down" { ...rest }>
       {children}
     </Dialog>
   );

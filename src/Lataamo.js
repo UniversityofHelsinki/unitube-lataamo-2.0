@@ -39,10 +39,10 @@ const Lataamo = () => {
               </Col>
             </Row>
             <Row className="root-main-row">
-              <Col as="aside" role="complementary" md={4} className="root-main-row-left-col">
+              <Col as="aside" role="complementary" xl={4} className="root-main-row-left-col">
                 <Left />
               </Col>
-              <Col as="main" role="main" md={8} className="root-main-row-right-col">
+              <Col as="main" role="main" xl={8} className="root-main-row-right-col">
                 <Right />
               </Col>
             </Row>

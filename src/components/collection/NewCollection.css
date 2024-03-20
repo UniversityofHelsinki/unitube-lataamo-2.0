@@ -1,3 +1,7 @@
+.new-collection-form {
+  overflow: auto;
+}
+
 .new-collection-button {
   width: 100%;
 }

@@ -49,7 +49,7 @@ const RecordForm = ({
               <RecordEndDate
                 endDate={record.deletionDate}
                 onChange={
-                  (date) => onChange('deletionDate', (date || new Date()).toISOString())
+                  (date) => onChange('deletionDate', date)
                 }
                 message={validationMessages?.deletionDate}
                 disabled={disabled}

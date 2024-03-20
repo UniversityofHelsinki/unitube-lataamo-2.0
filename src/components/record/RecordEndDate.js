@@ -14,10 +14,11 @@ const RecordEndDate = ({ endDate, onChange, message, disabled = false }) => {
   const id = useId();
 
   const calendarOpenDate = (() => {
-    if (endDate > addMonths(new Date(), DELETION_DATE_MIN_MONTHS)) {
-      return endDate;
+    const monthsFromNow = addMonths(new Date(), DELETION_DATE_MIN_MONTHS);
+    if (new Date(endDate) > monthsFromNow) {
+      return new Date(endDate);
     }
-    return addMonths(new Date(), DELETION_DATE_MIN_MONTHS);
+    return monthsFromNow;
   })();
 
   return (
