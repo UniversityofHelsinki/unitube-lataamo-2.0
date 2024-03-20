@@ -1,2 +1,11 @@
 .record-card-action svg {
+  margin: 0px;
+}
+
+.record-card-action {
+  font-weight: 600;
+}
+
+.record-card-action-icon-danger svg {
+  fill: var(--hy-white);
 }

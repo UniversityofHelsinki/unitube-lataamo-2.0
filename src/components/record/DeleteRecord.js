@@ -60,6 +60,7 @@ const DeleteRecord = ({ record, showLabel = true, reloadCollectionOnRemove = fal
       label={t('record_card_action_delete')}
       onClick={show}
       showLabel={showLabel}
+      variant={showLabel ? 'danger' : 'link'}
       disabled={disabled}
     />
   );
