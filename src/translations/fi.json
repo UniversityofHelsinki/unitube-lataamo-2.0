@@ -25,6 +25,7 @@
   "record_license_select_default": "Valitse",
   "record_collection_select_default": "Valitse",
   "record_collection_header": "Kokoelma",
+  "record_collection_move": "Siirry",
   "record_collections_help_label": "Tietoa tallenteen kokoelmista",
   "record_collections_help_content": "Jotta tallenteen voi julkaista, se pitää liittää johonkin kokoelmaan. Tallenteiden näkyvyys ja hallintaoikeudet määritellään myös kokoelmien kautta. Voit valita jonkin kokoelman, johon sinulla on hallintaoikeudet.",
   "clipboard_copy": "Kopioi",

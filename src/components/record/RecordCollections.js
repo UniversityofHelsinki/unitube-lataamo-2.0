@@ -48,7 +48,7 @@ const RecordCollections = ({ collection, onChange, message, disabled = false }) 
                   </HelpDialog>
                   {collection !== defaultCollection?.identifier &&
                     <a href={`?collection=${collection}`} onClick={moveToCollection}>
-                      Siirry
+                      {t('record_collection_move')}
                     <LinkArrow width="1em" height="1em" aria-hidden />
                   </a>}
                 </Col>
