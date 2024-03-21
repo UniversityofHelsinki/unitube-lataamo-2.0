@@ -195,5 +195,7 @@
   "status_unlisted": "Jaettu linkillä",
   "loading": "Ladataan...",
   "record_card_details_created": "Luotu {{- created}}",
-  "collections_default": "Tallenteet"
+  "collections_default": "Tallenteet",
+  "collection_tag": "Kokoelma: {{- collection}}",
+  "collection_prefix": "Kokoelma:"
 }
