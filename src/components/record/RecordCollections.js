@@ -8,6 +8,10 @@ import { useTranslation } from 'react-i18next';
 import Loading from '../utilities/Loading';
 import HelpDialog from '../dialog/HelpDialog';
 import useCollectionDropdown from '../../hooks/collection/useCollectionDropdown';
+import { ReactComponent as LinkArrow } from '../utilities/icons/link-arrow.svg';
+import HyColors from '../utilities/HyColors';
+import useSearchParams from '../../hooks/useSearchParams';
+import useUser from '../../hooks/useUser';
 
 const translateVisibilities = (t, visibilities) => {
   return visibilities.map(visibility => t(visibility)).join(', ');
@@ -17,6 +21,15 @@ const RecordCollections = ({ collection, onChange, message, disabled = false }) 
     const id = useId();
     const { t } = useTranslation();
     const [collections, loadingCollections] = useCollectionDropdown(true);
+    const [_searchParams, setSearchParams] = useSearchParams();
+    const [user] = useUser();
+
+    const defaultCollection = collections?.find(collection => collection.title === `inbox ${user.eppn}`);
+
+    const moveToCollection = (event) => {
+      event.preventDefault();
+      setSearchParams({ collection });
+    };
 
     return (
         <Loading loading={loadingCollections}>
@@ -29,10 +42,15 @@ const RecordCollections = ({ collection, onChange, message, disabled = false }) 
                   </Col>
               </Row>
               <Row className="mb-3">
-                <Col>
+                <Col className="record-collections-middle-row">
                   <HelpDialog label={t('record_collections_help_label')}>
                     {t('record_collections_help_content')}
                   </HelpDialog>
+                  {collection !== defaultCollection?.identifier &&
+                    <a href={`?collection=${collection}`} onClick={moveToCollection}>
+                      {t('record_collection_move')}
+                    <LinkArrow width="1em" height="1em" aria-hidden />
+                  </a>}
                 </Col>
               </Row>
               <Row>
