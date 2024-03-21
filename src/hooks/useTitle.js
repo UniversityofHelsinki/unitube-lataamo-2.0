@@ -5,7 +5,7 @@ const useTitle = () => {
   const set = (value) => {
     const titleElement = document.querySelector("title");
     const newTitle = `${DEFAULT_TITLE} - ${value}`;
-    if (titleElement.innerText !== newTitle) {
+    if (titleElement && titleElement?.innerText !== newTitle) {
       titleElement.innerText = newTitle;
     }
   };
