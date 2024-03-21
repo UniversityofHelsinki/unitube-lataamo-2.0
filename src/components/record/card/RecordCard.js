@@ -31,16 +31,22 @@ const RecordCard = ({ record, onClick, selected = false }) => {
     return <Badge bg="primary">{record.series}</Badge>;
   })();
 
+  const handleClick = (event) => {
+    event.preventDefault();
+    if (onClick) {
+      onClick();
+    }
+  };
+
   return (
     <Container className="p-0">
       <Row>
         <Col className={`record-card-right-side-col ps-0 order-2 ${selectedClass}`}>
           <div className="record-card-content ps-1 pe-1">
-            <div className="record-card-content-details"
-              role="button"
-              onClick={onClick}
-              onKeyDown={onKeyDown(onClick)}
-              tabIndex={0}
+            <a className="record-card-content-details"
+              href={`?record=${record.identifier}`}
+              onClick={handleClick}
+              onKeyDown={onKeyDown(handleClick)}
               aria-labelledby={labelId}>
               <div className="record-card-content-details-top">
                 <CardTags tags={tags} />
@@ -51,7 +57,7 @@ const RecordCard = ({ record, onClick, selected = false }) => {
               <div className="record-card-content-details-bottom">
                 {!isDeleted && t('record_card_valid_until', {deletionDate: date})}
               </div>
-            </div>
+            </a>
             <div className="record-card-content-actions mt-1">
               <RecordActions record={record} />
             </div>
