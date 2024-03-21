@@ -19,12 +19,18 @@ import useCollectionModification from '../../hooks/useCollectionModification';
 import useCollectionUpdate from '../../hooks/collection/useCollectionUpdate';
 import { ProgressStatus } from '../../Constants';
 import CollectionButtons from "./CollectionButtons";
+import useTitle from '../../hooks/useTitle';
 
 const CollectionForm = () => {
+  const [setTitle] = useTitle();
   const [originalCollection, loading, reload] = useCollection(true);
   const [progress, update, resetProgress] = useCollectionUpdate();
   const [isValid, messages, validate] = useCollectionValidation(['title', 'description']);
   const [collection, onChange, modified, undo] = useCollectionModification(originalCollection, validate, resetProgress);
+
+  if (originalCollection?.title) {
+    setTitle(originalCollection.title);
+  }
 
   const users = collection?.persons || [];
 

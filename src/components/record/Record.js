@@ -17,19 +17,25 @@ import {ProgressStatus} from '../../Constants';
 import RecordTopRow from './RecordTopRow';
 import useCollections from '../../hooks/useCollections';
 import useCollection from '../../hooks/useCollection';
+import useTitle from '../../hooks/useTitle';
 
 const Record = () => {
+    const [setTitle] = useTitle();
     const [originalRecord, loading, reload] = useRecord(true);
     const [progress, save, resetProgress] = useRecordSave();
     const [_collections, _loadingCollections, reloadCollections] = useCollections();
     const [visibleCollection, _loadingVisibleCollection, reloadVisibleCollection] = useCollection();
     const [resetSubtitleDownloadLinks, setResetSubtitleDownloadLinks] = useState(false);
 
-  const [isValid, messages, validate] = useRecordValidation([
-    'title', 'description', 'deletionDate', 'license', 'subtitles'
-  ]);
-  const [record, onChange, modified, undo] = useRecordModification(originalRecord, validate, resetProgress);
-  const formRef = useRef();
+    const [isValid, messages, validate] = useRecordValidation([
+      'title', 'description', 'deletionDate', 'license', 'subtitles'
+    ]);
+    const [record, onChange, modified, undo] = useRecordModification(originalRecord, validate, resetProgress);
+    const formRef = useRef();
+
+    if (originalRecord?.title) {
+      setTitle(originalRecord.title);
+    }
 
     const resetFileFields = () => {
         if (formRef.current) {
