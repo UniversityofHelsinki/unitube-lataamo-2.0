@@ -9,16 +9,25 @@ const CollectionCard = ({ collection, onClick, selected = false}) => {
   const selectedClass = selected ? 'collection-card-selected' : '';
   const collectionHasRecords = collection.eventColumns?.length > 0;
   const labelId = useId();
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    if (onClick) {
+      onClick();
+    }
+  };
+
   return (
     <Container 
-      onClick={onClick} 
-      tabIndex={0} 
-      role="button"
-      onKeyDown={onKeyDown(onClick)}
       className={`collection-card ${selectedClass}`}
       aria-labelledby={labelId}
     >
-      <Row className="collection-card-header-row py-2">
+      <Row as="a"
+        href={`?collection=${collection.identifier}`}
+        className="collection-card-header-row py-2"
+        onClick={handleClick} 
+        onKeyDown={onKeyDown(handleClick)}
+      >
         <Col>
           <span id={labelId}>{collection.title}</span>
         </Col>

@@ -2,12 +2,17 @@
   border: 1px solid var(--hy-silver);
 }
 
-.collection-card:hover {
-  cursor: pointer;
-}
 
 .collection-card-selected {
   background-color: var(--hy-medium-silver);
+}
+
+a.collection-card-header-row:hover {
+  cursor: pointer;
+}
+a.collection-card-header-row {
+  text-decoration-line: none;
+  color: initial;
 }
 
 .collection-card-record-row {
