@@ -17,6 +17,7 @@ import RecordListActions from './RecordListActions';
 import CollectionActions from './CollectionActions';
 import { useTranslation } from 'react-i18next';
 import useVisibleRecords from '../../hooks/useVisibleRecords';
+import useTitle from '../../hooks/useTitle';
 
 const No = ({ children }) => {
   return (
@@ -48,6 +49,7 @@ const NoCollections = () => {
 
 const Left = () => {
   const [path] = useLocation();
+  const [setTitle] = useTitle();
   const [recordOptions, setRecordOptions] = useState({
     showDeleted: false,
     showRecordsInCollections: false
@@ -65,14 +67,18 @@ const Left = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const onClick = (record) => {
+  const onRecordCardClick = (record) => {
     setSearchParams({ 'record': record.identifier });
+  };
+
+  const onCollectionCardClick = (collection) => {
+    setSearchParams({ 'collection': collection.identifier });
   };
 
   const recordCards = (records || []).map((record, _i) => 
     [<RecordCard 
       key={record.identifier} 
-      onClick={() => onClick(record)} 
+      onClick={() => onRecordCardClick(record)} 
       record={record} 
       selected={record.identifier === searchParams.record }/>,
       record.identifier]
@@ -83,7 +89,7 @@ const Left = () => {
         collection={collection}
         selected={collection.identifier === searchParams.collection}
         key={collection.identifier} 
-        onClick={() => setSearchParams({ 'collection': collection.identifier })} />,
+      onClick={() => onCollectionCardClick(collection)} />,
       collection.identifier]
   );
 
