@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 import './RecordCardAction.css';
 import { Button } from 'react-bootstrap';
 
-const RecordCardAction = ({ icon, label, onClick, showLabel = true, disabled = false }) => {
+const RecordCardAction = ({ icon, label, variant = 'outline-primary', onClick, showLabel = true, disabled = false }) => {
 
   const marginClass = (() => {
     if (showLabel) {
-      return 'ms-1';
+      return 'me-1';
     }
     return '';
   })();
 
   return (
-    <Button variant="link" onClick={onClick} className="record-card-action p-0 m-0" aria-label={label} disabled={disabled}>
-      {icon}
-      <span className={marginClass}>{showLabel && label}</span>
+    <Button size="sm" variant={variant} onClick={onClick} className="record-card-action p-0 px-1 m-0" aria-label={label} disabled={disabled}>
+      <span className={`${marginClass} record-card-action-icon-${variant}`}>{icon}</span>
+      <span>{showLabel && label}</span>
     </Button>
   );
 };
@@ -25,7 +25,12 @@ RecordCardAction.propTypes = {
   label: PropTypes.string,
   onClick: PropTypes.func,
   showLabel: PropTypes.bool,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  variant: PropTypes.oneOf([
+    'primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark', 'link',
+    'outline-primary', 'outline-secondary', 'outline-success', 'outline-warning', 'outline-danger', 'outline-info', 'outline-light', 'outline-dark', 'outline-link'
+
+  ])
 };
 
 export default RecordCardAction;
