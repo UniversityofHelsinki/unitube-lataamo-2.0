@@ -16,5 +16,16 @@ export default {
   orange: '#f9a21a',
   darkOrange: '#d14600',
   green: '#96ba3c',
-  darkGreen: '#006400'
+  darkGreen: '#006400',
+  hudsBrandMain: '#0e688b',
+  hudsBrandMainLight: '#107eab',
+  hudsBrandMainActive: '#005379',
+  hudsBrandMainDark: '#003146',
+  hudsBrandMainNearlyBlack: '#000222',
+  hudsGrayscaleWhite: '#fff',
+  hudsGrayscaleLight: '#f8f8f8',
+  hudsGrayscaleMedium: '#d2d2d2',
+  hudsGrayscaleMediumDark: '#979797',
+  hudsGrayscaleDark: '#555555',
+  hudsGrayscaleBlack: '#000'
 };

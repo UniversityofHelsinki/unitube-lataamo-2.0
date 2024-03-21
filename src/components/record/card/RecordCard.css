@@ -11,6 +11,11 @@
   border-left: unset;
 }
 
+a.record-card-content-details {
+  text-decoration-line: none;
+  color: initial;
+}
+
 .record-card-content-details:hover {
   cursor: pointer;
 }
