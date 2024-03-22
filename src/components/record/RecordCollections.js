@@ -46,7 +46,7 @@ const RecordCollections = ({ collection, onChange, message, disabled = false }) 
                   <HelpDialog label={t('record_collections_help_label')}>
                     {t('record_collections_help_content')}
                   </HelpDialog>
-                  {collection !== defaultCollection?.identifier &&
+                  {collection && collection !== defaultCollection?.identifier &&
                     <a href={`?collection=${collection}`} onClick={moveToCollection}>
                       {t('record_collection_move')}
                     <LinkArrow width="1em" height="1em" aria-hidden />
