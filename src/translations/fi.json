@@ -198,5 +198,6 @@
   "record_card_details_created": "Luotu {{- created}}",
   "collections_default": "Tallenteet",
   "collection_tag": "Kokoelma: {{- collection}}",
-  "collection_prefix": "Kokoelma:"
+  "collection_prefix": "Kokoelma:",
+  "breadcrumb_navigation_label": "Breadcrumb"
 }
