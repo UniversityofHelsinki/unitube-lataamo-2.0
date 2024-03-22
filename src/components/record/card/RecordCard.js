@@ -52,7 +52,9 @@ const RecordCard = ({ record, onClick, selected = false }) => {
               href={`?record=${record.identifier}`}
               onClick={handleClick}
               onKeyDown={onKeyDown(handleClick)}
-              aria-labelledby={labelId}>
+              aria-labelledby={labelId}
+              aria-current={selected ? 'page' : false}
+            >
               <div className="record-card-content-details-top">
                 <CardTags tags={tags} />
                 <div>
