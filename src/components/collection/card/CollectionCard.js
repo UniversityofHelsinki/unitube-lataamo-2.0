@@ -27,6 +27,7 @@ const CollectionCard = ({ collection, onClick, selected = false}) => {
         className="collection-card-header-row py-2"
         onClick={handleClick} 
         onKeyDown={onKeyDown(handleClick)}
+        aria-current={selected ? 'page' : false}
       >
         <Col>
           <span id={labelId}>{collection.title}</span>
