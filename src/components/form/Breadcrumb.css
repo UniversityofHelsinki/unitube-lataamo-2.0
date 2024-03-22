@@ -16,6 +16,10 @@
   vertical-align: middle;
 }
 
+.breadcrumb-divider::before {
+  content: "/";
+}
+
 .breadcrumb ol {
   padding-left: 0px;
   list-style: none;
