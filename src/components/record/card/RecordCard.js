@@ -43,6 +43,12 @@ const RecordCard = ({ record, onClick, selected = false }) => {
     }
   };
 
+  const realDeletionDate = record.realDeletionDate && isDeleted ? (() => {
+    const date = new Date(record.realDeletionDate);
+    date.setMonth(date.getMonth());
+    return new Intl.DateTimeFormat(i18n.language, options).format(date);
+  })() : null;
+
   return (
     <Container className="p-0">
       <Row>
@@ -62,7 +68,7 @@ const RecordCard = ({ record, onClick, selected = false }) => {
                 </div>
               </div>
               <div className="record-card-content-details-bottom">
-                {!isDeleted && t('record_card_valid_until', {deletionDate: date})}
+                  {!isDeleted ? t('record_card_valid_until', {deletionDate: date})  : t('record_card_restorable_until', {realDeletionDate: realDeletionDate})}
               </div>
             </a>
             <div className="record-card-content-actions mt-1">
