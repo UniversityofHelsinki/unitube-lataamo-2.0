@@ -2,6 +2,7 @@
 }
 
 .root-main-row {
+  min-height: calc(100vh - var(--header-height));
 }
 
 .root-main-row-left-col {
