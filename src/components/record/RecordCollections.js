@@ -43,9 +43,11 @@ const RecordCollections = ({ collection, onChange, message, disabled = false }) 
               </Row>
               <Row className="mb-3">
                 <Col className="record-collections-middle-row">
-                  <HelpDialog label={t('record_collections_help_label')}>
-                    {t('record_collections_help_content')}
-                  </HelpDialog>
+                  <div>
+                    <HelpDialog label={t('record_collections_help_label')}>
+                      {t('record_collections_help_content')}
+                    </HelpDialog>
+                  </div>
                   {collection && collection !== defaultCollection?.identifier &&
                     <a href={`?collection=${collection}`} onClick={moveToCollection}>
                       {t('record_collection_move')}
