@@ -95,7 +95,8 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloa
                     <Row>
                         <Col>
                             <ul className="blockquote record-subtitle-download-link-list">
-                                {subtitles.map((subtitle, i) => (
+                                {subtitles.map((subtitle, i) =>
+                                    subtitle.filename !== 'empty.vtt' && (
                                     <li key={subtitle.id || i}>
                                         <DownloadLink onChange={onChange}  to={`${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/vttFile/` + subtitle.url} label={subtitle.filename} resetSubtitleDownloadLinks={resetSubtitleDownloadLinks} />
                                     </li>
