@@ -67,6 +67,7 @@ const RestoreRecord = ({ record }) => {
       icon={<RestoreIcon { ...iconProps } />}
       label={t('record_card_action_restore')}
       onClick={show}
+      opensDialog={true}
     />
   );
 
