@@ -15,6 +15,7 @@ import useVideos from "../../hooks/useVideos";
 const RecordStaticInformation = ({record, onChange, resetSubtitleDownloadLinks}) => {
     const videos = useVideos(record.identifier);
     const subtitles = videos?.map((video) => video.vttFile).filter(file => file !== undefined && file !== '');
+    const publishedLink = `${process.env.REACT_APP_KATSOMO_PUBLISHED_LINK_URL}${record.identifier}`;
     return (
         <Container className="ps-0">
             <Row className="mb-4">
@@ -29,7 +30,7 @@ const RecordStaticInformation = ({record, onChange, resetSubtitleDownloadLinks})
             </Row>
             <Row className="mb-4">
                 <Col>
-                    <RecordLink to="#" label={'https://unitube.it.helsinki.fi/21EC2020-3AEA-4069-A2DD-08002B30309D'}/>
+                    <RecordLink to="#" label={publishedLink}/>
                 </Col>
             </Row>
             <Row className="mb-4">
