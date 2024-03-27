@@ -37,7 +37,7 @@ const DownloadLink = ({ onChange, to, label, resetSubtitleDownloadLinks }) => {
                 <DownloadIcon width="2em" height="2em"/>
                 <a title={label} className={`ms-2 ${linkClass}`} download href={to}>{label}</a>
             </div>
-            <div>
+            <div className="record-subtitle-download-link-remove-button">
                 <RemoveSubtitleButton onClick={handleClick} markedForDeletion={markedForDeletion}/>
             </div>
         </div>
