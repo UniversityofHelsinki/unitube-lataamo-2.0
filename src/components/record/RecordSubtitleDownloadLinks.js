@@ -81,7 +81,7 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloa
     const { t } = useTranslation();
     return (
         <>
-            {subtitles && subtitles.length > 0 && (
+            {subtitles && subtitles.length > 0 && subtitles[0]?.filename !== 'empty.vtt' && (
                 <Container>
                     <Row>
                         <Col>
