@@ -3,9 +3,8 @@
 }
 
 .record-card-action {
-  font-weight: 600;
 }
 
 .record-card-action-icon-danger svg {
-  fill: var(--hy-white);
+  fill: var(--hy-light-silver);
 }
