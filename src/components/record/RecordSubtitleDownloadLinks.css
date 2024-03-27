@@ -21,8 +21,13 @@
 }
 
 .record-subtitle-download-link-item-link {
+    flex-shrink: 1;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    max-width: 160px;
+    max-width: 100%;
+}
+
+.record-subtitle-download-link-remove-button {
+    min-width: max-content;
 }
