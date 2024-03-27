@@ -1,13 +1,11 @@
 .breadcrumb .active {
   color: var(--hy-blue);
   font-weight: 500;
-  text-transform: uppercase;
 }
 
 .breadcrumb {
   color: var(--hy-silver);
   font-weight: 500;
-  text-transform: uppercase;
 }
 
 .breadcrumb-divider {

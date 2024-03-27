@@ -6,16 +6,16 @@ import useSearchParams from '../../hooks/useSearchParams';
 
 const RecordCrumb = ({ record }) => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const isActive = searchParams.record === record.identifier;
+
   const openRecord = () => {
     setSearchParams({
       record: record.identifier
     });
   };
 
-  const isActive = searchParams.record === record.identifier;
-
   return (
-    <Crumb onClick={openRecord} active={isActive}>
+    <Crumb href={`?record=${record.identifier}`} onClick={openRecord} active={isActive}>
       {record.title}
     </Crumb>
   );

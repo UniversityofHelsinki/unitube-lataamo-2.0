@@ -6,17 +6,16 @@ import useSearchParams from '../../hooks/useSearchParams';
 
 const CollectionCrumb = ({ collection }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  
+  const isActive = searchParams.collection === collection.identifier;
+
   const openCollection = () => {
     setSearchParams({
       collection: collection.identifier
     });
   };
 
-  const isActive = searchParams.collection === collection.identifier;
-
   return (
-    <Crumb onClick={openCollection} active={isActive}>
+    <Crumb href={`?collection=${collection.identifier}`} active={isActive} onClick={openCollection}>
       {collection.title}
     </Crumb>
   );
