@@ -50,7 +50,7 @@ const RecordCard = ({ record, onClick, selected = false }) => {
   })() : null;
 
   return (
-    <Container style={{ minHeight: '160px' }}>
+    <Container style={{ minHeight: '160px' }} className="border">
       <Row>
         <Col lg={4} className="px-0 text-center" style={{ overflow: 'hidden' }}>
           <div className="record-card-left-side">
