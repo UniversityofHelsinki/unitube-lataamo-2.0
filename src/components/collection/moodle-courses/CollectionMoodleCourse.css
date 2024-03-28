@@ -1,21 +1,28 @@
 .collection-moodle-course {
     border: 1px solid var(--hy-silver);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px;
 }
 
 .collection-moodle-course-label {
     color: var(--hy-black);
-    width: max-content;
+    flex-shrink: 1;
+    padding-left: 4px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
-.collection-moodle-course-remove-icon-col {
-    padding-bottom: 4px;
-    cursor: pointer;
+.collection-moodle-course-action {
+    padding-bottom: 3px;
 }
 
-.collection-moodle-course-remove-icon-col polygon {
+.collection-moodle-course-action polygon {
     fill: var(--hy-red);
 }
 
-.collection-moodle-course-disabled .collection-moodle-course-remove-icon-col polygon {
+.collection-moodle-course-disabled .collection-moodle-course-action polygon {
     fill: var(--hy-medium-silver);
 }
