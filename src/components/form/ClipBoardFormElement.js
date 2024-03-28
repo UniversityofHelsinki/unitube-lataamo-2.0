@@ -4,10 +4,10 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { useTranslation } from 'react-i18next';
 import PropTypes from "prop-types";
-import FormElementHeader from './FormElementHeader';
 import { ReactComponent as CopyIcon } from '../utilities/icons/copy.svg';
 import { Button } from 'react-bootstrap';
 import useClipboard from '../../hooks/useClipboard';
+import ElementHeader from './ElementHeader';
 
 const ClipBoardFormElement = ({ label, content, children }) => {
     const { t } = useTranslation();
@@ -18,7 +18,7 @@ const ClipBoardFormElement = ({ label, content, children }) => {
         <Container>
             <Row className="align-items-center">
                 <Col>
-                  <FormElementHeader>{label}</FormElementHeader>
+                  <ElementHeader>{label}</ElementHeader>
                 </Col>
                 <Col className="text-end pe-0">
                   <Button variant="link" aria-labelledby={labelId} onClick={() => copy(content)}>

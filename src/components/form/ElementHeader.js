@@ -2,17 +2,16 @@ import React from 'react';
 import PropTypes from "prop-types";
 import './ElementHeader.css';
 
-const ElementHeader = ({ children, label, ...rest }) => {
+const ElementHeader = ({ children, ...rest }) => {
     return (
-        <span className="element-header form-label" aria-label={label} { ...rest }>
+        <h3 className="form-label element-header" { ...rest }>
           {children}
-        </span>
+        </h3>
     );
 };
 
 ElementHeader.propTypes = {
-    children: PropTypes.any,
-    label: PropTypes.string,
+  children: PropTypes.node,
 };
 
 export default ElementHeader;

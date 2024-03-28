@@ -27,7 +27,7 @@ const RecordDownloadLinks = ({ downloadableMedia }) => {
     <Container>
       <Row>
         <Col>
-          <ElementHeader label={t('record_download_links_header')}>
+          <ElementHeader>
             {t('record_download_links_header')}
           </ElementHeader>
         </Col>

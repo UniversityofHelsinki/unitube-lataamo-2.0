@@ -1,3 +1,7 @@
 ul.toggle {
   list-style: none;
 }
+
+.form-check-label-content {
+  font-size: 1.2em;
+}
