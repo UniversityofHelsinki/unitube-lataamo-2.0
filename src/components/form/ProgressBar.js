@@ -17,7 +17,7 @@ const ProgressBar = ({ now, label, alertMessage, type, ...rest }) => {
   return (<>
         <BootstrapProgressBar ref={ref} className={`form-progress-bar ${type}`} now={now} label={`${now} %`} { ...rest } />
         <div className="form-progress-bar-information text-center">
-          <span id={id}>
+          <span id={id} aria-live="assertive">
             {label}
           </span>
         </div>

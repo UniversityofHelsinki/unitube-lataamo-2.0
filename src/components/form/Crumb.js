@@ -13,11 +13,20 @@ const Crumb = ({ children, href, onClick, active }) => {
     }
   };
 
-  const element = href && <a className="crumb" href={href} onClick={onLinkClick} onKeyDown={onKeyDown(onLinkClick)} { ...ariaCurrent }>{children}</a> || <span className="crumb crumb-disabled">{children}</span>
+  const renderAsLink = Boolean(href);
+
+  if (renderAsLink) {
+    return (
+      <a className="crumb" href={href} onClick={onLinkClick} onKeyDown={onKeyDown(onLinkClick)} { ...ariaCurrent }>
+        {active && <h2 className="crumb-heading">{children}</h2> || children}
+      </a>
+    );
+  }
 
   return (
-    element
+    <span className="crumb crumb-disabled">{children}</span>
   );
+
 };
 
 Crumb.propTypes = {

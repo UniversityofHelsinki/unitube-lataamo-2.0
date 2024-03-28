@@ -27,7 +27,7 @@ const Toggle = ({ children, labels, onSelect, selected, disabled }) => {
                       disabled={disabled}
                     />
                      <label className="form-check-label align-middle" htmlFor={`${id}-${index}`}>
-                       <ElementHeader label={labels[index]}>{labels[index]}</ElementHeader>
+                       <span className="form-check-label-content">{labels[index]}</span>
                      </label>
                    {checked && item}
                 </li>);
