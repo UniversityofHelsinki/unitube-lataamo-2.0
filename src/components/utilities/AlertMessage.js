@@ -19,7 +19,7 @@ const AlertMessage = ({ children, type, slim = false }) => {
   return (
     <div className={`alert-message ${type} ${slimClass}`}>
       <Icon />
-      <p>{children}</p>
+      <p aria-live="polite">{children}</p>
     </div>
   );
 };
