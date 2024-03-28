@@ -12,3 +12,8 @@
 a.crumb:hover {
   text-decoration: underline;
 }
+
+.crumb-heading {
+  font-size: 1em;
+  display: inline;
+}

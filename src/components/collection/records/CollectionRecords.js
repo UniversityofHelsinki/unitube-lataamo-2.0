@@ -39,7 +39,7 @@ const CollectionRecords = ({ records, disabled }) => {
     <Container className="ps-0">
       <Row>
         <Col>
-          <ElementHeader label={t('collection_form_collection_records_form_header')}>
+          <ElementHeader>
             {t('collection_form_collection_records_form_header')}
           </ElementHeader>
         </Col>
