@@ -67,10 +67,10 @@ const CollectionMoodleCourses = ({ moodleNumbers = [], onMoodleNumberChange, dis
             </Row>
             <Row className="mb-2">
                 <Col>
+                  <div className="collection-moodle-courses-input">
                     <InputField id={id} type={'text'} label={t('aaa')} placeholder={t('moodle_course_placeholder')} value={value || ''} onChange={handleMoodleInputChange} disabled={disabled} onKeyDown={onEnterAddMoodleCourse} hideMessage={true} />
-                </Col>
-                <Col sm={2} className="ps-0">
                     <Button className="btn btn-primary collection-moodle-courses-add-button" onClick={addMoodleCourse} disabled={!inputFieldContainsValidMoodleCourse}>Lisää</Button>
+                  </div>
                 </Col>
             </Row>
             <Row>

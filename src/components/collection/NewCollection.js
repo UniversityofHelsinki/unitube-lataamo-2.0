@@ -107,7 +107,7 @@ const NewCollection = () => {
                   disabled={fieldsDisabled} 
                 />
               </Col>
-              <Col>
+              <Col lg>
                 <CollectionMoodleCourses moodleNumbers={collection?.moodleNumbers} onMoodleNumberChange={(moodleNumbers) => onChange('moodleNumbers', moodleNumbers)} disabled={fieldsDisabled} /> 
               </Col>
             </Row>
