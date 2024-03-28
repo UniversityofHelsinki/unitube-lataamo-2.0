@@ -32,7 +32,7 @@ const RecordName = ({ name, onChange, message, disabled = false }) => {
                 </Row>
                 <Row>
                     <Col>
-                        <InputField value={name} placeholder={t('record_form_name_placeholder')} onChange={(e) => onChange(e.target.value)} message={message} disabled={disabled} id={id} />
+                        <InputField value={name} placeholder={t('record_form_name_placeholder')} onChange={(e) => onChange(e.target.value)} message={message} disabled={disabled} id={id} required />
                     </Col>
                 </Row>
             </Form.Group>
