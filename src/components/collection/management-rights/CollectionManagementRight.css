@@ -1,20 +1,27 @@
 .collection-management-right {
   border: 1px solid var(--hy-silver);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px;
 }
 
 .collection-management-right-label {
-  color: var(--hy-black);
-  width: max-content;
+  padding-left: 4px; 
+  flex-shrink: 1;
+  overflow: hidden;
+  text-overflow: 'ellipsis';
+  white-space: 'nowrap';
 }
 
-.collection-management-right-remove-icon-col {
-  padding-bottom: 4px;
+.collection-management-right-action {
+  padding-bottom: 3px;
 }
 
-.collection-management-right-remove-icon-col polygon {
+.collection-management-right-action polygon {
   fill: var(--hy-red);
 }
 
-.collection-management-right-disabled .collection-management-right-remove-icon-col polygon {
+.collection-management-right-disabled .collection-management-right-action polygon {
   fill: var(--hy-medium-silver);
 }

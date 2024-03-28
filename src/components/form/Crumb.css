@@ -1,14 +1,19 @@
 .crumb {
   padding: 0px;
-  text-decoration: none;
+  text-decoration: initial;
   font-weight: 500;
   color: var(--hy-blue);
 }
 
-.crumb[disabled] {
-  color: var(--hy-dark-gray);
+.crumb.crumb-disabled {
+  color: var(--hy-light-gray);
 }
 
-.crumb:hover {
+a.crumb:hover {
   text-decoration: underline;
+}
+
+.crumb-heading {
+  font-size: 1em;
+  display: inline;
 }

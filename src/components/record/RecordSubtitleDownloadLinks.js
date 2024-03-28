@@ -37,7 +37,7 @@ const DownloadLink = ({ onChange, to, label, resetSubtitleDownloadLinks }) => {
                 <DownloadIcon width="2em" height="2em"/>
                 <a title={label} className={`ms-2 ${linkClass}`} download href={to}>{label}</a>
             </div>
-            <div>
+            <div className="record-subtitle-download-link-remove-button">
                 <RemoveSubtitleButton onClick={handleClick} markedForDeletion={markedForDeletion}/>
             </div>
         </div>
@@ -81,7 +81,7 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloa
     const { t } = useTranslation();
     return (
         <>
-            {subtitles && subtitles.length > 0 && (
+            {subtitles && subtitles.length > 0 && subtitles[0]?.filename !== 'empty.vtt' && (
                 <Container>
                     <Row>
                         <Col>
@@ -95,7 +95,8 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloa
                     <Row>
                         <Col>
                             <ul className="blockquote record-subtitle-download-link-list">
-                                {subtitles.map((subtitle, i) => (
+                                {subtitles.map((subtitle, i) =>
+                                    subtitle.filename !== 'empty.vtt' && (
                                     <li key={subtitle.id || i}>
                                         <DownloadLink onChange={onChange}  to={`${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/vttFile/` + subtitle.url} label={subtitle.filename} resetSubtitleDownloadLinks={resetSubtitleDownloadLinks} />
                                     </li>

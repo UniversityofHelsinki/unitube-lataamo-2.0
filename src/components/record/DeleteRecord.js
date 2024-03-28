@@ -62,6 +62,7 @@ const DeleteRecord = ({ record, showLabel = true, reloadCollectionOnRemove = fal
       showLabel={showLabel}
       variant={showLabel ? 'danger' : 'link'}
       disabled={disabled}
+      opensDialog={true}
     />
   );
 
