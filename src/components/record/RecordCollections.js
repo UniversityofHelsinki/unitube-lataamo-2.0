@@ -70,7 +70,9 @@ const RecordCollections = ({ collection, onChange, message, disabled = false }) 
                         } 
                         value={collection}
                         message={message}
-                        disabled={disabled} />
+                        disabled={disabled}
+                        required
+                      />
                   </Col>
               </Row>
           </Container>

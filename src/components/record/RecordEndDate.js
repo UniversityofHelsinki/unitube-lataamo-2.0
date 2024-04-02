@@ -48,6 +48,7 @@ const RecordEndDate = ({ endDate, onChange, message, disabled = false }) => {
             message={message}
             disabled={disabled}
             id={id}
+            required
           />
         </Col>
       </Row>

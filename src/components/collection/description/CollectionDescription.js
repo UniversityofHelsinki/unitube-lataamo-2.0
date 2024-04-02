@@ -32,7 +32,7 @@ const CollectionDescription = ({ description, onChange, message, disabled }) => 
                 </Row>
                 <Row>
                     <Col>
-                        <TextArea id={id} value={description} onChange={changeDescription} message={message} disabled={disabled} />
+                        <TextArea id={id} value={description} onChange={changeDescription} message={message} disabled={disabled} required />
                     </Col>
                 </Row>
             </Form.Group>
@@ -44,7 +44,7 @@ CollectionDescription.propTypes = {
   description: PropTypes.string,
   onChange: PropTypes.func,
   message: PropTypes.object,
-  disabled: PropTypes.bool,
+  disabled: PropTypes.bool
 };
 
 export default CollectionDescription;

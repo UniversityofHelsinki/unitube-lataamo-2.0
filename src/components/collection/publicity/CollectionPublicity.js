@@ -35,7 +35,7 @@ const CollectionPublicity = ({ publicity, onChange, message, disabled }) => {
               </Row>
               <Row>
                   <Col>
-                    <RadioButtonGroup options={PUBLICITIES} value={publicity} onChange={changePublicity} disabled={disabled} />
+                    <RadioButtonGroup options={PUBLICITIES} value={publicity} onChange={changePublicity} disabled={disabled} required />
                   </Col>
               </Row>
           </Form.Group>
