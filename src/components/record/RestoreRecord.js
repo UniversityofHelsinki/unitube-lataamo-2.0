@@ -17,7 +17,7 @@ import useRecord from '../../hooks/useRecord';
 import useCollection from '../../hooks/useCollection';
 import useVisibleRecords from '../../hooks/useVisibleRecords';
 
-const RestoreRecord = ({ record }) => {
+const RestoreRecord = ({ record, buttonDisabled }) => {
   const { t } = useTranslation();
   const defaultCollection = useDefaultCollection();
   const [restore, progress, resetProgress] = useRecordRestore();
@@ -68,6 +68,7 @@ const RestoreRecord = ({ record }) => {
       label={t('record_card_action_restore')}
       onClick={show}
       opensDialog={true}
+      disabled={buttonDisabled}
     />
   );
 
@@ -110,6 +111,8 @@ const RestoreRecord = ({ record }) => {
 };
 
 RestoreRecord.propTypes = {
+  buttonDisabled: PropTypes.bool,
+  record: PropTypes.object
 };
 
 export default RestoreRecord;

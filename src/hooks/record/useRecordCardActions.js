@@ -4,7 +4,7 @@ import useUser from "../useUser";
 import RestoreRecord from "../../components/record/RestoreRecord";
 import DeleteRecord from "../../components/record/DeleteRecord";
 
-const useRecordActions = (record) => {
+const useRecordActions = (record, disabled = false) => {
   const [user] = useUser();
   const isDeleted = DELETED_SERIES_REG_EXP(user.eppn).test(record.series);
 
@@ -12,13 +12,13 @@ const useRecordActions = (record) => {
 
   const RestoreAction = () => {
     return (
-      <RestoreRecord record={record} />
+      <RestoreRecord record={record} buttonDisabled={disabled} />
     );
   };
 
   const DeleteAction = () => {
     return (
-      <DeleteRecord record={record} />
+      <DeleteRecord record={record} buttonDisabled={disabled} />
     );
   };
 

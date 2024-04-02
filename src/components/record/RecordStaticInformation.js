@@ -12,7 +12,7 @@ import RecordLink from './RecordLink';
 import RecordSubtitleDownloadLinks from "./RecordSubtitleDownloadLinks";
 import useVideos from "../../hooks/useVideos";
 
-const RecordStaticInformation = ({record, onChange, resetSubtitleDownloadLinks}) => {
+const RecordStaticInformation = ({ record, onChange, resetSubtitleDownloadLinks, disabled }) => {
     const videos = useVideos(record.identifier);
     const subtitles = videos?.map((video) => video.vttFile).filter(file => file !== undefined && file !== '');
     const publishedLink = `${process.env.REACT_APP_KATSOMO_PUBLISHED_LINK_URL}${record.identifier}`;
@@ -47,7 +47,7 @@ const RecordStaticInformation = ({record, onChange, resetSubtitleDownloadLinks})
                 <Row className="mb-4">
                     <Col>
                         <RecordSubtitleDownloadLinks
-                            onChange={onChange} media={record.media || []} subtitles={subtitles} resetSubtitleDownloadLinks={resetSubtitleDownloadLinks}  />
+                            onChange={onChange} media={record.media || []} subtitles={subtitles} resetSubtitleDownloadLinks={resetSubtitleDownloadLinks} disabled={disabled} />
                     </Col>
                 </Row>
             )}
@@ -58,7 +58,8 @@ const RecordStaticInformation = ({record, onChange, resetSubtitleDownloadLinks})
 RecordStaticInformation.propTypes = {
     record: PropTypes.object,
     onChange: PropTypes.func,
-    resetSubtitleDownloadLinks: PropTypes.bool
+    resetSubtitleDownloadLinks: PropTypes.bool,
+    disabled: PropTypes.bool,
 };
 
 export default RecordStaticInformation;

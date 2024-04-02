@@ -17,7 +17,7 @@ const getCollection = async (identifier) => {
   }
 };
 
-const RecordTopRow = ({ record }) => {
+const RecordTopRow = ({ record, disabled }) => {
   const [collection, setCollection] = useState({});
   const tags = useRecordTags({ ...record, series: collection.title });
 
@@ -32,7 +32,7 @@ const RecordTopRow = ({ record }) => {
     <Loading loading={!collection.title} logo={false}>
       <div className="record-top-row">
         <CardTags tags={[ ...tags ]} />
-        <RecordActions record={{ ...record, series: collection.title }} />
+        <RecordActions record={{ ...record, series: collection.title }} disabled={disabled} />
       </div>
     </Loading>
   );

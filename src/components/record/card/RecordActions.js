@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import './RecordActions.css';
 import useRecordActions from '../../../hooks/record/useRecordCardActions';
 
-const RecordActions = ({ record }) => {
-  const actions = useRecordActions(record);
+const RecordActions = ({ record, disabled }) => {
+  const actions = useRecordActions(record, disabled);
   return (<ul className="record-card-actions">
     {actions.map((Action, i) => 
       <li key={i}>
