@@ -17,7 +17,7 @@ import ElementHeader from "../form/ElementHeader";
  * @param {String} props.label - The label of the download link.
  * @returns {JSX.Element} The download link component.
  */
-const DownloadLink = ({ onChange, to, label, resetSubtitleDownloadLinks }) => {
+const DownloadLink = ({ onChange, to, label, resetSubtitleDownloadLinks, disabled }) => {
     const [markedForDeletion, setMarkedForDeletion] = useState(false);
     const linkClass = markedForDeletion ? "record-subtitle-download-link-deleted" : "record-subtitle-download-link";
 
@@ -38,7 +38,7 @@ const DownloadLink = ({ onChange, to, label, resetSubtitleDownloadLinks }) => {
                 <a title={label} className={`ms-2 ${linkClass}`} download href={to}>{label}</a>
             </div>
             <div className="record-subtitle-download-link-remove-button">
-                <RemoveSubtitleButton onClick={handleClick} markedForDeletion={markedForDeletion}/>
+                <RemoveSubtitleButton onClick={handleClick} markedForDeletion={markedForDeletion} disabled={disabled }/>
             </div>
         </div>
     );
@@ -59,13 +59,13 @@ const DownloadLink = ({ onChange, to, label, resetSubtitleDownloadLinks }) => {
  * @param {boolean} markedForDeletion - A flag indicating whether the subtitle is marked for deletion.
  * @returns {JSX.Element} The rendered RemoveSubtitleButton component.
  */
-const RemoveSubtitleButton = ({onClick, markedForDeletion }) => {
+const RemoveSubtitleButton = ({ onClick, markedForDeletion, disabled }) => {
     const { t } = useTranslation();
     const label = markedForDeletion ? t('record_subtitle_undo_button') : t('record_subtitle_delete_button');
     const iconProps = {width: "2em", height: "1.2em"};
     const icon = markedForDeletion ? <UndoIcon {...iconProps} /> : <RemoveIcon {...iconProps} />;
     return (
-        <Button className="remove-subtitle-button" onClick={onClick} variant="link">{icon}{label}</Button>
+        <Button className="remove-subtitle-button" onClick={onClick} variant="link" disabled={disabled}>{icon}{label}</Button>
     );
 };
 
@@ -77,7 +77,7 @@ const RemoveSubtitleButton = ({onClick, markedForDeletion }) => {
  * @param {function} props.onChange - The onChange event handler.
  * @returns {JSX.Element|null} The subtitle download links component.
  */
-const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloadLinks }) => {
+const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloadLinks, disabled }) => {
     const { t } = useTranslation();
     return (
         <>
@@ -98,7 +98,7 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloa
                                 {subtitles.map((subtitle, i) =>
                                     subtitle.filename !== 'empty.vtt' && (
                                     <li key={subtitle.id || i}>
-                                        <DownloadLink onChange={onChange}  to={`${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/vttFile/` + subtitle.url} label={subtitle.filename} resetSubtitleDownloadLinks={resetSubtitleDownloadLinks} />
+                                        <DownloadLink onChange={onChange}  to={`${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/vttFile/` + subtitle.url} label={subtitle.filename} resetSubtitleDownloadLinks={resetSubtitleDownloadLinks} disabled={disabled} />
                                     </li>
                                 ))}
                             </ul>
@@ -118,7 +118,8 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloa
 RecordSubtitleDownloadLinks.propTypes = {
     subtitles: PropTypes.array,
     onChange: PropTypes.func,
-    resetSubtitleDownloadLinks: PropTypes.bool
+    resetSubtitleDownloadLinks: PropTypes.bool,
+    disabled: PropTypes.bool,
 };
 
 export default RecordSubtitleDownloadLinks;

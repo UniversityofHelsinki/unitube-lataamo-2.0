@@ -18,7 +18,7 @@ import useCollections from '../../hooks/useCollections';
 import useCollection from '../../hooks/useCollection';
 import useVisibleRecords from '../../hooks/useVisibleRecords';
 
-const DeleteRecord = ({ record, showLabel = true, reloadCollectionOnRemove = false, disabled = false }) => {
+const DeleteRecord = ({ record, showLabel = true, reloadCollectionOnRemove = false, buttonDisabled = false }) => {
   const { t } = useTranslation();
   const [showForm, setShowForm] = useState(false);
   const [deleteRecord, progress, resetProgress] = useRecordDelete();
@@ -61,7 +61,7 @@ const DeleteRecord = ({ record, showLabel = true, reloadCollectionOnRemove = fal
       onClick={show}
       showLabel={showLabel}
       variant={showLabel ? 'danger' : 'link'}
-      disabled={disabled}
+      disabled={buttonDisabled}
       opensDialog={true}
     />
   );
@@ -119,7 +119,7 @@ DeleteRecord.propTypes = {
   record: PropTypes.object,
   showLabel: PropTypes.bool,
   reloadCollectionOnRemove: PropTypes.bool,
-  disabled: PropTypes.bool
+  buttonDisabled: PropTypes.bool
 };
 
 export default DeleteRecord;

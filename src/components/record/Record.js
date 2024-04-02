@@ -86,13 +86,13 @@ const Record = () => {
                         <RecordsBreadCrumb record={originalRecord} />
                       </div>
                       <div className="top-row-record-actions">
-                        <RecordTopRow record={originalRecord} />
+                        <RecordTopRow record={originalRecord} disabled={saveInProgress} />
                       </div>
                     </div>
                   </Row>
                   <Row>
                     <Col xl={5} className="ps-0">
-                      <RecordStaticInformation record={originalRecord} onChange={onChange} resetSubtitleDownloadLinks={resetSubtitleDownloadLinks}  />
+                      <RecordStaticInformation record={originalRecord} onChange={onChange} resetSubtitleDownloadLinks={resetSubtitleDownloadLinks} disabled={saveInProgress}  />
                     </Col>
                     <Col xl>
                       <RecordForm
