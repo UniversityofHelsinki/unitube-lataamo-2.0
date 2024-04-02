@@ -28,7 +28,7 @@ const RecordFile = ({ message, onChange, disabled = false }) => {
       </Row>
       <Row>
         <Col>
-          <InputField id={id} onChange={(e) => onChange(e.target.files[0])} type="file" message={message} accept={ACCEPTED_MIME_TYPES} disabled={disabled} />
+          <InputField id={id} onChange={(e) => onChange(e.target.files[0])} type="file" message={message} accept={ACCEPTED_MIME_TYPES} disabled={disabled} required />
         </Col>
       </Row>
 
