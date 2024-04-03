@@ -1,6 +1,8 @@
 import { useTranslation } from "react-i18next";
 import useUser from "../useUser";
 import HyColors from "../../../src/components/utilities/HyColors";
+import record from "../../components/record/Record";
+import useVideos from "../useVideos";
 
 
 const deleted = (user, t) => (record) => {
@@ -30,13 +32,24 @@ const expiring = (t) => (record) => {
       color: 'orange'
     };
   }
+};
+
+const cc = (t) => record => {
+  const videos = useVideos(record.identifier);
+  const subtitles = videos?.map((video) => video.vttFile).filter(file => file !== undefined && file !== '');
+  if (subtitles && subtitles.length > 0) {
+    return {
+      label: t('tag_cc'),
+      color: 'green'
+    };
+  }
 }
 
 const useRecordTags = (record) => {
   const { t } = useTranslation();
   const [user] = useUser();
 
-  const tagFunctions = [deleted(user, t), expiring(t)];
+  const tagFunctions = [deleted(user, t), expiring(t), cc(t)];
 
   const tags = tagFunctions
     .map(tagFunction => tagFunction(record))
