@@ -6,6 +6,7 @@ import ButtonRow from './ButtonRow';
 import Search from './search/Search';
 import NewRecord from '../record/NewRecord';
 import RecordActionOptions from './RecordActionOptions';
+import RecordTags from "./RecordTags";
 
 const RecordListActions = ({ options, onOptionChange }) => {
   return (
@@ -25,6 +26,11 @@ const RecordListActions = ({ options, onOptionChange }) => {
         <Row>
           <Col>
             <RecordActionOptions onOptionChange={onOptionChange} options={options} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+              <RecordTags  />
           </Col>
         </Row>
       </Container>
