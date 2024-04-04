@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
 import useUser from "../useUser";
-import HyColors from "../../../src/components/utilities/HyColors";
-import record from "../../components/record/Record";
 import useVideos from "../useVideos";
+import { STATUS } from '../../Constants.js';
+import record from "../../components/record/Record";
 
 
 const deleted = (user, t) => (record) => {
@@ -43,17 +43,47 @@ const cc = (t) => record => {
       color: 'green'
     };
   }
-}
+};
+
+
+const statusLabelMap = {
+  [STATUS.PRIVATE.toLowerCase()]: { label: 'tag_private', color: 'blue' },
+  [STATUS.PUBLISHED.toLowerCase()]: { label: 'tag_published', color: 'blue' },
+  [STATUS.UNLISTED.toLowerCase()]: { label: 'tag_unlisted', color: 'blue' },
+  [STATUS.MOODLE.toLowerCase()]: { label: 'tag_moodle', color: 'brightblue' }
+};
+
+const createStatusObject = (statusObj, t) => {
+  return {
+    label: t(statusObj.label),
+    color: statusObj.color
+  };
+};
+
+const status = (t) => record => {
+  let statuses = [];
+  if (record.visibility && record.visibility.length > 0) {
+    for (const visibility of record.visibility) {
+      const visibilityLowerCase = visibility.toLowerCase();
+      const statusObj = statusLabelMap[visibilityLowerCase];
+
+      if (statusObj) {
+        statuses.push(createStatusObject(statusObj, t));
+      }
+    }
+  }
+  return statuses;
+};
 
 const useRecordTags = (record) => {
   const { t } = useTranslation();
   const [user] = useUser();
 
-  const tagFunctions = [deleted(user, t), expiring(t), cc(t)];
+  const tagFunctions = [deleted(user, t), expiring(t), cc(t), status(t)];
 
   const tags = tagFunctions
-    .map(tagFunction => tagFunction(record))
-    .filter(tag => tag);
+      .flatMap(tagFunction => tagFunction(record))
+      .filter(tag => tag);
 
   return tags;
 };
