@@ -153,6 +153,7 @@
   "collection_validation_title_is_empty": "Nimi ei voi olla tyhjä.",
   "collection_validation_description_is_empty": "Kuvaus ei voi olla tyhjä.",
   "tag_deleted": "Poistettu",
+  "tag_processing": "Käsittelyssä",
   "search_options_show_deleted": "Näytä poistetut",
   "search_options_show_records_in_collections": "Näytä myös kokoelmiin kuuluvat tallenteet",
   "record_card_action_restore": "Palauta",

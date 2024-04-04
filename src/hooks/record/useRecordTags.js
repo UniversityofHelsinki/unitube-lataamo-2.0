@@ -34,6 +34,17 @@ const expiring = (t) => (record) => {
   }
 };
 
+const processing = (t) => (record) => {
+  const processing_record = record.processing_state === 'RUNNING';
+
+  if (processing_record) {
+    return {
+      label: t('tag_processing'),
+      color: 'orange'
+    };
+  }
+};
+
 const cc = (t) => record => {
   const videos = useVideos(record.identifier);
   const subtitles = videos?.map((video) => video.vttFile).filter(file => file !== undefined && file !== '');
@@ -49,7 +60,7 @@ const useRecordTags = (record) => {
   const { t } = useTranslation();
   const [user] = useUser();
 
-  const tagFunctions = [deleted(user, t), expiring(t), cc(t)];
+  const tagFunctions = [deleted(user, t), expiring(t), cc(t), processing(t)];
 
   const tags = tagFunctions
     .map(tagFunction => tagFunction(record))
