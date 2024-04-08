@@ -78,15 +78,28 @@ const Left = () => {
     setSearchParams({ 'collection': collection.identifier });
   };
 
+  console.log(records);
+
+  /**
+   * Filters an array of records based on the provided search value.
+   * If no search value is provided or if the search value is empty or whitespace,
+   * the original array of records is returned.
+   *
+   * @param {Array} records - The array of records to filter.
+   * @param {Object} recordOptions - The options for filtering the records.
+   * @param {string} recordOptions.searchValue - The search value to match against.
+   *
+   * @returns {Array} - The filtered array of records based on the search value.
+   */
   const filterRecordsQuery = (records, recordOptions) => {
-    // Make sure recordOptions.searchValue is a string and not just whitespace
     if (typeof recordOptions?.searchValue === 'string' && recordOptions?.searchValue.trim()) {
       const searchValue = recordOptions.searchValue.toLowerCase();
-      // Always returns an array due to the filter method
-      // If no match is found, filter will return an empty array
+
       const filteredRecords = records.filter(record =>
           record?.title?.toLowerCase().includes(searchValue)
+          || record?.identifier?.toLowerCase() === searchValue
       );
+
       return (filteredRecords && filteredRecords.length > 0)
           ? filteredRecords
           : records.length > 0 ? [] : [];
@@ -95,6 +108,13 @@ const Left = () => {
     }
   };
 
+  /**
+   * Filter and map records to create record cards.
+   *
+   * @param {Array} records - The array of records to filter and map.
+   * @param {Object} recordOptions - The options for filtering the records.
+   * @return {Array} - The array of generated record cards.
+   */
   const recordCards = filterRecordsQuery(records || [], recordOptions).map((record, _i) =>
       [<RecordCard
           key={record.identifier}
