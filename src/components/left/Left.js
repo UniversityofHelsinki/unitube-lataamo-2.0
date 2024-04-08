@@ -52,17 +52,20 @@ const Left = () => {
   const [setTitle] = useTitle();
   const [recordOptions, setRecordOptions] = useState({
     showDeleted: false,
-    showRecordsInCollections: false
+    showRecordsInCollections: false,
+    filtered : false
   });
 
   const [records, loadingRecords, _reloadRecords] = useVisibleRecords({
     showDeleted: recordOptions.showDeleted,
     showAll: recordOptions.showRecordsInCollections,
-    load: path === '/records'
+    load: path === '/records',
+    filtered : recordOptions.filtered,
+    searchValue : recordOptions.searchValue
   });
 
   const [collections, loadingCollections] = useCollections(
-    path === '/collections' 
+    path === '/collections'
   );
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -75,20 +78,36 @@ const Left = () => {
     setSearchParams({ 'collection': collection.identifier });
   };
 
-  const recordCards = (records || []).map((record, _i) => 
-    [<RecordCard 
-      key={record.identifier} 
-      onClick={() => onRecordCardClick(record)} 
-      record={record} 
-      selected={record.identifier === searchParams.record }/>,
-      record.identifier]
-  );
+  const filterRecordsQuery = (records, recordOptions) => {
+    // Make sure recordOptions.searchValue is a string and not just whitespace
+    if (typeof recordOptions?.searchValue === 'string' && recordOptions?.searchValue.trim()) {
+      const searchValue = recordOptions.searchValue.toLowerCase();
+      // Always returns an array due to the filter method
+      // If no match is found, filter will return an empty array
+      const filteredRecords = records.filter(record =>
+          record?.title?.toLowerCase().includes(searchValue)
+      );
+      return (filteredRecords && filteredRecords.length > 0)
+          ? filteredRecords
+          : records.length > 0 ? [] : [];
+    } else {
+      return records;
+    }
+  };
 
+  const recordCards = filterRecordsQuery(records || [], recordOptions).map((record, _i) =>
+      [<RecordCard
+          key={record.identifier}
+          onClick={() => onRecordCardClick(record)}
+          record={record}
+          selected={record.identifier === searchParams.record }/>,
+        record.identifier]
+  );
   const collectionCards = (collections || []).map((collection, i) =>
-    [<CollectionCard 
+    [<CollectionCard
         collection={collection}
         selected={collection.identifier === searchParams.collection}
-        key={collection.identifier} 
+        key={collection.identifier}
       onClick={() => onCollectionCardClick(collection)} />,
       collection.identifier]
   );
