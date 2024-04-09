@@ -25,7 +25,7 @@ const Search = ({ options, onOptionChange }) => {
       if (onOptionChange) {
         onOptionChange({
           ...options,
-          filtered: searchValue !== '' ? true : false,
+          filtered: searchValue !== '',
           searchValue
         });
       }
