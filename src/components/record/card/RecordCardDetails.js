@@ -25,7 +25,11 @@ const RecordCardDetails = ({ record, labelId, deleted }) => {
         {t('record_card_details_created', { created })}
       </p>
       <p title={record.description}>
-        {record.description}
+          {record.highlightedDescription ? (
+              <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(record.highlightedDescription)}}></p>
+          ) : (
+              <p>{record.description}</p>
+          )}
       </p>
     </>
   );
