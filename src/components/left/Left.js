@@ -178,11 +178,11 @@ const Left = () => {
                 if (listElements[path].length > 0) {
                   return listElements[path];
                 }
-                return [
+                return [[
                   <React.Fragment key="empty">
                     {emptyElements[path]}
                   </React.Fragment>
-                ];
+                ]];
               })()}
             </LeftList>
           </Loading>
