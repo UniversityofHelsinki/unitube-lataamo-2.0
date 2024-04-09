@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import {ReactComponent as SearchIcon} from '../../utilities/icons/search.svg';
+import {ReactComponent as RemoveIcon} from '../../utilities/icons/remove.svg';
 import './Search.css';
 import {Form, InputGroup} from 'react-bootstrap';
 import {useTranslation} from "react-i18next";
@@ -44,14 +45,20 @@ const Search = ({ options, onOptionChange }) => {
     setSearchValue(event.target.value);
   };
 
+  const handleClear = () => {
+    setSearchValue('');
+  };
+
   return (
       <Container>
         <Row>
           <Col className="no-padding">
             <InputGroup className="search">
               <Form.Control placeholder={t('search_videos')} aria-label={t('search_videos')}
-                            value={searchValue} onChange={handleSearchInputChange}  />
-              <InputGroup.Text><SearchIcon width="20px" height="20px"/></InputGroup.Text>
+                            value={searchValue} onChange={handleSearchInputChange}/>
+              <InputGroup.Text>
+                <RemoveIcon width="20px" height="20px" onClick={handleClear} className={searchValue ? '' : 'disabled-icon'} ></RemoveIcon>
+              </InputGroup.Text>
             </InputGroup>
           </Col>
         </Row>

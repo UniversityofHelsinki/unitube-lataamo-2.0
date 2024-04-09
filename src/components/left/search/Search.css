@@ -17,6 +17,10 @@
     transition: none;
 }
 
+.disabled-icon {
+  pointer-events: none;
+}
+
 .search input:focus-visible + .input-group-text {
   outline: 2px solid var(--hy-blue);
   border: 0px;

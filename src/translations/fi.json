@@ -202,5 +202,6 @@
   "collections_default": "Tallenteet",
   "collection_tag": "Kokoelma: {{- collection}}",
   "collection_prefix": "Kokoelma:",
-  "breadcrumb_navigation_label": "Breadcrumb"
+  "breadcrumb_navigation_label": "Breadcrumb",
+  "clear_search" : "Tyhjennä"
 }
