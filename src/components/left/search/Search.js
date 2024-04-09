@@ -14,13 +14,29 @@ const Search = ({ options, onOptionChange }) => {
   const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
-    if (onOptionChange) {
-      onOptionChange({
-        ...options,
-        filtered: searchValue !== '' ? true : false,
-        searchValue
-      });
+    // clear previous timeout if any
+    let timeoutId = null;
+    if (timeoutId) {
+      clearTimeout(timeoutId);
     }
+
+    // create new timeout
+    timeoutId = setTimeout(() => {
+      if (onOptionChange) {
+        onOptionChange({
+          ...options,
+          filtered: searchValue !== '' ? true : false,
+          searchValue
+        });
+      }
+    }, 500); // change 500 to the number of milliseconds you want to wait after each keystroke
+
+    // cleanup function
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
   }, [searchValue]);
 
 
