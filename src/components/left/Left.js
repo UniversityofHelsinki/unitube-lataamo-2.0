@@ -78,8 +78,6 @@ const Left = () => {
     setSearchParams({ 'collection': collection.identifier });
   };
 
-  console.log(records);
-
   /**
    * Filters an array of records based on the provided search value.
    * If no search value is provided or if the search value is empty or whitespace,
