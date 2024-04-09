@@ -145,5 +145,7 @@
   "record_thumbnail_alt_text": "Thumbnail of",
   "record_card_valid_until" : "Valid until {{- deletionDate}}",
   "tag_expiring": "Expiring",
-  "record_card_details_created": "Created {{- created}}"
+  "record_card_details_created": "Created {{- created}}",
+  "search_options_filter_records_in_collections": "???",
+  "search_videos" : "???"
 }

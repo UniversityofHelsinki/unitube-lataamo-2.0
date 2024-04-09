@@ -6,17 +6,18 @@ import Row from 'react-bootstrap/Row';
 import {ReactComponent as SearchIcon} from '../../utilities/icons/search.svg';
 import './Search.css';
 import {Form, InputGroup} from 'react-bootstrap';
-import {useSelector} from "react-redux";
+import {useTranslation} from "react-i18next";
+
 
 const Search = ({ options, onOptionChange }) => {
+  const { t } = useTranslation();
   const [searchValue, setSearchValue] = useState('');
-  const records = useSelector((state) => state.records.records);
 
   useEffect(() => {
     if (onOptionChange) {
       onOptionChange({
         ...options,
-        filtered: true,
+        filtered: searchValue !== '' ? true : false,
         searchValue
       });
     }
@@ -32,7 +33,7 @@ const Search = ({ options, onOptionChange }) => {
         <Row>
           <Col className="no-padding">
             <InputGroup className="search">
-              <Form.Control placeholder="Hae" aria-label="Hae"
+              <Form.Control placeholder={t('search_videos')} aria-label={t('search_videos')}
                             value={searchValue} onChange={handleSearchInputChange}  />
               <InputGroup.Text><SearchIcon width="20px" height="20px"/></InputGroup.Text>
             </InputGroup>
