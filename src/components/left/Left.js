@@ -97,12 +97,14 @@ const Left = () => {
 
       const filteredRecords = records.filter(record =>
           record?.title?.toLowerCase().includes(searchValue)
+          || record?.description?.toLowerCase().includes(searchValue)
           || record?.identifier?.toLowerCase() === searchValue
+          || record?.duration === searchValue
       );
 
       return (filteredRecords && filteredRecords.length > 0)
           ? filteredRecords
-          : records.length > 0 ? [] : [];
+          : [];
     } else {
       return records;
     }
