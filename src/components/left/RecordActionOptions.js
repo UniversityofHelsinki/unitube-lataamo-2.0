@@ -9,8 +9,6 @@ import { useTranslation } from 'react-i18next';
 import CheckBox from '../form/CheckBox';
 
 const RecordActionOptions = ({ onOptionChange, options }) => {
-  console.log(options);
-
   const { t } = useTranslation();
   const onChange = (key) => {
     if (onOptionChange) {
