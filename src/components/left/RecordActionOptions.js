@@ -39,7 +39,8 @@ RecordActionOptions.propTypes = {
   onOptionChange: PropTypes.func,
   options: PropTypes.shape({
     showDeleted: PropTypes.bool,
-    showRecordsInCollections: PropTypes.bool
+    showRecordsInCollections: PropTypes.bool,
+    filtered: PropTypes.bool
   })
 };
 
