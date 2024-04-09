@@ -1,4 +1,5 @@
 import React from 'react';
+import DOMPurify from 'dompurify';
 import PropTypes from 'prop-types';
 import './RecordCardDetails.css';
 import { useTranslation } from 'react-i18next';
@@ -13,10 +14,14 @@ const RecordCardDetails = ({ record, labelId, deleted }) => {
 
   return (
     <>
-      <strong id={labelId} className={deletedClass} title={record.title}>
-        {record.title}
-      </strong>
-      <p className="record-card-details-created" title={record.created}>
+        <strong id={labelId} className={deletedClass} title={record.title}>
+            {record.highlightedTitle ? (
+                <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(record.highlightedTitle)}}></p>
+            ) : (
+                <p>{record.title}</p>
+            )}
+        </strong>
+        <p className="record-card-details-created" title={record.created}>
         {t('record_card_details_created', { created })}
       </p>
       <p title={record.description}>

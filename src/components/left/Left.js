@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DOMPurify from 'dompurify';
 import PropTypes from 'prop-types';
 import './Left.css';
 import Col from 'react-bootstrap/Col';
@@ -89,6 +90,7 @@ const Left = () => {
    *
    * @returns {Array} - The filtered array of records based on the search value.
    */
+  /*
   const filterRecordsQuery = (records, recordOptions) => {
     if (typeof recordOptions?.searchValue === 'string' && recordOptions?.searchValue.trim()) {
       const searchValue = recordOptions.searchValue.toLowerCase();
@@ -107,6 +109,48 @@ const Left = () => {
       return records;
     }
   };
+   */
+
+  const filterRecordsQuery = (records, recordOptions) => {
+    if (typeof recordOptions?.searchValue === 'string' && recordOptions?.searchValue.trim()) {
+      const sanitizedSearchValue = DOMPurify.sanitize(recordOptions.searchValue.toLowerCase());
+
+      const filteredRecords = records.map(record => {
+        const { title, description, identifier, duration } = record;
+        const highlightedTitle = highlightMatch(title, sanitizedSearchValue);
+        const highlightedDescription = highlightMatch(description, sanitizedSearchValue);
+        const highlightedIdentifier = highlightMatch(identifier, sanitizedSearchValue);
+        const highlightedDuration = highlightMatch(duration, sanitizedSearchValue);
+
+        return {
+          ...record,
+          highlightedTitle,
+          highlightedDescription,
+          highlightedIdentifier,
+          highlightedDuration
+        };
+      }).filter(record =>
+          record?.title?.toLowerCase().includes(sanitizedSearchValue)
+          || record?.description?.toLowerCase().includes(sanitizedSearchValue)
+          || record?.identifier?.toLowerCase() === sanitizedSearchValue
+          || record?.duration === sanitizedSearchValue
+      );
+
+      console.log(filteredRecords);
+
+      return filteredRecords;
+    } else {
+      return records;
+    }
+  };
+
+  const highlightMatch = (text, searchValue) => {
+    if (!text) return null;
+
+    const regex = new RegExp(`(${searchValue})`, 'gi');
+    return text.replace(regex, '<span style="color: #0074D9">$1</span>');
+  };
+
 
   /**
    * Filter and map records to create record cards.
