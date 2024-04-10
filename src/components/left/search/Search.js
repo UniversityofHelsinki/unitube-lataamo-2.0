@@ -39,22 +39,28 @@ const Search = ({ options, onOptionChange }) => {
       <Container>
         <Row>
           <Col className="no-padding">
-            <InputGroup className="search">
-              <Form.Control
-                  placeholder={t('search_videos')}
-                  aria-label={t('search_videos')}
-                  value={searchValue}
-                  onChange={handleSearchInputChange}
-              />
-              {searchValue && (
-                  <InputGroup.Text className="removeIconContainer">
-                    <RemoveIcon width="20px" height="20px" onClick={handleClear} />
-                  </InputGroup.Text>
-              )}
-              <InputGroup.Text className="searchIconContainer">
-                <SearchIcon width="20px" height="20px" />
-              </InputGroup.Text>
-            </InputGroup>
+            <div role="search">
+              <label htmlFor="search-videos" className="visually-hidden">{t('search_videos')}</label>
+              <InputGroup className="search">
+                <Form.Control
+                    placeholder={t('search_videos')}
+                    aria-label={t('search_videos')}
+                    value={searchValue}
+                    onChange={handleSearchInputChange}
+                    id="search-videos"
+                />
+                {searchValue && (
+                    <InputGroup.Text className="removeIconContainer">
+                      <button onClick={handleClear} aria-label={t('clear_search')}>
+                        <RemoveIcon width="20px" height="20px" />
+                      </button>
+                    </InputGroup.Text>
+                )}
+                <InputGroup.Text className="searchIconContainer">
+                  <SearchIcon width="20px" height="20px" />
+                </InputGroup.Text>
+              </InputGroup>
+            </div>
           </Col>
         </Row>
       </Container>

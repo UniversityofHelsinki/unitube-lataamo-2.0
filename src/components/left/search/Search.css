@@ -41,3 +41,17 @@
 .search .removeIconContainer {
   border-left: none;
 }
+
+/* New CSS: */
+.search .removeIconContainer button {
+  border: none;
+  background: none;
+  padding: 0;
+  line-height: 1;
+  overflow: visible;
+  cursor: pointer;
+}
+
+.search .removeIconContainer button:focus {
+  outline: none;
+}
