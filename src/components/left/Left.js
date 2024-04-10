@@ -19,6 +19,7 @@ import CollectionActions from './CollectionActions';
 import { useTranslation } from 'react-i18next';
 import useVisibleRecords from '../../hooks/useVisibleRecords';
 import useTitle from '../../hooks/useTitle';
+import Colors from '../../components/utilities/HyColors';
 
 const No = ({ children }) => {
   return (
@@ -79,38 +80,15 @@ const Left = () => {
     setSearchParams({ 'collection': collection.identifier });
   };
 
+
   /**
-   * Filters an array of records based on the provided search value.
-   * If no search value is provided or if the search value is empty or whitespace,
-   * the original array of records is returned.
+   * Filters an array of records based on the given options.
    *
-   * @param {Array} records - The array of records to filter.
-   * @param {Object} recordOptions - The options for filtering the records.
-   * @param {string} recordOptions.searchValue - The search value to match against.
-   *
-   * @returns {Array} - The filtered array of records based on the search value.
+   * @param {array} records - The array of records to filter.
+   * @param {object} recordOptions - The options to use for filtering.
+   * @param {string} recordOptions.searchValue - The value to search for in the records.
+   * @returns {array} - The filtered array of records.
    */
-  /*
-  const filterRecordsQuery = (records, recordOptions) => {
-    if (typeof recordOptions?.searchValue === 'string' && recordOptions?.searchValue.trim()) {
-      const searchValue = recordOptions.searchValue.toLowerCase();
-
-      const filteredRecords = records.filter(record =>
-          record?.title?.toLowerCase().includes(searchValue)
-          || record?.description?.toLowerCase().includes(searchValue)
-          || record?.identifier?.toLowerCase() === searchValue
-          || record?.duration === searchValue
-      );
-
-      return (filteredRecords && filteredRecords.length > 0)
-          ? filteredRecords
-          : [];
-    } else {
-      return records;
-    }
-  };
-   */
-
   const filterRecordsQuery = (records, recordOptions) => {
     if (typeof recordOptions?.searchValue === 'string' && recordOptions?.searchValue.trim()) {
       const sanitizedSearchValue = DOMPurify.sanitize(recordOptions.searchValue.toLowerCase());
@@ -135,9 +113,6 @@ const Left = () => {
           || record?.identifier?.toLowerCase() === sanitizedSearchValue
           || record?.duration === sanitizedSearchValue
       );
-
-      console.log(filteredRecords);
-
       return filteredRecords;
     } else {
       return records;
@@ -148,7 +123,7 @@ const Left = () => {
     if (!text) return null;
 
     const regex = new RegExp(`(${searchValue})`, 'gi');
-    return text.replace(regex, '<span style="color: #0074D9">$1</span>');
+    return text.replace(regex, `<span style="background-color: ${Colors.orange}">$1</span>`);
   };
 
 

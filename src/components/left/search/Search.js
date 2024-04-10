@@ -54,10 +54,17 @@ const Search = ({ options, onOptionChange }) => {
         <Row>
           <Col className="no-padding">
             <InputGroup className="search">
+              <InputGroup.Text>
+                <SearchIcon width="20px" height="20px"/>
+              </InputGroup.Text>
               <Form.Control placeholder={t('search_videos')} aria-label={t('search_videos')}
                             value={searchValue} onChange={handleSearchInputChange}/>
               <InputGroup.Text>
-                <RemoveIcon width="20px" height="20px" onClick={handleClear} className={searchValue ? '' : 'disabled-icon'} ></RemoveIcon>
+                {
+                    searchValue && (
+                        <RemoveIcon width="20px" height="20px" onClick={handleClear} />
+                    )
+                }
               </InputGroup.Text>
             </InputGroup>
           </Col>

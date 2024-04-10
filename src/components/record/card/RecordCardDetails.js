@@ -5,34 +5,32 @@ import './RecordCardDetails.css';
 import { useTranslation } from 'react-i18next';
 
 const RecordCardDetails = ({ record, labelId, deleted }) => {
-  const { t, i18n } = useTranslation();
-
-  const deletedClass = deleted ? 'record-card-details-deleted' : '';
-  const created = new Intl.DateTimeFormat(i18n.language, {
-    day: '2-digit', month: '2-digit', year: 'numeric'
-  }).format(new Date(record.created));
-
-  return (
-    <>
-        <strong id={labelId} className={deletedClass} title={record.title}>
-            {record.highlightedTitle ? (
-                <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(record.highlightedTitle)}}></p>
-            ) : (
-                <p>{record.title}</p>
-            )}
-        </strong>
-        <p className="record-card-details-created" title={record.created}>
-        {t('record_card_details_created', { created })}
-      </p>
-      <p title={record.description}>
-          {record.highlightedDescription ? (
-              <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(record.highlightedDescription)}}></p>
-          ) : (
-              <p>{record.description}</p>
-          )}
-      </p>
-    </>
-  );
+    const { t, i18n } = useTranslation();
+    const deletedClass = deleted ? 'record-card-details-deleted' : '';
+    const created = new Intl.DateTimeFormat(i18n.language, {
+        day: '2-digit', month: '2-digit', year: 'numeric'
+    }).format(new Date(record.created));
+    return (
+        <>
+            <strong id={labelId} className={deletedClass} title={record.title}>
+                {record.highlightedTitle ? (
+                    <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(record.highlightedTitle)}}></div>
+                ) : (
+                    <p>{record.title}</p>
+                )}
+            </strong>
+            <p className="record-card-details-created" title={record.created}>
+                {t('record_card_details_created', { created })}
+            </p>
+            <div title={record.description}>
+                {record.highlightedDescription ? (
+                    <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(record.highlightedDescription)}}></div>
+                ) : (
+                    <p>{record.description}</p>
+                )}
+            </div>
+        </>
+    );
 };
 
 RecordCardDetails.propTypes = {
