@@ -39,7 +39,7 @@
 }
 
 .search .removeIconContainer {
-  border-left: none;
+  border: none;
 }
 
 /* New CSS: */
@@ -55,3 +55,22 @@
 .search .removeIconContainer button:focus {
   outline: none;
 }
+
+.search .removeIconContainer {
+  position: absolute;
+  top: 50%;
+  right: 50px;
+  transform: translateY(-50%);
+  background-color: transparent;
+  z-index: 9999 !important; /* Add a high z-index and an important flag to override other specifications */
+}
+
+.search .searchIconContainer {
+  background-color: var(--hy-blue);
+}
+
+.search .searchIconContainer > svg path {
+  fill: var(--hy-white);
+}
+
+
