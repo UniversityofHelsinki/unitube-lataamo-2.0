@@ -11,6 +11,7 @@ import RecordActions from './RecordActions';
 import {useTranslation} from "react-i18next";
 import { Badge, Col, Container, Row } from 'react-bootstrap';
 import Thumbnail from "../../utilities/Thumbnail";
+import DOMPurify from "dompurify";
 
 const RecordCard = ({ record, onClick, selected = false }) => {
   const selectedClass = selected ? 'record-card-selected' : '';
@@ -56,17 +57,24 @@ const RecordCard = ({ record, onClick, selected = false }) => {
           <div className="record-card-left-side">
             {series}
             <div className="record-card-length">
-              <span title={record.duration}>{record.duration}</span>
+                           <span title={record.duration}>
+                                {record.highlightedDuration ? (
+                                    <span
+                                        dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(record.highlightedDuration)}}></span>
+                                ) : (
+                                    record.duration
+                                )}
+              </span>
             </div>
             <div className="record-card-thumbnail-container">
-              <Thumbnail record={record} width="160" length="160" altText="record_thumbnail_alt_text" />
+              <Thumbnail record={record} width="160" length="160" altText="record_thumbnail_alt_text"/>
             </div>
           </div>
         </Col>
         <Col lg={6} className={`${selectedClass}`}>
           <a className="record-card-content-details"
-            href={`?record=${record.identifier}`}
-            onClick={handleClick}
+             href={`?record=${record.identifier}`}
+             onClick={handleClick}
             onKeyDown={onKeyDown(handleClick)}
             aria-labelledby={labelId}
             aria-current={selected ? 'page' : false}

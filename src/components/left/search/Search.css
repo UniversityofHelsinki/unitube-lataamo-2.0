@@ -14,25 +14,30 @@
 }
 
 .search .form-control {
-    transition: none;
+  transition: none;
 }
 
 .disabled-icon {
   pointer-events: none;
 }
 
-.search input:focus-visible + .input-group-text {
+.search input:focus-visible + .removeIconContainer + .searchIconContainer {
   outline: 2px solid var(--hy-blue);
   border: 0px;
   background-color: var(--hy-blue);
   margin: 1px;
 }
 
-.search input:focus-visible + .input-group-text > svg path {
+.search input:focus-visible + .removeIconContainer + .searchIconContainer > svg path {
   fill: var(--hy-white);
 }
 
-.search .input-group-text {
+.search .input-group-text,
+.search .removeIconContainer {
   background-color: var(--hy-white);
   border-radius: 0;
+}
+
+.search .removeIconContainer {
+  border-left: none;
 }
