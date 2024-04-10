@@ -2,6 +2,8 @@ import { useTranslation } from "react-i18next";
 import useUser from "../useUser";
 import useVideos from "../useVideos";
 import { STATUS } from '../../Constants.js';
+import useRecordValidation from "../validation/record/useRecordValidation";
+import {useEffect} from "react";
 
 
 /**
@@ -53,7 +55,7 @@ const expiring = (t) => (record) => {
  * @param {Object} record - The record object to check for closed captions.
  * @returns {Object|undefined} - Returns an object with label and color properties if closed captions are available, otherwise undefined.
  */
-const cc = (t) => record => {
+const cc = (t) => (record) => {
   const videos = useVideos(record.identifier);
   const subtitles = videos?.map((video) => video.vttFile).filter(file => file !== undefined && file !== '');
   if (subtitles && subtitles.length > 0) {
@@ -108,7 +110,7 @@ const createStatusObject = (statusObj, t) => {
  * @param {Object} t - The translation helper object.
  * @returns {Array} - An array of status objects.
  */
-const status = (t) => record => {
+const status = (t) => (record) => {
   let statuses = [];
   if (record.visibility && record.visibility.length > 0) {
     for (const visibility of record.visibility) {
@@ -124,6 +126,23 @@ const status = (t) => record => {
 };
 
 /**
+ * Validates given fields
+ *
+ * @param t
+ * @param isValid
+ * @returns {(function(*): ({color: string, label: *}|undefined))|*}
+ */
+const missingDetails = (t, isValid) => (record) => {
+
+  if (!isValid) {
+    return {
+      label: t('tag_validation_failed'),
+      color: 'red'
+    };
+  }
+}
+
+/**
  * Returns an array of tags based on the provided record.
  *
  * @param {Object} record - The record to be used.
@@ -132,8 +151,16 @@ const status = (t) => record => {
 const useRecordTags = (record) => {
   const { t } = useTranslation();
   const [user] = useUser();
+  const [isValid, _messages, validate] = useRecordValidation([
+    'title', 'description', 'license', 'deletionDate'
+  ]);
+  useEffect(() => {
+    if (record) {
+      validate(record);
+    }
+  }, [record?.identifier]);
 
-  const tagFunctions = [deleted(user, t), expiring(t), cc(t), status(t)];
+  const tagFunctions = [deleted(user, t), expiring(t), cc(t), status(t), missingDetails(t, isValid)];
 
   const tags = tagFunctions
       .flatMap(tagFunction => tagFunction(record))
