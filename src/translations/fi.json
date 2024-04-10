@@ -201,7 +201,7 @@
   "collection_tag": "Kokoelma: {{- collection}}",
   "collection_prefix": "Kokoelma:",
   "breadcrumb_navigation_label": "Breadcrumb",
-  "tag_link_share": "Jaettu linkillä",
+  "tag_unlisted": "Jaettu linkillä",
   "tag_moodle": "Julkaistu Moodlessa",
   "tag_private": "Ei julkaistu",
   "tag_published": "Julkinen"
