@@ -2,7 +2,6 @@ import { useState } from "react";
 import { ProgressStatus } from "../../Constants";
 import useMonitor from "../useMonitor";
 import useUploadRecord from "../useUploadRecord";
-import useSubtitleOrder from "./useSubtitleOrder";
 import useSubtitleUpload from "./useSubtitleUpload";
 
 const useNewRecordSave = () => {
@@ -42,6 +41,8 @@ const useNewRecordSave = () => {
           percentage: 100,
         });
         await uploadSubtitles({ file: subtitles.file, identifier: eventId });
+      } else {
+        await sendRecord(record);
       }
       setProgress({
         status: ProgressStatus.NEW_RECORD.DONE,
