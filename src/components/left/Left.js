@@ -104,7 +104,7 @@ const Left = () => {
   };
 
   const actionElement = {
-    '/records': <RecordListActions options={recordOptions} onOptionChange={(options) => setRecordOptions(options)} />,
+    '/records': <RecordListActions options={recordOptions} records={records} loadingRecords={loadingRecords} onOptionChange={(options) => setRecordOptions(options)} />,
     '/collections': <CollectionActions />
   };
 

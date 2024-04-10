@@ -6,8 +6,9 @@ import ButtonRow from './ButtonRow';
 import Search from './search/Search';
 import NewRecord from '../record/NewRecord';
 import RecordActionOptions from './RecordActionOptions';
+import RecordTags from "../utilities/RecordTags";
 
-const RecordListActions = ({ options, onOptionChange }) => {
+const RecordListActions = ({ options, records, loadingRecords, onOptionChange }) => {
   return (
       <Container>
         <Row className="mb-3">
@@ -25,6 +26,11 @@ const RecordListActions = ({ options, onOptionChange }) => {
         <Row>
           <Col>
             <RecordActionOptions onOptionChange={onOptionChange} options={options} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+              <RecordTags records={records} loadingRecords={loadingRecords} />
           </Col>
         </Row>
       </Container>
