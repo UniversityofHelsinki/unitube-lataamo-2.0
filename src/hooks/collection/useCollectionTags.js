@@ -1,12 +1,12 @@
 import React from 'react';
 import { useTranslation } from "react-i18next";
 
-const visibility = (t, status, label) => (collection) => {
+const visibility = (t, status, label, color) => (collection) => {
   const hasVisibility = collection.visibility.includes(status);
   if (hasVisibility) {
     return {
       label: t(label),
-      color: 'blue'
+      color: color || 'blue'
     };
   }
   return null;
@@ -18,7 +18,7 @@ const useCollectionTags = (collection) => {
     visibility(t, 'status_private', 'tag_private'),
     visibility(t, 'status_published', 'tag_published'),
     visibility(t, 'status_unlisted', 'tag_unlisted'),
-    visibility(t, 'status_moodle', 'tag_moodle'),
+    visibility(t, 'status_moodle', 'tag_moodle', 'brightblue'),
   ];
 
   const tags = tagFunctions
