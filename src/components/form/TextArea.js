@@ -6,7 +6,7 @@ import Message from './Message';
 
 const TextArea = ({ value, message, ...rest }) => {
 
-    const isInvalid = message?.content;
+    const isInvalid = !!message?.content;
 
     return (
       <>

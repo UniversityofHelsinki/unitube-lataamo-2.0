@@ -6,7 +6,7 @@ import Message from './Message';
 
 const InputField = ({ message, hideMessage, ...rest }) => {
 
-    const isInvalid = message?.content;
+    const isInvalid = !!message?.content;
 
   return (
       <>
