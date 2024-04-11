@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row';
 import LeftList from './LeftList';
 import Navigation from './Navigation';
 import RecordCard from '../record/card/RecordCard';
-import StatisticCard  from "../record/card/StatisticCard";
+import StatisticCard  from "../statistic/card/StatisticCard";
 import Loading from '../utilities/Loading';
 import useSearchParams from '../../hooks/useSearchParams';
 import useLocation from '../../hooks/useLocation';
