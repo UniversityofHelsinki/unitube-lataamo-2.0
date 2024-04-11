@@ -6,9 +6,11 @@ import Message from './Message';
 
 const TextArea = ({ value, message, ...rest }) => {
 
+    const isInvalid = message?.content;
+
     return (
       <>
-        <Form.Control value={value} as="textarea" {...rest}></Form.Control>
+        <Form.Control value={value} as="textarea" aria-invalid={isInvalid} {...rest}></Form.Control>
         <Message type={message?.type}>{message?.content}</Message>
       </>
     );
