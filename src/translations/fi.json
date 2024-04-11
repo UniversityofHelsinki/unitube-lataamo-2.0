@@ -1,6 +1,7 @@
 {
   "navigation_records": "Tallenteet",
   "navigation_collections": "Kokoelmat",
+  "navigation_statistics": "Striimit",
   "record_form_name_header": "Nimi",
   "record_form_name_placeholder": "Nimi",
   "language_select_fi": "Suomi",

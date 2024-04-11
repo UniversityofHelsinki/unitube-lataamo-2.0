@@ -7,11 +7,12 @@ import Row from 'react-bootstrap/Row';
 import LeftList from './LeftList';
 import Navigation from './Navigation';
 import RecordCard from '../record/card/RecordCard';
+import StatisticCard  from "../record/card/StatisticCard";
 import Loading from '../utilities/Loading';
 import useSearchParams from '../../hooks/useSearchParams';
-import useRecords from '../../hooks/useRecords';
 import useLocation from '../../hooks/useLocation';
 import useCollections from '../../hooks/useCollections';
+import useStatistics from "../../hooks/useStatistics";
 import CollectionCard from '../collection/card/CollectionCard';
 import RecordListActions from './RecordListActions';
 import CollectionActions from './CollectionActions';
@@ -62,7 +63,11 @@ const Left = () => {
   });
 
   const [collections, loadingCollections] = useCollections(
-    path === '/collections' 
+    path === '/collections'
+  );
+
+  const [statistics, loadingStatistics] = useStatistics(
+      path === '/statistics'
   );
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -75,23 +80,34 @@ const Left = () => {
     setSearchParams({ 'collection': collection.identifier });
   };
 
-  const recordCards = (records || []).map((record, _i) => 
-    [<RecordCard 
-      key={record.identifier} 
-      onClick={() => onRecordCardClick(record)} 
-      record={record} 
+  const recordCards = (records || []).map((record, _i) =>
+    [<RecordCard
+      key={record.identifier}
+      onClick={() => onRecordCardClick(record)}
+      record={record}
       selected={record.identifier === searchParams.record }/>,
       record.identifier]
   );
 
+  console.log(statistics);
+
+  const statisticCards = (statistics || []).map((statistic, _i) =>
+      [<StatisticCard
+          key={statistic.start_timestamp}
+          statistic={statistic}/>,
+        statistic.start_timestamp]
+  );
+
   const collectionCards = (collections || []).map((collection, i) =>
-    [<CollectionCard 
+    [<CollectionCard
         collection={collection}
         selected={collection.identifier === searchParams.collection}
-        key={collection.identifier} 
+        key={collection.identifier}
       onClick={() => onCollectionCardClick(collection)} />,
       collection.identifier]
   );
+
+  console.log(statistics);
 
   const emptyElements = {
     '/records': <NoRecords />,
@@ -100,7 +116,8 @@ const Left = () => {
 
   const listElements = {
     '/records': recordCards,
-    '/collections': collectionCards
+    '/collections': collectionCards,
+    '/statistics': statisticCards
   };
 
   const actionElement = {
@@ -110,7 +127,8 @@ const Left = () => {
 
   const loading = {
     '/records': loadingRecords,
-    '/collections': loadingCollections
+    '/collections': loadingCollections,
+    '/statistics': loadingStatistics
   };
 
   return (
