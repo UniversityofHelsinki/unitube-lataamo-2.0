@@ -131,5 +131,8 @@
   "collection_validation_description_is_empty": "Description can not be empty.",
   "navigation_streams": "Collections",
   "record_card_valid_until" : "Valid until {{- deletionDate}}",
-  "tag_expiring": "Expiring"
+  "tag_expiring": "Expiring",
+  "search_options_filter_records_in_collections": "???",
+  "search_videos" : "???",
+  "clear_search" : "???"
 }
