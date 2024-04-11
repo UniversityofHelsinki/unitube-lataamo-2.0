@@ -155,6 +155,8 @@
   "tag_deleted": "Poistettu",
   "search_options_show_deleted": "Näytä poistetut",
   "search_options_show_records_in_collections": "Näytä myös kokoelmiin kuuluvat tallenteet",
+  "search_options_filter_records_in_collections": "Hae myös kokoelmiin kuuluvista tallenteista",
+  "search_videos" : "Hae videoista",
   "record_card_action_restore": "Palauta",
   "record_card_action_delete": "Poista",
   "record_card_valid_until": "Voimassa {{- deletionDate}} asti",
@@ -200,5 +202,6 @@
   "collections_default": "Tallenteet",
   "collection_tag": "Kokoelma: {{- collection}}",
   "collection_prefix": "Kokoelma:",
-  "breadcrumb_navigation_label": "Breadcrumb"
+  "breadcrumb_navigation_label": "Breadcrumb",
+  "clear_search" : "Tyhjennä"
 }
