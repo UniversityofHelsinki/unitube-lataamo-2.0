@@ -48,6 +48,15 @@ const NoCollections = () => {
   );
 };
 
+const NoStatistics = () => {
+  const { t } = useTranslation();
+  return (
+      <No>
+        {t('left_user_has_no_statistics')}
+      </No>
+  );
+};
+
 const Left = () => {
   const [path] = useLocation();
   const [setTitle] = useTitle();
@@ -89,13 +98,10 @@ const Left = () => {
       record.identifier]
   );
 
-  console.log(statistics);
-
   const statisticCards = (statistics || []).map((statistic, _i) =>
       [<StatisticCard
           key={statistic.start_timestamp}
-          statistic={statistic}/>,
-        statistic.start_timestamp]
+          statistic={statistic}/>]
   );
 
   const collectionCards = (collections || []).map((collection, i) =>
@@ -107,11 +113,10 @@ const Left = () => {
       collection.identifier]
   );
 
-  console.log(statistics);
-
   const emptyElements = {
     '/records': <NoRecords />,
-    '/collections': <NoCollections />
+    '/collections': <NoCollections />,
+    '/statistics': <NoStatistics />
   };
 
   const listElements = {

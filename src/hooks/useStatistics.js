@@ -18,10 +18,14 @@ const getStatistics = async () => {
 const useStatistics = (load = false) => {
   const dispatch = useDispatch();
   const statistics = useSelector(
-    (state) => state.statistics
+    (state) => {
+      return state.statistics.statistics
+    }
   );
 
   useEffect(() => {
+    console.log(load);
+    console.log(statistics);
     if (load && !statistics) {
       (async () => {
         dispatch({
