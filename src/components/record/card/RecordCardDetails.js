@@ -20,7 +20,13 @@ const RecordCardDetails = ({ record, labelId, deleted }) => {
                 )}
             </strong>
             <p className="record-card-details-created" title={record.created}>
-                {t('record_card_details_created', { created })}
+                {record.highlightedCreation ? (
+                    <span
+                        dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(t('record_card_details_created', {created: record.highlightedCreation}))}}
+                    ></span>
+                ) : (
+                    <span>{t('record_card_details_created', {created})}</span>
+                )}
             </p>
             <div title={record.description}>
                 {record.highlightedDescription ? (
