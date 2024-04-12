@@ -163,11 +163,26 @@ const Left = () => {
         record.identifier]
   );
 
-  const statisticCards = (statistics || []).map((statistic, _i) =>
-      [<StatisticCard
-          key={statistic.start_timestamp}
-          statistic={statistic}/>]
-  );
+ /**
+  * Sorts an array of statistics objects based on the start timestamps in descending order.
+  *
+  * @param {Array} statistics - The array of statistics objects to be sorted.
+  * @returns {Array} - The sorted array of statistics objects.
+  */
+ const sortedStatistics = statistics => statistics.sort((a, b) => b.start_timestamp - a.start_timestamp);
+
+
+ /**
+  * Creates an array of StatisticCard components based on the given statistics array.
+  *
+  * @param {Array} statistics - The array of statistics objects.
+  * @returns {Array} - An array of StatisticCard components.
+  */
+ const statisticCards = sortedStatistics(statistics).map((statistic, _i) => {
+    return [<StatisticCard
+        key={statistic.start_timestamp}
+        statistic={statistic}/>];
+  });
 
   const collectionCards = (collections || []).map((collection, i) =>
     [<CollectionCard
