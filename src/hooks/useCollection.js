@@ -6,36 +6,49 @@ const getCollection = async (identifier) => {
   const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/series/${identifier}`;
   try {
     const response = await fetch(URL);
-    return await response.json();
+    if (response.ok) {
+      return await response.json();
+    }
+    throw new Error(`Unexpected status code from ${URL}`, {
+      cause: { status: response.status }
+    });
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
 const useCollection = (load = false) => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
+  const [error, setError] = useState(null);
   const collection = useSelector((state) => state.collections.collection);
 
-  const thereIsCollection = collection?.identifier;
-  const collectionHasChanged = thereIsCollection && 
-    collection.identifier !== searchParams.collection;
+  const shouldLoad = searchParams.collection && 
+    (!collection || collection.identifier !== searchParams.collection) && 
+    (!error || error.identifier !== searchParams.collection);
 
   useEffect(() => {
-    if (load && (!thereIsCollection || collectionHasChanged)) {
+    if (load && shouldLoad) {
       (async () => {
-        dispatch({ 
-          type: 'SET_COLLECTION', 
-          payload: await getCollection(searchParams.collection) 
-        });
+        try {
+          dispatch({ 
+            type: 'SET_COLLECTION', 
+            payload: await getCollection(searchParams.collection) 
+          });
+          setError(null);
+        } catch (error) {
+          console.error(error.message);
+          setError({ source: error, identifier: searchParams.collection });
+        }
       })();
     }
-  }, [searchParams.collection, collection?.identifier, dispatch]);
+  }, [searchParams.collection, collection?.identifier, error, dispatch]);
 
-  const loading = !thereIsCollection || collectionHasChanged;
+  const loading = shouldLoad;
   const reload = () => dispatch({ type: 'SET_COLLECTION' });
 
-  return [collection, loading, reload];
+  return [collection, loading, reload, error];
 
 };
 
