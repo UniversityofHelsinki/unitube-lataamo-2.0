@@ -4,10 +4,13 @@ import { Col, Container, Row } from 'react-bootstrap';
 import './CollectionCard.css';
 import CollectionCardRecords from './CollectionCardRecords';
 import onKeyDown from '../../accessibility/keydown';
+import useCollectionTags from '../../../hooks/collection/useCollectionTags';
+import CardTags from '../../utilities/CardTags';
 
 const CollectionCard = ({ collection, onClick, selected = false}) => {
   const selectedClass = selected ? 'collection-card-selected' : '';
   const collectionHasRecords = collection.eventColumns?.length > 0;
+  const tags = useCollectionTags(collection);
   const labelId = useId();
 
   const handleClick = (event) => {
@@ -24,13 +27,18 @@ const CollectionCard = ({ collection, onClick, selected = false}) => {
     >
       <Row as="a"
         href={`?collection=${collection.identifier}`}
-        className="collection-card-header-row py-2"
+        className="collection-card-header-row pt-2"
         onClick={handleClick} 
         onKeyDown={onKeyDown(handleClick)}
         aria-current={selected ? 'page' : false}
       >
         <Col>
           <span id={labelId}>{collection.title}</span>
+        </Col>
+      </Row>
+      <Row className="mb-2">
+        <Col>
+          <CardTags tags={tags} />
         </Col>
       </Row>
       {collectionHasRecords && <Row className="collection-card-record-row">
