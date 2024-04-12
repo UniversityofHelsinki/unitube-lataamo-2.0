@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 const getStatistics = async () => {
   const URL = `${process.env.REACT_APP_LATAAMO_STREAMS_SERVER}/streams/v1/userStreams`;
-  console.log(URL);
   try {
     const response = await fetch(URL);
     if (response.status === 200) {
@@ -24,17 +23,18 @@ const useStatistics = (load = false) => {
   );
 
   useEffect(() => {
-    console.log(load);
-    console.log(statistics);
-    if (load && !statistics) {
+    if (load) {
       (async () => {
-        dispatch({
-          type: 'SET_STATISTICS',
-          payload: await getStatistics()
-        });
+        const newStatistics = await getStatistics();
+        if (newStatistics) {
+          dispatch({
+            type: 'SET_STATISTICS',
+            payload: newStatistics,
+          });
+        }
       })();
     }
-  }, [load, statistics]);
+  }, [load, dispatch]);
 
   const reload = () => {
     dispatch({ type: 'SET_STATISTICS' });

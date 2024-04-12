@@ -163,14 +163,18 @@ const Left = () => {
         record.identifier]
   );
 
- /**
-  * Sorts an array of statistics objects based on the start timestamps in descending order.
-  *
-  * @param {Array} statistics - The array of statistics objects to be sorted.
-  * @returns {Array} - The sorted array of statistics objects.
-  */
- const sortedStatistics = statistics => statistics.sort((a, b) => b.start_timestamp - a.start_timestamp);
-
+  /**
+   * Sorts an array of statistics objects based on the start timestamps in descending order.
+   *
+   * @param {Array} statistics - The array of statistics objects to be sorted.
+   * @returns {Array} - The sorted array of statistics objects.
+   */
+  const sortedStatistics = statistics => {
+    if (!Array.isArray(statistics)) {
+      return [];
+    }
+    return statistics.sort((a, b) => b.start_timestamp - a.start_timestamp);
+  };
 
  /**
   * Creates an array of StatisticCard components based on the given statistics array.
