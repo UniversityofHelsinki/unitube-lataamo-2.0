@@ -1,21 +1,21 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 
-const Statistic = ({ location, startTimestamp, endBeforeTimestamp }) => {
-
+const Statistic = () => {
     const statistic = useSelector(state => state.statistic);
-
-    console.log(statistic);
     return (
         <>
             <div>
-                {location}
+                {statistic.location}
             </div>
             <div>
-                {startTimestamp}
+                {statistic.formattedDate}
             </div>
             <div>
-                {endBeforeTimestamp}
+                {statistic.duration}
+            </div>
+            <div>
+                {statistic.maxViewers}
             </div>
         </>
     );

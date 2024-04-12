@@ -18,11 +18,7 @@ const Right = () => {
   } else if (searchParams.collection) {
     content = <CollectionForm />;
   } else if (searchParams.room) {
-    content = <Statistic
-        location={searchParams.room}
-        startTimestamp={searchParams.start_timestamp}
-        endBeforeTimestamp={searchParams.end_before_timestamp}
-    />;
+    content = <Statistic/>;
   }
 
   return (

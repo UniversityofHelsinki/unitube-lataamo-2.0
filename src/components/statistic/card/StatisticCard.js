@@ -54,6 +54,7 @@ const StatisticCard = ({ statistic, onClick, selected = false }) => {
         day: '2-digit', month: '2-digit', year: 'numeric'
     }).format(new Date(statistic.start_timestamp));
     const duration = getDuration(statistic.start_timestamp, statistic.end_before_timestamp);
+    statistic = {...statistic, formattedDate: formattedDate, duration : duration};
 
     const handleClick = (event) => {
         event.preventDefault();
