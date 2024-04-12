@@ -202,5 +202,12 @@
   "collections_default": "Tallenteet",
   "collection_tag": "Kokoelma: {{- collection}}",
   "collection_prefix": "Kokoelma:",
-  "breadcrumb_navigation_label": "Breadcrumb"
+  "breadcrumb_navigation_label": "Breadcrumb",
+  "record_error_page_deleted_help_label": "Tietoa poistetuista tallenteista",
+  "record_error_page_deleted_content": "Tallenne on poistettu. Tallenteen voi palauttaa alla olevasta painikkeesta.",
+  "record_error_page_http_help_label": "Tietoa odottamattomista virheistä",
+  "record_error_page_http_content": "Tallennetta ei voitu hakea. Odottamaton virhe.",
+  "record_error_page_processing_help_label": "Tietoa käsittelyssä olevista tallenteista",
+  "record_error_page_processing_content": "Tallenne on käsittelyssä. Yritä hetken kuluttua uudelleen.",
+  "record_error_page_http_not_found_content": "Tallennetta ei löydy."
 }
