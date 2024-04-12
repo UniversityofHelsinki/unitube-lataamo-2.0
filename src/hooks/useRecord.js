@@ -10,8 +10,12 @@ const getRecordEndDate = async (record) => {
     if (response.ok) {
       return await response.json();
     }
+    throw new Error(`Unexpected status code from ${URL}`, { 
+      cause: { status: response.status }
+    });
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
@@ -26,8 +30,12 @@ const getRecord = async (record) => {
         deletionDate: deletionDate.deletionDate
       };
     }
+    throw new Error(`Unexpected status code from ${URL}`, { 
+      cause: { status: response.status }
+    });
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
@@ -35,26 +43,35 @@ const useRecord = (load = false) => {
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
   const record = useSelector((state) => state.records.record);
+  const [error, setError] = useState(null);
 
-  const thereIsRecord = Boolean(record?.identifier);
-  const recordHasChanged = thereIsRecord && searchParams.record !== record.identifier;
+  const shouldLoad = searchParams.record && 
+    (!record || record.identifier !== searchParams.record) && 
+    (!error || error.identifier !== searchParams.record);
 
   useEffect(() => {
-    if (load && (!thereIsRecord || recordHasChanged)) {
+    if (load && shouldLoad) {
       (async () => {
-        dispatch({ 
-          type: 'SET_RECORD', 
-          payload: await getRecord(searchParams.record) 
-        });
+        try {
+          dispatch({ 
+            type: 'SET_RECORD', 
+            payload: await getRecord(searchParams.record) 
+          });
+          setError(null);
+        } catch (error) {
+          setError({ source: error, identifier: searchParams.record });
+        }
       })();
     }
-  }, [searchParams.record, record?.identifier, dispatch]);
+  }, [searchParams.record, record?.identifier, error, dispatch]);
 
   const reload = () => {
     dispatch({ type: 'SET_RECORD' });
+    setError(null);
   };
 
-  return [record, !thereIsRecord || recordHasChanged, reload];
+  const loading = shouldLoad;
+  return [record, loading, reload, error];
 };
 
 export default useRecord;
