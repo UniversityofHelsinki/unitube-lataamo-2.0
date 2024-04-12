@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import '../../record/card/RecordCard.css';
 import {Col, Container, Row} from 'react-bootstrap';
 import i18n from "i18next";
+import {useTranslation} from "react-i18next";
 
 /**
  * Calculates the duration between two time values and formats it as "HH:MM:SS".
@@ -42,6 +43,7 @@ const getDuration = (start, end) => {
  * @returns {JSX.Element} - The rendered StatisticCard component.
  */
 const StatisticCard = ({ statistic, onClick, selected = false }) => {
+    const { t } = useTranslation();
     const selectedClass = selected ? 'statistic-card-selected' : '';
     const formattedDate = new Intl.DateTimeFormat(i18n.language, {
         day: '2-digit', month: '2-digit', year: 'numeric'
@@ -54,16 +56,16 @@ const StatisticCard = ({ statistic, onClick, selected = false }) => {
                 <Col lg={12} className={`${selectedClass}`}>
                     <div className="statistic-card-content-details-top">
                         <div>
-                            location: {statistic.location}
+                            {formattedDate}
                         </div>
                         <div>
-                            max viewers: {statistic.maxViewers}
+                            {t('stream_location')} {statistic.location}
                         </div>
                         <div>
-                            date: {formattedDate}
+                            {t('stream_max_viewers')} {statistic.maxViewers}
                         </div>
                         <div>
-                            duration: {duration}
+                            {t('stream_duration')} {duration}
                         </div>
                     </div>
                 </Col>

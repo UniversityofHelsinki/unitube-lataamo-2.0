@@ -134,5 +134,8 @@
   "tag_expiring": "Expiring",
   "search_options_filter_records_in_collections": "???",
   "search_videos" : "???",
-  "clear_search" : "???"
+  "clear_search" : "???",
+  "stream_location" : "???",
+  "stream_max_viewers": "???",
+  "stream_duration": "???"
 }

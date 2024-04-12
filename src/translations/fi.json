@@ -204,5 +204,8 @@
   "collection_tag": "Kokoelma: {{- collection}}",
   "collection_prefix": "Kokoelma:",
   "breadcrumb_navigation_label": "Breadcrumb",
-  "clear_search" : "Tyhjennä"
+  "clear_search" : "Tyhjennä",
+  "stream_location" : "Kuvauspaikka",
+  "stream_max_viewers": "Suurin katsojamäärä",
+  "stream_duration": "Kesto"
 }

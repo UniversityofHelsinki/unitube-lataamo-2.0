@@ -149,5 +149,8 @@
   "record_card_details_created": "Created {{- created}}",
   "search_options_filter_records_in_collections": "???",
   "search_videos" : "???",
-  "clear_search" : "Clear Search"
+  "clear_search" : "Clear Search",
+  "stream_location" : "???",
+  "stream_max_viewers": "???",
+  "stream_duration": "???"
 }
