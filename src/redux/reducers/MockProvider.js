@@ -30,7 +30,15 @@ const mockCollection = {
   published: ""
 };
 
-const mockStatistic = {"username":"mansikka","room":17,"start_timestamp":1682313704000,"end_before_timestamp":1682313724000,"maxViewers":"-","location":"Bio2 1041","length":20000}
+const mockStatistic = {
+  username: 'mansikka',
+  room:17,
+  start_timestamp:1682313704000,
+  end_before_timestamp:1682313724000,
+  maxViewers:"-",
+  location:"Bio2 1041",
+  length:20000
+};
 
 
 const mockUser = {
@@ -84,7 +92,8 @@ const defaultMockReducers = {
     videos: [mockVideo]
   },
   statistics: {
-    statistics : [mockStatistic]
+    statistics : [mockStatistic],
+    statistic: mockStatistic
   }
 };
 
