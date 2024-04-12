@@ -20,13 +20,21 @@ import useCollectionUpdate from '../../hooks/collection/useCollectionUpdate';
 import { ProgressStatus } from '../../Constants';
 import CollectionButtons from "./CollectionButtons";
 import useTitle from '../../hooks/useTitle';
+import useCollections from '../../hooks/useCollections';
+import useCollectionError from '../../hooks/useCollectionError';
 
 const CollectionForm = () => {
   const [setTitle] = useTitle();
-  const [originalCollection, loading, reload] = useCollection(true);
+  const [originalCollection, loading, reload, httpError] = useCollection(true);
+  const errorPage = useCollectionError(httpError);
   const [progress, update, resetProgress] = useCollectionUpdate();
+  const [_collections, _loading, reloadCollections] = useCollections();
   const [isValid, messages, validate] = useCollectionValidation(['title', 'description']);
   const [collection, onChange, modified, undo] = useCollectionModification(originalCollection, validate, resetProgress);
+
+  if (errorPage && !loading) {
+    return errorPage;
+  }
 
   if (originalCollection?.title) {
     setTitle(originalCollection.title);
@@ -40,6 +48,7 @@ const CollectionForm = () => {
     event.preventDefault();
     await update(collection, modified);
     reload();
+    reloadCollections();
   };
 
   const saveInProgress = ![

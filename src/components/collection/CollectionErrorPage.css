@@ -1,0 +1,25 @@
+.collection-error-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.collection-error-page-content {
+  background-color: var(--hy-light-silver);
+  padding: 8px;
+}
+
+.collection-error-page > div {
+  margin-bottom: 8px;
+}
+
+.collection-error-page-content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+

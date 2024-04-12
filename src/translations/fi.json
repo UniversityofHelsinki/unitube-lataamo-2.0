@@ -153,8 +153,11 @@
   "collection_validation_title_is_empty": "Nimi ei voi olla tyhjä.",
   "collection_validation_description_is_empty": "Kuvaus ei voi olla tyhjä.",
   "tag_deleted": "Poistettu",
+  "tag_processing": "Käsittelyssä",
   "search_options_show_deleted": "Näytä poistetut",
   "search_options_show_records_in_collections": "Näytä myös kokoelmiin kuuluvat tallenteet",
+  "search_options_filter_records_in_collections": "Hae myös kokoelmiin kuuluvista tallenteista",
+  "search_videos" : "Hae videoista",
   "record_card_action_restore": "Palauta",
   "record_card_action_delete": "Poista",
   "record_card_valid_until": "Voimassa {{- deletionDate}} asti",
@@ -200,5 +203,12 @@
   "collections_default": "Tallenteet",
   "collection_tag": "Kokoelma: {{- collection}}",
   "collection_prefix": "Kokoelma:",
-  "breadcrumb_navigation_label": "Breadcrumb"
+  "breadcrumb_navigation_label": "Breadcrumb",
+  "record_error_page_deleted_help_label": "Tietoa poistetuista tallenteista",
+  "record_error_page_deleted_content": "Tallenne on poistettu. Tallenteen voi palauttaa alla olevasta painikkeesta.",
+  "record_error_page_http_help_label": "Tietoa odottamattomista virheistä",
+  "record_error_page_http_content": "Tallennetta ei voitu hakea. Odottamaton virhe.",
+  "record_error_page_processing_help_label": "Tietoa käsittelyssä olevista tallenteista",
+  "record_error_page_processing_content": "Tallenne on käsittelyssä. Yritä hetken kuluttua uudelleen.",
+  "record_error_page_http_not_found_content": "Tallennetta ei löydy."
 }

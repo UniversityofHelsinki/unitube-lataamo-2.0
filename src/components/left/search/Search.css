@@ -14,21 +14,63 @@
 }
 
 .search .form-control {
-    transition: none;
+  transition: none;
 }
 
-.search input:focus-visible + .input-group-text {
+.disabled-icon {
+  pointer-events: none;
+}
+
+.search input:focus-visible + .removeIconContainer + .searchIconContainer {
   outline: 2px solid var(--hy-blue);
   border: 0px;
   background-color: var(--hy-blue);
   margin: 1px;
 }
 
-.search input:focus-visible + .input-group-text > svg path {
+.search input:focus-visible + .removeIconContainer + .searchIconContainer > svg path {
   fill: var(--hy-white);
 }
 
-.search .input-group-text {
+.search .input-group-text,
+.search .removeIconContainer {
   background-color: var(--hy-white);
   border-radius: 0;
 }
+
+.search .removeIconContainer {
+  border: none;
+}
+
+/* New CSS: */
+.search .removeIconContainer button {
+  border: none;
+  background: none;
+  padding: 0;
+  line-height: 1;
+  overflow: visible;
+  cursor: pointer;
+}
+
+.search .removeIconContainer button:focus {
+  outline: none;
+}
+
+.search .removeIconContainer {
+  position: absolute;
+  top: 50%;
+  right: 50px;
+  transform: translateY(-50%);
+  background-color: transparent;
+  z-index: 9999 !important; /* Add a high z-index and an important flag to override other specifications */
+}
+
+.search .searchIconContainer {
+  background-color: var(--hy-blue);
+}
+
+.search .searchIconContainer > svg path {
+  fill: var(--hy-white);
+}
+
+

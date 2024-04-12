@@ -17,7 +17,7 @@ const LeftList = ({ children = [] }) => {
       <Row>
         <Col>
           <ul className="no-padding left-list-list-container">
-            {children.map(([element, identifier], i) => 
+            {children.length > 0 && children.map(([element, identifier], i) =>
               <li key={`${identifier}-${i}`} className="left-list-list-element">
                 {element}
               </li>
