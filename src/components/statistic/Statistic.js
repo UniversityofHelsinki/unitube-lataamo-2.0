@@ -4,27 +4,8 @@ import useSearchParams from "../../hooks/useSearchParams";
 import useStatistics from "../../hooks/useStatistics";
 import i18n from "i18next";
 import useAllRoomStatistics from "../../hooks/useAllRoomStatistics";
+import { getDuration } from '../utilities/timeUtils';
 
-const getDuration = (start, end) => {
-    let diff = end - start; // difference in milliseconds
-
-    let hours = Math.floor(diff / 1000 / 60 / 60);
-    diff -= hours * 1000 * 60 * 60;
-
-    let minutes = Math.floor(diff / 1000 / 60);
-    diff -= minutes * 1000 * 60;
-
-    let seconds = Math.floor(diff / 1000);
-
-    // Ensure the format "HH:MM:SS"
-    let formatted = [
-        hours.toString().padStart(2, '0'),
-        minutes.toString().padStart(2, '0'),
-        seconds.toString().padStart(2, '0')
-    ].join(':');
-
-    return formatted;
-};
 
 const CustomTooltip = ({ active, payload }) => {
     if(active && payload && payload.length) {

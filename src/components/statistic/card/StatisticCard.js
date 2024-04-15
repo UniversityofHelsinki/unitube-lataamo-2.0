@@ -7,6 +7,7 @@ import {useTranslation} from "react-i18next";
 import onKeyDown from "../../accessibility/keydown";
 import {useDispatch} from "react-redux";
 import selectStatistic from "../../../hooks/useStatistic";
+import {getDuration} from "../../utilities/timeUtils";
 
 /**
  * Calculates the duration between two time values and formats it as "HH:MM:SS".
@@ -15,26 +16,7 @@ import selectStatistic from "../../../hooks/useStatistic";
  * @param {Date} end - The end time value.
  * @returns {string} The duration in the format "HH:MM:SS".
  */
-const getDuration = (start, end) => {
-    let diff = end - start; // difference in milliseconds
 
-    let hours = Math.floor(diff / 1000 / 60 / 60);
-    diff -= hours * 1000 * 60 * 60;
-
-    let minutes = Math.floor(diff / 1000 / 60);
-    diff -= minutes * 1000 * 60;
-
-    let seconds = Math.floor(diff / 1000);
-
-    // Ensure the format "HH:MM:SS"
-    let formatted = [
-        hours.toString().padStart(2, '0'),
-        minutes.toString().padStart(2, '0'),
-        seconds.toString().padStart(2, '0')
-    ].join(':');
-
-    return formatted;
-};
 
 /**
  * StatisticCard component represents a card displaying statistics.
