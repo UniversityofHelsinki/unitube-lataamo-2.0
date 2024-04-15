@@ -1,6 +1,6 @@
 import React, {useId} from 'react';
 import PropTypes from 'prop-types';
-import '../../record/card/RecordCard.css';
+import './StatisticCard.css';
 import {Col, Container, Row} from 'react-bootstrap';
 import i18n from "i18next";
 import {useTranslation} from "react-i18next";
@@ -47,7 +47,7 @@ const StatisticCard = ({ statistic, onClick, selected = false }) => {
     };
 
     return (
-        <Container style={{ minHeight: '160px' }} className="border">
+        <Container style={{ minHeight: '100px' }} className="border">
             <Row>
                 <Col lg={12} className={`${selectedClass}`}>
                     <div className="statistic-card-content-details-top">
