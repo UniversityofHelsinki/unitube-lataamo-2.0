@@ -23,25 +23,27 @@ const useAllRoomStatistics = (start_timestamp, end_before_timestamp, room) => {
     );
 
     useEffect(() => {
+        // Check if parameters are not undefined before executing the API call
+        if (start_timestamp !== undefined && end_before_timestamp !== undefined && room !== undefined) {
             (async () => {
                 const allRoomStatistics = await getAllRoomStatistics(start_timestamp, end_before_timestamp, room);
                 if (allRoomStatistics) {
                     dispatch({
-                        type: 'SET_ALL_ROOM_STATISTICS',
+                        type: "SET_ALL_ROOM_STATISTICS",
                         payload: allRoomStatistics,
                     });
                 }
             })();
-    }, [dispatch]);
+        }
+    }, [dispatch, start_timestamp, end_before_timestamp, room]); // Add parameters to the dependency array
 
     const reload = () => {
-        dispatch({ type: 'SET_ALL_ROOM_STATISTICS' });
+        dispatch({ type: "SET_ALL_ROOM_STATISTICS" });
     };
 
     const loading = !allRoomStatistics;
 
     return [allRoomStatistics, loading, reload];
-
 };
 
 export default useAllRoomStatistics;

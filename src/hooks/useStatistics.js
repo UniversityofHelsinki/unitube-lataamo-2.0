@@ -24,8 +24,10 @@ const useStatistics = (load = false) => {
 
   useEffect(() => {
     if (load) {
+      console.log("Loading statistics..."); // Add logging
       (async () => {
         const newStatistics = await getStatistics();
+        console.log("Newly fetched statistics: ", newStatistics); // Add logging
         if (newStatistics) {
           dispatch({
             type: 'SET_STATISTICS',
@@ -41,7 +43,7 @@ const useStatistics = (load = false) => {
   };
 
   const loading = !statistics;
-
+  console.log("Returning statistics: ", statistics); // Add logging
   return [statistics, loading, reload];
 
 };
