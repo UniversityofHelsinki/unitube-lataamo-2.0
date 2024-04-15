@@ -91,7 +91,6 @@ const Left = () => {
     collectionSortOptions.descending
   );
 
-
   const [searchParams, setSearchParams] = useSearchParams();
 
   const onRecordCardClick = (record) => {
