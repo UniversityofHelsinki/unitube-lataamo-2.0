@@ -18,6 +18,7 @@ import CollectionActions from './CollectionActions';
 import { useTranslation } from 'react-i18next';
 import useVisibleRecords from '../../hooks/useVisibleRecords';
 import useTitle from '../../hooks/useTitle';
+import useRecordSort from '../../hooks/record/useRecordSort';
 
 const No = ({ children }) => {
   return (
@@ -61,6 +62,17 @@ const Left = () => {
     load: path === '/records'
   });
 
+  const [recordSortOptions, setRecordSortOptions] = useState({ 
+    criteria: 'created', 
+    descending: true 
+  });
+
+  const [sortedRecords, recordSortCriterias] = useRecordSort(
+    records,
+    recordSortOptions.criteria,
+    recordSortOptions.descending
+  );
+
   const [collections, loadingCollections] = useCollections(
     path === '/collections' 
   );
@@ -75,7 +87,7 @@ const Left = () => {
     setSearchParams({ 'collection': collection.identifier });
   };
 
-  const recordCards = (records || []).map((record, _i) => 
+  const recordCards = (sortedRecords || []).map((record, _i) => 
     [<RecordCard 
       key={record.identifier} 
       onClick={() => onRecordCardClick(record)} 
@@ -113,6 +125,20 @@ const Left = () => {
     '/collections': loadingCollections
   };
 
+  const sortOptions = {
+    '/records': recordSortOptions,
+  }[path];
+
+  const sortCriterias = {
+    '/records': recordSortCriterias,
+  }[path];
+
+  const onSortOptionChange = async (criteria, descending) => {
+    if (sortOptions === recordSortOptions) {
+      setRecordSortOptions({ ...recordSortOptions, criteria, descending });
+    }
+  };
+
   return (
     <Container className="left">
       <Row className="left-up-left-container">
@@ -134,16 +160,16 @@ const Left = () => {
       <Row className="border border-top-0 border-black left-down">
         <Col className="pe-0">
           <Loading loading={Boolean(loading[path])}>
-            <LeftList>
+            <LeftList currentSortCriteria={sortOptions?.criteria} sortCriterias={sortCriterias} descending={sortOptions?.descending} onSortOptionChange={onSortOptionChange}>
               {(() => {
                 if (listElements[path].length > 0) {
                   return listElements[path];
                 }
-                return [
+                return [[
                   <React.Fragment key="empty">
                     {emptyElements[path]}
                   </React.Fragment>
-                ];
+                ]];
               })()}
             </LeftList>
           </Loading>

@@ -200,5 +200,12 @@
   "collections_default": "Tallenteet",
   "collection_tag": "Kokoelma: {{- collection}}",
   "collection_prefix": "Kokoelma:",
-  "breadcrumb_navigation_label": "Breadcrumb"
+  "breadcrumb_navigation_label": "Breadcrumb",
+  "list_sort_menu_sort_label": "Järjestä",
+  "list_sort_menu_criteria_title": "Nimi",
+  "list_sort_menu_criteria_created": "Luotu",
+  "list_sort_menu_criteria_series": "Kokoelma",
+  "list_sort_menu_criteria_deletionDate": "Poistopäivämäärä",
+  "list_sort_menu_criteria_visibility": "Julkisuusaste",
+  "list_sort_menu_direction_button_label": "Suunta"
 }
