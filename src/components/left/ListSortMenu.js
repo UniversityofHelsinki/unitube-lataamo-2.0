@@ -43,7 +43,7 @@ const ListSortMenu = ({
         )}
       </HyMenu>
       <div>
-        <button className="list-sort-menu-scending-button" onClick={changeDirection} aria-label={t('list_sort_menu_direction_button_label')}>
+        <button className="list-sort-menu-scending-button" onClick={changeDirection} aria-label={t('list_sort_menu_direction_button_label')} title={t(`list_sort_menu_direction_${descending ? 'descending' : 'ascending'}`)}>
           <DirectionIcon />
         </button>
       </div>

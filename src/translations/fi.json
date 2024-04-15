@@ -207,5 +207,7 @@
   "list_sort_menu_criteria_series": "Kokoelma",
   "list_sort_menu_criteria_deletionDate": "Poistopäivämäärä",
   "list_sort_menu_criteria_visibility": "Julkisuusaste",
-  "list_sort_menu_direction_button_label": "Suunta"
+  "list_sort_menu_direction_button_label": "Suunta",
+  "list_sort_menu_direction_ascending": "Nouseva järjestys",
+  "list_sort_menu_direction_descending": "Laskeva järjestys"
 }

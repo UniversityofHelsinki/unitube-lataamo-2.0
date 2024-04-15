@@ -19,6 +19,7 @@ import { useTranslation } from 'react-i18next';
 import useVisibleRecords from '../../hooks/useVisibleRecords';
 import useTitle from '../../hooks/useTitle';
 import useRecordSort from '../../hooks/record/useRecordSort';
+import useCollectionSort from '../../hooks/collection/useCollectionSort';
 
 const No = ({ children }) => {
   return (
@@ -77,6 +78,18 @@ const Left = () => {
     path === '/collections' 
   );
 
+  const [collectionSortOptions, setCollectionSortOptions] = useState({
+    criteria: 'created',
+    descending: true
+  });
+
+  const [sortedCollections, collectionSortCriterias] = useCollectionSort(
+    collections, 
+    collectionSortOptions.criteria,
+    collectionSortOptions.descending
+  );
+
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const onRecordCardClick = (record) => {
@@ -96,7 +109,7 @@ const Left = () => {
       record.identifier]
   );
 
-  const collectionCards = (collections || []).map((collection, i) =>
+  const collectionCards = (sortedCollections || []).map((collection, i) =>
     [<CollectionCard 
         collection={collection}
         selected={collection.identifier === searchParams.collection}
@@ -127,15 +140,20 @@ const Left = () => {
 
   const sortOptions = {
     '/records': recordSortOptions,
+    '/collections': collectionSortOptions
   }[path];
 
   const sortCriterias = {
     '/records': recordSortCriterias,
+    '/collections': collectionSortCriterias
   }[path];
 
   const onSortOptionChange = async (criteria, descending) => {
     if (sortOptions === recordSortOptions) {
       setRecordSortOptions({ ...recordSortOptions, criteria, descending });
+    } 
+    if (sortOptions === collectionSortOptions) {
+      setCollectionSortOptions({ ...collectionSortOptions, criteria, descending });
     }
   };
 
