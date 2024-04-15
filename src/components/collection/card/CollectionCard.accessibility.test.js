@@ -7,7 +7,7 @@ import CollectionCard from './CollectionCard';
 
 describe('CollectionCard', () => {
     it('should not have any accessibility violations', async () => {
-        const collection = { identifier: 'asdf', title: 'asdf' };
+      const collection = { identifier: 'asdf', title: 'asdf', visibility: [ 'status_private', 'status_moodle' ] };
         const selected = false;
 
         const { container } = render(<CollectionCard collection={collection} onClick={() => {}} selected={selected}/>);

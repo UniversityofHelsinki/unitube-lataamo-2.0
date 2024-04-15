@@ -6,7 +6,8 @@ import { MockProvider } from '../../redux/reducers/MockProvider';
 const reducers = {
   collections: {
     collection: {
-      identifier: 'asdfasdf'
+      identifier: 'asdfasdf',
+      title: 'hei'
     }
   },
   location: {
