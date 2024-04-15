@@ -11,13 +11,10 @@ export const getUnitDuration = (totalMilliseconds, unitMilliseconds) => {
     return { unit, remaining: totalMilliseconds };
 };
 
-export const getZeroPadded = (number) => number.toString().padStart(2, '0');
-
-export const getDuration = (start, end) => {
+export const getDurationInHoursMinutesSeconds = (start, end) => {
     let { unit: hours, remaining: remAfterHours } = getUnitDuration(end - start, MILLISECONDS_IN_HOUR);
     let { unit: minutes, remaining: remAfterMinutes } = getUnitDuration(remAfterHours, MILLISECONDS_IN_MINUTE);
     let { unit: seconds } = getUnitDuration(remAfterMinutes, MILLISECONDS_IN_SECOND);
 
-    const formatted = [hours, minutes, seconds].map(getZeroPadded).join(':');
-    return formatted;
+    return `${hours} h ${minutes} min ${seconds} sec`;
 };

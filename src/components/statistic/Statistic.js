@@ -3,7 +3,7 @@ import useSearchParams from "../../hooks/useSearchParams";
 import useStatistics from "../../hooks/useStatistics";
 import i18n from "i18next";
 import useAllRoomStatistics from "../../hooks/useAllRoomStatistics";
-import {getDuration} from '../utilities/timeUtils';
+import {getDurationInHoursAndMinutes, getDurationInHoursMinutesSeconds} from '../utilities/timeUtils';
 import CustomLineChart from "./LineChart";
 import CustomStatisticTable from "./StatisticTable";
 import React from "react";
@@ -62,7 +62,7 @@ const Statistic = () => {
                 month: "2-digit",
                 year: "numeric",
             }).format(new Date(statistic.start_timestamp));
-            const duration = getDuration(
+            const duration = getDurationInHoursMinutesSeconds(
                 statistic.start_timestamp,
                 statistic.end_before_timestamp
             );
@@ -90,23 +90,17 @@ const Statistic = () => {
                 <>
                     <Container className="ps-0">
                         <Row className="mb-4">
-                            <Col>
-                                <h2>{statistic.location}</h2>
+                            <Col xs={6}>
+                                <h3>{statistic.location}</h3>
+                                <h4>{statistic.timeString}</h4>
                             </Col>
                         </Row>
                         <Row className="mb-4">
-                            <Col>
-                                <h3>{statistic.timeString}</h3>
+                            <Col xs={6}>
+                                <h5> {t('stream_duration')} {statistic.duration} </h5>
                             </Col>
-                        </Row>
-                        <Row className="mb-4">
-                            <Col>
-                                <h3> {t('stream_duration')}  {statistic.duration}</h3>
-                            </Col>
-                        </Row>
-                        <Row className="mb-4">
-                            <Col>
-                                <h3> {t('stream_max_viewers')} {statistic.maxViewers} </h3>
+                            <Col xs={6}>
+                                <h5> {t('stream_max_viewers')} {statistic.maxViewers} </h5>
                             </Col>
                         </Row>
                     </Container>

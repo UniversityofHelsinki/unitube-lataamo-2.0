@@ -7,7 +7,7 @@ import {useTranslation} from "react-i18next";
 import onKeyDown from "../../accessibility/keydown";
 import {useDispatch} from "react-redux";
 import selectStatistic from "../../../hooks/useStatistic";
-import {getDuration} from "../../utilities/timeUtils";
+import {getDuration, getDurationInHoursAndMinutes, getDurationInHoursMinutesSeconds} from "../../utilities/timeUtils";
 
 /**
  * Calculates the duration between two time values and formats it as "HH:MM:SS".
@@ -35,7 +35,7 @@ const StatisticCard = ({ statistic, onClick, selected = false }) => {
     const formattedDate = new Intl.DateTimeFormat(i18n.language, {
         day: '2-digit', month: '2-digit', year: 'numeric'
     }).format(new Date(statistic.start_timestamp));
-    const duration = getDuration(statistic.start_timestamp, statistic.end_before_timestamp);
+    const duration = getDurationInHoursMinutesSeconds(statistic.start_timestamp, statistic.end_before_timestamp);
     statistic = {...statistic, formattedDate: formattedDate, duration : duration};
 
     const handleClick = (event) => {
