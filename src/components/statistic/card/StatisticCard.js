@@ -52,9 +52,6 @@ const StatisticCard = ({ statistic, onClick, selected = false }) => {
                 <Col lg={12} className={`${selectedClass}`}>
                     <div className="statistic-card-content-details-top">
                         <div>
-                            {formattedDate}
-                        </div>
-                        <div>
                             <a className="statistic-card-content-details"
                                href={`?room=${statistic.room}&start_timestamp=${statistic.start_timestamp}&end_before_timestamp=${statistic.end_before_timestamp}`}
                                onClick={handleClick}
@@ -62,6 +59,9 @@ const StatisticCard = ({ statistic, onClick, selected = false }) => {
                                aria-labelledby={labelId}
                                aria-current={selected ? 'page' : false}
                             >{statistic.location}</a>
+                        </div>
+                        <div>
+                            {formattedDate}
                         </div>
                         <div>
                             {t('stream_max_viewers')} {statistic.maxViewers}
