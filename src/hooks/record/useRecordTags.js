@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import useUser from "../useUser";
-import useVideos from "../useVideos";
 import { STATUS } from '../../Constants.js';
 
 
@@ -54,9 +53,7 @@ const expiring = (t) => (record) => {
  * @returns {Object|undefined} - Returns an object with label and color properties if closed captions are available, otherwise undefined.
  */
 const cc = (t) => record => {
-  const videos = useVideos(record.identifier);
-  const subtitles = videos?.map((video) => video.vttFile).filter(file => file !== undefined && file !== '');
-  if (subtitles && subtitles.length > 0) {
+  if (record.subtitles) {
     return {
       label: t('tag_cc'),
       color: 'green'
