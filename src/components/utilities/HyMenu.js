@@ -99,7 +99,6 @@ const HyMenu = ({
       const focusableMenuItems = ref.current.querySelectorAll("[role=menuitem]");
       const direction = code === 'ArrowDown' ? 1 : -1;
       const nextElementPosition = (index + direction + focusableMenuItems.length) % focusableMenuItems.length;
-      console.log(nextElementPosition);
       const nextElement = focusableMenuItems[nextElementPosition];
       if (nextElement) {
         nextElement.focus();
