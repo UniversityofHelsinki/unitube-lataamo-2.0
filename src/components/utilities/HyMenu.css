@@ -80,5 +80,8 @@
 
 .hy-menu-item-selected {
   border: 2px solid black;
+}
+
+.hy-menu-item-selected button {
   color: var(--hy-black);
 }
