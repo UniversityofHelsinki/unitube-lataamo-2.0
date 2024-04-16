@@ -191,10 +191,14 @@ const Left = () => {
      * @returns {Array} - An array of StatisticCard components.
      */
     const statisticCards = sortedStatistics(statistics).map((statistic, _i) => {
-        return [<StatisticCard
+       return [<StatisticCard
             key={statistic.start_timestamp}
             onClick={() => onStatisticCardClick(statistic)}
-            selected={statistic.room === searchParams.room && statistic.start_timestamp === searchParams.start_timestamp && statistic.end_before_timestamp === searchParams.end_before_timestamp}
+            selected={
+                Number(statistic.room) === Number(searchParams.room)
+                && Number(statistic.start_timestamp) === Number(searchParams.start_timestamp)
+                && Number(statistic.end_before_timestamp) === Number(searchParams.end_before_timestamp)
+            }
             statistic={statistic}/>];
     });
 

@@ -5,9 +5,7 @@ import {Col, Container, Row} from 'react-bootstrap';
 import i18n from "i18next";
 import {useTranslation} from "react-i18next";
 import onKeyDown from "../../accessibility/keydown";
-import {useDispatch} from "react-redux";
-import selectStatistic from "../../../hooks/useStatistic";
-import {getDuration, getDurationInHoursAndMinutes, getDurationInHoursMinutesSeconds} from "../../utilities/timeUtils";
+import {getDurationInHoursMinutesSeconds} from "../../utilities/timeUtils";
 
 /**
  * Calculates the duration between two time values and formats it as "HH:MM:SS".
@@ -29,7 +27,6 @@ import {getDuration, getDurationInHoursAndMinutes, getDurationInHoursMinutesSeco
  */
 const StatisticCard = ({ statistic, onClick, selected = false }) => {
     const { t } = useTranslation();
-    const dispatch = useDispatch();
     const labelId = useId();
     const selectedClass = selected ? 'statistic-card-selected' : '';
     const formattedDate = new Intl.DateTimeFormat(i18n.language, {
@@ -40,7 +37,6 @@ const StatisticCard = ({ statistic, onClick, selected = false }) => {
 
     const handleClick = (event) => {
         event.preventDefault();
-        dispatch(selectStatistic(statistic));
         if (onClick) {
             onClick();
         }

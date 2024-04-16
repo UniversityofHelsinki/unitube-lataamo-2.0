@@ -1,6 +1,8 @@
 // timeUtils.js
 
 // these constants are the number of milliseconds in each time unit
+import i18n from "i18next";
+
 const MILLISECONDS_IN_HOUR = 3600000;
 const MILLISECONDS_IN_MINUTE = 60000;
 const MILLISECONDS_IN_SECOND = 1000;
@@ -17,4 +19,19 @@ export const getDurationInHoursMinutesSeconds = (start, end) => {
     let { unit: seconds } = getUnitDuration(remAfterMinutes, MILLISECONDS_IN_SECOND);
 
     return `${hours} h ${minutes} min ${seconds} sec`;
+};
+
+export const getTimeFormat = (start, end) => {
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+
+    const optionsDate = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    const optionsTime = { hour: '2-digit', minute: '2-digit' };
+
+    const formattedStartDate = new Intl.DateTimeFormat(i18n.language, optionsDate).format(startDate);
+    const startHours = startDate.toLocaleTimeString(i18n.language, optionsTime);
+
+    const endHours = endDate.toLocaleTimeString(i18n.language, optionsTime);
+
+    return `${formattedStartDate} ${startHours} - ${endHours}`;
 };

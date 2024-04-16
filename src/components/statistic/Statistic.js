@@ -3,7 +3,7 @@ import useSearchParams from "../../hooks/useSearchParams";
 import useStatistics from "../../hooks/useStatistics";
 import i18n from "i18next";
 import useAllRoomStatistics from "../../hooks/useAllRoomStatistics";
-import {getDurationInHoursAndMinutes, getDurationInHoursMinutesSeconds} from '../utilities/timeUtils';
+import {getDurationInHoursMinutesSeconds, getTimeFormat} from '../utilities/timeUtils';
 import CustomLineChart from "./LineChart";
 import CustomStatisticTable from "./StatisticTable";
 import React from "react";
@@ -11,21 +11,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import {useTranslation} from "react-i18next";
-
-const getTimeFormat = (start, end) => {
-    const startDate = new Date(start);
-    const endDate = new Date(end);
-
-    const optionsDate = { day: '2-digit', month: '2-digit', year: 'numeric' };
-    const optionsTime = { hour: '2-digit', minute: '2-digit' };
-
-    const formattedStartDate = new Intl.DateTimeFormat(i18n.language, optionsDate).format(startDate);
-    const startHours = startDate.toLocaleTimeString(i18n.language, optionsTime);
-
-    const endHours = endDate.toLocaleTimeString(i18n.language, optionsTime);
-
-    return `${formattedStartDate} ${startHours} - ${endHours}`;
-};
 
 const StatisticsComponents = ({ processedStatistics }) => (
     <>
@@ -44,9 +29,9 @@ const renderDataOrMessage = (data, Component) => {
 
 const Statistic = () => {
     const { t } = useTranslation();
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
     const statisticsList = useSelector((state) => state.statistics.statistics);
-    const [statistics, loadingStatistics] = useStatistics(!statisticsList);
+    const [statistics] = useStatistics(!statisticsList);
     const finalStatistics = statisticsList || statistics;
     let statistic;
     if (finalStatistics) {
