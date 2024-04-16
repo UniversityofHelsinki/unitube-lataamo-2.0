@@ -1,6 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import { MockProvider } from '../../../redux/reducers/MockProvider';
+import {render} from '@testing-library/react';
 import StatisticCard from "./StatisticCard";
 
 it('renders', () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ResponsiveContainer, LineChart, XAxis, YAxis, CartesianGrid, Line, Tooltip } from 'recharts';
-import CustomStatisticTable from "./StatisticTable";
+import CustomStatisticTable from "../table/StatisticTable";
 
 const formatTime = (timestamp) => {
     const dateObject = new Date(timestamp);
