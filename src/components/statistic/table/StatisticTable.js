@@ -1,11 +1,4 @@
-const formatTime = (timestamp) => {
-    const dateObject = new Date(timestamp);
-    const formattedTime = dateObject.toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-    });
-    return formattedTime;
-};
+import {formatTime} from '../../utilities/timeUtils'
 
 const CustomStatisticTable = ({ processedStatistics }) => {
     return (

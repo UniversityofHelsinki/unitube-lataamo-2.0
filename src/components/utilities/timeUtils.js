@@ -35,3 +35,12 @@ export const getTimeFormat = (start, end) => {
 
     return `${formattedStartDate} ${startHours} - ${endHours}`;
 };
+
+export const formatTime = (timestamp) => {
+    const dateObject = new Date(timestamp);
+    const formattedTime = dateObject.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+    });
+    return formattedTime;
+};
