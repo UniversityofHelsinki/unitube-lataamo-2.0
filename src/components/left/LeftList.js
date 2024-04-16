@@ -6,12 +6,23 @@ import Row from 'react-bootstrap/Row';
 import ListActions from './ListActions';
 import './LeftList.css';
 
-const LeftList = ({ children = [] }) => {
+const LeftList = ({ 
+  children = [],
+  currentSortCriteria,
+  sortCriterias,
+  onSortOptionChange,
+  descending
+}) => {
   return (
     <Container className="left-list-container">
       <Row className="mb-2 left-list-actions-container">
         <Col>
-          <ListActions />
+          <ListActions 
+            currentSortCriteria={currentSortCriteria}
+            sortCriterias={sortCriterias}
+            descending={descending}
+            onSortOptionChange={onSortOptionChange}
+          />
         </Col>
       </Row>
       <Row>
