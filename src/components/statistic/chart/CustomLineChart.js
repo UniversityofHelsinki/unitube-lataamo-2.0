@@ -1,6 +1,7 @@
 import React from 'react';
 import { ResponsiveContainer, LineChart, XAxis, YAxis, CartesianGrid, Line, Tooltip } from 'recharts';
 import CustomStatisticTable from "../table/StatisticTable";
+import {useTranslation} from "react-i18next";
 
 const formatTime = (timestamp) => {
     const dateObject = new Date(timestamp);
@@ -12,14 +13,15 @@ const formatTime = (timestamp) => {
 };
 
 const CustomTooltip = ({ active, payload }) => {
+    const { t } = useTranslation();
     if(active && payload && payload.length) {
         const date = new Date(payload[0].payload.timestamp);
         const formattedTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
         return (
             <div className='custom-tooltip'>
-                <p>{`Time: ${formattedTime}`}</p>
-                <p>{`Total Connections: ${payload[0].value}`}</p>
+                <p>{t('timestamp')}{`: ${formattedTime}`}</p>
+                <p>{t('total_connections')} {`: ${payload[0].value}`}</p>
             </div>
         );
     }

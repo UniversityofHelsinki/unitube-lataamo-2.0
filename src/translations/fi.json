@@ -229,5 +229,7 @@
   "stream_location" : "Kuvauspaikka",
   "stream_max_viewers": "Suurin katsojamäärä",
   "stream_duration": "Kesto",
-  "streams_data_not_available" : "Tarkempaa tietoa striimistä ei löydy"
+  "streams_data_not_available" : "Tarkempaa tietoa striimistä ei löydy",
+  "timestamp" : "aika",
+  "total_connections": "katsojia"
 }

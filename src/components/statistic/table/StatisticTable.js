@@ -1,13 +1,15 @@
 import {formatTime} from '../../utilities/timeUtils'
+import {useTranslation} from "react-i18next";
 
 const CustomStatisticTable = ({ processedStatistics }) => {
+    const { t } = useTranslation();
     return (
         <>
             <table style={{width: '100%', marginTop: '20px'}} aria-describedby="tableSummary">
                 <thead>
                 <tr style={{backgroundColor: '#f0f0f0'}}>
-                    <th style={{padding: '10px'}}>Timestamp</th>
-                    <th style={{padding: '10px'}}>Total Connections</th>
+                    <th style={{padding: '10px'}}>{t('timestamp')}</th>
+                    <th style={{padding: '10px'}}>{t('total_connections')}</th>
                 </tr>
                 </thead>
                 <tbody>

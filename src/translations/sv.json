@@ -138,5 +138,7 @@
   "stream_location" : "???",
   "stream_max_viewers": "???",
   "stream_duration": "???",
-  "streams_data_not_available" : "???"
+  "streams_data_not_available" : "???",
+  "timestamp" : "???",
+  "total_connections": "???"
 }
