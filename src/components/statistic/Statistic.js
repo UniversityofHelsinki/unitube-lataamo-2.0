@@ -19,9 +19,9 @@ const StatisticsComponents = ({ processedStatistics }) => (
     </>
 )
 
-const renderDataOrMessage = (data, Component) => {
+const renderDataOrMessage = (data, Component, t) => {
     if (data && data.length === 0) {
-        return <div>Data not available</div>;
+        return <div>{t('streams_data_not_available')}</div>;
     } else {
         return <Component processedStatistics={data} />;
     }
@@ -89,7 +89,7 @@ const Statistic = () => {
                             </Col>
                         </Row>
                     </Container>
-                    {renderDataOrMessage(processedStatistics, StatisticsComponents)}
+                    {renderDataOrMessage(processedStatistics, StatisticsComponents, t)}
                 </>
             )}
         </>
