@@ -2,6 +2,10 @@ import { useTranslation } from "react-i18next";
 import useUser from "../useUser";
 import useVideos from "../useVideos";
 import { STATUS } from '../../Constants.js';
+import useRecordValidation from "../validation/record/useRecordValidation";
+import {useEffect} from "react";
+import useSubtitleState from "../useSubtitleState";
+import useCollections from "../useCollections";
 
 
 /**
@@ -53,6 +57,17 @@ const expiring = (t) => (record) => {
  * @param {Object} record - The record object to check for closed captions.
  * @returns {Object|undefined} - Returns an object with label and color properties if closed captions are available, otherwise undefined.
  */
+const processing = (t) => (record) => {
+  const processing_record = record.processing_state === 'RUNNING';
+
+  if (processing_record) {
+    return {
+      label: t('tag_processing'),
+      color: 'orange'
+    };
+  }
+};
+
 const cc = (t) => record => {
   const videos = useVideos(record.identifier);
   const subtitles = videos?.map((video) => video.vttFile).filter(file => file !== undefined && file !== '');
@@ -124,6 +139,23 @@ const status = (t) => record => {
 };
 
 /**
+ * Subtitles processing state
+ *
+ * @param t
+ * @param isValid
+ * @returns {(function(*): ({color: string, label: *}|undefined))|*}
+ */
+const subtitleState = (t, isProcessing) => (record) => {
+
+  if (isProcessing === 'STARTED') {
+    return {
+      label: t('tag_processing_subtitles'),
+      color: 'orange'
+    };
+  }
+}
+
+/**
  * Returns an array of tags based on the provided record.
  *
  * @param {Object} record - The record to be used.
@@ -132,14 +164,21 @@ const status = (t) => record => {
 const useRecordTags = (record) => {
   const { t } = useTranslation();
   const [user] = useUser();
+  const [subtitlestate, readSubtitleState] = useSubtitleState();
 
-  const tagFunctions = [deleted(user, t), expiring(t), cc(t), status(t)];
+  useEffect(() => {
+    if (record) {
+      readSubtitleState(record.identifier);
+    }
+  }, [record?.identifier]);
 
-  const tags = tagFunctions
-      .flatMap(tagFunction => tagFunction(record))
-      .filter(tag => tag);
+  const tagFunctions = [deleted(user, t), expiring(t), cc(t), processing(t), status(t), subtitleState(t, subtitlestate?.status)];
 
-  return tags;
+    const tags = tagFunctions
+        .flatMap(tagFunction => tagFunction(record))
+        .filter(tag => tag);
+
+    return tags;
 };
 
 export default useRecordTags;

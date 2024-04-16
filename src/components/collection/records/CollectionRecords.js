@@ -21,7 +21,9 @@ const CollectionRecords = ({ records, disabled }) => {
 
   const recordsList = (() => {
     if (!records || records.length === 0) {
-      return <NoRecords />;
+      return <li>
+        <NoRecords />
+      </li>;
     }
     return records.map((record, i) =>
       <li key={record.id}>

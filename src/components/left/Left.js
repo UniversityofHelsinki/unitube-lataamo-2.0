@@ -19,6 +19,8 @@ import CollectionActions from './CollectionActions';
 import {useTranslation} from 'react-i18next';
 import useVisibleRecords from '../../hooks/useVisibleRecords';
 import useTitle from '../../hooks/useTitle';
+import useRecordSort from '../../hooks/record/useRecordSort';
+import useCollectionSort from '../../hooks/collection/useCollectionSort';
 import Colors from '../../components/utilities/HyColors';
 
 const No = ({ children }) => {
@@ -68,13 +70,22 @@ const Left = () => {
         filtered : false
     });
 
-    const [records, loadingRecords, _reloadRecords] = useVisibleRecords({
-        showDeleted: recordOptions.showDeleted,
-        showAll: recordOptions.showRecordsInCollections,
-        load: path === '/records',
-        filtered : recordOptions.filtered,
-        searchValue : recordOptions.searchValue
-    });
+  const [records, loadingRecords, _reloadRecords] = useVisibleRecords({
+    showDeleted: recordOptions.showDeleted,
+    showAll: recordOptions.showRecordsInCollections,
+    load: path === '/records'
+  });
+
+  const [recordSortOptions, setRecordSortOptions] = useState({
+    criteria: 'created',
+    descending: true
+  });
+
+  const [sortedRecords, recordSortCriterias] = useRecordSort(
+    records,
+    recordSortOptions.criteria,
+    recordSortOptions.descending
+  );
 
     const [collections, loadingCollections] = useCollections(
         path === '/collections'
@@ -84,7 +95,18 @@ const Left = () => {
         path === '/statistics'
     );
 
-    const [searchParams, setSearchParams] = useSearchParams();
+   const [collectionSortOptions, setCollectionSortOptions] = useState({
+    criteria: 'created',
+    descending: true
+  });
+
+  const [sortedCollections, collectionSortCriterias] = useCollectionSort(
+    collections,
+    collectionSortOptions.criteria,
+    collectionSortOptions.descending
+  );
+
+  const [searchParams, setSearchParams] = useSearchParams();
 
     const onRecordCardClick = (record) => {
         setSearchParams({ 'record': record.identifier });
@@ -102,6 +124,12 @@ const Left = () => {
         setSearchParams({ 'collection': collection.identifier });
     };
 
+  const highlightMatch = (text, searchValue) => {
+    if (!text) return null;
+
+    const regex = new RegExp(`(${searchValue})`, 'gi');
+    return text.replace(regex, `<span style="background-color: ${Colors.orange}">$1</span>`);
+  };
 
     /**
      * Filters an array of records based on the given options.
@@ -147,29 +175,23 @@ const Left = () => {
         }
     };
 
-    const highlightMatch = (text, searchValue) => {
-        if (!text) return null;
+  const recordCards = filterRecordsQuery(sortedRecords || [], recordOptions).map((record, _i) =>
+    [<RecordCard
+      key={record.identifier}
+      onClick={() => onRecordCardClick(record)}
+      record={record}
+      selected={record.identifier === searchParams.record }/>,
+      record.identifier]
+  );
 
-        const regex = new RegExp(`(${searchValue})`, 'gi');
-        return text.replace(regex, `<span style="background-color: ${Colors.orange}">$1</span>`);
-    };
-
-
-    /**
-     * Filter and map records to create record cards.
-     *
-     * @param {Array} records - The array of records to filter and map.
-     * @param {Object} recordOptions - The options for filtering the records.
-     * @return {Array} - The array of generated record cards.
-     */
-    const recordCards = filterRecordsQuery(records || [], recordOptions).map((record, _i) =>
-        [<RecordCard
-            key={record.identifier}
-            onClick={() => onRecordCardClick(record)}
-            record={record}
-            selected={record.identifier === searchParams.record }/>,
-            record.identifier]
-    );
+  const collectionCards = (sortedCollections || []).map((collection, i) =>
+    [<CollectionCard
+        collection={collection}
+        selected={collection.identifier === searchParams.collection}
+        key={collection.identifier}
+      onClick={() => onCollectionCardClick(collection)} />,
+      collection.identifier]
+  );
 
     /**
      * Sorts an array of statistics objects based on the start timestamps in descending order.
@@ -202,14 +224,6 @@ const Left = () => {
             statistic={statistic}/>];
     });
 
-    const collectionCards = (collections || []).map((collection, i) =>
-        [<CollectionCard
-            collection={collection}
-            selected={collection.identifier === searchParams.collection}
-            key={collection.identifier}
-            onClick={() => onCollectionCardClick(collection)} />,
-            collection.identifier]
-    );
 
     const emptyElements = {
         '/records': <NoRecords />,
@@ -234,44 +248,63 @@ const Left = () => {
         '/statistics': loadingStatistics
     };
 
-    return (
-        <Container className="left">
-            <Row className="left-up-left-container">
-                <Col className="no-padding">
-                    <Container className="up-left border-bottom">
-                        <Row>
-                            <Col className="no-padding">
-                                <Navigation />
-                            </Col>
-                        </Row>
-                        <Row className="border-start border-end border-black">
-                            <Col className="mt-3 mb-3">
-                                {actionElement[path]}
-                            </Col>
-                        </Row>
-                    </Container>
-                </Col>
+  const sortOptions = {
+    '/records': recordSortOptions,
+    '/collections': collectionSortOptions
+  }[path];
+
+  const sortCriterias = {
+    '/records': recordSortCriterias,
+    '/collections': collectionSortCriterias
+  }[path];
+
+  const onSortOptionChange = async (criteria, descending) => {
+    if (sortOptions === recordSortOptions) {
+      setRecordSortOptions({ ...recordSortOptions, criteria, descending });
+    }
+    if (sortOptions === collectionSortOptions) {
+      setCollectionSortOptions({ ...collectionSortOptions, criteria, descending });
+    }
+  };
+
+  return (
+    <Container className="left">
+      <Row className="left-up-left-container">
+        <Col className="no-padding">
+          <Container className="up-left border-bottom">
+            <Row>
+              <Col className="no-padding">
+                <Navigation />
+              </Col>
             </Row>
-            <Row className="border border-top-0 border-black left-down">
-                <Col className="pe-0">
-                    <Loading loading={Boolean(loading[path])}>
-                        <LeftList>
-                            {(() => {
-                                if (listElements[path].length > 0) {
-                                    return listElements[path];
-                                }
-                                return [[
-                                    <React.Fragment key="empty">
-                                        {emptyElements[path]}
-                                    </React.Fragment>
-                                ]];
-                            })()}
-                        </LeftList>
-                    </Loading>
-                </Col>
+            <Row className="border-start border-end border-black">
+              <Col className="mt-3 mb-3">
+                {actionElement[path]}
+              </Col>
             </Row>
-        </Container>
-    );
+          </Container>
+        </Col>
+      </Row>
+      <Row className="border border-top-0 border-black left-down">
+        <Col className="pe-0">
+          <Loading loading={Boolean(loading[path])}>
+            <LeftList currentSortCriteria={sortOptions?.criteria} sortCriterias={sortCriterias} descending={sortOptions?.descending} onSortOptionChange={onSortOptionChange}>
+              {(() => {
+                if (listElements[path].length > 0) {
+                  return listElements[path];
+                }
+                return [[
+                  <React.Fragment key="empty">
+                    {emptyElements[path]}
+                  </React.Fragment>
+                ]];
+              })()}
+            </LeftList>
+          </Loading>
+        </Col>
+      </Row>
+    </Container>
+  );
 };
 
 Left.propTypes = {

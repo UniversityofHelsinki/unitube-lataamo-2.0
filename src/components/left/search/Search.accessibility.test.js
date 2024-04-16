@@ -7,7 +7,7 @@ import {axe} from "jest-axe";
 describe('Search', () => {
     it('should not have any accessibility violations', async () => {
 
-        const { container } = render(<Search />);
+      const { container } = render(<Search options={{ searchValue: '' }}/>);
         const results = await axe(container);
 
         // use the matcher function in the test
