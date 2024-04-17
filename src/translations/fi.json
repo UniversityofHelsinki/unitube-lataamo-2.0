@@ -154,6 +154,7 @@
   "collection_validation_title_is_empty": "Nimi ei voi olla tyhjä.",
   "collection_validation_description_is_empty": "Kuvaus ei voi olla tyhjä.",
   "tag_deleted": "Poistettu",
+  "tag_processing": "Käsittelyssä",
   "search_options_show_deleted": "Näytä poistetut",
   "search_options_show_records_in_collections": "Näytä myös kokoelmiin kuuluvat tallenteet",
   "search_options_filter_records_in_collections": "Hae myös kokoelmiin kuuluvista tallenteista",
@@ -224,7 +225,6 @@
   "tag_cc": "Tekstitys",
   "tag_unlisted": "Jaettu linkillä",
   "tag_published": "Julkinen",
-  "tag_moodle": "Jaettu Moodlessa",
   "clear_search" : "Tyhjennä",
   "stream_location" : "Kuvauspaikka",
   "stream_max_viewers": "Suurin katsojamäärä",
@@ -232,4 +232,7 @@
   "streams_data_not_available" : "Tarkempaa tietoa striimistä ei löydy",
   "timestamp" : "aika",
   "total_connections": "katsojia"
+  "tag_moodle": "Jaettu Moodlessa",
+  "previous": "Edellinen",
+  "next": "Seuraava"
 }

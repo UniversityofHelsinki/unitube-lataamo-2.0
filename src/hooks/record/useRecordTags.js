@@ -1,11 +1,9 @@
 import { useTranslation } from "react-i18next";
 import useUser from "../useUser";
-import useVideos from "../useVideos";
 import { STATUS } from '../../Constants.js';
-import useRecordValidation from "../validation/record/useRecordValidation";
 import {useEffect} from "react";
 import useSubtitleState from "../useSubtitleState";
-import useCollections from "../useCollections";
+import useRecordValidation from "../validation/record/useRecordValidation";
 
 
 /**
@@ -69,9 +67,7 @@ const processing = (t) => (record) => {
 };
 
 const cc = (t) => record => {
-  const videos = useVideos(record.identifier);
-  const subtitles = videos?.map((video) => video.vttFile).filter(file => file !== undefined && file !== '');
-  if (subtitles && subtitles.length > 0) {
+  if (record.subtitles) {
     return {
       label: t('tag_cc'),
       color: 'green'
@@ -123,7 +119,7 @@ const createStatusObject = (statusObj, t) => {
  * @param {Object} t - The translation helper object.
  * @returns {Array} - An array of status objects.
  */
-const status = (t) => record => {
+const status = (t) => (record) => {
   let statuses = [];
   if (record.visibility && record.visibility.length > 0) {
     for (const visibility of record.visibility) {
@@ -156,6 +152,23 @@ const subtitleState = (t, isProcessing) => (record) => {
 }
 
 /**
+ * Validates given fields
+ *
+ * @param t
+ * @param isValid
+ * @returns {(function(*): ({color: string, label: *}|undefined))|*}
+ */
+const missingDetails = (t, isValid) => (record) => {
+
+  if (!isValid) {
+    return {
+      label: t('tag_validation_failed'),
+      color: 'red'
+    };
+  }
+}
+
+/**
  * Returns an array of tags based on the provided record.
  *
  * @param {Object} record - The record to be used.
@@ -165,14 +178,17 @@ const useRecordTags = (record) => {
   const { t } = useTranslation();
   const [user] = useUser();
   const [subtitlestate, readSubtitleState] = useSubtitleState();
-
+  const [isValid, _messages, validate] = useRecordValidation([
+    'title', 'description', 'license', 'deletionDate'
+  ]);
   useEffect(() => {
     if (record) {
+      validate(record);
       readSubtitleState(record.identifier);
     }
   }, [record?.identifier]);
 
-  const tagFunctions = [deleted(user, t), expiring(t), cc(t), processing(t), status(t), subtitleState(t, subtitlestate?.status)];
+  const tagFunctions = [deleted(user, t), expiring(t), cc(t), processing(t), status(t), subtitleState(t, subtitlestate?.status), missingDetails(t, isValid)];
 
     const tags = tagFunctions
         .flatMap(tagFunction => tagFunction(record))

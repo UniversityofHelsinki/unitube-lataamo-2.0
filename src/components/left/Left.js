@@ -82,9 +82,9 @@ const Left = () => {
   });
 
   const [sortedRecords, recordSortCriterias] = useRecordSort(
-    records,
-    recordSortOptions.criteria,
-    recordSortOptions.descending
+      records,
+      recordSortOptions.criteria,
+      recordSortOptions.descending
   );
 
     const [collections, loadingCollections] = useCollections(
@@ -131,66 +131,66 @@ const Left = () => {
     return text.replace(regex, `<span style="background-color: ${Colors.orange}">$1</span>`);
   };
 
-    /**
-     * Filters an array of records based on the given options.
-     *
-     * @param {array} records - The array of records to filter.
-     * @param {object} recordOptions - The options to use for filtering.
-     * @param {string} recordOptions.searchValue - The value to search for in the records.
-     * @returns {array} - The filtered array of records.
-     */
-    const filterRecordsQuery = (records, recordOptions) => {
-        if (typeof recordOptions?.searchValue === 'string' && recordOptions?.searchValue.trim()) {
-            const sanitizedSearchValue = DOMPurify.sanitize(recordOptions.searchValue.toLowerCase());
-            const filteredRecords = records.map(record => {
-                const formattedCreated = new Intl.DateTimeFormat(i18n.language, {
-                    day: '2-digit', month: '2-digit', year: 'numeric'
-                }).format(new Date(record.created));
-                const { title, description, identifier, duration } = record;
-                const highlightedTitle = highlightMatch(title, sanitizedSearchValue);
-                const highlightedDescription = highlightMatch(description, sanitizedSearchValue);
-                const highlightedIdentifier = highlightMatch(identifier, sanitizedSearchValue);
-                const highlightedDuration = highlightMatch(duration, sanitizedSearchValue);
-                const highlightedCreation = highlightMatch(formattedCreated, sanitizedSearchValue);
+  /**
+   * Filters an array of records based on the given options.
+   *
+   * @param {array} records - The array of records to filter.
+   * @param {object} recordOptions - The options to use for filtering.
+   * @param {string} recordOptions.searchValue - The value to search for in the records.
+   * @returns {array} - The filtered array of records.
+   */
+  const filterRecordsQuery = (records, recordOptions) => {
+    if (typeof recordOptions?.searchValue === 'string' && recordOptions?.searchValue.trim()) {
+      const sanitizedSearchValue = DOMPurify.sanitize(recordOptions.searchValue.toLowerCase());
+      const regex = new RegExp(sanitizedSearchValue);
+      const filteredRecords = records.map(record => {
+        const formattedCreated = new Intl.DateTimeFormat(i18n.language, {
+          day: '2-digit', month: '2-digit', year: 'numeric'
+        }).format(new Date(record.created));
+        const { title, description, identifier, duration } = record;
+        const highlightedTitle = highlightMatch(title, sanitizedSearchValue);
+        const highlightedDescription = highlightMatch(description, sanitizedSearchValue);
+        const highlightedIdentifier = highlightMatch(identifier, sanitizedSearchValue);
+        const highlightedDuration = highlightMatch(duration, sanitizedSearchValue);
+        const highlightedCreation = highlightMatch(formattedCreated, sanitizedSearchValue);
 
-                return {
-                    ...record,
-                    formattedCreated,
-                    highlightedTitle,
-                    highlightedDescription,
-                    highlightedIdentifier,
-                    highlightedDuration,
-                    highlightedCreation,
-                };
-            }).filter(record =>
-                record?.title?.toLowerCase().includes(sanitizedSearchValue)
-                || record?.description?.toLowerCase().includes(sanitizedSearchValue)
-                || record?.identifier?.toLowerCase() === sanitizedSearchValue
-                || record?.duration?.toLowerCase() === sanitizedSearchValue
-                || record?.formattedCreated === sanitizedSearchValue  // use formatted created date in condition
-            );
-            return filteredRecords;
-        } else {
-            return records;
-        }
-    };
+        return {
+          ...record,
+          formattedCreated,
+          highlightedTitle,
+          highlightedDescription,
+          highlightedIdentifier,
+          highlightedDuration,
+          highlightedCreation,
+        };
+      }).filter(record =>
+          regex.test(record?.title?.toLowerCase())
+          || regex.test(record?.description?.toLowerCase())
+          || (record.identifier?.toLowerCase() === sanitizedSearchValue)
+          || regex.test(record?.duration?.toLowerCase())
+          || regex.test(record?.formattedCreated))
+      return filteredRecords;
+    } else {
+      return records;
+    }
+  };
 
   const recordCards = filterRecordsQuery(sortedRecords || [], recordOptions).map((record, _i) =>
-    [<RecordCard
-      key={record.identifier}
-      onClick={() => onRecordCardClick(record)}
-      record={record}
-      selected={record.identifier === searchParams.record }/>,
-      record.identifier]
+      [<RecordCard
+          key={record.identifier}
+          onClick={() => onRecordCardClick(record)}
+          record={record}
+          selected={record.identifier === searchParams.record }/>,
+        record.identifier]
   );
 
   const collectionCards = (sortedCollections || []).map((collection, i) =>
-    [<CollectionCard
-        collection={collection}
-        selected={collection.identifier === searchParams.collection}
-        key={collection.identifier}
-      onClick={() => onCollectionCardClick(collection)} />,
-      collection.identifier]
+      [<CollectionCard
+          collection={collection}
+          selected={collection.identifier === searchParams.collection}
+          key={collection.identifier}
+          onClick={() => onCollectionCardClick(collection)} />,
+        collection.identifier]
   );
 
     /**
@@ -268,42 +268,42 @@ const Left = () => {
   };
 
   return (
-    <Container className="left">
-      <Row className="left-up-left-container">
-        <Col className="no-padding">
-          <Container className="up-left border-bottom">
-            <Row>
-              <Col className="no-padding">
-                <Navigation />
-              </Col>
-            </Row>
-            <Row className="border-start border-end border-black">
-              <Col className="mt-3 mb-3">
-                {actionElement[path]}
-              </Col>
-            </Row>
-          </Container>
-        </Col>
-      </Row>
-      <Row className="border border-top-0 border-black left-down">
-        <Col className="pe-0">
-          <Loading loading={Boolean(loading[path])}>
-            <LeftList currentSortCriteria={sortOptions?.criteria} sortCriterias={sortCriterias} descending={sortOptions?.descending} onSortOptionChange={onSortOptionChange}>
-              {(() => {
-                if (listElements[path].length > 0) {
-                  return listElements[path];
-                }
-                return [[
-                  <React.Fragment key="empty">
-                    {emptyElements[path]}
-                  </React.Fragment>
-                ]];
-              })()}
-            </LeftList>
-          </Loading>
-        </Col>
-      </Row>
-    </Container>
+      <Container className="left">
+        <Row className="left-up-left-container">
+          <Col className="no-padding">
+            <Container className="up-left border-bottom">
+              <Row>
+                <Col className="no-padding">
+                  <Navigation />
+                </Col>
+              </Row>
+              <Row className="border-start border-end border-black">
+                <Col className="mt-3 mb-3">
+                  {actionElement[path]}
+                </Col>
+              </Row>
+            </Container>
+          </Col>
+        </Row>
+        <Row className="border border-top-0 border-black left-down">
+          <Col className="pe-0">
+            <Loading loading={Boolean(loading[path])}>
+              <LeftList currentSortCriteria={sortOptions?.criteria} sortCriterias={sortCriterias} descending={sortOptions?.descending} onSortOptionChange={onSortOptionChange}>
+                {(() => {
+                  if (listElements[path].length > 0) {
+                    return listElements[path];
+                  }
+                  return [[
+                    <React.Fragment key="empty">
+                      {emptyElements[path]}
+                    </React.Fragment>
+                  ]];
+                })()}
+              </LeftList>
+            </Loading>
+          </Col>
+        </Row>
+      </Container>
   );
 };
 

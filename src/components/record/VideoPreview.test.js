@@ -23,7 +23,7 @@ describe('VideoPreview component', () => {
 
 
     test('renders video player when video is provided', () => {
-        render(<VideoPreview videos={[{
+        render(<VideoPreview video={{
             "id": "c42dbb0b-3b42-41a8-b912-ac051fe8aa52",
             "type": "text/vtt",
             "mimetype": "text/vtt",
@@ -40,7 +40,7 @@ describe('VideoPreview component', () => {
             "vttFile": {
                 "url": "mock-vtt-url"
             }
-        }]} />);
+        }} />);
 
         const videoPlayer = screen.getByTestId('video-player');
         expect(videoPlayer).toBeInTheDocument();
@@ -55,7 +55,7 @@ describe('VideoPreview component', () => {
     });
 
     test('handles play button click', () => {
-        render(<VideoPreview videos={[{
+        render(<VideoPreview video={{
             "id": "c42dbb0b-3b42-41a8-b912-ac051fe8aa52",
             "type": "text/vtt",
             "mimetype": "text/vtt",
@@ -72,7 +72,7 @@ describe('VideoPreview component', () => {
             "vttFile": {
                 "url": 'mock-vtt-url',
             },
-        }]} />);
+        }} />);
 
         const videoPlayer = screen.getByTestId('video-player');
         userEvent.click(videoPlayer);
