@@ -4,7 +4,6 @@ import { STATUS } from '../../Constants.js';
 import {useEffect} from "react";
 import useSubtitleState from "../useSubtitleState";
 import useRecordValidation from "../validation/record/useRecordValidation";
-import {useEffect} from "react";
 
 
 /**
