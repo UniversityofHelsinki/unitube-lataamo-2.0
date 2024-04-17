@@ -1,6 +1,7 @@
 {
   "navigation_records": "Recordings",
   "navigation_collections": "Collections",
+  "navigation_statistics": "Striimit",
   "record_form_name_header": "Name",
   "record_form_name_placeholder": "Name",
   "language_select_fi": "Finnish",
@@ -148,5 +149,12 @@
   "record_card_details_created": "Created {{- created}}",
   "search_options_filter_records_in_collections": "???",
   "search_videos" : "???",
-  "clear_search" : "Clear Search"
+  "clear_search" : "Clear Search",
+  "stream_location" : "???",
+  "stream_max_viewers": "???",
+  "stream_duration": "???",
+  "streams_data_not_available" : "???",
+  "stream_statistics_table_summary": "Table showing timestamps and total connections",
+  "timestamp" : "???",
+  "total_connections": "???"
 }

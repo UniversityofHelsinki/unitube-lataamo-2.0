@@ -30,6 +30,17 @@ const mockCollection = {
   published: ""
 };
 
+const mockStatistic = {
+  username: 'mansikka',
+  room:17,
+  start_timestamp:1682313704000,
+  end_before_timestamp:1682313724000,
+  maxViewers:"-",
+  location:"Bio2 1041",
+  length:20000
+};
+
+
 const mockUser = {
   eppn: 'baabenom',
   hyGroupCn: ['hy-employees', 'hyad-employees'],
@@ -80,6 +91,10 @@ const defaultMockReducers = {
   video: {
     videos: [mockVideo]
   },
+  statistics: {
+    statistics : [mockStatistic],
+    statistic: mockStatistic
+  }
 };
 
 export const MockProvider = ({ children, mockReducers }) => {
