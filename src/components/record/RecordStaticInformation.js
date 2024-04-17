@@ -27,9 +27,9 @@ const RecordStaticInformation = ({ record, onChange, resetSubtitleDownloadLinks,
         <Container className="ps-0">
             <Row className="mb-4">
                 <Col>
-                  <Carousel labels={videos.map((video, i) => <VideoPreviewLabel video={video} key={video.id} />)}>
+                  <Carousel labels={videos.map((video, i) => <VideoPreviewLabel video={video} key={video.url} />)}>
                     {videos.map((video) => (
-                      <VideoPreview key={video.id} video={video} />
+                      <VideoPreview key={video.url} video={video} />
                     ))}
                   </Carousel>
                 </Col>
