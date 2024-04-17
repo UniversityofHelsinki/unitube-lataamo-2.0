@@ -231,7 +231,7 @@
   "stream_duration": "Kesto",
   "streams_data_not_available" : "Tarkempaa tietoa striimistä ei löydy",
   "timestamp" : "aika",
-  "total_connections": "katsojia"
+  "total_connections": "katsojia",
   "tag_moodle": "Jaettu Moodlessa",
   "previous": "Edellinen",
   "next": "Seuraava"
