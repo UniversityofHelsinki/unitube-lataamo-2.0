@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import useUser from "../useUser";
-import useVideos from "../useVideos";
 import { STATUS } from '../../Constants.js';
 import useRecordValidation from "../validation/record/useRecordValidation";
 import {useEffect} from "react";
@@ -69,9 +68,7 @@ const processing = (t) => (record) => {
 };
 
 const cc = (t) => record => {
-  const videos = useVideos(record.identifier);
-  const subtitles = videos?.map((video) => video.vttFile).filter(file => file !== undefined && file !== '');
-  if (subtitles && subtitles.length > 0) {
+  if (record.subtitles) {
     return {
       label: t('tag_cc'),
       color: 'green'
