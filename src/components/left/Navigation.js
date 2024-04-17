@@ -11,7 +11,7 @@ const Navigation = () => {
   const { t } = useTranslation();
   const [location, setLocation] = useLocation();
 
-  const activeProps = (path) => 
+  const activeProps = (path) =>
     path === location ? { className: "nav-item-active" } : {};
 
   const onSelect = (path) => {
@@ -24,6 +24,9 @@ const Navigation = () => {
   }, {
     path: "/collections",
     label: t('navigation_collections')
+  }, {
+    path: "/statistics",
+    label: t('navigation_statistics')
   }];
 
   return (

@@ -21,6 +21,7 @@ REACT_APP_KATSOMO_UNLISTED_LINK_URL=https://www-test.helsinki.fi/fi/unitube/vide
 REACT_APP_KATSOMO_PUBLISHED_LINK_URL=https://www-test.helsinki.fi/fi/unitube/video/
 REACT_APP_LATAAMO_PROXY_SERVER=http://localhost:3001
 REACT_APP_LATAAMO_THUMBNAIL_SERVER=http://localhost:3010
+REACT_APP_LATAAMO_STREAMS_SERVER=http://localhost:3011
 ~~~
 
 Where `REACT_APP_LATAAMO_PROXY_SERVER` is the URL of

@@ -7,10 +7,12 @@ import Row from 'react-bootstrap/Row';
 import LeftList from './LeftList';
 import Navigation from './Navigation';
 import RecordCard from '../record/card/RecordCard';
+import StatisticCard from "../statistic/card/StatisticCard";
 import Loading from '../utilities/Loading';
 import useSearchParams from '../../hooks/useSearchParams';
 import useLocation from '../../hooks/useLocation';
 import useCollections from '../../hooks/useCollections';
+import useStatistics from "../../hooks/useStatistics";
 import CollectionCard from '../collection/card/CollectionCard';
 import RecordListActions from './RecordListActions';
 import CollectionActions from './CollectionActions';
@@ -22,42 +24,51 @@ import useCollectionSort from '../../hooks/collection/useCollectionSort';
 import Colors from '../../components/utilities/HyColors';
 
 const No = ({ children }) => {
-  return (
-      <div className="left-no">
-        <p>
-          {children}
-        </p>
-      </div>
-  );
+    return (
+        <div className="left-no">
+            <p>
+                {children}
+            </p>
+        </div>
+    );
 };
 
 const NoRecords = () => {
-  const { t } = useTranslation();
-  return (
-      <No>
-        {t('left_user_has_no_records')}
-      </No>
-  );
+    const { t } = useTranslation();
+    return (
+        <No>
+            {t('left_user_has_no_records')}
+        </No>
+    );
 };
 
 const NoCollections = () => {
-  const { t } = useTranslation();
-  return (
-      <No>
-        {t('left_user_has_no_collections')}
-      </No>
-  );
+    const { t } = useTranslation();
+    return (
+        <No>
+            {t('left_user_has_no_collections')}
+        </No>
+    );
+};
+
+const NoStatistics = () => {
+    const { t } = useTranslation();
+    return (
+        <No>
+            {t('left_user_has_no_statistics')}
+        </No>
+    );
 };
 
 const Left = () => {
-  const [path] = useLocation();
-  const { i18n } = useTranslation();
-  const [setTitle] = useTitle();
-  const [recordOptions, setRecordOptions] = useState({
-    showDeleted: false,
-    showRecordsInCollections: false,
-    filtered : false
-  });
+    const [path] = useLocation();
+    const { i18n } = useTranslation();
+    const [setTitle] = useTitle();
+    const [recordOptions, setRecordOptions] = useState({
+        showDeleted: false,
+        showRecordsInCollections: false,
+        filtered : false
+    });
 
   const [records, loadingRecords, _reloadRecords] = useVisibleRecords({
     showDeleted: recordOptions.showDeleted,
@@ -76,30 +87,42 @@ const Left = () => {
       recordSortOptions.descending
   );
 
-  const [collections, loadingCollections] = useCollections(
-      path === '/collections'
-  );
+    const [collections, loadingCollections] = useCollections(
+        path === '/collections'
+    );
 
-  const [collectionSortOptions, setCollectionSortOptions] = useState({
+    const [statistics, loadingStatistics] = useStatistics(
+        path === '/statistics'
+    );
+
+   const [collectionSortOptions, setCollectionSortOptions] = useState({
     criteria: 'created',
     descending: true
   });
 
   const [sortedCollections, collectionSortCriterias] = useCollectionSort(
-      collections,
-      collectionSortOptions.criteria,
-      collectionSortOptions.descending
+    collections,
+    collectionSortOptions.criteria,
+    collectionSortOptions.descending
   );
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const onRecordCardClick = (record) => {
-    setSearchParams({ 'record': record.identifier });
-  };
+    const onRecordCardClick = (record) => {
+        setSearchParams({ 'record': record.identifier });
+    };
 
-  const onCollectionCardClick = (collection) => {
-    setSearchParams({ 'collection': collection.identifier });
-  };
+    const onStatisticCardClick = (statistic) => {
+        setSearchParams({
+            'room': statistic.room,
+            'start_timestamp': statistic.start_timestamp,
+            'end_before_timestamp': statistic.end_before_timestamp
+        });
+    };
+
+    const onCollectionCardClick = (collection) => {
+        setSearchParams({ 'collection': collection.identifier });
+    };
 
 
   /**
@@ -194,26 +217,60 @@ const Left = () => {
         collection.identifier]
   );
 
+    /**
+     * Sorts an array of statistics objects based on the start timestamps in descending order.
+     *
+     * @param {Array} statistics - The array of statistics objects to be sorted.
+     * @returns {Array} - The sorted array of statistics objects.
+     */
+    const sortedStatistics = statistics => {
+        if (!Array.isArray(statistics)) {
+            return [];
+        }
+        return statistics.sort((a, b) => b.start_timestamp - a.start_timestamp);
+    };
 
-  const emptyElements = {
-    '/records': <NoRecords />,
-    '/collections': <NoCollections />
-  };
+    /**
+     * Creates an array of StatisticCard components based on the given statistics array.
+     *
+     * @param {Array} statistics - The array of statistics objects.
+     * @returns {Array} - An array of StatisticCard components.
+     */
+    const statisticCards = sortedStatistics(statistics).map((statistic, _i) => {
+       return [<StatisticCard
+            key={statistic.start_timestamp}
+            onClick={() => onStatisticCardClick(statistic)}
+            selected={
+                Number(statistic.room) === Number(searchParams.room)
+                && Number(statistic.start_timestamp) === Number(searchParams.start_timestamp)
+                && Number(statistic.end_before_timestamp) === Number(searchParams.end_before_timestamp)
+            }
+            statistic={statistic}/>];
+    });
 
-  const listElements = {
-    '/records': recordCards,
-    '/collections': collectionCards
-  };
 
-  const actionElement = {
-    '/records': <RecordListActions options={recordOptions} onOptionChange={(options) => setRecordOptions(options)} />,
-    '/collections': <CollectionActions />
-  };
+    const emptyElements = {
+        '/records': <NoRecords />,
+        '/collections': <NoCollections />,
+        '/statistics': <NoStatistics />
+    };
 
-  const loading = {
-    '/records': loadingRecords,
-    '/collections': loadingCollections
-  };
+    const listElements = {
+        '/records': recordCards,
+        '/collections': collectionCards,
+        '/statistics': statisticCards
+    };
+
+    const actionElement = {
+        '/records': <RecordListActions options={recordOptions} onOptionChange={(options) => setRecordOptions(options)} />,
+        '/collections': <CollectionActions />
+    };
+
+    const loading = {
+        '/records': loadingRecords,
+        '/collections': loadingCollections,
+        '/statistics': loadingStatistics
+    };
 
   const sortOptions = {
     '/records': recordSortOptions,
