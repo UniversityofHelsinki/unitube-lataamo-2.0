@@ -43,7 +43,6 @@
 }
 
 .hy-menu-item {
-  padding: 8px;
   min-width: 120px;
   margin-bottom: 4px;
 }
@@ -52,7 +51,7 @@
   background-color: unset;
   border: unset;
   margin: unset;
-  padding: unset;
+  padding: 8px;
   text-align: start;
   text-transform: uppercase;
   color: var(--huds-brand-main-light);

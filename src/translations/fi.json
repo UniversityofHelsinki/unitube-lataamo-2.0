@@ -224,5 +224,7 @@
   "tag_cc": "Tekstitys",
   "tag_unlisted": "Jaettu linkillä",
   "tag_published": "Julkinen",
-  "tag_moodle": "Jaettu Moodlessa"
+  "tag_moodle": "Jaettu Moodlessa",
+  "previous": "Edellinen",
+  "next": "Seuraava"
 }
