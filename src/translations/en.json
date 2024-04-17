@@ -154,6 +154,7 @@
   "stream_max_viewers": "???",
   "stream_duration": "???",
   "streams_data_not_available" : "???",
+  "stream_statistics_table_summary": "Table showing timestamps and total connections",
   "timestamp" : "???",
   "total_connections": "???"
 }

@@ -21,7 +21,7 @@ const CustomStatisticTable = ({ processedStatistics }) => {
                 ))}
                 </tbody>
             </table>
-            <div id="tableSummary" style={{display: 'none'}}>Table showing timestamps and total connections</div>
+            <div id="tableSummary" style={{display: 'none'}}>{t('stream_statistics_table_summary')}</div>
 
         </>
     )
