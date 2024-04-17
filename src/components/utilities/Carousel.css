@@ -1,0 +1,58 @@
+.carousel-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel-item-pickers {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.carousel-item-picker button {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  background-color: unset;
+  border: unset;
+}
+
+.carousel-item-picker button:disabled {
+  color: var(--hy-silver);
+}
+
+.carousel-item-picker button:hover:disabled {
+  text-decoration: none;
+}
+
+.carousel-item-picker button:hover {
+  text-decoration: underline;
+}
+
+.carousel-item-picker button:disabled polygon {
+  fill: var(--hy-medium-silver);
+}
+
+.carousel-item-picker-icon {
+  height: 3em;
+}
+
+.carousel-item-picker-icon svg {
+  height: 100%;
+}
+
+.carousel-item-picker-icon polygon {
+  fill: var(--huds-brand-main-light);
+}
+
+.carousel-item-label {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.carousel-item-label-order {
+  color: var(--hy-light-gray);
+}
