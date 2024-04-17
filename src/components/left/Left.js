@@ -101,11 +101,41 @@ const Left = () => {
     setSearchParams({ 'collection': collection.identifier });
   };
 
+
+  /**
+   * Highlights the matching search value in the given text by wrapping it in a <span> element with a background color.
+   *
+   * @param {string} text - The input text to be highlighted.
+   * @param {string} searchValue - The search value to be highlighted in the text.
+   * @returns {string} - The modified text with the matching search value highlighted.
+   */
   const highlightMatch = (text, searchValue) => {
     if (!text) return null;
 
     const regex = new RegExp(`(${searchValue})`, 'gi');
     return text.replace(regex, `<span style="background-color: ${Colors.orange}">$1</span>`);
+  };
+
+  /**
+   * Highlights a record based on a sanitized search value.
+   *
+   * @param {Object} record - The record to highlight.
+   * @param {string} sanitizedSearchValue - The sanitized search value.
+   *
+   * @returns {Object} - The highlighted record.
+   */
+  const highlightRecord = (record, sanitizedSearchValue) => {
+    const formattedCreated = new Intl.DateTimeFormat(i18n.language, {day: '2-digit', month: '2-digit', year: 'numeric'}).format(new Date(record.created));
+    const { title, description, identifier, duration } = record;
+    return {
+      ...record,
+      formattedCreated,
+      highlightedTitle: highlightMatch(title, sanitizedSearchValue),
+      highlightedDescription: highlightMatch(description, sanitizedSearchValue),
+      highlightedIdentifier: highlightMatch(identifier, sanitizedSearchValue),
+      highlightedDuration: highlightMatch(duration, sanitizedSearchValue),
+      highlightedCreation: highlightMatch(formattedCreated, sanitizedSearchValue),
+    };
   };
 
   /**
@@ -116,37 +146,31 @@ const Left = () => {
    * @param {string} recordOptions.searchValue - The value to search for in the records.
    * @returns {array} - The filtered array of records.
    */
-  const filterRecordsQuery = (records, recordOptions) => {
-    if (typeof recordOptions?.searchValue === 'string' && recordOptions?.searchValue.trim()) {
-      const sanitizedSearchValue = DOMPurify.sanitize(recordOptions.searchValue.toLowerCase());
-      const regex = new RegExp(sanitizedSearchValue);
-      const filteredRecords = records.map(record => {
-        const formattedCreated = new Intl.DateTimeFormat(i18n.language, {
-          day: '2-digit', month: '2-digit', year: 'numeric'
-        }).format(new Date(record.created));
-        const { title, description, identifier, duration } = record;
-        const highlightedTitle = highlightMatch(title, sanitizedSearchValue);
-        const highlightedDescription = highlightMatch(description, sanitizedSearchValue);
-        const highlightedIdentifier = highlightMatch(identifier, sanitizedSearchValue);
-        const highlightedDuration = highlightMatch(duration, sanitizedSearchValue);
-        const highlightedCreation = highlightMatch(formattedCreated, sanitizedSearchValue);
 
-        return {
-          ...record,
-          formattedCreated,
-          highlightedTitle,
-          highlightedDescription,
-          highlightedIdentifier,
-          highlightedDuration,
-          highlightedCreation,
-        };
-      }).filter(record =>
-          regex.test(record?.title?.toLowerCase())
-          || regex.test(record?.description?.toLowerCase())
-          || (record.identifier?.toLowerCase() === sanitizedSearchValue)
-          || regex.test(record?.duration?.toLowerCase())
-          || regex.test(record?.formattedCreated))
-      return filteredRecords;
+  const filterRecordsQuery = (records, recordOptions) => {
+    const { searchValue = '' } = recordOptions || {};
+    if (typeof searchValue === 'string' && searchValue.trim()) {
+      const sanitizedSearchValue = DOMPurify.sanitize(searchValue.toLowerCase());
+      const regex = new RegExp(sanitizedSearchValue);
+
+      // Iterate over records only once
+      return records.reduce((filteredRecords, record) => {
+        // Highlight the record
+        const highlightedRecord = highlightRecord(record, sanitizedSearchValue);
+
+        // Filter and Insert record to the result if it passes the condition
+        if (
+            regex.test(highlightedRecord.title?.toLowerCase()) ||
+            regex.test(highlightedRecord.description?.toLowerCase()) ||
+            highlightedRecord.identifier?.toLowerCase() === sanitizedSearchValue ||
+            regex.test(highlightedRecord.duration?.toLowerCase()) ||
+            regex.test(highlightedRecord.formattedCreated)
+        ) {
+          filteredRecords.push(highlightedRecord);
+        }
+
+        return filteredRecords;
+      }, []);
     } else {
       return records;
     }
