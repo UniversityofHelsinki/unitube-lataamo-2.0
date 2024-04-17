@@ -1,4 +1,4 @@
-import {render} from "@testing-library/react";
+import {fireEvent, render, screen} from "@testing-library/react";
 import {MockProvider} from "../../redux/reducers/MockProvider";
 import Left from "./Left";
 import React from "react";
@@ -10,9 +10,12 @@ describe('Left', () => {
         const { container } = render(<MockProvider>
             <Left />
         </MockProvider>);
-        const results = await axe(container);
+
+        const menuButton = screen.getByText("Järjestä");
+        fireEvent.click(menuButton);
 
         // use the matcher function in the test
+        const results = await axe(container);
         expect(results).toHaveNoViolations();
     });
 });
