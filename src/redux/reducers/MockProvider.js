@@ -91,6 +91,9 @@ const defaultMockReducers = {
   video: {
     videos: [mockVideo]
   },
+  thumbnails: {
+    urls: {}
+  },
   statistics: {
     statistics : [mockStatistic],
     statistic: mockStatistic
