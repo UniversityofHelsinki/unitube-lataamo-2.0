@@ -3,31 +3,27 @@ import validateTitle from './titleValidation.js';
 import validateDescription from './descriptionValidation.js';
 import validateLicense from "./licenseValidation";
 import validateFile from "./fileValidation.js";
-import { validateExistingDeletionDate } from "./deletionDateValidation.js";
+import validateDeletionDate from "./deletionDateValidation.js";
 import useValidation from "../useValidation.js";
 import validateSubtitles from './subtitleValidation.js';
 
-const validationFunctions = (record) => ({
+const validationFunctions = {
   file: validateFile,
   title: validateTitle,
   description: validateDescription,
   license: validateLicense,
-  deletionDate: validateExistingDeletionDate(record),
+  deletionDate: validateDeletionDate,
   subtitles: validateSubtitles
-});
+};
 
-const useRecordValidation = (fields, record) => {
-  const [isValid, messages, validate] = useValidation(
-    validationFunctions(record), 
-    fields
-  );
+const useNewRecordValidation = (fields) => {
+  const [isValid, messages, validate] = useValidation(validationFunctions, fields);
 
   return [isValid, messages, validate];
 };
 
-useRecordValidation.propTypes = {
+useNewRecordValidation.propTypes = {
   fields: PropTypes.array
 };
 
-export default useRecordValidation;
-
+export default useNewRecordValidation;
