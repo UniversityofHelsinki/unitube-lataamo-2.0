@@ -12,12 +12,12 @@ import useRecordValidation from '../../hooks/validation/record/useRecordValidati
 import RecordEndDate from './RecordEndDate';
 import NewRecordFooter from './NewRecordFooter';
 import { ProgressStatus } from '../../Constants';
-import useRecords from '../../hooks/useRecords';
 import RecordSubtitle from './RecordSubtitle';
 import useRecordModification from '../../hooks/useRecordModification';
 import useNewRecordSave from '../../hooks/record/useNewRecordSave';
 import RecordCollections from './RecordCollections';
 import useVisibleRecords from '../../hooks/useVisibleRecords';
+import useNewRecordValidation from '../../hooks/validation/record/useNewRecordValidation';
 
 const emptyRecord = {
   identifier: '',
@@ -31,7 +31,7 @@ const emptyRecord = {
 const NewRecord = () => {
   const { t } = useTranslation();
   const [showDialog, setShowDialog] = useState(false);
-  const [isValid, messages, validate] = useRecordValidation(
+  const [isValid, messages, validate] = useNewRecordValidation(
     ['file', 'title', 'description', 'license', 'deletionDate', 'subtitles']
   );
   const [send, progress, resetProgress] = useNewRecordSave();
