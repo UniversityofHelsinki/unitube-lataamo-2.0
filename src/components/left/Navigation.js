@@ -30,19 +30,24 @@ const Navigation = () => {
   }];
 
   return (
-    <Container className="navigation">
-      <Row className="text-center no-padding">
-        <Nav as="nav" justify fill variant="tabs" activeKey={location} className="no-padding" onSelect={onSelect}>
-            {tabs.map(({ path, label }) => (
-              <Nav.Item key={path} { ...activeProps(path) }>
-                <Nav.Link eventKey={path}>
-                  {label}
-                </Nav.Link>
-              </Nav.Item>
-            ))}
-        </Nav>
-      </Row>
-    </Container>
+      <Container className="navigation">
+        <Row className="text-center no-padding">
+          <Nav as="nav" justify fill variant="tabs" activeKey={location} className="no-padding" onSelect={onSelect}>
+            {tabs.map(({ path, label }) => {
+              // Use a ternary operator to apply the 'nav-item-active' class if
+              // this is the current path, otherwise apply 'nav-item'
+              const className = location === path ? 'nav-item-active' : 'nav-item';
+              return (
+                  <Nav.Item key={path} className={className}>
+                    <Nav.Link eventKey={path}>
+                      {label}
+                    </Nav.Link>
+                  </Nav.Item>
+              );
+            })}
+          </Nav>
+        </Row>
+      </Container>
   );
 };
 
