@@ -11,8 +11,7 @@
 }
 
 .navigation .nav-link {
-  background-color: var(--hy-medium-silver);
-  color: var(--hy-blue);
+  color: var(--hy-dark-blue);
   font-weight: 600;
   border-radius: 0px;
   padding: 24px;
@@ -22,6 +21,7 @@
 }
 
 .navigation .nav-link.active::after {
+  background-color: var(--hy-medium-silver);
   display: block;
   margin-top: 24px;
   content: "";

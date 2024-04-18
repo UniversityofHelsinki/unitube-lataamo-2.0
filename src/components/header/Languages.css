@@ -4,7 +4,7 @@
 }
 
 .languages .btn-link {
-  color: var(--hy-silver);
+  color: var(--hy-blue);
   text-transform: uppercase;
   text-decoration-line: initial;
   padding: 0px;
@@ -15,6 +15,6 @@
 }
 
 .languages .active.btn-link {
-  color: var(--hy-light-gray);
+  color: var(--hy-dark-blue-active);
   text-transform: uppercase;
 }
