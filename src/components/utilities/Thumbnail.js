@@ -21,7 +21,6 @@ const fetchThumbnail = async (record, width, height) => {
 };
 
 const Thumbnail = ({ record, width, length, altText }) => {
-  console.log('record', width, length);
     const thumbnails = useSelector((state) => 
       state.thumbnails.urls
     );
