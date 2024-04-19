@@ -15,35 +15,30 @@ const fetchThumbnail = async (record, width, height) => {
                 throw new Error('Failed to fetch thumbnail');
             }
         } catch (error) {
-            console.error('Fetch error:',  error);
+            console.error('Fetch error:', error);
         }
     }
 };
 
 const Thumbnail = ({ record, width, height, altText }) => {
-    const thumbnails = useSelector((state) => state.thumbnails.urls);
+    const thumbnails = useSelector((state) =>
+        state.thumbnails.urls
+    );
     const dispatch = useDispatch();
     const { t } = useTranslation();
 
     const thumbnail = thumbnails[`${record.identifier}-${width}-${height}`];
-    const [src, setSrc] = useState(thumbnail);
 
     useEffect(() => {
         if (record.identifier && !thumbnail) {
-            (async function getThumbnail() {
-                const fetchedThumbnail = await fetchThumbnail(record, width, height);
-                const img = new Image();
-                img.onload = () => {
-                    setSrc(fetchedThumbnail);
-                    dispatch({
-                        type: 'SET_THUMBNAIL',
-                        payload: {
-                            identifier: `${record.identifier}-${width}-${height}`,
-                            thumbnail: fetchedThumbnail || {}
-                        }
-                    });
-                };
-                img.src = fetchedThumbnail;
+            (async () => {
+                dispatch({
+                    type: 'SET_THUMBNAIL',
+                    payload: {
+                        identifier: `${record.identifier}-${width}-${height}`,
+                        thumbnail: await fetchThumbnail(record, width, height) || {}
+                    }
+                });
             })();
         }
     }, [record?.identifier, width, height, thumbnail]);
@@ -52,7 +47,7 @@ const Thumbnail = ({ record, width, height, altText }) => {
 
     if (thumbnail && URL.canParse(thumbnail)) {
         return (
-            <img alt={label} title={label} src={src} aria-hidden />
+            <img alt={label} title={label} src={thumbnail} aria-hidden />
         );
     }
 
