@@ -31,7 +31,7 @@ const CollectionRecord = ({ record, disabled, reloadCollectionOnRemove }) => {
       <Row>
         <Col className="px-0">
           <div className="collection-record-thumbnail">
-            <Thumbnail width="80" length="80" record={{ ...record, identifier: record.id }} altText={'collection_record_thumbnail_alt_text'}></Thumbnail>
+            <Thumbnail width="80" height="80" record={{ ...record, identifier: record.id }} altText={'collection_record_thumbnail_alt_text'}></Thumbnail>
           </div>
         </Col>
         <Col className="px-0 align-self-center">

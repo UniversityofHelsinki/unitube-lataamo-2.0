@@ -20,14 +20,14 @@ const fetchThumbnail = async (record, width, height) => {
   }
 };
 
-const Thumbnail = ({ record, width, length, altText }) => {
-    const thumbnails = useSelector((state) => 
+const Thumbnail = ({ record, width, height, altText }) => {
+    const thumbnails = useSelector((state) =>
       state.thumbnails.urls
     );
     const dispatch = useDispatch();
     const { t } = useTranslation();
 
-    const thumbnail = thumbnails[`${record.identifier}-${width}-${length}`];
+    const thumbnail = thumbnails[`${record.identifier}-${width}-${height}`];
 
     useEffect(() => {
       if (record.identifier && !thumbnail) {
@@ -35,13 +35,13 @@ const Thumbnail = ({ record, width, length, altText }) => {
           dispatch({
             type: 'SET_THUMBNAIL',
             payload: {
-              identifier: `${record.identifier}-${width}-${length}`,
-              thumbnail: await fetchThumbnail(record, width, length) || {}
+              identifier: `${record.identifier}-${width}-${height}`,
+              thumbnail: await fetchThumbnail(record, width, height) || {}
             }
           });
         })();
       }
-    }, [record?.identifier, width, length, thumbnail]);
+    }, [record?.identifier, width, height, thumbnail]);
 
     const label = t(altText, { title: record.title });
 
