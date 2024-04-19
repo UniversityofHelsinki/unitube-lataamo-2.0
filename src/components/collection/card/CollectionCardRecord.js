@@ -9,7 +9,7 @@ const CollectionCardRecord = ({ record }) => {
     <Container className="collection-card-record">
       <Row style={{ height: '100%' }}>
         <Col className="collection-card-record-thumb p-0">
-          <Thumbnail width="40" length="40" record={{ ...record, identifier: record.id }} altText={'collection_card_thumbnail_alt_text'}></Thumbnail>
+          <Thumbnail width="40" height="40" record={{ ...record, identifier: record.id }} altText={'collection_card_thumbnail_alt_text'}></Thumbnail>
         </Col>
         <Col className="col-sm-8 collection-card-record-details">{record.title}</Col>
       </Row>
