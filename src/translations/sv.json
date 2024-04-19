@@ -1,6 +1,7 @@
 {
   "navigation_records": "Records",
   "navigation_collections": "Collections",
+  "navigation_statistics": "Striimit",
   "record_form_name_header": "Name",
   "record_form_name_placeholder": "Name",
   "language_select_fi": "Finska",
@@ -130,5 +131,15 @@
   "collection_validation_description_is_empty": "Description can not be empty.",
   "navigation_streams": "Collections",
   "record_card_valid_until" : "Valid until {{- deletionDate}}",
-  "tag_expiring": "Expiring"
+  "tag_expiring": "Expiring",
+  "search_options_filter_records_in_collections": "???",
+  "search_videos" : "???",
+  "clear_search" : "???",
+  "stream_location" : "???",
+  "stream_max_viewers": "???",
+  "stream_duration": "???",
+  "streams_data_not_available" : "???",
+  "stream_statistics_table_summary": "???",
+  "timestamp" : "???",
+  "total_connections": "???"
 }

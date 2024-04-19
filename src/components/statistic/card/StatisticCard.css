@@ -1,0 +1,7 @@
+.statistic-card-selected {
+    background-color: var(--hy-medium-silver);
+}
+
+a.statistic-card-content-details {
+    color: initial;
+}

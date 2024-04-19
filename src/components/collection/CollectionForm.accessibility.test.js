@@ -10,7 +10,8 @@ describe('CollectionForm', () => {
     const reducers = {
         collections: {
             collection: {
-                identifier: 'asdfasdf'
+                identifier: 'asdfasdf',
+                title: 'asdf'
             }
         },
         location: {

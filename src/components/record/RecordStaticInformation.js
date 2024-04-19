@@ -11,6 +11,13 @@ import RecordIdentifier from './RecordIdentifier';
 import RecordLink from './RecordLink';
 import RecordSubtitleDownloadLinks from "./RecordSubtitleDownloadLinks";
 import useVideos from "../../hooks/useVideos";
+import Carousel from '../utilities/Carousel';
+
+const VideoPreviewLabel = ({ video }) => {
+  return <div className="video-preview-label">
+    <span>{video.resolution}</span>
+  </div>
+};
 
 const RecordStaticInformation = ({ record, onChange, resetSubtitleDownloadLinks, disabled }) => {
     const videos = useVideos(record.identifier);
@@ -20,7 +27,11 @@ const RecordStaticInformation = ({ record, onChange, resetSubtitleDownloadLinks,
         <Container className="ps-0">
             <Row className="mb-4">
                 <Col>
-                    <VideoPreview videos={videos} record={record} />
+                  <Carousel labels={videos.map((video, i) => <VideoPreviewLabel video={video} key={video.url} />)}>
+                    {videos.map((video) => (
+                      <VideoPreview key={video.url} video={video} />
+                    ))}
+                  </Carousel>
                 </Col>
             </Row>
             <Row className="mb-4">

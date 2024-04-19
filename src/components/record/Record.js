@@ -18,10 +18,12 @@ import RecordTopRow from './RecordTopRow';
 import useCollections from '../../hooks/useCollections';
 import useCollection from '../../hooks/useCollection';
 import useTitle from '../../hooks/useTitle';
+import useRecordError from '../../hooks/useRecordError';
 
 const Record = () => {
     const [setTitle] = useTitle();
-    const [originalRecord, loading, reload] = useRecord(true);
+    const [originalRecord, loading, reload, httpError] = useRecord(true);
+    const errorPage = useRecordError(originalRecord, httpError);
     const [progress, save, resetProgress] = useRecordSave();
     const [_collections, _loadingCollections, reloadCollections] = useCollections();
     const [visibleCollection, _loadingVisibleCollection, reloadVisibleCollection] = useCollection();
@@ -29,9 +31,13 @@ const Record = () => {
 
     const [isValid, messages, validate] = useRecordValidation([
       'title', 'description', 'deletionDate', 'license', 'subtitles'
-    ]);
+    ], originalRecord);
     const [record, onChange, modified, undo] = useRecordModification(originalRecord, validate, resetProgress);
     const formRef = useRef();
+
+    if (errorPage && !loading) {
+      return errorPage;
+    }
 
     if (originalRecord?.title) {
       setTitle(originalRecord.title);
