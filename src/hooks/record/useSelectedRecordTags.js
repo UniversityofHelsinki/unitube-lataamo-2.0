@@ -24,7 +24,6 @@ const useSelectedRecordTags = (distinctTags) => {
 
   useEffect(() => {
     if (distinctTagsChanged(knownDistinctTags, distinctTags)) {
-      console.log(distinctTags);
       setSelectedTags([ ...distinctTags ].filter(tag => 
         !exclude.map(e => t(e)).includes(tag.label)
       ));
