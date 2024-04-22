@@ -247,7 +247,7 @@ const Left = () => {
      * // @returns {array} - The filtered array of collections.
      */
     const filterCollectionsQuery = (collections, collectionOptions) => {
-        return filterItemsQuery(collections, collectionOptions, highlightCollection, (highlightedCollection, _, regex) => {
+        return filterItemsQuery(collections, collectionOptions, highlightCollection, (highlightedCollection, sanitizedSearchValue, regex) => {
             return regex.test(highlightedCollection.title?.toLowerCase());
         });
     };
