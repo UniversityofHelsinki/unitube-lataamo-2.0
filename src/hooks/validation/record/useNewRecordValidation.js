@@ -17,9 +17,14 @@ const validationFunctions = {
 };
 
 const useNewRecordValidation = (fields) => {
-  const [isValid, messages, validate] = useValidation(validationFunctions, fields);
+  const [isValids, messages, validate] = useValidation([validationFunctions], fields);
 
-  return [isValid, messages, validate];
+  return [
+    isValids[0], 
+    messages[0], 
+    (record, previousRecord, validateAllFields) => 
+      validate([record], [previousRecord], validateAllFields)
+  ];
 };
 
 useNewRecordValidation.propTypes = {

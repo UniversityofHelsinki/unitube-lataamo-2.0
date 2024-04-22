@@ -22,7 +22,7 @@ const CollectionButtons = ({ collection, disabled }) => {
     const validationFunctions = {
         deletionDate: validateDeletionDate,
     };
-    const [isValid, messages, validate] = useValidation(validationFunctions, ['deletionDate']);
+    const [isValid, messages, validate] = useValidation([validationFunctions], ['deletionDate']);
     const show = () => setShowForm(true);
 
     const reset = () => {

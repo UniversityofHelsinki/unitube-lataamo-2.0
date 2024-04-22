@@ -15,12 +15,12 @@ describe('useValidation', () => {
     it('validates the given fields if they have functions defined', async () => {
       const fieldsToValidate = ['firstName'];
       const { result } = renderHook(() => 
-        useValidation(validationFunctions, fieldsToValidate)
+        useValidation([validationFunctions], fieldsToValidate)
       );
       const [_isValid, _messages, validate] = result.current;
 
       await act(async () => {
-        await validate({ firstName: 'asfd', lastName: 'asf'  });
+        await validate([{ firstName: 'asfd', lastName: 'asf'  }]);
       });
 
       expect(fieldsToValidate.length).toBeGreaterThan(0);
@@ -33,12 +33,12 @@ describe('useValidation', () => {
 
       const fieldsToValidate = ['firstName'];
       const { result } = renderHook(() => 
-        useValidation(validationFunctions, fieldsToValidate)
+        useValidation([validationFunctions], fieldsToValidate)
       );
       const [_isValid, _messages, validate] = result.current;
 
       await act(async () => {
-        await validate({ firstName: 'asfd', lastName: 'asf'  });
+        await validate([{ firstName: 'asfd', lastName: 'asf'  }]);
       });
 
       Object.keys(validationFunctions).forEach(field => {
@@ -53,27 +53,27 @@ describe('useValidation', () => {
   describe('messages', () => {
     it('is filled with return values of validationFunctions if field is invalid', async () => {
       const { result, rerender } = renderHook(() => 
-        useValidation({ firstName: () => 'can_not_be_empty' }, ['firstName'])
+        useValidation([{ firstName: () => 'can_not_be_empty' }], ['firstName'])
       );
       const [_isValid, _messages, validate] = result.current;
 
       await act(async () => {
-        await validate({ firstName: '' });
+        await validate([{ firstName: '' }]);
       });
       rerender();
 
       const [__isValid, messages] = result.current;
 
-      expect(messages['firstName'].content).toEqual('can_not_be_empty');
+      expect(messages[0]['firstName'].content).toEqual('can_not_be_empty');
     });
 
     it('is empty before calling validate()', () => {
       const { result, rerender } = renderHook(() => 
-        useValidation({ firstName: () => 'can_not_be_empty' }, ['firstName'])
+        useValidation([{ firstName: () => 'can_not_be_empty' }], ['firstName'])
       );
       const [_isValid, messages, _validate] = result.current;
 
-      expect(Object.keys(messages)).toHaveLength(0);
+      expect(Object.keys(messages[0])).toHaveLength(0);
     });
   });
 

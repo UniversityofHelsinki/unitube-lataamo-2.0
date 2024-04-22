@@ -4,6 +4,8 @@ import { STATUS } from '../../Constants.js';
 import {useEffect} from "react";
 import useSubtitleState from "../useSubtitleState";
 import useRecordValidation from "../validation/record/useRecordValidation";
+import useRecordsValidation from "../validation/record/useRecordsValidation";
+import { useState } from "react";
 
 
 /**
@@ -158,9 +160,9 @@ const subtitleState = (t, isProcessing) => (record) => {
  * @param isValid
  * @returns {(function(*): ({color: string, label: *}|undefined))|*}
  */
-const missingDetails = (t, isValid) => (record) => {
+const missingDetails = (t, isValids) => (_record, i) => {
 
-  if (!isValid) {
+  if (!isValids[i]) {
     return {
       label: t('tag_validation_failed'),
       color: 'red'
@@ -168,33 +170,56 @@ const missingDetails = (t, isValid) => (record) => {
   }
 }
 
+const recordsDiffer = (previousRecords, records) => {
+  const previousIdentifiers = previousRecords.map(pr => pr.identifier);
+  const identifiers = records.map(r => r.identifier);
+  if (previousIdentifiers.length !== identifiers.length) {
+    return true;
+  }
+  for (const previousIdentifier of previousIdentifiers) {
+    if (!identifiers.includes(previousIdentifier)) {
+      return true;
+    }
+  }
+  return false;
+};
+
 /**
  * Returns an array of tags based on the provided record.
  *
  * @param {Object} record - The record to be used.
  * @returns {Array} An array of tags.
  */
-const useRecordTags = (record) => {
+const useRecordTags = (records = []) => {
   const { t } = useTranslation();
   const [user] = useUser();
-  const [subtitlestate, readSubtitleState] = useSubtitleState();
-  const [isValid, _messages, validate] = useRecordValidation([
-    'title', 'description', 'license', 'deletionDate'
-  ]);
-  useEffect(() => {
-    if (record) {
-      validate(record);
-      readSubtitleState(record.identifier);
-    }
-  }, [record?.identifier]);
+  const [isValids, _messages, validate] = useRecordsValidation(
+    ['title', 'description', 'license', 'deletionDate'],
+    records
+  );
+  const [previouslyValidatedRecords, setPreviouslyValidatedRecords] = useState([]);
 
-  const tagFunctions = [deleted(user, t), expiring(t), cc(t), processing(t), status(t), subtitleState(t, subtitlestate?.status), missingDetails(t, isValid)];
+  if (recordsDiffer(previouslyValidatedRecords, records)) {
+    setPreviouslyValidatedRecords(records);
+    validate(records);
+  }
 
-    const tags = tagFunctions
-        .flatMap(tagFunction => tagFunction(record))
-        .filter(tag => tag);
+  const tagFunctions = [
+    deleted(user, t), 
+    expiring(t), 
+    cc(t), 
+    processing(t), 
+    status(t),
+    missingDetails(t, isValids)
+  ];
 
-    return tags;
+  const tags = records.map((record, i) => 
+    tagFunctions
+      .flatMap((tagFunction) => tagFunction(record, i))
+      .filter(tag => tag)
+  );
+
+  return tags;
 };
 
 export default useRecordTags;
