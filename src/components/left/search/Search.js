@@ -26,6 +26,7 @@ const Search = ({ options, onOptionChange }) => {
   };
 
   const handleClear = () => {
+    console.log("HIT")
     setSearchValue('');
     onOptionChange({
       ...options,
@@ -48,14 +49,17 @@ const Search = ({ options, onOptionChange }) => {
                     id="search-videos"
                 />
                 {searchValue && (
-                    <InputGroup.Text className="removeIconContainer">
-                      <button onClick={handleClear} aria-label={t('clear_search')}>
-                        <RemoveIcon width="20px" height="20px" />
+                    <div className="removeIconContainer">
+                      <button
+                          onClick={handleClear}
+                          aria-label={t('clear_search')}
+                          tabIndex="0">
+                        <RemoveIcon width="20px" height="20px"/>
                       </button>
-                    </InputGroup.Text>
+                    </div>
                 )}
                 <InputGroup.Text className="searchIconContainer">
-                  <SearchIcon width="20px" height="20px" />
+                  <SearchIcon width="20px" height="20px"/>
                 </InputGroup.Text>
               </InputGroup>
             </div>

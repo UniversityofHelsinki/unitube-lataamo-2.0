@@ -53,16 +53,17 @@
 }
 
 .search .removeIconContainer button:focus {
-  outline: none;
+  outline: 1px solid black;
 }
 
+/* Adjusted CSS: */
 .search .removeIconContainer {
   position: absolute;
   top: 50%;
-  right: 50px;
+  right: 60px;
   transform: translateY(-50%);
   background-color: transparent;
-  z-index: 9999 !important; /* Add a high z-index and an important flag to override other specifications */
+  z-index: 100;
 }
 
 .search .searchIconContainer {
@@ -72,5 +73,3 @@
 .search .searchIconContainer > svg path {
   fill: var(--hy-white);
 }
-
-
