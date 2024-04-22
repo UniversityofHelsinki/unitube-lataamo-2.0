@@ -26,7 +26,6 @@ const Search = ({ options, onOptionChange }) => {
   };
 
   const handleClear = () => {
-    console.log("HIT")
     setSearchValue('');
     onOptionChange({
       ...options,
