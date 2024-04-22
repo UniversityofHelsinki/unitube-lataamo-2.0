@@ -176,8 +176,8 @@ const recordsDiffer = (previousRecords, records) => {
   if (previousIdentifiers.length !== identifiers.length) {
     return true;
   }
-  for (const previousIdentifier of previousIdentifiers) {
-    if (!identifiers.includes(previousIdentifier)) {
+  for (let i = 0; i < previousIdentifiers.length; i++) {
+    if (identifiers[i] !== previousIdentifiers[i]) {
       return true;
     }
   }
@@ -204,20 +204,24 @@ const useRecordTags = (records = []) => {
     validate(records);
   }
 
-  const tagFunctions = [
-    deleted(user, t), 
-    expiring(t), 
-    cc(t), 
-    processing(t), 
-    status(t),
-    missingDetails(t, isValids)
+  const deletedRecordsTags = [
+    deleted(user, t)
   ];
 
-  const tags = records.map((record, i) => 
-    tagFunctions
+  const tagFunctions = [
+    processing(t), 
+    expiring(t), 
+    missingDetails(t, isValids),
+    cc(t), 
+    status(t),
+  ];
+  
+  const tags = records.map((record, i) => {
+    const recordIsDeleted = record.series === `trash ${user.eppn}`;
+    return (recordIsDeleted ? deletedRecordsTags : tagFunctions)
       .flatMap((tagFunction) => tagFunction(record, i))
-      .filter(tag => tag)
-  );
+      .filter(tag => tag);
+  });
 
   return tags;
 };
