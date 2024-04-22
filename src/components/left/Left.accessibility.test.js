@@ -11,9 +11,6 @@ describe('Left', () => {
             <Left />
         </MockProvider>);
 
-        const menuButton = screen.getByText("Järjestä");
-        fireEvent.click(menuButton);
-
         // use the matcher function in the test
         const results = await axe(container);
         expect(results).toHaveNoViolations();

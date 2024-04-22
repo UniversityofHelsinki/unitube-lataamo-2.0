@@ -14,3 +14,8 @@
   background-color: var(--hy-orange) !important;
   color: var(--hy-black);
 }
+
+.card-tag.badge.bg-light {
+  color: var(--hy-silver);
+  border: 1px solid;
+}

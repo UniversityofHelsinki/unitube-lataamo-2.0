@@ -1,0 +1,17 @@
+.tag-button-list {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  padding-left: 0;
+}
+
+.tag-button-list-item {
+  margin-right: 0.5em;
+}
+
+.tag-button {
+  padding: unset;
+  background-color: unset;
+  border: unset;
+}
+

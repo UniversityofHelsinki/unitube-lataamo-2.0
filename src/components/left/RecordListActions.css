@@ -1,0 +1,10 @@
+.tag-button-list-row:before {
+  content: "";
+  background-color: var(--hy-light-silver);
+  height: 3px;
+  width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
