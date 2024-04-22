@@ -140,31 +140,18 @@ const Left = () => {
         setSearchParams({ 'collection': collection.identifier });
     };
 
+    const formatDateCreated = (recordCreated) => {
+        return new Intl.DateTimeFormat(i18n.language, {day: '2-digit', month: '2-digit', year: 'numeric'}).format(new Date(recordCreated));
+    };
 
-    /**
-     * Highlights the matching search value in the given text by wrapping it in a <span> element with a background color.
-     *
-     * @param {string} text - The input text to be highlighted.
-     * @param {string} searchValue - The search value to be highlighted in the text.
-     * @returns {string} - The modified text with the matching search value highlighted.
-     */
     const highlightMatch = (text, searchValue) => {
         if (!text) return null;
-
         const regex = new RegExp(`(${searchValue})`, 'gi');
         return text.replace(regex, `<span style="background-color: ${Colors.orange}">$1</span>`);
     };
 
-    /**
-     * Highlights a record based on a sanitized search value.
-     *
-     * @param {Object} record - The record to highlight.
-     * @param {string} sanitizedSearchValue - The sanitized search value.
-     *
-     * @returns {Object} - The highlighted record.
-     */
     const highlightRecord = (record, sanitizedSearchValue) => {
-        const formattedCreated = new Intl.DateTimeFormat(i18n.language, {day: '2-digit', month: '2-digit', year: 'numeric'}).format(new Date(record.created));
+        const formattedCreated = formatDateCreated(record.created);
         const { title, description, identifier, duration } = record;
         return {
             ...record,
@@ -177,42 +164,22 @@ const Left = () => {
         };
     };
 
-
-    /**
-     * Highlights a match in the title of a collection using a sanitized search value.
-     * @param {Object} collection - The collection object.
-     * @param {string} sanitizedSearchValue - The sanitized search value.
-     * @returns {Object} - The modified collection object with highlightedTitle property.
-     */
     const highlightCollection = (collection, sanitizedSearchValue) => {
-         const { title } = collection;
+        const { title } = collection;
         return {
             ...collection,
             highlightedTitle: highlightMatch(title, sanitizedSearchValue),
         };
     };
 
-    /**
-     * Filters an array of items based on the given options.
-     *
-     * @param {array} items - The array of items to filter.
-     * @param {object} itemOptions - The options to use for filtering.
-     * @param {function} handleHighlight - Function to handle the item highlighting.
-     * @param {function} handleCheck - Function to handle the item checking.
-     *
-     * @returns {array} - The filtered array of items.
-     */
-    const filterItemsQuery = (items, itemOptions, handleHighlight, handleCheck) => {
+    const filterItemsQuery = (items, itemOptions, highlightItem, itemMatchesSearch) => {
         const { searchValue = '' } = itemOptions || {};
         if (typeof searchValue === 'string' && searchValue.trim()) {
             const sanitizedSearchValue = DOMPurify.sanitize(searchValue.toLowerCase());
             const regex = new RegExp(sanitizedSearchValue);
-            // Iterate over items only once
             return items.reduce((filteredItems, item) => {
-                // Highlight the item
-                const highlightedItem = handleHighlight(item, sanitizedSearchValue);
-                // Filter and Insert item to the result if it passes the condition
-                if (handleCheck(highlightedItem, sanitizedSearchValue, regex)) {
+                const highlightedItem = highlightItem(item, sanitizedSearchValue);
+                if (itemMatchesSearch(highlightedItem, sanitizedSearchValue, regex)) {
                     filteredItems.push(highlightedItem);
                 }
                 return filteredItems;
@@ -222,13 +189,6 @@ const Left = () => {
         }
     };
 
-    /**
-     * Filters an array of records based on the given options.
-     *
-     * @param {array} records - The array of records to filter.
-     * @param {object} recordOptions - The options to use for filtering.
-     * @returns {array} - The filtered array of records.
-     */
     const filterRecordsQuery = (records, recordOptions) => {
         return filterItemsQuery(records, recordOptions, highlightRecord, (highlightedRecord, sanitizedSearchValue, regex) => {
             return regex.test(highlightedRecord.title?.toLowerCase()) ||
@@ -239,13 +199,6 @@ const Left = () => {
         });
     };
 
-    /**
-     * Filters an array of collections based on the given options.
-     *
-     * @param {array} collections - The array of collections to filter.
-     * @param {object} collectionOptions - The options to use for filtering.
-     * // @returns {array} - The filtered array of collections.
-     */
     const filterCollectionsQuery = (collections, collectionOptions) => {
         return filterItemsQuery(collections, collectionOptions, highlightCollection, (highlightedCollection, sanitizedSearchValue, regex) => {
             return regex.test(highlightedCollection.title?.toLowerCase());
