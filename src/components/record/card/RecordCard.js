@@ -19,7 +19,7 @@ const RecordCard = ({ record, onClick, selected = false }) => {
   const labelId = useId();
   const { t, i18n } = useTranslation();
 
-  const tags = useRecordTags(record);
+  const [tags] = useRecordTags([record]);
   const isDeleted = DELETED_SERIES_REG_EXP(user.eppn).test(record.series);
   const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
   const date = record.deletionDate && !isDeleted ? new Intl.DateTimeFormat(i18n.language, options).format(new Date(record.deletionDate)) : null;

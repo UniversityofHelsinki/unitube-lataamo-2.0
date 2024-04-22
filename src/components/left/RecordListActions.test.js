@@ -6,7 +6,14 @@ import { MockProvider } from '../../redux/reducers/MockProvider';
 it('renders', () => {
   render(
     <MockProvider mockReducers={{ records: { records: [] } }}>
-      <RecordListActions options={{ showDeleted: false, showRecordsInCollections: false }} onOptionChange={() => {}} />
+      <RecordListActions options={{ showDeleted: false, showRecordsInCollections: false }}
+                         records={[{ identifier: 'sadf', title: 'asdfasf' }, { identifier: 'fdsa', title: 'hei' }]}
+                         loadingRecords = {true}
+                         onOptionChange={() => {}} 
+                         onTagChange={() => {}}
+        tags={{ distinct: [], selected: []}}
+                          
+      />
     </MockProvider>
   );
 });

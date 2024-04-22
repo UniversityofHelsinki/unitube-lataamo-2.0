@@ -1,0 +1,29 @@
+.record-tag {
+    border-radius: 0;
+}
+
+.record-tag.badge.bg-danger {
+    background-color: var(--hy-red-alert) !important;
+}
+
+.record-tag.badge.bg-primary {
+    background-color: var(--huds-brand-main) !important;
+}
+
+.record-tag.badge.bg-warning {
+    background-color: var(--hy-orange) !important;
+    color: var(--hy-black);
+}
+
+.record-tag.badge.bg-light {
+    background-color: var(--hy-medium-silver) !important;
+    color: var(--hy-silver);
+}
+
+.record-tag.badge:hover {
+    cursor: pointer;
+}
+
+.badge {
+    border-radius: 0 !important;
+}

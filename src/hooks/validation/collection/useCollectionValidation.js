@@ -10,8 +10,17 @@ const validationFunctions = {
 };
 
 const useCollectionValidation = (fields) => {
-  const [isValid, messages, validate] = useValidation(validationFunctions, fields);
-  return [isValid, messages, validate];
+  const [isValid, messages, validate] = useValidation(
+    [validationFunctions], 
+    fields
+  );
+
+  return [
+    isValid[0], 
+    messages[0], 
+    (collection, previousCollection, validateAllFields) => 
+      validate([collection], [previousCollection], validateAllFields)
+  ];
 };
 
 export default useCollectionValidation;

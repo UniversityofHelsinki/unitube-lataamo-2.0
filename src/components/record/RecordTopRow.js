@@ -19,7 +19,7 @@ const getCollection = async (identifier) => {
 
 const RecordTopRow = ({ record, disabled }) => {
   const [collection, setCollection] = useState({});
-  const tags = useRecordTags({ ...record, series: collection.title });
+  const [tags] = useRecordTags([{ ...record, series: collection.title }]);
 
   useEffect(() => {
     (async () => {
