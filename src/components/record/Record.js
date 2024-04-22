@@ -31,7 +31,7 @@ const Record = () => {
 
     const [isValid, messages, validate] = useRecordValidation([
       'title', 'description', 'deletionDate', 'license', 'subtitles'
-    ]);
+    ], originalRecord);
     const [record, onChange, modified, undo] = useRecordModification(originalRecord, validate, resetProgress);
     const formRef = useRef();
 

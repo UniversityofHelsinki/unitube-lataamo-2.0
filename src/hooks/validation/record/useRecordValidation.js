@@ -3,21 +3,24 @@ import validateTitle from './titleValidation.js';
 import validateDescription from './descriptionValidation.js';
 import validateLicense from "./licenseValidation";
 import validateFile from "./fileValidation.js";
-import validateDeletionDate from "./deletionDateValidation.js";
+import { validateExistingDeletionDate } from "./deletionDateValidation.js";
 import useValidation from "../useValidation.js";
 import validateSubtitles from './subtitleValidation.js';
 
-const validationFunctions = {
+const validationFunctions = (record) => ({
   file: validateFile,
   title: validateTitle,
   description: validateDescription,
   license: validateLicense,
-  deletionDate: validateDeletionDate,
+  deletionDate: validateExistingDeletionDate(record),
   subtitles: validateSubtitles
-};
+});
 
-const useRecordValidation = (fields) => {
-  const [isValid, messages, validate] = useValidation(validationFunctions, fields);
+const useRecordValidation = (fields, record) => {
+  const [isValid, messages, validate] = useValidation(
+    validationFunctions(record), 
+    fields
+  );
 
   return [isValid, messages, validate];
 };
@@ -27,3 +30,4 @@ useRecordValidation.propTypes = {
 };
 
 export default useRecordValidation;
+

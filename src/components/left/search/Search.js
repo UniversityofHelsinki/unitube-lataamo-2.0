@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -11,28 +11,26 @@ import { useTranslation } from "react-i18next";
 
 const Search = ({ options, onOptionChange }) => {
   const { t } = useTranslation();
-  const [searchValue, setSearchValue] = useState('');
-
-  useEffect(() => {
-    let timeoutId = setTimeout(() => {
-      if (onOptionChange) {
-        onOptionChange({
-          ...options,
-          filtered: searchValue !== '',
-          searchValue
-        });
-      }
-    }, 500);
-
-    return () => clearTimeout(timeoutId);
-  }, [searchValue, onOptionChange, options]);
+  const [searchValue, setSearchValue] = useState(options.searchValue || '');
+  const searchTimeoutID = useRef();
 
   const handleSearchInputChange = (event) => {
+    if (searchTimeoutID.current) {
+      clearTimeout(searchTimeoutID.current);
+    }
     setSearchValue(event.target.value);
+    searchTimeoutID.current = setTimeout(() => onOptionChange({
+      ...options,
+      searchValue: event.target.value
+    }), 500);
   };
 
   const handleClear = () => {
     setSearchValue('');
+    onOptionChange({
+      ...options,
+      searchValue: ''
+    });
   };
 
   return (
@@ -50,14 +48,17 @@ const Search = ({ options, onOptionChange }) => {
                     id="search-videos"
                 />
                 {searchValue && (
-                    <InputGroup.Text className="removeIconContainer">
-                      <button onClick={handleClear} aria-label={t('clear_search')}>
-                        <RemoveIcon width="20px" height="20px" />
+                    <div className="removeIconContainer">
+                      <button
+                          onClick={handleClear}
+                          aria-label={t('clear_search')}
+                          tabIndex="0">
+                        <RemoveIcon width="20px" height="20px"/>
                       </button>
-                    </InputGroup.Text>
+                    </div>
                 )}
                 <InputGroup.Text className="searchIconContainer">
-                  <SearchIcon width="20px" height="20px" />
+                  <SearchIcon width="20px" height="20px"/>
                 </InputGroup.Text>
               </InputGroup>
             </div>

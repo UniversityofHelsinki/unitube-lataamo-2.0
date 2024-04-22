@@ -19,11 +19,9 @@ const getVTTFile = (vttFile) => {
 
 const VideoPlayer = ({ video }) => {
     const { t } = useTranslation();
-    const [currentVideo, setCurrentVideo] = useState(video);
     const [thumbnailUrl, setThumbnailUrl] = useState('');
 
     useEffect(() => {
-        setCurrentVideo(video);
 
         const fetchThumbnail = async (video) => {
             if (video?.coverImage) {
@@ -46,33 +44,32 @@ const VideoPlayer = ({ video }) => {
     }, [video])
 
     return (
-        <Loading loading={!currentVideo || currentVideo.id !== video?.id}>
-            <video data-testid="video-player" poster={thumbnailUrl} className="video-player" crossOrigin="anonymous" preload="metadata"
-                   controlsList='nodownload' controls
-                   onContextMenu={e => e.preventDefault()}>
-                <source data-testid="source" src={playVideo(video?.url)}/>
+        <Loading loading={!video}>
+            <video 
+                  data-testid="video-player" 
+                  poster={thumbnailUrl} 
+                  className="video-player" 
+                  crossOrigin="anonymous" 
+                  preload="metadata"
+                  controlsList='nodownload' controls
+                  onContextMenu={e => e.preventDefault()}
+                >
+                <source data-testid="source" src={playVideo(video?.url)} />
                 <track data-testid="caption-track"
                        src={getVTTFile(video?.vttFile)} kind="captions"
-                       srcLang="fi" label={t('subtitles_on')} default/>
+                       srcLang="fi" label={t('subtitles_on')} default />
             </video>
         </Loading>
     );
 };
 
-const VideoPreview = ({videos}) => {
+const VideoPreview = ({ video }) => {
     return (
-        <Container className="no-margin no-padding">
-            <Row>
-            <Col className="no-padding">
-                { videos && videos.length > 0 && <VideoPlayer video={videos[0]} /> }
-            </Col>
-            </Row>
-        </Container>
+        video && <VideoPlayer video={video} />
     );
 };
 
 VideoPreview.propTypes = {
-    record: PropTypes.object.isRequired
 };
 
 export default VideoPreview;

@@ -19,6 +19,20 @@ const validateDeletionDate = (ISO, _record) => {
   return FIELD_IS_VALID;
 };
 
+export const validateExistingDeletionDate = (record) => {
+  const originalDeletionDate = new Date(record?.deletionDate);
+  const today = midnight(new Date());
+  return (ISO, _record) => {
+    const date = new Date(ISO);
+    const equalsOriginal = !(date < originalDeletionDate || date > originalDeletionDate);
+    if (!ISO || !date) {
+      return 'record_validation_deletion_date_is_empty';
+    } else if (!equalsOriginal && date < addMonths(today, DELETION_DATE_MIN_MONTHS)) {
+      return 'record_validation_deletion_date_too_soon';
+    } 
+  };
+};
+
 validateDeletionDate.PropTypes = {
   ISO: PropTypes.string,
   record: PropTypes.object

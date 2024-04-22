@@ -1,0 +1,44 @@
+.list-sort-menu {
+  display: flex;
+  flex-direction: row;
+}
+
+.list-sort-menu-button-label-container {
+  display: flex;
+  flex-direction: column;
+  color: var(--huds-brand-main);
+}
+
+.list-sort-menu-button-label-container:hover {
+  color: var(--hy-black);
+}
+
+.list-sort-menu-button-label {
+  font-size: 1em;
+  text-align: end;
+}
+
+.list-sort-menu-button-label-sub-text {
+  font-size: 0.8em;
+  text-align: end;
+  text-decoration: underline;
+}
+
+.list-sort-menu-scending-button {
+  background-color: unset;
+  border: unset;
+  max-height: min-content;
+}
+
+.list-sort-menu-scending-button:hover svg polygon {
+  fill: var(--huds-brand-main);
+}
+
+.list-sort-menu-scending-button svg {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.list-sort-menu-scending-button svg polygon {
+  fill: var(--hy-black);
+}
