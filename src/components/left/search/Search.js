@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 
 const Search = ({ options, onOptionChange }) => {
   const { t } = useTranslation();
-  const [searchValue, setSearchValue] = useState(options.searchValue || '');
+  const [searchValue, setSearchValue] = useState(options?.searchValue || '');
   const searchTimeoutID = useRef();
 
   const handleSearchInputChange = (event) => {

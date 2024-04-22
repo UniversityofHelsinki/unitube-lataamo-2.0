@@ -6,7 +6,7 @@ import ButtonRow from './ButtonRow';
 import Search from './search/Search';
 import NewCollection from '../collection/NewCollection';
 
-const CollectionActions = () => {
+const CollectionActions = ({options, onOptionChange}) => {
   return (
     <Container className="collection-actions-container">
       <Row>
@@ -18,6 +18,7 @@ const CollectionActions = () => {
       </Row>
       <Row>
         <Col>
+            <Search options={options} onOptionChange={onOptionChange}/>
         </Col>
       </Row>
     </Container>
