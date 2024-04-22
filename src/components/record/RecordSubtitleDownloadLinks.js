@@ -79,6 +79,8 @@ const RemoveSubtitleButton = ({ onClick, markedForDeletion, disabled }) => {
  */
 const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloadLinks, disabled }) => {
     const { t } = useTranslation();
+    // Create the structure to hold the unique subtitles
+    const uniqueIds = Array.from(new Set(subtitles.map(subtitle => subtitle.id)));
     return (
         <>
             {subtitles && subtitles.length > 0 && subtitles[0]?.filename !== 'empty.vtt' && (
@@ -95,12 +97,24 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloa
                     <Row>
                         <Col>
                             <ul className="blockquote record-subtitle-download-link-list">
-                                {subtitles.map((subtitle, i) =>
-                                    subtitle.filename !== 'empty.vtt' && (
-                                    <li key={subtitle.id || i}>
-                                        <DownloadLink onChange={onChange}  to={`${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/vttFile/` + subtitle.url} label={subtitle.filename} resetSubtitleDownloadLinks={resetSubtitleDownloadLinks} disabled={disabled} />
-                                    </li>
-                                ))}
+                                {uniqueIds.map(uniqueId => {
+                                    const subtitle = subtitles.find(sub => sub.id === uniqueId && sub.filename !== 'empty.vtt');
+
+                                    // Return null if no subtitle was found with the unique id
+                                    if (!subtitle) return null;
+
+                                    return (
+                                        <li key={subtitle.id}>
+                                            <DownloadLink
+                                                onChange={onChange}
+                                                to={`${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/vttFile/` + subtitle.url}
+                                                label={subtitle.filename}
+                                                resetSubtitleDownloadLinks={resetSubtitleDownloadLinks}
+                                                disabled={disabled}
+                                            />
+                                        </li>
+                                    );
+                                })}
                             </ul>
                         </Col>
                     </Row>

@@ -66,7 +66,7 @@ const RecordCard = ({ record, onClick, selected = false }) => {
               </span>
               </div>
               <div className="record-card-thumbnail-container">
-                <Thumbnail record={record} width="160" length="160" altText="record_thumbnail_alt_text"/>
+                <Thumbnail record={record} width="160" height="160" altText="record_thumbnail_alt_text"/>
               </div>
             </div>
           </Col>
