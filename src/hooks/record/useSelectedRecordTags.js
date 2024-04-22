@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const distinctTagsChanged = (previous = [], next = []) => {
   const previousLabels = previous.map(tag => tag.label);
@@ -14,13 +15,19 @@ const distinctTagsChanged = (previous = [], next = []) => {
   return false;
 };
 
+const exclude = ['tag_deleted'];
+
 const useSelectedRecordTags = (distinctTags) => {
+  const { t } = useTranslation();
   const [selectedTags, setSelectedTags] = useState(null);
   const [knownDistinctTags, setKnownDistinctTags] = useState([]);
 
   useEffect(() => {
     if (distinctTagsChanged(knownDistinctTags, distinctTags)) {
-      setSelectedTags([ ...distinctTags ]);
+      console.log(distinctTags);
+      setSelectedTags([ ...distinctTags ].filter(tag => 
+        !exclude.map(e => t(e)).includes(tag.label)
+      ));
       setKnownDistinctTags(distinctTags);
     }
   }, [distinctTags, knownDistinctTags]);

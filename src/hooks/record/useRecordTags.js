@@ -193,7 +193,6 @@ const recordsDiffer = (previousRecords, records) => {
 const useRecordTags = (records = []) => {
   const { t } = useTranslation();
   const [user] = useUser();
-  const [subtitlestate, readSubtitleState] = useSubtitleState();
   const [isValids, _messages, validate] = useRecordsValidation(
     ['title', 'description', 'license', 'deletionDate'],
     records
