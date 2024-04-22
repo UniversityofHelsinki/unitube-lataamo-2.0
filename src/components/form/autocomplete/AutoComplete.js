@@ -1,4 +1,4 @@
-import React, { memo, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import AutoCompleteOptionContainer from './AutoCompleteOptionContainer';
 import { Col, Container, Row } from 'react-bootstrap';
@@ -34,7 +34,7 @@ const AutoComplete = ({ options = [], onFilter, onSelect, placeholder, ariaLabel
       <Row>
         <Col>
           <InputField 
-            aria-label={ariaLabel} 
+            aria-label={ariaLabel}
             placeholder={placeholder} 
             type="search" value={typedValue} 
             onChange={handleInput} 
