@@ -18,7 +18,7 @@ const CollectionActions = ({options, onOptionChange}) => {
       </Row>
       <Row>
         <Col>
-            <Search options={options} onOptionChange={onOptionChange}/>
+            <Search options={options} onOptionChange={onOptionChange} type="collection"/>
         </Col>
       </Row>
     </Container>

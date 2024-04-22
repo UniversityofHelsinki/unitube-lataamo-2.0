@@ -20,7 +20,7 @@ const RecordListActions = ({ options, onOptionChange, onTagChange, tags}) => {
         </Row>
         <Row>
           <Col>
-            <Search options={options} onOptionChange={onOptionChange} />
+            <Search options={options} onOptionChange={onOptionChange} type="record" />
           </Col>
         </Row>
         <Row>
