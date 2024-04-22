@@ -22,6 +22,9 @@ import useTitle from '../../hooks/useTitle';
 import useRecordSort from '../../hooks/record/useRecordSort';
 import useCollectionSort from '../../hooks/collection/useCollectionSort';
 import Colors from '../../components/utilities/HyColors';
+import useRecordTagFilter from '../../hooks/record/useRecordTagFilter';
+import useDistinctRecordTags from '../../hooks/record/useDistinctRecordTags';
+import useSelectedRecordTags from '../../hooks/record/useSelectedRecordTags';
 
 const No = ({ children }) => {
     return (
@@ -87,15 +90,26 @@ const Left = () => {
       recordSortOptions.descending
   );
 
-    const [collections, loadingCollections] = useCollections(
-        path === '/collections'
-    );
+  const distinctRecordTags = useDistinctRecordTags(
+    sortedRecords
+  );
+  const [selectedTags, onSelectedTagChange] = useSelectedRecordTags(
+    distinctRecordTags
+  );
+  const tagFilteredRecords = useRecordTagFilter(
+    sortedRecords, 
+    selectedTags
+  );
 
-    const [statistics, loadingStatistics] = useStatistics(
-        path === '/statistics'
-    );
+  const [collections, loadingCollections] = useCollections(
+    path === '/collections'
+  );
 
-   const [collectionSortOptions, setCollectionSortOptions] = useState({
+  const [statistics, loadingStatistics] = useStatistics(
+    path === '/statistics'
+  );
+
+  const [collectionSortOptions, setCollectionSortOptions] = useState({
     criteria: 'created',
     descending: true
   });
@@ -199,7 +213,7 @@ const Left = () => {
     }
   };
 
-  const recordCards = filterRecordsQuery(sortedRecords || [], recordOptions).map((record, _i) =>
+  const recordCards = filterRecordsQuery(tagFilteredRecords || [], recordOptions).map((record, _i) =>
       [<RecordCard
           key={record.identifier}
           onClick={() => onRecordCardClick(record)}
@@ -261,7 +275,12 @@ const Left = () => {
     };
 
     const actionElement = {
-        '/records': <RecordListActions options={recordOptions} onOptionChange={(options) => setRecordOptions(options)} records={records} loadingRecords={loadingRecords} />,
+        '/records': <RecordListActions 
+            options={recordOptions}
+            onOptionChange={(options) => setRecordOptions(options)}
+            tags={{ distinct: distinctRecordTags, selected: selectedTags }}
+            onTagChange={onSelectedTagChange}
+        />,
         '/collections': <CollectionActions />
     };
 

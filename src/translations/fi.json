@@ -235,5 +235,6 @@
   "total_connections": "katsojia",
   "tag_moodle": "Jaettu Moodlessa",
   "previous": "Edellinen",
-  "next": "Seuraava"
+  "next": "Seuraava",
+  "tag_validation_failed": "Puuttuvia tietoja"
 }

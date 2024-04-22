@@ -9,7 +9,11 @@ it('renders', () => {
       <RecordListActions options={{ showDeleted: false, showRecordsInCollections: false }}
                          records={[{ identifier: 'sadf', title: 'asdfasf' }, { identifier: 'fdsa', title: 'hei' }]}
                          loadingRecords = {true}
-                         onOptionChange={() => {}} />
+                         onOptionChange={() => {}} 
+                         onTagChange={() => {}}
+        tags={{ distinct: [], selected: []}}
+                          
+      />
     </MockProvider>
   );
 });

@@ -10,6 +10,7 @@ import CheckBox from '../form/CheckBox';
 
 const RecordActionOptions = ({ onOptionChange, options }) => {
   const { t } = useTranslation();
+
   const onChange = (key) => {
     if (onOptionChange) {
       onOptionChange({
@@ -24,6 +25,10 @@ const RecordActionOptions = ({ onOptionChange, options }) => {
       <Row>
         <Col>
           <CheckBox type="checkbox" id="show-collections"  name="show-collections" aria-label={t('search_options_show_records_in_collections')} label={t('search_options_show_records_in_collections')} onChange={() => onChange('showRecordsInCollections')} checked={options.showRecordsInCollections} />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
         </Col>
       </Row>
     </Container>

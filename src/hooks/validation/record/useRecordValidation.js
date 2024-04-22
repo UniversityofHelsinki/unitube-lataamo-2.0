@@ -1,28 +1,18 @@
 import PropTypes from 'prop-types';
-import validateTitle from './titleValidation.js';
-import validateDescription from './descriptionValidation.js';
-import validateLicense from "./licenseValidation";
-import validateFile from "./fileValidation.js";
-import { validateExistingDeletionDate } from "./deletionDateValidation.js";
-import useValidation from "../useValidation.js";
-import validateSubtitles from './subtitleValidation.js';
-
-const validationFunctions = (record) => ({
-  file: validateFile,
-  title: validateTitle,
-  description: validateDescription,
-  license: validateLicense,
-  deletionDate: validateExistingDeletionDate(record),
-  subtitles: validateSubtitles
-});
+import useRecordsValidation from './useRecordsValidation.js';
 
 const useRecordValidation = (fields, record) => {
-  const [isValid, messages, validate] = useValidation(
-    validationFunctions(record), 
-    fields
+  const [isValids, messages, validate] = useRecordsValidation(
+    fields,
+    [record]
   );
 
-  return [isValid, messages, validate];
+  return [
+    isValids[0], 
+    messages[0], 
+    (record, previousRecord, validateAllFields) => 
+      validate([record], [previousRecord], validateAllFields)
+  ];
 };
 
 useRecordValidation.propTypes = {

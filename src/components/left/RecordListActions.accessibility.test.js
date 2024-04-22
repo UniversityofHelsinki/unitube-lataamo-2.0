@@ -9,9 +9,12 @@ describe('RecordListActions', () => {
         const { container } = render(
           <MockProvider mockReducers={{ records: { records: [] } }}>
             <RecordListActions options={{ showDeleted: false, showRecordsInCollections: false }}
-                               records={[{ identifier: 'sadf', title: 'asdfasf' }, { identifier: 'fdsa', title: 'hei' }]}
-                               loadingRecords = {true}
-                               onOptionChange={() => {}} />
+              records={[{ identifier: 'sadf', title: 'asdfasf' }, { identifier: 'fdsa', title: 'hei' }]}
+              loadingRecords = {true}
+              onOptionChange={() => {}} 
+              onTagChange={() => {}}
+              tags={{ distinct: [], selected: []}}
+            />
           </MockProvider>
         );
         const results = await axe(container);
