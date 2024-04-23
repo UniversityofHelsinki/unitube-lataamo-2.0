@@ -1,10 +1,9 @@
-import React, { useId } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './Message.css';
 import { Form } from 'react-bootstrap';
 
-const Message = ({ type, children }) => {
-  const id = useId();
+const Message = ({ type, children, messageId }) => {
 
   const messageType = ({
     'light': 'text-secondary',
@@ -13,7 +12,7 @@ const Message = ({ type, children }) => {
   })[type] || 'neutral';
 
   return (
-    <Form.Text id={id} aria-live="assertive" className={`form-message ${messageType}`}>{children}</Form.Text>
+    <Form.Text id={messageId} aria-live="assertive" className={`form-message ${messageType}`}>{children}</Form.Text>
   );
 };
 

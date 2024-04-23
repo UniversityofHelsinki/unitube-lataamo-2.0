@@ -18,7 +18,7 @@ const RecordListActions = ({ options, onOptionChange, onTagChange, tags}) => {
             </ButtonRow>
           </Col>
         </Row>
-        <Row>
+        <Row className="mb-3">
           <Col>
             <Search options={options} onOptionChange={onOptionChange} type="record" />
           </Col>

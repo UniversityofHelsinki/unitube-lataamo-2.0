@@ -35,6 +35,8 @@
   "collection_unpublished_series": "Ei julkaistu.",
   "collection_publicity_shareable": "Kokoelman tallenteita voi jakaa ja upottaa muualle linkkien avulla. Kuka tahansa tällaisen linkin saava voi katsoa tai jakaa tallenteen. Kokoelman tallenteet tai linkit niihin eivät näy hakukoneiden tai HY:n verkkosivujen listauksissa.",
   "collection_publicity_public": "Kokoelma on julkinen, ja sen tallenteet voivat näkyä yliopiston verkkosivujen julkisessa listauksessa ja hakukoneiden tuloksissa.",
+  "collection_user_autocomplete_label": "Etsi henkilöä",
+  "collection_group_autocomplete_label": "Etsi käyttöoikeusryhmää",
   "help_dialog_close_label": "Sulje",
   "new_record_button": "Uusi tallenne",
   "new_record_form_header": "Uusi tallenne",
