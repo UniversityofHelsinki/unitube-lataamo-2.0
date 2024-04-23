@@ -41,15 +41,15 @@ const VideoPlayer = ({ video }) => {
         };
 
         fetchThumbnail(video);
-    }, [video])
+    }, [])
 
     return (
         <Loading loading={!video}>
-            <video 
-                  data-testid="video-player" 
-                  poster={thumbnailUrl} 
-                  className="video-player" 
-                  crossOrigin="anonymous" 
+            <video
+                  data-testid="video-player"
+                  poster={thumbnailUrl}
+                  className="video-player"
+                  crossOrigin="anonymous"
                   preload="metadata"
                   controlsList='nodownload' controls
                   onContextMenu={e => e.preventDefault()}
