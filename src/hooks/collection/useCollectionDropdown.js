@@ -17,6 +17,7 @@ const get = async () => {
   }
 };
 
+let alreadyLoading = false;
 const useCollectionDropdown = (load = false) => {
   const dispatch = useDispatch();
   const collectionDropDown = useSelector((state) => 
@@ -24,12 +25,14 @@ const useCollectionDropdown = (load = false) => {
   );
 
   useEffect(() => {
-    if (load && !collectionDropDown) {
+    if (load && !collectionDropDown && !alreadyLoading) {
+      alreadyLoading = true;
       (async () => {
         dispatch({ 
           type: 'SET_COLLECTION_DROPDOWN', 
           payload: await get() 
         });
+        alreadyLoading = false;
       })();
     }
   }, [collectionDropDown, load, dispatch]);
