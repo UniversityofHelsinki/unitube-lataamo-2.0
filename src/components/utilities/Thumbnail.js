@@ -41,7 +41,7 @@ const Thumbnail = ({ record, width, height, altText }) => {
                 });
             })();
         }
-    }, [record?.identifier, width, height, thumbnail]);
+    }, []);
 
     const label = t(altText, { title: record.title });
 
