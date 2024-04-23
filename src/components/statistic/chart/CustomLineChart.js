@@ -1,7 +1,7 @@
 import React from 'react';
 import { ResponsiveContainer, LineChart, XAxis, YAxis, CartesianGrid, Line, Tooltip } from 'recharts';
-import CustomStatisticTable from "../table/StatisticTable";
 import {useTranslation} from "react-i18next";
+import './CustomLineChart.css'
 
 const formatTime = (timestamp) => {
     const dateObject = new Date(timestamp);
@@ -29,7 +29,20 @@ const CustomTooltip = ({ active, payload }) => {
     return null;
 };
 
+// This function will process ticks
+const getProcessedTicks = (minData, maxData) => {
+    const ticks = new Set();
+    for (let i = Math.ceil(minData); i <= Math.floor(maxData); i++) {
+        ticks.add(i);
+    }
+    return [...ticks];
+};
+
 const CustomLineChart = ({ processedStatistics }) => {
+    const yAxisData = processedStatistics.map((item) => item.totalConnections);
+    const minData = Math.min(...yAxisData);
+    const maxData = Math.max(...yAxisData);
+    const ticks = getProcessedTicks(minData, maxData);
     return (
         <ResponsiveContainer width="100%" height={300}>
             <LineChart data={processedStatistics}>
@@ -38,7 +51,7 @@ const CustomLineChart = ({ processedStatistics }) => {
                     tickFormatter={formatTime}
                     minTickGap={60}
                 />
-                <YAxis />
+                <YAxis dataKey="totalConnections" ticks={ticks} />
                 <CartesianGrid stroke="#ccc" />
                 <Line
                     type="monotone"
