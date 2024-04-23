@@ -24,8 +24,8 @@ const RecordActionOptions = ({ onOptionChange, options }) => {
     <Container>
       <Row>
         <Col>
-          <CheckBox type="checkbox" id="show-collections"  name="show-collections" aria-label={t('search_options_show_records_in_collections')} label={t('search_options_show_records_in_collections')} onChange={() => onChange('showRecordsInCollections')} checked={options.showRecordsInCollections} />
-        </Col>
+          <CheckBox type="checkbox" id="show-collections"  name="show-collections" aria-label={options?.filtered || options?.searchValue ? t('search_options_filter_records_in_collections') : t('search_options_show_records_in_collections')} label={options?.filtered || options?.searchValue ? t('search_options_filter_records_in_collections') : t('search_options_show_records_in_collections')} onChange={() => onChange('showRecordsInCollections')} checked={options.showRecordsInCollections} />
+      </Col>
       </Row>
       <Row>
         <Col>
