@@ -315,25 +315,22 @@ const Left = () => {
   };
 
   return (
-      <Container className="left">
-        <Row className="left-up-left-container">
-          <Col className="no-padding">
-            <Container className="up-left border-bottom">
-              <Row>
-                <Col className="no-padding">
-                  <Navigation />
-                </Col>
-              </Row>
-              <Row className="border-start border-end border-black">
-                <Col className="mt-3 mb-3">
-                  {actionElement[path]}
-                </Col>
-              </Row>
-            </Container>
-          </Col>
-        </Row>
-        <Row className="border border-top-0 border-black left-down">
-          <Col className="pe-0">
+      <div className="left">
+        <div className="left-up">
+          <Container className="up-left border-bottom">
+            <Row>
+              <Col className="no-padding">
+                <Navigation />
+              </Col>
+            </Row>
+            <Row className="border-start border-end border-black">
+              <Col className="mt-3 mb-3">
+                {actionElement[path]}
+              </Col>
+            </Row>
+          </Container>
+        </div>
+        <div className="left-down border border-top-0 border-black">
             <Loading loading={Boolean(loading[path])}>
               <LeftList currentSortCriteria={sortOptions?.criteria} sortCriterias={sortCriterias} descending={sortOptions?.descending} onSortOptionChange={onSortOptionChange}>
                 {(() => {
@@ -348,9 +345,8 @@ const Left = () => {
                 })()}
               </LeftList>
             </Loading>
-          </Col>
-        </Row>
-      </Container>
+        </div>
+      </div>
   );
 };
 
