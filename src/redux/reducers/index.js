@@ -9,6 +9,7 @@ import videoReducer from './videoReducer';
 import statisticsReducer  from "./statisticsReducer";
 import statisticReducer from "./statisticReducer";
 import thumbnailReducer from './thumbnailReducer';
+import visibilityReducer from './visibilityReducer';
 
 const reducers = {
   location: locationReducer,
@@ -19,6 +20,7 @@ const reducers = {
   video: videoReducer,
   thumbnails: thumbnailReducer,
   statistics : statisticsReducer,
+  visibilities: visibilityReducer,
   statistic : statisticReducer
 };
 
