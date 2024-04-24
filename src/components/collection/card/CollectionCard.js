@@ -6,6 +6,7 @@ import CollectionCardRecords from './CollectionCardRecords';
 import onKeyDown from '../../accessibility/keydown';
 import useCollectionTags from '../../../hooks/collection/useCollectionTags';
 import CardTags from '../../utilities/CardTags';
+import DOMPurify from "dompurify";
 
 const CollectionCard = ({ collection, onClick, selected = false}) => {
   const selectedClass = selected ? 'collection-card-selected' : '';
@@ -21,19 +22,25 @@ const CollectionCard = ({ collection, onClick, selected = false}) => {
   };
 
   return (
-    <Container 
+    <Container
       className={`collection-card ${selectedClass}`}
       aria-labelledby={labelId}
     >
       <Row as="a"
         href={`?collection=${collection.identifier}`}
         className="collection-card-header-row pt-2"
-        onClick={handleClick} 
+        onClick={handleClick}
         onKeyDown={onKeyDown(handleClick)}
         aria-current={selected ? 'page' : false}
       >
         <Col>
-          <span id={labelId}>{collection.title}</span>
+          <span id={labelId}>
+            {collection.highlightedTitle ? (
+                    <span dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(collection.highlightedTitle)}}></span>)
+                :  (
+                    <span>{collection.title}</span>
+                )}
+          </span>
         </Col>
       </Row>
       <Row className="mb-2">
