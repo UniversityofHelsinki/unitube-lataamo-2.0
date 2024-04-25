@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import './Languages.css';
-import { Button } from 'react-bootstrap';
 import useLocalStorage from "../../hooks/useLocalStorage";
+import HyMenu from '../utilities/HyMenu';
+import HyMenuLabel from '../utilities/HyMenuLabel';
+import { ReactComponent as GlobeIcon } from '../utilities/icons/globe.svg';
 
 const Languages = () => {
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language;
+  const [menuOpen, setMenuOpen] = useState(false);
   const [_get, set] = useLocalStorage();
 
   const saveLanguage = async (language) => {
@@ -20,17 +23,23 @@ const Languages = () => {
     saveLanguage(language);
   };
 
+  const languages = ['fi', 'en', 'sv'];
+
   return (
-    <ul className="languages">
-      {['fi', 'en', 'sv'].map((language) =>
-        <li
-          key={language}>
-            <Button onClick={() => onClick(language)} variant="link" active={language === currentLanguage}>
-              {t(`language_select_${language}`)}
-            </Button>
-        </li>
-      )}
-    </ul>
+    <div className="languages">
+      <HyMenu 
+        selectedItems={[languages.indexOf(currentLanguage)]}
+        buttonLabel={(
+        <HyMenuLabel Icon={GlobeIcon} caretUp={menuOpen}>
+          <span>{t(`language_select_${currentLanguage}`)}</span>
+        </HyMenuLabel>
+        )}
+        onOpen={(open) => setMenuOpen(open)}
+        onSelect={(i) => onClick(languages[i])}
+      >
+        {languages.map(l => t(`language_select_${l}`))}
+      </HyMenu>
+    </div>
   );
 };
 

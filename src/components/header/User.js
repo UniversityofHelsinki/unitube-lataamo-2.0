@@ -5,20 +5,31 @@ import './User.css';
 import useUser from '../../hooks/useUser';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import HyMenuLabel from '../utilities/HyMenuLabel';
+import HyMenu from '../utilities/HyMenu';
+import { useState } from 'react';
 
 const User = () => {
   const { t } = useTranslation();
   const [user, _, logout] = useUser();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const onLogoutPress = () => logout();
+
   return (
-    <Container>
-      <Row>
-        <Col>
-          <Avatar height="1em" width="1em" />
-          <span className="me-2">{user.displayName} ({user.eppn})</span>
-          <Button className="pt-0" variant="link" onClick={() => logout()}>{t('log_out')}</Button>
-        </Col>
-      </Row>
-    </Container>
+    <div className="user">
+      <HyMenu 
+        buttonLabel={
+          <HyMenuLabel Icon={Avatar} caretUp={menuOpen}>
+            {user.displayName} ({user.eppn})
+          </HyMenuLabel>
+        }
+        onSelect={() => onLogoutPress()}
+        onOpen={(open) => setMenuOpen(open)}
+      >
+        {t('log_out')}
+      </HyMenu>
+    </div>
   );
 };
 

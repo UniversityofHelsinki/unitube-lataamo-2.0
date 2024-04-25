@@ -1,8 +1,30 @@
 .header {
-  color: var(--hy-light-gray);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100%;
+
+  border-bottom: 1px solid var(--hy-black);
+  margin-left: 12px;
+  margin-right: 12px;
 }
 
-.header-second-row {
-  margin-top: 0px;
-  margin-bottom: 20px;
+.header-left {
+  display: flex;
+  align-items: center;
 }
+
+.header-left > * {
+  margin-right: 8px;
+}
+
+.header-right {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+}
+
+.header-right > * {
+  margin-left: 8px;
+}
+

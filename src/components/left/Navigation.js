@@ -11,8 +11,8 @@ const Navigation = () => {
   const { t } = useTranslation();
   const [location, setLocation] = useLocation();
 
-  const activeProps = (path) =>
-    path === location ? { className: "nav-item-active" } : {};
+  const className = (path) =>
+    path === location ? "nav-item-active" : "";
 
   const onSelect = (path) => {
     setLocation(path);
@@ -34,11 +34,8 @@ const Navigation = () => {
         <Row className="text-center no-padding">
           <Nav as="nav" justify fill variant="tabs" activeKey={location} className="no-padding" onSelect={onSelect}>
             {tabs.map(({ path, label }) => {
-              // Use a ternary operator to apply the 'nav-item-active' class if
-              // this is the current path, otherwise apply 'nav-item'
-              const className = location === path ? 'nav-item-active' : 'nav-item';
               return (
-                  <Nav.Item key={path} className={className}>
+                  <Nav.Item key={path} className={className(path)}>
                     <Nav.Link eventKey={path}>
                       {label}
                     </Nav.Link>

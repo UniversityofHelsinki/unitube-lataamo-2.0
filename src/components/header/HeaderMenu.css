@@ -1,0 +1,22 @@
+.header-menu:hover svg polygon {
+  fill: var(--huds-brand-main);
+}
+
+.header-menu svg polygon {
+  fill: var(--hy-dark-gray);
+}
+
+.header-menu button {
+  padding: unset;
+  background-color: inherit;
+  border: unset;
+}
+
+.toggle-message-sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
