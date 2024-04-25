@@ -1,0 +1,10 @@
+.collection-card-action svg {
+    margin: 0px;
+}
+
+.collection-card-action {
+}
+
+.collection-card-action-icon-danger svg {
+    fill: var(--hy-light-silver);
+}

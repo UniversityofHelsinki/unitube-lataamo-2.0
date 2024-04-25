@@ -9,9 +9,9 @@ import './Search.css';
 import { Form, InputGroup } from 'react-bootstrap';
 import { useTranslation } from "react-i18next";
 
-const Search = ({ options, onOptionChange }) => {
+const Search = ({ options, onOptionChange, type }) => {
   const { t } = useTranslation();
-  const [searchValue, setSearchValue] = useState(options.searchValue || '');
+  const [searchValue, setSearchValue] = useState(options?.searchValue || '');
   const searchTimeoutID = useRef();
 
   const handleSearchInputChange = (event) => {
@@ -33,19 +33,23 @@ const Search = ({ options, onOptionChange }) => {
     });
   };
 
+  const isRecordType = type === 'record';
+
   return (
       <Container>
         <Row>
           <Col className="no-padding">
             <div role="search">
-              <label htmlFor="search-videos" className="visually-hidden">{t('search_videos')}</label>
+              <label htmlFor={isRecordType ? "search-videos" : "search-collections"} className="visually-hidden">
+                {isRecordType ? t('search_videos') : t('search_collections')}
+              </label>
               <InputGroup className="search">
                 <Form.Control
-                    placeholder={t('search_videos')}
-                    aria-label={t('search_videos')}
+                    placeholder={isRecordType ? t('search_videos') : t('search_collections')}
+                    aria-label={isRecordType ? t('search_videos') : t('search_collections')}
                     value={searchValue}
                     onChange={handleSearchInputChange}
-                    id="search-videos"
+                    id={isRecordType ? "search-videos" : "search-collections"}
                 />
                 {searchValue && (
                     <div className="removeIconContainer">
