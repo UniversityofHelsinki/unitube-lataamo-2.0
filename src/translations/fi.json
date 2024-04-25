@@ -250,5 +250,8 @@
   "previous": "Edellinen",
   "next": "Seuraava",
   "tag_validation_failed": "Puuttuvia tietoja",
-  "log_out": "Kirjaudu ulos"
+  "log_out": "Kirjaudu ulos",
+  "header_menu_label": "Piilota tai näytä listanäkymät???",
+  "header_menu_hidden": "Listanäkymät piilotettu",
+  "header_menu_visible": "Listanäkymät palautettu"
 }

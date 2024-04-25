@@ -11,3 +11,10 @@
   background-color: inherit;
   border: unset;
 }
+
+.toggle-message-sr-only {
+  display: inline-block;
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+}
