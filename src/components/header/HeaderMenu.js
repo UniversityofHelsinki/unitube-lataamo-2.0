@@ -8,12 +8,10 @@ import useVisibilities from '../../hooks/useVisibilities';
 
 const HeaderMenu = () => {
   const { t } = useTranslation();
-  const [_leftHidden, _rightHidden, _swap, toggleLeft] = useVisibilities();
-  const [isHidden, setIsHidden] = useState(false);
+  const [leftHidden, _rightHidden, _swap, toggleLeft] = useVisibilities();
 
   const onClick = () => {
     toggleLeft();
-    setIsHidden(prevState => !prevState);
   };
 
   return (
@@ -22,7 +20,7 @@ const HeaderMenu = () => {
           <Hamburger width="32" height="32" aria-label={t('header_menu_label')}/>
         </button>
         <span aria-live="polite" className="toggle-message-sr-only">
-            {isHidden ? t('header_menu_hidden') : t('header_menu_visible')}
+            {leftHidden ? t('header_menu_hidden') : t('header_menu_visible')}
         </span>
       </div>
   );

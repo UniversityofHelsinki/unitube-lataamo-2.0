@@ -13,10 +13,8 @@
 }
 
 .toggle-message-sr-only {
-  position: absolute;
-  left: -10000px;
-  top: auto;
-  width: 1px;
-  height: 1px;
+  display: inline-block;
+  width: 0px;
+  height: 0px;
   overflow: hidden;
 }
