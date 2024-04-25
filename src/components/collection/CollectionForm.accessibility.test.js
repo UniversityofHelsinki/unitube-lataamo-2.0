@@ -4,7 +4,6 @@ import CollectionForm from "./CollectionForm";
 import React from "react";
 import {axe} from "jest-axe";
 
-
 describe('CollectionForm', () => {
 
     const reducers = {

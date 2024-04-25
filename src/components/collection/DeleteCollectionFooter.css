@@ -1,0 +1,17 @@
+.delete-collection-footer {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-content: center;
+}
+
+.delete-collection-footer-progress-bar {
+    flex-grow: 1;
+}
+
+.delete-collection-footer-buttons {
+}
+
+.delete-collection-footer-buttons button {
+    margin-left: 8px;
+}
