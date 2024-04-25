@@ -1,18 +1,19 @@
 .collection-card {
   border: 1px solid var(--hy-silver);
 }
+.collection-card-title {
+  display: flex;
+  justify-content: space-between;
+}
 
+.collection-card-title > a {
+  flex-grow: 1;
+  text-decoration-line: none;
+  color: initial;
+}
 
 .collection-card-selected {
   background-color: var(--hy-medium-silver);
-}
-
-a.collection-card-header-row:hover {
-  cursor: pointer;
-}
-a.collection-card-header-row {
-  text-decoration-line: none;
-  color: initial;
 }
 
 .collection-card-record-row {
@@ -23,6 +24,6 @@ a.collection-card-header-row {
   font-size: 1.1em;
 }
 
-.collection-card:hover .collection-card-header-row span {
+.collection-card-title:hover a {
   text-decoration: underline;
 }

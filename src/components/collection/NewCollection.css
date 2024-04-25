@@ -4,9 +4,12 @@
 
 .new-collection-button {
   width: 100%;
+  margin-bottom: 1rem !important;
 }
 
 .new-collection-form .modal-body > .container {
   margin-bottom: 10px;
 }
+
+
 
