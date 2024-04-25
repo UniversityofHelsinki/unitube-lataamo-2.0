@@ -332,7 +332,7 @@ const Left = () => {
                     <Loading loading={Boolean(loading[path])}>
                         <LeftList currentSortCriteria={sortOptions?.criteria} sortCriterias={sortCriterias} descending={sortOptions?.descending} onSortOptionChange={onSortOptionChange}>
                             {(() => {
-                                if (listElements[path].length > 0) {
+                                if (listElements[path]?.length > 0) {
                                     return listElements[path];
                                 }
                                 return [[
