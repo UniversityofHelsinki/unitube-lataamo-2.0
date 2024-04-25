@@ -1,20 +1,6 @@
-.languages li {
-  display: inline-block;
-  margin: 0.1em;
+.languages:hover {
+  color: var(--huds-brand-main);
 }
 
-.languages .btn-link {
-  color: var(--hy-blue);
-  text-transform: uppercase;
-  text-decoration-line: initial;
-  padding: 0px;
-}
-
-.languages .btn-link:hover {
-  text-decoration-line: underline;
-}
-
-.languages .active.btn-link {
-  color: var(--hy-dark-blue-active);
-  text-transform: uppercase;
+.languages .hy-menu {
 }

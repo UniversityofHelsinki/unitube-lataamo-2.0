@@ -25,6 +25,7 @@ import Colors from '../../components/utilities/HyColors';
 import useRecordTagFilter from '../../hooks/record/useRecordTagFilter';
 import useDistinctRecordTags from '../../hooks/record/useDistinctRecordTags';
 import useSelectedRecordTags from '../../hooks/record/useSelectedRecordTags';
+import useVisibilities from '../../hooks/useVisibilities';
 
 const No = ({ children }) => {
     return (
@@ -66,6 +67,7 @@ const NoStatistics = () => {
 const Left = () => {
     const [path] = useLocation();
     const { i18n } = useTranslation();
+    const [_leftHidden, _rightHidden, swapVisibleElement] = useVisibilities();
     const [setTitle] = useTitle();
     const [recordOptions, setRecordOptions] = useState({
         showDeleted: false,
@@ -126,6 +128,7 @@ const Left = () => {
 
     const onRecordCardClick = (record) => {
         setSearchParams({ 'record': record.identifier });
+        swapVisibleElement();
     };
 
     const onStatisticCardClick = (statistic) => {
@@ -134,10 +137,12 @@ const Left = () => {
             'start_timestamp': statistic.start_timestamp,
             'end_before_timestamp': statistic.end_before_timestamp
         });
+        swapVisibleElement();
     };
 
     const onCollectionCardClick = (collection) => {
         setSearchParams({ 'collection': collection.identifier });
+        swapVisibleElement();
     };
 
     const formatDateCreated = (recordCreated) => {

@@ -19,3 +19,5 @@ i18n
     supportedLngs: ['fi', 'en', 'sv']
   });
 
+
+window.matchMedia = () => ({ addEventListener: () => {} });

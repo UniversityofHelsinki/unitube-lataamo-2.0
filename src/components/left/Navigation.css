@@ -20,6 +20,13 @@
   max-height: 100%;
 }
 
+@media (max-width: 992px) {
+  .navigation .nav-link {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
 .navigation .nav-link.active::after {
   background-color: var(--hy-medium-silver);
   display: block;
