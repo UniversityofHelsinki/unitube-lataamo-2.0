@@ -22,6 +22,7 @@ import CollectionButtons from "./CollectionButtons";
 import useTitle from '../../hooks/useTitle';
 import useCollections from '../../hooks/useCollections';
 import useCollectionError from '../../hooks/useCollectionError';
+import CollectionActions from "./card/CollectionActions";
 
 const CollectionForm = () => {
   const [setTitle] = useTitle();
@@ -31,6 +32,7 @@ const CollectionForm = () => {
   const [_collections, _loading, reloadCollections] = useCollections();
   const [isValid, messages, validate] = useCollectionValidation(['title', 'description']);
   const [collection, onChange, modified, undo] = useCollectionModification(originalCollection, validate, resetProgress);
+  const collectionHasRecords = collection?.eventColumns?.length > 0;
 
   if (errorPage && !loading) {
     return errorPage;
@@ -72,6 +74,9 @@ const CollectionForm = () => {
                   <Col className="ps-0">
                     <CollectionsBreadCrumb collection={originalCollection || {}} />
                   </Col>
+                  { !collectionHasRecords && <Col lg={2} className={`collection-card-actions text-end p-0`}>
+                    <CollectionActions collection={collection} />
+                  </Col>}
                 </Row>
                 <Row className="mb-2">
                   <Col className="ps-1">

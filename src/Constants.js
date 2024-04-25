@@ -60,6 +60,12 @@ export const ProgressStatus = {
     DONE: 'done',
     ERROR: 'error'
   },
+  COLLECTION_DELETE: {
+    NOT_STARTED: 'not_started',
+    IN_PROGRESS: 'in_progress',
+    DONE: 'done',
+    ERROR: 'error'
+  },
   RECORD_DELETE: {
     NOT_STARTED: 'not_started',
     IN_PROGRESS: 'in_progress',
