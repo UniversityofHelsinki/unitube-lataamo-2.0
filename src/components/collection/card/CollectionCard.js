@@ -9,7 +9,7 @@ import CardTags from '../../utilities/CardTags';
 import DOMPurify from "dompurify";
 import CollectionActions from "./CollectionActions";
 
-const CollectionCard = ({ collection, onClick, selected = false}) => {
+const CollectionCard = ({ collection, onClick, selected = false, containerRef }) => {
   const selectedClass = selected ? 'collection-card-selected' : '';
   const collectionHasRecords = collection.eventColumns?.length > 0;
   const tags = useCollectionTags(collection);
@@ -50,7 +50,7 @@ const CollectionCard = ({ collection, onClick, selected = false}) => {
         </Col>
       </Row>
       {collectionHasRecords && <Row className="collection-card-record-row">
-        <CollectionCardRecords records={collection.eventColumns} />
+        <CollectionCardRecords records={collection.eventColumns} containerRef={containerRef} />
       </Row>}
     </Container>
   );

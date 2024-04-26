@@ -4,7 +4,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import CollectionCardRecord from './CollectionCardRecord';
 import './CollectionCardRecords.css';
 
-const CollectionCardRecords = ({ records = [] }) => {
+const CollectionCardRecords = ({ records = [], containerRef }) => {
 
   const letItScrollWithSpace = (event) => event.stopPropagation();
 
@@ -13,7 +13,7 @@ const CollectionCardRecords = ({ records = [] }) => {
       <Row className="justify-content-between mt-2">
           {records.map((record, i) => 
               <Col key={i} className="collection-card-records-record-column">
-                <CollectionCardRecord record={record} />
+                <CollectionCardRecord record={record} containerRef={containerRef} />
               </Col>
           )}
       </Row>

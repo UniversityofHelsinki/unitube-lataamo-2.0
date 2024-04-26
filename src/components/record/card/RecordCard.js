@@ -1,4 +1,4 @@
-import React, {useId} from 'react';
+import React, {useEffect, useId, useRef} from 'react';
 import PropTypes from 'prop-types';
 import './RecordCard.css';
 import RecordCardDetails from './RecordCardDetails';
@@ -13,16 +13,21 @@ import {Badge, Col, Container, Row} from 'react-bootstrap';
 import Thumbnail from "../../utilities/Thumbnail";
 import DOMPurify from "dompurify";
 
-const RecordCard = ({ record, onClick, selected = false }) => {
+const RecordCard = ({ record, onClick, selected = false, containerRef }) => {
   const selectedClass = selected ? 'record-card-selected' : '';
   const [user] = useUser();
   const labelId = useId();
   const { t, i18n } = useTranslation();
+  const ref = useRef(null);
 
   const [tags] = useRecordTags([record]);
   const isDeleted = DELETED_SERIES_REG_EXP(user.eppn).test(record.series);
   const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
   const date = record.deletionDate && !isDeleted ? new Intl.DateTimeFormat(i18n.language, options).format(new Date(record.deletionDate)) : null;
+
+
+  useEffect(() => {
+  }, []);
 
   const series = (() => {
     const belongsToDefaultCollection = record.series === `inbox ${user.eppn}`;
@@ -51,7 +56,7 @@ const RecordCard = ({ record, onClick, selected = false }) => {
   })() : null;
 
   return (
-      <Container style={{ minHeight: '160px' }} className="border">
+      <Container ref={ref} style={{ minHeight: '160px' }} className="border">
         <Row>
           <Col lg={4} className="px-0 text-center" style={{ overflow: 'hidden' }}>
             <div className="record-card-left-side">
@@ -66,7 +71,7 @@ const RecordCard = ({ record, onClick, selected = false }) => {
               </span>
               </div>
               <div className="record-card-thumbnail-container">
-                <Thumbnail record={record} width="160" height="160" altText="record_thumbnail_alt_text"/>
+                <Thumbnail record={record} width="160" height="160" altText="record_thumbnail_alt_text" containerRef={containerRef} />
               </div>
             </div>
           </Col>
