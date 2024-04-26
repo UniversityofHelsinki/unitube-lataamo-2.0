@@ -1,0 +1,73 @@
+.landing-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.landing-page > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.landing-page-introduction {
+    font-size: 2.125rem;
+    line-height: 40px;
+    letter-spacing: -0.85px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0 0 1rem;
+}
+
+.landing-page-introduction-divider {
+
+}
+
+.landing-page-description {
+    font-size: 16px;
+    color: #000;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    font-family: "Open Sans",Helvetica,Arial,sans-serif;
+}
+
+.landing-page-unitube-instructions-link-container {
+    box-sizing: border-box;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.landing-page-unitube-instructions-link {
+    background-color: var(--huds-brand-main);
+    line-height: 20px;
+    letter-spacing: -0.7px;
+    text-transform: none;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 700;
+    height: 100%;
+    font-size: 1.25rem;
+    padding: 16px 70px 16px 18px;
+    color: var(--huds-grayscale-white);
+}
+
+.landing-page-unitube-instructions-link svg {
+    width: 1.2em;
+    height: 1.2em;
+    position: relative;
+    left: 45px;
+}
+
+.landing-page-unitube-instructions-link svg polygon {
+    fill: var(--huds-grayscale-white);
+}
+
+.landing-page:not(.custom) a:hover {
+    text-decoration: underline;
+}

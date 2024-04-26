@@ -253,5 +253,8 @@
   "log_out": "Kirjaudu ulos",
   "header_menu_label": "Piilota tai näytä listanäkymät???",
   "header_menu_hidden": "Listanäkymät piilotettu",
-  "header_menu_visible": "Listanäkymät palautettu"
+  "header_menu_visible": "Listanäkymät palautettu",
+  "landing_page_introduction": "Tervetuloa Unitube-Lataamoon!",
+  "landing_page_description": "Unitube-Lataamo on yliopiston paras ja hienoin kissavideopalvelu. Lataamoon voit ladata tallenteita, hallinnoida niitä kokoelmat -näkymässä, sekä tarkastella striimien tietoja.",
+  "landing_page_unitube_instructions_link": "Unitube-Lataamon käyttöohjeet"
 }
