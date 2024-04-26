@@ -97,6 +97,10 @@ const defaultMockReducers = {
   statistics: {
     statistics : [mockStatistic],
     statistic: mockStatistic
+  },
+  visibilities: {
+    left: true,
+    right: true
   }
 };
 

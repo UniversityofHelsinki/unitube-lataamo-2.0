@@ -25,6 +25,8 @@ import Colors from '../../components/utilities/HyColors';
 import useRecordTagFilter from '../../hooks/record/useRecordTagFilter';
 import useDistinctRecordTags from '../../hooks/record/useDistinctRecordTags';
 import useSelectedRecordTags from '../../hooks/record/useSelectedRecordTags';
+import useVisibilities from '../../hooks/useVisibilities';
+import { useRef } from 'react';
 
 const No = ({ children }) => {
     return (
@@ -66,6 +68,7 @@ const NoStatistics = () => {
 const Left = () => {
     const [path] = useLocation();
     const { i18n } = useTranslation();
+    const [_leftHidden, _rightHidden, swapVisibleElement] = useVisibilities();
     const [setTitle] = useTitle();
     const [recordOptions, setRecordOptions] = useState({
         showDeleted: false,
@@ -73,57 +76,62 @@ const Left = () => {
         filtered : false
     });
 
-  const [records, loadingRecords, _reloadRecords] = useVisibleRecords({
-    showDeleted: recordOptions.showDeleted,
-    showAll: recordOptions.showRecordsInCollections,
-    load: path === '/records'
-  });
+    const [collectionOptions, setCollectionOptions] = useState({});
 
-  const [recordSortOptions, setRecordSortOptions] = useState({
-    criteria: 'created',
-    descending: true
-  });
+    const [records, loadingRecords, _reloadRecords] = useVisibleRecords({
+        showDeleted: recordOptions.showDeleted,
+        showAll: recordOptions.showRecordsInCollections,
+        load: path === '/records'
+    });
 
-  const [sortedRecords, recordSortCriterias] = useRecordSort(
-      records,
-      recordSortOptions.criteria,
-      recordSortOptions.descending
-  );
+    const [recordSortOptions, setRecordSortOptions] = useState({
+        criteria: 'created',
+        descending: true
+    });
 
-  const distinctRecordTags = useDistinctRecordTags(
-    sortedRecords
-  );
-  const [selectedTags, onSelectedTagChange] = useSelectedRecordTags(
-    distinctRecordTags
-  );
-  const tagFilteredRecords = useRecordTagFilter(
-    sortedRecords, 
-    selectedTags
-  );
+    const [sortedRecords, recordSortCriterias] = useRecordSort(
+        records,
+        recordSortOptions.criteria,
+        recordSortOptions.descending
+    );
 
-  const [collections, loadingCollections] = useCollections(
-    path === '/collections'
-  );
+    const distinctRecordTags = useDistinctRecordTags(
+        sortedRecords
+    );
+    const [selectedTags, onSelectedTagChange] = useSelectedRecordTags(
+        distinctRecordTags
+    );
+    const tagFilteredRecords = useRecordTagFilter(
+        sortedRecords,
+        selectedTags
+    );
 
-  const [statistics, loadingStatistics] = useStatistics(
-    path === '/statistics'
-  );
+    const [collections, loadingCollections] = useCollections(
+        path === '/collections'
+    );
 
-  const [collectionSortOptions, setCollectionSortOptions] = useState({
-    criteria: 'created',
-    descending: true
-  });
+    const [statistics, loadingStatistics] = useStatistics(
+        path === '/statistics'
+    );
 
-  const [sortedCollections, collectionSortCriterias] = useCollectionSort(
-    collections,
-    collectionSortOptions.criteria,
-    collectionSortOptions.descending
-  );
+    const [collectionSortOptions, setCollectionSortOptions] = useState({
+        criteria: 'created',
+        descending: true
+    });
 
-  const [searchParams, setSearchParams] = useSearchParams();
+    const [sortedCollections, collectionSortCriterias] = useCollectionSort(
+        collections,
+        collectionSortOptions.criteria,
+        collectionSortOptions.descending
+    );
+
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const listRef = useRef(null);
 
     const onRecordCardClick = (record) => {
         setSearchParams({ 'record': record.identifier });
+        swapVisibleElement();
     };
 
     const onStatisticCardClick = (statistic) => {
@@ -132,104 +140,98 @@ const Left = () => {
             'start_timestamp': statistic.start_timestamp,
             'end_before_timestamp': statistic.end_before_timestamp
         });
+        swapVisibleElement();
     };
 
     const onCollectionCardClick = (collection) => {
         setSearchParams({ 'collection': collection.identifier });
+        swapVisibleElement();
     };
 
-
-  /**
-   * Highlights the matching search value in the given text by wrapping it in a <span> element with a background color.
-   *
-   * @param {string} text - The input text to be highlighted.
-   * @param {string} searchValue - The search value to be highlighted in the text.
-   * @returns {string} - The modified text with the matching search value highlighted.
-   */
-  const highlightMatch = (text, searchValue) => {
-    if (!text) return null;
-
-    const regex = new RegExp(`(${searchValue})`, 'gi');
-    return text.replace(regex, `<span style="background-color: ${Colors.orange}">$1</span>`);
-  };
-
-  /**
-   * Highlights a record based on a sanitized search value.
-   *
-   * @param {Object} record - The record to highlight.
-   * @param {string} sanitizedSearchValue - The sanitized search value.
-   *
-   * @returns {Object} - The highlighted record.
-   */
-  const highlightRecord = (record, sanitizedSearchValue) => {
-    const formattedCreated = new Intl.DateTimeFormat(i18n.language, {day: '2-digit', month: '2-digit', year: 'numeric'}).format(new Date(record.created));
-    const { title, description, identifier, duration } = record;
-    return {
-      ...record,
-      formattedCreated,
-      highlightedTitle: highlightMatch(title, sanitizedSearchValue),
-      highlightedDescription: highlightMatch(description, sanitizedSearchValue),
-      highlightedIdentifier: highlightMatch(identifier, sanitizedSearchValue),
-      highlightedDuration: highlightMatch(duration, sanitizedSearchValue),
-      highlightedCreation: highlightMatch(formattedCreated, sanitizedSearchValue),
+    const formatDateCreated = (recordCreated) => {
+        return new Intl.DateTimeFormat(i18n.language, {day: '2-digit', month: '2-digit', year: 'numeric'}).format(new Date(recordCreated));
     };
-  };
 
-  /**
-   * Filters an array of records based on the given options.
-   *
-   * @param {array} records - The array of records to filter.
-   * @param {object} recordOptions - The options to use for filtering.
-   * @param {string} recordOptions.searchValue - The value to search for in the records.
-   * @returns {array} - The filtered array of records.
-   */
+    const highlightMatch = (text, searchValue) => {
+        if (!text) return null;
+        const regex = new RegExp(`(${searchValue})`, 'gi');
+        return text.replace(regex, `<span style="background-color: ${Colors.orange}">$1</span>`);
+    };
 
-  const filterRecordsQuery = (records, recordOptions) => {
-    const { searchValue = '' } = recordOptions || {};
-    if (typeof searchValue === 'string' && searchValue.trim()) {
-      const sanitizedSearchValue = DOMPurify.sanitize(searchValue.toLowerCase());
-      const regex = new RegExp(sanitizedSearchValue);
+    const highlightRecord = (record, sanitizedSearchValue) => {
+        const formattedCreated = formatDateCreated(record.created);
+        const { title, description, identifier, duration } = record;
+        return {
+            ...record,
+            formattedCreated,
+            highlightedTitle: highlightMatch(title, sanitizedSearchValue),
+            highlightedDescription: highlightMatch(description, sanitizedSearchValue),
+            highlightedIdentifier: highlightMatch(identifier, sanitizedSearchValue),
+            highlightedDuration: highlightMatch(duration, sanitizedSearchValue),
+            highlightedCreation: highlightMatch(formattedCreated, sanitizedSearchValue),
+        };
+    };
 
-      // Iterate over records only once
-      return records.reduce((filteredRecords, record) => {
-        // Highlight the record
-        const highlightedRecord = highlightRecord(record, sanitizedSearchValue);
+    const highlightCollection = (collection, sanitizedSearchValue) => {
+        const { title } = collection;
+        return {
+            ...collection,
+            highlightedTitle: highlightMatch(title, sanitizedSearchValue),
+        };
+    };
 
-        // Filter and Insert record to the result if it passes the condition
-        if (
-            regex.test(highlightedRecord.title?.toLowerCase()) ||
-            regex.test(highlightedRecord.description?.toLowerCase()) ||
-            highlightedRecord.identifier?.toLowerCase() === sanitizedSearchValue ||
-            regex.test(highlightedRecord.duration?.toLowerCase()) ||
-            regex.test(highlightedRecord.formattedCreated)
-        ) {
-          filteredRecords.push(highlightedRecord);
+    const filterItemsQuery = (items, itemOptions, highlightItem, itemMatchesSearch) => {
+        const { searchValue = '' } = itemOptions || {};
+        if (typeof searchValue === 'string' && searchValue.trim()) {
+            const sanitizedSearchValue = DOMPurify.sanitize(searchValue.toLowerCase());
+            const regex = new RegExp(sanitizedSearchValue);
+            return items.reduce((filteredItems, item) => {
+                const highlightedItem = highlightItem(item, sanitizedSearchValue);
+                if (itemMatchesSearch(highlightedItem, sanitizedSearchValue, regex)) {
+                    filteredItems.push(highlightedItem);
+                }
+                return filteredItems;
+            }, []);
+        } else {
+            return items;
         }
+    };
 
-        return filteredRecords;
-      }, []);
-    } else {
-      return records;
-    }
-  };
+    const filterRecordsQuery = (records, recordOptions) => {
+        return filterItemsQuery(records, recordOptions, highlightRecord, (highlightedRecord, sanitizedSearchValue, regex) => {
+            return regex.test(highlightedRecord.title?.toLowerCase()) ||
+                regex.test(highlightedRecord.description?.toLowerCase()) ||
+                highlightedRecord.identifier?.toLowerCase() === sanitizedSearchValue ||
+                regex.test(highlightedRecord.duration?.toLowerCase()) ||
+                regex.test(highlightedRecord.formattedCreated)
+        });
+    };
 
-  const recordCards = filterRecordsQuery(tagFilteredRecords || [], recordOptions).map((record, _i) =>
-      [<RecordCard
-          key={record.identifier}
-          onClick={() => onRecordCardClick(record)}
-          record={record}
-          selected={record.identifier === searchParams.record }/>,
-        record.identifier]
-  );
+    const filterCollectionsQuery = (collections, collectionOptions) => {
+        return filterItemsQuery(collections, collectionOptions, highlightCollection, (highlightedCollection, sanitizedSearchValue, regex) => {
+            return regex.test(highlightedCollection.title?.toLowerCase());
+        });
+    };
 
-  const collectionCards = (sortedCollections || []).map((collection, i) =>
-      [<CollectionCard
-          collection={collection}
-          selected={collection.identifier === searchParams.collection}
-          key={collection.identifier}
-          onClick={() => onCollectionCardClick(collection)} />,
-        collection.identifier]
-  );
+    const recordCards = filterRecordsQuery(tagFilteredRecords || [], recordOptions).map((record, _i) =>
+        [<RecordCard
+            key={record.identifier}
+            onClick={() => onRecordCardClick(record)}
+            record={record}
+            selected={record.identifier === searchParams.record }
+            containerRef={listRef} />,
+            record.identifier]
+    );
+
+    const collectionCards = filterCollectionsQuery(sortedCollections || [], collectionOptions).map((collection, i) =>
+        [<CollectionCard
+            collection={collection}
+            selected={collection.identifier === searchParams.collection}
+            key={collection.identifier}
+            onClick={() => onCollectionCardClick(collection)} 
+            containerRef={listRef} />,
+            collection.identifier]
+    );
 
     /**
      * Sorts an array of statistics objects based on the start timestamps in descending order.
@@ -251,7 +253,7 @@ const Left = () => {
      * @returns {Array} - An array of StatisticCard components.
      */
     const statisticCards = sortedStatistics(statistics).map((statistic, _i) => {
-       return [<StatisticCard
+        return [<StatisticCard
             key={statistic.start_timestamp}
             onClick={() => onStatisticCardClick(statistic)}
             selected={
@@ -275,13 +277,16 @@ const Left = () => {
     };
 
     const actionElement = {
-        '/records': <RecordListActions 
+        '/records': <RecordListActions
             options={recordOptions}
             onOptionChange={(options) => setRecordOptions(options)}
             tags={{ distinct: distinctRecordTags, selected: selectedTags }}
             onTagChange={onSelectedTagChange}
         />,
-        '/collections': <CollectionActions />
+        '/collections': <CollectionActions
+            options={collectionOptions}
+            onOptionChange={(options) => setCollectionOptions(options)}
+        />
     };
 
     const loading = {
@@ -290,49 +295,50 @@ const Left = () => {
         '/statistics': loadingStatistics
     };
 
-  const sortOptions = {
-    '/records': recordSortOptions,
-    '/collections': collectionSortOptions
-  }[path];
+    const sortOptions = {
+        '/records': recordSortOptions,
+        '/collections': collectionSortOptions
+    }[path];
 
-  const sortCriterias = {
-    '/records': recordSortCriterias,
-    '/collections': collectionSortCriterias
-  }[path];
+    const sortCriterias = {
+        '/records': recordSortCriterias,
+        '/collections': collectionSortCriterias
+    }[path];
 
-  const onSortOptionChange = async (criteria, descending) => {
-    if (sortOptions === recordSortOptions) {
-      setRecordSortOptions({ ...recordSortOptions, criteria, descending });
-    }
-    if (sortOptions === collectionSortOptions) {
-      setCollectionSortOptions({ ...collectionSortOptions, criteria, descending });
-    }
-  };
+    const onSortOptionChange = async (criteria, descending) => {
+        if (sortOptions === recordSortOptions) {
+            setRecordSortOptions({ ...recordSortOptions, criteria, descending });
+        }
+        if (sortOptions === collectionSortOptions) {
+            setCollectionSortOptions({ ...collectionSortOptions, criteria, descending });
+        }
+    };
 
   return (
-      <Container className="left">
-        <Row className="left-up-left-container">
-          <Col className="no-padding">
-            <Container className="up-left border-bottom">
-              <Row>
-                <Col className="no-padding">
-                  <Navigation />
-                </Col>
-              </Row>
-              <Row className="border-start border-end border-black">
-                <Col className="mt-3 mb-3">
-                  {actionElement[path]}
-                </Col>
-              </Row>
-            </Container>
-          </Col>
-        </Row>
-        <Row className="border border-top-0 border-black left-down">
-          <Col className="pe-0">
+      <div className="left">
+        <div className="left-up">
+          <Container className="up-left border-bottom">
+            <Row>
+              <Col className="no-padding">
+                <Navigation />
+              </Col>
+            </Row>
+            <Row className="border-start border-end border-black">
+              <Col className="mt-3 mb-3">
+                {actionElement[path]}
+              </Col>
+            </Row>
+          </Container>
+        </div>
+        <div ref={listRef} className="left-down border border-top-0 border-black">
             <Loading loading={Boolean(loading[path])}>
-              <LeftList currentSortCriteria={sortOptions?.criteria} sortCriterias={sortCriterias} descending={sortOptions?.descending} onSortOptionChange={onSortOptionChange}>
+              <LeftList 
+                currentSortCriteria={sortOptions?.criteria} 
+                sortCriterias={sortCriterias} 
+                descending={sortOptions?.descending} 
+                onSortOptionChange={onSortOptionChange}>
                 {(() => {
-                  if (listElements[path].length > 0) {
+                  if (listElements[path]?.length > 0) {
                     return listElements[path];
                   }
                   return [[
@@ -343,9 +349,8 @@ const Left = () => {
                 })()}
               </LeftList>
             </Loading>
-          </Col>
-        </Row>
-      </Container>
+        </div>
+      </div>
   );
 };
 

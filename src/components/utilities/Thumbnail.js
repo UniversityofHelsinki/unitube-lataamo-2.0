@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,27 +20,44 @@ const fetchThumbnail = async (record, width, height) => {
     }
 };
 
-const Thumbnail = ({ record, width, height, altText }) => {
+const Thumbnail = ({ record, width, height, altText, containerRef }) => {
     const thumbnails = useSelector((state) =>
         state.thumbnails.urls
     );
     const dispatch = useDispatch();
+    const ref = useRef(null);
     const { t } = useTranslation();
 
     const thumbnail = thumbnails[`${record.identifier}-${width}-${height}`];
 
     useEffect(() => {
-        if (record.identifier && !thumbnail) {
-            (async () => {
-                dispatch({
+        if (containerRef?.current && ref?.current && !thumbnail) {
+          const options = {
+            root: containerRef.current,
+            rootMargin: '0px',
+            threshold: 1.0
+          };
+
+          const intersectionObserver = new window.IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                intersectionObserver.disconnect();
+                (async () => {
+                  dispatch({
                     type: 'SET_THUMBNAIL',
                     payload: {
-                        identifier: `${record.identifier}-${width}-${height}`,
-                        thumbnail: await fetchThumbnail(record, width, height) || {}
+                      identifier: `${record.identifier}-${width}-${height}`,
+                      thumbnail: await fetchThumbnail(record, width, height) || {}
                     }
-                });
-            })();
+                  });
+                })();
+              }
+            });
+          }, options);
+
+          intersectionObserver.observe(ref.current);
         }
+
     }, []);
 
     const label = t(altText, { title: record.title });
@@ -51,7 +68,7 @@ const Thumbnail = ({ record, width, height, altText }) => {
         );
     }
 
-    return <></>;
+    return <div ref={ref}></div>;
 };
 
 Thumbnail.propTypes = {

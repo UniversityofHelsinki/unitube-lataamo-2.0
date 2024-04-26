@@ -61,11 +61,12 @@ HyMenuItem.propTypes = {
 };
 
 const HyMenu = ({ 
-  children, 
+  children = [], 
   disabledItems = [], 
   selectedItems = [],
   onSelect,
   buttonLabel,
+  onOpen,
   openTo = 'right'
 }) => {
   const [open, setOpen] = useState(false);
@@ -75,11 +76,17 @@ const HyMenu = ({
 
   const toggleMenu = () => {
     setOpen(!open);
+    if (onOpen) {
+      onOpen(!open);
+    }
   };
 
   const onMenuItemClick = (index) => {
     setOpen(false);
     onSelect(index);
+    if (onOpen) {
+      onOpen(false);
+    }
   };
 
   const closeOnBlur = (event) => {
@@ -88,6 +95,9 @@ const HyMenu = ({
       const focusInsideMenu = ref.current.contains(blurTarget);
       if (!focusInsideMenu) {
         setOpen(false);
+        if (onOpen) {
+          onOpen(false);
+        }
       }
     }
   };
@@ -144,6 +154,7 @@ HyMenu.propTypes = {
   selectedItems: PropTypes.arrayOf(PropTypes.number),
   onSelect: PropTypes.func.isRequired,
   buttonLabel: PropTypes.node,
+  onOpen: PropTypes.func,
   openTo: PropTypes.oneOf(['left', 'right'])
 };
 

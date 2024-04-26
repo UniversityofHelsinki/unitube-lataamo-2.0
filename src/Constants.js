@@ -60,6 +60,12 @@ export const ProgressStatus = {
     DONE: 'done',
     ERROR: 'error'
   },
+  COLLECTION_DELETE: {
+    NOT_STARTED: 'not_started',
+    IN_PROGRESS: 'in_progress',
+    DONE: 'done',
+    ERROR: 'error'
+  },
   RECORD_DELETE: {
     NOT_STARTED: 'not_started',
     IN_PROGRESS: 'in_progress',
@@ -109,3 +115,5 @@ export const DELETED_SERIES_REG_EXP = (user) => new RegExp(`^trash ${user}$`);
 export const DEFAULT_COLLECTION_TRANSLATION_KEY = 'collections_default';
 
 export const DEFAULT_TITLE = "Unitube-lataamo";
+
+export const KNOWN_LOCATIONS = ['/records', '/collections', '/statistics'];

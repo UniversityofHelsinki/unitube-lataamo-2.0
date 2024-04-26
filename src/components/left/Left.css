@@ -1,19 +1,18 @@
 .left {
-}
-
-.left-up-left-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: calc(100vh - var(--header-height) - var(--right-bottom-bar-height));
 }
 
 .up-left {
   background-color: var(--hy-white);
 }
 
-.left-tab-content-row {
-}
-
 .left-down {
   overflow: auto;
-  max-height: 48vh;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 .left-no {
@@ -27,4 +26,3 @@
 .left-no p {
   padding: 10px;
 }
-

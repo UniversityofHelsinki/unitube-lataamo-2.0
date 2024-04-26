@@ -1,44 +1,36 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 import ListActions from './ListActions';
 import './LeftList.css';
 
-const LeftList = ({ 
+const LeftList = React.forwardRef(({ 
   children = [],
   currentSortCriteria,
   sortCriterias,
   onSortOptionChange,
   descending
-}) => {
+}, ref) => {
   return (
-    <Container className="left-list-container">
-      <Row className="mb-2 left-list-actions-container">
-        <Col>
-          <ListActions 
-            currentSortCriteria={currentSortCriteria}
-            sortCriterias={sortCriterias}
-            descending={descending}
-            onSortOptionChange={onSortOptionChange}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <ul className="no-padding left-list-list-container">
+    <div className="left-list-container">
+      <div className="left-list-actions">
+        <ListActions 
+          currentSortCriteria={currentSortCriteria}
+          sortCriterias={sortCriterias}
+          descending={descending}
+          onSortOptionChange={onSortOptionChange}
+        />
+      </div>
+      <div className="left-list">
+          <ul ref={ref} className="no-padding left-list-list-container">
             {children.length > 0 && children.map(([element, identifier], i) =>
               <li key={`${identifier}-${i}`} className="left-list-list-element">
                 {element}
               </li>
             )}
           </ul>
-        </Col>
-      </Row>
-    </Container>
+      </div>
+    </div>
   );
-};
+});
 
 LeftList.propTypes = {
 };

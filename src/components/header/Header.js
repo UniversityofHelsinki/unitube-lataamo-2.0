@@ -10,34 +10,25 @@ import ExternalLink from '../utilities/ExternalLink';
 import { useTranslation } from 'react-i18next';
 import Colors from '../utilities/HyColors.js';
 import './Header.css';
+import HeaderMenu from './HeaderMenu';
 
 const Header = () => {
   const { t } = useTranslation();
   return (
-    <Container className="header">
-      <Row className="justify-content-between">
-        <Col className="text-start">
-          <ExternalLink to="https://helsinki.fi" label={t('university_of_helsinki')} fill={Colors.darkGray} />
-        </Col>
-        <Col className="text-end">
-          <Container>
-            <Row>
-              <Col>
-                <User />
-              </Col>
-            </Row>
-            <Row>
-              <Languages />
-            </Row>
-          </Container>
-        </Col>
-      </Row>
-      <Row className="header-second-row">
-        <Col>
+    <div className="header">
+      <div className="header-left">
+        <div className="header-menu-icon">
+          <HeaderMenu />
+        </div>
+        <div className="header-logo">
           <Logo />
-        </Col>
-      </Row>
-    </Container>
+        </div>
+      </div>
+      <div className="header-right">
+        <Languages />
+        <User />
+      </div>
+    </div>
   );
 };
 

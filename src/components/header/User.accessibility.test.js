@@ -1,4 +1,4 @@
-import {render} from "@testing-library/react";
+import {fireEvent, render, screen} from "@testing-library/react";
 import {MockProvider} from "../../redux/reducers/MockProvider";
 import User from "./User";
 import React from "react";
@@ -21,9 +21,11 @@ describe('User', () => {
         const { container } = render(<MockProvider mockReducers={reducers}>
             <User />
         </MockProvider>);
-        const results = await axe(container);
+        const button = screen.getByRole("button");
+        fireEvent.click(button);
 
         // use the matcher function in the test
+        const results = await axe(container);
         expect(results).toHaveNoViolations();
     });
 });

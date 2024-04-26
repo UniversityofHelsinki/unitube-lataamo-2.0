@@ -31,9 +31,8 @@
   --huds-grayscale-dark: #555555;
   --huds-grayscale-black: #000;
 
-  --header-height: 150px;
+  --header-height: 100px;
   --right-bottom-bar-height: 80px;
-
 }
 
 .no-margin {
@@ -82,3 +81,6 @@
   --bs-btn-active-bg: var(--hy-black);
 }
 
+.hidden {
+  display: none;
+}
