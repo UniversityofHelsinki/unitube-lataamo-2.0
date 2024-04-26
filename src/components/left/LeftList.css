@@ -1,7 +1,12 @@
 .left-list-container {
+  display: flex;
+  flex-direction: column;
 }
 
-.left-list-actions-container {
+.left-list {
+}
+
+.left-list-actions {
   position: sticky;
   z-index: 1;
   top: 0px;
