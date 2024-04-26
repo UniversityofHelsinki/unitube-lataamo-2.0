@@ -26,3 +26,12 @@
   overflow: hidden;
   white-space: nowrap;
 }
+
+.collection-card-record-details a {
+    color: unset;
+    text-decoration: unset;
+}
+
+.collection-card-record-details:hover {
+    text-decoration: underline;
+}
