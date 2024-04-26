@@ -2,13 +2,13 @@ import React from 'react';
 import ListActions from './ListActions';
 import './LeftList.css';
 
-const LeftList = ({ 
+const LeftList = React.forwardRef(({ 
   children = [],
   currentSortCriteria,
   sortCriterias,
   onSortOptionChange,
   descending
-}) => {
+}, ref) => {
   return (
     <div className="left-list-container">
       <div className="left-list-actions">
@@ -20,7 +20,7 @@ const LeftList = ({
         />
       </div>
       <div className="left-list">
-          <ul className="no-padding left-list-list-container">
+          <ul ref={ref} className="no-padding left-list-list-container">
             {children.length > 0 && children.map(([element, identifier], i) =>
               <li key={`${identifier}-${i}`} className="left-list-list-element">
                 {element}
@@ -30,7 +30,7 @@ const LeftList = ({
       </div>
     </div>
   );
-};
+});
 
 LeftList.propTypes = {
 };

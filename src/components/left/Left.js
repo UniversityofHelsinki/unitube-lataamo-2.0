@@ -26,6 +26,7 @@ import useRecordTagFilter from '../../hooks/record/useRecordTagFilter';
 import useDistinctRecordTags from '../../hooks/record/useDistinctRecordTags';
 import useSelectedRecordTags from '../../hooks/record/useSelectedRecordTags';
 import useVisibilities from '../../hooks/useVisibilities';
+import { useRef } from 'react';
 
 const No = ({ children }) => {
     return (
@@ -126,6 +127,8 @@ const Left = () => {
 
     const [searchParams, setSearchParams] = useSearchParams();
 
+    const listRef = useRef(null);
+
     const onRecordCardClick = (record) => {
         setSearchParams({ 'record': record.identifier });
         swapVisibleElement();
@@ -215,7 +218,8 @@ const Left = () => {
             key={record.identifier}
             onClick={() => onRecordCardClick(record)}
             record={record}
-            selected={record.identifier === searchParams.record }/>,
+            selected={record.identifier === searchParams.record }
+            containerRef={listRef} />,
             record.identifier]
     );
 
@@ -224,7 +228,8 @@ const Left = () => {
             collection={collection}
             selected={collection.identifier === searchParams.collection}
             key={collection.identifier}
-            onClick={() => onCollectionCardClick(collection)} />,
+            onClick={() => onCollectionCardClick(collection)} 
+            containerRef={listRef} />,
             collection.identifier]
     );
 
@@ -325,9 +330,13 @@ const Left = () => {
             </Row>
           </Container>
         </div>
-        <div className="left-down border border-top-0 border-black">
+        <div ref={listRef} className="left-down border border-top-0 border-black">
             <Loading loading={Boolean(loading[path])}>
-              <LeftList currentSortCriteria={sortOptions?.criteria} sortCriterias={sortCriterias} descending={sortOptions?.descending} onSortOptionChange={onSortOptionChange}>
+              <LeftList 
+                currentSortCriteria={sortOptions?.criteria} 
+                sortCriterias={sortCriterias} 
+                descending={sortOptions?.descending} 
+                onSortOptionChange={onSortOptionChange}>
                 {(() => {
                   if (listElements[path]?.length > 0) {
                     return listElements[path];
