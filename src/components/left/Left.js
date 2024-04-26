@@ -309,44 +309,40 @@ const Left = () => {
         }
     };
 
-    return (
-        <Container className="left">
-            <Row className="left-up-left-container">
-                <Col className="no-padding">
-                    <Container className="up-left border-bottom">
-                        <Row>
-                            <Col className="no-padding">
-                                <Navigation />
-                            </Col>
-                        </Row>
-                        <Row className="border-start border-end border-black">
-                            <Col className="mt-3 mb-3">
-                                {actionElement[path]}
-                            </Col>
-                        </Row>
-                    </Container>
-                </Col>
+  return (
+      <div className="left">
+        <div className="left-up">
+          <Container className="up-left border-bottom">
+            <Row>
+              <Col className="no-padding">
+                <Navigation />
+              </Col>
             </Row>
-            <Row className="border border-top-0 border-black left-down">
-                <Col className="pe-0">
-                    <Loading loading={Boolean(loading[path])}>
-                        <LeftList currentSortCriteria={sortOptions?.criteria} sortCriterias={sortCriterias} descending={sortOptions?.descending} onSortOptionChange={onSortOptionChange}>
-                            {(() => {
-                                if (listElements[path]?.length > 0) {
-                                    return listElements[path];
-                                }
-                                return [[
-                                    <React.Fragment key="empty">
-                                        {emptyElements[path]}
-                                    </React.Fragment>
-                                ]];
-                            })()}
-                        </LeftList>
-                    </Loading>
-                </Col>
+            <Row className="border-start border-end border-black">
+              <Col className="mt-3 mb-3">
+                {actionElement[path]}
+              </Col>
             </Row>
-        </Container>
-    );
+          </Container>
+        </div>
+        <div className="left-down border border-top-0 border-black">
+            <Loading loading={Boolean(loading[path])}>
+              <LeftList currentSortCriteria={sortOptions?.criteria} sortCriterias={sortCriterias} descending={sortOptions?.descending} onSortOptionChange={onSortOptionChange}>
+                {(() => {
+                  if (listElements[path]?.length > 0) {
+                    return listElements[path];
+                  }
+                  return [[
+                    <React.Fragment key="empty">
+                      {emptyElements[path]}
+                    </React.Fragment>
+                  ]];
+                })()}
+              </LeftList>
+            </Loading>
+        </div>
+      </div>
+  );
 };
 
 Left.propTypes = {
