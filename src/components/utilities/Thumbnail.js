@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const fetchThumbnail = async (record, width, height) => {
     if (record?.cover_image) {
-        const thumbnailUrl = `${process.env.REACT_APP_LATAAMO_THUMBNAIL_SERVER}/thumbnail/v1/${record.cover_image}/${width}/${height}`;
+        const thumbnailUrl = `${process.env.REACT_APP_LATAAMO_THUMBNAIL_SERVER}/thumbnail/v1/${record.cover_image}/${record.identifier}`;
         try {
             const response = await fetch(thumbnailUrl);
             if (response.ok) {
