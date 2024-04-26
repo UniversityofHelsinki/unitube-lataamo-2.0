@@ -5,12 +5,15 @@ import { Col, Container, Row } from 'react-bootstrap';
 import Thumbnail from "../../utilities/Thumbnail";
 import useSearchParams from "../../../hooks/useSearchParams";
 import onKeyDown from "../../accessibility/keydown";
+import useVisibilities from '../../../hooks/useVisibilities';
 
 const CollectionCardRecord = ({ record, containerRef }) => {
     const [_, setSearchParams] = useSearchParams();
+    const [_leftHidden, _rightHidden, swap] = useVisibilities();
 
     const openRecord = (event) => {
         event.preventDefault();
+        swap();
         setSearchParams({
             record: record.id
         });
