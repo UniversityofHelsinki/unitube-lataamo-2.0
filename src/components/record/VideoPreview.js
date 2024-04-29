@@ -25,7 +25,7 @@ const VideoPlayer = ({ video }) => {
 
         const fetchThumbnail = async (video) => {
             if (video?.coverImage) {
-                const thumbnailUrl = `${process.env.REACT_APP_LATAAMO_THUMBNAIL_SERVER}/thumbnail/v1/${video.coverImage}/160/160`;
+                const thumbnailUrl = `${process.env.REACT_APP_LATAAMO_THUMBNAIL_SERVER}/thumbnail/v1/${video.coverImage}`;
                 try {
                     const response = await fetch(thumbnailUrl);
                     if (response.ok) {

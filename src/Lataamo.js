@@ -13,6 +13,7 @@ import useHistory from './hooks/useHistory';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import useVisibilities from './hooks/useVisibilities';
+import { KNOWN_LOCATIONS } from './Constants';
 
 const Lataamo = () => {
   useHistory();
@@ -28,7 +29,7 @@ const Lataamo = () => {
     return () => setUserLoadingInitiated(true);
   }, []);
 
-  if (!location || location === "/") {
+  if (!location || location === "/" || !KNOWN_LOCATIONS.includes(location)) {
     setLocation("/records");
   }
 
