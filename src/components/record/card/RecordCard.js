@@ -11,9 +11,9 @@ import RecordActions from './RecordActions';
 import {useTranslation} from "react-i18next";
 import {Badge, Col, Container, Row} from 'react-bootstrap';
 import Thumbnail from "../../utilities/Thumbnail";
-import DOMPurify from "dompurify";
+import { CardHighlight } from '../../utilities/Highlight';
 
-const RecordCard = ({ record, onClick, selected = false, containerRef }) => {
+const RecordCard = ({ record, onClick, selected = false, containerRef, highlight }) => {
   const selectedClass = selected ? 'record-card-selected' : '';
   const [user] = useUser();
   const labelId = useId();
@@ -63,12 +63,8 @@ const RecordCard = ({ record, onClick, selected = false, containerRef }) => {
               {series}
               <div className="record-card-length">
                 <span title={record.duration}>
-                  {record.highlightedDuration ? (
-                      <span dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(record.highlightedDuration)}}></span>)
-                      :  (
-                          <span>{record.duration}</span>
-                      )}
-              </span>
+                  <CardHighlight input={record.duration} what={highlight} />
+                </span>
               </div>
               <div className="record-card-thumbnail-container">
                 <Thumbnail record={record} width="160" height="160" altText="record_thumbnail_alt_text" containerRef={containerRef} />
@@ -86,11 +82,19 @@ const RecordCard = ({ record, onClick, selected = false, containerRef }) => {
               <div className="record-card-content-details-top">
                 <CardTags tags={tags} />
                 <div>
-                  <RecordCardDetails labelId={labelId} record={record} deleted={isDeleted} />
+                  <RecordCardDetails labelId={labelId} record={record} deleted={isDeleted} highlight={highlight} />
                 </div>
               </div>
               <div className="record-card-content-details-bottom">
-                {!isDeleted ? t('record_card_valid_until', {deletionDate: date})  : t('record_card_restorable_until', {realDeletionDate: realDeletionDate})}
+                {!isDeleted 
+                  ? <CardHighlight 
+                      input={t('record_card_valid_until', { deletionDate: date })} 
+                      what={highlight} 
+                    />
+                  : <CardHighlight
+                      input={t('record_card_restorable_until', { realDeletionDate })}
+                      what={highlight}
+                    />}
               </div>
             </a>
           </Col>
@@ -106,6 +110,8 @@ RecordCard.propTypes = {
   record: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired,
   selected: PropTypes.bool,
+  containerRef: PropTypes.object,
+  highlight: PropTypes.string
 };
 
 export default RecordCard;
