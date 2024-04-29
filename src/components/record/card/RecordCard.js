@@ -81,9 +81,7 @@ const RecordCard = ({ record, onClick, selected = false, containerRef, highlight
             >
               <div className="record-card-content-details-top">
                 <CardTags tags={tags} />
-                <div>
-                  <RecordCardDetails labelId={labelId} record={record} deleted={isDeleted} highlight={highlight} />
-                </div>
+                <RecordCardDetails labelId={labelId} record={record} deleted={isDeleted} highlight={highlight} />
               </div>
               <div className="record-card-content-details-bottom">
                 {!isDeleted 

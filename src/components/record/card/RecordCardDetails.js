@@ -10,18 +10,21 @@ const RecordCardDetails = ({ record, labelId, deleted, highlight }) => {
     const created = new Intl.DateTimeFormat(i18n.language, {
         day: '2-digit', month: '2-digit', year: 'numeric'
     }).format(new Date(record.created));
+
+    const noOverflow = Boolean(highlight);
+
     return (
-        <>
-            <strong id={labelId} className={deletedClass} title={record.title}>
+        <div className="record-card-details">
+            <strong id={labelId} title={record.title} className={`record-card-details-title ${deletedClass}`}>
               <CardHighlight input={record.title} what={highlight} />
             </strong>
             <p className="record-card-details-created" title={record.created}>
               <CardHighlight input={t('record_card_details_created', { created })} what={highlight} />
             </p>
-            <div title={record.description}>
+          <div title={record.description} className={`record-card-details-description ${noOverflow ? 'no-overflow' : ''}`}>
               <CardHighlight input={record.description} what={highlight} />
             </div>
-        </>
+        </div>
     );
 };
 
