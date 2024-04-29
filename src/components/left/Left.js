@@ -26,6 +26,7 @@ import useVisibilities from '../../hooks/useVisibilities';
 import { useRef } from 'react';
 import useRecordSearch from '../../hooks/record/useRecordSearch';
 import useCollectionSearch from '../../hooks/collection/useCollectionSearch';
+import useBreakpoint from '../../hooks/useBreakpoint';
 
 const No = ({ children }) => {
     return (
@@ -64,8 +65,19 @@ const NoStatistics = () => {
     );
 };
 
+const userScrolledDown = (previous, current) => {
+  return current > previous;
+};
+
+const userScrolledUp = (previous, current) => {
+  return current < previous;
+};
+
 const Left = () => {
     const [path] = useLocation();
+    const scrollTop = useRef(0);
+    const upside = useRef();
+    const belowBreakpoint = useBreakpoint('xl');
     const [_leftHidden, _rightHidden, swapVisibleElement] = useVisibilities();
 
     const [recordOptions, setRecordOptions] = useState({
@@ -260,23 +272,38 @@ const Left = () => {
         }
     };
 
+  const hideUpSide = (event) => {
+    const previousScrollTop = scrollTop.current;
+    const currentScrollTop = event.target.scrollTop;
+    if (userScrolledDown(previousScrollTop, currentScrollTop)) {
+      if (upside.current && belowBreakpoint.matches) {
+        upside.current.classList.add("hidden");
+      }
+    } else if (userScrolledUp(previousScrollTop, currentScrollTop)) {
+      if (upside.current) {
+        upside.current.classList.remove("hidden");
+      }
+    }
+    scrollTop.current = currentScrollTop;
+  };
+
   return (
       <div className="left">
         <div className="left-up">
           <Container className="up-left border-bottom">
             <Row>
-              <Col className="no-padding">
+              <Col className="no-padding up-left-navigation">
                 <Navigation />
               </Col>
             </Row>
-            <Row className="border-start border-end border-black">
+            <Row ref={upside} className="border-start border-end border-black">
               <Col className="mt-3 mb-3">
                 {actionElement[path]}
               </Col>
             </Row>
           </Container>
         </div>
-        <div ref={listRef} className="left-down border border-top-0 border-black">
+        <div ref={listRef} className="left-down border border-top-0 border-black" onScroll={hideUpSide}>
             <Loading loading={Boolean(loading[path])}>
               <LeftList 
                 currentSortCriteria={sortOptions?.criteria} 
