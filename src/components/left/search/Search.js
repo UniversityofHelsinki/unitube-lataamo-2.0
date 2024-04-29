@@ -9,7 +9,7 @@ import './Search.css';
 import { Form, InputGroup } from 'react-bootstrap';
 import { useTranslation } from "react-i18next";
 
-const Search = ({ options, onOptionChange, type }) => {
+const Search = ({ options, onOptionChange, type, startSearch = () => {}, stopSearch = () => {} }) => {
   const { t } = useTranslation();
   const [searchValue, setSearchValue] = useState(options?.searchValue || '');
   const searchTimeoutID = useRef();
@@ -30,20 +30,6 @@ const Search = ({ options, onOptionChange, type }) => {
     onOptionChange({
       ...options,
       searchValue: ''
-    });
-  };
-
-  const startSearch = () => {
-    onOptionChange({
-      ...options,
-      searchStarted: true
-    });
-  };
-
-  const stopSearch = () => {
-    onOptionChange({
-      ...options,
-      searchStarted: false
     });
   };
 

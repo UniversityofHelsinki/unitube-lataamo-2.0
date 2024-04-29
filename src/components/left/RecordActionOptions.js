@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import './RecordActionOptions.css';
 import { useTranslation } from 'react-i18next';
 import CheckBox from '../form/CheckBox';
 
-const RecordActionOptions = ({ onOptionChange, options }) => {
+const RecordActionOptions = ({ onOptionChange, options, searchStarted }) => {
   const { t } = useTranslation();
 
   const onChange = (key) => {
@@ -20,7 +19,7 @@ const RecordActionOptions = ({ onOptionChange, options }) => {
     }
   };
 
-  const showSearchLabel = options.searchStarted || options.searchValue;
+  const showSearchLabel = searchStarted || options.searchValue;
 
   return (
     <Container>

@@ -70,14 +70,12 @@ const Left = () => {
 
     const [recordOptions, setRecordOptions] = useState({
         searchValue: '',
-        searchStarted: false,
         showRecordsInCollections: false,
         filtered : false
     });
 
     const [collectionOptions, setCollectionOptions] = useState({
         searchValue: '',
-        searchStarted: false
     });
 
     const [records, loadingRecords, _reloadRecords] = useVisibleRecords({
