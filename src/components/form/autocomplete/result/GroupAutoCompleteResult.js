@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './GroupAutoCompleteResult.css';
 import { Col, Container, Row } from 'react-bootstrap';
-import Highlight from './Highlight';
+import Highlight from '../../../utilities/Highlight';
 
 const GroupAutoCompleteResult = ({ group, query }) => {
   return (
