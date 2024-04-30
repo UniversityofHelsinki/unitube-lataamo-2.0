@@ -51,6 +51,14 @@ const comparators = {
   visibility: visibilityComparator
 };
 
+export const defaultCriterias = {
+  title: false,
+  series: false,
+  created: true,
+  deletionDate: false,
+  visibility: false
+}
+
 const useRecordSort = (records, criteria, descending) => {
   const [sortedRecords, supportedCriterias] = useSort(comparators, records, criteria, descending);
 
