@@ -255,6 +255,7 @@
   "header_menu_hidden": "Listanäkymät piilotettu",
   "header_menu_visible": "Listanäkymät palautettu",
   "landing_page_introduction": "Tervetuloa Unitube-Lataamoon!",
-  "landing_page_description": "Unitube-Lataamo on yliopiston paras ja hienoin kissavideopalvelu. Lataamoon voit ladata tallenteita, hallinnoida niitä kokoelmat -näkymässä, sekä tarkastella striimien tietoja.",
-  "landing_page_unitube_instructions_link": "Unitube-Lataamon käyttöohjeet"
+  "landing_page_description": "Unitube-Lataamo on yliopiston paras ja hienoin kissavideopalvelu. Lataamoon voit ladata tallenteita, hallinnoida niitä kokoelmat -näkymässä, sekä tarkastella striimien tietoja. Unitube-Lataamo on yliopiston paras ja hienoin kissavideopalvelu. Lataamoon voit ladata tallenteita, hallinnoida niitä kokoelmat -näkymässä, sekä tarkastella striimien tietoja.",
+  "landing_page_unitube_instructions": "Unitube-Lataamon käyttöohjeet",
+  "landing_page_unitube_instructions_link": "https://helpdesk.it.helsinki.fi/ohjeet/yhteydenpito-ja-julkaiseminen/unitube/unitube-lataamo"
 }

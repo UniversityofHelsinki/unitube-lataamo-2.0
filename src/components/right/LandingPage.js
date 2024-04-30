@@ -9,19 +9,17 @@ const LandingPage = () => {
     const {t} = useTranslation();
     return (
         <div className="landing-page">
-            <div className="landing-page-introduction">
+            <div className="landing-page-introduction-container">
                 <h2>{t('landing_page_introduction')}</h2>
             </div>
-            <div>
-                <span className="landing-page-introduction-divider"></span>
-            </div>
-            <div className="landing-page-description">
-                <p> {t('landing_page_description')} </p>
+            <span className="landing-page-introduction-divider"></span>
+            <div className="landing-page-description-container">
+                <p>{t('landing_page_description')}</p>
             </div>
             <div className="landing-page-unitube-instructions-link-container">
-                <a className="landing-page-unitube-instructions-link" id="landing-page-unitube-instructions-link" href="https://google.com" aria-labelledby="landing-page-unitube-instructions-link" target="_self">
-                    {t('landing_page_unitube_instructions_link')}
-                    <ArrowRight />
+                <a className="landing-page-unitube-instructions-link" href={t('landing_page_unitube_instructions_link')} aria-label={t('landing_page_unitube_instructions')} target="_blank" rel="noreferrer noopener">
+                    {t('landing_page_unitube_instructions')}
+                    <ArrowRight/>
                 </a>
             </div>
         </div>
