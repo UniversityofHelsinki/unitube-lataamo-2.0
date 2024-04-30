@@ -129,7 +129,7 @@ const Left = () => {
 
     const [collectionSortOptions, setCollectionSortOptions] = useState({
         criteria: 'created',
-        descending: true
+        descending: collectionsDefaultCriterias['created']
     });
 
     const [sortedCollections, collectionSortCriterias] = useCollectionSort(
