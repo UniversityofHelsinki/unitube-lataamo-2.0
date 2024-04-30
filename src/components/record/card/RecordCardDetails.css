@@ -6,7 +6,7 @@
   text-decoration: line-through;
 }
 
-.record-card-details li {
+.record-card-details > div {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -15,4 +15,9 @@
 .record-card-details-created {
   margin-bottom: 0px;
   font-size: 0.9em;
+}
+
+.no-overflow {
+  white-space: initial !important;
+  text-overflow: initial !important; 
 }

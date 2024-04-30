@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import './RecordActionOptions.css';
 import { useTranslation } from 'react-i18next';
 import CheckBox from '../form/CheckBox';
 
-const RecordActionOptions = ({ onOptionChange, options }) => {
+const RecordActionOptions = ({ onOptionChange, options, searchStarted }) => {
   const { t } = useTranslation();
 
   const onChange = (key) => {
@@ -20,11 +19,21 @@ const RecordActionOptions = ({ onOptionChange, options }) => {
     }
   };
 
+  const showSearchLabel = searchStarted || options.searchValue;
+
   return (
     <Container>
       <Row>
         <Col>
-          <CheckBox type="checkbox" id="show-collections"  name="show-collections" aria-label={options?.filtered || options?.searchValue ? t('search_options_filter_records_in_collections') : t('search_options_show_records_in_collections')} label={options?.filtered || options?.searchValue ? t('search_options_filter_records_in_collections') : t('search_options_show_records_in_collections')} onChange={() => onChange('showRecordsInCollections')} checked={options.showRecordsInCollections} />
+          <CheckBox 
+            type="checkbox"
+            id="show-collections"
+            name="show-collections"
+            aria-label={showSearchLabel ?  t('search_options_filter_records_in_collections') : t('search_options_show_records_in_collections')}
+            label={showSearchLabel ? t('search_options_filter_records_in_collections') : t('search_options_show_records_in_collections')}
+            onChange={() => onChange('showRecordsInCollections')}
+            checked={options.showRecordsInCollections}
+          />
       </Col>
       </Row>
       <Row>

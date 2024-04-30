@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import DOMPurify from 'dompurify';
 import './Left.css';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -18,15 +17,16 @@ import RecordListActions from './RecordListActions';
 import CollectionActions from './CollectionActions';
 import {useTranslation} from 'react-i18next';
 import useVisibleRecords from '../../hooks/useVisibleRecords';
-import useTitle from '../../hooks/useTitle';
 import useRecordSort from '../../hooks/record/useRecordSort';
 import useCollectionSort from '../../hooks/collection/useCollectionSort';
-import Colors from '../../components/utilities/HyColors';
 import useRecordTagFilter from '../../hooks/record/useRecordTagFilter';
 import useDistinctRecordTags from '../../hooks/record/useDistinctRecordTags';
 import useSelectedRecordTags from '../../hooks/record/useSelectedRecordTags';
 import useVisibilities from '../../hooks/useVisibilities';
 import { useRef } from 'react';
+import useRecordSearch from '../../hooks/record/useRecordSearch';
+import useCollectionSearch from '../../hooks/collection/useCollectionSearch';
+import useBreakpoint from '../../hooks/useBreakpoint';
 
 const No = ({ children }) => {
     return (
@@ -65,21 +65,32 @@ const NoStatistics = () => {
     );
 };
 
+const userScrolledDown = (previous, current) => {
+  return current > previous;
+};
+
+const userScrolledUp = (previous, current) => {
+  return current < previous;
+};
+
 const Left = () => {
     const [path] = useLocation();
-    const { i18n } = useTranslation();
+    const scrollTop = useRef(0);
+    const upside = useRef();
+    const belowBreakpoint = useBreakpoint('xl');
     const [_leftHidden, _rightHidden, swapVisibleElement] = useVisibilities();
-    const [setTitle] = useTitle();
+
     const [recordOptions, setRecordOptions] = useState({
-        showDeleted: false,
+        searchValue: '',
         showRecordsInCollections: false,
         filtered : false
     });
 
-    const [collectionOptions, setCollectionOptions] = useState({});
+    const [collectionOptions, setCollectionOptions] = useState({
+        searchValue: '',
+    });
 
     const [records, loadingRecords, _reloadRecords] = useVisibleRecords({
-        showDeleted: recordOptions.showDeleted,
         showAll: recordOptions.showRecordsInCollections,
         load: path === '/records'
     });
@@ -106,6 +117,11 @@ const Left = () => {
         selectedTags
     );
 
+    const searchQueryFilteredRecords = useRecordSearch(
+      tagFilteredRecords, 
+      recordOptions.searchValue
+    );
+
     const [collections, loadingCollections] = useCollections(
         path === '/collections'
     );
@@ -123,6 +139,11 @@ const Left = () => {
         collections,
         collectionSortOptions.criteria,
         collectionSortOptions.descending
+    );
+
+    const searchQueryFilteredCollections = useCollectionSearch(
+      sortedCollections,
+      collectionOptions.searchValue
     );
 
     const [searchParams, setSearchParams] = useSearchParams();
@@ -148,88 +169,25 @@ const Left = () => {
         swapVisibleElement();
     };
 
-    const formatDateCreated = (recordCreated) => {
-        return new Intl.DateTimeFormat(i18n.language, {day: '2-digit', month: '2-digit', year: 'numeric'}).format(new Date(recordCreated));
-    };
-
-    const highlightMatch = (text, searchValue) => {
-        if (!text) return null;
-        const regex = new RegExp(`(${searchValue})`, 'gi');
-        return text.replace(regex, `<span style="background-color: ${Colors.orange}">$1</span>`);
-    };
-
-    const highlightRecord = (record, sanitizedSearchValue) => {
-        const formattedCreated = formatDateCreated(record.created);
-        const { title, description, identifier, duration } = record;
-        return {
-            ...record,
-            formattedCreated,
-            highlightedTitle: highlightMatch(title, sanitizedSearchValue),
-            highlightedDescription: highlightMatch(description, sanitizedSearchValue),
-            highlightedIdentifier: highlightMatch(identifier, sanitizedSearchValue),
-            highlightedDuration: highlightMatch(duration, sanitizedSearchValue),
-            highlightedCreation: highlightMatch(formattedCreated, sanitizedSearchValue),
-        };
-    };
-
-    const highlightCollection = (collection, sanitizedSearchValue) => {
-        const { title } = collection;
-        return {
-            ...collection,
-            highlightedTitle: highlightMatch(title, sanitizedSearchValue),
-        };
-    };
-
-    const filterItemsQuery = (items, itemOptions, highlightItem, itemMatchesSearch) => {
-        const { searchValue = '' } = itemOptions || {};
-        if (typeof searchValue === 'string' && searchValue.trim()) {
-            const sanitizedSearchValue = DOMPurify.sanitize(searchValue.toLowerCase());
-            const regex = new RegExp(sanitizedSearchValue);
-            return items.reduce((filteredItems, item) => {
-                const highlightedItem = highlightItem(item, sanitizedSearchValue);
-                if (itemMatchesSearch(highlightedItem, sanitizedSearchValue, regex)) {
-                    filteredItems.push(highlightedItem);
-                }
-                return filteredItems;
-            }, []);
-        } else {
-            return items;
-        }
-    };
-
-    const filterRecordsQuery = (records, recordOptions) => {
-        return filterItemsQuery(records, recordOptions, highlightRecord, (highlightedRecord, sanitizedSearchValue, regex) => {
-            return regex.test(highlightedRecord.title?.toLowerCase()) ||
-                regex.test(highlightedRecord.description?.toLowerCase()) ||
-                highlightedRecord.identifier?.toLowerCase() === sanitizedSearchValue ||
-                regex.test(highlightedRecord.duration?.toLowerCase()) ||
-                regex.test(highlightedRecord.formattedCreated)
-        });
-    };
-
-    const filterCollectionsQuery = (collections, collectionOptions) => {
-        return filterItemsQuery(collections, collectionOptions, highlightCollection, (highlightedCollection, sanitizedSearchValue, regex) => {
-            return regex.test(highlightedCollection.title?.toLowerCase());
-        });
-    };
-
-    const recordCards = filterRecordsQuery(tagFilteredRecords || [], recordOptions).map((record, _i) =>
+    const recordCards = (searchQueryFilteredRecords || []).map((record, _i) =>
         [<RecordCard
             key={record.identifier}
             onClick={() => onRecordCardClick(record)}
             record={record}
             selected={record.identifier === searchParams.record }
-            containerRef={listRef} />,
+            containerRef={listRef}
+            highlight={recordOptions.searchValue} />,
             record.identifier]
     );
 
-    const collectionCards = filterCollectionsQuery(sortedCollections || [], collectionOptions).map((collection, i) =>
+    const collectionCards = (searchQueryFilteredCollections || []).map((collection, i) =>
         [<CollectionCard
             collection={collection}
             selected={collection.identifier === searchParams.collection}
             key={collection.identifier}
             onClick={() => onCollectionCardClick(collection)} 
-            containerRef={listRef} />,
+            containerRef={listRef}
+            highlight={collectionOptions.searchValue} />,
             collection.identifier]
     );
 
@@ -314,23 +272,38 @@ const Left = () => {
         }
     };
 
+  const hideUpSide = (event) => {
+    const previousScrollTop = scrollTop.current;
+    const currentScrollTop = event.target.scrollTop;
+    if (userScrolledDown(previousScrollTop, currentScrollTop)) {
+      if (upside.current && belowBreakpoint.matches) {
+        upside.current.classList.add("hidden");
+      }
+    } else if (userScrolledUp(previousScrollTop, currentScrollTop)) {
+      if (upside.current) {
+        upside.current.classList.remove("hidden");
+      }
+    }
+    scrollTop.current = currentScrollTop;
+  };
+
   return (
       <div className="left">
         <div className="left-up">
           <Container className="up-left border-bottom">
             <Row>
-              <Col className="no-padding">
+              <Col className="no-padding up-left-navigation">
                 <Navigation />
               </Col>
             </Row>
-            <Row className="border-start border-end border-black">
+            <Row ref={upside} className="border-start border-end border-black">
               <Col className="mt-3 mb-3">
                 {actionElement[path]}
               </Col>
             </Row>
           </Container>
         </div>
-        <div ref={listRef} className="left-down border border-top-0 border-black">
+        <div ref={listRef} className="left-down border border-top-0 border-black" onScroll={hideUpSide}>
             <Loading loading={Boolean(loading[path])}>
               <LeftList 
                 currentSortCriteria={sortOptions?.criteria} 

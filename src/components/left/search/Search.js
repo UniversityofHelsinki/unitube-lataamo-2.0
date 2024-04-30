@@ -9,7 +9,7 @@ import './Search.css';
 import { Form, InputGroup } from 'react-bootstrap';
 import { useTranslation } from "react-i18next";
 
-const Search = ({ options, onOptionChange, type }) => {
+const Search = ({ options, onOptionChange, type, startSearch = () => {}, stopSearch = () => {} }) => {
   const { t } = useTranslation();
   const [searchValue, setSearchValue] = useState(options?.searchValue || '');
   const searchTimeoutID = useRef();
@@ -47,6 +47,8 @@ const Search = ({ options, onOptionChange, type }) => {
                 <Form.Control
                     placeholder={isRecordType ? t('search_videos') : t('search_collections')}
                     aria-label={isRecordType ? t('search_videos') : t('search_collections')}
+                    onFocus={startSearch}
+                    onBlur={stopSearch}
                     value={searchValue}
                     onChange={handleSearchInputChange}
                     id={isRecordType ? "search-videos" : "search-collections"}

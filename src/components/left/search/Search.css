@@ -1,14 +1,16 @@
 .search > input {
-  border-radius: 0;
   padding: 10px;
+  border-radius: 0;
   border-right: 0px;
 }
 
-.search input:focus-visible {
+.search:focus-within {
   outline: 2px solid var(--hy-blue);
-  border: 0px;
-  margin: 1px;
-  border-radius: 0;
+  box-shadow: initial;
+  transition: none;
+}
+
+.search input:focus-visible {
   box-shadow: initial;
   transition: none;
 }
@@ -19,13 +21,6 @@
 
 .disabled-icon {
   pointer-events: none;
-}
-
-.search input:focus-visible + .removeIconContainer + .searchIconContainer {
-  outline: 2px solid var(--hy-blue);
-  border: 0px;
-  background-color: var(--hy-blue);
-  margin: 1px;
 }
 
 .search input:focus-visible + .removeIconContainer + .searchIconContainer > svg path {
@@ -68,6 +63,7 @@
 
 .search .searchIconContainer {
   background-color: var(--hy-blue);
+  border: 0px;
 }
 
 .search .searchIconContainer > svg path {
