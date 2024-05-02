@@ -1,4 +1,5 @@
 .navigation {
+  min-width: max-content;
 }
 
 .nav.nav-tabs {
@@ -22,8 +23,8 @@
 
 @media (max-width: 992px) {
   .navigation .nav-link {
-    padding-left: 0px;
-    padding-right: 0px;
+    padding-left: 8px;
+    padding-right: 8px;
   }
 }
 

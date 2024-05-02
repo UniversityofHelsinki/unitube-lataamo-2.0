@@ -70,13 +70,15 @@ const CollectionForm = () => {
             <Loading loading={loading}>
             <Col>
               <Container className="collection-form ps-0">
-                <Row className="breadcrumb-container">
-                  <Col className="ps-0">
-                    <CollectionsBreadCrumb collection={originalCollection || {}} />
-                  </Col>
-                  { !collectionHasRecords && <Col lg={2} className={`collection-card-actions text-end p-0`}>
-                    <CollectionActions collection={collection} />
-                  </Col>}
+                <Row className="top-row-container">
+                  <div className="top-row">
+                    <div>
+                      <CollectionsBreadCrumb collection={originalCollection || {}} />
+                    </div>
+                    { !collectionHasRecords && <div lg={2} className={`collection-card-actions text-end p-0`}>
+                      <CollectionActions collection={collection} />
+                    </div>}
+                  </div>
                 </Row>
                 <Row className="mb-2">
                   <Col className="ps-1">

@@ -6,10 +6,10 @@ import CollectionCardRecords from './CollectionCardRecords';
 import onKeyDown from '../../accessibility/keydown';
 import useCollectionTags from '../../../hooks/collection/useCollectionTags';
 import CardTags from '../../utilities/CardTags';
-import DOMPurify from "dompurify";
 import CollectionActions from "./CollectionActions";
+import { CardHighlight } from '../../utilities/Highlight';
 
-const CollectionCard = ({ collection, onClick, selected = false}) => {
+const CollectionCard = ({ collection, onClick, selected = false, containerRef, highlight }) => {
   const selectedClass = selected ? 'collection-card-selected' : '';
   const collectionHasRecords = collection.eventColumns?.length > 0;
   const tags = useCollectionTags(collection);
@@ -33,11 +33,7 @@ const CollectionCard = ({ collection, onClick, selected = false}) => {
             <a href={`?collection=${collection.identifier}`} onClick={handleClick} onKeyDown={onKeyDown(handleClick)}
                aria-current={selected ? 'page' : false}>
               <span id={labelId}>
-                {collection.highlightedTitle ? (
-                  <span dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(collection.highlightedTitle)}}></span>)
-                  :  (
-                    <span>{collection.title}</span>
-                  )}
+                <CardHighlight input={collection.title} what={highlight} />
               </span>
             </a>
             { !collectionHasRecords && <CollectionActions collection={collection}/> }
@@ -50,7 +46,7 @@ const CollectionCard = ({ collection, onClick, selected = false}) => {
         </Col>
       </Row>
       {collectionHasRecords && <Row className="collection-card-record-row">
-        <CollectionCardRecords records={collection.eventColumns} />
+        <CollectionCardRecords records={collection.eventColumns} containerRef={containerRef} />
       </Row>}
     </Container>
   );
@@ -59,7 +55,8 @@ const CollectionCard = ({ collection, onClick, selected = false}) => {
 CollectionCard.propTypes = {
   collection: PropTypes.object.isRequired,
   onClick: PropTypes.func,
-  selected: PropTypes.bool
+  selected: PropTypes.bool,
+  highlight: PropTypes.string,
 };
 
 export default CollectionCard;

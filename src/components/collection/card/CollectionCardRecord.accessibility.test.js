@@ -7,8 +7,11 @@ import { MockProvider } from '../../../redux/reducers/MockProvider';
 
 
 describe('CollectionCardRecord', () => {
-    const record = {};
-
+    //const record = {};
+    const record = {
+        id: 'idtieto',
+        title: 'otsikko'
+    };
     it('should not have any accessibility violations', async () => {
         const { container } = render(
           <MockProvider>
