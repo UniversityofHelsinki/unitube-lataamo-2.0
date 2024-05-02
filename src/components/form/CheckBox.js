@@ -2,14 +2,25 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import PropTypes from "prop-types";
 import './CheckBox.css';
+import { useRef } from 'react';
+import { useEffect } from 'react';
 
-const CheckBox = ({ label, ...rest }) => {
+const CheckBox = ({ indeterminate, ...rest }) => {
+    const ref = useRef();
+
+    useEffect(() => {
+      if (ref.current) {
+        ref.current.indeterminate = indeterminate;
+      }
+    }, [indeterminate]);
+
     return (
-        <Form.Check type="checkbox" label={label} { ...rest } />
+        <Form.Check ref={ref} type="checkbox" { ...rest } />
     );
 }
 
 CheckBox.propTypes = {
-    label: PropTypes.string.isRequired,
+  indeterminate: PropTypes.bool,
 };
+
 export default CheckBox;

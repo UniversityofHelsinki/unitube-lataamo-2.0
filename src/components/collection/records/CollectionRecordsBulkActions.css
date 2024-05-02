@@ -1,0 +1,25 @@
+.collection-records-bulk-actions {
+  display: flex;
+  align-items: center;
+}
+
+.collection-records-bulk-actions > span:first-of-type {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.collection-records-bulk-actions ul {
+  list-style: none;
+  padding-left: 0px;
+  margin-bottom: 0px;
+  display: flex;
+  align-content: center;
+}
+
+.collection-records-bulk-actions li {
+  margin-left: 8px;
+}
+
+.collection-records-bulk-actions li:first-of-type {
+  margin-left: 8px;
+}

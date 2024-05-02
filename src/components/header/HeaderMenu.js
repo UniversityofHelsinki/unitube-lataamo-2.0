@@ -19,7 +19,7 @@ const HeaderMenu = () => {
         <button onClick={onClick}>
           <Hamburger width="32" height="32" aria-label={t('header_menu_label')}/>
         </button>
-        <span aria-live="polite" className="toggle-message-sr-only">
+        <span aria-live="polite" className="screenreader-only">
             {leftHidden ? t('header_menu_hidden') : t('header_menu_visible')}
         </span>
       </div>
