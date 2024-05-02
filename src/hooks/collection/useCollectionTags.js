@@ -18,7 +18,7 @@ const useCollectionTags = (collection) => {
     visibility(t, 'status_private', 'tag_private'),
     visibility(t, 'status_published', 'tag_published'),
     visibility(t, 'status_unlisted', 'tag_unlisted'),
-    visibility(t, 'status_moodle', 'tag_moodle', 'brightblue'),
+    visibility(t, 'status_moodle', 'tag_moodle', 'grey'),
   ];
 
   const tags = tagFunctions
