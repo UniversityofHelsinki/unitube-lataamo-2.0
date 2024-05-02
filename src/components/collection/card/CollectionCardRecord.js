@@ -22,9 +22,9 @@ const CollectionCardRecord = ({ record, containerRef }) => {
     const selected = searchParameters?.record === record?.id;
 
   return (
-    <Container className="collection-card-record">
+    <Container className={`collection-card-record ${selected ? 'collection-card-record-selected' : ''}`}>
       <Row style={{ height: '100%' }}>
-        <Col className = {selected ? "collection-card-record-thumb-selected p-0" : "collection-card-record-thumb p-0"}>
+        <Col className="collection-card-record-thumb p-0">
           <Thumbnail width="40" height="40" record={{ ...record, identifier: record.id }} altText={'collection_card_thumbnail_alt_text'} containerRef={containerRef}></Thumbnail>
         </Col>
         <Col className="col-sm-8 collection-card-record-details">
