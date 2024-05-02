@@ -1,0 +1,75 @@
+.landing-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: start;
+    align-items: start;
+    max-width: 100%;
+    margin-top: 4rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.landing-page-introduction-container h2 {
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0 0 1em;
+}
+
+.landing-page-introduction-divider {
+    border-bottom: 1px solid var(--huds-grayscale-medium);
+    width: 100%;
+    margin-bottom: -1em;
+}
+
+.landing-page-description-container p {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5em;
+    color: var(--hy-black);
+    display: block;
+    box-sizing: border-box;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-bottom: 1.4rem;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+.landing-page-unitube-instructions-link-container {
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+    padding: 8px 8px 8px 8px;
+    background-color: var(--huds-brand-main);
+}
+
+.landing-page-unitube-instructions-link {
+    display: flex;
+    align-items: center;
+    line-height: 1.25em;
+    letter-spacing: -0.7px;
+    text-transform: none;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 600;
+    height: 100%;
+    font-size: 1.25rem;
+    color: var(--huds-grayscale-white);
+}
+
+.landing-page-unitube-instructions-link svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-left: 8px;
+}
+
+.landing-page-unitube-instructions-link svg polygon {
+    fill: var(--huds-grayscale-white);
+}
+
+.landing-page:not(.custom) a:hover {
+    text-decoration: underline;
+}
