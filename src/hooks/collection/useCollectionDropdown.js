@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import useCollectionSort from '../../hooks/collection/useCollectionSort';
+import useUser from "../useUser";
 
 const get = async () => {
   const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/userSeriesWithOutTrash`;
@@ -19,9 +21,17 @@ const get = async () => {
 
 let alreadyLoading = false;
 const useCollectionDropdown = (load = false) => {
+  const [user] = useUser();
+  const criteria = 'title';
+  const descending = false;
   const dispatch = useDispatch();
   const collectionDropDown = useSelector((state) => 
     state.collections.collectionDropDown
+  );
+  const [sortedCollection, _collectionSortCriterias] = useCollectionSort(
+      collectionDropDown,
+      criteria,
+      descending
   );
 
   useEffect(() => {
@@ -38,7 +48,10 @@ const useCollectionDropdown = (load = false) => {
   }, [collectionDropDown, load, dispatch]);
 
   const loading = !collectionDropDown;
-  return [collectionDropDown, loading];
+  let title = `inbox ${user.eppn}`; //move inbox ${user.eppn} collection first in dropdownlist
+  let sortedCollectionDropDown = sortedCollection?.sort((x,y) => { return x.title == title ? -1 : y.title == title ? 1 : 0; });
+
+  return [sortedCollectionDropDown, loading];
 };
 
 export default useCollectionDropdown;

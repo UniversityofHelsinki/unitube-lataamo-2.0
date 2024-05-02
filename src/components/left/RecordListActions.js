@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './RecordListActions.css';
 import { Col, Container, Row } from 'react-bootstrap';
@@ -9,6 +9,9 @@ import RecordActionOptions from './RecordActionOptions';
 import TagButtonList from './TagButtonList';
 
 const RecordListActions = ({ options, onOptionChange, onTagChange, tags}) => {
+
+  const [searchStarted, setSearchStarted] = useState(false);
+
   return (
       <Container>
         <Row className="mb-3">
@@ -20,12 +23,17 @@ const RecordListActions = ({ options, onOptionChange, onTagChange, tags}) => {
         </Row>
         <Row className="mb-3">
           <Col>
-            <Search options={options} onOptionChange={onOptionChange} type="record" />
+            <Search 
+              options={options} 
+              onOptionChange={onOptionChange} 
+              type="record" 
+              startSearch={() => setSearchStarted(true)} 
+              stopSearch={() => setSearchStarted(false)}/>
           </Col>
         </Row>
         <Row>
           <Col>
-            <RecordActionOptions onOptionChange={onOptionChange} options={options} />
+            <RecordActionOptions onOptionChange={onOptionChange} options={options} searchStarted={searchStarted} />
           </Col>
         </Row>
         <Row className="tag-button-list-row">

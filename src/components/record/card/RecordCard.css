@@ -109,4 +109,6 @@ a.record-card-content-details {
   padding: 2px;
 }
 
-
+.record-card-highlight {
+  background-color: var(--hy-orange);
+}

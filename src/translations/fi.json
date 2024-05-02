@@ -171,7 +171,8 @@
   "search_options_show_deleted": "Näytä poistetut",
   "search_options_show_records_in_collections": "Näytä myös kokoelmiin kuuluvat tallenteet",
   "search_options_filter_records_in_collections": "Hae myös kokoelmiin kuuluvista tallenteista",
-  "search_videos" : "Hae videoista",
+  "search_videos" : "Hae tallenteista",
+  "search_collections" : "Hae kokoelmia",
   "record_card_action_restore": "Palauta",
   "record_card_action_delete": "Poista",
   "record_card_valid_until": "Voimassa {{- deletionDate}} asti",
@@ -253,5 +254,9 @@
   "log_out": "Kirjaudu ulos",
   "header_menu_label": "Piilota tai näytä listanäkymät???",
   "header_menu_hidden": "Listanäkymät piilotettu",
-  "header_menu_visible": "Listanäkymät palautettu"
+  "header_menu_visible": "Listanäkymät palautettu",
+  "landing_page_introduction": "Tervetuloa Unitube-Lataamoon!",
+  "landing_page_description": "Unitube-Lataamo on yliopiston paras ja hienoin kissavideopalvelu. Lataamoon voit ladata tallenteita, hallinnoida niitä kokoelmat -näkymässä, sekä tarkastella striimien tietoja. Unitube-Lataamo on yliopiston paras ja hienoin kissavideopalvelu. Lataamoon voit ladata tallenteita, hallinnoida niitä kokoelmat -näkymässä, sekä tarkastella striimien tietoja.",
+  "landing_page_unitube_instructions": "Unitube-Lataamon käyttöohjeet",
+  "landing_page_unitube_instructions_link": "https://helpdesk.it.helsinki.fi/ohjeet/yhteydenpito-ja-julkaiseminen/unitube/unitube-lataamo"
 }
