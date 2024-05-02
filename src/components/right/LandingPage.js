@@ -17,13 +17,15 @@ const LandingPage = () => {
                 <p>{t('landing_page_description')}</p>
             </div>
             <div className="landing-page-unitube-instructions-link-container">
-                <a className="landing-page-unitube-instructions-link" href={t('landing_page_unitube_instructions_link')} aria-label={t('landing_page_unitube_instructions')} target="_blank" rel="noreferrer noopener">
+                <a className="landing-page-unitube-instructions-link" href={t('landing_page_unitube_instructions_link')}
+                   aria-label={t('landing_page_unitube_instructions')} target="_blank" rel="noreferrer noopener">
                     {t('landing_page_unitube_instructions')}
                     <ArrowRight/>
                 </a>
             </div>
         </div>
-    );
+    )
+        ;
 };
 
 LandingPage.propTypes = {};
