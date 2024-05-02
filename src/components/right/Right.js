@@ -4,6 +4,7 @@ import useSearchParams from '../../hooks/useSearchParams';
 import Record from '../record/Record';
 import CollectionForm from '../collection/CollectionForm';
 import Statistic from "../statistic/Statistic";
+import LandingPage from "./LandingPage";
 
 const Right = () => {
   const [searchParams] = useSearchParams();
@@ -15,6 +16,8 @@ const Right = () => {
     content = <CollectionForm />;
   } else if (searchParams.room) {
     content = <Statistic/>;
+  } else {
+    content = <LandingPage />;
   }
 
   return (
