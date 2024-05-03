@@ -68,7 +68,7 @@ const Thumbnail = ({ record, width, height, altText, containerRef }) => {
         );
     }
 
-    return <div ref={ref}></div>;
+  return <div ref={ref}></div>;
 };
 
 Thumbnail.propTypes = {

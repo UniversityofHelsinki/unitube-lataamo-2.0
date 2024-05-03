@@ -4,8 +4,8 @@
   margin-right: 0.5em;
 }
 
-.collection-records-list-row {
-  max-height: 175px;
+.collection-records-table-row {
+  max-height: 250px;
   overflow: auto;
 }
 
@@ -16,4 +16,9 @@
 
 .collection-records-no-records p {
   padding: 10px;
+}
+
+.collection-records-bulk-actions-container {
+  background-color: var(--hy-light-silver);
+  padding: 8px;
 }

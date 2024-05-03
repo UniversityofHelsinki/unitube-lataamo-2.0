@@ -1,0 +1,112 @@
+.records-table {
+  min-width: 100%;
+}
+
+.records-table caption {
+  padding: 0px;
+  position: absolute;
+}
+
+.records-table-heading {
+  position: sticky;
+  box-sizing: border-box;
+  top: 0px;
+  text-align: center;
+  background-color: var(--hy-white);
+}
+
+.records-table-heading th {
+  text-align: center;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.records-table-heading-checkbox label {
+  display: inline-block;
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+}
+
+.records-table .form-check {
+  padding-left: 0px;
+}
+
+.records-table .form-check input {
+  margin-left: 0px;
+}
+
+.records-table-sort-button {
+  padding: unset;
+  border: unset;
+  background-color: unset;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-width: 100%;
+  font-weight: 600;
+}
+
+.records-table-sort-button svg {
+  margin-left: 0.4em;
+  max-width: 1em;
+  max-height: 1em;
+}
+
+.records-table-sort-button svg polygon {
+  fill: var(--hy-black);
+}
+
+.records-table > tbody {
+}
+
+.records-table-row {
+  min-height: 40px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.records-table-row:nth-of-type(even) {
+  background-color: var(--hy-light-silver);
+}
+
+.records-table-row > td {
+  max-width: 240px;
+}
+
+.records-table-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: start;
+}
+
+.records-table-title img {
+  max-width: 40px;
+  max-height: 40px;
+}
+
+.records-table-title > a {
+  margin-left: 1em;
+  word-break: break-all;
+  min-width: fit-content;
+}
+
+.records-table-checkbox {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.records-table-checkbox label {
+  display: inline-block;
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+}
+
+.records-table-heading-checkbox {
+  min-width: 40px;
+}

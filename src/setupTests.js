@@ -21,3 +21,6 @@ i18n
 
 
 window.matchMedia = () => ({ addEventListener: () => {} });
+window.IntersectionObserver = function IntersectionObserver() {
+  this.observe = () => {};
+};

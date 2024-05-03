@@ -258,5 +258,13 @@
   "landing_page_introduction": "Tervetuloa Unitube-Lataamoon!",
   "landing_page_description": "Unitube-Lataamo on yliopiston paras ja hienoin kissavideopalvelu. Lataamoon voit ladata tallenteita, hallinnoida niitä kokoelmat -näkymässä, sekä tarkastella striimien tietoja. Unitube-Lataamo on yliopiston paras ja hienoin kissavideopalvelu. Lataamoon voit ladata tallenteita, hallinnoida niitä kokoelmat -näkymässä, sekä tarkastella striimien tietoja.",
   "landing_page_unitube_instructions": "Unitube-Lataamon käyttöohjeet",
-  "landing_page_unitube_instructions_link": "https://helpdesk.it.helsinki.fi/ohjeet/yhteydenpito-ja-julkaiseminen/unitube/unitube-lataamo"
+  "landing_page_unitube_instructions_link": "https://helpdesk.it.helsinki.fi/ohjeet/yhteydenpito-ja-julkaiseminen/unitube/unitube-lataamo",
+  "records_table_select_all": "Valitse kaikki",
+  "records_table_title": "Nimi",
+  "records_table_select": "Valitse tallenne {{ record }}",
+  "records_table_created": "Luontipäivämäärä",
+  "records_table_deletion_date": "Vanhenemispäivämäärä",
+  "records_table_embed_code": "Kopioi upotuskoodi",
+  "collection_records_bulk_actions_move": "Siirrä",
+  "collection_records_bulk_actions_delete": "Poista"
 }

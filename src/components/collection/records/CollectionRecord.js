@@ -2,7 +2,6 @@ import React, { useId } from 'react';
 import PropTypes from 'prop-types';
 import './CollectionRecord.css';
 import { Col, Container, Row } from 'react-bootstrap';
-import { ReactComponent as RemoveIcon } from '../../utilities/icons/remove.svg';
 import onKeyDown from '../../accessibility/keydown';
 import { useTranslation } from 'react-i18next';
 import useSearchParams from '../../../hooks/useSearchParams';
@@ -24,7 +23,6 @@ const CollectionRecord = ({ record, disabled, reloadCollectionOnRemove }) => {
   };
 
   const disabledClass = disabled ? 'collection-record-disabled' : '';
-
 
   return (
     <Container className={`collection-record ${disabledClass}`} aria-describedby={id}>
