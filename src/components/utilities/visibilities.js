@@ -13,6 +13,11 @@ export const leftSideIsHidden = () => {
 export const toggleLeftSide = () => {
   const left = document.querySelector(`#${LEFT_CONTAINER_ID}`);
   const right = document.querySelector(`#${RIGHT_CONTAINER_ID}`);
+
+  if (!left || !right) {
+    return;
+  }
+
   left.classList.toggle('hidden');
   right.classList.toggle(`col-${BREAKPOINT}-8`);
   right.classList.toggle(`col-${BREAKPOINT}-12`);
@@ -26,6 +31,11 @@ export const toggleLeftSide = () => {
 export const swapVisibleSide = () => {
   const left = document.querySelector(`#${LEFT_CONTAINER_ID}`);
   const right = document.querySelector(`#${RIGHT_CONTAINER_ID}`);
+
+  if (!left || !right) {
+    return;
+  }
+
   const mediaQuery = window.matchMedia('(max-width: 1200px)');
   const belowBreakpoint = mediaQuery.matches;
 
@@ -49,7 +59,7 @@ export const listenForBreakpointChanges = () => {
     const belowBreakpoint = event.matches;
     const aboveBreakpoint = !belowBreakpoint;
 
-    if (aboveBreakpoint) {
+    if (left && right && aboveBreakpoint) {
       left.classList.remove('hidden');
       left.classList.remove(`col-${BREAKPOINT}-12`);
       left.classList.add(`col-${BREAKPOINT}-4`);
@@ -57,7 +67,7 @@ export const listenForBreakpointChanges = () => {
       right.classList.remove('hidden');
       right.classList.remove(`col-${BREAKPOINT}-12`);
       right.classList.add(`col-${BREAKPOINT}-8`);
-    } else {
+    } else if (left && right) {
       left.classList.add('hidden');
       right.classList.toggle(`col-${BREAKPOINT}-8`);
       right.classList.toggle(`col-${BREAKPOINT}-12`);
