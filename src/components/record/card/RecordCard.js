@@ -66,9 +66,17 @@ const RecordCard = ({ record, onClick, selected = false, containerRef, highlight
                   <CardHighlight input={record.duration} what={highlight} />
                 </span>
               </div>
-              <div className="record-card-thumbnail-container">
-                <Thumbnail record={record} width="160" height="160" altText="record_thumbnail_alt_text" containerRef={containerRef} />
-              </div>
+                <a 
+                  aria-hidden
+                  href={`?record=${record.identifier}`} 
+                  onClick={handleClick}
+                  onKeyDown={onKeyDown(handleClick)}
+                  tabIndex={-1}
+                >
+                  <div className="record-card-thumbnail-container">
+                    <Thumbnail record={record} width="160" height="160" altText="record_thumbnail_alt_text" containerRef={containerRef} />
+                  </div>
+                </a>
             </div>
           </Col>
           <Col lg={6} className={`${selectedClass}`}>
