@@ -1,5 +1,6 @@
 import { integerComparator, stringComparator } from "../../components/utilities/comparators";
 import useSort from "../useSort";
+import useUser from "../useUser";
 
 const titleComparator = (descending) => {
   return (a, b) => {
@@ -8,9 +9,17 @@ const titleComparator = (descending) => {
   };
 };
 
-const seriesComparator = (descending) => {
+const seriesComparator = (descending, eppn) => {
+  let inbox_title = `inbox ${eppn}`; //move inbox ${eppn} video first in videolist
+  let trash_title = `trash ${eppn}`; //move trash ${eppn} video last in videolist
+
   return (a, b) => {
-    const order = stringComparator(a.series, b.series);
+    let order = stringComparator(a.series, b.series);
+    if (order !== 0 && a.series === inbox_title || b.series === inbox_title) {
+      order = 1;
+    } else if (order !== 0 && a.series === trash_title || b.series === trash_title) {
+      order = -1;
+    }
     return descending ? -order : order;
   };
 };
@@ -60,7 +69,9 @@ export const defaultCriterias = {
 }
 
 const useRecordSort = (records, criteria, descending) => {
-  const [sortedRecords, supportedCriterias] = useSort(comparators, records, criteria, descending);
+  const [user] = useUser();
+  const eppn = user.eppn;
+  const [sortedRecords, supportedCriterias] = useSort(comparators, records, criteria, descending, eppn);
 
   return [sortedRecords, supportedCriterias];
 };
