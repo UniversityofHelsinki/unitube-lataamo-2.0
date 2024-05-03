@@ -28,6 +28,7 @@ const NewRecordProgress = ({ progress }) => {
     [ProgressStatus.NEW_RECORD.DONE]: t('new_record_upload_done'),
     [ProgressStatus.NEW_RECORD.SENDING]: timeLeftLabel,
     [ProgressStatus.NEW_RECORD.SENDING_SUBTITLES]: t('new_record_upload_sending_subtitles'),
+    [ProgressStatus.NEW_RECORD.PROCESSING_SUBTITLES]: t('new_record_upload_processing_subtitles'),
     [ProgressStatus.NEW_RECORD.SENDING_SUBTITLE_ORDER]: t('new_record_upload_sending_subtitle_order'),
     [ProgressStatus.NEW_RECORD.ABORTED]: t('new_record_upload_aborted'),
     [ProgressStatus.NEW_RECORD.PROCESSING]: t('new_record_upload_processing')
@@ -38,6 +39,7 @@ const NewRecordProgress = ({ progress }) => {
     [ProgressStatus.NEW_RECORD.DONE]: 'done',
     [ProgressStatus.NEW_RECORD.SENDING]: 'sending',
     [ProgressStatus.NEW_RECORD.SENDING_SUBTITLES]: 'sending',
+    [ProgressStatus.NEW_RECORD.PROCESSING_SUBTITLES]: 'sending',
     [ProgressStatus.NEW_RECORD.SENDING_SUBTITLE_ORDER]: 'sending',
     [ProgressStatus.NEW_RECORD.NOT_STARTED]: 'not-started',
     [ProgressStatus.NEW_RECORD.ABORTED]: 'aborted',
@@ -52,7 +54,7 @@ const NewRecordProgress = ({ progress }) => {
         </AlertMessage>
       );
     } 
-    if (progress.status === ProgressStatus.NEW_RECORD.PROCESSING || progress.status === ProgressStatus.NEW_RECORD.SENDING_SUBTITLES || progress.status === ProgressStatus.NEW_RECORD.SENDING_SUBTITLE_ORDER) {
+    if (progress.status === ProgressStatus.NEW_RECORD.PROCESSING || progress.status === ProgressStatus.NEW_RECORD.SENDING_SUBTITLES || ProgressStatus.NEW_RECORD.PROCESSING_SUBTITLES || progress.status === ProgressStatus.NEW_RECORD.SENDING_SUBTITLE_ORDER) {
         return (
           <AlertMessage type="transparent">
           {t('new_record_footer_alert_processing')}
@@ -62,7 +64,7 @@ const NewRecordProgress = ({ progress }) => {
     return <></>;
   })();
 
-  const processingProgressBarProps = progress.status === ProgressStatus.NEW_RECORD.PROCESSING || progress.status === ProgressStatus.NEW_RECORD.SENDING_SUBTITLES || progress.status === ProgressStatus.NEW_RECORD.SENDING_SUBTITLE_ORDER ? {
+  const processingProgressBarProps = progress.status === ProgressStatus.NEW_RECORD.PROCESSING || progress.status === ProgressStatus.NEW_RECORD.SENDING_SUBTITLES || progress.status === ProgressStatus.NEW_RECORD.PROCESSING_SUBTITLES || progress.status === ProgressStatus.NEW_RECORD.SENDING_SUBTITLE_ORDER ? {
     variant: 'striped',
     animated: true
   } : {};

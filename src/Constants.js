@@ -21,6 +21,7 @@ export const ProgressStatus = {
     NOT_STARTED: 'not_started',
     SENDING: 'sending',
     SENDING_SUBTITLES: 'sending_subtitles',
+    PROCESSING_SUBTITLES: 'processing_subtitles',
     SENDING_SUBTITLE_ORDER: 'sending_subtitle_order',
     ERROR: 'error',
     DONE: 'done',

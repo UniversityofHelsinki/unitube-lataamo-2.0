@@ -75,12 +75,13 @@ const NewRecord = () => {
     }
   };
 
-  const closeable = progress.status !== ProgressStatus.NEW_RECORD.SENDING || progress.status !== ProgressStatus.NEW_RECORD.SENDING_SUBTITLES || progress.status !== ProgressStatus.NEW_RECORD.SENDING_SUBTITLE_ORDER;
+  const closeable = progress.status !== ProgressStatus.NEW_RECORD.SENDING && progress.status !== ProgressStatus.NEW_RECORD.SENDING_SUBTITLES;
   const closeButton = closeable ? { closeButton: true } : {};
 
   const disabled = {
     [ProgressStatus.NEW_RECORD.SENDING]: true,
     [ProgressStatus.NEW_RECORD.SENDING_SUBTITLES]: true,
+    [ProgressStatus.NEW_RECORD.PROCESSING_SUBTITLES]: true,
     [ProgressStatus.NEW_RECORD.SENDING_SUBTITLE_ORDER]: true,
     [ProgressStatus.NEW_RECORD.PROCESSING]: true,
     [ProgressStatus.NEW_RECORD.ERROR]: true,

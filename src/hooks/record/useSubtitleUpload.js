@@ -33,9 +33,10 @@ const useSubtitleUpload = () => {
     const job = await upload(formData);
 
     if (job && job.status !== 'FINISHED' || job.status !== 'NOT_FOUND') {
-      await startMonitoring(job);
+      return async () => startMonitoring(job);
     }
 
+    return async () => {};
   };
 
   return [save, abortMonitoring];
