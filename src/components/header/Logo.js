@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import useSearchParams from '../../hooks/useSearchParams';
-import useVisibilities from '../../hooks/useVisibilities';
 import HyColors from '../utilities/HyColors';
 import HyLogo from '../utilities/HyLogo';
 import './Logo.css';
@@ -9,12 +8,10 @@ import './Logo.css';
 const Logo = () => {
   const { t } = useTranslation();
   const [_searchParams, setSearchParams] = useSearchParams();
-  const [_leftHidden, rightHidden, swap] = useVisibilities();
 
   const goToFrontPage = () => {
     setSearchParams({});
-    if (rightHidden) {
-      swap();
+    if (false) {
     }
   };
 
