@@ -84,3 +84,10 @@
 .hidden {
   display: none;
 }
+
+.screenreader-only {
+  display: inline-block;
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+}

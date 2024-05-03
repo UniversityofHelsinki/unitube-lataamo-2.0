@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 20.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
+<svg
+   version="1.1"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 576 512"
+   style="enable-background:new 0 0 576 512;"
+   xml:space="preserve"
+   fill="#107eab"
+   sodipodi:docname="CheckBox.square-indeterminate.svg"
+   inkscape:export-filename="CheckBox.square-indeterminate.svg"
+   inkscape:export-xdpi="9.3999996"
+   inkscape:export-ydpi="9.3999996"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+   id="defs297"><linearGradient
+     id="linearGradient1994"
+     inkscape:swatch="solid"><stop
+       style="stop-color:#107eab;stop-opacity:1;"
+       offset="0"
+       id="stop1992" /></linearGradient></defs><sodipodi:namedview
+   id="namedview295"
+   pagecolor="#ffffff"
+   bordercolor="#999999"
+   borderopacity="1"
+   inkscape:showpageshadow="0"
+   inkscape:pageopacity="0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   showgrid="false"
+   inkscape:zoom="1.727827"
+   inkscape:cx="201.11967"
+   inkscape:cy="266.51974"
+   inkscape:window-width="2560"
+   inkscape:window-height="1341"
+   inkscape:window-x="0"
+   inkscape:window-y="0"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="g2138"><inkscape:grid
+     type="xygrid"
+     id="grid1066" /></sodipodi:namedview>
+
+<g
+   id="g2138"
+   transform="translate(-1.6424978,0.7400898)"
+   inkscape:export-filename="CheckBox.square-indeterminate.svg"
+   inkscape:export-xdpi="9.1999998"
+   inkscape:export-ydpi="9.1999998"><g
+     id="g2363"
+     transform="matrix(1.1889465,0,0,1.1889465,-0.0373365,-96.609962)"><rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:43.2433;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2132"
+       width="429.61551"
+       height="430.04971"
+       x="0.19760348"
+       y="81.188828" /><rect
+       style="fill:none;fill-opacity:1;stroke:#107eab;stroke-width:40;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1959"
+       width="390.02237"
+       height="390.02234"
+       x="20.90737"
+       y="101.28603" /><rect
+       style="fill:#107eab;fill-opacity:1;stroke:none;stroke-width:43.5982;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2054"
+       width="382.3681"
+       height="80"
+       x="24.734503"
+       y="256.29721" /></g></g></svg>

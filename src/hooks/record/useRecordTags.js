@@ -99,7 +99,7 @@ const statusLabelMap = {
   [STATUS.PRIVATE.toLowerCase()]: { label: 'tag_private', color: 'blue' },
   [STATUS.PUBLISHED.toLowerCase()]: { label: 'tag_published', color: 'blue' },
   [STATUS.UNLISTED.toLowerCase()]: { label: 'tag_unlisted', color: 'blue' },
-  [STATUS.MOODLE.toLowerCase()]: { label: 'tag_moodle', color: 'brightblue' }
+  [STATUS.MOODLE.toLowerCase()]: { label: 'tag_moodle', color: 'grey' }
 };
 
 /**

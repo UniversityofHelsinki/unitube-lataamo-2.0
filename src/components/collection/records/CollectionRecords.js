@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import './CollectionRecords.css';
 import { useTranslation } from 'react-i18next';
-import { Col, Container, Row } from 'react-bootstrap';
-import CollectionRecord from './CollectionRecord';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 import ElementHeader from '../../form/ElementHeader';
 import HelpDialog from '../../dialog/HelpDialog';
+import RecordsTable from '../../record/RecordsTable';
+import { useState } from 'react';
+import CollectionRecordsBulkActions from './CollectionRecordsBulkActions';
 
 const NoRecords = () => {
   const { t } = useTranslation();
@@ -18,23 +20,39 @@ const NoRecords = () => {
 
 const CollectionRecords = ({ records, disabled }) => {
   const { t } = useTranslation();
+  const tableRowRef = useRef();
+  const [selectedRecords, setSelectedRecords] = useState([]);
 
-  const recordsList = (() => {
+  const onRecordSelect = (records) => {
+    setSelectedRecords(records);
+  };
+
+  const recordsTable = (() => {
     if (!records || records.length === 0) {
-      return <li>
-        <NoRecords />
-      </li>;
+      return <NoRecords />;
     }
-    return records.map((record, i) =>
-      <li key={record.id}>
-        <CollectionRecord 
-          record={record} 
-          disabled={disabled}
-          reloadCollectionOnRemove={true}
-          aria-label={record.title} 
-        />
-      </li>
-    );
+
+    return (<RecordsTable 
+      records={records} 
+      disabled={disabled} 
+      onSelect={onRecordSelect} 
+      containerRef={tableRowRef}
+      selectedRecords={selectedRecords}
+    />);
+  })();
+
+  const bulkActions = (() => {
+    if (selectedRecords.length > 0) {
+      return (
+        <div className="collection-records-bulk-actions-container" aria-live="polite">
+          <CollectionRecordsBulkActions 
+            records={records}
+            selectedRecords={selectedRecords}
+          />
+        </div>
+      );
+    }
+    return <div aria-live="polite"></div>
   })();
 
   return (
@@ -53,13 +71,14 @@ const CollectionRecords = ({ records, disabled }) => {
           </HelpDialog>
         </Col>
       </Row>
-      <Row className="collection-records-list-row">
-        <Col as="ul" className="collection-records-record-col">
-          {recordsList}
+      <Row ref={tableRowRef} className="collection-records-table-row">
+        <Col>
+          {recordsTable}
         </Col>
       </Row>
       <Row>
         <Col>
+            {bulkActions}
         </Col>
       </Row>
     </Container>
