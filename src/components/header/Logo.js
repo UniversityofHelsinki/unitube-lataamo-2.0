@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import useSearchParams from '../../hooks/useSearchParams';
 import HyColors from '../utilities/HyColors';
 import HyLogo from '../utilities/HyLogo';
+import { belowBreakpoint, leftSideIsHidden, swapVisibleSide, toggleLeftSide } from '../utilities/visibilities';
 import './Logo.css';
 
 const Logo = () => {
@@ -11,7 +12,8 @@ const Logo = () => {
 
   const goToFrontPage = () => {
     setSearchParams({});
-    if (false) {
+    if (belowBreakpoint() && !leftSideIsHidden()) {
+      toggleLeftSide();
     }
   };
 
