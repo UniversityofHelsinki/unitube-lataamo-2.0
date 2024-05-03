@@ -11,6 +11,7 @@ import { thunk } from 'redux-thunk';
 import lataamoReducer from './redux/reducers';
 import Lataamo from './Lataamo';
 import { DEFAULT_LANGUAGE } from './Constants';
+import { listenForBreakpointChanges } from './components/utilities/visibilities';
 
 const store = createStore(lataamoReducer, applyMiddleware(thunk));
 
@@ -36,6 +37,8 @@ i18n
     fallbackLng: 'cimode',
     supportedLngs: ['fi', 'en', 'sv']
   });
+
+listenForBreakpointChanges();
 
 const App = () => {
 

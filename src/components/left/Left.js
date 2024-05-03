@@ -22,11 +22,10 @@ import useCollectionSort from '../../hooks/collection/useCollectionSort';
 import useRecordTagFilter from '../../hooks/record/useRecordTagFilter';
 import useDistinctRecordTags from '../../hooks/record/useDistinctRecordTags';
 import useSelectedRecordTags from '../../hooks/record/useSelectedRecordTags';
-import useVisibilities from '../../hooks/useVisibilities';
 import { useRef } from 'react';
 import useRecordSearch from '../../hooks/record/useRecordSearch';
 import useCollectionSearch from '../../hooks/collection/useCollectionSearch';
-import useBreakpoint from '../../hooks/useBreakpoint';
+import { belowBreakpoint, toggleLeftSide } from '../utilities/visibilities';
 
 const No = ({ children }) => {
     return (
@@ -77,8 +76,6 @@ const Left = () => {
     const [path] = useLocation();
     const scrollTop = useRef(0);
     const upside = useRef();
-    const belowBreakpoint = useBreakpoint('xl');
-    const [_leftHidden, _rightHidden, swapVisibleElement] = useVisibilities();
 
     const [recordOptions, setRecordOptions] = useState({
         searchValue: '',
@@ -152,7 +149,9 @@ const Left = () => {
 
     const onRecordCardClick = (record) => {
         setSearchParams({ 'record': record.identifier });
-        swapVisibleElement();
+        if (belowBreakpoint()) {
+          toggleLeftSide();
+        }
     };
 
     const onStatisticCardClick = (statistic) => {
@@ -161,12 +160,16 @@ const Left = () => {
             'start_timestamp': statistic.start_timestamp,
             'end_before_timestamp': statistic.end_before_timestamp
         });
-        swapVisibleElement();
+        if (belowBreakpoint()) {
+          toggleLeftSide();
+        }
     };
 
     const onCollectionCardClick = (collection) => {
         setSearchParams({ 'collection': collection.identifier });
-        swapVisibleElement();
+        if (belowBreakpoint()) {
+          toggleLeftSide();
+        }
     };
 
     const recordCards = (searchQueryFilteredRecords || []).map((record, _i) =>
@@ -276,7 +279,7 @@ const Left = () => {
     const previousScrollTop = scrollTop.current;
     const currentScrollTop = event.target.scrollTop;
     if (userScrolledDown(previousScrollTop, currentScrollTop)) {
-      if (upside.current && belowBreakpoint.matches) {
+      if (upside.current && belowBreakpoint()) {
         upside.current.classList.add("hidden");
       }
     } else if (userScrolledUp(previousScrollTop, currentScrollTop)) {

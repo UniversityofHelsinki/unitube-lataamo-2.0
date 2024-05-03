@@ -12,29 +12,31 @@ import useLocation from './hooks/useLocation';
 import useHistory from './hooks/useHistory';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import useVisibilities from './hooks/useVisibilities';
-import { KNOWN_LOCATIONS } from './Constants';
+import { KNOWN_LOCATIONS, LEFT_CONTAINER_ID, RIGHT_CONTAINER_ID } from './Constants';
+import { belowBreakpoint } from './components/utilities/visibilities';
 
 const Lataamo = () => {
   useHistory();
   const [user, loadUser] = useUser();
   const [userLoadingInitiated, setUserLoadingInitiated] = useState(false);
+  const [leftHiddenClass, setLeftHiddenClass] = useState('');
   const [location, setLocation] = useLocation();
-  const [leftHidden, rightHidden] = useVisibilities();
 
   useEffect(() => {
     if (!user && !userLoadingInitiated) {
       loadUser();
     }
+
+    if (belowBreakpoint()) {
+      setLeftHiddenClass('hidden');
+    }
+
     return () => setUserLoadingInitiated(true);
   }, []);
 
   if (!location || location === "/" || !KNOWN_LOCATIONS.includes(location)) {
     setLocation("/records");
   }
-
-  const leftHiddenClass = leftHidden ? 'hidden' : '';
-  const rightHiddenClass = rightHidden ? 'hidden' : '';
 
   return (
       <Loading loading={!Boolean(user)}>
@@ -45,10 +47,10 @@ const Lataamo = () => {
               </Col>
             </Row>
             <Row className="root-main-row">
-              <Col as="aside" role="complementary" xl={rightHidden ? 12 : 4} className={`${leftHiddenClass}`}>
+              <Col id={LEFT_CONTAINER_ID} as="aside" role="complementary" xl={4} className={leftHiddenClass}>
                 <Left />
               </Col>
-              <Col as="main" role="main" xl={leftHidden ? 12 : 8} className={`${rightHiddenClass}`}>
+              <Col id={RIGHT_CONTAINER_ID} as="main" role="main" xl={8}>
                 <Right />
               </Col>
             </Row>

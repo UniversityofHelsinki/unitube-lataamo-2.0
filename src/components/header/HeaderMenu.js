@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 import './HeaderMenu.css';
 import { ReactComponent as Hamburger } from '../utilities/icons/hamburger.svg';
 import { useTranslation } from 'react-i18next';
-import useVisibilities from '../../hooks/useVisibilities';
+import { leftSideIsHidden, swapVisibleSide, toggleLeftSide } from '../utilities/visibilities';
 
 
 const HeaderMenu = () => {
   const { t } = useTranslation();
-  const [leftHidden, _rightHidden, _swap, toggleLeft] = useVisibilities();
 
   const onClick = () => {
-    toggleLeft();
+    toggleLeftSide();
   };
 
   return (
@@ -20,7 +19,7 @@ const HeaderMenu = () => {
           <Hamburger width="32" height="32" aria-label={t('header_menu_label')}/>
         </button>
         <span aria-live="polite" className="screenreader-only">
-            {leftHidden ? t('header_menu_hidden') : t('header_menu_visible')}
+            {leftSideIsHidden() ? t('header_menu_hidden') : t('header_menu_visible')}
         </span>
       </div>
   );

@@ -119,3 +119,8 @@ export const DEFAULT_TITLE = "Unitube-lataamo";
 export const KNOWN_LOCATIONS = ['/records', '/collections', '/statistics'];
 
 export const RECORD_EMBED_CODE = (identifier) => `<iframe src="https://unitube.it.helsinki.fi/unitube/embed.html?id=${identifier}" scrolling="no" allowfullscreen="true" frameBorder="0" marginHeight="0px" marginWidth="0px" height="360" width="640"></iframe>`
+
+export const BREAKPOINT = 'xl';
+
+export const LEFT_CONTAINER_ID = 'left-col';
+export const RIGHT_CONTAINER_ID = 'right-col';
