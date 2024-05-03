@@ -24,12 +24,12 @@ const CollectionCardRecord = ({ record, containerRef }) => {
 
   return (
     <Container className={`collection-card-record ${selected ? 'collection-card-record-selected' : ''}`}>
-      <Row style={{ height: '100%' }}>
-        <Col className="collection-card-record-thumb p-0">
+      <Row as="a" href={`?record=${record.id}`} style={{ height: '100%' }}onClick={openRecord} onKeyDown={onKeyDown(openRecord)}>
+        <Col className="collection-card-record-thumb p-0" aria-hidden>
           <Thumbnail width="40" height="40" record={{ ...record, identifier: record.id }} altText={'collection_card_thumbnail_alt_text'} containerRef={containerRef}></Thumbnail>
         </Col>
         <Col className="col-sm-8 collection-card-record-details">
-            <a href={`?record=${record.id}`} onClick={openRecord} onKeyDown={onKeyDown(openRecord)}>{record.title}</a>
+          {record.title}
         </Col>
       </Row>
     </Container>

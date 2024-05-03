@@ -31,11 +31,11 @@
   white-space: nowrap;
 }
 
-.collection-card-record-details a {
+.collection-card-record a {
     color: unset;
     text-decoration: unset;
 }
 
-.collection-card-record-details:hover {
+.collection-card-record:hover {
     text-decoration: underline;
 }
