@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './HeaderMenu.css';
 import { ReactComponent as Hamburger } from '../utilities/icons/hamburger.svg';
 import { useTranslation } from 'react-i18next';
-import { leftSideIsHidden, swapVisibleSide, toggleLeftSide } from '../utilities/visibilities';
+import { leftSideIsHidden, toggleLeftSide } from '../utilities/visibilities';
 
 
 const HeaderMenu = () => {
