@@ -53,7 +53,7 @@ const HelpDialog = ({ label, children }) => {
   
   const headerId = useId();
 
-  const showLink = <Button variant="link" onClick={toggle} className="p-0" aria-haspopup="dialog">{label}</Button>;
+  const showLink = <Button variant="link" onClick={toggle} className="p-0 help-dialog-button" aria-haspopup="dialog">{label}</Button>;
 
   const header = label;
 

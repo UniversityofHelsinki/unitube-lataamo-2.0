@@ -81,7 +81,7 @@ const Record = () => {
 
     return (
       <form ref={formRef} onSubmit={handleSave}>
-        <Container className="record" >
+        <Container className="record">
           <Row className="record-row">
             <Loading loading={loading}>
               <Col>
@@ -100,7 +100,7 @@ const Record = () => {
                     <Col xl={5} className="ps-0">
                       <RecordStaticInformation record={originalRecord} onChange={onChange} resetSubtitleDownloadLinks={resetSubtitleDownloadLinks} disabled={saveInProgress}  />
                     </Col>
-                    <Col xl>
+                    <Col xl className="ps-0">
                       <RecordForm
                         record={record}
                         onChange={onChange}
