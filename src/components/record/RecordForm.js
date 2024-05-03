@@ -19,7 +19,7 @@ const RecordForm = ({
 }) => {
 
   return (
-    <Container>
+    <Container className="ps-0">
           <Row className="mb-2">
             <Col>
                 <RecordName
