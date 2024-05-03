@@ -40,7 +40,12 @@ const useNewRecordSave = () => {
           status: ProgressStatus.NEW_RECORD.SENDING_SUBTITLES,
           percentage: 100,
         });
-        await uploadSubtitles({ file: subtitles.file, identifier: eventId });
+        const subtitleMonitor = await uploadSubtitles({ file: subtitles.file, identifier: eventId });
+        setProgress({
+          status: ProgressStatus.NEW_RECORD.PROCESSING_SUBTITLES,
+          percentage: 100,
+        });
+        await subtitleMonitor();
       } else {
         await sendRecord(record);
       }
