@@ -15,10 +15,10 @@ const seriesComparator = (descending, eppn) => {
 
   return (a, b) => {
     let order = stringComparator(a.series, b.series);
-    if (order !== 0 && a.series === inbox_title || b.series === inbox_title) {
-      order = 1;
-    } else if (order !== 0 && a.series === trash_title || b.series === trash_title) {
+    if (order !== 0 && a.series === inbox_title) {
       order = -1;
+    } else if (order !== 0 && b.series === trash_title) {
+      order = 1;
     }
     return descending ? -order : order;
   };
