@@ -64,12 +64,12 @@ const NoStatistics = () => {
     );
 };
 
-const userScrolledDown = (previous, current) => {
-  return current > previous;
+const userScrolledDown = (previous, current, threshold) => {
+  return current - previous > threshold;
 };
 
-const userScrolledUp = (previous, current) => {
-  return current < previous;
+const userScrolledUp = (previous, current, threshold) => {
+  return previous - current > threshold;
 };
 
 const Left = () => {
@@ -276,18 +276,29 @@ const Left = () => {
     };
 
   const hideUpSide = (event) => {
+    if (scrollTop.current > event.target.scrollHeight) {
+      scrollTop.current = 0;
+    }
+
     const previousScrollTop = scrollTop.current;
     const currentScrollTop = event.target.scrollTop;
-    if (userScrolledDown(previousScrollTop, currentScrollTop)) {
+
+    const threshold = 50;
+
+    if (userScrolledDown(previousScrollTop, currentScrollTop, threshold)) {
       if (upside.current && belowBreakpoint()) {
         upside.current.classList.add("hidden");
       }
-    } else if (userScrolledUp(previousScrollTop, currentScrollTop)) {
+    } else if (userScrolledUp(previousScrollTop, currentScrollTop, threshold)) {
       if (upside.current) {
         upside.current.classList.remove("hidden");
       }
     }
-    scrollTop.current = currentScrollTop;
+
+    const scrolledEnough = Math.abs(previousScrollTop - currentScrollTop) >= threshold;
+    if (scrolledEnough) {
+      scrollTop.current = currentScrollTop;
+    }
   };
 
   return (
