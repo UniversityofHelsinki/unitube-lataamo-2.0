@@ -1,0 +1,27 @@
+.stream-statistics-table-toggle-button svg polygon {
+    fill: var(--hy-black);
+}
+
+.stream-statistics-table-toggle-button svg {
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.stream-statistics-table-toggle-button {
+    background-color: unset;
+    border: unset;
+    max-height: min-content;
+}
+
+.stream-statistics-table th:nth-child(1) {
+    width: 33%;
+}
+
+.stream-statistics-table th:nth-child(2) {
+    width: 33%;
+}
+
+.stream-statistics-table th:nth-child(3) {
+    width: 33%;
+    text-align: right;
+}
