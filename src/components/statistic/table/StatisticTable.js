@@ -1,31 +1,48 @@
 import {formatTime} from '../../utilities/timeUtils'
 import {useTranslation} from "react-i18next";
+import './StatisticTable.css';
+import {ReactComponent as ToggleCollapsed} from '../../utilities/icons/caret-down.svg';
+import {ReactComponent as ToggleVisible } from '../../utilities/icons/caret-up.svg';
+import React, { useState } from 'react';
+import { Table } from 'react-bootstrap';
 
 const CustomStatisticTable = ({ processedStatistics }) => {
     const { t } = useTranslation();
+    const [isCollapsed, setIsCollapsed] = useState(true);
+
+    const toggleCollapse = () => {
+        setIsCollapsed(!isCollapsed);
+    };
+
     return (
-        <>
-            <table style={{width: '100%', marginTop: '20px'}} aria-describedby="tableSummary">
+        <div className="stream-statistics-table">
+            <Table aria-describedby="tableSummary">
                 <thead>
                 <tr style={{backgroundColor: '#f0f0f0'}}>
-                    <th style={{padding: '10px'}}>{t('timestamp')}</th>
-                    <th style={{padding: '10px'}}>{t('total_connections')}</th>
+                    <th>{t('timestamp')}</th>
+                    <th>{t('total_connections')}</th>
+                    <th style={{textAlign: 'right'}}>
+                        <div>
+                            <button className="stream-statistics-table-toggle-button" onClick={toggleCollapse} aria-label={t('stream_statistics_table_toggle_button')} title={t(`stream_statistics_table_toggle_button_status_${isCollapsed ? 'collapsed' : 'visible'}`)}>
+                                {isCollapsed ? <ToggleCollapsed /> : <ToggleVisible />}
+                            </button>
+                        </div>
+                    </th>
                 </tr>
                 </thead>
-                <tbody>
+                {!isCollapsed && <tbody>
                 {processedStatistics.map((statistic, index) => (
-                    <tr key={index} style={{borderBottom: '1px solid #ddd'}}>
-                        <td style={{padding: '10px'}} tabIndex="0">{formatTime(statistic.timestamp)}</td>
-                        <td style={{padding: '10px'}} tabIndex="0">{statistic.totalConnections}</td>
+                    <tr key={index}>
+                        <td>{formatTime(statistic.timestamp)}</td>
+                        <td>{statistic.totalConnections}</td>
+                        <td></td>
                     </tr>
                 ))}
-                </tbody>
-            </table>
+                </tbody>}
+            </Table>
             <div id="tableSummary" style={{display: 'none'}}>{t('stream_statistics_table_summary')}</div>
-
-        </>
-    )
-        ;
+        </div>
+    );
 };
 
 CustomStatisticTable.defaultProps = {
