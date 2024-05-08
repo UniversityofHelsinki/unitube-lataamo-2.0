@@ -17,8 +17,8 @@ import RecordListActions from './RecordListActions';
 import CollectionActions from './CollectionActions';
 import {useTranslation} from 'react-i18next';
 import useVisibleRecords from '../../hooks/useVisibleRecords';
-import useRecordSort from '../../hooks/record/useRecordSort';
-import useCollectionSort from '../../hooks/collection/useCollectionSort';
+import useRecordSort, {defaultCriterias as recordsDefaultCriterias} from '../../hooks/record/useRecordSort';
+import useCollectionSort, {defaultCriterias as collectionsDefaultCriterias}  from '../../hooks/collection/useCollectionSort';
 import useRecordTagFilter from '../../hooks/record/useRecordTagFilter';
 import useDistinctRecordTags from '../../hooks/record/useDistinctRecordTags';
 import useSelectedRecordTags from '../../hooks/record/useSelectedRecordTags';
@@ -94,7 +94,7 @@ const Left = () => {
 
     const [recordSortOptions, setRecordSortOptions] = useState({
         criteria: 'created',
-        descending: true
+        descending: recordsDefaultCriterias['created']
     });
 
     const [sortedRecords, recordSortCriterias] = useRecordSort(
@@ -129,7 +129,7 @@ const Left = () => {
 
     const [collectionSortOptions, setCollectionSortOptions] = useState({
         criteria: 'created',
-        descending: true
+        descending: collectionsDefaultCriterias['created']
     });
 
     const [sortedCollections, collectionSortCriterias] = useCollectionSort(
@@ -268,10 +268,14 @@ const Left = () => {
 
     const onSortOptionChange = async (criteria, descending) => {
         if (sortOptions === recordSortOptions) {
-            setRecordSortOptions({ ...recordSortOptions, criteria, descending });
+            const criteriaChanged = criteria !== recordSortOptions.criteria;
+            const direction = criteriaChanged ? recordsDefaultCriterias[criteria] : descending;
+            setRecordSortOptions({ ...recordSortOptions, criteria, descending:direction });
         }
         if (sortOptions === collectionSortOptions) {
-            setCollectionSortOptions({ ...collectionSortOptions, criteria, descending });
+            const criteriaChanged = criteria !== collectionSortOptions.criteria;
+            const direction = criteriaChanged ? collectionsDefaultCriterias[criteria] : descending;
+            setCollectionSortOptions({ ...collectionSortOptions, criteria, descending:direction });
         }
     };
 

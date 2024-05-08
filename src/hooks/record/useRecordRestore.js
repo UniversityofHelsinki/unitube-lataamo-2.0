@@ -29,7 +29,15 @@ const convertToBody = (record) => ({
   description: record.description,
   title: record.title,
   isPartOf: record.isPartOf,
-  license: record.license
+  license: record.license,
+  created: record.created,
+  duration: record.duration,
+  media: record.media,
+  processing_state: record.processing_state,
+  publications: record.publications,
+  realDeletionDate: record.deletionDate,
+  series: record.series,
+  visiblity: record.visibility
 });
 
 const useRecordRestore = () => {
