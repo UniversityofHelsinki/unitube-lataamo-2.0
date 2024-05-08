@@ -240,6 +240,7 @@
   "tag_cc": "Tekstitys",
   "tag_unlisted": "Jaettu linkillä",
   "tag_published": "Julkinen",
+  "tag_processing_subtitles": "Tekstitys käsittelyssä",
   "clear_search" : "Tyhjennä",
   "stream_location" : "Kuvauspaikka",
   "stream_max_viewers": "Suurin katsojamäärä",
