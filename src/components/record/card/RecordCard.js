@@ -54,28 +54,7 @@ const RecordCard = ({ record, onClick, selected = false, containerRef, highlight
   return (
       <Container ref={ref} style={{ minHeight: '160px' }} className="border">
         <Row>
-          <Col lg={4} className="px-0 text-center" style={{ overflow: 'hidden' }}>
-            <div className="record-card-left-side">
-              {series}
-              <div className="record-card-length">
-                <span title={record.duration}>
-                  <CardHighlight input={record.duration} what={highlight} />
-                </span>
-              </div>
-                <a 
-                  aria-hidden
-                  href={`?record=${record.identifier}`} 
-                  onClick={handleClick}
-                  onKeyDown={onKeyDown(handleClick)}
-                  tabIndex={-1}
-                >
-                  <div className="record-card-thumbnail-container">
-                    <Thumbnail record={record} width="160" height="160" altText="record_thumbnail_alt_text" containerRef={containerRef} />
-                  </div>
-                </a>
-            </div>
-          </Col>
-          <Col lg={6} className={`${selectedClass}`}>
+          <Col lg={6} className={`${selectedClass} order-1`}>
             <a className="record-card-content-details"
                href={`?record=${record.identifier}`}
                onClick={handleClick}
@@ -100,7 +79,28 @@ const RecordCard = ({ record, onClick, selected = false, containerRef, highlight
               </div>
             </a>
           </Col>
-          <Col lg={2} className={`record-card-content-actions text-end p-0 ${selectedClass}`}>
+          <Col lg={4} className="px-0 text-center order-0" style={{ overflow: 'hidden' }}>
+            <div className="record-card-left-side">
+              {series}
+              <div className="record-card-length">
+                <span title={record.duration}>
+                  <CardHighlight input={record.duration} what={highlight} />
+                </span>
+              </div>
+                <a 
+                  aria-hidden
+                  href={`?record=${record.identifier}`} 
+                  onClick={handleClick}
+                  onKeyDown={onKeyDown(handleClick)}
+                  tabIndex={-1}
+                >
+                  <div className="record-card-thumbnail-container">
+                    <Thumbnail record={record} width="160" height="160" altText="record_thumbnail_alt_text" containerRef={containerRef} />
+                  </div>
+                </a>
+            </div>
+          </Col>
+          <Col lg={2} className={`record-card-content-actions text-end order-2 p-0 ${selectedClass}`}>
             <RecordActions record={record} />
           </Col>
         </Row>
