@@ -9,16 +9,22 @@ const titleComparator = (descending) => {
   };
 };
 
-const seriesComparator = (descending, eppn) => {
-  let inbox_title = `inbox ${eppn}`; //move inbox ${eppn} video first in videolist
-  let trash_title = `trash ${eppn}`; //move trash ${eppn} video last in videolist
+const seriesComparator = (eppn) => (descending) => {
+  const inboxTitle = `inbox ${eppn}`; //move inbox ${eppn} video first in videolist
+  const trashTitle = `trash ${eppn}`; //move trash ${eppn} video last in videolist
 
   return (a, b) => {
-    let order = stringComparator(a.series, b.series);
-    if (order !== 0 && a.series === inbox_title) {
-      order = -1;
-    } else if (order !== 0 && b.series === trash_title) {
-      order = 1;
+    if (a.series === inboxTitle && b.series !== inboxTitle) {
+      return descending ? 1 : -1;
+    }
+
+    if (a.series === trashTitle && b.series !== trashTitle) {
+      return descending ? -1 : 1;
+    }
+
+    const order = stringComparator(a.series, b.series);
+    if (order === 0) {
+      return stringComparator(a.title, b.title);
     }
     return descending ? -order : order;
   };
@@ -52,13 +58,13 @@ const visibilityComparator = (descending) => {
   };
 };
 
-const comparators = {
+const comparators = (eppn) => ({
   title: titleComparator,
-  series: seriesComparator,
+  series: seriesComparator(eppn),
   created: createdComparator,
   deletionDate: deletionDateComparator,
   visibility: visibilityComparator
-};
+});
 
 export const defaultCriterias = {
   title: false,
@@ -71,7 +77,7 @@ export const defaultCriterias = {
 const useRecordSort = (records, criteria, descending) => {
   const [user] = useUser();
   const eppn = user.eppn;
-  const [sortedRecords, supportedCriterias] = useSort(comparators, records, criteria, descending, eppn);
+  const [sortedRecords, supportedCriterias] = useSort(comparators(eppn), records, criteria, descending);
 
   return [sortedRecords, supportedCriterias];
 };

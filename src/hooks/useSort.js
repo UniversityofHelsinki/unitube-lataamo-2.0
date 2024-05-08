@@ -1,11 +1,11 @@
 import { useMemo } from "react";
 
-const useSort = (comparators, list, criteria, descending, eppn) => {
+const useSort = (comparators, list, criteria, descending) => {
 
   const sorted = useMemo(() => {
     if (comparators[criteria] && list) {
       const sorted = [ ...list ].sort(
-        comparators[criteria](descending, eppn)
+        comparators[criteria](descending)
       );
       return sorted;
     }
