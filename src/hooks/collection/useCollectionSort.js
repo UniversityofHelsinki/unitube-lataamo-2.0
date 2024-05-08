@@ -18,6 +18,12 @@ const comparators = {
   title: titleComparator
 };
 
+
+export const defaultCriterias = {
+  title: false,
+  created: true,
+}
+
 const useCollectionSort = (collections, criteria, descending) => {
   const [sortedCollections, supportedCriterias] = useSort(comparators, collections, criteria, descending);
 
