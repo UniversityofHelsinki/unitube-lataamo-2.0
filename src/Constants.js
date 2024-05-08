@@ -125,3 +125,6 @@ export const BREAKPOINT = 'xl';
 
 export const LEFT_CONTAINER_ID = 'left-col';
 export const RIGHT_CONTAINER_ID = 'right-col';
+
+export const JOB_TYPES_TRANSCRIPTION = 'transcription';
+export const JOB_STATUS_STARTED = 'STARTED';

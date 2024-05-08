@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import useUser from "../useUser";
-import { STATUS } from '../../Constants.js';
+import { JOB_STATUS_STARTED, JOB_TYPES_TRANSCRIPTION, STATUS } from '../../Constants.js';
 import {useEffect} from "react";
 import useSubtitleState from "../useSubtitleState";
 import useRecordValidation from "../validation/record/useRecordValidation";
@@ -140,12 +140,12 @@ const status = (t) => (record) => {
  * Subtitles processing state
  *
  * @param t
- * @param isValid
  * @returns {(function(*): ({color: string, label: *}|undefined))|*}
  */
-const subtitleState = (t, isProcessing) => (record) => {
+const subtitlesInProcessing = (t) => (record) => {
 
-  if (isProcessing === 'STARTED') {
+  const job = record.jobs;
+  if (job && job.type === JOB_TYPES_TRANSCRIPTION && job.status === JOB_STATUS_STARTED) {
     return {
       label: t('tag_processing_subtitles'),
       color: 'orange'
@@ -214,6 +214,7 @@ const useRecordTags = (records = []) => {
     missingDetails(t, isValids),
     cc(t), 
     status(t),
+    subtitlesInProcessing(t),
   ];
   
   const tags = records.map((record, i) => {
