@@ -163,6 +163,7 @@ deploy_test:
     - echo "====== Deploy to test server ========"
   extends: .deploy_script
 
+
 # deploy to oc test environment
 deploy_oc_test:
   stage: deploy
