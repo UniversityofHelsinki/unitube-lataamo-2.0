@@ -11,7 +11,8 @@ const TagButtonList = ({ onClick, tags }) => {
         <TagButton 
           onClick={onClick} 
           tag={tag} 
-          selected={tags.selected.map(st => st.label).includes(tag.label)} />
+          selected={tags.selected.map(st => st.label).includes(tag.label)}
+        />
       </li>
       )}
     </ul>
@@ -19,6 +20,11 @@ const TagButtonList = ({ onClick, tags }) => {
 };
 
 TagButtonList.propTypes = {
+  onClick: PropTypes.func,
+  tags: PropTypes.shape({
+    distinct: PropTypes.array,
+    selected: PropTypes.array,
+  })
 };
 
 export default TagButtonList;

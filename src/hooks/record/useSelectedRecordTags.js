@@ -24,7 +24,7 @@ const useSelectedRecordTags = (distinctTags) => {
 
   useEffect(() => {
     if (distinctTagsChanged(knownDistinctTags, distinctTags)) {
-      setSelectedTags([ ...distinctTags ].filter(tag => 
+      setSelectedTags([].filter(tag => 
         !exclude.map(e => t(e)).includes(tag.label)
       ));
       setKnownDistinctTags(distinctTags);
@@ -32,7 +32,8 @@ const useSelectedRecordTags = (distinctTags) => {
   }, [distinctTags, knownDistinctTags]);
 
   const onChange = (tag) => {
-    if (!selectedTags.map(st => st.label).includes(tag.label)) {
+    const tagAlreadySelected = selectedTags.map(st => st.label).includes(tag.label);
+    if (!tagAlreadySelected) {
       setSelectedTags(
         [ ...selectedTags, tag ]
       );
