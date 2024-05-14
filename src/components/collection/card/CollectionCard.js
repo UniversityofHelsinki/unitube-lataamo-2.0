@@ -12,7 +12,7 @@ import { CardHighlight } from '../../utilities/Highlight';
 const CollectionCard = ({ collection, onClick, selected = false, containerRef, highlight }) => {
   const selectedClass = selected ? 'collection-card-selected' : '';
   const collectionHasRecords = collection.eventColumns?.length > 0;
-  const tags = useCollectionTags(collection);
+  const [tags] = useCollectionTags([collection]);
   const labelId = useId();
 
   const handleClick = (event) => {
