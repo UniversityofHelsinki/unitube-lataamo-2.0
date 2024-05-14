@@ -12,7 +12,7 @@ const visibility = (t, status, label, color) => (collection) => {
   return null;
 };
 
-const useCollectionTags = (collection) => {
+const useCollectionTags = (collections = []) => {
   const { t } = useTranslation();
   const tagFunctions = [
     visibility(t, 'status_private', 'tag_private'),
@@ -21,12 +21,12 @@ const useCollectionTags = (collection) => {
     visibility(t, 'status_moodle', 'tag_moodle', 'grey'),
   ];
 
-  const tags = tagFunctions
+  const tags = collections.map(collection => {
+    return tagFunctions
       .flatMap(tagFunction => tagFunction(collection))
       .filter(tag => tag);
-
+  });
   return tags;
-
 };
 
 export default useCollectionTags;
