@@ -6,7 +6,7 @@ const useDistinctRecordTags = (records = []) => {
   const groupedTags = {};
   allTags.flat().forEach(tag => {
     if (!groupedTags[tag.label]) {
-      groupedTags[tag.label] = { ...tag, count: 1 };
+      groupedTags[tag.label] = { ...tag, count: 0 };
     }
     groupedTags[tag.label].count++;
   });
