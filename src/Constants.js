@@ -15,6 +15,7 @@ export const DELETION_DATE_MIN_MONTHS = 6;
 export const DELETION_DATE_MAX_YEARS = 3;
 
 export const DEFAULT_LANGUAGE = 'fi';
+export const LANGUAGES = ['fi', 'sv', 'en'];
 
 export const ProgressStatus = {
   NEW_RECORD: {
