@@ -59,7 +59,7 @@ const DeleteCollectionFooter = ({ progress, hide }) => {
                 <Button variant="outline-secondary" onClick={hide} disabled={deleteInProgress}>
                     {cancelButtonLabel}
                 </Button>
-                <Button variant="danger" type="submit" disabled={deleteInProgress || deleteDone}>
+                <Button variant="danger" type="submit" className={(deleteInProgress || deleteDone) ? "delete-collection-footer-buttons-hide" : "" } >
                     {t('delete_collection_footer_submit_button')}
                 </Button>
             </div>
