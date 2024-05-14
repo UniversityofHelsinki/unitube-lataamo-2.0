@@ -14,15 +14,16 @@ const background = {
   black: 'dark'
 };
 
-const CardTag = ({ label, color }) => {
+const CardTag = ({ label, color, count }) => {
   return (
-    <Badge className="card-tag" bg={background[color]} title={label}>{label}</Badge>
+    <Badge className="card-tag" bg={background[color]} title={label}>{label} {count && `(${count})` || ''}</Badge>
   );
 };
 
 CardTag.propTypes = {
   label: PropTypes.string.isRequired,
-  color: PropTypes.oneOf(Object.keys(background)).isRequired
+  color: PropTypes.oneOf(Object.keys(background)).isRequired,
+  count: PropTypes.number
 };
 
 export default CardTag;
