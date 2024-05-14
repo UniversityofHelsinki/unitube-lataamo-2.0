@@ -16,7 +16,7 @@ it('renders', () => {
             searchParameters: { collection: '' }
           }
         }}>
-      <CollectionActions />
+      <CollectionActions tags={{ distinct: [], onTagChange: (() => {}) }}/>
     </MockProvider>
   );
 });
