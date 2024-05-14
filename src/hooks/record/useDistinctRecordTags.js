@@ -1,18 +1,17 @@
 import useRecordTags from "./useRecordTags";
 
 const useDistinctRecordTags = (records = []) => {
-  const tags = useRecordTags(records);
+  const allTags = useRecordTags(records);
 
-  const labels = new Set();
-  const distinctTags = tags.flat().filter(tag => {
-    if (!labels.has(tag.label)) {
-      labels.add(tag.label);
-      return true;
+  const groupedTags = {};
+  allTags.flat().forEach(tag => {
+    if (!groupedTags[tag.label]) {
+      groupedTags[tag.label] = { ...tag, count: 1 };
     }
-    return false;
+    groupedTags[tag.label].count++;
   });
 
-  return distinctTags.sort((a,b) => 
+  return Object.values(groupedTags).sort((a,b) => 
     a.label.localeCompare(b.label)
   );
 
