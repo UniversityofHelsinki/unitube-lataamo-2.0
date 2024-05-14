@@ -18,7 +18,7 @@ describe('CollectionActions', () => {
                   searchParameters: { collection: '' }
                 }
               }}>
-            <CollectionActions />
+            <CollectionActions tags={{ distinct: [], onTagChange: (() => {}) }}/>
           </MockProvider>
         );
         const results = await axe(container);

@@ -1,21 +1,20 @@
+import useTagFilter from "../useTagFilter";
+import useDistinctRecordTags from "./useDistinctRecordTags";
 import useRecordTags from "./useRecordTags";
+import useSelectedRecordTags from "./useSelectedRecordTags";
 
-const useRecordTagFilter = (records = [], selectedTags = []) => {
+const useRecordTagFilter = (records = []) => {
   const tags = useRecordTags(records);
 
-  const selectedTagLabels = selectedTags.map(st => st.label);
+  const distinctTags = useDistinctRecordTags(records);
 
-  if (selectedTags.length === 0) {
-    return records;
-  }
+  const [selectedTags, onSelectedTagChange] = useSelectedRecordTags(
+    distinctTags
+  );
 
-  return records.filter((_record, i) => {
-    const recordTags = tags[i];
-    const recordHasAllOfSelectedTags = recordTags.filter(recordTag => 
-      selectedTagLabels.includes(recordTag.label)
-    ).length === selectedTags.length;
-    return recordHasAllOfSelectedTags;
-  });
+  const filteredRecords = useTagFilter(records, selectedTags, tags);
+
+  return [filteredRecords, selectedTags, distinctTags, onSelectedTagChange];
 
 };
 

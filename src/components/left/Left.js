@@ -20,12 +20,11 @@ import useVisibleRecords from '../../hooks/useVisibleRecords';
 import useRecordSort, {defaultCriterias as recordsDefaultCriterias} from '../../hooks/record/useRecordSort';
 import useCollectionSort, {defaultCriterias as collectionsDefaultCriterias}  from '../../hooks/collection/useCollectionSort';
 import useRecordTagFilter from '../../hooks/record/useRecordTagFilter';
-import useDistinctRecordTags from '../../hooks/record/useDistinctRecordTags';
-import useSelectedRecordTags from '../../hooks/record/useSelectedRecordTags';
 import { useRef } from 'react';
 import useRecordSearch from '../../hooks/record/useRecordSearch';
 import useCollectionSearch from '../../hooks/collection/useCollectionSearch';
 import { belowBreakpoint, toggleLeftSide } from '../utilities/visibilities';
+import useCollectionTagFilter from '../../hooks/collection/useCollectionTagFilter';
 
 const No = ({ children }) => {
     return (
@@ -103,15 +102,13 @@ const Left = () => {
         recordSortOptions.descending
     );
 
-    const distinctRecordTags = useDistinctRecordTags(
+    const [
+      tagFilteredRecords, 
+      selectedRecordTags, 
+      distinctRecordTags, 
+      onSelectedRecordTagChange
+    ]  = useRecordTagFilter(
         sortedRecords
-    );
-    const [selectedTags, onSelectedTagChange] = useSelectedRecordTags(
-        distinctRecordTags
-    );
-    const tagFilteredRecords = useRecordTagFilter(
-        sortedRecords,
-        selectedTags
     );
 
     const searchQueryFilteredRecords = useRecordSearch(
@@ -119,18 +116,15 @@ const Left = () => {
       recordOptions.searchValue
     );
 
-    const [collections, loadingCollections] = useCollections(
-        path === '/collections'
-    );
-
-    const [statistics, loadingStatistics] = useStatistics(
-        path === '/statistics'
-    );
-
     const [collectionSortOptions, setCollectionSortOptions] = useState({
         criteria: 'created',
         descending: collectionsDefaultCriterias['created']
     });
+
+
+    const [collections, loadingCollections] = useCollections(
+        path === '/collections'
+    );
 
     const [sortedCollections, collectionSortCriterias] = useCollectionSort(
         collections,
@@ -138,9 +132,23 @@ const Left = () => {
         collectionSortOptions.descending
     );
 
+
+    const [
+      tagFilteredCollections,
+      selectedCollectionTags,
+      distinctCollectionTags,
+      onSelectedCollectionTagChange
+    ] = useCollectionTagFilter(
+      sortedCollections
+    );
+
     const searchQueryFilteredCollections = useCollectionSearch(
-      sortedCollections,
+      tagFilteredCollections,
       collectionOptions.searchValue
+    );
+
+    const [statistics, loadingStatistics] = useStatistics(
+        path === '/statistics'
     );
 
     const [searchParams, setSearchParams] = useSearchParams();
@@ -241,12 +249,14 @@ const Left = () => {
         '/records': <RecordListActions
             options={recordOptions}
             onOptionChange={(options) => setRecordOptions(options)}
-            tags={{ distinct: distinctRecordTags, selected: selectedTags }}
-            onTagChange={onSelectedTagChange}
+            tags={{ distinct: distinctRecordTags, selected: selectedRecordTags }}
+            onTagChange={onSelectedRecordTagChange}
         />,
         '/collections': <CollectionActions
             options={collectionOptions}
             onOptionChange={(options) => setCollectionOptions(options)}
+            tags={{ distinct: distinctCollectionTags, selected: selectedCollectionTags }}
+            onTagChange={onSelectedCollectionTagChange}
         />
     };
 

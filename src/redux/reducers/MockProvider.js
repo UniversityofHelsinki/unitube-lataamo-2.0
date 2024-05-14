@@ -27,7 +27,8 @@ const mockCollection = {
     id: 'test-record-id',
     title: 'Testi recording'
   }],
-  published: ""
+  published: "",
+  visibility: []
 };
 
 const mockStatistic = {

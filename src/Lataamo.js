@@ -12,13 +12,17 @@ import useLocation from './hooks/useLocation';
 import useHistory from './hooks/useHistory';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { KNOWN_LOCATIONS, LEFT_CONTAINER_ID, RIGHT_CONTAINER_ID } from './Constants';
+import { KNOWN_LOCATIONS, LANGUAGES, LEFT_CONTAINER_ID, RIGHT_CONTAINER_ID } from './Constants';
 import { belowBreakpoint } from './components/utilities/visibilities';
+import useLocalStorage from './hooks/useLocalStorage';
+import { useTranslation } from 'react-i18next';
 
 const Lataamo = () => {
   useHistory();
   const [user, loadUser] = useUser();
   const [userLoadingInitiated, setUserLoadingInitiated] = useState(false);
+  const [localStorageGet] = useLocalStorage();
+  const { i18n } = useTranslation();
   const [leftHiddenClass, setLeftHiddenClass] = useState('');
   const [location, setLocation] = useLocation();
 
@@ -33,6 +37,13 @@ const Lataamo = () => {
 
     return () => setUserLoadingInitiated(true);
   }, []);
+
+  useEffect(() => {
+    const savedLanguage = localStorageGet('language');
+    if (user && user.preferredLanguage && LANGUAGES.includes(user.preferredLanguage) && !savedLanguage) {
+      i18n.changeLanguage(user.preferredLanguage);
+    }
+  }, [user]);
 
   if (!location || location === "/" || !KNOWN_LOCATIONS.includes(location)) {
     setLocation("/records");

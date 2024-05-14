@@ -1,6 +1,6 @@
 const get = (key) => {
   try {
-    localStorage.getItem(key);
+    return localStorage.getItem(key);
   } catch (error) {
     console.error(error.message);
     return null;
