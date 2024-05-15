@@ -23,6 +23,25 @@ import useTitle from '../../hooks/useTitle';
 import useCollections from '../../hooks/useCollections';
 import useCollectionError from '../../hooks/useCollectionError';
 import CollectionActions from "./card/CollectionActions";
+import ListReloadButton from '../left/ListReloadButton';
+import TopRow from '../right/TopRow';
+import useCollectionTags from '../../hooks/collection/useCollectionTags';
+import CardTags from '../utilities/CardTags';
+
+const resolveVisibility = (published, contributors = []) => {
+  const visibilities = [];
+  if (published === 'ROLE_USER_UNLISTED') {
+    visibilities.push('status_unlisted');
+  } else if (published === 'ROLE_ANONYMOUS') {
+    visibilities.push('status_published');
+  } else {
+    visibilities.push('status_private');
+  }
+  if (contributors.some(c => c.startsWith('grp-'))) {
+    visibilities.push('status_moodle');
+  }
+  return visibilities;
+};
 
 const CollectionForm = () => {
   const [setTitle] = useTitle();
@@ -32,6 +51,7 @@ const CollectionForm = () => {
   const [_collections, _loading, reloadCollections] = useCollections();
   const [isValid, messages, validate] = useCollectionValidation(['title', 'description']);
   const [collection, onChange, modified, undo] = useCollectionModification(originalCollection, validate, resetProgress);
+  const [tags] = useCollectionTags([ { ...originalCollection, visibility: resolveVisibility(originalCollection?.published, originalCollection?.contributors) }]);
   const collectionHasRecords = collection?.eventColumns?.length > 0;
 
   if (errorPage && !loading) {
@@ -71,13 +91,17 @@ const CollectionForm = () => {
             <Col>
               <Container className="collection-form ps-0">
                 <Row className="top-row-container">
-                  <div className="top-row">
+                  <div className="top-row-container-div">
                     <div>
                       <CollectionsBreadCrumb collection={originalCollection || {}} />
                     </div>
-                    { !collectionHasRecords && <div lg={2} className={`collection-card-actions text-end p-0`}>
-                      <CollectionActions collection={collection} />
-                    </div>}
+                    <div>
+                      <TopRow>
+                        <ListReloadButton onClick={reload} />
+                        <CardTags tags={[ ...tags ]} />
+                        {!collectionHasRecords && <CollectionActions collection={collection} />}
+                      </TopRow>
+                    </div>
                   </div>
                 </Row>
                 <Row className="mb-2">

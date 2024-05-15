@@ -7,7 +7,8 @@ const LeftList = React.forwardRef(({
   currentSortCriteria,
   sortCriterias,
   onSortOptionChange,
-  descending
+  descending,
+  reload
 }, ref) => {
   return (
     <div className="left-list-container">
@@ -17,6 +18,7 @@ const LeftList = React.forwardRef(({
           sortCriterias={sortCriterias}
           descending={descending}
           onSortOptionChange={onSortOptionChange}
+          reload={reload}
         />
       </div>
       <div className="left-list">
