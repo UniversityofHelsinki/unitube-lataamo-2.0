@@ -86,7 +86,7 @@ const Left = () => {
         searchValue: '',
     });
 
-    const [records, loadingRecords, _reloadRecords] = useVisibleRecords({
+    const [records, loadingRecords, reloadRecords] = useVisibleRecords({
         showAll: recordOptions.showRecordsInCollections,
         load: path === '/records'
     });
@@ -122,7 +122,7 @@ const Left = () => {
     });
 
 
-    const [collections, loadingCollections] = useCollections(
+    const [collections, loadingCollections, reloadCollections] = useCollections(
         path === '/collections'
     );
 
@@ -276,6 +276,11 @@ const Left = () => {
         '/collections': collectionSortCriterias
     }[path];
 
+    const reloadFunction = {
+        '/records': reloadRecords,
+        '/collections': reloadCollections,
+    }[path] || (() => {});
+
     const onSortOptionChange = async (criteria, descending) => {
         if (sortOptions === recordSortOptions) {
             const criteriaChanged = criteria !== recordSortOptions.criteria;
@@ -337,7 +342,9 @@ const Left = () => {
                 currentSortCriteria={sortOptions?.criteria} 
                 sortCriterias={sortCriterias} 
                 descending={sortOptions?.descending} 
-                onSortOptionChange={onSortOptionChange}>
+                onSortOptionChange={onSortOptionChange}
+                reload={reloadFunction}
+              >
                 {(() => {
                   if (listElements[path]?.length > 0) {
                     return listElements[path];
