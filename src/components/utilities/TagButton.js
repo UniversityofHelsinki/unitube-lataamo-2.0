@@ -9,7 +9,7 @@ const TagButton = ({ tag, selected, onClick }) => {
 
   return (
     <button className={`tag-button ${unselectedClass}`} onClick={() => onClick(tag)}>
-      <CardTag label={tag.label} color={selected ? tag.color : 'white'} />
+      <CardTag label={tag.label} color={selected ? tag.color : 'white'} count={tag.count} />
     </button>
   );
 };

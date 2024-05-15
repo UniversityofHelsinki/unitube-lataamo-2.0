@@ -1,21 +1,11 @@
+import useDistinctTags from "../useDistinctTags";
 import useRecordTags from "./useRecordTags";
 
 const useDistinctRecordTags = (records = []) => {
-  const tags = useRecordTags(records);
+  const allTags = useRecordTags(records);
+  const distinctTags = useDistinctTags(allTags.flat());
 
-  const labels = new Set();
-  const distinctTags = tags.flat().filter(tag => {
-    if (!labels.has(tag.label)) {
-      labels.add(tag.label);
-      return true;
-    }
-    return false;
-  });
-
-  return distinctTags.sort((a,b) => 
-    a.label.localeCompare(b.label)
-  );
-
+  return distinctTags;
 };
 
 export default useDistinctRecordTags;

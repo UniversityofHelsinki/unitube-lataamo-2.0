@@ -6,6 +6,7 @@ import useLocalStorage from "../../hooks/useLocalStorage";
 import HyMenu from '../utilities/HyMenu';
 import HyMenuLabel from '../utilities/HyMenuLabel';
 import { ReactComponent as GlobeIcon } from '../utilities/icons/globe.svg';
+import { LANGUAGES } from '../../Constants';
 
 const Languages = () => {
   const { t, i18n } = useTranslation();
@@ -13,7 +14,7 @@ const Languages = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [_get, set] = useLocalStorage();
 
-  const saveLanguage = async (language) => {
+  const saveLanguage = (language) => {
     set('language', language);
   }
 
@@ -23,7 +24,7 @@ const Languages = () => {
     saveLanguage(language);
   };
 
-  const languages = ['fi', 'en', 'sv'];
+  const languages = LANGUAGES;
 
   return (
     <div className="languages">
