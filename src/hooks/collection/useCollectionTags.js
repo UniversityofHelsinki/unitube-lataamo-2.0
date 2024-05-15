@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from "react-i18next";
 
 const visibility = (t, status, label, color) => (collection) => {
-  const hasVisibility = collection.visibility.includes(status);
+  const hasVisibility = collection?.visibility?.includes(status);
   if (hasVisibility) {
     return {
       label: t(label),

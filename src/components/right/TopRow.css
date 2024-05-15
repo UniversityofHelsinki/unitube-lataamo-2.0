@@ -1,0 +1,16 @@
+.top-row {
+  display: flex;
+  align-items: center;
+}
+
+.top-row ul {
+  margin-bottom: 0px;
+}
+
+.top-row div {
+  margin: 4px;
+}
+
+.top-row div:last-of-type {
+  margin-right: 0px;
+}

@@ -25,7 +25,10 @@
   z-index: 1;
 }
 
-.top-row {
+.top-row-container-div {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
 }
+
