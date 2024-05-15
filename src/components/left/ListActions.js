@@ -5,17 +5,22 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import './ListActions.css';
 import ListSortMenu from './ListSortMenu';
+import ListReloadButton from './ListReloadButton';
 
 const ListActions = ({ 
   currentSortCriteria, 
   sortCriterias, 
   onSortOptionChange,
-  descending 
+  descending,
+  reload
 }) => {
   const sortSupported = currentSortCriteria && sortCriterias && onSortOptionChange;
   return (
     <Container className="list-actions">
       <Row className="justify-content-end">
+        <Col className="px-0 align-self-center">
+          {reload && <ListReloadButton onClick={reload} />}
+        </Col>
         <Col className="list-actions-col px-0">
           { sortSupported && <ListSortMenu 
             currentCriteria={currentSortCriteria} 

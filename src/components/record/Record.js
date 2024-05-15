@@ -87,12 +87,12 @@ const Record = () => {
               <Col>
                 <Container className="ps-0">
                   <Row className="top-row-container">
-                    <div className="top-row">
+                    <div className="top-row-container-div">
                       <div>
                         <RecordsBreadCrumb record={originalRecord} />
                       </div>
                       <div className="top-row-record-actions">
-                        <RecordTopRow record={originalRecord} disabled={saveInProgress} />
+                        <RecordTopRow record={originalRecord} disabled={saveInProgress} reload={reload} />
                       </div>
                     </div>
                   </Row>

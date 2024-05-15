@@ -271,5 +271,6 @@
   "records_table_deletion_date": "Vanhenemispäivämäärä",
   "records_table_embed_code": "Kopioi upotuskoodi",
   "collection_records_bulk_actions_move": "Siirrä",
-  "collection_records_bulk_actions_delete": "Poista"
+  "collection_records_bulk_actions_delete": "Poista",
+  "reload": "Päivitä"
 }
