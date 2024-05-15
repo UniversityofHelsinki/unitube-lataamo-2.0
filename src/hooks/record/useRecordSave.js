@@ -5,6 +5,7 @@ import useRecordUpdate from "./useRecordUpdate";
 import useSubtitleOrder from "./useSubtitleOrder";
 import useSubtitleUpload from "./useSubtitleUpload";
 import useDeleteSubtitle from "./useDeleteSubtitle";
+import useAllRecords from "../useAllRecords";
 
 const statuses = {
   'done': ProgressStatus.RECORD_SAVE.DONE
@@ -24,6 +25,7 @@ const useRecordSave = () => {
   const [orderSubtitles] = useSubtitleOrder();
   const [deleteSubtitle] = useDeleteSubtitle();
   const [_records, _loadingRecords, reloadRecords] = useRecords({ load: false });
+  const [_allRecords, _loadingAllRecords, reloadAllRecords] = useAllRecords( {load: false});
   const [progress, setProgress] = useState({
     status: ProgressStatus.RECORD_SAVE.NOT_STARTED,
     percentage: 0
@@ -72,6 +74,7 @@ const useRecordSave = () => {
       }
     }
     reloadRecords();
+    reloadAllRecords();
     return true;
   };
 
