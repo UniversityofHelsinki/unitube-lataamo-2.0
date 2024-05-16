@@ -24,7 +24,8 @@ const useRecordError = (record, httpError, reload) => {
           label={t('record_error_page_http_help_label')}>
           {t('record_error_page_http_help_content')}
         </HelpDialog>
-      }>
+      }
+      reload={!is404 && reload}>
       <div className="record-error-page-content">
         <span><b>{httpError.source.cause?.status}</b></span>
         {is404 ? t('record_error_page_http_not_found_content') : t('record_error_page_http_content')}
