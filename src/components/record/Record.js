@@ -23,7 +23,7 @@ import useRecordError from '../../hooks/useRecordError';
 const Record = () => {
     const [setTitle] = useTitle();
     const [originalRecord, loading, reload, httpError] = useRecord(true);
-    const errorPage = useRecordError(originalRecord, httpError);
+    const errorPage = useRecordError(originalRecord, httpError, reload);
     const [progress, save, resetProgress] = useRecordSave();
     const [_collections, _loadingCollections, reloadCollections] = useCollections();
     const [visibleCollection, _loadingVisibleCollection, reloadVisibleCollection] = useCollection();
