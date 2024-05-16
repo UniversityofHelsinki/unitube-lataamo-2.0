@@ -13,7 +13,7 @@ const recordIsInProgress = (record) => {
   return record?.processing_state === 'RUNNING' || record?.status === 'EVENTS.EVENTS.STATUS.PROCESSING';
 };
 
-const useRecordError = (record, httpError) => {
+const useRecordError = (record, httpError, reload) => {
   const { t } = useTranslation();
   const [user] = useUser();
   if (httpError) {
@@ -57,7 +57,8 @@ const useRecordError = (record, httpError) => {
           {t('record_error_page_processing_help_content')}
         </HelpDialog>
       }
-      record={record}>
+      record={record}
+      reload={reload}>
       <div className="record-error-page-content">
         <span><b>{record.title}</b></span>
         {t('record_error_page_processing_content')}
