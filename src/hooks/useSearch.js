@@ -6,7 +6,7 @@ export const partialMatch = (property, query) => {
   return property?.toLowerCase().includes(query?.toLowerCase());
 };
 
-const useSearch = (objects = [], searchQuery, properties, transforms) => {
+const useSearch = (objects = [], searchQuery, properties, transforms = {}) => {
   
   const bySearchQuery = (record) => {
     const propertiesToLookFor = Object.keys(properties);
