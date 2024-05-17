@@ -58,6 +58,10 @@ const DeleteRecord = ({ record, showLabel = true, reloadCollectionOnRemove = fal
     <RecordCardAction 
       icon={<DeleteIcon { ...iconProps } />}
       label={t('record_card_action_delete')}
+      ariaLabel={t(
+        'record_card_action_delete_aria', 
+        { title: record.title }
+      )}
       onClick={show}
       showLabel={showLabel}
       variant={showLabel ? 'danger' : 'link'}

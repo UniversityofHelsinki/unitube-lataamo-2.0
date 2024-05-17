@@ -16,7 +16,9 @@ const CarouselItem = ({ children = [] }) => {
 
 const Carousel = ({
   children = [],
-  labels = []
+  labels = [],
+  previousAriaLabel = 'previous',
+  nextAriaLabel = 'next',
 }) => {
   const { t } = useTranslation();
   const [visibleItem, setVisibleItem] = useState(0);
@@ -38,7 +40,7 @@ const Carousel = ({
       {children.length > 1 &&
       <div className="carousel-item-pickers" role="tablist">
         <div className="carousel-item-picker carousel-item-pickers-previous">
-          <button onClick={(e) => changeVisibleItem(e, -1)} disabled={visibleItem === 0} role="tab" aria-controls={contentId}>
+          <button onClick={(e) => changeVisibleItem(e, -1)} disabled={visibleItem === 0} role="tab" aria-controls={contentId} aria-label={t(previousAriaLabel)}>
             <div className="carousel-item-picker-icon">
               <PreviousIcon />
             </div>
@@ -54,7 +56,7 @@ const Carousel = ({
           </div>
         </div>
         <div className="carousel-item-picker carousel-item-pickers-next">
-          <button onClick={(e) => changeVisibleItem(e, 1)} disabled={visibleItem + 1 === children.length} role="tab" aria-controls={contentId}>
+          <button onClick={(e) => changeVisibleItem(e, 1)} disabled={visibleItem + 1 === children.length} role="tab" aria-controls={contentId} aria-label={t(nextAriaLabel)}>
             <div className="carousel-item-picker-icon">
               <NextIcon />
             </div>
@@ -68,7 +70,9 @@ const Carousel = ({
 
 Carousel.propTypes = {
   children: PropTypes.node,
-  labels: PropTypes.node
+  labels: PropTypes.node,
+  previousAriaLabel: PropTypes.string,
+  nextAriaLabel: PropTypes.string
 };
 
 export default Carousel;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './CollectionCardAction.css';
 import { Button } from 'react-bootstrap';
 
-const CollectionCardAction = ({ icon, label, variant = 'outline-primary', onClick, showLabel = true, disabled = false, opensDialog = false }) => {
+const CollectionCardAction = ({ icon, label, variant = 'outline-primary', onClick, showLabel = true, disabled = false, opensDialog = false, ariaLabel }) => {
 
     const marginClass = (() => {
         if (showLabel) {
@@ -20,7 +20,7 @@ const CollectionCardAction = ({ icon, label, variant = 'outline-primary', onClic
     })();
 
     return (
-        <Button size="sm" variant={variant} onClick={onClick} className="collection-card-action p-0 px-1 m-0" aria-label={label} disabled={disabled} { ...ariaDialog }>
+        <Button size="sm" variant={variant} onClick={onClick} className="collection-card-action p-0 px-1 m-0" aria-label={ariaLabel || label} disabled={disabled} { ...ariaDialog }>
             <span className={`${marginClass} collection-card-action-icon-${variant}`}>{icon}</span>
             <span>{showLabel && label}</span>
         </Button>
