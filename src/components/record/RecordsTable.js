@@ -203,7 +203,7 @@ const RecordsTable = ({
               <td><DateView ISO={record.created} /></td>
               <td><DateView ISO={record.deletion_date} /></td>
               <td>
-                <Button variant="link" onClick={() => copy(RECORD_EMBED_CODE(record.id))}>
+                <Button variant="link" onClick={() => copy(RECORD_EMBED_CODE(record.id))} aria-label={t('records_table_embed_code_aria', { record: record.title })} title={t('records_table_embed_code_aria', { record: record.title })}>
                   <CopyIcon width="1.5em" height="1.5em" />
                   <span className="ms-2">{t('clipboard_copy')}</span>
                 </Button>
