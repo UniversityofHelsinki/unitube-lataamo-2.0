@@ -9,6 +9,7 @@ const RecordIdentifier = ({ identifier }) => {
     return (
           <ClipBoardFormElement 
             label={t('record_identifier_header')}
+            buttonAriaLabel={t('record_identifier_header_copy_aria')}
             content={identifier}>
             <span className="blockquote">{identifier}</span>
           </ClipBoardFormElement>

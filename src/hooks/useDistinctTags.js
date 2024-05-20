@@ -1,4 +1,7 @@
+import { useTranslation } from "react-i18next";
+
 const useDistinctTags = (tags = []) => {
+  const { t } = useTranslation();
 
   const groupedTags = {};
 
@@ -10,7 +13,7 @@ const useDistinctTags = (tags = []) => {
   });
 
   return Object.values(groupedTags).sort((a,b) => 
-    a.label.localeCompare(b.label)
+    t(a.label).localeCompare(t(b.label))
   );
 
 };

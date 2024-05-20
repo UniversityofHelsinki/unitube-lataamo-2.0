@@ -27,7 +27,7 @@ const RecordStaticInformation = ({ record, onChange, resetSubtitleDownloadLinks,
         <Container className="ps-0">
             <Row className="mb-4">
                 <Col>
-                  <Carousel labels={videos.map((video, i) => <VideoPreviewLabel video={video} key={video.url} />)}>
+                  <Carousel labels={videos.map((video, i) => <VideoPreviewLabel video={video} key={video.url} />)} previousAriaLabel={'record_video_carousel_previous_aria'} nextAriaLabel={'record_video_carousel_next_aria'}>
                     {videos.map((video) => (
                       <VideoPreview key={video.url} video={video} />
                     ))}
@@ -41,7 +41,7 @@ const RecordStaticInformation = ({ record, onChange, resetSubtitleDownloadLinks,
             </Row>
             <Row className="mb-4">
                 <Col>
-                    <RecordLink to="#" label={publishedLink}/>
+                    <RecordLink to="#" label={publishedLink} />
                 </Col>
             </Row>
             <Row className="mb-4">

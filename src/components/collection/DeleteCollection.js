@@ -47,7 +47,8 @@ const DeleteCollection = ({ collection, showLabel = true, reloadCollectionOnRemo
     const button = (
         <CollectionCardAction
             icon={<DeleteIcon { ...iconProps } />}
-            label={t('record_card_action_delete')}
+            label={t('collection_card_action_delete')}
+            ariaLabel={t('collection_card_action_delete_aria', { title: collection.title})}
             onClick={show}
             showLabel={showLabel}
             variant={showLabel ? 'danger' : 'link'}

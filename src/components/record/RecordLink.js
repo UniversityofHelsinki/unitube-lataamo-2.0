@@ -9,7 +9,7 @@ const RecordLink = ({ to, label }) => {
     const { t } = useTranslation();
 
     return (
-      <ClipBoardFormElement label={t('record_link_header')} size={'h5'} content={to}>
+      <ClipBoardFormElement label={t('record_link_header')} content={to} buttonAriaLabel={t('record_link_copy_aria')}>
           <div className="blockquote">
             <ExternalLink to={to} label={label} fill={Colors.black} height={16} width={16} />
           </div>
