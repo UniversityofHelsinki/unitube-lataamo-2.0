@@ -25,6 +25,7 @@ import useRecordSearch from '../../hooks/record/useRecordSearch';
 import useCollectionSearch from '../../hooks/collection/useCollectionSearch';
 import { belowBreakpoint, toggleLeftSide } from '../utilities/visibilities';
 import useCollectionTagFilter from '../../hooks/collection/useCollectionTagFilter';
+import ListActions from './ListActions';
 
 const No = ({ children }) => {
     return (
@@ -279,7 +280,7 @@ const Left = () => {
     const reloadFunction = {
         '/records': reloadRecords,
         '/collections': reloadCollections,
-    }[path] || (() => {});
+    }[path];
 
     const onSortOptionChange = async (criteria, descending) => {
         if (sortOptions === recordSortOptions) {
@@ -334,17 +335,24 @@ const Left = () => {
                 {actionElement[path]}
               </Col>
             </Row>
+            <Row className="border-start border-end border-black">
+              <Col>
+                <div className="left-list-actions">
+                  <ListActions 
+                    currentSortCriteria={sortOptions?.criteria}
+                    sortCriterias={sortCriterias}
+                    descending={sortOptions?.descending}
+                    onSortOptionChange={onSortOptionChange}
+                    reload={reloadFunction}
+                  />
+                </div>
+              </Col>
+            </Row>
           </Container>
         </div>
         <div ref={listRef} className="left-down border border-top-0 border-black" onScroll={hideUpSide}>
             <Loading loading={Boolean(loading[path])}>
-              <LeftList 
-                currentSortCriteria={sortOptions?.criteria} 
-                sortCriterias={sortCriterias} 
-                descending={sortOptions?.descending} 
-                onSortOptionChange={onSortOptionChange}
-                reload={reloadFunction}
-              >
+              <LeftList>
                 {(() => {
                   if (listElements[path]?.length > 0) {
                     return listElements[path];
