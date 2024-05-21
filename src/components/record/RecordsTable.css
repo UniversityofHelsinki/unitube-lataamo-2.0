@@ -51,6 +51,8 @@
 
 .records-table-sort-button svg {
   margin-left: 0.4em;
+  min-width: 1em;
+  min-height: 1em;
   max-width: 1em;
   max-height: 1em;
 }
