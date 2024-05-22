@@ -307,5 +307,6 @@
   "tag_button_tag_cc_aria": "Näytä vain tekstitykselliset",
   "tag_button_tag_processing_subtitles_aria": "Näytä vain tallenteet, joilla on teksitykset käsittelyssä",
   "tag_button_tag_processing_aria": "Näytä vain käsittelyssä olevat tallenteet",
-  "tag_button_tag_expiring_aria": "Näytä vain vanhenemassa olevat tallenteet"
+  "tag_button_tag_expiring_aria": "Näytä vain vanhenemassa olevat tallenteet",
+  "tag_processing_subtitles": "Tekstitys käsittelyssä"
 }

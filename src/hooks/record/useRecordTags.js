@@ -1,9 +1,5 @@
-import { useTranslation } from "react-i18next";
 import useUser from "../useUser";
 import { JOB_STATUS_STARTED, JOB_TYPES_TRANSCRIPTION, STATUS } from '../../Constants.js';
-import {useEffect} from "react";
-import useSubtitleState from "../useSubtitleState";
-import useRecordValidation from "../validation/record/useRecordValidation";
 import useRecordsValidation from "../validation/record/useRecordsValidation";
 import { useState } from "react";
 
