@@ -9,6 +9,7 @@ const useSort = (comparators, list, criteria, descending) => {
       );
       return sorted;
     }
+    return list;
   }, [list, criteria, descending]);
 
   return [sorted, Object.keys(comparators)];
