@@ -54,6 +54,7 @@
   "new_collection_form_footer_sending": "Tallennetaan...",
   "new_collection_form_footer_error": "Yritä uudestaan",
   "new_collection_form_footer_done": "Lisää uusi",
+  "unsaved_data": "Sinulla on tallentamattomia tietoja, oletko varma, että haluat poistua",
   "record_upload_help_label": "Ohjeita tiedoston valitsemiseen",
   "record_upload_help_content": "Klikkaa valintapainiketta ja etsi avautuvasta ikkunasta koneeltasi tai laitteeltasi tallenne, jonka haluat ladata palveluun. Tuettuja tiedostomuotoja ovat yleisimmät videotiedostot kuten .avi, .mov ja .mp4.",
   "record_name_help_label": "Tietoa nimestä",
