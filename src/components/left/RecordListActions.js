@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import './RecordListActions.css';
-import { Col, Container, Row } from 'react-bootstrap';
+import {Col, Container, Row} from 'react-bootstrap';
 import ButtonRow from './ButtonRow';
 import Search from './search/Search';
 import NewRecord from '../record/NewRecord';
 import RecordActionOptions from './RecordActionOptions';
 import TagButtonList from './TagButtonList';
+import TagClearButton from "./TagClearButton";
 
-const RecordListActions = ({ options, onOptionChange, onTagChange, tags}) => {
+const RecordListActions = ({ options, onOptionChange, onTagChange, onTagClear, tags, selectedTags}) => {
 
   const [searchStarted, setSearchStarted] = useState(false);
 
-  return (
+    return (
       <Container>
         <Row className="mb-3">
           <Col>
@@ -41,11 +42,22 @@ const RecordListActions = ({ options, onOptionChange, onTagChange, tags}) => {
             <TagButtonList onClick={onTagChange} tags={tags} />
           </Col>
         </Row>
+          <Row className="clear-record-tag-selection-button-row">
+              <Col>
+                <TagClearButton onClick={onTagClear} disabled={selectedTags.length === 0} />
+              </Col>
+          </Row>
       </Container>
   );
 };
 
 RecordListActions.propTypes = {
+    options: PropTypes.object,
+    onOptionChange: PropTypes.func,
+    onTagChange: PropTypes.func,
+    onTagClear: PropTypes.func,
+    tags: PropTypes.object,
+    selectedTags: PropTypes.array
 };
 
 export default RecordListActions;
