@@ -89,6 +89,7 @@ const NewCollection = () => {
       showComponent={theButton} 
       show={showForm}
       size="xl"
+      touched={modified}
     >
       <Modal.Header { ...closeButton }>{t('new_collection_form_header')}</Modal.Header>
       <Form className="new-collection-form ms-3 me-3" onSubmit={onSubmit}>

@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import './FormDialog.css';
 import Dialog from './Dialog';
+import {useTranslation} from "react-i18next";
 
 const beforeUnloadConfirmation = (event) => {
   event.preventDefault();
@@ -19,6 +20,7 @@ const FormDialog = ({
   const dialogRef = useRef();
   const focusSetRef = useRef(false);
   const focusSet = focusSetRef.current;
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!touched && !show) {
@@ -43,8 +45,21 @@ const FormDialog = ({
 
   }, [touched, show]);
 
+  const close = () => {
+    if (!touched && hide) {
+      console.log("nothing changed ...");
+      hide();
+    } else if (hide) {
+      let resultConfirm = window.confirm(t('unsaved_data'));
+      if (resultConfirm === true) {
+        console.log("closing modal...");
+        hide();
+      }
+    }
+  }
+
   return (
-    <Dialog ref={dialogRef} showComponent={showComponent} show={show} hide={hide} closeable={closeable} size="lg" fullscreen="sm-down" { ...rest }>
+    <Dialog ref={dialogRef} showComponent={showComponent} show={show} hide={close} touched={touched} closeable={closeable} size="lg" fullscreen="sm-down" { ...rest }>
       {children}
     </Dialog>
   );
