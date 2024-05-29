@@ -4,7 +4,6 @@ import Logo from './Logo';
 import User from './User';
 import { useTranslation } from 'react-i18next';
 import './Header.css';
-import HeaderMenu from './HeaderMenu';
 
 const Header = () => {
   const { t } = useTranslation();

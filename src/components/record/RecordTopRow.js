@@ -8,7 +8,6 @@ import { useEffect } from 'react';
 import Loading from '../utilities/Loading';
 import ListReloadButton from '../left/ListReloadButton';
 import TopRow from '../right/TopRow';
-import HeaderMenu from "../header/HeaderMenu";
 
 const getCollection = async (identifier) => {
   const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/series/${identifier}`;
@@ -40,9 +39,6 @@ const RecordTopRow = ({ record, disabled, reload }) => {
             }}/>
             <CardTags tags={[...tags]}/>
             <RecordActions record={{...record, series: collection.title}} disabled={disabled}/>
-            <div className="header-menu-icon">
-                <HeaderMenu/>
-            </div>
         </TopRow>
     </Loading>
   );

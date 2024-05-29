@@ -10,9 +10,8 @@ const HeaderMenu = () => {
     const { t } = useTranslation();
     const [isFullScreen, setFullScreen] = useState(false);
 
-    console.log(isFullScreen);
-
-    const onClick = () => {
+    const onClick = (e) => {
+        e.preventDefault();
         setFullScreen(!isFullScreen);
         toggleLeftSide();
     };
