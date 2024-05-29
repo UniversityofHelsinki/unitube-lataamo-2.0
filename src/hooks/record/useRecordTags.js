@@ -1,9 +1,5 @@
-import { useTranslation } from "react-i18next";
 import useUser from "../useUser";
 import { JOB_STATUS_STARTED, JOB_TYPES_TRANSCRIPTION, STATUS } from '../../Constants.js';
-import {useEffect} from "react";
-import useSubtitleState from "../useSubtitleState";
-import useRecordValidation from "../validation/record/useRecordValidation";
 import useRecordsValidation from "../validation/record/useRecordsValidation";
 import { useState } from "react";
 
@@ -15,11 +11,12 @@ import { useState } from "react";
  * @param {object} t - The translation object.
  * @returns {function} - A function that accepts a record and returns an object.
  */
-const deleted = (user, t) => (record) => {
+const deleted = (user) => (record) => {
   const isInTrash = record.series === `trash ${user.eppn}`;
   if (isInTrash) {
     return {
-      label: t('tag_deleted'),
+      label: 'tag_deleted',
+      ariaLabel: 'tag_deleted_aria',
       color: 'red'
     };
   }
@@ -32,7 +29,7 @@ const deleted = (user, t) => (record) => {
  * @param {Function} t - The translation function.
  * @return {Function} - A function that takes a record and returns an object representing the status.
  */
-const expiring = (t) => (record) => {
+const expiring = () => (record) => {
   // Parse the deletionDate string into a Date object
   const deletionDateObject = new Date(record.deletionDate);
   // Calculate the date three months from now
@@ -44,7 +41,8 @@ const expiring = (t) => (record) => {
 
   if (isDeletionDateNear) {
     return {
-      label: t('tag_expiring'),
+      label: 'tag_expiring',
+      ariaLabel: 'tag_expiring_aria',
       color: 'orange'
     };
   }
@@ -57,12 +55,13 @@ const expiring = (t) => (record) => {
  * @param {Object} record - The record object to check for closed captions.
  * @returns {Object|undefined} - Returns an object with label and color properties if closed captions are available, otherwise undefined.
  */
-const processing = (t) => (record) => {
+const processing = () => (record) => {
   const processing_record = record.processing_state === 'RUNNING';
 
   if (processing_record) {
     return {
-      label: t('tag_processing'),
+      label: 'tag_processing',
+      ariaLabel: 'tag_processing_aria',
       color: 'orange'
     };
   }
@@ -71,7 +70,8 @@ const processing = (t) => (record) => {
 const cc = (t) => record => {
   if (record.subtitles) {
     return {
-      label: t('tag_cc'),
+      label: 'tag_cc',
+      ariaLabel: 'tag_cc_aria',
       color: 'green'
     };
   }
@@ -108,9 +108,10 @@ const statusLabelMap = {
  * @param {function} t - The translation function.
  * @returns {Object} - The status object with translated label and color.
  */
-const createStatusObject = (statusObj, t) => {
+const createStatusObject = (statusObj) => {
   return {
-    label: t(statusObj.label),
+    label: statusObj.label,
+    ariaLabel: `record_${statusObj.label}_aria`,
     color: statusObj.color
   };
 };
@@ -121,7 +122,7 @@ const createStatusObject = (statusObj, t) => {
  * @param {Object} t - The translation helper object.
  * @returns {Array} - An array of status objects.
  */
-const status = (t) => (record) => {
+const status = () => (record) => {
   let statuses = [];
   if (record.visibility && record.visibility.length > 0) {
     for (const visibility of record.visibility) {
@@ -129,7 +130,7 @@ const status = (t) => (record) => {
       const statusObj = statusLabelMap[visibilityLowerCase];
 
       if (statusObj) {
-        statuses.push(createStatusObject(statusObj, t));
+        statuses.push(createStatusObject(statusObj));
       }
     }
   }
@@ -142,12 +143,13 @@ const status = (t) => (record) => {
  * @param t
  * @returns {(function(*): ({color: string, label: *}|undefined))|*}
  */
-const subtitlesInProcessing = (t) => (record) => {
+const subtitlesInProcessing = () => (record) => {
 
   const job = record.jobs;
   if (job && job.type === JOB_TYPES_TRANSCRIPTION && job.status === JOB_STATUS_STARTED) {
     return {
-      label: t('tag_processing_subtitles'),
+      label: 'tag_processing_subtitles',
+      ariaLabel: 'tag_processing_subtitles_aria',
       color: 'orange'
     };
   }
@@ -160,11 +162,12 @@ const subtitlesInProcessing = (t) => (record) => {
  * @param isValid
  * @returns {(function(*): ({color: string, label: *}|undefined))|*}
  */
-const missingDetails = (t, isValids) => (_record, i) => {
+const missingDetails = (isValids) => (_record, i) => {
 
   if (!isValids[i]) {
     return {
-      label: t('tag_validation_failed'),
+      label: 'tag_validation_failed',
+      ariaLabel: 'record_tag_validation_failed_aria',
       color: 'red'
     };
   }
@@ -191,7 +194,6 @@ const recordsDiffer = (previousRecords, records) => {
  * @returns {Array} An array of tags.
  */
 const useRecordTags = (records = []) => {
-  const { t } = useTranslation();
   const [user] = useUser();
   const [isValids, _messages, validate] = useRecordsValidation(
     ['title', 'description', 'license', 'deletionDate'],
@@ -205,16 +207,16 @@ const useRecordTags = (records = []) => {
   }
 
   const deletedRecordsTags = [
-    deleted(user, t)
+    deleted(user)
   ];
 
   const tagFunctions = [
-    processing(t), 
-    expiring(t), 
-    missingDetails(t, isValids),
-    cc(t), 
-    status(t),
-    subtitlesInProcessing(t),
+    processing(), 
+    expiring(), 
+    missingDetails(isValids),
+    cc(), 
+    status(),
+    subtitlesInProcessing(),
   ];
   
   const tags = records.map((record, i) => {

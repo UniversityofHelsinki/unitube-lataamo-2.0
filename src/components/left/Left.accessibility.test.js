@@ -11,7 +11,9 @@ describe('Left', () => {
             <Left />
         </MockProvider>);
 
-        // use the matcher function in the test
+        const sortButton = screen.getByText('Järjestä');
+        fireEvent.click(sortButton);
+
         const results = await axe(container);
         expect(results).toHaveNoViolations();
     });

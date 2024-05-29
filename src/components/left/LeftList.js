@@ -1,26 +1,10 @@
 import React from 'react';
-import ListActions from './ListActions';
+import PropTypes from 'prop-types';
 import './LeftList.css';
 
-const LeftList = React.forwardRef(({ 
-  children = [],
-  currentSortCriteria,
-  sortCriterias,
-  onSortOptionChange,
-  descending,
-  reload
-}, ref) => {
+const LeftList = React.forwardRef(({ children = [] }, ref) => {
   return (
     <div className="left-list-container">
-      <div className="left-list-actions">
-        <ListActions 
-          currentSortCriteria={currentSortCriteria}
-          sortCriterias={sortCriterias}
-          descending={descending}
-          onSortOptionChange={onSortOptionChange}
-          reload={reload}
-        />
-      </div>
       <div className="left-list">
           <ul ref={ref} className="no-padding left-list-list-container">
             {children.length > 0 && children.map(([element, identifier], i) =>

@@ -9,7 +9,6 @@ import Loading from '../utilities/Loading';
 import HelpDialog from '../dialog/HelpDialog';
 import useCollectionDropdown from '../../hooks/collection/useCollectionDropdown';
 import { ReactComponent as LinkArrow } from '../utilities/icons/link-arrow.svg';
-import HyColors from '../utilities/HyColors';
 import useSearchParams from '../../hooks/useSearchParams';
 import useUser from '../../hooks/useUser';
 
@@ -49,7 +48,7 @@ const RecordCollections = ({ collection, onChange, message, disabled = false }) 
                     </HelpDialog>
                   </div>
                   {collection && collection !== defaultCollection?.identifier &&
-                    <a href={`?collection=${collection}`} onClick={moveToCollection}>
+                    <a href={`?collection=${collection}`} onClick={moveToCollection} aria-label={t('record_collection_move_aria')} title={t('record_collection_move_aria')}>
                       {t('record_collection_move')}
                     <LinkArrow width="1em" height="1em" aria-hidden />
                   </a>}

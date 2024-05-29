@@ -9,7 +9,7 @@ import { Button } from 'react-bootstrap';
 import useClipboard from '../../hooks/useClipboard';
 import ElementHeader from './ElementHeader';
 
-const ClipBoardFormElement = ({ label, content, children }) => {
+const ClipBoardFormElement = ({ label, content, children, buttonAriaLabel }) => {
     const { t } = useTranslation();
     const [copy] = useClipboard();
     const labelId = useId();
@@ -21,7 +21,7 @@ const ClipBoardFormElement = ({ label, content, children }) => {
                   <ElementHeader>{label}</ElementHeader>
                 </Col>
                 <Col className="text-end pe-0">
-                  <Button variant="link" aria-labelledby={labelId} onClick={() => copy(content)}>
+                  <Button variant="link" aria-label={buttonAriaLabel} onClick={() => copy(content)}>
                     <CopyIcon width="1.5em" height="1.5em" />
                     <span id={labelId} className="ms-2">{t('clipboard_copy')}</span>
                   </Button>
@@ -40,6 +40,7 @@ ClipBoardFormElement.propTypes = {
     label: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
     children: PropTypes.object,
+    buttonAriaLabel: PropTypes.string.isRequired
 };
 
 export default ClipBoardFormElement;

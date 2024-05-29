@@ -80,9 +80,9 @@ const RecordForm = ({
           <Row className="mb-2">
             <Col>
               <RecordSubtitle 
-                onChange={(value) => onChange('subtitles', value)}
+                onChange={(value) => onChange('selectedSubtitles', value)}
                 message={validationMessages?.subtitles}
-                subtitles={record.subtitles}
+                subtitles={record.selectedSubtitles}
                 disabled={disabled} 
               />
             </Col>
