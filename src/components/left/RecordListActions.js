@@ -44,7 +44,7 @@ const RecordListActions = ({ options, onOptionChange, onTagChange, onTagClear, t
         </Row>
           <Row className="clear-record-tag-selection-button-row">
               <Col>
-                <TagClearButton onClick={onTagClear} disabled={selectedTags.length === 0} />
+                <TagClearButton onClick={onTagClear} disabled={selectedTags?.length === 0} />
               </Col>
           </Row>
       </Container>

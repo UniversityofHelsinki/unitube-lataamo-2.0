@@ -30,7 +30,7 @@ const CollectionActions = ({ options, onOptionChange, tags, onTagChange, onTagCl
       </Row>
         <Row className="clear-collection-tag-selection-button-row">
             <Col>
-                <TagClearButton onClick={onTagClear} disabled={selectedTags.length === 0} />
+                <TagClearButton onClick={onTagClear} disabled={selectedTags?.length === 0} />
             </Col>
         </Row>
     </Container>
