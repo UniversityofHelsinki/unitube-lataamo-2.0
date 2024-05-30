@@ -10,13 +10,13 @@ const useCollectionTagFilter = (collections = []) => {
     collections
   );
 
-  const [selectedTags, onSelectedTagChange] = useSelectedCollectionTags(
+  const [selectedTags, onSelectedTagChange, clearSelectedTags] = useSelectedCollectionTags(
     distinctTags
   );
 
   const filteredRecords = useTagFilter(collections, selectedTags, tags);
   
-  return [filteredRecords, selectedTags, distinctTags, onSelectedTagChange];
+  return [filteredRecords, selectedTags, distinctTags, onSelectedTagChange, clearSelectedTags];
 };
 
 export default useCollectionTagFilter;
