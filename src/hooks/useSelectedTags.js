@@ -41,7 +41,11 @@ const useSelectedTags = (distinctTags = []) => {
     }
   };
 
-  return [selectedTags || [], onChange];
+  const clearSelectedTags = () => {
+    setSelectedTags([]);
+  };
+
+  return [selectedTags || [], onChange, clearSelectedTags];
 };
   
 export default useSelectedTags;
