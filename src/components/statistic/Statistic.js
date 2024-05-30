@@ -1,4 +1,5 @@
 import {useSelector} from "react-redux";
+import './Statistic.css'
 import useSearchParams from "../../hooks/useSearchParams";
 import useStatistics from "../../hooks/useStatistics";
 import i18n from "i18next";
@@ -11,6 +12,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import {useTranslation} from "react-i18next";
+import HeaderMenu from "../header/HeaderMenu";
 
 const StatisticsComponents = ({ processedStatistics }) => (
     <>
@@ -73,6 +75,9 @@ const Statistic = () => {
         <>
             {statistic && (
                 <>
+                    <div className="statistic-top-row">
+                        <HeaderMenu/>
+                    </div>
                     <Container className="ps-0">
                         <Row className="mb-4">
                             <Col xs={6}>
