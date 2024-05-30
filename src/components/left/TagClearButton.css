@@ -1,0 +1,38 @@
+.tag-clear-button {
+    display: flex;
+    flex-direction: row;
+    min-width: max-content;
+    align-items: center;
+
+    background-color: unset;
+    padding: unset;
+    border: unset;
+
+    fill: var(--huds-brand-main);
+    color: var(--huds-brand-main);
+
+    margin-left: 1px;
+}
+.tag-clear-button svg {
+    width: 1em;
+    height: 0.8em;
+    margin-right: 0.2em;
+    margin-top: 0.2em;
+}
+
+.tag-clear-button svg polygon {
+    fill: var(--hy-red);
+}
+
+.tag-clear-button:hover {
+    color: var(--hy-black);
+}
+
+.tag-clear-button:disabled {
+    color: var(--hy-medium-silver);
+}
+
+.tag-clear-button:disabled svg polygon {
+    fill: var(--hy-medium-silver);
+}
+
