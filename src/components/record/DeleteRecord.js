@@ -55,11 +55,11 @@ const DeleteRecord = ({ record, showLabel = true, reloadCollectionOnRemove = fal
   };
 
   const button = (
-    <RecordCardAction 
-      icon={<DeleteIcon { ...iconProps } />}
+    <RecordCardAction
+      icon={<DeleteIcon width="10" height="10"  { ...iconProps } />}
       label={t('record_card_action_delete')}
       ariaLabel={t(
-        'record_card_action_delete_aria', 
+        'record_card_action_delete_aria',
         { title: record.title }
       )}
       onClick={show}
@@ -79,9 +79,9 @@ const DeleteRecord = ({ record, showLabel = true, reloadCollectionOnRemove = fal
   const closeable = progress.status !== ProgressStatus.RECORD_DELETE.IN_PROGRESS;
 
   return (
-    <FormDialog 
-      showComponent={button} 
-      show={showForm} 
+    <FormDialog
+      showComponent={button}
+      show={showForm}
       hide={hide}
       closeable={closeable}>
       <Modal.Header closeButton={closeable}>
