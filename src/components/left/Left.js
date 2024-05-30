@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useRef } from 'react';
 import './Left.css';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -20,12 +20,12 @@ import useVisibleRecords from '../../hooks/useVisibleRecords';
 import useRecordSort, {defaultCriterias as recordsDefaultCriterias} from '../../hooks/record/useRecordSort';
 import useCollectionSort, {defaultCriterias as collectionsDefaultCriterias}  from '../../hooks/collection/useCollectionSort';
 import useRecordTagFilter from '../../hooks/record/useRecordTagFilter';
-import { useRef } from 'react';
 import useRecordSearch from '../../hooks/record/useRecordSearch';
 import useCollectionSearch from '../../hooks/collection/useCollectionSearch';
 import { belowBreakpoint, toggleLeftSide } from '../utilities/visibilities';
 import useCollectionTagFilter from '../../hooks/collection/useCollectionTagFilter';
 import ListActions from './ListActions';
+import PropTypes from "prop-types";
 
 const No = ({ children }) => {
     return (
@@ -107,7 +107,8 @@ const Left = () => {
       tagFilteredRecords, 
       selectedRecordTags, 
       distinctRecordTags, 
-      onSelectedRecordTagChange
+      onSelectedRecordTagChange,
+      clearSelectedRecordTags
     ]  = useRecordTagFilter(
         sortedRecords
     );
@@ -138,7 +139,8 @@ const Left = () => {
       tagFilteredCollections,
       selectedCollectionTags,
       distinctCollectionTags,
-      onSelectedCollectionTagChange
+      onSelectedCollectionTagChange,
+      clearSelectedCollectionTags
     ] = useCollectionTagFilter(
       sortedCollections
     );
@@ -252,12 +254,16 @@ const Left = () => {
             onOptionChange={(options) => setRecordOptions(options)}
             tags={{ distinct: distinctRecordTags, selected: selectedRecordTags }}
             onTagChange={onSelectedRecordTagChange}
+            onTagClear={clearSelectedRecordTags}
+            selectedTags={selectedRecordTags}
         />,
         '/collections': <CollectionActions
             options={collectionOptions}
             onOptionChange={(options) => setCollectionOptions(options)}
             tags={{ distinct: distinctCollectionTags, selected: selectedCollectionTags }}
             onTagChange={onSelectedCollectionTagChange}
+            onTagClear={clearSelectedCollectionTags}
+            selectedTags={selectedCollectionTags}
         />
     };
 

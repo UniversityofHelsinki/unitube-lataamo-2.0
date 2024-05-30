@@ -8,13 +8,13 @@ const useRecordTagFilter = (records = []) => {
 
   const distinctTags = useDistinctRecordTags(records);
 
-  const [selectedTags, onSelectedTagChange] = useSelectedRecordTags(
+  const [selectedTags, onSelectedTagChange, clearSelectedTags] = useSelectedRecordTags(
     distinctTags
   );
 
   const filteredRecords = useTagFilter(records, selectedTags, tags);
 
-  return [filteredRecords, selectedTags, distinctTags, onSelectedTagChange];
+  return [filteredRecords, selectedTags, distinctTags, onSelectedTagChange, clearSelectedTags];
 
 };
 
