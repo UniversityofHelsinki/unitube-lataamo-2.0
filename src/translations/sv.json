@@ -140,6 +140,9 @@
   "stream_duration": "???",
   "streams_data_not_available" : "???",
   "stream_statistics_table_summary": "???",
+  "stream_statistics_table_toggle_button": "Toggle stream details",
+  "stream_statistics_table_toggle_button_status_collapsed": "Show details",
+  "stream_statistics_table_toggle_button_status_visible": "Hide details",
   "timestamp" : "???",
   "total_connections": "???"
 }

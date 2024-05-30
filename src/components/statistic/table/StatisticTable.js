@@ -21,6 +21,7 @@ const CustomStatisticTable = ({ processedStatistics }) => {
                 <tr style={{backgroundColor: '#f0f0f0'}}>
                     <th>{t('timestamp')}</th>
                     <th>{t('total_connections')}</th>
+                    <th>{t(`stream_statistics_table_toggle_button_status_${isCollapsed ? 'collapsed' : 'visible'}`)}</th>
                     <th style={{textAlign: 'right'}}>
                         <div>
                             <button className="stream-statistics-table-toggle-button" onClick={toggleCollapse} aria-label={t('stream_statistics_table_toggle_button')} title={t(`stream_statistics_table_toggle_button_status_${isCollapsed ? 'collapsed' : 'visible'}`)}>
