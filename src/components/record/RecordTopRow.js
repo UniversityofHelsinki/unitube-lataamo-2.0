@@ -32,16 +32,18 @@ const RecordTopRow = ({ record, disabled, reload }) => {
 
   return (
     <Loading loading={!collection.title} logo={false}>
-      <TopRow>
-          <ListReloadButton onClick={(e) => { e.preventDefault(); reload() }} />
-          <CardTags tags={[ ...tags ]} />
-          <RecordActions record={{ ...record, series: collection.title }} disabled={disabled} />
-      </TopRow>
+        <TopRow>
+            <ListReloadButton onClick={(e) => {
+                e.preventDefault();
+                reload()
+            }}/>
+            <CardTags tags={[...tags]}/>
+            <RecordActions record={{...record, series: collection.title}} disabled={disabled}/>
+        </TopRow>
     </Loading>
   );
 };
 
-RecordTopRow.propTypes = {
-};
+RecordTopRow.propTypes = {};
 
 export default RecordTopRow;

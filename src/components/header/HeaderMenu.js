@@ -1,28 +1,31 @@
 import React, {useState} from 'react';
-import PropTypes from 'prop-types';
 import './HeaderMenu.css';
-import { ReactComponent as Hamburger } from '../utilities/icons/hamburger.svg';
-import { useTranslation } from 'react-i18next';
-import { leftSideIsHidden, toggleLeftSide } from '../utilities/visibilities';
+import {ReactComponent as FullScreen} from '../utilities/icons/arrows-expand.svg';
+import {ReactComponent as Contract} from "../utilities/icons/arrows-contract.svg";
+import {useTranslation} from 'react-i18next';
+import {leftSideIsHidden, toggleLeftSide} from '../utilities/visibilities';
 
 
 const HeaderMenu = () => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
+    const [isFullScreen, setFullScreen] = useState(false);
 
-  const onClick = () => {
-    toggleLeftSide();
-  };
+    const onClick = (e) => {
+        e.preventDefault();
+        setFullScreen(!isFullScreen);
+        toggleLeftSide();
+    };
 
-  return (
-      <div className="header-menu">
-        <button onClick={onClick}>
-          <Hamburger width="32" height="32" aria-label={t('header_menu_label')}/>
-        </button>
-        <span aria-live="polite" className="screenreader-only">
+    return (
+        <div className="header-menu">
+            <button onClick={onClick}>
+                {isFullScreen ? <Contract width="20" height="20" aria-label={t('header_menu_label')}/> : <FullScreen width="20" height="20" aria-label={t('header_menu_label')}/>}
+            </button>
+            <span aria-live="polite" className="screenreader-only">
             {leftSideIsHidden() ? t('header_menu_hidden') : t('header_menu_visible')}
         </span>
-      </div>
-  );
+        </div>
+    );
 };
 
 HeaderMenu.propTypes = {
