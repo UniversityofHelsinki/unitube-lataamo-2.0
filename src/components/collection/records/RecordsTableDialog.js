@@ -42,6 +42,7 @@ const RecordsTableDialog = ({
               selectedRecords={records.map((_r, i) => i)}
               disabled={true}
               onSelect={() => {}}
+              copyVisible={false}
             />
           </div>
           <div className="records-table-dialog-content">

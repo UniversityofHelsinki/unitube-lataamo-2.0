@@ -56,7 +56,7 @@ const MoveRecordsDialog = ({ records = [] }) => {
         collection={collection || records[0]?.is_part_of}
         onChange={(collection) => setCollection(collection)}
         message={null}
-        disabled={false} 
+        disabled={currentState === 'in_progress'} 
         showLink={false}
       />
     </BulkActionDialog>
