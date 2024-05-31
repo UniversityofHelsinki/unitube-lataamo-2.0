@@ -1,0 +1,13 @@
+.bulk-actions-dialog-footer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.bulk-actions-dialog-footer-progress-bar {
+  width: 100%;
+}
+
+.bulk-actions-dialog-footer-buttons {
+  display: flex;
+}

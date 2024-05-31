@@ -1,0 +1,15 @@
+
+.records-table-dialog {
+  display: flex;
+  flex-direction: column;
+}
+
+.records-table-dialog > div {
+  margin-bottom: 1em;
+}
+
+.records-table-dialog-table {
+}
+
+.records-table-dialog-content {
+}

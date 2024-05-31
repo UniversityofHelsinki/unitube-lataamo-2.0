@@ -96,6 +96,13 @@
   min-width: fit-content;
 }
 
+.records-table-title-label {
+  margin-left: 1em;
+  word-break: break-all;
+  min-width: fit-content;
+}
+
+
 .records-table-checkbox {
   display: flex;
   width: 100%;
