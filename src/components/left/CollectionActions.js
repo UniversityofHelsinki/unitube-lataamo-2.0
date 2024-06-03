@@ -10,7 +10,7 @@ import TagClearButton from "./TagClearButton";
 
 const CollectionActions = ({ options, onOptionChange, tags, onTagChange, onTagClear, selectedTags }) => {
   return (
-    <Container className="collection-actions-container">
+    <Container className="collection-actions-container px-0">
       <Row>
         <Col>
           <ButtonRow>
