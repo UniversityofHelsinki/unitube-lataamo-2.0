@@ -1,0 +1,10 @@
+.delete-records-dialog-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.delete-records-dialog-alert-text {
+  padding: 1em;
+  width: 100%;
+  background-color: var(--hy-light-silver);
+}

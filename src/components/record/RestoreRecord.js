@@ -101,6 +101,7 @@ const RestoreRecord = ({ record, buttonDisabled }) => {
                 modifiedRecord?.isPartOf || ''
               }
               onChange={onCollectionChange}
+              showLink={false}
             />
           </Modal.Body>
           <Modal.Footer>
