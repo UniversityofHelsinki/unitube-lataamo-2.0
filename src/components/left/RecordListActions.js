@@ -14,7 +14,7 @@ const RecordListActions = ({ options, onOptionChange, onTagChange, onTagClear, t
   const [searchStarted, setSearchStarted] = useState(false);
 
     return (
-      <Container>
+      <Container className="no-padding">
         <Row className="mb-3">
           <Col>
             <ButtonRow>

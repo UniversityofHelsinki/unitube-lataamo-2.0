@@ -9,3 +9,7 @@
   box-sizing: border-box;
   height: var(--header-height);
 }
+
+.root-main-row > aside {
+  padding-right: 0px;
+}

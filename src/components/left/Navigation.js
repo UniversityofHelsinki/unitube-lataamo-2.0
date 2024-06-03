@@ -30,21 +30,19 @@ const Navigation = () => {
   }];
 
   return (
-      <Container className="navigation">
-        <Row className="text-center no-padding">
-          <Nav as="nav" justify fill variant="tabs" activeKey={location} className="no-padding" onSelect={onSelect}>
-            {tabs.map(({ path, label }) => {
-              return (
-                  <Nav.Item key={path} className={className(path)}>
-                    <Nav.Link eventKey={path}>
-                      {label}
-                    </Nav.Link>
-                  </Nav.Item>
-              );
-            })}
-          </Nav>
-        </Row>
-      </Container>
+    <div className="navigation">
+      <Nav as="nav" justify fill variant="tabs" activeKey={location} className="no-padding" onSelect={onSelect}>
+        {tabs.map(({ path, label }) => {
+          return (
+              <Nav.Item key={path} className={className(path)}>
+                <Nav.Link eventKey={path}>
+                  {label}
+                </Nav.Link>
+              </Nav.Item>
+          );
+        })}
+      </Nav>
+    </div>
   );
 };
 
