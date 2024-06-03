@@ -19,7 +19,7 @@ const HeaderMenu = () => {
     return (
         <div className="header-menu">
             <button onClick={onClick}>
-                {isFullScreen ? <Contract width="20" height="20" aria-label={t('header_menu_label')}/> : <FullScreen width="20" height="20" aria-label={t('header_menu_label')}/>}
+                {isFullScreen ? <Contract width="35" height="35" aria-label={t('header_menu_label')}/> : <FullScreen width="35" height="35" aria-label={t('header_menu_label')}/>}
             </button>
             <span aria-live="polite" className="screenreader-only">
             {leftSideIsHidden() ? t('header_menu_hidden') : t('header_menu_visible')}
