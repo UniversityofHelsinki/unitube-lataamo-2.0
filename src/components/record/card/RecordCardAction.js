@@ -20,7 +20,7 @@ const RecordCardAction = ({ icon, label, variant = 'outline-primary', onClick, s
   })();
 
   return (
-    <Button size="sm" variant={variant} onClick={onClick} className="record-card-action p-0 px-1 m-0" aria-label={ariaLabel || label} disabled={disabled} { ...ariaDialog }>
+    <Button size="sm" variant={variant} onClick={onClick} className="record-card-action p-0 m-0" aria-label={ariaLabel || label} disabled={disabled} { ...ariaDialog }>
       <span className={`${marginClass} record-card-action-icon-${variant}`}>{icon}</span>
       <span>{showLabel && label}</span>
     </Button>

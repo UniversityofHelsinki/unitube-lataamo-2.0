@@ -1,8 +1,5 @@
 import React, { useState, useRef } from 'react';
 import './Left.css';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 import LeftList from './LeftList';
 import Navigation from './Navigation';
 import RecordCard from '../record/card/RecordCard';
@@ -329,34 +326,23 @@ const Left = () => {
 
   return (
       <div className="left">
-        <div className="left-up">
-          <Container className="up-left border-bottom">
-            <Row>
-              <Col className="no-padding up-left-navigation">
-                <Navigation />
-              </Col>
-            </Row>
-            <Row ref={upside} className="border-start border-end border-black">
-              <Col className="mt-3 mb-3">
-                {actionElement[path]}
-              </Col>
-            </Row>
-            <Row className="border-start border-end border-black">
-              <Col>
-                <div className="left-list-actions">
-                  <ListActions 
-                    currentSortCriteria={sortOptions?.criteria}
-                    sortCriterias={sortCriterias}
-                    descending={sortOptions?.descending}
-                    onSortOptionChange={onSortOptionChange}
-                    reload={reloadFunction}
-                  />
-                </div>
-              </Col>
-            </Row>
-          </Container>
+        <div className="left-navigation">
+          <Navigation />
         </div>
-        <div ref={listRef} className="left-down border border-top-0 border-black" onScroll={hideUpSide}>
+        <div className="left-content">
+          <div ref={upside}>
+            {actionElement[path]}
+          </div>
+          <div className="left-content-list-actions">
+            <ListActions 
+              currentSortCriteria={sortOptions?.criteria}
+              sortCriterias={sortCriterias}
+              descending={sortOptions?.descending}
+              onSortOptionChange={onSortOptionChange}
+              reload={reloadFunction}
+            />
+          </div>
+          <div ref={listRef} className="left-down" onScroll={hideUpSide}>
             <Loading loading={Boolean(loading[path])}>
               <LeftList>
                 {(() => {
@@ -371,6 +357,7 @@ const Left = () => {
                 })()}
               </LeftList>
             </Loading>
+          </div>
         </div>
       </div>
   );
