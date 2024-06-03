@@ -4,6 +4,7 @@
   height: 100%;
   max-height: calc(100vh - var(--header-height) - var(--right-bottom-bar-height));
   border-bottom: 1px solid var(--hy-black);
+  margin-right: 8px;
 }
 
 .left-content {
