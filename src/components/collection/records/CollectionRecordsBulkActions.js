@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import './CollectionRecordsBulkActions.css';
 import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import DeleteRecordsDialog from './bulk/DeleteRecordsDialog';
+import MoveRecordsDialog from './bulk/MoveRecordsDialog';
 
 const CollectionRecordsBulkActions = ({ 
   records = [], 
@@ -13,12 +15,8 @@ const CollectionRecordsBulkActions = ({
   const count = <span>{selectedRecords.length}/{records.length}</span>;
 
   const actions = [
-    <Button variant="warning" disabled>
-      {t('collection_records_bulk_actions_move')}
-    </Button>,
-    <Button variant="danger" disabled>
-      {t('collection_records_bulk_actions_delete')}
-    </Button>
+    <MoveRecordsDialog records={selectedRecords.map(si => records[si])} />,
+    <DeleteRecordsDialog records={selectedRecords.map(si => records[si])} />
   ];
 
   return (

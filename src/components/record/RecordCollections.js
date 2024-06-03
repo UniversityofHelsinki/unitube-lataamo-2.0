@@ -16,7 +16,7 @@ const translateVisibilities = (t, visibilities) => {
   return visibilities.map(visibility => t(visibility)).join(', ');
 };
 
-const RecordCollections = ({ collection, onChange, message, disabled = false }) => {
+const RecordCollections = ({ collection, onChange, message, disabled = false, showLink = true }) => {
     const id = useId();
     const { t } = useTranslation();
     const [collections, loadingCollections] = useCollectionDropdown(true);
@@ -47,7 +47,7 @@ const RecordCollections = ({ collection, onChange, message, disabled = false }) 
                       {t('record_collections_help_content')}
                     </HelpDialog>
                   </div>
-                  {collection && collection !== defaultCollection?.identifier &&
+                  {collection && collection !== defaultCollection?.identifier && showLink &&
                     <a href={`?collection=${collection}`} onClick={moveToCollection} aria-label={t('record_collection_move_aria')} title={t('record_collection_move_aria')}>
                       {t('record_collection_move')}
                     <LinkArrow width="1em" height="1em" aria-hidden />
