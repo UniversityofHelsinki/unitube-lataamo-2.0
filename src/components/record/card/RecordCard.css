@@ -1,5 +1,33 @@
-.record-card-left-side-col {
-  max-width: fit-content;
+.record-card {
+  display: flex;
+  min-height: 160px;
+  border: 1px solid var(--hy-medium-silver);
+  box-sizing: border-box;
+  padding: 2px;
+}
+
+.record-card:focus-within {
+  outline: 2px solid var(--huds-additional-yellow);
+  border-left: 2px solid var(--huds-additional-yellow);
+  border-right: 2px solid var(--huds-additional-yellow);
+}
+
+.record-card-thumbnail {
+  order: 1;
+  width: 160px;
+  margin-right: 8px;
+}
+
+.record-card-details {
+  order: 2;
+  flex-basis: 100%;
+  flex-shrink: 2;
+  overflow: hidden;
+}
+
+.record-card-actions-list {
+  order: 3;
+  min-width: max-content;
 }
 
 a.record-card-content-details {
@@ -99,7 +127,7 @@ a.record-card-content-details {
   padding-right: 8px;
 }
 
-.record-card-length {
+.record-card-duration {
   background-color: var(--hy-light-silver);
   border: 1px solid var(--hy-silver);
   font-size: 0.8em;

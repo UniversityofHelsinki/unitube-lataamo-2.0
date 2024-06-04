@@ -52,59 +52,57 @@ const RecordCard = ({ record, onClick, selected = false, containerRef, highlight
   })() : null;
 
   return (
-      <Container ref={ref} style={{ minHeight: '160px' }} className="border">
-        <Row>
-          <Col lg={6} className={`${selectedClass} order-1`}>
-            <a className="record-card-content-details"
-               href={`?record=${record.identifier}`}
-               onClick={handleClick}
-               onKeyDown={onKeyDown(handleClick)}
-               aria-labelledby={labelId}
-               aria-current={selected ? 'page' : false}
+    <div className={`record-card ${selectedClass}`}>
+      <div className="record-card-details">
+        <a className="record-card-content-details"
+           href={`?record=${record.identifier}`}
+           onClick={handleClick}
+           onKeyDown={onKeyDown(handleClick)}
+           aria-labelledby={labelId}
+           aria-current={selected ? 'page' : false}
+        >
+          <div className="record-card-content-details-top">
+            <CardTags tags={tags} />
+            <RecordCardDetails labelId={labelId} record={record} deleted={isDeleted} highlight={highlight} />
+          </div>
+          <div className="record-card-content-details-bottom">
+            {!isDeleted 
+              ? <CardHighlight 
+                  input={t('record_card_valid_until', { deletionDate: date })} 
+                  what={highlight} 
+                />
+              : <CardHighlight
+                  input={t('record_card_restorable_until', { realDeletionDate })}
+                  what={highlight}
+                />}
+          </div>
+        </a>
+      </div>
+      <div className="record-card-thumbnail">
+        <div className="record-card-left-side">
+          {series}
+          <div className="record-card-duration">
+            <span title={record.duration}>
+              <CardHighlight input={record.duration} what={highlight} />
+            </span>
+          </div>
+            <a 
+              aria-hidden
+              href={`?record=${record.identifier}`} 
+              onClick={handleClick}
+              onKeyDown={onKeyDown(handleClick)}
+              tabIndex={-1}
             >
-              <div className="record-card-content-details-top">
-                <CardTags tags={tags} />
-                <RecordCardDetails labelId={labelId} record={record} deleted={isDeleted} highlight={highlight} />
-              </div>
-              <div className="record-card-content-details-bottom">
-                {!isDeleted 
-                  ? <CardHighlight 
-                      input={t('record_card_valid_until', { deletionDate: date })} 
-                      what={highlight} 
-                    />
-                  : <CardHighlight
-                      input={t('record_card_restorable_until', { realDeletionDate })}
-                      what={highlight}
-                    />}
+              <div className="record-card-thumbnail-container">
+                <Thumbnail record={record} width="160" height="160" altText="record_thumbnail_alt_text" containerRef={containerRef} />
               </div>
             </a>
-          </Col>
-          <Col lg={4} className="px-0 text-center order-0" style={{ overflow: 'hidden' }}>
-            <div className="record-card-left-side">
-              {series}
-              <div className="record-card-length">
-                <span title={record.duration}>
-                  <CardHighlight input={record.duration} what={highlight} />
-                </span>
-              </div>
-                <a 
-                  aria-hidden
-                  href={`?record=${record.identifier}`} 
-                  onClick={handleClick}
-                  onKeyDown={onKeyDown(handleClick)}
-                  tabIndex={-1}
-                >
-                  <div className="record-card-thumbnail-container">
-                    <Thumbnail record={record} width="160" height="160" altText="record_thumbnail_alt_text" containerRef={containerRef} />
-                  </div>
-                </a>
-            </div>
-          </Col>
-          <Col lg={2} className={`record-card-content-actions text-end order-2 p-0 ${selectedClass}`}>
-            <RecordActions record={record} />
-          </Col>
-        </Row>
-      </Container>
+        </div>
+      </div>
+      <div className="record-card-actions-list">
+        <RecordActions record={record} disabled={false} />
+      </div>
+    </div>
   );
 };
 
