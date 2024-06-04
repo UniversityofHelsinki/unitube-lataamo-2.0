@@ -48,15 +48,9 @@ const DeleteRecord = ({ record, showLabel = true, reloadCollectionOnRemove = fal
     setShowForm(true);
   };
 
-  const iconProps = {
-    width: '16px',
-    height: '16px',
-    fill: 'var(--hy-blue)'
-  };
-
   const button = (
     <RecordCardAction
-      icon={<DeleteIcon width="10" height="10"  { ...iconProps } />}
+      icon={<DeleteIcon />}
       label={t('record_card_action_delete')}
       ariaLabel={t(
         'record_card_action_delete_aria',

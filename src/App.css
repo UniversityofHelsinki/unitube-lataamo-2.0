@@ -32,6 +32,9 @@
   --huds-grayscale-black: #000;
   --huds-additional-skyblue: #48C5F8;
   --huds-additional-yellow: #F9A21A;
+  --huds-additional-red-light: #E5053A;
+  --huds-additional-red-dark: #A31621;
+  --huds-additional-red-dark-active: #AF1621;
 
   --header-height: 100px;
   --right-bottom-bar-height: 80px;

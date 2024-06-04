@@ -8,11 +8,14 @@ const HyButton = ({
   variant,
   leftIcon,
   rightIcon,
+  mini = false,
   ...rest 
 }) => {
 
+  const miniClass = mini ? 'hy-button-mini' : '';
+
   return (
-    <button className={`hy-button hy-button-${variant} ${className}`} { ...rest }>
+    <button className={`hy-button ${miniClass} hy-button-${variant} ${className}`} { ...rest }>
       <div className="hy-button-content">
         {leftIcon && <div className="hy-button-icon">
           {leftIcon}
@@ -31,6 +34,11 @@ const HyButton = ({
 };
 
 HyButton.propTypes = {
+  className: PropTypes.string,
+  variant: PropTypes.oneOf(['primary', 'secondary']).isRequired,
+  leftIcon: PropTypes.node,
+  rightIcon: PropTypes.node,
+  mini: PropTypes.bool,
 };
 
 export default HyButton;
