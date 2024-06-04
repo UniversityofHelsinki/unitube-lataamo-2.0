@@ -18,7 +18,6 @@ import CollectionBottomBar from './CollectionBottomBar';
 import useCollectionModification from '../../hooks/useCollectionModification';
 import useCollectionUpdate from '../../hooks/collection/useCollectionUpdate';
 import { ProgressStatus } from '../../Constants';
-import CollectionButtons from "./CollectionButtons";
 import useTitle from '../../hooks/useTitle';
 import useCollections from '../../hooks/useCollections';
 import useCollectionError from '../../hooks/useCollectionError';
@@ -113,14 +112,6 @@ const CollectionForm = () => {
                   <Col>
                   </Col>
                 </Row>
-                <Row className="mb-3">
-                  <Col className="ps-1">
-                    <CollectionButtons
-                        collection={collection}
-                        disabled={saveInProgress}/>
-                  </Col>
-                </Row>
-
                 <Row className="mb-2">
                   <Col className="ps-1">
                       <CollectionName 
