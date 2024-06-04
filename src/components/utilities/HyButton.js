@@ -18,7 +18,7 @@ const HyButton = ({
   const onButtonClick = (event) => {
     if (onClick) {
       event.preventDefault();
-      onClick();
+      onClick(event);
     }
   };
 
