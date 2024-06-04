@@ -3,7 +3,6 @@
   min-height: 160px;
   border: 1px solid var(--hy-medium-silver);
   box-sizing: border-box;
-  padding: 2px;
 }
 
 .record-card:focus-within {
