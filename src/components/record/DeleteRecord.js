@@ -49,26 +49,20 @@ const DeleteRecord = ({ record, showLabel = true, reloadCollectionOnRemove = fal
     setShowForm(true);
   };
 
-  const iconProps = {
-    width: '16px',
-    height: '16px',
-    fill: 'var(--hy-blue)'
-  };
-
   const button = (
-      <RecordCardAction
-          icon={<DeleteIcon width="10" height="10"  { ...iconProps } />}
-          label={t('record_card_action_delete')}
-          ariaLabel={t(
-              'record_card_action_delete_aria',
-              { title: record.title }
-          )}
-          onClick={show}
-          showLabel={showLabel}
-          variant={showLabel ? 'danger' : 'link'}
-          disabled={buttonDisabled}
-          opensDialog={true}
-      />
+    <RecordCardAction
+      icon={<DeleteIcon />}
+      label={t('record_card_action_delete')}
+      ariaLabel={t(
+        'record_card_action_delete_aria',
+        { title: record.title }
+      )}
+      onClick={show}
+      showLabel={showLabel}
+      variant={showLabel ? 'danger' : 'link'}
+      disabled={buttonDisabled}
+      opensDialog={true}
+    />
   );
 
   const onSubmit = async (event) => {

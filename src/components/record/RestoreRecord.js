@@ -57,14 +57,10 @@ const RestoreRecord = ({ record, buttonDisabled }) => {
 
   }
 
-  const iconProps = {
-    width: '16px',
-    height: '16px'
-  };
-
   const button = (
     <RecordCardAction 
-      icon={<RestoreIcon { ...iconProps } />}
+      variant="secondary"
+      icon={<RestoreIcon />}
       label={t('record_card_action_restore')}
       ariaLabel={t('record_card_action_restore_aria', { title: record.title })}
       onClick={show}

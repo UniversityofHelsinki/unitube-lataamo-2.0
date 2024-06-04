@@ -8,7 +8,6 @@ import RecordName from './RecordName';
 import RecordDescription from './RecordDescription';
 import RecordLicense from './RecordLicense';
 import RecordFile from './RecordFile';
-import useRecordValidation from '../../hooks/validation/record/useRecordValidation';
 import RecordEndDate from './RecordEndDate';
 import NewRecordFooter from './NewRecordFooter';
 import { ProgressStatus } from '../../Constants';
@@ -18,6 +17,7 @@ import useNewRecordSave from '../../hooks/record/useNewRecordSave';
 import RecordCollections from './RecordCollections';
 import useVisibleRecords from '../../hooks/useVisibleRecords';
 import useNewRecordValidation from '../../hooks/validation/record/useNewRecordValidation';
+import HyButton from '../utilities/HyButton';
 
 const emptyRecord = {
   identifier: '',
@@ -40,13 +40,14 @@ const NewRecord = () => {
   const formRef = useRef();
 
   const theButton = (
-    <Button className="new-record-button" variant="primary" onClick={
+    <HyButton className="new-record-button" variant="primary" onClick={
       () => {
         setShowDialog(true);
       }
-    }>
+    }
+    >
       {t('new_record_button')}
-    </Button>
+    </HyButton>
   );
 
   const onSubmit = async (event) => {

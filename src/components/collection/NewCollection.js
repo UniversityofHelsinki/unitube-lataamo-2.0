@@ -15,6 +15,7 @@ import NewCollectionFooter from './NewCollectionFooter';
 import useCollectionSave from '../../hooks/collection/useCollectionSave';
 import { ProgressStatus } from '../../Constants';
 import useCollectionValidation from '../../hooks/validation/collection/useCollectionValidation';
+import HyButton from '../utilities/HyButton';
 
 const NewCollection = () => {
   const { t } = useTranslation();
@@ -41,13 +42,13 @@ const NewCollection = () => {
   );
 
   const theButton = (
-    <Button 
+    <HyButton 
       variant="primary" 
       className="new-collection-button"
       onClick={() => setShowForm(true)}
     >
       {t('new_collection_button')}
-    </Button>
+    </HyButton>
   );
 
   const saveInProgress = progress.status === ProgressStatus.NEW_COLLECTION.SENDING;
