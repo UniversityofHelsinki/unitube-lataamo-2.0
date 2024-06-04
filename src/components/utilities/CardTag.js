@@ -16,6 +16,7 @@ const background = {
 };
 
 const CardTag = ({ label, ariaLabel = '', color, count }) => {
+  console.log(count);
   const { t } = useTranslation();
 
   const title = ariaLabel ? { title: t(ariaLabel) } : {};

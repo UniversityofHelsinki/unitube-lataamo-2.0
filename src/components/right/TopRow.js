@@ -1,7 +1,6 @@
 import React, { useId } from 'react';
 import PropTypes from 'prop-types';
 import './TopRow.css';
-import HeaderMenu from "../header/HeaderMenu";
 
 const TopRow = ({ children = [] }) => {
   const id = useId();
@@ -14,9 +13,6 @@ const TopRow = ({ children = [] }) => {
           </div>
         );
       })}
-      <div className="header-menu-icon">
-        <HeaderMenu/>
-      </div>
     </div>
   );
 };
