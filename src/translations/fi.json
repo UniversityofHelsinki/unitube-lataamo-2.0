@@ -330,5 +330,6 @@
   "move_records_dialog_open_button_label": "Siirrä",
   "move_records_dialog_saving": "Siirretään tallenteita...",
   "move_records_dialog_done": "Valmis!",
-  "move_records_dialog_error": "Virhe!"
+  "move_records_dialog_error": "Virhe!",
+  "record_has_other_contributors" : "Tallenteella muita omistajia !"
 }

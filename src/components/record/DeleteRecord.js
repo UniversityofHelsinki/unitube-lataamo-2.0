@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import { ReactComponent as DeleteIcon } from '../../components/utilities/icons/trash.svg';
+import {ReactComponent as DeleteIcon} from '../../components/utilities/icons/trash.svg';
 import './DeleteRecord.css';
 import RecordCardAction from './card/RecordCardAction';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 import FormDialog from '../dialog/FormDialog';
-import { Col, Container, Form, Modal, Row } from 'react-bootstrap';
+import {Col, Container, Form, Modal, Row} from 'react-bootstrap';
 import DeleteRecordFooter from './DeleteRecordFooter';
 import useRecordDelete from '../../hooks/record/useRecordDelete';
 import ElementHeader from '../form/ElementHeader';
 import HelpDialog from '../dialog/HelpDialog';
-import { ProgressStatus } from '../../Constants';
-import useRecords from '../../hooks/useRecords';
+import {ProgressStatus} from '../../Constants';
 import useDeletedRecords from '../../hooks/useDeletedRecords';
 import useRecord from '../../hooks/useRecord';
 import useCollections from '../../hooks/useCollections';
@@ -57,19 +56,19 @@ const DeleteRecord = ({ record, showLabel = true, reloadCollectionOnRemove = fal
   };
 
   const button = (
-    <RecordCardAction
-      icon={<DeleteIcon width="10" height="10"  { ...iconProps } />}
-      label={t('record_card_action_delete')}
-      ariaLabel={t(
-        'record_card_action_delete_aria',
-        { title: record.title }
-      )}
-      onClick={show}
-      showLabel={showLabel}
-      variant={showLabel ? 'danger' : 'link'}
-      disabled={buttonDisabled}
-      opensDialog={true}
-    />
+      <RecordCardAction
+          icon={<DeleteIcon width="10" height="10"  { ...iconProps } />}
+          label={t('record_card_action_delete')}
+          ariaLabel={t(
+              'record_card_action_delete_aria',
+              { title: record.title }
+          )}
+          onClick={show}
+          showLabel={showLabel}
+          variant={showLabel ? 'danger' : 'link'}
+          disabled={buttonDisabled}
+          opensDialog={true}
+      />
   );
 
   const onSubmit = async (event) => {
@@ -95,48 +94,48 @@ const DeleteRecord = ({ record, showLabel = true, reloadCollectionOnRemove = fal
           : false;
 
   return (
-    <FormDialog
-      showComponent={button}
-      show={showForm}
-      hide={hide}
-      closeable={closeable}>
-      <Modal.Header closeButton={closeable}>
-        {t('record_delete_form_header')}
-      </Modal.Header>
-      <Form onSubmit={onSubmit}>
-        <Modal.Body>
-          <Container>
-            <Row>
-              <Col>
-                <ElementHeader label={t('delete_record_form_body_header')}>
-                  {t('delete_record_form_body_header')}
-                </ElementHeader>
-              </Col>
-            </Row>
-            <Row className="mb-3">
-              <Col>
-                <HelpDialog label={t('delete_record_form_help_header')}>
-                  {t('delete_record_form_help_content')}
-                </HelpDialog>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <span className="blockquote">{record.title}</span>
-                <div>
-                  {result === undefined && <p>Invalid data</p>}
-                  {result === true && <p>There are other contributors</p>}
-                  {result === false && <p>No other contributors</p>}
-                </div>
-              </Col>
-            </Row>
-          </Container>
-        </Modal.Body>
-        <Modal.Footer>
-          <DeleteRecordFooter progress={progress} hide={hide}/>
-        </Modal.Footer>
-      </Form>
-    </FormDialog>
+      <FormDialog
+          showComponent={button}
+          show={showForm}
+          hide={hide}
+          closeable={closeable}>
+        <Modal.Header closeButton={closeable}>
+          {t('record_delete_form_header')}
+        </Modal.Header>
+        <Form onSubmit={onSubmit}>
+          <Modal.Body>
+            <Container>
+              <Row>
+                <Col>
+                  <ElementHeader label={t('delete_record_form_body_header')}>
+                    {t('delete_record_form_body_header')}
+                  </ElementHeader>
+                </Col>
+              </Row>
+              <Row className="mb-3">
+                <Col>
+                  <HelpDialog label={t('delete_record_form_help_header')}>
+                    {t('delete_record_form_help_content')}
+                  </HelpDialog>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <span className="blockquote">{record.title}</span>
+                  <div>
+                    <span>
+                     {result ? t('record_has_other_contributors') : ''}
+                    </span>
+                  </div>
+                </Col>
+              </Row>
+            </Container>
+          </Modal.Body>
+          <Modal.Footer>
+            <DeleteRecordFooter progress={progress} hide={hide}/>
+          </Modal.Footer>
+        </Form>
+      </FormDialog>
   );
 };
 
