@@ -38,15 +38,9 @@ const DeleteCollection = ({ collection, showLabel = true, reloadCollectionOnRemo
         setShowForm(true);
     };
 
-    const iconProps = {
-        width: '16px',
-        height: '16px',
-        fill: 'var(--hy-blue)'
-    };
-
     const button = (
         <CollectionCardAction
-            icon={<DeleteIcon { ...iconProps } />}
+            icon={<DeleteIcon />}
             label={t('collection_card_action_delete')}
             ariaLabel={t('collection_card_action_delete_aria', { title: collection.title})}
             onClick={show}

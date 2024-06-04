@@ -5,8 +5,16 @@
 
   box-sizing: border-box;
 
-  --hy-button-padding: 8px;
+  --hy-button-y-padding: 8px;
+  --hy-button-x-padding: 8px;
+  --hy-button-border: 2px;
   min-width: max-content;
+}
+
+.hy-button-mini {
+  --hy-button-y-padding: 2px;
+  --hy-button-x-padding: 4px;
+  --hy-button-border: 1px;
 }
 
 .hy-button:disabled {
@@ -16,8 +24,8 @@
 .hy-button-content {
   background-color: var(--hy-button-background-color);
   color: var(--hy-button-text-color);
-  border: 2px solid var(--hy-button-border-color);
-  padding: var(--hy-button-padding);
+  border: var(--hy-button-border) solid var(--hy-button-border-color);
+  padding: var(--hy-button-y-padding) var(--hy-button-x-padding) var(--hy-button-y-padding) var(--hy-button-x-padding);
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -29,13 +37,10 @@
   min-width: 1em;
   min-height: 1em;
   color: var(--hy-button-text-color);
+  display: flex;
 }
 
-.hy-button-icon svg {
-  fill: var(--hy-button-text-color);
-}
-
-.hy-button-icon polygon {
+.hy-button-icon svg * {
   fill: var(--hy-button-text-color);
 }
 
@@ -45,12 +50,27 @@
   height: 1.2em;
 }
 
+.hy-button-mini .hy-button-icon-separator {
+  background-color: var(--hy-button-background-color);
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
 .hy-button-bottom {
   height: 2px;
   margin-left: 1%;
   width: 98%;
   margin-right: 1%;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
   background-color: var(--hy-button-bottom-color);
+}
+
+.hy-button-mini .hy-button-bottom {
+  height: 1px;
+  margin-left: 2%;
+  width: 96%;
+  margin-right: 2%;
 }
 
 .hy-button-primary {
@@ -93,4 +113,17 @@
   --hy-button-text-color: var(--huds-grayscale-medium-dark);
   --hy-button-border-color: var(--huds-grayscale-medium-dark);
   --hy-button-bottom-color: var(--huds-grayscale-medium-dark);
+}
+
+.hy-button-danger {
+  --hy-button-background-color: var(--huds-additional-red-dark);
+  --hy-button-text-color: var(--hy-white);
+  --hy-button-border-color: var(--huds-additional-red-dark);
+  --hy-button-bottom-color: var(--huds-additional-red-light);
+  --hy-button-icon-separator-color: var(--hy-white);
+}
+
+.hy-button-danger:enabled:hover {
+  --hy-button-background-color: var(--huds-additional-red-dark-active);
+  --hy-button-border-color: var(--huds-additional-red-dark-active);
 }
