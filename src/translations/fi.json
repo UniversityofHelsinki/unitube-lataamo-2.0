@@ -26,7 +26,7 @@
   "record_download_links_help_content": "Kaikista tallenteista on tarjolla kaksi eri versiota, joista toinen on yleensä korkealaatuisempi ja toinen pakatumpi versio.",
   "record_file_header": "Tiedosto",
   "record_license_header": "Lisenssi",
-  "record_license_select_default": "Valitse",
+  "record_license_default_select": "Valitse",
   "record_collection_select_default": "Valitse",
   "record_collection_header": "Kokoelma",
   "record_collection_move": "Siirry",
