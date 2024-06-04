@@ -9,13 +9,21 @@ const HyButton = ({
   leftIcon,
   rightIcon,
   mini = false,
+  onClick,
   ...rest 
 }) => {
 
   const miniClass = mini ? 'hy-button-mini' : '';
 
+  const onButtonClick = (event) => {
+    if (onClick) {
+      event.preventDefault();
+      onClick();
+    }
+  };
+
   return (
-    <button className={`hy-button ${miniClass} hy-button-${variant} ${className}`} { ...rest }>
+    <button className={`hy-button ${miniClass} hy-button-${variant} ${className}`} onClick={onButtonClick} { ...rest }>
       <div className="hy-button-content">
         {leftIcon && <div className="hy-button-icon">
           {leftIcon}
@@ -39,6 +47,7 @@ HyButton.propTypes = {
   leftIcon: PropTypes.node,
   rightIcon: PropTypes.node,
   mini: PropTypes.bool,
+  onClick: PropTypes.func
 };
 
 export default HyButton;
