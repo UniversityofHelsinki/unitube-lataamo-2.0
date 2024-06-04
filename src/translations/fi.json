@@ -289,7 +289,7 @@
   "records_table_title": "Nimi",
   "records_table_select": "Valitse tallenne {{ record }}",
   "records_table_created": "Luontipäivämäärä",
-  "records_table_deletion_date": "Vanhenemispäivämäärä",
+  "records_table_deletion_date": "Poistopäivämäärä",
   "records_table_embed_code": "Kopioi upotuskoodi",
   "records_table_embed_code_aria": "Kopioi tallenteen {{ record }} upotuskoodi",
   "collection_records_bulk_actions_move": "Siirrä",
@@ -330,5 +330,11 @@
   "move_records_dialog_open_button_label": "Siirrä",
   "move_records_dialog_saving": "Siirretään tallenteita...",
   "move_records_dialog_done": "Valmis!",
-  "move_records_dialog_error": "Virhe!"
+  "move_records_dialog_error": "Virhe!",
+  "update_records_deletion_dates_dialog_open_button_label": "Päivitä poistopäivämäärä",
+  "update_records_deletion_dates_dialog_header": "Päivitä poistopäivämäärä",
+  "update_records_deletion_dates_dialog_records_header": "Päivitettävät tallenteet",
+  "update_records_deletion_dates_dialog_error": "Virhe!",
+  "update_records_deletion_dates_dialog_done": "Valmis!",
+  "update_records_deletion_dates_dialog_saving": "Päivitetään poistopäivämääriä..."
 }

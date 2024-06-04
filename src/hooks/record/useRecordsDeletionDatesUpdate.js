@@ -1,63 +1,63 @@
-import { ProgressStatus } from "../../Constants";
 import {useState} from "react";
+import useSteps from "../useSteps";
 
-    const put = async (id, expiryDate) => {
-        try {
-            let response = await fetch(`${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/event/${id}/updateArchivedDateOfVideosInSerie`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(expiryDate)
-            });
-            if(response.status === 200) {
-                let responseJSON = await response.json();
-                return responseJSON;
-            } else {
-                throw new Error(response.status);
-            }
-        } catch (error) {
-            throw new Error(error);
-        }
-    };
+const put = async (id, deletionDate) => {
+  try {
+    let response = await fetch(`${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/event/${id}/deletionDate`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ deletionDate })
+    });
+    if(response.status === 200) {
+      let responseJSON = await response.json();
+      return responseJSON;
+    } else {
+      throw new Error(response.status);
+    }
+  } catch (error) {
+    throw new Error(error);
+  }
+};
 
-    const useRecordsDeletionDatesUpdate = () => {
+const updateDeletionDates = (records = []) => {
+  return Promise.all(
+    records.map((record) => 
+      put(record.identifier, record.deletionDate)
+  ));
+}
 
-        const defaultAnimatedPercentage = 100;
-        const [progress, setProgress] = useState({
-            status: ProgressStatus.COLLECTION_RECORDS_DELETION_DATE_SAVE.NOT_STARTED,
-            percentage: defaultAnimatedPercentage
-        });
+const useRecordsDeletionDatesUpdate = (inputs = []) => {
+  const [currentState, setCurrentState] = useState('not_started');
 
-        const updateExpiryDates = async (id, expiryDate) => {
-            setProgress({
-                status: ProgressStatus.COLLECTION_RECORDS_DELETION_DATE_SAVE.IN_PROGRESS,
-                percentage: 100
-            });
-            try {
-                await put(id, expiryDate);
-                setProgress({
-                    status: ProgressStatus.COLLECTION_RECORDS_DELETION_DATE_SAVE.DONE,
-                    percentage: 100
-                });
-            } catch (error) {
-                console.error(error);
-                setProgress({
-                    status: ProgressStatus.COLLECTION_RECORDS_DELETION_DATE_SAVE.ERROR,
-                    percentage: 100,
-                    message: error.message
-                });
-            }
-        };
+  const [states] = useState([
+    'in_progress',
+    'done'
+  ]);
 
-        const resetProgress = () => {
-            setProgress({
-                status: ProgressStatus.COLLECTION_RECORDS_DELETION_DATE_SAVE.NOT_STARTED,
-                percentage: defaultAnimatedPercentage
-            });
-        };
+  const [startUpdating] = useSteps([
+    async () => await updateDeletionDates(inputs)
+  ]);
 
-        return [updateExpiryDates, progress, resetProgress];
+  const updateState = (index) => {
+    setCurrentState(states[index]);
+  };
+
+  const onError = () => {
+    setCurrentState('error');
+  };
+
+  const reset = () => {
+    setCurrentState('not_started');
+  };
+
+  return [
+    currentState, 
+    () => startUpdating(updateState, onError), 
+    reset
+  ];
+
 };
 
 export default useRecordsDeletionDatesUpdate;
