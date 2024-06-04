@@ -145,5 +145,6 @@
   "stream_statistics_table_toggle_button_status_visible": "Hide details",
   "timestamp" : "???",
   "total_connections": "???",
-  "record_has_other_contributors" : "???"
+  "record_has_other_contributors" : "???",
+  "selected_records_has_other_contributors" : "???"
 }

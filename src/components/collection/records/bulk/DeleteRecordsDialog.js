@@ -68,7 +68,7 @@ const DeleteRecordsDialog = ({ records = [] }) => {
           {t('delete_records_dialog_alert_text')}
         </div>
         {otherContributors
-        ? <p>{t('record_has_other_contributors')}</p>
+        ? <p>{t('selected_records_has_other_contributors')}</p>
         : null}
       </div>
     </BulkActionDialog>
