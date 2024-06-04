@@ -9,8 +9,8 @@ import useCollections from '../../../../hooks/useCollections';
 import useRecords from '../../../../hooks/useRecords';
 import { Button } from 'react-bootstrap';
 
-const BulkActionDialog = ({ 
-  records, 
+const BulkActionDialog = ({
+  records,
   openerProps,
   recordsTableProps,
   progressBarProps,
@@ -48,20 +48,20 @@ const BulkActionDialog = ({
   };
 
   return (
-    <RecordsTableDialog 
+    <RecordsTableDialog
       show={show}
       hide={hide}
       open={open}
       closeable={closeable}
-      records={records} 
+      records={records}
       opener={opener}
       headerLabel={recordsTableProps.headerLabel}
       recordsLabel={recordsTableProps.recordsLabel}
-      footer={<Footer 
-        progress={currentState} 
+      footer={<Footer
+        progress={currentState}
         progressBarProps={(progressBarProps || {})[currentState]}
-        onSave={save} 
-        onCancel={hide} 
+        onSave={save}
+        onCancel={hide}
         submittable={submittable}
       />}
     >

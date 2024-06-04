@@ -4,9 +4,11 @@ import './DeleteRecordsDialog.css';
 import { useTranslation } from 'react-i18next';
 import useRecordsDelete from '../../../../hooks/record/useRecordsDelete';
 import BulkActionDialog from './BulkActionDialog';
+import useUser from "../../../../hooks/useUser";
 
 const DeleteRecordsDialog = ({ records = [] }) => {
   const { t } = useTranslation();
+  const [user] = useUser();
   const [currentState, startDeleting, reset] = useRecordsDelete(records);
 
   const openerProps = {
@@ -39,6 +41,16 @@ const DeleteRecordsDialog = ({ records = [] }) => {
     }
   };
 
+  // Initialize otherContributors as false
+  let otherContributors = false;
+
+  // Check each record's contributors for usernames other than the provided username
+  records.forEach(record => {
+    if (record.contributors.some(contributor => contributor !== user.eppn)) {
+      otherContributors = true;
+    }
+  });
+
   return (
     <BulkActionDialog
       records={records}
@@ -55,6 +67,9 @@ const DeleteRecordsDialog = ({ records = [] }) => {
         <div className="delete-records-dialog-alert-text">
           {t('delete_records_dialog_alert_text')}
         </div>
+        {otherContributors
+        ? <p>{t('record_has_other_contributors')}</p>
+        : null}
       </div>
     </BulkActionDialog>
   );
