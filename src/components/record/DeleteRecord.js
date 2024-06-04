@@ -17,8 +17,10 @@ import useRecord from '../../hooks/useRecord';
 import useCollections from '../../hooks/useCollections';
 import useCollection from '../../hooks/useCollection';
 import useVisibleRecords from '../../hooks/useVisibleRecords';
+import useUser from "../../hooks/useUser";
 
 const DeleteRecord = ({ record, showLabel = true, reloadCollectionOnRemove = false, buttonDisabled = false }) => {
+  const [user] = useUser();
   const { t } = useTranslation();
   const [showForm, setShowForm] = useState(false);
   const [deleteRecord, progress, resetProgress] = useRecordDelete();
@@ -78,6 +80,20 @@ const DeleteRecord = ({ record, showLabel = true, reloadCollectionOnRemove = fal
 
   const closeable = progress.status !== ProgressStatus.RECORD_DELETE.IN_PROGRESS;
 
+  const hasOtherContributors = (contributors, userEppn) => {
+    // Filter the contributors array to remove the given user's eppn
+    const others = contributors.filter(contributorEppn => contributorEppn !== userEppn);
+    return others.length > 0;
+  };
+
+  const result =
+      user  &&
+      user.eppn &&
+      record && record.contributors &&
+      Array.isArray(record.contributors)
+          ? hasOtherContributors(record.contributors, user.eppn)
+          : false;
+
   return (
     <FormDialog
       showComponent={button}
@@ -107,12 +123,17 @@ const DeleteRecord = ({ record, showLabel = true, reloadCollectionOnRemove = fal
             <Row>
               <Col>
                 <span className="blockquote">{record.title}</span>
+                <div>
+                  {result === undefined && <p>Invalid data</p>}
+                  {result === true && <p>There are other contributors</p>}
+                  {result === false && <p>No other contributors</p>}
+                </div>
               </Col>
             </Row>
           </Container>
         </Modal.Body>
         <Modal.Footer>
-          <DeleteRecordFooter progress={progress} hide={hide} />
+          <DeleteRecordFooter progress={progress} hide={hide}/>
         </Modal.Footer>
       </Form>
     </FormDialog>
