@@ -35,7 +35,7 @@ const HyButton = ({
 
 HyButton.propTypes = {
   className: PropTypes.string,
-  variant: PropTypes.oneOf(['primary', 'secondary']).isRequired,
+  variant: PropTypes.oneOf(['primary', 'secondary', 'danger']).isRequired,
   leftIcon: PropTypes.node,
   rightIcon: PropTypes.node,
   mini: PropTypes.bool,
