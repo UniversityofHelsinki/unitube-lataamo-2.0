@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import DeleteRecordsDialog from './bulk/DeleteRecordsDialog';
 import MoveRecordsDialog from './bulk/MoveRecordsDialog';
+import DeletionDateUpdateDialog from './bulk/DeletionDateUpdateDialog';
 
 const CollectionRecordsBulkActions = ({ 
   records = [], 
@@ -16,7 +17,8 @@ const CollectionRecordsBulkActions = ({
 
   const actions = [
     <MoveRecordsDialog records={selectedRecords.map(si => records[si])} />,
-    <DeleteRecordsDialog records={selectedRecords.map(si => records[si])} />
+    <DeleteRecordsDialog records={selectedRecords.map(si => records[si])} />,
+    <DeletionDateUpdateDialog records={selectedRecords.map(si => records[si])} />
   ];
 
   return (
