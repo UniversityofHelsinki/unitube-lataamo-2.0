@@ -5,12 +5,6 @@
   box-sizing: border-box;
 }
 
-.record-card:focus-within {
-  outline: 2px solid var(--huds-additional-yellow);
-  border-left: 2px solid var(--huds-additional-yellow);
-  border-right: 2px solid var(--huds-additional-yellow);
-}
-
 .record-card-thumbnail {
   order: 1;
   width: 160px;
