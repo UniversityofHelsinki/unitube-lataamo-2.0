@@ -78,12 +78,12 @@ a.record-card-content-details {
   position: absolute;
   top: 16px;
   left: 0px;
-  max-width: 160px;
+  max-width: 100%;
 }
 
 .record-card-badge .badge {
   border-radius: 0;
-  max-width: 152px;
+  max-width: 100%;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
