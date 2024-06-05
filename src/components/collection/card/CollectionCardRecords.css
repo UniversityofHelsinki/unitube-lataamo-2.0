@@ -1,14 +1,25 @@
 .collection-card-records {
   overflow: auto;
   max-height: 140px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
-.collection-card-records-record-column {
-  margin-bottom: 0.4em;
-  max-width: 50%;
-  min-width: 50%;
+.collection-card-records-record {
+  flex-basis: 50%;
+  max-width: calc(50% - 2px);
+  flex-shrink: 1;
+  margin-bottom: 4px;
+}
+
+.collection-card-records-record:nth-of-type(odd) {
+  margin-right: 2px;
 }
 
 .collection-card-records-no-records {
   width: 100%;
 }
+

@@ -6,18 +6,14 @@ import './CollectionCardRecords.css';
 
 const CollectionCardRecords = ({ records = [], containerRef }) => {
 
-  const letItScrollWithSpace = (event) => event.stopPropagation();
-
   return (
-    <Container className="collection-card-records" onKeyDown={letItScrollWithSpace}>
-      <Row className="justify-content-between mt-2">
+    <div className="collection-card-records">
           {records.map((record, i) => 
-              <Col key={i} className="collection-card-records-record-column">
+          <div key={i} className="collection-card-records-record">
                 <CollectionCardRecord record={record} containerRef={containerRef} />
-              </Col>
+          </div>
           )}
-      </Row>
-    </Container>
+    </div>
   );
 };
 
