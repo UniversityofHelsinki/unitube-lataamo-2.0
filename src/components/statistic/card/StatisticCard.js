@@ -54,7 +54,11 @@ const StatisticCard = ({ statistic, onClick, selected = false }) => {
                                onKeyDown={onKeyDown(handleClick)}
                                aria-labelledby={labelId}
                                aria-current={selected ? 'page' : false}
-                            >{statistic.location}</a>
+                            >
+                                <strong id={labelId}>
+                                    {statistic.location}
+                                </strong>
+                            </a>
                         </div>
                         <div>
                             {formattedDate}
