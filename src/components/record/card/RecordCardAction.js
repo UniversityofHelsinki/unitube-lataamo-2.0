@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './RecordCardAction.css';
 import HyButton from '../../utilities/HyButton';
 
-const RecordCardAction = ({ icon, label, variant = 'primary', onClick, showLabel = true, disabled = false, opensDialog = false, ariaLabel }) => {
+const RecordCardAction = ({ icon, label, variant = 'primary', onClick, showLabel = true, disabled = false, opensDialog = false, ariaLabel, title = '' }) => {
 
   const ariaDialog = (() => {
     if (opensDialog) {
@@ -18,7 +18,7 @@ const RecordCardAction = ({ icon, label, variant = 'primary', onClick, showLabel
   };
 
   return (
-    <HyButton variant={variant} onClick={onButtonClick} aria-label={ariaLabel || label} disabled={disabled} { ...ariaDialog } leftIcon={icon} mini>
+    <HyButton variant={variant} onClick={onButtonClick} aria-label={ariaLabel || label} title={title} disabled={disabled} { ...ariaDialog } leftIcon={icon} mini>
       <span>{showLabel && label}</span>
     </HyButton>
   );

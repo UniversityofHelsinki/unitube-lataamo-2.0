@@ -187,7 +187,8 @@ const Left = () => {
             record={record}
             selected={record.identifier === searchParams.record }
             containerRef={listRef}
-            highlight={recordOptions.searchValue} />,
+            highlight={recordOptions.searchValue} 
+          />,
             record.identifier]
     );
 
@@ -329,7 +330,7 @@ const Left = () => {
         <div className="left-navigation">
           <Navigation />
         </div>
-        <div className="left-content">
+        <div className="left-content" ref={listRef}>
           <div ref={upside}>
             {actionElement[path]}
           </div>
@@ -342,7 +343,7 @@ const Left = () => {
               reload={reloadFunction}
             />
           </div>
-          <div ref={listRef} className="left-down" onScroll={hideUpSide}>
+          <div className="left-down">
             <Loading loading={Boolean(loading[path])}>
               <LeftList>
                 {(() => {
