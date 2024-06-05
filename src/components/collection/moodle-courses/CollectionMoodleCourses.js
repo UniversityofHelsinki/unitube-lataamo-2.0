@@ -9,6 +9,7 @@ import CollectionMoodleCourse from "./CollectionMoodleCourse";
 import InputField from "../../form/InputField";
 import HelpDialog from '../../dialog/HelpDialog';
 import { onEnter } from '../../accessibility/keydown';
+import HyButton from '../../utilities/HyButton';
 
 const CollectionMoodleCourses = ({ moodleNumbers = [], onMoodleNumberChange, disabled }) => {
     const [value, setValue] = useState(null);
@@ -69,7 +70,7 @@ const CollectionMoodleCourses = ({ moodleNumbers = [], onMoodleNumberChange, dis
                 <Col>
                   <div className="collection-moodle-courses-input">
                     <InputField id={id} type={'text'} label={t('aaa')} placeholder={t('moodle_course_placeholder')} value={value || ''} onChange={handleMoodleInputChange} disabled={disabled} onKeyDown={onEnterAddMoodleCourse} hideMessage={true} />
-                    <Button className="btn btn-primary collection-moodle-courses-add-button" onClick={addMoodleCourse} disabled={!inputFieldContainsValidMoodleCourse}>Lisää</Button>
+                    <HyButton variant="primary" className="collection-moodle-courses-add-button" onClick={addMoodleCourse} disabled={!inputFieldContainsValidMoodleCourse}>{t('collection_moodle_courses_add_button')}</HyButton>
                   </div>
                 </Col>
             </Row>
