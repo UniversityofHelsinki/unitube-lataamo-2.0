@@ -1,41 +1,36 @@
 .collection-card-record {
   height: 50px;
-  min-width: 180px;
+  display: flex;
+  box-sizing: border-box;
 }
 
 .collection-card-record-selected {
   background-color: var(--hy-medium-silver);
 }
 
-.collection-card-record.container {
-  max-width: 100%;
-  width: 100%;
-  margin-left: 0px;
-  margin-right: 0px;
+.collection-card-record-thumbnail {
+  background-color: var(--hy-dark-gray);
+  max-width: 50px;
+  max-height: 50px;
 }
 
-.collection-card-record-thumb {
-    background-color: var(--hy-dark-gray);
-    max-width: 50px;
-    overflow: hidden;
-}
-
-.collection-card-record-thumb img {
+.collection-card-record-thumbnail img {
   width: 50px;
-  height: 50px;
+  height: 100%;
 }
 
 .collection-card-record-details {
+  margin-left: 4px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
 .collection-card-record a {
-    color: unset;
-    text-decoration: unset;
+  color: unset;
+  text-decoration: unset;
 }
 
 .collection-card-record:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
