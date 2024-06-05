@@ -56,18 +56,18 @@ const StatisticCard = ({ statistic, onClick, selected = false }) => {
                                aria-current={selected ? 'page' : false}
                             >
                                 <strong id={labelId}>
-                                    {statistic.location}
+                                    {t('stream-location')}: {statistic.location}
                                 </strong>
                             </a>
                         </div>
                         <div>
-                            {formattedDate}
+                            {(t('stream-date'))}: {formattedDate}
                         </div>
                         <div>
-                            {t('stream_max_viewers')} {statistic.maxViewers}
+                            {t('stream_max_viewers')}: {statistic.maxViewers}
                         </div>
                         <div>
-                            {t('stream_duration')} {duration}
+                            {t('stream_duration')}: {duration}
                         </div>
                     </div>
                 </Col>

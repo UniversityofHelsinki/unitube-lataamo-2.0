@@ -159,5 +159,7 @@
   "stream_statistics_table_toggle_button_status_collapsed": "Show details",
   "stream_statistics_table_toggle_button_status_visible": "Hide details",
   "timestamp" : "???",
-  "total_connections": "???"
+  "total_connections": "???",
+  "stream-location": "???",
+  "stream-date" : "???"
 }
