@@ -187,7 +187,8 @@ const Left = () => {
             record={record}
             selected={record.identifier === searchParams.record }
             containerRef={listRef}
-            highlight={recordOptions.searchValue} />,
+            highlight={recordOptions.searchValue} 
+          />,
             record.identifier]
     );
 

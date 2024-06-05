@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './RestoreRecordFooter.css';
 import { ProgressStatus } from '../../Constants';
-import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import ProgressBar from '../form/ProgressBar';
 import AlertMessage from '../utilities/AlertMessage';
+import HyButton from '../utilities/HyButton';
 
 const RestoreRecordFooter = ({ progress, hide }) => {
   const { t } = useTranslation();
@@ -65,12 +65,12 @@ const RestoreRecordFooter = ({ progress, hide }) => {
         <ProgressBar { ...progressBarProps } />
       </div>}
       <div className="restore-record-footer-buttons">
-        <Button variant="outline-secondary" onClick={hide} disabled={restoreInProgress}>
+        <HyButton variant="secondary" onClick={hide} disabled={restoreInProgress}>
           {cancelButtonLabel}
-        </Button>
-        <Button variant="primary" type="submit" disabled={restoreInProgress || restoreDone}>
+        </HyButton>
+        <HyButton variant="primary" type="submit" disabled={restoreInProgress || restoreDone}>
           {submitButtonLabel}
-        </Button>
+        </HyButton>
       </div>
     </div>
   );

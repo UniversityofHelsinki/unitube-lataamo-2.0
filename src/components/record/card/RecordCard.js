@@ -13,7 +13,7 @@ import {Badge, Col, Container, Row} from 'react-bootstrap';
 import Thumbnail from "../../utilities/Thumbnail";
 import { CardHighlight } from '../../utilities/Highlight';
 
-const RecordCard = ({ record, onClick, selected = false, containerRef, highlight }) => {
+const RecordCard = ({ record, onClick, selected = false, containerRef, highlight, actionsDisabled = false }) => {
   const selectedClass = selected ? 'record-card-selected' : '';
   const [user] = useUser();
   const labelId = useId();
@@ -100,7 +100,7 @@ const RecordCard = ({ record, onClick, selected = false, containerRef, highlight
         </div>
       </div>
       <div className="record-card-actions-list">
-        <RecordActions record={record} disabled={false} />
+        <RecordActions record={record} disabled={actionsDisabled} />
       </div>
     </div>
   );
