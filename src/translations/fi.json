@@ -152,6 +152,7 @@
   "collection_form_publicity_help_content": "Valitse haluatko jakaa ja julkaista kokoelman tallenteineen vain linkillä vai tarjota sen myös laajemman yleisön nähtäville. Voit myös upottaa jaetun kokoelman videoita katsottavaksi esim. muille sivustoille tai kursseille. Huomaathan, että sinulla tulee olla tallenteilla esiintyvien suostumus julkaisuun. Julkaisutavasta riippumatta voit myös erikseen liittää kokoelman johonkin Moodle-kurssiin.",
   "collection_management_rights_form_header": "Hallinnointioikeudet",
   "collection_moodle_courses_form_header": "Kokoelman Moodle-kurssit",
+  "collection_moodle_courses_add_button": "Lisää",
   "collection_moodle_courses_help_label": "Tietoa kokoelman liittämisestä Moodle-kursseihin",
   "collection_moodle_courses_help_content": "Jos haluat rajoittaa tallenteiden näkyvyyden tietylle Moodle-kurssille tai helpottaa kokoelman sisällön jakamista tietyllä kurssilla, voit kytkeä kokoelman kurssiin liittämällä tähän sen tunnistenumeron (Moodle-ID). Lisää tietoa ja ohjeita kokoelmien ja Moodle-kurssien liittämisestä löydät HY:n opetusteknologiapalveluiden ohjeista!",
   "collection_bottom_bar_in_progress": "Tallennetaan kokoelman tietoja...",
