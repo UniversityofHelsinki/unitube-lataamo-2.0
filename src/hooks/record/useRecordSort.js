@@ -36,9 +36,9 @@ const createdComparator = (eppn) => (descending) => {
     const bIsInTrash = b.series === `trash ${eppn}`;
 
     if (aIsInTrash && !bIsInTrash) {
-      return descending ? 1 : -1;
+      return 1;
     } else if (bIsInTrash && !aIsInTrash) {
-      return descending ? -1 : 1;
+      return -1;
     }
 
     const aCreated = a.created ? new Date(a.created).getTime() : 0;
@@ -57,8 +57,17 @@ const deletionDateComparator = (descending) => {
   };
 };
 
-const visibilityComparator = (descending) => {
+const visibilityComparator = (eppn) => (descending) => {
   return (a, b) => {
+    const aIsInTrash = a.series === `trash ${eppn}`;
+    const bIsInTrash = b.series === `trash ${eppn}`;
+
+    if (aIsInTrash && !bIsInTrash) {
+      return 1;
+    } else if (bIsInTrash && !aIsInTrash) {
+      return -1;
+    }
+
     const tagOrder = ['status_private', 'status_unlisted', 'status_published'];
     const aVisibility = tagOrder.indexOf(a.visibility.find(v => tagOrder.includes(v)));
     const bVisibility = tagOrder.indexOf(b.visibility.find(v => tagOrder.includes(v)));
@@ -72,7 +81,7 @@ const comparators = (eppn) => ({
   series: seriesComparator(eppn),
   created: createdComparator(eppn),
   deletionDate: deletionDateComparator,
-  visibility: visibilityComparator
+  visibility: visibilityComparator(eppn)
 });
 
 export const defaultCriterias = {
