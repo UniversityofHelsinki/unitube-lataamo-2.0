@@ -47,7 +47,7 @@ const DeleteRecordsDialog = ({ records = [] }) => {
       resetState={reset}
       start={startDeleting}
       currentState={currentState}
-      closeable={currentState}
+      closeable={currentState !== 'in_progress'}
       progressBarProps={progressBarProps}
       submittable={true}
     >
