@@ -13,7 +13,7 @@ const MoveRecordsDialog = ({ records = [] }) => {
   const [currentState, start, reset] = useRecordsMove(records, collection);
   const openerProps = {
     label: t('move_records_dialog_open_button_label'),
-    variant: 'warning'
+    variant: 'primary'
   };
 
   const recordTableProps = {

@@ -7,12 +7,13 @@ import { useTranslation } from 'react-i18next';
 import UnsavedChanges from '../right/UnsavedChanges';
 import RecordBottomBarProgress from './RecordBottomBarProgress';
 import { ProgressStatus } from '../../Constants';
+import HyButton from '../utilities/HyButton';
 
 const UndoButton = ({ onClick, disabled }) => {
   const { t } = useTranslation();
   const disabledProps = disabled ? { disabled: true } : {};
   return (
-    <Button variant="danger" onClick={onClick} { ...disabledProps }>{t('undo_button')}</Button>
+    <HyButton variant="danger" onClick={onClick} { ...disabledProps }>{t('undo_button')}</HyButton>
   );
 };
 
@@ -20,7 +21,7 @@ const SaveButton = ({ disabled }) => {
   const { t } = useTranslation();
   const disabledProps = disabled ? { disabled: true } : {};
   return (
-    <Button type="submit" variant="primary" { ...disabledProps }>{t('save_button')}</Button>
+    <HyButton type="submit" variant="primary" { ...disabledProps }>{t('save_button')}</HyButton>
   );
 };
 

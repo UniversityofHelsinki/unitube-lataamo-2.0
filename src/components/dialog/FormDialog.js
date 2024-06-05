@@ -47,19 +47,17 @@ const FormDialog = ({
 
   const close = () => {
     if (!touched && hide) {
-      console.log("nothing changed ...");
       hide();
     } else if (hide) {
-      let resultConfirm = window.confirm(t('unsaved_data'));
-      if (resultConfirm === true) {
-        console.log("closing modal...");
+      const resultConfirm = window.confirm(t('unsaved_data'));
+      if (resultConfirm) {
         hide();
       }
     }
   }
 
   return (
-    <Dialog ref={dialogRef} showComponent={showComponent} show={show} hide={close} touched={touched} closeable={closeable} size="lg" fullscreen="sm-down" { ...rest }>
+    <Dialog ref={dialogRef} showComponent={showComponent} show={show} hide={close} closeable={closeable} size="lg" fullscreen="lg-down" { ...rest }>
       {children}
     </Dialog>
   );

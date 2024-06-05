@@ -5,6 +5,7 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import NewCollectionProgressBar from './NewCollectionProgressBar';
 import { ProgressStatus } from '../../Constants';
+import HyButton from '../utilities/HyButton';
 
 const NewCollectionFooter = ({ onCancel, progress, isValid }) => {
   const { t } = useTranslation();
@@ -40,12 +41,12 @@ const NewCollectionFooter = ({ onCancel, progress, isValid }) => {
         {progressBar}
       </div>
       <div className="new-collection-footer-buttons">
-        <Button variant="outline-secondary" onClick={onCancel}>
+        <HyButton variant="secondary" onClick={onCancel}>
           {cancelButtonLabel}
-        </Button>
-        <Button variant="primary" type="submit" disabled={submitButtonDisabled || !isValid}>
+        </HyButton>
+        <HyButton variant="primary" type="submit" disabled={submitButtonDisabled || !isValid}>
           {submitButtonLabel}
-        </Button>
+        </HyButton>
       </div>
     </div>
   );
