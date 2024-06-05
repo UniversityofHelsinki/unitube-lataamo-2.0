@@ -30,8 +30,17 @@ const seriesComparator = (eppn) => (descending) => {
   };
 };
 
-const createdComparator = (descending) => {
+const createdComparator = (eppn) => (descending) => {
   return (a, b) => {
+    const aIsInTrash = a.series === `trash ${eppn}`;
+    const bIsInTrash = b.series === `trash ${eppn}`;
+
+    if (aIsInTrash && !bIsInTrash) {
+      return descending ? 1 : -1;
+    } else if (bIsInTrash && !aIsInTrash) {
+      return descending ? -1 : 1;
+    }
+
     const aCreated = a.created ? new Date(a.created).getTime() : 0;
     const bCreated = b.created ? new Date(b.created).getTime() : 0;
     const order = integerComparator(aCreated, bCreated);
@@ -61,7 +70,7 @@ const visibilityComparator = (descending) => {
 const comparators = (eppn) => ({
   title: titleComparator,
   series: seriesComparator(eppn),
-  created: createdComparator,
+  created: createdComparator(eppn),
   deletionDate: deletionDateComparator,
   visibility: visibilityComparator
 });
