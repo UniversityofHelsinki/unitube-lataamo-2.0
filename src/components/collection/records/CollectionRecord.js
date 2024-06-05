@@ -5,7 +5,6 @@ import { Col, Container, Row } from 'react-bootstrap';
 import onKeyDown from '../../accessibility/keydown';
 import { useTranslation } from 'react-i18next';
 import useSearchParams from '../../../hooks/useSearchParams';
-import Thumbnail from "../../utilities/Thumbnail";
 import DeleteRecord from '../../record/DeleteRecord';
 
 const CollectionRecord = ({ record, disabled, reloadCollectionOnRemove }) => {
