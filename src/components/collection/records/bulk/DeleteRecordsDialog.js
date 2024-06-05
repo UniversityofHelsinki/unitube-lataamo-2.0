@@ -11,6 +11,7 @@ const DeleteRecordsDialog = ({ records = [] }) => {
 
   const openerProps = {
     label: t('delete_records_dialog_open_button_label'),
+    title: t('delete_records_dialog_open_button_title'),
     variant: 'danger'
   };
 

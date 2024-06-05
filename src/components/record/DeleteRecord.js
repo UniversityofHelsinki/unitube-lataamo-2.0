@@ -52,6 +52,7 @@ const DeleteRecord = ({ record, showLabel = true, reloadCollectionOnRemove = fal
     <RecordCardAction
       icon={<DeleteIcon />}
       label={t('record_card_action_delete')}
+      title={t('record_card_action_delete_title')}
       ariaLabel={t(
         'record_card_action_delete_aria',
         { title: record.title }
