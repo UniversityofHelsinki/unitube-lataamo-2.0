@@ -290,7 +290,7 @@
   "header_menu_hidden_title": "Näytä listanäkymä",
   "header_menu_visible_title": "Piilota listanäkymä",
   "landing_page_introduction": "Tervetuloa Unitube-lataamoon!",
-  "landing_page_description": " Unitube on kaikkien yliopistolaisten videopalvelu, jossa voit ladata, katsoa ja tallentaa videoita. Unitube-lataamossa voit julkaista ja jakaa tallenteitasi muiden katsottavaksi tai hallinnoitavaksi. Lisäksi eri kampuksilla on erikseen varattavia Unitube-studioita ja Unitube-luentosaleja, joista voit korttikirjautumisen avulla tallentaa suoraan Unitubeen. Striimit-välilehdellä näet omien striimiesi katselijamääriä tilastoituna. ",
+  "landing_page_description": " Unitube on kaikkien yliopistolaisten videopalvelu, jossa voit ladata, katsoa ja tallentaa videoita. Unitube-lataamossa voit julkaista ja jakaa tallenteitasi muiden katsottavaksi tai hallinnoitavaksi. Lisäksi eri kampuksilla on erikseen varattavia Unitube-studioita ja Unitube-luentosaleja, joista voit korttikirjautumisen avulla striimata ja tallentaa suoraan Unitubeen. Striimit-välilehdellä näet omien striimiesi katselijamääriä tilastoituna. ",
   "landing_page_unitube_instructions": "Unitube-lataamon käyttöohjeet",
   "landing_page_unitube_instructions_link": "https://helpdesk.it.helsinki.fi/ohjeet/yhteydenpito-ja-julkaiseminen/unitube/unitube-lataamo",
   "records_table_select_all": "Valitse kaikki",
@@ -348,5 +348,9 @@
   "update_records_deletion_dates_dialog_records_header": "Päivitettävät tallenteet",
   "update_records_deletion_dates_dialog_error": "Virhe!",
   "update_records_deletion_dates_dialog_done": "Valmis!",
-  "update_records_deletion_dates_dialog_saving": "Päivitetään poistopäivämääriä..."
+  "update_records_deletion_dates_dialog_saving": "Päivitetään poistopäivämääriä...",
+  "crisis_banner_heading": "",
+  "crisis_banner_content": "",
+  "crisis_banner_link_location": "",
+  "crisis_banner_link_label": ""
 }
