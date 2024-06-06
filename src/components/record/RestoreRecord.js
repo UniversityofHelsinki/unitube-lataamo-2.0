@@ -62,6 +62,7 @@ const RestoreRecord = ({ record, buttonDisabled }) => {
       variant="secondary"
       icon={<RestoreIcon />}
       label={t('record_card_action_restore')}
+      title={t('record_card_action_restore_title')}
       ariaLabel={t('record_card_action_restore_aria', { title: record.title })}
       onClick={show}
       opensDialog={true}

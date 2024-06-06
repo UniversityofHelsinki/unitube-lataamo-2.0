@@ -24,7 +24,12 @@ const CustomStatisticTable = ({ processedStatistics }) => {
                     <th>{t(`stream_statistics_table_toggle_button_status_${isCollapsed ? 'collapsed' : 'visible'}`)}</th>
                     <th style={{textAlign: 'right'}}>
                         <div>
-                            <button className="stream-statistics-table-toggle-button" onClick={toggleCollapse} aria-label={t('stream_statistics_table_toggle_button')} title={t(`stream_statistics_table_toggle_button_status_${isCollapsed ? 'collapsed' : 'visible'}`)}>
+                            <button className="stream-statistics-table-toggle-button"
+                                    onClick={toggleCollapse}
+                                    aria-label={t('stream_statistics_table_toggle_button')}
+                                    title={t(`stream_statistics_table_toggle_button_status_${isCollapsed ? 'collapsed' : 'visible'}`)}
+                                    aria-expanded={!isCollapsed}
+                            >
                                 {isCollapsed ? <ToggleCollapsed /> : <ToggleVisible />}
                             </button>
                         </div>

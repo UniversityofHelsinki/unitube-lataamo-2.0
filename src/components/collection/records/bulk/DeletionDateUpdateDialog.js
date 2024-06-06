@@ -28,6 +28,7 @@ const DeletionDateUpdateDialog = ({ records = [] }) => {
 
   const openerProps = {
     label: t('update_records_deletion_dates_dialog_open_button_label'),
+    title: t('update_records_deletion_dates_dialog_open_button_title'),
     variant: 'primary'
   };
 
