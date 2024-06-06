@@ -22,7 +22,9 @@ crisis_banner_link_location
 crisis_banner_link_label
 ~~~
 
-- *huom*: aseta myös ruotsin- ja englanninkieliset avaimet jotta banneri näkyy kaikilla kielillä.
+- **HUOM**: aseta myös ruotsin- ja englanninkieliset avaimet jotta banneri näkyy kaikilla kielillä.
+- **HUOM1**: ilmaise `crisis_banner_content`:ssa asia korkeintaan
+  muutamalla lauseella.
 
 ### Esimerkki
 
