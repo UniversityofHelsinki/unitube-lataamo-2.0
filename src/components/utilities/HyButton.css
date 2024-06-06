@@ -41,6 +41,8 @@
 }
 
 .hy-button-icon svg * {
+  min-width: 1em;
+  min-height: 1em;
   fill: var(--hy-button-text-color);
 }
 
