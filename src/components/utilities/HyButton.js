@@ -47,7 +47,8 @@ HyButton.propTypes = {
   leftIcon: PropTypes.node,
   rightIcon: PropTypes.node,
   mini: PropTypes.bool,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  children: PropTypes.node
 };
 
 export default HyButton;
