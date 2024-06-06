@@ -40,9 +40,12 @@
   display: flex;
 }
 
-.hy-button-icon svg * {
+.hy-button-icon svg {
   min-width: 1em;
   min-height: 1em;
+}
+
+.hy-button-icon svg * {
   fill: var(--hy-button-text-color);
 }
 
