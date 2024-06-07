@@ -39,7 +39,7 @@ const BulkActionDialog = ({
   };
 
   const open = () => setShow(true);
-  const opener = (<HyButton onClick={open} variant={openerProps.variant} title={openerProps.title}>
+  const opener = (<HyButton onClick={open} aria-haspopup="dialog" variant={openerProps.variant} title={openerProps.title}>
     {openerProps.label}
   </HyButton>);
 
