@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import './Lataamo.css';
 import { Col, Container, Row } from 'react-bootstrap';
@@ -12,8 +12,8 @@ import useLocation from './hooks/useLocation';
 import useHistory from './hooks/useHistory';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { KNOWN_LOCATIONS, LANGUAGES, LEFT_CONTAINER_ID, RIGHT_CONTAINER_ID } from './Constants';
-import { belowBreakpoint } from './components/utilities/visibilities';
+import { BREAKPOINT, KNOWN_LOCATIONS, LANGUAGES, LEFT_CONTAINER_ID, RIGHT_CONTAINER_ID } from './Constants';
+import { belowBreakpoint, hideLeftIfNeeded, leftSideIsHidden } from './components/utilities/visibilities';
 import useLocalStorage from './hooks/useLocalStorage';
 import { useTranslation } from 'react-i18next';
 
@@ -23,20 +23,22 @@ const Lataamo = () => {
   const [userLoadingInitiated, setUserLoadingInitiated] = useState(false);
   const [localStorageGet] = useLocalStorage();
   const { i18n } = useTranslation();
-  const [leftHiddenClass, setLeftHiddenClass] = useState('');
   const [location, setLocation] = useLocation();
+  const leftRef = useRef();
 
   useEffect(() => {
     if (!user && !userLoadingInitiated) {
       loadUser();
     }
-
-    if (belowBreakpoint()) {
-      setLeftHiddenClass('hidden');
-    }
-
+    
     return () => setUserLoadingInitiated(true);
   }, []);
+
+  useEffect(() => {
+    if (leftRef.current) {
+      hideLeftIfNeeded();
+    };
+  }, [leftRef.current]);
 
   useEffect(() => {
     const savedLanguage = localStorageGet('language');
@@ -49,6 +51,17 @@ const Lataamo = () => {
     setLocation("/records");
   }
 
+  const hideAfterSlide = (event) => {
+    if (event.propertyName === 'width') {
+      const leftWillBeHidden = event.target.classList.contains('hide-after-slide');
+      const right = document.querySelector(`#${RIGHT_CONTAINER_ID}`);
+      if (leftWillBeHidden) {
+        event.target.classList.add('hidden');
+        right.classList.remove('hidden');
+      } 
+    }
+  };
+
   return (
       <Loading loading={!Boolean(user)}>
         <Container className="root mx-0">
@@ -58,10 +71,20 @@ const Lataamo = () => {
               </Col>
             </Row>
             <Row className="root-main-row">
-              <Col id={LEFT_CONTAINER_ID} as="aside" role="complementary" xl={4} className={leftHiddenClass}>
+              <Col 
+                ref={leftRef}
+                id={LEFT_CONTAINER_ID} 
+                as="aside" 
+                role="complementary" 
+                xl={4} 
+                onTransitionEnd={hideAfterSlide}>
                 <Left />
               </Col>
-              <Col id={RIGHT_CONTAINER_ID} as="main" role="main" xl={8}>
+              <Col 
+                id={RIGHT_CONTAINER_ID} 
+                as="main" 
+                role="main" 
+                xl={8}>
                 <Right />
               </Col>
             </Row>
