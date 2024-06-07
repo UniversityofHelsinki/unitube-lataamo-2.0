@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Footer.css';
 import ProgressBar from '../../../form/ProgressBar';
-import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useId } from 'react';
+import HyButton from '../../../utilities/HyButton';
 
 const Footer = ({ 
   progress, 
@@ -18,30 +18,30 @@ const Footer = ({
 
   const buttons = {
     not_started: [
-      <Button variant="outline-secondary" onClick={onCancel}>
+      <HyButton variant="secondary" onClick={onCancel}>
         {t('cancel')}
-      </Button>,
-      <Button variant="danger" onClick={onSave} disabled={!submittable}>
+      </HyButton>,
+      <HyButton variant="danger" onClick={onSave} disabled={!submittable}>
         {t('confirm')}
-      </Button>
+      </HyButton>
     ],
     in_progress: [
-      <Button variant="outline-secondary" onClick={onCancel} disabled>
+      <HyButton variant="secondary" onClick={onCancel} disabled>
         {t('cancel')}
-      </Button>,
-      <Button variant="danger" onClick={onSave} disabled>
+      </HyButton>,
+      <HyButton variant="danger" onClick={onSave} disabled>
         {t('confirm')}
-      </Button>
+      </HyButton>
     ],
     done: [
-      <Button variant="outline-secondary" onClick={onCancel}>
+      <HyButton variant="secondary" onClick={onCancel}>
         {t('close')}
-      </Button>
+      </HyButton>
     ],
     error: [
-      <Button variant="outline-secondary" onClick={onCancel}>
+      <HyButton variant="secondary" onClick={onCancel}>
         {t('close')}
-      </Button>
+      </HyButton>
     ],
   }[progress];
 

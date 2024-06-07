@@ -5,7 +5,7 @@ import RecordCardAction from './card/RecordCardAction';
 import { ReactComponent as RestoreIcon } from '../../components/utilities/icons/rotate-left.svg';
 import FormDialog from '../dialog/FormDialog';
 import { useTranslation } from 'react-i18next';
-import { Button, Form, Modal } from 'react-bootstrap';
+import { Form, Modal } from 'react-bootstrap';
 import RecordCollections from './RecordCollections';
 import useDefaultCollection from '../../hooks/record/useDefaultCollection';
 import useRecordRestore from '../../hooks/record/useRecordRestore';
@@ -62,6 +62,7 @@ const RestoreRecord = ({ record, buttonDisabled }) => {
       variant="secondary"
       icon={<RestoreIcon />}
       label={t('record_card_action_restore')}
+      title={t('record_card_action_restore_title')}
       ariaLabel={t('record_card_action_restore_aria', { title: record.title })}
       onClick={show}
       opensDialog={true}

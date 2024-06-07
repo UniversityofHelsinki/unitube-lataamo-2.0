@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './BottomBar.css';
-import { Col, Container, Row } from 'react-bootstrap';
 import Notifications from './Notifications';
 
 const BottomBar = ({ notifications, buttons }) => {

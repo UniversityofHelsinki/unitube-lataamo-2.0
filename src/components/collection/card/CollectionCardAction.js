@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './CollectionCardAction.css';
 import HyButton from '../../utilities/HyButton';
 
-const CollectionCardAction = ({ icon, label, variant = 'outline-primary', onClick, showLabel = true, disabled = false, opensDialog = false, ariaLabel }) => {
+const CollectionCardAction = ({ icon, label, variant = 'secondary', onClick, showLabel = true, disabled = false, opensDialog = false, ariaLabel, title = '' }) => {
 
     const onButtonClick = (event) => {
       event.preventDefault();
@@ -18,7 +18,7 @@ const CollectionCardAction = ({ icon, label, variant = 'outline-primary', onClic
     })();
 
     return (
-        <HyButton variant={variant} onClick={onButtonClick} aria-label={ariaLabel || label} disabled={disabled} { ...ariaDialog } mini leftIcon={icon}>
+        <HyButton variant={variant} onClick={onButtonClick} aria-label={ariaLabel || label} disabled={disabled} { ...ariaDialog } mini leftIcon={icon} title={title}>
             <span>{showLabel && label}</span>
         </HyButton>
     );
@@ -32,7 +32,7 @@ CollectionCardAction.propTypes = {
     disabled: PropTypes.bool,
     opensDialog: PropTypes.bool,
     variant: PropTypes.oneOf([
-        'primary', 'secondary'
+        'primary', 'secondary', 'danger'
     ])
 };
 

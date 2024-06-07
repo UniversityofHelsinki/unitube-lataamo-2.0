@@ -40,6 +40,11 @@
   display: flex;
 }
 
+.hy-button-icon svg {
+  min-width: 1em;
+  min-height: 1em;
+}
+
 .hy-button-icon svg * {
   fill: var(--hy-button-text-color);
 }
@@ -121,6 +126,14 @@
   --hy-button-border-color: var(--huds-additional-red-dark);
   --hy-button-bottom-color: var(--huds-additional-red-light);
   --hy-button-icon-separator-color: var(--hy-white);
+}
+
+.hy-button-danger:disabled {
+  --hy-button-background-color: var(--huds-additional-red-light);
+  --hy-button-border-color: var(--huds-additional-red-light);
+  --hy-button-bottom-color: var(--huds-additional-red-dark);
+  --hy-button-background-color: #a3585f;
+  --hy-button-border-color: #a3585f;
 }
 
 .hy-button-danger:enabled:hover {

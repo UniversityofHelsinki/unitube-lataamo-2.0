@@ -7,7 +7,7 @@ import { useState } from 'react';
 import useCollection from '../../../../hooks/useCollection';
 import useCollections from '../../../../hooks/useCollections';
 import useRecords from '../../../../hooks/useRecords';
-import { Button } from 'react-bootstrap';
+import HyButton from '../../../utilities/HyButton';
 
 const BulkActionDialog = ({
   records,
@@ -39,9 +39,9 @@ const BulkActionDialog = ({
   };
 
   const open = () => setShow(true);
-  const opener = (<Button onClick={open} variant={openerProps.variant}>
+  const opener = (<HyButton onClick={open} variant={openerProps.variant} title={openerProps.title}>
     {openerProps.label}
-  </Button>);
+  </HyButton>);
 
   const save = async () => {
     await start();

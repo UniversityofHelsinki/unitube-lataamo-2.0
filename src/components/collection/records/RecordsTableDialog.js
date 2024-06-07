@@ -59,7 +59,7 @@ const RecordsTableDialog = ({
 
 RecordsTableDialog.propTypes = {
   records: PropTypes.array,
-  children: PropTypes.arrayOf(PropTypes.node),
+  children: PropTypes.node,
 };
 
 export default RecordsTableDialog;
