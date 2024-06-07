@@ -349,9 +349,9 @@
   "update_records_deletion_dates_dialog_error": "Virhe!",
   "update_records_deletion_dates_dialog_done": "Valmis!",
   "update_records_deletion_dates_dialog_saving": "Päivitetään poistopäivämääriä...",
-  "crisis_banner_heading": "",
-  "crisis_banner_content": "",
-  "crisis_banner_link_location": "",
-  "crisis_banner_link_label": "",
+  "crisis_banner_heading": "Huoltokatko",
+  "crisis_banner_content": "Lataamossa on huoltokatko viikolla 29.",
+  "crisis_banner_link_location": "https://helsinki.fi/helpdesk",
+  "crisis_banner_link_label": "Lue lisää",
   "choose_file": "Lisää tiedosto."
 }
