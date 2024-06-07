@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import useRecordsDelete from '../../../../hooks/record/useRecordsDelete';
 import BulkActionDialog from './BulkActionDialog';
 import useUser from "../../../../hooks/useUser";
+import AlertBanner from "../../../utilities/AlertBanner";
 
 const DeleteRecordsDialog = ({ records = [] }) => {
   const { t } = useTranslation();
@@ -69,7 +70,7 @@ const DeleteRecordsDialog = ({ records = [] }) => {
           {t('delete_records_dialog_alert_text')}
         </div>
         {otherContributors
-        ? <p>{t('selected_records_has_other_contributors')}</p>
+        ? <AlertBanner body={t('selected_records_has_other_contributors')} />
         : null}
       </div>
     </BulkActionDialog>
