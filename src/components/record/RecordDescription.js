@@ -34,7 +34,7 @@ const RecordDescription = ({ description, onChange, message, disabled = false })
             </Row>
             <Row>
                 <Col>
-                    <TextArea id={id} value={description} onChange={(e) => onChange(e.target.value)} message={message} disabled={disabled} required />
+                    <TextArea id={id} value={description} onChange={(e) => onChange(e.target.value)} message={message} disabled={disabled} aria-required />
                 </Col>
             </Row>
             </Form.Group>
