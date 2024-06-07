@@ -171,5 +171,6 @@
   "crisis_banner_link_location": "https://helsinki.fi",
   "crisis_banner_link_label": "Read more",
   "record_has_other_contributors" : "???",
-  "selected_records_has_other_contributors" : "???"
+  "selected_records_has_other_contributors" : "???",
+  "choose_file": "Select a file to upload."
 }

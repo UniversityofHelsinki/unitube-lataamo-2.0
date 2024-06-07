@@ -70,7 +70,7 @@ const RecordCollections = ({ collection, onChange, message, disabled = false, sh
                         value={collection}
                         message={message}
                         disabled={disabled}
-                        required
+                        aria-required
                       />
                   </Col>
               </Row>

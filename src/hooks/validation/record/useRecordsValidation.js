@@ -12,7 +12,7 @@ const validationFunctions = (record) => ({
   description: validateDescription,
   license: validateLicense,
   deletionDate: validateExistingDeletionDate(record),
-  subtitles: validateSubtitles
+  selectedSubtitles: validateSubtitles
 });
 
 const useRecordsValidation = (fields, records = []) => {

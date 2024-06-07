@@ -29,7 +29,8 @@ const RecordSubtitleFile = ({ onChange, message, disabled = false }) => {
                       type="file" 
                       message={message} 
                       accept={ACCEPTED_VTT_MIME_TYPES} 
-                      disabled={disabled} 
+                      disabled={disabled}
+                      aria-required
                     />
                 </Col>
             </Row>
