@@ -169,5 +169,6 @@
   "crisis_banner_heading": "",
   "crisis_banner_content": "",
   "crisis_banner_link_location": "https://helsinki.fi",
-  "crisis_banner_link_label": "Read more"
+  "crisis_banner_link_label": "Read more",
+  "choose_file": "Select a file to upload."
 }

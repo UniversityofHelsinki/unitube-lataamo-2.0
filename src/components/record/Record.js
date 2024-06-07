@@ -30,7 +30,7 @@ const Record = () => {
     const [resetSubtitleDownloadLinks, setResetSubtitleDownloadLinks] = useState(false);
 
     const [isValid, messages, validate] = useRecordValidation([
-      'title', 'description', 'deletionDate', 'license', 'subtitles'
+      'title', 'description', 'deletionDate', 'license', 'selectedSubtitles'
     ], originalRecord);
     const [record, onChange, modified, undo] = useRecordModification(originalRecord, validate, resetProgress);
     const formRef = useRef();

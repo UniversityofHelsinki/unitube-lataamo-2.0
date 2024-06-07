@@ -81,7 +81,7 @@ const RecordForm = ({
             <Col>
               <RecordSubtitle 
                 onChange={(value) => onChange('selectedSubtitles', value)}
-                message={validationMessages?.subtitles}
+                message={validationMessages?.selectedSubtitles}
                 subtitles={record.selectedSubtitles}
                 disabled={disabled} 
               />

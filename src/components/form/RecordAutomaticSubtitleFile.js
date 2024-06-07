@@ -74,7 +74,7 @@ const RecordAutomaticSubtitle = ({ onChange, message, disabled = false, value = 
             </Row>
             <Row>
                 <Col>
-                    <DropDown id={id} value={value.translationModel} onChange={(e) => handleChange('translationModel', e.target.value)} options={language_models.map(asLanguageModelOption)} message={validationMessages('translationModel')} disabled={disabled} />
+                    <DropDown aria-required id={id} value={value.translationModel} onChange={(e) => handleChange('translationModel', e.target.value)} options={language_models.map(asLanguageModelOption)} message={validationMessages('translationModel')} disabled={disabled} />
                 </Col>
             </Row>
             <Row>
@@ -84,7 +84,7 @@ const RecordAutomaticSubtitle = ({ onChange, message, disabled = false, value = 
             </Row>
             <Row>
                 <Col>
-                    <DropDown id={id} value={value.translationLanguage} onChange={(e) => handleChange('translationLanguage', e.target.value)} options={languages.map(asLanguageOption)} message={validationMessages('translationLanguage')} disabled={disabled} />
+                    <DropDown aria-required id={id} value={value.translationLanguage} onChange={(e) => handleChange('translationLanguage', e.target.value)} options={languages.map(asLanguageOption)} message={validationMessages('translationLanguage')} disabled={disabled} />
                 </Col>
             </Row>
         </Container>

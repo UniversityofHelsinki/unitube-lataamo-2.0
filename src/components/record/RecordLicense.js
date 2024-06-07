@@ -43,7 +43,7 @@ const RecordLicense = ({ license, onChange, message, disabled = false }) => {
       </Row>
       <Row>
         <Col>
-          <DropDown id={id} value={license} onChange={(e) => onChange(e.target.value)} options={licenses.map(asOption)} message={message} disabled={disabled} required />
+          <DropDown id={id} value={license} onChange={(e) => onChange(e.target.value)} options={licenses.map(asOption)} message={message} disabled={disabled} aria-required />
         </Col>
       </Row>
     </Container>

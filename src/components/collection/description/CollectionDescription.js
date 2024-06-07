@@ -32,7 +32,7 @@ const CollectionDescription = ({ description, onChange, message, disabled }) => 
                 </Row>
                 <Row>
                     <Col>
-                        <TextArea id={id} value={description} onChange={changeDescription} message={message} disabled={disabled} required />
+                        <TextArea id={id} value={description} onChange={changeDescription} message={message} disabled={disabled} aria-required />
                     </Col>
                 </Row>
             </Form.Group>
