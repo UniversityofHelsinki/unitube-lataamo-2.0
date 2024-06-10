@@ -10,8 +10,8 @@ import useRecords from '../../../../hooks/useRecords';
 import HyButton from '../../../utilities/HyButton';
 import useRecord from '../../../../hooks/useRecord';
 
-const BulkActionDialog = ({ 
-  records, 
+const BulkActionDialog = ({
+  records,
   openerProps,
   recordsTableProps,
   progressBarProps,
@@ -50,20 +50,20 @@ const BulkActionDialog = ({
   };
 
   return (
-    <RecordsTableDialog 
+    <RecordsTableDialog
       show={show}
       hide={hide}
       open={open}
       closeable={closeable}
-      records={records} 
+      records={records}
       opener={opener}
       headerLabel={recordsTableProps.headerLabel}
       recordsLabel={recordsTableProps.recordsLabel}
-      footer={<Footer 
-        progress={currentState} 
+      footer={<Footer
+        progress={currentState}
         progressBarProps={(progressBarProps || {})[currentState]}
-        onSave={save} 
-        onCancel={hide} 
+        onSave={save}
+        onCancel={hide}
         submittable={submittable}
       />}
     >
