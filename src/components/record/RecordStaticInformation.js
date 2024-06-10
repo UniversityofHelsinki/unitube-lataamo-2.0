@@ -41,7 +41,7 @@ const RecordStaticInformation = ({ record, onChange, resetSubtitleDownloadLinks,
             </Row>
             <Row className="mb-4">
                 <Col>
-                    <RecordLink to="#" label={publishedLink} />
+                    <RecordLink to={publishedLink} label={publishedLink} />
                 </Col>
             </Row>
             <Row className="mb-4">
