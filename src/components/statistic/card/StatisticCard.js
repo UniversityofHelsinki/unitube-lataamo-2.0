@@ -34,6 +34,7 @@ const StatisticCard = ({ statistic, onClick, selected = false }) => {
     }).format(new Date(statistic.start_timestamp));
     const duration = getDurationInHoursMinutesSeconds(statistic.start_timestamp, statistic.end_before_timestamp);
     statistic = {...statistic, formattedDate: formattedDate, duration : duration};
+    const streamAriaLabel = `${t('stream-location')}: ${statistic.location}, ${t('stream-date')}: ${formattedDate}`;
 
     const handleClick = (event) => {
         event.preventDefault();
@@ -52,8 +53,8 @@ const StatisticCard = ({ statistic, onClick, selected = false }) => {
                                href={`?room=${statistic.room}&start_timestamp=${statistic.start_timestamp}&end_before_timestamp=${statistic.end_before_timestamp}`}
                                onClick={handleClick}
                                onKeyDown={onKeyDown(handleClick)}
-                               aria-labelledby={labelId}
                                aria-current={selected ? 'page' : false}
+                               aria-label={streamAriaLabel}
                             >
                                 <strong id={labelId}>
                                     {t('stream-location')}: {statistic.location}
