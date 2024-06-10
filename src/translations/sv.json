@@ -154,6 +154,10 @@
   "crisis_banner_heading": "",
   "crisis_banner_content": "",
   "crisis_banner_link_location": "",
+  "record_has_other_contributors" : "???",
+  "selected_records_has_other_contributors" : "???",
   "crisis_banner_link_label": "",
-  "choose_file": "Select a file to upload."
+  "choose_file": "Select a file to upload.",
+  "stream-location": "???",
+  "stream-date" : "???"
 }
