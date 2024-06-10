@@ -99,7 +99,12 @@ const Record = () => {
                   </Row>
                   <Row>
                     <Col xl={5} className="ps-0">
-                      <RecordStaticInformation record={originalRecord} onChange={onChange} resetSubtitleDownloadLinks={resetSubtitleDownloadLinks} disabled={saveInProgress}  />
+                      <RecordStaticInformation 
+                        record={originalRecord} 
+                        onChange={onChange} 
+                        resetSubtitleDownloadLinks={resetSubtitleDownloadLinks} 
+                        disabled={saveInProgress}  
+                      />
                     </Col>
                     <Col xl className="ps-0">
                       <RecordForm
