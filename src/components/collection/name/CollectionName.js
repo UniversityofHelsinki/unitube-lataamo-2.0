@@ -32,7 +32,7 @@ const CollectionName = ({ name, onChange, message, disabled }) => {
                 </Row>
                 <Row>
                     <Col>
-                        <InputField id={id} label={name} placeholder={t('collection_form_name_placeholder')} value={name} onChange={nameChanged} message={message} disabled={disabled} required />
+                        <InputField id={id} label={name} placeholder={t('collection_form_name_placeholder')} value={name} onChange={nameChanged} message={message} disabled={disabled} aria-required />
                     </Col>
                 </Row>
             </Form.Group>

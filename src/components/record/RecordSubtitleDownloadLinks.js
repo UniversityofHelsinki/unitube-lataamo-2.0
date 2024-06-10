@@ -28,7 +28,7 @@ const DownloadLink = ({ onChange, to, label, resetSubtitleDownloadLinks, disable
     const handleClick = () => {
         const updatedMarkedForDeletion = !markedForDeletion;
         setMarkedForDeletion(updatedMarkedForDeletion);
-        onChange('deleteSubtitle', updatedMarkedForDeletion);
+        onChange('deleteSubtitle', updatedMarkedForDeletion || undefined);
     };
 
     return (

@@ -8,9 +8,10 @@ import useCollection from '../../../../hooks/useCollection';
 import useCollections from '../../../../hooks/useCollections';
 import useRecords from '../../../../hooks/useRecords';
 import HyButton from '../../../utilities/HyButton';
+import useRecord from '../../../../hooks/useRecord';
 
-const BulkActionDialog = ({ 
-  records, 
+const BulkActionDialog = ({
+  records,
   openerProps,
   recordsTableProps,
   progressBarProps,
@@ -25,13 +26,14 @@ const BulkActionDialog = ({
   const [_collection, _loading, reloadCollection] = useCollection();
   const [_collections, _loadingCollections, reloadCollections] = useCollections();
   const [_records, _loadingRecords, reloadRecords] = useRecords();
-
+  const [_record, _loadingRecord, reloadRecord] = useRecord();
 
   const hide = () => {
     if (currentState === 'done') {
       reloadCollection();
       reloadCollections();
       reloadRecords();
+      reloadRecord();
     }
 
     resetState();
@@ -39,7 +41,7 @@ const BulkActionDialog = ({
   };
 
   const open = () => setShow(true);
-  const opener = (<HyButton onClick={open} variant={openerProps.variant} title={openerProps.title}>
+  const opener = (<HyButton onClick={open} aria-haspopup="dialog" variant={openerProps.variant} title={openerProps.title}>
     {openerProps.label}
   </HyButton>);
 
@@ -48,20 +50,20 @@ const BulkActionDialog = ({
   };
 
   return (
-    <RecordsTableDialog 
+    <RecordsTableDialog
       show={show}
       hide={hide}
       open={open}
       closeable={closeable}
-      records={records} 
+      records={records}
       opener={opener}
       headerLabel={recordsTableProps.headerLabel}
       recordsLabel={recordsTableProps.recordsLabel}
-      footer={<Footer 
-        progress={currentState} 
+      footer={<Footer
+        progress={currentState}
         progressBarProps={(progressBarProps || {})[currentState]}
-        onSave={save} 
-        onCancel={hide} 
+        onSave={save}
+        onCancel={hide}
         submittable={submittable}
       />}
     >

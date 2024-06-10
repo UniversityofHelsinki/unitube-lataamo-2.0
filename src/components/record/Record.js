@@ -30,7 +30,7 @@ const Record = () => {
     const [resetSubtitleDownloadLinks, setResetSubtitleDownloadLinks] = useState(false);
 
     const [isValid, messages, validate] = useRecordValidation([
-      'title', 'description', 'deletionDate', 'license', 'subtitles'
+      'title', 'description', 'deletionDate', 'license', 'selectedSubtitles'
     ], originalRecord);
     const [record, onChange, modified, undo] = useRecordModification(originalRecord, validate, resetProgress);
     const formRef = useRef();
@@ -99,7 +99,12 @@ const Record = () => {
                   </Row>
                   <Row>
                     <Col xl={5} className="ps-0">
-                      <RecordStaticInformation record={originalRecord} onChange={onChange} resetSubtitleDownloadLinks={resetSubtitleDownloadLinks} disabled={saveInProgress}  />
+                      <RecordStaticInformation 
+                        record={originalRecord} 
+                        onChange={onChange} 
+                        resetSubtitleDownloadLinks={resetSubtitleDownloadLinks} 
+                        disabled={saveInProgress}  
+                      />
                     </Col>
                     <Col xl className="ps-0">
                       <RecordForm
