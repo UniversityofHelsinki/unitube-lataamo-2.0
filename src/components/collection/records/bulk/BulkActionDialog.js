@@ -41,7 +41,7 @@ const BulkActionDialog = ({
   };
 
   const open = () => setShow(true);
-  const opener = (<HyButton onClick={open} aria-haspopup="dialog" variant={openerProps.variant} title={openerProps.title}>
+  const opener = (<HyButton onClick={open} aria-haspopup="dialog" variant={openerProps.variant} title={openerProps.title} disabled={records.length === 0}>
     {openerProps.label}
   </HyButton>);
 
@@ -67,7 +67,7 @@ const BulkActionDialog = ({
         submittable={submittable}
       />}
     >
-      {children}
+      {records.length > 0 && children}
     </RecordsTableDialog>
   );
 };
