@@ -89,8 +89,13 @@ const NewRecord = () => {
     [ProgressStatus.NEW_RECORD.DONE]: true,
   }[progress.status] || false;
 
+  console.log('modified:', modified);
+  console.log('progress.status:', progress.status);
+  console.log('progress.status !== ProgressStatus.NEW_RECORD.DONE:', progress.status !== ProgressStatus.NEW_RECORD.DONE);
+  const touched = modified && progress.status !== ProgressStatus.NEW_RECORD.DONE;
+
   return (
-    <FormDialog touched={modified} closeable={closeable} showComponent={theButton} show={showDialog} hide={hide}>
+    <FormDialog touched={touched} closeable={closeable} showComponent={theButton} show={showDialog} hide={hide}>
       <Modal.Header { ...closeButton }>{t('new_record_form_header')}</Modal.Header>
       <Form className="new-record-form" onSubmit={onSubmit} ref={formRef}>
         <Modal.Body>
