@@ -55,6 +55,8 @@
 .blockquote {
   border-left: 0.5em solid var(--hy-medium-silver);
   padding-left: 0.5em;
+  font-size: 1rem;
+  word-break: break-all;
 }
 
 @media (min-width: 576px) {
