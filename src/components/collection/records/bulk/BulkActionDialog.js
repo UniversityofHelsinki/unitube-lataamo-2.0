@@ -8,6 +8,7 @@ import useCollection from '../../../../hooks/useCollection';
 import useCollections from '../../../../hooks/useCollections';
 import useRecords from '../../../../hooks/useRecords';
 import HyButton from '../../../utilities/HyButton';
+import useRecord from '../../../../hooks/useRecord';
 
 const BulkActionDialog = ({ 
   records, 
@@ -25,13 +26,14 @@ const BulkActionDialog = ({
   const [_collection, _loading, reloadCollection] = useCollection();
   const [_collections, _loadingCollections, reloadCollections] = useCollections();
   const [_records, _loadingRecords, reloadRecords] = useRecords();
-
+  const [_record, _loadingRecord, reloadRecord] = useRecord();
 
   const hide = () => {
     if (currentState === 'done') {
       reloadCollection();
       reloadCollections();
       reloadRecords();
+      reloadRecord();
     }
 
     resetState();
