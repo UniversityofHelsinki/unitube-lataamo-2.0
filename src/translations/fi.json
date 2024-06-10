@@ -88,7 +88,7 @@
   "record_automatic_subtitle_language_header": "Valitse videolla puhuttu kieli",
   "record_automatic_subtitle_default_language_model": "Valitse kielimalli",
   "record_automatic_subtitle_default_language": "Valitse kieli",
-  "record_bottom_bar_progress_saving_record": "Käsitellään tekstityksiä",
+  "record_bottom_bar_progress_saving_subtitles": "Käsitellään tekstityksiä",
   "record_bottom_bar_progress_ordering_subtitles": "Käsitellään automaattitekstityksiä",
   "record_bottom_bar_progress_deleting_subtitle": "Käsitellään tekstityksen poistoa",
   "record_bottom_bar_progress_done": "Valmis!",
@@ -270,7 +270,7 @@
   "stream_max_viewers": "Suurin katsojamäärä",
   "stream_duration": "Kesto",
   "streams_data_not_available" : "Tarkempaa tietoa striimistä ei löydy",
-  "stream_statistics_table_summary": "Taulukko, jossa näytetään katsojamäärät ajan mukaanTable showing timestamps and total connections",
+  "stream_statistics_table_summary": "Taulukko, jossa näytetään katsojamäärät ajan mukaan.",
   "stream_statistics_table_toggle_button": "Näytä tai piilota striimin tarkemmat tiedot",
   "stream_statistics_table_toggle_button_status_collapsed": "Näytä tarkemmat tiedot",
   "stream_statistics_table_toggle_button_status_visible": "Piilota tarkemmat tiedot",
@@ -353,5 +353,7 @@
   "crisis_banner_content": "",
   "crisis_banner_link_location": "",
   "crisis_banner_link_label": "",
+  "record_has_other_contributors" : "Tallenteella muita omistajia !",
+  "selected_records_has_other_contributors" : "Valituilla tallenteilla muita omistajia !",
   "choose_file": "Lisää tiedosto."
 }
