@@ -31,14 +31,16 @@ const RecordLicense = ({ license, onChange, message, disabled = false }) => {
     <Container>
       <Row>
         <Col>
-          <FormElementHeader componentId={id}>{t('record_license_header')}</FormElementHeader>
-        </Col>
-      </Row>
-      <Row className="mb-3">
-        <Col>
-          <HelpDialog label={t('record_license_help_label')} >
-            {t('record_license_help_content')}
-          </HelpDialog>
+          <FormElementHeader 
+            componentId={id}
+            helpDialog={(
+              <HelpDialog label={t('record_license_help_label')} >
+                {t('record_license_help_content')}
+              </HelpDialog>
+            )}
+          >
+            {t('record_license_header')}
+          </FormElementHeader>
         </Col>
       </Row>
       <Row>

@@ -16,14 +16,14 @@ const RecordFile = ({ message, onChange, disabled = false }) => {
     <Container>
       <Row>
         <Col>
-          <FormElementHeader componentId={id}>{t('record_file_header')}</FormElementHeader>
-        </Col>
-      </Row>
-      <Row className="mb-3">
-        <Col>
-            <HelpDialog label={t('record_upload_help_label')} >
+          <FormElementHeader 
+            componentId={id}
+            helpDialog={(
+              <HelpDialog label={t('record_upload_help_label')} >
                 {t('record_upload_help_content')}
-            </HelpDialog>
+              </HelpDialog>
+            )}
+          >{t('record_file_header')}</FormElementHeader>
         </Col>
       </Row>
       <Row>

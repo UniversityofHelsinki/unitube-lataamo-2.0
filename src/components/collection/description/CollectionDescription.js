@@ -20,15 +20,17 @@ const CollectionDescription = ({ description, onChange, message, disabled }) => 
             <Form.Group>
                 <Row>
                     <Col>
-                        <FormElementHeader componentId={id}>{t('collection_form_description_header')}</FormElementHeader>
+                        <FormElementHeader 
+                          componentId={id}
+                          helpDialog={(
+                            <HelpDialog label={t('collection_form_description_help_label')}>
+                              {t('collection_form_description_help_content')}
+                            </HelpDialog>
+                          )}
+                        >
+                          {t('collection_form_description_header')}
+                        </FormElementHeader>
                     </Col>
-                </Row>
-                <Row className="mb-3">
-                  <Col>
-                    <HelpDialog label={t('collection_form_description_help_label')}>
-                      {t('collection_form_description_help_content')}
-                    </HelpDialog>
-                  </Col>
                 </Row>
                 <Row>
                     <Col>

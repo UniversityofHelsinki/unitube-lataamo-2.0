@@ -3,9 +3,17 @@ import PropTypes from "prop-types";
 import { Form } from 'react-bootstrap';
 import './FormElementHeader.css';
 
-const FormElementHeader = ({ children, componentId, ...rest }) => {
+const FormElementHeader = ({ children, componentId, helpDialog, ...rest }) => {
+
     return (
-        <Form.Label className="form-element-header" { ...rest } htmlFor={componentId}>{children}</Form.Label>
+      <div className="form-element-header">
+        <Form.Label { ...rest } htmlFor={componentId}>
+          {children}
+        </Form.Label>
+        <div>
+          {helpDialog}
+        </div>
+      </div>
     );
 };
 

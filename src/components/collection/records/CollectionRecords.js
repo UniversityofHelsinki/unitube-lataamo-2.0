@@ -57,16 +57,15 @@ const CollectionRecords = ({ records, disabled }) => {
     <Container className="ps-0">
       <Row>
         <Col>
-          <ElementHeader>
+          <ElementHeader
+            helpDialog={(
+              <HelpDialog label={t('collection_form_collection_records_help_label')}>
+                {t('collection_form_collection_records_help_content')}
+              </HelpDialog>
+            )}
+          >
             {t('collection_form_collection_records_form_header')}
           </ElementHeader>
-        </Col>
-      </Row>
-      <Row className="mb-3">
-        <Col>
-          <HelpDialog label={t('collection_form_collection_records_help_label')}>
-            {t('collection_form_collection_records_help_content')}
-          </HelpDialog>
         </Col>
       </Row>
       <Row ref={tableRowRef} className="collection-records-table-row">

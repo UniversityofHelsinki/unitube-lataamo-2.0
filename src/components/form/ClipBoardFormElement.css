@@ -1,0 +1,14 @@
+.clipboard-form-element {
+  display: flex;
+  flex-direction: column;
+}
+
+.clipboard-form-element-header {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+
+.clipboard-form-element-header button {
+  padding: 0px;
+}
