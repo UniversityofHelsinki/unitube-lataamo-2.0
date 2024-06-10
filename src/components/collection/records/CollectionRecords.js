@@ -42,17 +42,15 @@ const CollectionRecords = ({ records, disabled }) => {
   })();
 
   const bulkActions = (() => {
-    if (selectedRecords.length > 0) {
-      return (
-        <div className="collection-records-bulk-actions-container" aria-live="polite">
+    if (records.length > 0) {
+        return <div className="collection-records-bulk-actions-container" aria-live="polite">
           <CollectionRecordsBulkActions 
             records={records}
             selectedRecords={selectedRecords}
           />
         </div>
-      );
     }
-    return <div aria-live="polite"></div>
+    return <></>;
   })();
 
   return (
