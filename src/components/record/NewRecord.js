@@ -89,9 +89,6 @@ const NewRecord = () => {
     [ProgressStatus.NEW_RECORD.DONE]: true,
   }[progress.status] || false;
 
-  console.log('modified:', modified);
-  console.log('progress.status:', progress.status);
-  console.log('progress.status !== ProgressStatus.NEW_RECORD.DONE:', progress.status !== ProgressStatus.NEW_RECORD.DONE);
   const touched = modified && progress.status !== ProgressStatus.NEW_RECORD.DONE;
 
   return (
