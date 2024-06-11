@@ -129,3 +129,5 @@ export const RIGHT_CONTAINER_ID = 'right-col';
 
 export const JOB_TYPES_TRANSCRIPTION = 'transcription';
 export const JOB_STATUS_STARTED = 'STARTED';
+
+export const MOODLE_NUMBER_LIMIT = 20;

@@ -10,6 +10,7 @@ import InputField from "../../form/InputField";
 import HelpDialog from '../../dialog/HelpDialog';
 import { onEnter } from '../../accessibility/keydown';
 import HyButton from '../../utilities/HyButton';
+import { MOODLE_NUMBER_LIMIT } from '../../../Constants';
 
 const CollectionMoodleCourses = ({ moodleNumbers = [], onMoodleNumberChange, disabled }) => {
     const [value, setValue] = useState(null);
@@ -52,6 +53,20 @@ const CollectionMoodleCourses = ({ moodleNumbers = [], onMoodleNumberChange, dis
       }
     };
 
+    const moodleNumberLimitExceeded = moodleNumbers.length >= MOODLE_NUMBER_LIMIT;
+
+    const tooManyMoodleNumbers = (() => {
+      if (moodleNumberLimitExceeded) {
+        return (
+          <div className="collection-moodle-courses-limit-exceeded">
+            <p>{t('collection_moodle_courses_limit_exceeded')}</p>
+          </div>
+        );
+      }
+      return <></>;
+    })();
+
+
     return (
         <Container className="collection-moodle-courses ps-0">
             <Row>
@@ -69,10 +84,15 @@ const CollectionMoodleCourses = ({ moodleNumbers = [], onMoodleNumberChange, dis
             <Row className="mb-2">
                 <Col>
                   <div className="collection-moodle-courses-input">
-                    <InputField id={id} type={'text'} label={t('aaa')} placeholder={t('moodle_course_placeholder')} value={value || ''} onChange={handleMoodleInputChange} disabled={disabled} onKeyDown={onEnterAddMoodleCourse} hideMessage={true} />
+                    <InputField id={id} type={'text'} placeholder={t('moodle_course_placeholder')} value={value || ''} onChange={handleMoodleInputChange} disabled={disabled || moodleNumberLimitExceeded} onKeyDown={onEnterAddMoodleCourse} hideMessage={true} />
                     <HyButton variant="primary" className="collection-moodle-courses-add-button" onClick={addMoodleCourse} disabled={!inputFieldContainsValidMoodleCourse}>{t('collection_moodle_courses_add_button')}</HyButton>
                   </div>
                 </Col>
+            </Row>
+            <Row>
+              <Col>
+                {tooManyMoodleNumbers}
+              </Col>
             </Row>
             <Row>
                 <Col>
