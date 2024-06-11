@@ -3,23 +3,34 @@ import './HeaderMenu.css';
 import {ReactComponent as Remove} from '../utilities/icons/remove.svg';
 import {ReactComponent as Hamburger} from "../utilities/icons/hamburger.svg";
 import {useTranslation} from 'react-i18next';
-import {belowBreakpoint, leftSideIsHidden, toggleLeftSide} from '../utilities/visibilities';
+import { hideLeft, leftSideIsHidden, showLeft } from '../utilities/visibilities';
 import { MENU_ICON_ID } from '../../Constants';
+import useBreakpoint from '../../hooks/useBreakpoint';
 
 const HeaderMenu = () => {
     const { t } = useTranslation();
+    const breakpoint = useBreakpoint('xl');
+    const belowBreakpoint = breakpoint?.matches;
 
     const onClick = (e) => {
         e.preventDefault();
-        toggleLeftSide();
+        if (leftSideIsHidden()) {
+          showLeft();
+        } else {
+          hideLeft();
+        }
     };
 
+    if (!belowBreakpoint) {
+      return <></>;
+    }
+
     return (
-      <div id={MENU_ICON_ID} className={`header-menu ${!belowBreakpoint() ? 'hidden' : ''}`}>
+      <div id={MENU_ICON_ID} className={`header-menu`}>
         <button onClick={onClick}>
           <div 
             id={`${MENU_ICON_ID}-open`}
-            className="hidden"
+            className={leftSideIsHidden() ? '' : 'hidden'}
           >
             <Hamburger 
               title={t('header_menu_show_menu_title')} 
@@ -29,7 +40,7 @@ const HeaderMenu = () => {
           </div>
           <div 
             id={`${MENU_ICON_ID}-close`}
-            className="hidden"
+            className={leftSideIsHidden() ? 'hidden' : ''}
           >
             <Remove 
               title={t('header_menu_hide_menu_title')} 

@@ -12,10 +12,11 @@ import useLocation from './hooks/useLocation';
 import useHistory from './hooks/useHistory';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { BREAKPOINT, KNOWN_LOCATIONS, LANGUAGES, LEFT_CONTAINER_ID, RIGHT_CONTAINER_ID } from './Constants';
-import { belowBreakpoint, hideLeftIfNeeded, leftSideIsHidden } from './components/utilities/visibilities';
+import { KNOWN_LOCATIONS, LANGUAGES, LEFT_CONTAINER_ID, RIGHT_CONTAINER_ID } from './Constants';
+import { belowBreakpoint, hideLeft, hideRight, showCloseIcon, showHamburgerIcon, showRight } from './components/utilities/visibilities';
 import useLocalStorage from './hooks/useLocalStorage';
 import { useTranslation } from 'react-i18next';
+import useBreakpoint from './hooks/useBreakpoint';
 
 const Lataamo = () => {
   useHistory();
@@ -24,21 +25,16 @@ const Lataamo = () => {
   const [localStorageGet] = useLocalStorage();
   const { i18n } = useTranslation();
   const [location, setLocation] = useLocation();
-  const leftRef = useRef();
+  const breakpoint = useBreakpoint('xl');
+  const belowBreakpoint = breakpoint?.matches;
 
   useEffect(() => {
     if (!user && !userLoadingInitiated) {
       loadUser();
     }
-    
+
     return () => setUserLoadingInitiated(true);
   }, []);
-
-  useEffect(() => {
-    if (leftRef.current) {
-      hideLeftIfNeeded();
-    };
-  }, [leftRef.current]);
 
   useEffect(() => {
     const savedLanguage = localStorageGet('language');
@@ -54,10 +50,13 @@ const Lataamo = () => {
   const hideAfterSlide = (event) => {
     if (event.propertyName === 'width') {
       const leftWillBeHidden = event.target.classList.contains('hide-after-slide');
-      const right = document.querySelector(`#${RIGHT_CONTAINER_ID}`);
       if (leftWillBeHidden) {
         event.target.classList.add('hidden');
-        right.classList.remove('hidden');
+        showHamburgerIcon();
+        showRight();
+      } else {
+        showCloseIcon();
+        hideRight();
       } 
     }
   };
@@ -72,8 +71,8 @@ const Lataamo = () => {
             </Row>
             <Row className="root-main-row">
               <Col 
-                ref={leftRef}
                 id={LEFT_CONTAINER_ID} 
+                className={belowBreakpoint ? 'hidden width-transition hide-after-slide' : ''}
                 as="aside" 
                 role="complementary" 
                 xl={4} 
