@@ -1,5 +1,3 @@
-import {useDispatch} from "react-redux";
-import useStatistics from "./useStatistics";
 import {useEffect, useState} from "react";
 
 const getReleaseNotes = async () => {

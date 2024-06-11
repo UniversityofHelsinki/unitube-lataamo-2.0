@@ -355,5 +355,7 @@
   "crisis_banner_link_label": "",
   "record_has_other_contributors" : "Tallenteella muita omistajia !",
   "selected_records_has_other_contributors" : "Valituilla tallenteilla muita omistajia !",
-  "choose_file": "Lisää tiedosto."
+  "choose_file": "Lisää tiedosto.",
+  "version_number": "Versionumero:",
+  "release_date": "Julkaisupäivä:"
 }

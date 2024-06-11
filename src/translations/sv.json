@@ -157,5 +157,7 @@
   "record_has_other_contributors" : "???",
   "selected_records_has_other_contributors" : "???",
   "crisis_banner_link_label": "",
-  "choose_file": "Select a file to upload."
+  "choose_file": "Select a file to upload.",
+  "version_number": "???",
+  "release_date": "???"
 }

@@ -1,7 +1,7 @@
-import React, {useId, useState } from 'react';
+import React, {useId, useState} from 'react';
 import PropTypes from 'prop-types';
-import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
+import {Button, Col, Container, Modal, Row} from 'react-bootstrap';
+import {useTranslation} from 'react-i18next';
 import Dialog from './Dialog';
 import './HelpDialog.css';
 
@@ -24,18 +24,20 @@ const ReleaseNotesDialog = ({ label, releaseNotes }) => {
                 <Container>
                     <Row>
                         <Col>
-                            {releaseNotes}
+                            <div style={{overflowY: 'auto', maxHeight: '50vh'}}>
+                                {releaseNotes}
+                            </div>
                         </Col>
                     </Row>
                 </Container>
             </Modal.Body>
         </Dialog>
-    );
+);
 };
 
 ReleaseNotesDialog.propTypes = {
     label: PropTypes.string.isRequired,
-    releaseNotes: PropTypes.array,
+        releaseNotes: PropTypes.array,
 };
 
 export default ReleaseNotesDialog;

@@ -5,14 +5,22 @@ import './FooterLinks.css'
 import ReactMarkdown from 'react-markdown'
 import useReleaseNotes from "../../hooks/useReleaseNotes";
 import ReleaseNotesDialog from "../dialog/ReleaseNotesDialog";
+import i18n from "i18next";
+
+const modifyDate = (releaseDate) => {
+    const formattedDate = new Intl.DateTimeFormat(i18n.language, {
+        day: '2-digit', month: '2-digit', year: 'numeric'
+    }).format(new Date(releaseDate));
+    return formattedDate;
+};
 
 const FooterLinks = () => {
     const { t } = useTranslation();
     const releaseNotes = useReleaseNotes();
-    console.log(releaseNotes);
     const markdownNotes = releaseNotes.map((note, index) => (
         <div key={index}>
-            <h3>{note.tag_name}</h3>
+            <h4>{t('version_number')} {note.tag_name}</h4>
+            <h4>{t('release_date')} {modifyDate(note.released_at)}</h4>
             <ReactMarkdown>{note.description}</ReactMarkdown>
         </div>
     ));
