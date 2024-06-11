@@ -1,0 +1,8 @@
+.record-subtitle-file {
+  display: flex;
+  flex-direction: column;
+}
+
+.record-subtitle-file > div {
+  margin-bottom: 8px;
+}

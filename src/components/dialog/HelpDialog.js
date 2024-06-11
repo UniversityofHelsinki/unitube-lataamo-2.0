@@ -57,7 +57,7 @@ const HelpDialog = ({ label, children }) => {
   const showLink = <Button variant="link" onClick={toggle} className="p-0 help-dialog-button" aria-haspopup="dialog" title={label}>
     <InfoDialog width="1.5em" height="1.5em" />
     <span className="mx-1"></span>
-    <span className="screenreader-only">{label}</span>
+    <span>{label}</span>
   </Button>;
 
   const header = label;

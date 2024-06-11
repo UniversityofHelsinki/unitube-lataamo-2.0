@@ -45,7 +45,11 @@ const RecordCollections = ({ collection, onChange, message, disabled = false, sh
                       >
                         {t('record_collection_header')}
                       </FormElementHeader>
-                    <div>
+                  </Col>
+              </Row>
+              <Row>
+                <Col>
+                    <div className="record-collections-move-to-collection">
                       {collection && collection !== defaultCollection?.identifier && showLink &&
                       <a href={`?collection=${collection}`} onClick={moveToCollection} aria-label={t('record_collection_move_aria')} title={t('record_collection_move_aria')}>
                         {t('record_collection_move')}
@@ -53,7 +57,7 @@ const RecordCollections = ({ collection, onChange, message, disabled = false, sh
                         <LinkArrow width="1em" height="1em" aria-hidden />
                       </a>}
                     </div>
-                  </Col>
+                </Col>
               </Row>
               <Row>
                   <Col>

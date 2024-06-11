@@ -3,7 +3,10 @@
 }
 
 .record-collections-col {
+}
+
+.record-collections-move-to-collection {
   display: flex;
-  justify-content: space-between;
-  align-content: center;
+  flex-direction: end;
+  justify-content: end;
 }

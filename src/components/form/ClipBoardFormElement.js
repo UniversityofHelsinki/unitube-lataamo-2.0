@@ -19,7 +19,7 @@ const ClipBoardFormElement = ({ label, content, children, buttonAriaLabel }) => 
             helpDialog={(
               <Button variant="link" aria-label={buttonAriaLabel} onClick={() => copy(content)} title={buttonAriaLabel}>
                 <CopyIcon width="1em" height="1em" />
-                <span id={labelId} className="screenreader-only">{t('clipboard_copy')}</span>
+                <span id={labelId}>{t('clipboard_copy')}</span>
               </Button>
             )}
           >{label}</ElementHeader>
