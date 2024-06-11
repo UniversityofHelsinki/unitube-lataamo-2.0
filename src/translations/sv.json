@@ -161,5 +161,6 @@
   "stream-location": "???",
   "stream-date" : "???",
   "version_number": "???",
-  "release_date": "???"
+  "release_date": "???",
+  "no_new_releases": "???"
 }

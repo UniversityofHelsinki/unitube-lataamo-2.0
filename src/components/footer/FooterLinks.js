@@ -17,17 +17,19 @@ const modifyDate = (releaseDate) => {
 const FooterLinks = () => {
     const { t } = useTranslation();
     const releaseNotes = useReleaseNotes();
-    const markdownNotes = releaseNotes.map((note, index) => (
-        <div key={index}>
-            <div className="header">
-                <h4>{t('version_number')} {note.tag_name}</h4>
-                <h4>{t('release_date')} {modifyDate(note.released_at)}</h4>
+    const upcomingReleaseNotes = releaseNotes.filter(note => note.upcoming_release === true);
+    const markdownNotes = upcomingReleaseNotes.length ?
+        upcomingReleaseNotes.map((note, index) => (
+            <div key={index}>
+                <div className="header">
+                    <h4>{t('version_number')} {note.tag_name}</h4>
+                    <h4>{t('release_date')} {modifyDate(note.released_at)}</h4>
+                </div>
+                <div className="markdown-container">
+                    <Markdown>{note.description}</Markdown>
+                </div>
             </div>
-            <div className="markdown-container">
-                <Markdown>{note.description}</Markdown>
-            </div>
-        </div>
-    ));
+        )) : <p>{t('no_new_releases')}</p>;
     return (
         <ul>
             <li><ExternalLink to="#" label={t('hy_contact_info_link')} /></li>

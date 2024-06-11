@@ -359,5 +359,6 @@
   "stream-location": "Tila",
   "stream-date" : "Päivämäärä",
   "version_number": "Versionumero:",
-  "release_date": "Julkaisupäivä:"
+  "release_date": "Julkaisupäivä:",
+  "no_new_releases": "Ei uusia julkaisuja"
 }
