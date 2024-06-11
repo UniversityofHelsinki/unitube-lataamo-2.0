@@ -1,4 +1,4 @@
-import { BREAKPOINT, LEFT_CONTAINER_ID, RIGHT_CONTAINER_ID } from "../../Constants";
+import { BREAKPOINT, LEFT_CONTAINER_ID, MENU_ICON_ID, RIGHT_CONTAINER_ID } from "../../Constants";
 
 
 export const belowBreakpoint = () => {
@@ -13,41 +13,46 @@ export const leftSideIsHidden = () => {
 export const toggleLeftSide = () => {
   const left = document.querySelector(`#${LEFT_CONTAINER_ID}`);
   const right = document.querySelector(`#${RIGHT_CONTAINER_ID}`);
+  const menuIconOpen = document.querySelector(`#${MENU_ICON_ID}-open`);
+  const menuIconClose = document.querySelector(`#${MENU_ICON_ID}-close`);
 
   if (!left || !right) {
     return;
   }
 
-  left.classList.toggle('hidden');
-  right.classList.toggle(`col-${BREAKPOINT}-8`);
-  right.classList.toggle(`col-${BREAKPOINT}-12`);
+  const willBeShown = left.classList.contains('hidden');
+  if (willBeShown) {
+    left.classList.remove('hidden');
+    right.classList.add('hidden');
 
-  if (belowBreakpoint()) {
-    right.classList.toggle('hidden');
+    menuIconOpen.classList.add('hidden');
+    menuIconClose.classList.remove('hidden');
+
+    setTimeout(
+      () => left.classList.remove('hide-after-slide')
+    );
+
+  } else {
+    left.classList.add('hide-after-slide');
+
+    menuIconClose.classList.add('hidden');
+    menuIconOpen.classList.remove('hidden');
   }
 
 };
 
-export const swapVisibleSide = () => {
+export const hideLeftIfNeeded = () => {
   const left = document.querySelector(`#${LEFT_CONTAINER_ID}`);
-  const right = document.querySelector(`#${RIGHT_CONTAINER_ID}`);
+  const menuIconOpen = document.querySelector(`#${MENU_ICON_ID}-open`);
+  const menuIconClose = document.querySelector(`#${MENU_ICON_ID}-close`);
 
-  if (!left || !right) {
-    return;
-  }
+  if (belowBreakpoint()) {
+    left.classList.add('width-transition');
+    left.classList.add('hidden');
+    left.classList.add('hide-after-slide');
 
-  const mediaQuery = window.matchMedia('(max-width: 1200px)');
-  const belowBreakpoint = mediaQuery.matches;
-
-  if (belowBreakpoint) {
-    left.classList.toggle(`col-${BREAKPOINT}-4`);
-    left.classList.toggle(`col-${BREAKPOINT}-12`);
-
-    right.classList.toggle(`col-${BREAKPOINT}-8`);
-    right.classList.toggle(`col-${BREAKPOINT}-12`);
-
-    left.classList.toggle('hidden');
-    right.classList.toggle('hidden');
+    menuIconOpen.classList.remove('hidden');
+    menuIconClose.classList.add('hidden');
   }
 };
 
@@ -56,21 +61,42 @@ export const listenForBreakpointChanges = () => {
   mediaQuery.addEventListener("change", (event) => {
     const left = document.querySelector(`#${LEFT_CONTAINER_ID}`);
     const right = document.querySelector(`#${RIGHT_CONTAINER_ID}`);
+    const menuIcon = document.querySelector(`#${MENU_ICON_ID}`);
+    const menuIconOpen = document.querySelector(`#${MENU_ICON_ID}-open`);
+    const menuIconClose = document.querySelector(`#${MENU_ICON_ID}-close`);
     const belowBreakpoint = event.matches;
     const aboveBreakpoint = !belowBreakpoint;
+    const desktopView = left && right && aboveBreakpoint;
+    const mobileView = left && right && belowBreakpoint;
 
-    if (left && right && aboveBreakpoint) {
+    if (desktopView) {
       left.classList.remove('hidden');
+      left.classList.remove('width-transition');
+      left.classList.remove('hide-after-slide');
+
       left.classList.remove(`col-${BREAKPOINT}-12`);
       left.classList.add(`col-${BREAKPOINT}-4`);
 
       right.classList.remove('hidden');
       right.classList.remove(`col-${BREAKPOINT}-12`);
       right.classList.add(`col-${BREAKPOINT}-8`);
-    } else if (left && right) {
+
+      menuIcon.classList.add('hidden');
+
+      menuIconOpen.classList.remove('hidden');
+      menuIconClose.classList.add('hidden');
+
+    } else if (mobileView) {
+      left.classList.add('width-transition');
       left.classList.add('hidden');
-      right.classList.toggle(`col-${BREAKPOINT}-8`);
-      right.classList.toggle(`col-${BREAKPOINT}-12`);
+      left.classList.add('hide-after-slide');
+
+      right.classList.remove(`col-${BREAKPOINT}-8`);
+      right.classList.add(`col-${BREAKPOINT}-12`);
+
+      menuIcon.classList.remove('hidden');
+      menuIconOpen.classList.remove('hidden');
+      menuIconClose.classList.add('hidden');
     }
   });
 };
