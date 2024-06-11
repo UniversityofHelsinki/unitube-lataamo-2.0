@@ -19,9 +19,13 @@ const FooterLinks = () => {
     const releaseNotes = useReleaseNotes();
     const markdownNotes = releaseNotes.map((note, index) => (
         <div key={index}>
-            <h4>{t('version_number')} {note.tag_name}</h4>
-            <h4>{t('release_date')} {modifyDate(note.released_at)}</h4>
-            <Markdown>{note.description}</Markdown>
+            <div className="header">
+                <h4>{t('version_number')} {note.tag_name}</h4>
+                <h4>{t('release_date')} {modifyDate(note.released_at)}</h4>
+            </div>
+            <div className="markdown-container">
+                <Markdown>{note.description}</Markdown>
+            </div>
         </div>
     ));
     return (
