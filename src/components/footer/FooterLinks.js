@@ -2,7 +2,7 @@ import React from 'react';
 import {useTranslation} from 'react-i18next';
 import ExternalLink from '../utilities/ExternalLink';
 import './FooterLinks.css'
-import ReactMarkdown from 'react-markdown'
+import Markdown from 'markdown-to-jsx'
 import useReleaseNotes from "../../hooks/useReleaseNotes";
 import ReleaseNotesDialog from "../dialog/ReleaseNotesDialog";
 import i18n from "i18next";
@@ -21,7 +21,7 @@ const FooterLinks = () => {
         <div key={index}>
             <h4>{t('version_number')} {note.tag_name}</h4>
             <h4>{t('release_date')} {modifyDate(note.released_at)}</h4>
-            <ReactMarkdown>{note.description}</ReactMarkdown>
+            <Markdown>{note.description}</Markdown>
         </div>
     ));
     return (
