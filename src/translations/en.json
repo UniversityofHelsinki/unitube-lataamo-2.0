@@ -168,11 +168,13 @@
   "total_connections": "???",
   "crisis_banner_heading": "",
   "crisis_banner_content": "",
-  "crisis_banner_link_location": "https://helsinki.fi",
-  "crisis_banner_link_label": "Read more",
+  "crisis_banner_link_location": "",
+  "crisis_banner_link_label": "",
   "record_has_other_contributors" : "???",
   "selected_records_has_other_contributors" : "???",
   "choose_file": "Select a file to upload.",
+  "stream-location": "???",
+  "stream-date" : "???",
   "version_number": "???",
   "release_date": "???"
 }

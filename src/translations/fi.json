@@ -353,9 +353,11 @@
   "crisis_banner_content": "",
   "crisis_banner_link_location": "",
   "crisis_banner_link_label": "",
-  "record_has_other_contributors" : "Tallenteella muita omistajia !",
-  "selected_records_has_other_contributors" : "Valituilla tallenteilla muita omistajia !",
+  "record_has_other_contributors" : "Tallenteella muita omistajia!",
+  "selected_records_has_other_contributors" : "Valituilla tallenteilla muita omistajia!",
   "choose_file": "Lisää tiedosto.",
+  "stream-location": "Tila",
+  "stream-date" : "Päivämäärä",
   "version_number": "Versionumero:",
   "release_date": "Julkaisupäivä:"
 }
