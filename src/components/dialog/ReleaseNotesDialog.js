@@ -5,8 +5,6 @@ import { useTranslation } from 'react-i18next';
 import Dialog from './Dialog';
 import './HelpDialog.css';
 
-// add useId and other changes . . .
-
 const ReleaseNotesDialog = ({ label, releaseNotes }) => {
     const [show, setShow] = useState(false);
     const { t } = useTranslation();
