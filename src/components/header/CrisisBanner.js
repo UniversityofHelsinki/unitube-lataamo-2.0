@@ -25,7 +25,7 @@ const CrisisBanner = ({
   };
 
   return (
-    <div ref={ref} className="crisis-banner-container">
+    <div ref={ref} className="crisis-banner-container" role="banner">
       <div className="crisis-banner">
         <div className="crisis-banner-warning">
           <Info />
