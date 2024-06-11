@@ -19,7 +19,7 @@ const ReleaseNotesDialog = ({ label, releaseNotes }) => {
 
     return (
         <Dialog showComponent={showLink} show={show} hide={hideDialog} aria-labelledby={headerId}>
-            <Modal.Header id={headerId} closeButton closeLabel={t('help_dialog_close_label')}>
+            <Modal.Header id={headerId} closeButton closeLabel={t('help_dialog_close_label')} >
                 {label}
             </Modal.Header>
             <Modal.Body>

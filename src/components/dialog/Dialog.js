@@ -4,8 +4,8 @@ import './Dialog.css';
 import { Modal } from 'react-bootstrap';
 
 const Dialog = React.forwardRef(({
-  showComponent, 
-  show, 
+  showComponent,
+  show,
   hide,
   children,
   closeable = true,
@@ -41,12 +41,13 @@ const Dialog = React.forwardRef(({
   return (
     <>
       {showComponent}
-      <Modal 
+      <Modal
           onKeyDown={onKeyDown}
           ref={ref}
-          show={show} 
-          onHide={hide} 
-          centered 
+          show={show}
+          onHide={hide}
+          centered
+          size="lg"
           fullscreen="md-down"
           { ...closeableProps }
           { ...rest }>
