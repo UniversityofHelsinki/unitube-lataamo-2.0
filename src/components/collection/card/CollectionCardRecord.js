@@ -4,7 +4,7 @@ import './CollectionCardRecord.css';
 import Thumbnail from "../../utilities/Thumbnail";
 import useSearchParams from "../../../hooks/useSearchParams";
 import onKeyDown from "../../accessibility/keydown";
-import { belowBreakpoint, toggleLeftSide } from '../../utilities/visibilities';
+import { belowBreakpoint, hideLeft } from '../../utilities/visibilities';
 
 const CollectionCardRecord = ({ record, containerRef }) => {
     const [searchParameters, setSearchParams] = useSearchParams();
@@ -12,7 +12,7 @@ const CollectionCardRecord = ({ record, containerRef }) => {
     const openRecord = (event) => {
         event.preventDefault();
         if (belowBreakpoint()) {
-          toggleLeftSide();
+          hideLeft();
         }
         setSearchParams({
             record: record.id

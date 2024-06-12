@@ -6,54 +6,51 @@ export const belowBreakpoint = () => {
   return mediaQuery.matches;
 };
 
+export const leftExists = () => {
+  return Boolean(document.querySelector(`#${LEFT_CONTAINER_ID}`));
+};
+
 export const leftSideIsHidden = () => {
   return document.querySelector(`#${LEFT_CONTAINER_ID}`)?.classList.contains('hidden');
 };
 
-export const toggleLeftSide = () => {
-  const left = document.querySelector(`#${LEFT_CONTAINER_ID}`);
+export const hideRight = () => {
   const right = document.querySelector(`#${RIGHT_CONTAINER_ID}`);
-  const menuIconOpen = document.querySelector(`#${MENU_ICON_ID}-open`);
-  const menuIconClose = document.querySelector(`#${MENU_ICON_ID}-close`);
-
-  if (!left || !right) {
-    return;
-  }
-
-  const willBeShown = left.classList.contains('hidden');
-  if (willBeShown) {
-    left.classList.remove('hidden');
-    right.classList.add('hidden');
-
-    menuIconOpen.classList.add('hidden');
-    menuIconClose.classList.remove('hidden');
-
-    setTimeout(
-      () => left.classList.remove('hide-after-slide')
-    );
-
-  } else {
-    left.classList.add('hide-after-slide');
-
-    menuIconClose.classList.add('hidden');
-    menuIconOpen.classList.remove('hidden');
-  }
-
+  right.classList.add("hidden");
 };
 
-export const hideLeftIfNeeded = () => {
+export const showRight = () => {
+  const right = document.querySelector(`#${RIGHT_CONTAINER_ID}`);
+  right.classList.remove("hidden");
+};
+
+export const hideLeft = () => {
   const left = document.querySelector(`#${LEFT_CONTAINER_ID}`);
+  left.classList.add('width-transition');
+  left.classList.add('hide-after-slide');
+};
+
+export const showLeft = () => {
+  const left = document.querySelector(`#${LEFT_CONTAINER_ID}`);
+  left.classList.remove("hidden");
+  hideRight();
+  setTimeout(
+    () => left.classList.remove("hide-after-slide")
+  );
+};
+
+export const showHamburgerIcon = () => {
   const menuIconOpen = document.querySelector(`#${MENU_ICON_ID}-open`);
   const menuIconClose = document.querySelector(`#${MENU_ICON_ID}-close`);
+  menuIconOpen.classList.remove('hidden');
+  menuIconClose.classList.add('hidden');
+};
 
-  if (belowBreakpoint()) {
-    left.classList.add('width-transition');
-    left.classList.add('hidden');
-    left.classList.add('hide-after-slide');
-
-    menuIconOpen.classList.remove('hidden');
-    menuIconClose.classList.add('hidden');
-  }
+export const showCloseIcon = () => {
+  const menuIconOpen = document.querySelector(`#${MENU_ICON_ID}-open`);
+  const menuIconClose = document.querySelector(`#${MENU_ICON_ID}-close`);
+  menuIconOpen.classList.add('hidden');
+  menuIconClose.classList.remove('hidden');
 };
 
 export const listenForBreakpointChanges = () => {
@@ -61,9 +58,7 @@ export const listenForBreakpointChanges = () => {
   mediaQuery.addEventListener("change", (event) => {
     const left = document.querySelector(`#${LEFT_CONTAINER_ID}`);
     const right = document.querySelector(`#${RIGHT_CONTAINER_ID}`);
-    const menuIcon = document.querySelector(`#${MENU_ICON_ID}`);
-    const menuIconOpen = document.querySelector(`#${MENU_ICON_ID}-open`);
-    const menuIconClose = document.querySelector(`#${MENU_ICON_ID}-close`);
+
     const belowBreakpoint = event.matches;
     const aboveBreakpoint = !belowBreakpoint;
     const desktopView = left && right && aboveBreakpoint;
@@ -81,11 +76,6 @@ export const listenForBreakpointChanges = () => {
       right.classList.remove(`col-${BREAKPOINT}-12`);
       right.classList.add(`col-${BREAKPOINT}-8`);
 
-      menuIcon.classList.add('hidden');
-
-      menuIconOpen.classList.remove('hidden');
-      menuIconClose.classList.add('hidden');
-
     } else if (mobileView) {
       left.classList.add('width-transition');
       left.classList.add('hidden');
@@ -94,9 +84,6 @@ export const listenForBreakpointChanges = () => {
       right.classList.remove(`col-${BREAKPOINT}-8`);
       right.classList.add(`col-${BREAKPOINT}-12`);
 
-      menuIcon.classList.remove('hidden');
-      menuIconOpen.classList.remove('hidden');
-      menuIconClose.classList.add('hidden');
     }
   });
 };

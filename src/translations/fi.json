@@ -359,5 +359,8 @@
   "selected_records_has_other_contributors" : "Valituilla tallenteilla muita omistajia!",
   "choose_file": "Lisää tiedosto.",
   "stream-location": "Tila",
-  "stream-date" : "Päivämäärä"
+  "stream-date" : "Päivämäärä",
+  "version_number": "Versionumero:",
+  "release_date": "Julkaisupäivä:",
+  "no_new_releases": "Ei uusia julkaisuja"
 }

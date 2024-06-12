@@ -16,6 +16,6 @@
 }
 
 .card-tag.badge.bg-light {
-  color: var(--hy-silver);
+  color: var(--hy-light-gray);
   border: 1px solid;
 }

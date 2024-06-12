@@ -159,5 +159,8 @@
   "crisis_banner_link_label": "",
   "choose_file": "Select a file to upload.",
   "stream-location": "???",
-  "stream-date" : "???"
+  "stream-date" : "???",
+  "version_number": "???",
+  "release_date": "???",
+  "no_new_releases": "???"
 }

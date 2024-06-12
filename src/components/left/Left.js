@@ -19,7 +19,7 @@ import useCollectionSort, {defaultCriterias as collectionsDefaultCriterias}  fro
 import useRecordTagFilter from '../../hooks/record/useRecordTagFilter';
 import useRecordSearch from '../../hooks/record/useRecordSearch';
 import useCollectionSearch from '../../hooks/collection/useCollectionSearch';
-import { belowBreakpoint, toggleLeftSide } from '../utilities/visibilities';
+import { belowBreakpoint, hideLeft, showRight } from '../utilities/visibilities';
 import useCollectionTagFilter from '../../hooks/collection/useCollectionTagFilter';
 import ListActions from './ListActions';
 import PropTypes from "prop-types";
@@ -158,7 +158,7 @@ const Left = () => {
     const onRecordCardClick = (record) => {
         setSearchParams({ 'record': record.identifier });
         if (belowBreakpoint()) {
-          toggleLeftSide();
+          hideLeft();
         }
     };
 
@@ -169,14 +169,14 @@ const Left = () => {
             'end_before_timestamp': statistic.end_before_timestamp
         });
         if (belowBreakpoint()) {
-          toggleLeftSide();
+          hideLeft();
         }
     };
 
     const onCollectionCardClick = (collection) => {
         setSearchParams({ 'collection': collection.identifier });
         if (belowBreakpoint()) {
-          toggleLeftSide();
+          hideLeft();
         }
     };
 
