@@ -47,11 +47,16 @@ const useCollectionDropdown = (load = false) => {
     }
   }, [collectionDropDown, load, dispatch]);
 
+  const reload = () => {
+    alreadyLoading = false;
+    dispatch({ type: 'SET_COLLECTION_DROPDOWN' });
+  };
+
   const loading = !collectionDropDown;
   let title = `inbox ${user.eppn}`; //move inbox ${user.eppn} collection first in dropdownlist
   let sortedCollectionDropDown = sortedCollection?.sort((x,y) => { return x.title == title ? -1 : y.title == title ? 1 : 0; });
 
-  return [sortedCollectionDropDown, loading];
+  return [sortedCollectionDropDown, loading, reload];
 };
 
 export default useCollectionDropdown;
