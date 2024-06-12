@@ -11,7 +11,7 @@ const useMediaQuery = (query) => {
     setMediaQuery({ matches: registeredQuery.matches });
   }
 
-  return mediaQuery;
+  return mediaQuery || window.matchMedia(query);
 };
 
 export default useMediaQuery;
