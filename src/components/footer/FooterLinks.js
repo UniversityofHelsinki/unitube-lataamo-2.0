@@ -13,7 +13,7 @@ const FooterLinks = () => {
             <li><ExternalLink to="#" label={t('hy_lataamo_instructions_link')} /></li>
             <li><ExternalLink to="#" label={t('hy_unitube_katsomo_link')} /></li>
             <li><ExternalLink to="#" label={t('hy_accessibility_statement')} /></li>
-            <li><ReleaseNotesDialog label={t('release_notes_help_label')} /></li> /
+            <li><ReleaseNotesDialog label={t('release_notes_help_label')} /></li>
         </ul>
     );
 };
