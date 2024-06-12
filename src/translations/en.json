@@ -174,5 +174,20 @@
   "selected_records_has_other_contributors" : "???",
   "choose_file": "Select a file to upload.",
   "stream-location": "???",
-  "stream-date" : "???"
+  "stream-date" : "???",
+  "footer_lataamo_feedback": "Give feedback",
+  "footer_accessibility_statement_link_label": "Accessibility statement",
+  "footer_unitube_katsomo_link_label": "Unitube video gallery",
+  "footer_unitube_katsomo_link": "https://www.helsinki.fi/en/news/unitube",
+  "footer_lataamo_instructions_link_label": "Instructions",
+  "footer_lataamo_instructions_link": "https://helpdesk.it.helsinki.fi/en/instructions/collaboration-and-publication/unitube/unitube-uploader",
+  "footer_terms_of_use_link_label": "Terms of Use",
+  "footer_terms_of_use_link": "https://www.helsinki.fi/en/center-information-technology/it-security-university/terms-use-services/unitube-service-terms-use",
+  "footer_contact_info_link_label": "Contact information",
+  "footer_contact_info_link": "https://helpdesk.it.helsinki.fi/en/instructions/support-and-guidance/helpdesk/how-contact-it-helpdesk",
+  "footer_hy": "University of Helsinki",
+  "footer_hy_address_line_1": "PO Box 4 (Yliopistonkatu 3)",
+  "footer_hy_address_line_2": "FI-00014 University of Helsinki",
+  "footer_hy_phone_switchboard": "Telephone exchange: +358 (0)2 941 911",
+  "footer_hy_maintenance": "The maintenance window for the Unitube Uploader is every Tuesday between 8.00-10.00 A.M. Small delays can occur during those times!"
 }

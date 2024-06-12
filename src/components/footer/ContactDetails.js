@@ -1,24 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './ContactDetails.css';
+import { useTranslation } from 'react-i18next';
 
 const ContactDetails = () => {
+    const { t } = useTranslation();
   return (
     <>
       <p>
         <strong>
-          Helsingin yliopisto
+            {t('footer_hy')}
         </strong>
       </p>
       <p>
-        PL 4 (Yliopistonkatu 3)
-        00014 Helsingin yliopisto
+          {t('footer_hy_address_line_1')}
+          <br />
+          {t('footer_hy_address_line_2')}
       </p>
       <p>
-        Puhelinvaihde: 02941 911
+          {t('footer_hy_phone_switchboard')}
       </p>
       <p>
-        Unitube-lataamon huoltoikkuna on tiistaisin klo 8.00–10.00. Palvelussa saattaa tuolloin ilmetä pieniä häiriöitä!
+          {t('footer_hy_maintenance')}
       </p>
     </>
   );

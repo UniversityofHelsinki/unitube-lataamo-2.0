@@ -7,15 +7,14 @@ import './ExternalLink.css';
 const ExternalLink = ({ to, label, fill, height = 12, width = 12 }) => {
   return (
     <>
-      <a href={to} target="_blank" style={{ paddingRight: '8px' }}>{label}</a>
-      <ExternalLinkIcon height={height} width={width} fill={fill || Colors.white} />
+      <a href={to} target="_blank" rel="noreferrer noopener" style={{ paddingRight: '8px' }}>{label}</a>
+        <ExternalLinkIcon height={height} width={width} fill={fill || Colors.white} />
     </>
   );
-    
 };
 
 ExternalLink.propTypes = {
-  to: PropTypes.string.isRequired,
+    to: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   fill: PropTypes.string,
   height: PropTypes.number,
