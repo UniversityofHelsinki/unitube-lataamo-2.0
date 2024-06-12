@@ -89,7 +89,7 @@ const NewRecord = () => {
     [ProgressStatus.NEW_RECORD.DONE]: true,
   }[progress.status] || false;
 
-  const touched = modified && progress.status !== ProgressStatus.NEW_RECORD.DONE;
+  const touched = modified && progress.status !== ProgressStatus.NEW_RECORD.PROCESSING && progress.status !== ProgressStatus.NEW_RECORD.PROCESSING_SUBTITLES && progress.status !== ProgressStatus.NEW_RECORD.DONE;
 
   return (
     <FormDialog touched={touched} closeable={closeable} showComponent={theButton} show={showDialog} hide={hide}>
