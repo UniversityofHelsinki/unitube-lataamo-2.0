@@ -3,7 +3,7 @@ import './HeaderMenu.css';
 import {ReactComponent as Remove} from '../utilities/icons/remove.svg';
 import {ReactComponent as Hamburger} from "../utilities/icons/hamburger.svg";
 import {useTranslation} from 'react-i18next';
-import { hideLeft, leftSideIsHidden, showLeft } from '../utilities/visibilities';
+import { hideLeft, leftExists, leftSideIsHidden, showCloseIcon, showHamburgerIcon, showLeft } from '../utilities/visibilities';
 import { MENU_ICON_ID } from '../../Constants';
 import useBreakpoint from '../../hooks/useBreakpoint';
 
@@ -16,8 +16,10 @@ const HeaderMenu = () => {
         e.preventDefault();
         if (leftSideIsHidden()) {
           showLeft();
+          showCloseIcon();
         } else {
           hideLeft();
+          showHamburgerIcon();
         }
     };
 
@@ -30,7 +32,6 @@ const HeaderMenu = () => {
         <button onClick={onClick}>
           <div 
             id={`${MENU_ICON_ID}-open`}
-            className={leftSideIsHidden() ? '' : 'hidden'}
           >
             <Hamburger 
               title={t('header_menu_show_menu_title')} 
@@ -40,7 +41,7 @@ const HeaderMenu = () => {
           </div>
           <div 
             id={`${MENU_ICON_ID}-close`}
-            className={leftSideIsHidden() ? 'hidden' : ''}
+            className="hidden"
           >
             <Remove 
               title={t('header_menu_hide_menu_title')} 

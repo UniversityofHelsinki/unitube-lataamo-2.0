@@ -13,7 +13,7 @@ import useHistory from './hooks/useHistory';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { KNOWN_LOCATIONS, LANGUAGES, LEFT_CONTAINER_ID, RIGHT_CONTAINER_ID } from './Constants';
-import { belowBreakpoint, hideLeft, hideRight, showCloseIcon, showHamburgerIcon, showRight } from './components/utilities/visibilities';
+import { hideRight, showCloseIcon, showHamburgerIcon, showRight } from './components/utilities/visibilities';
 import useLocalStorage from './hooks/useLocalStorage';
 import { useTranslation } from 'react-i18next';
 import useBreakpoint from './hooks/useBreakpoint';

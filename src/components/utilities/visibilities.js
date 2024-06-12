@@ -6,6 +6,10 @@ export const belowBreakpoint = () => {
   return mediaQuery.matches;
 };
 
+export const leftExists = () => {
+  return Boolean(document.querySelector(`#${LEFT_CONTAINER_ID}`));
+};
+
 export const leftSideIsHidden = () => {
   return document.querySelector(`#${LEFT_CONTAINER_ID}`)?.classList.contains('hidden');
 };
