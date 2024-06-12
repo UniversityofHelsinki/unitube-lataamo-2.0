@@ -130,3 +130,5 @@ export const MENU_ICON_ID = 'header-menu-icon';
 
 export const JOB_TYPES_TRANSCRIPTION = 'transcription';
 export const JOB_STATUS_STARTED = 'STARTED';
+
+export const MOODLE_NUMBER_LIMIT = 20;
