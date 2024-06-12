@@ -17,7 +17,7 @@ const RecordFile = ({ message, onChange, disabled = false }) => {
       <Row>
         <Col>
           <FormElementHeader 
-            componentId={id}
+            id={id}
             helpDialog={(
               <HelpDialog label={t('record_upload_help_label')} >
                 {t('record_upload_help_content')}
@@ -28,7 +28,7 @@ const RecordFile = ({ message, onChange, disabled = false }) => {
       </Row>
       <Row>
         <Col>
-          <InputField id={id} onChange={(e) => onChange(e.target.files[0])} type="file" message={message} accept={ACCEPTED_MIME_TYPES} disabled={disabled} aria-label={t('choose_file')} aria-required />
+          <InputField aria-labelledby={id} onChange={(e) => onChange(e.target.files[0])} type="file" message={message} accept={ACCEPTED_MIME_TYPES} disabled={disabled} aria-label={t('choose_file')} aria-required />
         </Col>
       </Row>
 

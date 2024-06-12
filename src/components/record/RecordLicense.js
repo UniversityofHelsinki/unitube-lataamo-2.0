@@ -32,7 +32,7 @@ const RecordLicense = ({ license, onChange, message, disabled = false }) => {
       <Row>
         <Col>
           <FormElementHeader 
-            componentId={id}
+            id={id}
             helpDialog={(
               <HelpDialog label={t('record_license_help_label')} >
                 {t('record_license_help_content')}
@@ -45,7 +45,7 @@ const RecordLicense = ({ license, onChange, message, disabled = false }) => {
       </Row>
       <Row>
         <Col>
-          <DropDown id={id} value={license} onChange={(e) => onChange(e.target.value)} options={licenses.map(asOption)} message={message} disabled={disabled} aria-required />
+          <DropDown aria-labelledby={id} value={license} onChange={(e) => onChange(e.target.value)} options={licenses.map(asOption)} message={message} disabled={disabled} aria-required />
         </Col>
       </Row>
     </Container>

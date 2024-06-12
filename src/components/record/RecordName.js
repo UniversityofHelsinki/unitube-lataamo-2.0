@@ -21,7 +21,7 @@ const RecordName = ({ name, onChange, message, disabled = false }) => {
                 <Row>
                     <Col>
                         <FormElementHeader 
-                          componentId={id}
+                          id={id}
                           helpDialog={(
                             <HelpDialog  label={t('record_name_help_label')} >
                               {t('record_name_help_content')}
@@ -34,7 +34,7 @@ const RecordName = ({ name, onChange, message, disabled = false }) => {
                 </Row>
                 <Row>
                     <Col>
-                        <InputField value={name} placeholder={t('record_form_name_placeholder')} onChange={(e) => onChange(e.target.value)} message={message} disabled={disabled} id={id} aria-required />
+                        <InputField value={name} placeholder={t('record_form_name_placeholder')} onChange={(e) => onChange(e.target.value)} message={message} disabled={disabled} aria-labelledby={id} aria-required />
                     </Col>
                 </Row>
             </Form.Group>

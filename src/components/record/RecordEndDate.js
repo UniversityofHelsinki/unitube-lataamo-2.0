@@ -26,7 +26,7 @@ const RecordEndDate = ({ endDate, onChange, message, disabled = false }) => {
       <Row>
         <Col>
           <FormElementHeader 
-            componentId={id}
+            id={id}
             helpDialog={(
               <HelpDialog label={t('record_end_date_help_label')}>
                 {t('record_end_date_help_content')}
@@ -47,7 +47,7 @@ const RecordEndDate = ({ endDate, onChange, message, disabled = false }) => {
             onChange={onChange}
             message={message}
             disabled={disabled}
-            id={id}
+            ariaLabelledBy={id}
             aria-required
           />
         </Col>

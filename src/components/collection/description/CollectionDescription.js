@@ -21,7 +21,7 @@ const CollectionDescription = ({ description, onChange, message, disabled }) => 
                 <Row>
                     <Col>
                         <FormElementHeader 
-                          componentId={id}
+                          id={id}
                           helpDialog={(
                             <HelpDialog label={t('collection_form_description_help_label')}>
                               {t('collection_form_description_help_content')}
@@ -34,7 +34,7 @@ const CollectionDescription = ({ description, onChange, message, disabled }) => 
                 </Row>
                 <Row>
                     <Col>
-                        <TextArea id={id} value={description} onChange={changeDescription} message={message} disabled={disabled} aria-required />
+                        <TextArea aria-labelledby={id} value={description} onChange={changeDescription} message={message} disabled={disabled} aria-required />
                     </Col>
                 </Row>
             </Form.Group>

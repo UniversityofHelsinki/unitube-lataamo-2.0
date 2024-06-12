@@ -36,7 +36,7 @@ const RecordCollections = ({ collection, onChange, message, disabled = false, sh
               <Row>
                   <Col className="record-collections-col">
                       <FormElementHeader 
-                        componentId={id}
+                        id={id}
                         helpDialog={(
                           <HelpDialog label={t('record_collections_help_label')}>
                             {t('record_collections_help_content')}
@@ -62,7 +62,6 @@ const RecordCollections = ({ collection, onChange, message, disabled = false, sh
               <Row>
                   <Col>
                       <DropDown 
-                        id={id}
                         aria-labelledby={id}
                         onChange={(e) => onChange(e.target.value)}
                         options={
