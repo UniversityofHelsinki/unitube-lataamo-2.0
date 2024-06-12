@@ -42,15 +42,15 @@ export const showLeft = () => {
 export const showHamburgerIcon = () => {
   const menuIconOpen = document.querySelector(`#${MENU_ICON_ID}-open`);
   const menuIconClose = document.querySelector(`#${MENU_ICON_ID}-close`);
-  menuIconOpen.classList.remove('hidden');
-  menuIconClose.classList.add('hidden');
+  menuIconOpen?.classList.remove('hidden');
+  menuIconClose?.classList.add('hidden');
 };
 
 export const showCloseIcon = () => {
   const menuIconOpen = document.querySelector(`#${MENU_ICON_ID}-open`);
   const menuIconClose = document.querySelector(`#${MENU_ICON_ID}-close`);
-  menuIconOpen.classList.add('hidden');
-  menuIconClose.classList.remove('hidden');
+  menuIconOpen?.classList.add('hidden');
+  menuIconClose?.classList.remove('hidden');
 };
 
 export const listenForBreakpointChanges = () => {
