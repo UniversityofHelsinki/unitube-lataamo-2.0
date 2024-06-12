@@ -163,7 +163,6 @@
   "version_number": "???",
   "release_date": "???",
   "no_new_releases": "???",
-  "stream-date" : "???",
   "footer_lataamo_feedback": "Ge respons",
   "footer_accessibility_statement_link_label": "Tillgänglighetsutlåtande",
   "footer_unitube_katsomo_link_label": "Unitube-uppspelningssajt",
@@ -178,5 +177,6 @@
   "footer_hy_address_line_1": "PB 4 (Universitetsgatan 3)",
   "footer_hy_address_line_2": "00014 Helsingfors universitet",
   "footer_hy_phone_switchboard": "Telefonväxel: 02941 911",
-  "footer_hy_maintenance": "Underhållsfönstret för Unitube är varje tisdag kl. 8.00–10.00. Små störningar kan förekomma under tiden!"
+  "footer_hy_maintenance": "Underhållsfönstret för Unitube är varje tisdag kl. 8.00–10.00. Små störningar kan förekomma under tiden!",
+  "footer_release_notes_label": "Release information"
 }
