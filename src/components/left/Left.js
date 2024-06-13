@@ -61,18 +61,9 @@ const NoStatistics = () => {
     );
 };
 
-const userScrolledDown = (previous, current, threshold) => {
-  return current - previous > threshold;
-};
-
-const userScrolledUp = (previous, current, threshold) => {
-  return previous - current > threshold;
-};
-
 const Left = () => {
     const [path] = useLocation();
     const scrollTop = useRef(0);
-    const upside = useRef();
 
     const [recordOptions, setRecordOptions] = useState({
         searchValue: '',
@@ -299,39 +290,13 @@ const Left = () => {
         }
     };
 
-  const hideUpSide = (event) => {
-    if (scrollTop.current > event.target.scrollHeight) {
-      scrollTop.current = 0;
-    }
-
-    const previousScrollTop = scrollTop.current;
-    const currentScrollTop = event.target.scrollTop;
-
-    const threshold = 50;
-
-    if (userScrolledDown(previousScrollTop, currentScrollTop, threshold)) {
-      if (upside.current && belowBreakpoint()) {
-        upside.current.classList.add("hidden");
-      }
-    } else if (userScrolledUp(previousScrollTop, currentScrollTop, threshold)) {
-      if (upside.current) {
-        upside.current.classList.remove("hidden");
-      }
-    }
-
-    const scrolledEnough = Math.abs(previousScrollTop - currentScrollTop) >= threshold;
-    if (scrolledEnough) {
-      scrollTop.current = currentScrollTop;
-    }
-  };
-
   return (
       <div className="left">
         <div className="left-navigation">
           <Navigation />
         </div>
         <div className="left-content" ref={listRef}>
-          <div ref={upside}>
+          <div>
             {actionElement[path]}
           </div>
           <div className="left-content-list-actions">

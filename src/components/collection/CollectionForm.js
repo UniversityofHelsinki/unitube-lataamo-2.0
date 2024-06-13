@@ -82,6 +82,10 @@ const CollectionForm = () => {
     undo();
   };
 
+  const breadcrumb = (
+    <CollectionsBreadCrumb collection={originalCollection || {}} />
+  );
+
   return (
     <form onSubmit={saveCollection}>
       <Container className="collection-container">
@@ -90,18 +94,13 @@ const CollectionForm = () => {
             <Col>
               <Container className="collection-form ps-0">
                 <Row className="top-row-container">
-                  <div className="top-row-container-div">
-                    <div>
-                      <CollectionsBreadCrumb collection={originalCollection || {}} />
-                    </div>
-                    <div>
-                      <TopRow>
-                        <ListReloadButton onClick={reload} />
-                        <CardTags tags={[ ...tags ]} />
-                        {!collectionHasRecords && <CollectionActions collection={collection} />}
-                      </TopRow>
-                    </div>
-                  </div>
+                  <Col className="p-0">
+                    <TopRow breadcrumb={breadcrumb}>
+                      <ListReloadButton onClick={reload} />
+                      <CardTags tags={[ ...tags ]} />
+                      {!collectionHasRecords && <CollectionActions collection={collection} disabled={saveInProgress} />}
+                    </TopRow>
+                  </Col>
                 </Row>
                 <Row className="mb-2">
                   <Col className="ps-1">

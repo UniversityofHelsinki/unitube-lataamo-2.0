@@ -16,6 +16,7 @@ import useCollectionSave from '../../hooks/collection/useCollectionSave';
 import { ProgressStatus } from '../../Constants';
 import useCollectionValidation from '../../hooks/validation/collection/useCollectionValidation';
 import HyButton from '../utilities/HyButton';
+import useCollectionDropdown from '../../hooks/collection/useCollectionDropdown';
 
 const NewCollection = () => {
   const { t } = useTranslation();
@@ -25,6 +26,7 @@ const NewCollection = () => {
   const [isValid, messages, validate] = useCollectionValidation([
     'title', 'description', 'published',
   ]);
+  const [_collectionDropDown, _loading, reloadCollectionDropdown] = useCollectionDropdown(true);
 
   const defaultPersons = [user.eppn];
   const emptyCollection = {
@@ -63,6 +65,7 @@ const NewCollection = () => {
     undo();
     resetProgress();
     setShowForm(false);
+    reloadCollectionDropdown();
   };
 
   const tryAgain = save;

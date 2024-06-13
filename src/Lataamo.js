@@ -48,7 +48,7 @@ const Lataamo = () => {
   }
 
   const hideAfterSlide = (event) => {
-    if (event.propertyName === 'width') {
+    if (event.propertyName === 'width' && belowBreakpoint) {
       const leftWillBeHidden = event.target.classList.contains('hide-after-slide');
       if (leftWillBeHidden) {
         event.target.classList.add('hidden');
