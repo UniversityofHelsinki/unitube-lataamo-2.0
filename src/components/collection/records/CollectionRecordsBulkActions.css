@@ -1,6 +1,7 @@
 .collection-records-bulk-actions {
   display: flex;
   align-items: center;
+  overflow: auto;
 }
 
 .collection-records-bulk-actions > span:first-of-type {
