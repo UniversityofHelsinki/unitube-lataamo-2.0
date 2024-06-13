@@ -16,4 +16,5 @@ a.crumb:hover {
 .crumb-heading {
   font-size: 1em;
   display: inline;
+  word-break: break-all;
 }
