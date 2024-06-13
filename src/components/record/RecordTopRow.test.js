@@ -9,7 +9,10 @@ it('renders', () => {
       <RecordTopRow record={{ 
         deletionDate: new Date().toISOString(),
         title: 'asdf',
-        isPartOf: 'asd'
+        isPartOf: 'asd',
+        series: {
+          title: 'asdf'
+        }
       }} />
     </MockProvider>
   );
