@@ -15,7 +15,7 @@
   width: 100%;
   margin-left: 10px;
   margin-right: 10px;
-  margin-bottom: 1em;
+  margin-bottom: 4px;
 }
 
 .top-row-container {
@@ -23,12 +23,5 @@
   top: 0px;
   background-color: var(--hy-white);
   z-index: 1;
-}
-
-.top-row-container-div {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
 }
 
