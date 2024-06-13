@@ -193,5 +193,6 @@
   "footer_hy_address_line_2": "FI-00014 University of Helsinki",
   "footer_hy_phone_switchboard": "Telephone exchange: +358 (0)2 941 911",
   "footer_hy_maintenance": "The maintenance window for the Unitube Uploader is every Tuesday between 8.00-10.00 A.M. Small delays can occur during those times!",
-  "footer_release_notes_label": "Release information"
+  "footer_release_notes_label": "Release information",
+  "opens_in_new_tab": "Opens in new tab"
 }

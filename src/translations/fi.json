@@ -379,5 +379,6 @@
   "footer_hy_address_line_2": "00014 Helsingin yliopisto",
   "footer_hy_phone_switchboard": "Puhelinvaihde: 02941 911",
   "footer_hy_maintenance": "Unitube-lataamon huoltoikkuna on tiistaisin klo 8.00–10.00. Palvelussa saattaa tuolloin ilmetä pieniä häiriöitä!",
-  "footer_release_notes_label": "Julkaisutiedot"
+  "footer_release_notes_label": "Julkaisutiedot",
+  "opens_in_new_tab": "Avautuu uuteen välilehteen"
 }

@@ -7,7 +7,7 @@ import './Feedback.css';
 const Feedback = ({ to, label, fill, height = 12, width = 12 }) => {
     return (
         <>
-            <a href={to} target="_blank" rel="noreferrer noopener" style={{ paddingRight: '8px' }}>{label}</a>
+            <a href={to} aria-haspopup="dialog" target="_blank" rel="noreferrer noopener" style={{ paddingRight: '8px' }}>{label}</a>
             <FeedbackIcon className="footer-feedback-icon" height={height} width={width} fill={fill || Colors.white} />
         </>
     );
