@@ -54,7 +54,7 @@ const MoveRecordsDialog = ({ records = [] }) => {
       progressBarProps={progressBarProps}
     >
       <RecordCollections
-        collection={collection || records[0]?.is_part_of}
+        collection={collection || records[0]?.is_part_of || ''}
         onChange={(collection) => setCollection(collection)}
         message={null}
         disabled={currentState === 'in_progress'} 
