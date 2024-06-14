@@ -1,5 +1,5 @@
 import React from 'react';
-import { ResponsiveContainer, LineChart, XAxis, YAxis, CartesianGrid, Line, Tooltip } from 'recharts';
+import {ResponsiveContainer, LineChart, XAxis, YAxis, CartesianGrid, Line, Tooltip, Label} from 'recharts';
 import {useTranslation} from "react-i18next";
 import './CustomLineChart.css'
 
@@ -68,6 +68,7 @@ const getProcessedTicks = (minData, maxData) => {
  * @returns {JSX.Element} - The line chart component.
  */
 const CustomLineChart = ({ processedStatistics }) => {
+    const { t } = useTranslation();
     const yAxisData = processedStatistics.map((item) => item.totalConnections);
     const minData = Math.min(...yAxisData);
     const maxData = Math.max(...yAxisData);
@@ -77,10 +78,14 @@ const CustomLineChart = ({ processedStatistics }) => {
             <LineChart data={processedStatistics}>
                 <XAxis
                     dataKey="timestamp"
+                    height={50}
                     tickFormatter={formatTime}
-                    minTickGap={60}
-                />
-                <YAxis dataKey="totalConnections" ticks={ticks} />
+                    minTickGap={60}>
+                    <Label value={(t('timestamp'))} position="insideBottom" />
+                </XAxis>
+                <YAxis dataKey="totalConnections" ticks={ticks}>
+                    <Label value={t('total_connections')} angle={-90} style={{ textAnchor: 'middle' }}  position="insideLeft" />
+                </YAxis>
                 <CartesianGrid stroke="#ccc" />
                 <Line
                     type="monotone"

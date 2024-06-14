@@ -365,5 +365,22 @@
   "stream-date" : "Päivämäärä",
   "version_number": "Versionumero:",
   "release_date": "Julkaisupäivä:",
-  "no_new_releases": "Ei uusia julkaisuja"
+  "no_new_releases": "Ei uusia julkaisuja",
+  "footer_lataamo_feedback": "Anna palautetta",
+  "footer_accessibility_statement_link_label": "Saavutettavuusseloste",
+  "footer_unitube_katsomo_link_label": "Unitube-katsomo",
+  "footer_unitube_katsomo_link": "https://www.helsinki.fi/fi/ajankohtaista/unitube",
+  "footer_lataamo_instructions_link_label": "Unitube-lataamon käyttöohje",
+  "footer_lataamo_instructions_link": "https://helpdesk.it.helsinki.fi/ohjeet/yhteydenpito-ja-julkaiseminen/unitube/unitube-lataamo",
+  "footer_terms_of_use_link_label": "Käyttöehdot",
+  "footer_terms_of_use_link": "https://www.helsinki.fi/fi/tietotekniikkakeskus/tietoturva-yliopistolla/palvelujen-kayttosaannot/unitube-palvelun-kayttoehdot",
+  "footer_contact_info_link_label": "Yhteystiedot",
+  "footer_contact_info_link": "https://helpdesk.it.helsinki.fi/ohjeet/tuki-ja-neuvonta/it-helpdesk/nain-saat-yhteyden-it-helpdeskiin",
+  "footer_hy": "Helsingin yliopisto",
+  "footer_hy_address_line_1": "PL 4 (Yliopistonkatu 3)",
+  "footer_hy_address_line_2": "00014 Helsingin yliopisto",
+  "footer_hy_phone_switchboard": "Puhelinvaihde: 02941 911",
+  "footer_hy_maintenance": "Unitube-lataamon huoltoikkuna on tiistaisin klo 8.00–10.00. Palvelussa saattaa tuolloin ilmetä pieniä häiriöitä!",
+  "footer_release_notes_label": "Julkaisutiedot",
+  "opens_in_new_tab": "Avautuu uuteen välilehteen"
 }
