@@ -7,6 +7,8 @@ import './HelpDialog.css';
 import useReleaseNotes from "../../hooks/useReleaseNotes";
 import Markdown from "markdown-to-jsx";
 import i18n from "i18next";
+import { ReactComponent as InfoDialog } from '../utilities/icons/info-dialog-inverted-colors.svg';
+
 
 const modifyDate = (releaseDate) => {
     const formattedDate = new Intl.DateTimeFormat(i18n.language, {
@@ -40,7 +42,12 @@ const ReleaseNotesDialog = ({ label }) => {
     const hideDialog = () => setShow(false);
     const toggle = () => setShow(!show);
 
-    const showLink = <Button variant="link" onClick={toggle} className="p-0 help-dialog-button link-light" aria-haspopup="dialog">{label}</Button>;
+    const showLink = <Button variant="link" onClick={toggle} className="p-0 help-dialog-button link-light"
+                             aria-haspopup="dialog" title={label}>
+        <span>{label}</span>
+        <span className="mx-1"></span>
+        <InfoDialog width="1em" height="1em"/>
+    </Button>;
 
     return (
         <Dialog showComponent={showLink} show={show} hide={hideDialog} aria-labelledby={headerId}>

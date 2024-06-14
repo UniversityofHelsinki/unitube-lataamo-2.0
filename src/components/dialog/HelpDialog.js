@@ -51,7 +51,7 @@ const HelpDialog = ({ label, children }) => {
 
   const hideDialog = () => setShow(false);
   const toggle = () => setShow(!show);
-  
+
   const headerId = useId();
 
   const showLink = <Button variant="link" onClick={toggle} className="p-0 help-dialog-button" aria-haspopup="dialog" title={label}>
