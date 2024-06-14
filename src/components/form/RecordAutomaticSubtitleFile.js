@@ -62,14 +62,16 @@ const RecordAutomaticSubtitle = ({ onChange, message, disabled = false, value = 
             </Row>
             <Row>
                 <Col>
-                    <FormElementHeader componentId={id}>{t('record_automatic_subtitle_language_model_header')}</FormElementHeader>
-                </Col>
-            </Row>
-            <Row className="mb-3">
-                <Col>
-                    <HelpDialog label={t('record_automatic_subtitle_help_label')} >
-                        {t('record_automatic_subtitle_help_label_content')}
-                    </HelpDialog>
+                    <FormElementHeader 
+                      componentId={id}
+                      helpDialog={(
+                        <HelpDialog label={t('record_automatic_subtitle_help_label')} >
+                          {t('record_automatic_subtitle_help_label_content')}
+                        </HelpDialog>
+                      )}
+                    >
+                      {t('record_automatic_subtitle_language_model_header')}
+                    </FormElementHeader>
                 </Col>
             </Row>
             <Row>

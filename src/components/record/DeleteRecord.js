@@ -102,16 +102,15 @@ const DeleteRecord = ({ record, showLabel = true, reloadCollectionOnRemove = fal
             <Container>
               <Row>
                 <Col>
-                  <ElementHeader label={t('delete_record_form_body_header')}>
+                  <ElementHeader 
+                    helpDialog={(
+                      <HelpDialog label={t('delete_record_form_help_header')}>
+                        {t('delete_record_form_help_content')}
+                      </HelpDialog>
+                    )}
+                    >
                     {t('delete_record_form_body_header')}
                   </ElementHeader>
-                </Col>
-              </Row>
-              <Row className="mb-3">
-                <Col>
-                  <HelpDialog label={t('delete_record_form_help_header')}>
-                    {t('delete_record_form_help_content')}
-                  </HelpDialog>
                 </Col>
               </Row>
               <Row>

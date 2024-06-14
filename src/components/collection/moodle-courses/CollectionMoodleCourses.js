@@ -71,20 +71,22 @@ const CollectionMoodleCourses = ({ moodleNumbers = [], onMoodleNumberChange, dis
         <Container className="collection-moodle-courses ps-0">
             <Row>
               <Col>
-                <FormElementHeader componentId={id}>{t('collection_moodle_courses_form_header')}</FormElementHeader>
+                <FormElementHeader 
+                  id={id}
+                  helpDialog={(
+                    <HelpDialog label={t('collection_moodle_courses_help_label')}>
+                      {t('collection_moodle_courses_help_content')}
+                    </HelpDialog>
+                  )}
+                >
+                  {t('collection_moodle_courses_form_header')}
+                </FormElementHeader>
               </Col>
-            </Row>
-            <Row className="mb-3">
-                <Col>
-                  <HelpDialog label={t('collection_moodle_courses_help_label')}>
-                    {t('collection_moodle_courses_help_content')}
-                  </HelpDialog>
-                </Col>
             </Row>
             <Row className="mb-2">
                 <Col>
                   <div className="collection-moodle-courses-input">
-                    <InputField id={id} type={'text'} placeholder={t('moodle_course_placeholder')} value={value || ''} onChange={handleMoodleInputChange} disabled={disabled || moodleNumberLimitExceeded} onKeyDown={onEnterAddMoodleCourse} hideMessage={true} />
+                    <InputField aria-labelledby={id} type={'text'} label={t('aaa')} placeholder={t('moodle_course_placeholder')} value={value || ''} onChange={handleMoodleInputChange} disabled={disabled} onKeyDown={onEnterAddMoodleCourse} hideMessage={true} />
                     <HyButton variant="primary" className="collection-moodle-courses-add-button" onClick={addMoodleCourse} disabled={!inputFieldContainsValidMoodleCourse}>{t('collection_moodle_courses_add_button')}</HyButton>
                   </div>
                 </Col>

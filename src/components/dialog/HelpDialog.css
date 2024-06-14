@@ -5,6 +5,7 @@
 
 .help-dialog-fallback-container {
   position: absolute;
+  right: 0;
 }
 
 .help-dialog-fallback-container .container {
