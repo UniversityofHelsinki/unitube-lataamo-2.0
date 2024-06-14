@@ -1,7 +1,7 @@
 import React, { useId, useState } from 'react';
-import PropTypes, {number} from 'prop-types';
+import PropTypes from 'prop-types';
 import './CollectionMoodleCourses.css';
-import {Button, Col, Container, Row} from 'react-bootstrap';
+import {Col, Container, Row} from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as CourseIcon } from '../../utilities/icons/opinder-logo.svg';
 import FormElementHeader from '../../form/FormElementHeader';
@@ -93,7 +93,7 @@ const CollectionMoodleCourses = ({ moodleNumbers = [], onMoodleNumberChange, dis
             </Row>
             <Row>
               <Col>
-                {tooManyMoodleNumbers}
+                  <span aria-live="polite"> {tooManyMoodleNumbers} </span>
               </Col>
             </Row>
             <Row>
