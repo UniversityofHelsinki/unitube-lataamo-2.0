@@ -1,17 +1,23 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import { Form } from 'react-bootstrap';
 import './FormElementHeader.css';
 
-const FormElementHeader = ({ children, componentId, ...rest }) => {
+const FormElementHeader = ({ children, id, helpDialog, ...rest }) => {
+
     return (
-        <Form.Label className="form-element-header" { ...rest } htmlFor={componentId}>{children}</Form.Label>
+      <div className="form-element-header">
+        <h3 { ...rest } id={id}>
+          {children}
+        </h3>
+        <div>
+          {helpDialog}
+        </div>
+      </div>
     );
 };
 
 FormElementHeader.propTypes = {
   children: PropTypes.any,
-  componentId: PropTypes.string,
 };
 
 export default FormElementHeader;

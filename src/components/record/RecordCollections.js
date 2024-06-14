@@ -34,30 +34,34 @@ const RecordCollections = ({ collection, onChange, message, disabled = false, sh
         <Loading loading={loadingCollections}>
           <Container>
               <Row>
-                  <Col>
-                      <FormElementHeader componentId={id}>
+                  <Col className="record-collections-col">
+                      <FormElementHeader 
+                        id={id}
+                        helpDialog={(
+                          <HelpDialog label={t('record_collections_help_label')}>
+                            {t('record_collections_help_content')}
+                          </HelpDialog>
+                        )}
+                      >
                         {t('record_collection_header')}
                       </FormElementHeader>
                   </Col>
               </Row>
-              <Row className="mb-3">
-                <Col className="record-collections-middle-row">
-                  <div>
-                    <HelpDialog label={t('record_collections_help_label')}>
-                      {t('record_collections_help_content')}
-                    </HelpDialog>
-                  </div>
-                  {collection && collection !== defaultCollection?.identifier && showLink &&
-                    <a href={`?collection=${collection}`} onClick={moveToCollection} aria-label={t('record_collection_move_aria')} title={t('record_collection_move_aria')}>
-                      {t('record_collection_move')}
-                    <LinkArrow width="1em" height="1em" aria-hidden />
-                  </a>}
+              <Row>
+                <Col>
+                    <div className="record-collections-move-to-collection">
+                      {collection && collection !== defaultCollection?.identifier && showLink &&
+                      <a href={`?collection=${collection}`} onClick={moveToCollection} aria-label={t('record_collection_move_aria')} title={t('record_collection_move_aria')}>
+                        {t('record_collection_move')}
+                        <span className="mx-1"></span>
+                        <LinkArrow width="1em" height="1em" aria-hidden />
+                      </a>}
+                    </div>
                 </Col>
               </Row>
               <Row>
                   <Col>
                       <DropDown 
-                        id={id}
                         aria-labelledby={id}
                         onChange={(e) => onChange(e.target.value)}
                         options={

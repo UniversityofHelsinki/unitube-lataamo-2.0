@@ -1,12 +1,12 @@
-.record-collections-middle-row {
-  display: flex;
-  justify-content: space-between;
-}
-
-.record-collections-middle-row svg {
-  margin-left: 0.4em;
-}
-
-.record-collections-middle-row polygon {
+.record-collections-col a polygon {
   fill: var(--hy-black);
+}
+
+.record-collections-col {
+}
+
+.record-collections-move-to-collection {
+  display: flex;
+  flex-direction: end;
+  justify-content: end;
 }
