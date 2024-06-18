@@ -91,6 +91,7 @@
   "record_automatic_subtitle_default_language_model": "Valitse kielimalli",
   "record_automatic_subtitle_default_language": "Valitse kieli",
   "record_bottom_bar_progress_saving_subtitles": "Käsitellään tekstityksiä",
+  "record_bottom_bar_progress_saving_record": "Käsitellään tallennetta",
   "record_bottom_bar_progress_ordering_subtitles": "Käsitellään automaattitekstityksiä",
   "record_bottom_bar_progress_deleting_subtitle": "Käsitellään tekstityksen poistoa",
   "record_bottom_bar_progress_done": "Valmis!",

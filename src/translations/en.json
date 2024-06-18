@@ -78,6 +78,7 @@
   "record_automatic_subtitle_default_language_model": "Select language model",
   "record_automatic_subtitle_default_language": "Select language",
   "record_bottom_bar_progress_saving_subtitles": "Processing subtitles",
+  "record_bottom_bar_progress_saving_record": "Processing recording",
   "record_bottom_bar_progress_ordering_subtitles": "Processing automatic transcription",
   "record_bottom_bar_progress_deleting_subtitle": "Processing removal of subtitles",
   "record_bottom_bar_progress_done": "Done!",
