@@ -1,4 +1,4 @@
-import React, {useEffect, useId, useRef} from 'react';
+import React, {useId} from 'react';
 import PropTypes from 'prop-types';
 import './RecordCard.css';
 import RecordCardDetails from './RecordCardDetails';
@@ -9,7 +9,7 @@ import useUser from '../../../hooks/useUser';
 import {DELETED_SERIES_REG_EXP} from '../../../Constants';
 import RecordActions from './RecordActions';
 import {useTranslation} from "react-i18next";
-import {Badge, Col, Container, Row} from 'react-bootstrap';
+import {Badge} from 'react-bootstrap';
 import Thumbnail from "../../utilities/Thumbnail";
 import { CardHighlight } from '../../utilities/Highlight';
 
@@ -18,7 +18,6 @@ const RecordCard = ({ record, onClick, selected = false, containerRef, highlight
   const [user] = useUser();
   const labelId = useId();
   const { t, i18n } = useTranslation();
-  const ref = useRef(null);
 
   const [tags] = useRecordTags([record]);
   const isDeleted = DELETED_SERIES_REG_EXP(user.eppn).test(record.series);
@@ -99,7 +98,7 @@ const RecordCard = ({ record, onClick, selected = false, containerRef, highlight
             </a>
         </div>
       </div>
-      <div className="record-card-actions-list">
+      <div className="record-card-actions-list-bottom">
         <RecordActions record={record} disabled={actionsDisabled} />
       </div>
     </div>
@@ -111,7 +110,8 @@ RecordCard.propTypes = {
   onClick: PropTypes.func.isRequired,
   selected: PropTypes.bool,
   containerRef: PropTypes.object,
-  highlight: PropTypes.string
+  highlight: PropTypes.string,
+  actionsDisabled: PropTypes.bool
 };
 
 export default RecordCard;
