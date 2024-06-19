@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './LandingPage.css';
-import { ReactComponent as ArrowRight } from '../utilities/icons/arrow-right.svg';
+import { ReactComponent as ArrowOffsite } from '../utilities/icons/arrow-offsite.svg';
 import {useTranslation} from "react-i18next";
 
 
@@ -20,7 +20,7 @@ const LandingPage = () => {
                 <a className="landing-page-unitube-instructions-link" href={t('landing_page_unitube_instructions_link')}
                    aria-label={t('landing_page_unitube_instructions')} target="_blank" rel="noreferrer noopener">
                     {t('landing_page_unitube_instructions')}
-                    <ArrowRight/>
+                    <ArrowOffsite/>
                 </a>
             </div>
         </div>
