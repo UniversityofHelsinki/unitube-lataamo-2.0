@@ -5,6 +5,8 @@
 .collection-identifier-copy-button button {
     padding: 0;
     align-items: center;
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 .collection-identifier-copy-button span {
