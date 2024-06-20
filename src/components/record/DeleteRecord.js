@@ -17,6 +17,7 @@ import useCollections from '../../hooks/useCollections';
 import useCollection from '../../hooks/useCollection';
 import useVisibleRecords from '../../hooks/useVisibleRecords';
 import useUser from "../../hooks/useUser";
+import AlertBanner from "../utilities/AlertBanner";
 
 const DeleteRecord = ({ record, showLabel = true, reloadCollectionOnRemove = false, buttonDisabled = false }) => {
   const [user] = useUser();
@@ -102,7 +103,7 @@ const DeleteRecord = ({ record, showLabel = true, reloadCollectionOnRemove = fal
             <Container>
               <Row>
                 <Col>
-                  <ElementHeader 
+                  <ElementHeader
                     helpDialog={(
                       <HelpDialog label={t('delete_record_form_help_header')}>
                         {t('delete_record_form_help_content')}
@@ -117,9 +118,14 @@ const DeleteRecord = ({ record, showLabel = true, reloadCollectionOnRemove = fal
                 <Col>
                   <span className="blockquote">{record.title}</span>
                   <div>
-                    <span>
-                     {result ? t('record_has_other_contributors') : ''}
-                    </span>
+                    <div className="delete-records-dialog-content">
+                      <div className="delete-records-dialog-alert-text">
+                        {t('delete_records_dialog_alert_text')}
+                      </div>
+                      {result
+                          ? <AlertBanner body={t('selected_records_has_other_contributors')}/>
+                          : null}
+                    </div>
                   </div>
                 </Col>
               </Row>
