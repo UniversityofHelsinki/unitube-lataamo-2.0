@@ -4,7 +4,7 @@ const fs = require('fs');
 
 // Define the paths to the json files.
 const jsonPath1 = 'fi.json';
-const jsonPath2 = 'sv.json';
+const jsonPath2 = 'en.json';
 
 // Read the contents
 let json1Content = fs.readFileSync(jsonPath1, 'utf-8');
