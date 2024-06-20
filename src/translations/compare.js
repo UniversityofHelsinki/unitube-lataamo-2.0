@@ -15,7 +15,7 @@ let json1 = JSON.parse(json1Content);
 let json2 = JSON.parse(json2Content);
 
 // Function to convert object keys to lowercase
-function lowerCaseKeys(obj) {
+/*function lowerCaseKeys(obj) {
   const output = {};
   for (let i in obj) {
     if (Object.prototype.toString.apply(obj[i]) === '[object Object]') {
@@ -28,7 +28,7 @@ function lowerCaseKeys(obj) {
 }
 
 json1 = lowerCaseKeys(json1);
-json2 = lowerCaseKeys(json2);
+json2 = lowerCaseKeys(json2);*/
 
 // Fetch their keys
 const json1Keys = Object.keys(json1);
@@ -48,7 +48,8 @@ json2Keys.forEach((key) => {
   }
 });
 
-function sortObject(obj){
+// Sort keys alphabetically
+/*function sortObject(obj){
   return Object
     .keys(obj)
     .sort()
@@ -58,7 +59,7 @@ function sortObject(obj){
 
 // Sorted JSON
 json1 = sortObject(json1);
-json2 = sortObject(json2);
+json2 = sortObject(json2);*/
 
 // Stringify JSON objects with indentation
 json1Content = JSON.stringify(json1, null, 2);
