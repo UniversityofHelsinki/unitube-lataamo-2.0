@@ -167,6 +167,7 @@
   "collection_has_no_records": "Kokoelmassa ei ole tallenteita. Voit lisätä tallenteita kokoelmat- ja Tallenteet-välilehden toimintojen avulla.",
   "collection_has_no_records_lite": "Ei tallenteita.",
   "collection_validation_title_is_empty": "Nimi on pakollinen.",
+  "collection_validation_title_contains_illegal_word": "Sana inbox ei voi esiintyä kokoelman nimessä.",
   "collection_validation_description_is_empty": "Kuvaus on pakollinen.",
   "collection_delete_form_header": "Poista kokoelma",
   "delete_collection_form_body_header": "Vahvista kokoelman poisto",
