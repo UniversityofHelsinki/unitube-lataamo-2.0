@@ -35,6 +35,7 @@
   "record_collections_help_label": "Tietoa kokoelmista",
   "record_collections_help_content": "Jotta tallenteen voi julkaista, se pitää liittää johonkin kokoelmaan. Tallenteiden näkyvyys ja hallintaoikeudet määritellään myös kokoelmien kautta. Voit valita jonkin kokoelman, johon sinulla on hallintaoikeudet. Voit luoda uuden kokoelman Kokoelmat-välilehdellä.",
   "clipboard_copy": "Kopioi",
+  "collection_identifier_copy": "Kopioi kokoelman tunniste",
   "collection_management_rights_help_label": "Tietoa oikeuksista",
   "collection_management_rights_help_content": "Voit jakaa kokoelmaasi hallinnointioikeuksia yliopistolaisille henkilöille ja käyttäjäryhmille hakukenttien avulla. Lisäämilläsi henkilöillä ja ryhmien jäsenillä on yhtäläiset muokkaus- ja poisto-oikeudet tallenteisiin.",
   "collection_unpublished_series": "Ei julkaistu.",
