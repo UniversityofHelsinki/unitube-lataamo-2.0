@@ -98,8 +98,10 @@ const RecordCard = ({ record, onClick, selected = false, containerRef, highlight
             </a>
         </div>
       </div>
-      <div className="record-card-actions-list-bottom">
-        <RecordActions record={record} disabled={actionsDisabled} />
+      <div className="record-card-actions-list">
+        <div>
+          <RecordActions record={record} disabled={actionsDisabled} />
+        </div>
       </div>
     </div>
   );
