@@ -46,7 +46,7 @@ const resolveVisibility = (published, contributors = []) => {
 const CollectionForm = () => {
   const [setTitle] = useTitle();
   const [originalCollection, loading, reload, httpError] = useCollection(true);
-  const errorPage = useCollectionError(httpError);
+  const errorPage = useCollectionError(originalCollection, httpError);
   const [progress, update, resetProgress] = useCollectionUpdate();
   const [_collections, _loading, reloadCollections] = useCollections();
   const [isValid, messages, validate] = useCollectionValidation(['title', 'description']);
