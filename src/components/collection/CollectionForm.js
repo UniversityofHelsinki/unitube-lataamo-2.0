@@ -106,7 +106,7 @@ const CollectionForm = () => {
                 </Row>
                 <Row className="mb-2">
                   <Col className="ps-1">
-                    <CollectionRecords records={collection?.eventColumns || []} disabled={saveInProgress} />
+                    <CollectionRecords collection={collection} records={collection?.eventColumns || []} disabled={saveInProgress} />
                   </Col>
                 </Row>
                 <Row>
