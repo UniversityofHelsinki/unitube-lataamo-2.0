@@ -117,14 +117,12 @@ const DeleteRecord = ({ record, showLabel = true, reloadCollectionOnRemove = fal
               <Row>
                 <Col>
                   <span className="blockquote">{record.title}</span>
-                  <div>
+                  <div className="my-2">
                     <div className="delete-records-dialog-content">
                       <div className="delete-records-dialog-alert-text">
                         {t('delete_records_dialog_alert_text')}
                       </div>
-                      {result
-                          ? <AlertBanner body={t('selected_records_has_other_contributors')}/>
-                          : null}
+                      {result && <AlertBanner body={t('selected_records_has_other_contributors')}/>}
                     </div>
                   </div>
                 </Col>

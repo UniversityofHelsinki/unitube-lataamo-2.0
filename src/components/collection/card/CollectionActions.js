@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './CollectionActions.css';
 import useCollectionActions from '../../../hooks/collection/useCollectionActions';
@@ -6,9 +6,9 @@ import useCollectionActions from '../../../hooks/collection/useCollectionActions
 const CollectionActions = ({ collection, disabled }) => {
     const actions = useCollectionActions(collection, disabled);
     return (<ul className="collection-card-actions">
-            {actions.map((Action, i) =>
+            {actions.map((action, i) =>
                 <li key={i}>
-                    <Action />
+                  {action}
                 </li>)}
         </ul>
     );

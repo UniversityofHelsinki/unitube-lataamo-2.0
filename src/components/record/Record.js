@@ -8,7 +8,6 @@ import RecordForm from './RecordForm';
 import RecordStaticInformation from './RecordStaticInformation';
 import './Record.css';
 import Loading from '../utilities/Loading';
-import RecordsBreadCrumb from "../form/RecordsBreadCrumb";
 import RecordBottomBar from './RecordBottomBar';
 import useRecordValidation from '../../hooks/validation/record/useRecordValidation';
 import useRecordSave from '../../hooks/record/useRecordSave';
