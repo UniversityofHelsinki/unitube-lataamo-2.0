@@ -98,8 +98,8 @@ const CollectionForm = () => {
                   <Col className="p-0">
                     <TopRow breadcrumb={breadcrumb}>
                       <CardTags tags={[ ...tags ]} />
-                      {!collectionHasRecords && <CollectionActions collection={collection} disabled={saveInProgress} />}
                       <ListReloadButton onClick={reload} />
+                      {!collectionHasRecords && <CollectionActions collection={collection} disabled={saveInProgress} />}
                       <CollectionClipBoardElement collection={collection} />
                     </TopRow>
                   </Col>

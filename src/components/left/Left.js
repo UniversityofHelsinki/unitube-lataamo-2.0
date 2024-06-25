@@ -298,7 +298,7 @@ const Left = () => {
           <div>
             {actionElement[path]}
           </div>
-          <div className="left-content-list-actions">
+          <div className="left-content-list-actions shadow-line">
             <ListActions 
               currentSortCriteria={sortOptions?.criteria}
               sortCriterias={sortCriterias}
