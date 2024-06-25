@@ -24,8 +24,8 @@ const useRecordSave = () => {
   const [uploadSubtitles] = useSubtitleUpload();
   const [orderSubtitles] = useSubtitleOrder();
   const [deleteSubtitle] = useDeleteSubtitle();
-  const [_records, _loadingRecords, reloadRecords] = useRecords({ load: false });
-  const [_allRecords, _loadingAllRecords, reloadAllRecords] = useAllRecords( {load: false});
+  const [_records, _loadingRecords, reloadRecords] = useRecords();
+  const [_allRecords, _loadingAllRecords, reloadAllRecords] = useAllRecords();
   const [progress, setProgress] = useState({
     status: ProgressStatus.RECORD_SAVE.NOT_STARTED,
     percentage: 0

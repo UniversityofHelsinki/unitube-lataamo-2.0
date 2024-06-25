@@ -55,10 +55,11 @@ const expiring = () => (record) => {
  * @param {Object} record - The record object to check for closed captions.
  * @returns {Object|undefined} - Returns an object with label and color properties if closed captions are available, otherwise undefined.
  */
-const processing = () => (record) => {
-  const processing_record = record.processing_state === 'RUNNING';
+export const processing = () => (record) => {
+  const processingRecord = record.processing_state === 'RUNNING' || record.processing_state === 'EVENTS.EVENTS.STATUS.PROCESSING';
+  const processingSubtitles = record.jobs && record.jobs.type === JOB_TYPES_TRANSCRIPTION && record.jobs.status === JOB_STATUS_STARTED;
 
-  if (processing_record) {
+  if (processingRecord || processingSubtitles) {
     return {
       label: 'tag_processing',
       ariaLabel: 'tag_processing_aria',
@@ -138,24 +139,6 @@ const status = () => (record) => {
 };
 
 /**
- * Subtitles processing state
- *
- * @param t
- * @returns {(function(*): ({color: string, label: *}|undefined))|*}
- */
-const subtitlesInProcessing = () => (record) => {
-
-  const job = record.jobs;
-  if (job && job.type === JOB_TYPES_TRANSCRIPTION && job.status === JOB_STATUS_STARTED) {
-    return {
-      label: 'tag_processing_subtitles',
-      ariaLabel: 'tag_processing_subtitles_aria',
-      color: 'orange'
-    };
-  }
-}
-
-/**
  * Validates given fields
  *
  * @param t
@@ -216,7 +199,6 @@ const useRecordTags = (records = []) => {
     missingDetails(isValids),
     cc(), 
     status(),
-    subtitlesInProcessing(),
   ];
   
   const tags = records.map((record, i) => {

@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import HelpDialog from '../components/dialog/HelpDialog';
 import RecordErrorPage from '../components/record/RecordErrorPage';
+import { JOB_STATUS_STARTED, JOB_TYPES_TRANSCRIPTION } from '../Constants';
 import useUser from './useUser';
 
 const recordIsDeleted = (record, user) => {
@@ -10,7 +11,12 @@ const recordIsDeleted = (record, user) => {
 };
 
 const recordIsInProgress = (record) => {
-  return record?.processing_state === 'RUNNING' || record?.status === 'EVENTS.EVENTS.STATUS.PROCESSING';
+  if (record) {
+    const processingRecord = record.processing_state === 'RUNNING' || record.processing_state === 'EVENTS.EVENTS.STATUS.PROCESSING';
+    const processingSubtitles = record.jobs && record.jobs.type === JOB_TYPES_TRANSCRIPTION && record.jobs.status === JOB_STATUS_STARTED;
+    return processingRecord || processingSubtitles;
+  }
+  return false;
 };
 
 const useRecordError = (record, httpError, reload) => {
