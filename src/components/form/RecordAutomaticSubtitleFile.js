@@ -10,7 +10,8 @@ import HelpDialog from "../dialog/HelpDialog";
 
 const RecordAutomaticSubtitle = ({ onChange, message, disabled = false, value = {} }) => {
     const { t } = useTranslation();
-    const id = useId();
+    const languageModelHeaderId = useId();
+    const languageHeaderId = useId();
     const empty = '';
     
     const handleChange = (what, fieldValue) => {
@@ -63,7 +64,7 @@ const RecordAutomaticSubtitle = ({ onChange, message, disabled = false, value = 
             <Row>
                 <Col>
                     <FormElementHeader 
-                      componentId={id}
+                      id={languageModelHeaderId}
                       helpDialog={(
                         <HelpDialog label={t('record_automatic_subtitle_help_label')} >
                           {t('record_automatic_subtitle_help_label_content')}
@@ -76,17 +77,17 @@ const RecordAutomaticSubtitle = ({ onChange, message, disabled = false, value = 
             </Row>
             <Row>
                 <Col>
-                    <DropDown aria-required id={id} value={value.translationModel} onChange={(e) => handleChange('translationModel', e.target.value)} options={language_models.map(asLanguageModelOption)} message={validationMessages('translationModel')} disabled={disabled} />
+                    <DropDown aria-labelledby={languageModelHeaderId} aria-required value={value.translationModel} onChange={(e) => handleChange('translationModel', e.target.value)} options={language_models.map(asLanguageModelOption)} message={validationMessages('translationModel')} disabled={disabled} />
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <FormElementHeader componentId={id}>{t('record_automatic_subtitle_language_header')}</FormElementHeader>
+                    <FormElementHeader id={languageHeaderId}>{t('record_automatic_subtitle_language_header')}</FormElementHeader>
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <DropDown aria-required id={id} value={value.translationLanguage} onChange={(e) => handleChange('translationLanguage', e.target.value)} options={languages.map(asLanguageOption)} message={validationMessages('translationLanguage')} disabled={disabled} />
+                    <DropDown aria-labelledby={languageHeaderId} aria-required value={value.translationLanguage} onChange={(e) => handleChange('translationLanguage', e.target.value)} options={languages.map(asLanguageOption)} message={validationMessages('translationLanguage')} disabled={disabled} />
                 </Col>
             </Row>
         </Container>
