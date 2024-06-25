@@ -63,7 +63,6 @@ const NoStatistics = () => {
 
 const Left = () => {
     const [path] = useLocation();
-    const scrollTop = useRef(0);
 
     const [recordOptions, setRecordOptions] = useState({
         searchValue: '',

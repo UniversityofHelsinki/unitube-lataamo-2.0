@@ -138,6 +138,8 @@
   "collection_has_no_records": "This collection has no recordings. You can add recordings into a collection by using the button below. You may also navigate to the recording's details you want to transfer under this collection.",
   "collection_has_no_records_lite": "No recordings.",
   "collection_validation_title_is_empty": "Name is a mandatory field.",
+  "collection_validation_title_contains_word_inbox": "Word inbox is illegal.",
+  "collection_validation_title_contains_word_trash": "Word trash is illegal.",
   "collection_validation_description_is_empty": "Description is a mandatory field.",
   "navigation_streams": "Collections",
   "record_card_action_restore": "Restore",
@@ -384,5 +386,7 @@
   "update_records_deletion_dates_dialog_error": "???",
   "update_records_deletion_dates_dialog_done": "???",
   "update_records_deletion_dates_dialog_saving": "???",
-  "record_subtitle_file_help_content": "???"
+  "record_subtitle_file_help_content": "???",
+  "collection_error_page_inbox_content": "Virhe ladattaessa kokoelmaa.",
+  "collection_error_page_http_content": "Virhe ladattaessa kokoelmaa."
 }

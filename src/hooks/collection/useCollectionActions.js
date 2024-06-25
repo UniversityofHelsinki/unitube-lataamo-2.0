@@ -5,13 +5,9 @@ const useCollectionActions = (collection, disabled = false) => {
 
     const defaultActions = [];
 
-    const DeleteAction = () => {
-        return (
-            <DeleteCollection collection={collection} buttonDisabled={disabled} />
-        );
-    };
+    const deleteAction = <DeleteCollection collection={collection} buttonDisabled={disabled} />;
 
-    return [ ...defaultActions, DeleteAction ];
+    return [ ...defaultActions, deleteAction ];
 };
 
 export default useCollectionActions;

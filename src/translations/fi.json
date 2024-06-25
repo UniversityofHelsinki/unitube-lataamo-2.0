@@ -168,6 +168,8 @@
   "collection_has_no_records": "Kokoelmassa ei ole tallenteita. Voit lisätä tallenteita kokoelmat- ja Tallenteet-välilehden toimintojen avulla.",
   "collection_has_no_records_lite": "Ei tallenteita.",
   "collection_validation_title_is_empty": "Nimi on pakollinen.",
+  "collection_validation_title_contains_word_inbox": "Sana inbox ei voi esiintyä kokoelman nimessä.",
+  "collection_validation_title_contains_word_trash": "Sana trash ei voi esiintyä kokoelman nimessä.",
   "collection_validation_description_is_empty": "Kuvaus on pakollinen.",
   "collection_delete_form_header": "Poista kokoelma",
   "delete_collection_form_body_header": "Vahvista kokoelman poisto",
@@ -385,5 +387,7 @@
   "footer_release_notes_label": "Julkaisutiedot",
   "opens_in_new_tab": "Avautuu uuteen välilehteen",
   "record_subtitle_file_help_content": "???",
-  "navigation_streams": "???"
+  "navigation_streams": "???",
+  "collection_error_page_inbox_content": "Virhe ladattaessa kokoelmaa.",
+  "collection_error_page_http_content": "Virhe ladattaessa kokoelmaa."
 }
