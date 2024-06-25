@@ -385,5 +385,7 @@
   "footer_release_notes_label": "Julkaisutiedot",
   "opens_in_new_tab": "Avautuu uuteen välilehteen",
   "record_subtitle_file_help_content": "???",
-  "navigation_streams": "???"
+  "navigation_streams": "???",
+  "collection_error_page_inbox_content": "Virhe ladattaessa kokoelmaa.",
+  "collection_error_page_http_content": "Virhe ladattaessa kokoelmaa."
 }
