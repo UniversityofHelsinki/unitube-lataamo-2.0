@@ -7,7 +7,11 @@ const validateTitle = (title) => {
   }
 
   if (title.toLowerCase().includes('inbox')) {
-    return 'collection_validation_title_contains_illegal_word';
+    return 'collection_validation_title_contains_word_inbox';
+  }
+
+  if (title.toLowerCase().includes('trash')) {
+    return 'collection_validation_title_contains_word_trash';
   }
 
   return FIELD_IS_VALID;
