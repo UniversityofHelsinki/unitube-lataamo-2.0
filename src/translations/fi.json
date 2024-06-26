@@ -58,7 +58,7 @@
   "new_collection_form_footer_done": "Lisää uusi",
   "unsaved_data": "Ruudulla on tallentamattomia tietoja! Oletko varma, että haluat poistua?",
   "record_upload_help_label": "Tietoa tiedoston valitsemisesta",
-  "record_upload_help_content": "Klikkaa valintapainiketta ja etsi avautuvasta ikkunasta koneeltasi tai laitteeltasi tallenne, jonka haluat ladata palveluun. Tuettuja tiedostomuotoja ovat yleisimmät videotiedostot kuten .avi, .mov ja .mp4.",
+  "record_upload_help_content": "Klikkaa valintapainiketta ja etsi avautuvasta ikkunasta koneeltasi tai laitteeltasi tallenne, jonka haluat ladata palveluun. Tuettuja tiedostomuotoja ovat yleisimmät videotiedostot kuten .avi, .mov ja .mp4. Vinkki: jos et saa Macilla tehtyä videota ladattua Unitubeen, kannattaa kokeilla videon tallentamista uudelleen Handbrake-ohjelmassa, tai jotain muuta kuin .mov-tiedostomuotoa!",
   "record_name_help_label": "Tietoa nimestä",
   "record_name_help_content": "Nimi näkyy kaikissa niissä paikoissa, joihin tallenne on julkaistu.",
   "record_description_help_label": "Tietoa kuvauksesta",
