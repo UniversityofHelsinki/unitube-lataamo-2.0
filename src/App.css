@@ -98,3 +98,11 @@
   height: 0px;
   overflow: hidden;
 }
+
+.shadow-line::after {
+  display: block;
+  content: "";
+  min-height: 1px;
+  min-width: 100%;
+  box-shadow: 0px 1px 2px var(--hy-medium-silver);
+}
