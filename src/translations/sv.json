@@ -41,7 +41,7 @@
   "new_collection_form_footer_error": "Försök igen",
   "new_collection_form_footer_done": "Lägg till ny",
   "record_upload_help_label": "Information om att välja fil",
-  "record_upload_help_content": "Klicka på väljarknappen och leta i det öppnade fönstret efter inspelningen på din dator eller enhet som du vill ladda upp. Stödda filformat inkluderar de vanligaste videofilformaten som .avi, .mov och .mp4.",
+  "record_upload_help_content": "Klicka på väljarknappen och leta i det öppnade fönstret efter inspelningen på din dator eller enhet som du vill ladda upp. Stödda filformat inkluderar de vanligaste videofilformaten som .avi, .mov och .mp4. Tips: Om du inte kan ladda upp en video på Unitube från din Mac, kan det vara värt att försöka spara videon igen med Handbrake-programmet, eller använda ett annat filformat än .mov!",
   "record_name_help_label": "Information om namn",
   "record_name_help_content": "Namnet visas på alla platser där inspelningen publiceras.",
   "record_description_help_label": "Information om beskrivning",
