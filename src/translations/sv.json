@@ -57,11 +57,11 @@
   "record_validation_name_is_empty": "Namn är obligatoriskt.",
   "record_validation_description_is_empty": "Beskrivning är obligatorisk.",
   "record_validation_file_is_empty": "Lägg till fil.",
-  "record_validation_subtitle_invalid_format": "Ogiltigt filformat",
   "record_validation_file_size_exceeded": "Filstorleken är större än den maximala filstorleken (25 gigabyte)!",
   "record_validation_file_size_duration_too_short": "Den uppladdade videons längd är mindre än en sekund! Försök ladda upp en längre video.",
   "record_validation_license_invalid": "Licens är obligatorisk.",
   "record_validation_subtitle_file_empty": "Lägg till fil.",
+  "record_validation_subtitle_invalid_format": "Ogiltigt filformat",
   "record_automatic_subtitles_translation_language_empty": "Språk är obligatoriskt.",
   "record_automatic_subtitles_translation_model_empty": "Språkmodell är obligatorisk.",
   "record_validation_subtitle_unknown_error": "Okänt fel vid filhantering. Kontrollera att filen och dess innehåll är i ordning innan du skickar igen!",
@@ -135,7 +135,6 @@
   "collection_has_no_records_lite": "Inga inspelningar.",
   "collection_validation_title_is_empty": "Namn är obligatoriskt.",
   "collection_validation_description_is_empty": "Beskrivning är obligatorisk.",
-  "navigation_streams": "Samlingar",
   "record_card_valid_until": "Utgår {{- deletionDate}}",
   "tag_expiring": "Utgående",
   "search_options_filter_records_in_collections": "Sök även bland inspelningar i samlingar",
@@ -387,5 +386,6 @@
   "collection_validation_title_contains_word_inbox": "Ordet inbox får inte förekomma i samlingens namn.",
   "collection_validation_title_contains_word_trash": "Ordet trash får inte förekomma i samlingens namn.",
   "collection_error_page_inbox_content": "Fel vid laddning av samlingen.",
-  "collection_error_page_http_content": "Fel vid laddning av samlingen."
+  "collection_error_page_http_content": "Fel vid laddning av samlingen.",
+  "collection_identifier_copy": "Kopiera samlingens kod"
 }

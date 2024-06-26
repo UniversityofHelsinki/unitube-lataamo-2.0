@@ -20,6 +20,7 @@
   "record_embed_code_copy_aria": "Kopioi upotuskoodi",
   "record_download_links_header": "Lataa tallenne",
   "record_subtitle_file_help_label": "Tietoa tekstitystiedostosta",
+  "record_subtitle_file_help_content": "???",
   "record_subtitle_download_links_header": "Lataa tai poista tekstitystiedosto",
   "record_subtitle_undo_button": "Kumoa",
   "record_subtitle_delete_button": "Poista",
@@ -386,8 +387,6 @@
   "footer_hy_maintenance": "Unitube-lataamon huoltoikkuna on tiistaisin klo 8.00–10.00. Palvelussa saattaa tuolloin ilmetä pieniä häiriöitä!",
   "footer_release_notes_label": "Julkaisutiedot",
   "opens_in_new_tab": "Avautuu uuteen välilehteen",
-  "record_subtitle_file_help_content": "???",
-  "navigation_streams": "???",
   "collection_error_page_inbox_content": "Virhe ladattaessa kokoelmaa.",
   "collection_error_page_http_content": "Virhe ladattaessa kokoelmaa."
 }

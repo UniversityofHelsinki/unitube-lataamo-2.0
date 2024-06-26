@@ -141,7 +141,6 @@
   "collection_validation_title_contains_word_inbox": "The word 'inbox' may not appear in the name of a collection.",
   "collection_validation_title_contains_word_trash": "The word 'trash' may not appear in the name of a collection.",
   "collection_validation_description_is_empty": "Description is a mandatory field.",
-  "navigation_streams": "Collections",
   "record_card_action_restore": "Restore",
   "record_card_action_delete": "Delete",
   "restore_record_header": "Restore recording",
@@ -388,5 +387,6 @@
   "update_records_deletion_dates_dialog_saving": "Updating...",
   "record_subtitle_file_help_content": "Subtitle file formats supported are .srt and .vtt. Maximum file size is 5MB.",
   "collection_error_page_inbox_content": "Error loading collection.",
-  "collection_error_page_http_content": "Error loading collection."
+  "collection_error_page_http_content": "Error loading collection.",
+  "collection_identifier_copy": "Copy collection identifier"
 }
