@@ -70,7 +70,7 @@ const NewRecord = ({ selectedSeries = '' }) => {
   const hide = () => {
     reset();
     setShowDialog(false);
-    if (record.selectedSeries === collection.identifier) {
+    if (record.selectedSeries === collection?.identifier) {
       reloadCollection();
     }
   };
