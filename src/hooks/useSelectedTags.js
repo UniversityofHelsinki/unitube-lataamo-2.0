@@ -14,13 +14,20 @@ const distinctTagsChanged = (previous = [], next = []) => {
   return false;
 };
 
-const useSelectedTags = (distinctTags = []) => {
-  const [selectedTags, setSelectedTags] = useState(null);
+const removeNonExistentTags = (selectedTags = [], distinctTags) => {
+  const distinctTagLabels = distinctTags.map(dt => dt.label);
+  return selectedTags.filter(st => {
+    return distinctTagLabels.includes(st.label);
+  });
+}
+
+const useSelectedTags = (distinctTags = [], loading) => {
+  const [selectedTags, setSelectedTags] = useState([]);
   const [knownDistinctTags, setKnownDistinctTags] = useState([]);
 
   useEffect(() => {
-    if (distinctTagsChanged(knownDistinctTags, distinctTags)) {
-      setSelectedTags([]);
+    if (distinctTagsChanged(knownDistinctTags, distinctTags) && !loading) {
+      setSelectedTags(removeNonExistentTags(selectedTags, distinctTags));
       setKnownDistinctTags(distinctTags);
     }
   }, [distinctTags, knownDistinctTags]);

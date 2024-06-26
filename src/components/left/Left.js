@@ -97,7 +97,8 @@ const Left = () => {
       onSelectedRecordTagChange,
       clearSelectedRecordTags
     ]  = useRecordTagFilter(
-        sortedRecords
+        sortedRecords,
+        loadingRecords
     );
 
     const searchQueryFilteredRecords = useRecordSearch(
@@ -129,7 +130,8 @@ const Left = () => {
       onSelectedCollectionTagChange,
       clearSelectedCollectionTags
     ] = useCollectionTagFilter(
-      sortedCollections
+      sortedCollections,
+      loadingCollections
     );
 
     const searchQueryFilteredCollections = useCollectionSearch(
