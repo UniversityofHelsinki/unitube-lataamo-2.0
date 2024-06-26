@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import './NewRecord.css';
-import { Button, Form, Modal } from 'react-bootstrap';
+import { Form, Modal } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { addMonths } from 'date-fns';
 import FormDialog from '../dialog/FormDialog';
@@ -18,6 +18,9 @@ import RecordCollections from './RecordCollections';
 import useVisibleRecords from '../../hooks/useVisibleRecords';
 import useNewRecordValidation from '../../hooks/validation/record/useNewRecordValidation';
 import HyButton from '../utilities/HyButton';
+import PropTypes from 'prop-types';
+import useCollection from '../../hooks/useCollection';
+import useCollections from '../../hooks/useCollections';
 
 const emptyRecord = {
   identifier: '',
@@ -28,15 +31,17 @@ const emptyRecord = {
   deletionDate: addMonths(new Date(), 12).toISOString()
 };
 
-const NewRecord = () => {
+const NewRecord = ({ selectedSeries = '' }) => {
   const { t } = useTranslation();
   const [showDialog, setShowDialog] = useState(false);
   const [isValid, messages, validate] = useNewRecordValidation(
     ['file', 'title', 'description', 'license', 'deletionDate', 'subtitles']
   );
   const [send, progress, resetProgress] = useNewRecordSave();
-  const [record, onChange, modified, undo] = useRecordModification({ ...emptyRecord }, validate, resetProgress);
+  const [record, onChange, modified, undo] = useRecordModification({ ...emptyRecord, selectedSeries }, validate, resetProgress);
   const [_records, _loadingRecords, reloadRecords] = useVisibleRecords({});
+  const [collection, _loadingCollection, reloadCollection] = useCollection();
+  const [_collections, _loadingCollections, reloadCollections] = useCollections();
   const formRef = useRef();
 
   const theButton = (
@@ -52,8 +57,10 @@ const NewRecord = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+    event.stopPropagation();
     await send({ ...record, archivedDate: record.deletionDate }, record.subtitles);
     reloadRecords();
+    reloadCollections();
   };
 
   const reset = async () => {
@@ -63,6 +70,9 @@ const NewRecord = () => {
   const hide = () => {
     reset();
     setShowDialog(false);
+    if (record.selectedSeries === collection?.identifier) {
+      reloadCollection();
+    }
   };
 
   const onProgressButtonClick = async () => {
@@ -113,6 +123,7 @@ const NewRecord = () => {
 };
 
 NewRecord.propTypes = {
+  selectedSeries: PropTypes.string
 };
 
 export default NewRecord;

@@ -26,6 +26,7 @@ import ListReloadButton from '../left/ListReloadButton';
 import TopRow from '../right/TopRow';
 import useCollectionTags from '../../hooks/collection/useCollectionTags';
 import CardTags from '../utilities/CardTags';
+import CollectionClipBoardElement from "./CollectionClipBoardElement";
 
 const resolveVisibility = (published, contributors = []) => {
   const visibilities = [];
@@ -45,7 +46,7 @@ const resolveVisibility = (published, contributors = []) => {
 const CollectionForm = () => {
   const [setTitle] = useTitle();
   const [originalCollection, loading, reload, httpError] = useCollection(true);
-  const errorPage = useCollectionError(httpError);
+  const errorPage = useCollectionError(originalCollection, httpError);
   const [progress, update, resetProgress] = useCollectionUpdate();
   const [_collections, _loading, reloadCollections] = useCollections();
   const [isValid, messages, validate] = useCollectionValidation(['title', 'description']);
@@ -96,15 +97,16 @@ const CollectionForm = () => {
                 <Row className="top-row-container">
                   <Col className="p-0">
                     <TopRow breadcrumb={breadcrumb}>
-                      <ListReloadButton onClick={reload} />
                       <CardTags tags={[ ...tags ]} />
+                      <ListReloadButton onClick={reload} />
                       {!collectionHasRecords && <CollectionActions collection={collection} disabled={saveInProgress} />}
+                      <CollectionClipBoardElement collection={collection} />
                     </TopRow>
                   </Col>
                 </Row>
                 <Row className="mb-2">
                   <Col className="ps-1">
-                    <CollectionRecords records={collection?.eventColumns || []} disabled={saveInProgress} />
+                    <CollectionRecords collection={collection} records={collection?.eventColumns || []} disabled={saveInProgress} />
                   </Col>
                 </Row>
                 <Row>

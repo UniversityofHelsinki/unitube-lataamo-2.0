@@ -37,11 +37,11 @@ const RecordTopRow = ({ record, disabled, reload }) => {
 
   return (
         <TopRow breadcrumb={breadcrumb}>
-            <ListReloadButton onClick={(e) => {
-                e.preventDefault();
-                reload()
-            }}/>
             <CardTags tags={[...tags]}/>
+            <ListReloadButton onClick={(e) => {
+              e.preventDefault();
+              reload()
+            }}/>
             <Loading loading={!collection.title} logo={false}>
               <RecordActions record={{...record, series: collection.title}} disabled={disabled}/>
             </Loading>

@@ -385,5 +385,7 @@
   "update_records_deletion_dates_dialog_done": "Klar!",
   "update_records_deletion_dates_dialog_saving": "Uppdaterar utgångsdatum...",
   "collection_validation_title_contains_word_inbox": "Ordet inbox får inte förekomma i samlingens namn.",
-  "collection_validation_title_contains_word_trash": "Ordet trash får inte förekomma i samlingens namn."
+  "collection_validation_title_contains_word_trash": "Ordet trash får inte förekomma i samlingens namn.",
+  "collection_error_page_inbox_content": "Fel vid laddning av samlingen.",
+  "collection_error_page_http_content": "Fel vid laddning av samlingen."
 }

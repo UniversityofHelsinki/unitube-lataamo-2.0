@@ -63,7 +63,6 @@ const NoStatistics = () => {
 
 const Left = () => {
     const [path] = useLocation();
-    const scrollTop = useRef(0);
 
     const [recordOptions, setRecordOptions] = useState({
         searchValue: '',
@@ -299,7 +298,7 @@ const Left = () => {
           <div>
             {actionElement[path]}
           </div>
-          <div className="left-content-list-actions">
+          <div className="left-content-list-actions shadow-line">
             <ListActions 
               currentSortCriteria={sortOptions?.criteria}
               sortCriterias={sortCriterias}

@@ -1,4 +1,4 @@
-import React, {useId} from 'react';
+import React, {useId, useState} from 'react';
 import PropTypes from 'prop-types';
 import './RecordCard.css';
 import RecordCardDetails from './RecordCardDetails';
@@ -98,8 +98,10 @@ const RecordCard = ({ record, onClick, selected = false, containerRef, highlight
             </a>
         </div>
       </div>
-      <div className="record-card-actions-list-bottom">
-        <RecordActions record={record} disabled={actionsDisabled} />
+      <div className="record-card-actions-list">
+        <div>
+          <RecordActions record={record} disabled={actionsDisabled} />
+        </div>
       </div>
     </div>
   );

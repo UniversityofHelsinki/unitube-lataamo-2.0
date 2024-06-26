@@ -18,7 +18,7 @@
   overflow: hidden;
 }
 
-.record-card-actions-list-bottom {
+.record-card-actions-list {
   order: 3;
   display: flex;
   flex-direction: column;
