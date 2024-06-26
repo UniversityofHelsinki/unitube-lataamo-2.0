@@ -8,6 +8,7 @@ import HelpDialog from '../../dialog/HelpDialog';
 import RecordsTable from '../../record/RecordsTable';
 import { useState } from 'react';
 import CollectionRecordsBulkActions from './CollectionRecordsBulkActions';
+import NewRecord from '../../record/NewRecord';
 
 const NoRecords = () => {
   const { t } = useTranslation();
@@ -18,7 +19,7 @@ const NoRecords = () => {
   );
 };
 
-const CollectionRecords = ({ records, disabled }) => {
+const CollectionRecords = ({ collection, records, disabled }) => {
   const { t } = useTranslation();
   const tableRowRef = useRef();
   const [selectedRecords, setSelectedRecords] = useState([]);
@@ -48,9 +49,16 @@ const CollectionRecords = ({ records, disabled }) => {
             records={records}
             selectedRecords={selectedRecords}
           />
+          <div>
+            <NewRecord selectedSeries={collection?.identifier} />
+          </div>
         </div>
     }
-    return <></>;
+    return <div className="collection-records-bulk-actions-container collection-records-bulk-actions-container-empty">
+      <div>
+        <NewRecord selectedSeries={collection?.identifier} />
+      </div>
+    </div>;
   })();
 
   return (
