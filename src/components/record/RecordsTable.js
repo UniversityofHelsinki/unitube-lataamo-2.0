@@ -100,15 +100,16 @@ const SortButton = ({ children = [], direction, onDirectionChange }) => {
   };
 
   const directionIcons = {
-    'ascending': CaretDown,
-    'descending': CaretUp,
+    'ascending': CaretUp,
+    'descending': CaretDown,
   };
 
   const DirectionIcon = directionIcons[direction];
+  const noDirectionIcon = <CaretUp className="records-table-no-direction" />
 
   return <button className="records-table-sort-button" onClick={onClick}>
     <span>{children}</span>
-    {directions.has(direction) && <DirectionIcon />}
+    {directions.has(direction) && <DirectionIcon /> || noDirectionIcon}
   </button>
 };
 

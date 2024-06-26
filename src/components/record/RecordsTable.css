@@ -119,3 +119,7 @@
 .records-table-heading-checkbox {
   min-width: 40px;
 }
+
+svg.records-table-no-direction * {
+  fill: var(--huds-grayscale-medium) !important;
+}
