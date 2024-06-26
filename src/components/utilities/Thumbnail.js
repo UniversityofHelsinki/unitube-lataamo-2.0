@@ -64,7 +64,7 @@ const Thumbnail = ({ record, width, height, altText, containerRef }) => {
 
     if (thumbnail && URL.canParse(thumbnail)) {
         return (
-            <img alt={label} title={label} src={thumbnail} aria-hidden />
+            <img alt={label} title={label} src={thumbnail} />
         );
     }
 
