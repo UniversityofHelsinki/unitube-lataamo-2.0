@@ -2,3 +2,11 @@
   display: flex;
   justify-content: space-between;
 }
+
+.list-actions .list-reload-button {
+  align-self: center;
+}
+
+.list-actions .list-reload-button {
+  font-size: 0.9em;
+}

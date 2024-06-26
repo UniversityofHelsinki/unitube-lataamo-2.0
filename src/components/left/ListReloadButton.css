@@ -1,29 +1,3 @@
 .list-reload-button {
-  display: flex;
-  flex-direction: row;
-  min-width: max-content;
-  align-items: center;
-
-  background-color: unset;
-  padding: unset;
-  border: unset;
-  
-  fill: var(--huds-brand-main);
-  color: var(--huds-brand-main);
-
-  margin-left: 1px;
-}
-
-.list-reload-button:hover {
-  color: var(--hy-black);
-}
-
-.list-reload-button svg path {
-  fill: inherit;
-}
-
-.list-reload-button svg {
-  width: 1em;
-  height: 1em;
-  margin-right: 0.2em;
+  font-size: 0.8em;
 }
