@@ -219,6 +219,7 @@
   "collection_delete_form_header": "Radera samling",
   "delete_collection_form_body_header": "Bekräfta radering av samling",
   "delete_collection_form_help_header": "Information om att radera samlingar",
+  "delete_collection_form_help_content": "???",
   "delete_collection_footer_close_button": "Stäng",
   "delete_collection_footer_cancel_button": "Avbryt",
   "delete_collection_footer_submit_button": "Radera",
@@ -264,6 +265,7 @@
   "delete_record_form_help_content": "Raderade inspelningar kan hittas under fliken Inspelningar genom att trycka på filterknappen Raderade. Innehållet i raderade inspelningar försvinner permanent från tjänsten automatiskt efter en viss tid.",
   "left_user_has_no_records": "Inga inspelningar. Du kan lägga till en ny inspelning med funktionen Ny inspelning. Inspelningar som ingår i samlingar finns under fliken Samlingar.",
   "left_user_has_no_collections": "Inga samlingar. Lägg till en ny samling med funktionen Ny samling.",
+  "left_user_has_no_statistics": "???",
   "new_record_upload_sending_subtitles": "Skickar och bearbetar undertexter...",
   "new_record_upload_sending_subtitle_order": "Skickar och bearbetar automatiska undertexter...",
   "new_record_footer_button_sending_subtitle_order": "Skickar...",
@@ -289,10 +291,13 @@
   "list_sort_menu_direction_ascending": "Stigande ordning",
   "list_sort_menu_direction_descending": "Fallande ordning",
   "record_error_page_deleted_help_label": "Information om raderade inspelningar",
+  "record_error_page_deleted_help_content": "???",
   "record_error_page_deleted_content": "Inspelningen har raderats. Inspelningen kan återställas från Återställ-knappen.",
   "record_error_page_http_help_label": "Information om oväntade fel",
+  "record_error_page_http_help_content": "???",
   "record_error_page_http_content": "Inspelningen kunde inte hämtas. Oväntat fel.",
   "record_error_page_processing_help_label": "Information om inspelningar under bearbetning",
+  "record_error_page_processing_help_content": "???",
   "record_error_page_processing_content": "Inspelningen bearbetas. Försök igen om en stund.",
   "record_error_page_http_not_found_content": "Inspelningen kunde inte hittas.",
   "tag_private": "Inte publicerat",
@@ -387,5 +392,7 @@
   "collection_validation_title_contains_word_trash": "Ordet trash får inte förekomma i samlingens namn.",
   "collection_error_page_inbox_content": "Fel vid laddning av samlingen.",
   "collection_error_page_http_content": "Fel vid laddning av samlingen.",
-  "collection_identifier_copy": "Kopiera samlingens kod"
+  "collection_error_page_http_help_content": "???",
+  "collection_identifier_copy": "Kopiera samlingens kod",
+  "record_views_header": "Visningar"
 }
