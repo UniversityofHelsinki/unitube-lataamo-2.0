@@ -10,7 +10,7 @@ const RecordViews = ({views}) => {
             <ElementHeader>
                 {t('record_views_header')}
             </ElementHeader>
-            <span>{views}</span>
+            <span className="blockquote">{views}</span>
         </>
     );
 };
