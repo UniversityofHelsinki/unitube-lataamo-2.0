@@ -77,16 +77,16 @@ const Statistic = () => {
                     <Container className="ps-0">
                         <Row className="mb-4">
                             <Col xs={6}>
-                                <h3>{statistic.location}</h3>
-                                <h4>{statistic.timeString}</h4>
+                                <h2>{statistic.location}</h2>
+                                <h3>{statistic.timeString}</h3>
                             </Col>
                         </Row>
                         <Row className="mb-4">
                             <Col xs={6}>
-                                <h5> {t('stream_duration')} {statistic.duration} </h5>
+                                <h3> {t('stream_duration')}</h3> {statistic.duration}
                             </Col>
                             <Col xs={6}>
-                                <h5> {t('stream_max_viewers')} {statistic.maxViewers} </h5>
+                                <h3> {t('stream_max_viewers')}</h3> {statistic.maxViewers}
                             </Col>
                         </Row>
                     </Container>
