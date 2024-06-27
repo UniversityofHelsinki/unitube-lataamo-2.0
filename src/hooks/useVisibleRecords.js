@@ -4,8 +4,8 @@ import useRecords from "./useRecords";
 
 const useVisibleRecords = ({ showAll = false, load = false }) => {
   const [records, loadingRecords, reloadRecords] = useRecords(load && !showAll);
-  const [deletedRecords, loadingDeletedRecords, reloadDeletedRecords] = useDeletedRecords(load);
   const [allRecords, loadingAllRecords, reloadAllRecords] = useAllRecords(load && showAll);
+  const [deletedRecords, loadingDeletedRecords, reloadDeletedRecords] = useDeletedRecords(load);
 
   const reload = () => {
     reloadRecords();

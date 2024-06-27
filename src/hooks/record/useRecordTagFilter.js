@@ -3,13 +3,14 @@ import useDistinctRecordTags from "./useDistinctRecordTags";
 import useRecordTags from "./useRecordTags";
 import useSelectedRecordTags from "./useSelectedRecordTags";
 
-const useRecordTagFilter = (records = []) => {
+const useRecordTagFilter = (records = [], loadingRecords) => {
   const tags = useRecordTags(records);
 
-  const distinctTags = useDistinctRecordTags(records);
+  const distinctTags = useDistinctRecordTags(tags);
 
   const [selectedTags, onSelectedTagChange, clearSelectedTags] = useSelectedRecordTags(
-    distinctTags
+    distinctTags,
+    loadingRecords
   );
 
   const filteredRecords = useTagFilter(records, selectedTags, tags);
