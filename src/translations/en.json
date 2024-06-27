@@ -388,5 +388,6 @@
   "record_subtitle_file_help_content": "Here you can add a closed captions or subtitle file (.vtt or .srt file) to the recording. Read more about creating subtitle files and adding them to Unitube recordings in the Helpdesk instructions",
   "collection_error_page_inbox_content": "Error loading collection.",
   "collection_error_page_http_content": "Error loading collection.",
-  "collection_identifier_copy": "Copy collection identifier"
+  "collection_identifier_copy": "Copy collection identifier",
+  "record_views_header": "Views"
 }

@@ -388,5 +388,6 @@
   "footer_release_notes_label": "Julkaisutiedot",
   "opens_in_new_tab": "Avautuu uuteen välilehteen",
   "collection_error_page_inbox_content": "Virhe ladattaessa kokoelmaa.",
-  "collection_error_page_http_content": "Virhe ladattaessa kokoelmaa."
+  "collection_error_page_http_content": "Virhe ladattaessa kokoelmaa.",
+  "record_views_header": "Katselukerrat"
 }

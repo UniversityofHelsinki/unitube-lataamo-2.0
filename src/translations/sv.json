@@ -387,5 +387,6 @@
   "collection_validation_title_contains_word_trash": "Ordet trash får inte förekomma i samlingens namn.",
   "collection_error_page_inbox_content": "Fel vid laddning av samlingen.",
   "collection_error_page_http_content": "Fel vid laddning av samlingen.",
-  "collection_identifier_copy": "Kopiera samlingens kod"
+  "collection_identifier_copy": "Kopiera samlingens kod",
+  "record_views_header": "Visningar"
 }

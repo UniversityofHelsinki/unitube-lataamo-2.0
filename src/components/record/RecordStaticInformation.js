@@ -12,6 +12,7 @@ import RecordLink from './RecordLink';
 import RecordSubtitleDownloadLinks from "./RecordSubtitleDownloadLinks";
 import useVideos from "../../hooks/useVideos";
 import Carousel from '../utilities/Carousel';
+import RecordViews from "./RecordViews";
 
 const VideoPreviewLabel = ({ video }) => {
   return <div className="video-preview-label">
@@ -32,6 +33,11 @@ const RecordStaticInformation = ({ record, onChange, resetSubtitleDownloadLinks,
                       <VideoPreview key={video.url} video={video} />
                     ))}
                   </Carousel>
+                </Col>
+            </Row>
+            <Row className="mb-4">
+                <Col>
+                    <RecordViews views={record.views} />
                 </Col>
             </Row>
             <Row className="mb-4">
