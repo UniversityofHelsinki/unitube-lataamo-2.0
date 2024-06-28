@@ -31,7 +31,7 @@ const emptyRecord = {
   deletionDate: addMonths(new Date(), 12).toISOString()
 };
 
-const NewRecord = ({ selectedSeries = '' }) => {
+const NewRecord = ({ selectedSeries = '', buttonDisabled = false }) => {
   const { t } = useTranslation();
   const [showDialog, setShowDialog] = useState(false);
   const [isValid, messages, validate] = useNewRecordValidation(
@@ -50,6 +50,7 @@ const NewRecord = ({ selectedSeries = '' }) => {
         setShowDialog(true);
       }
     }
+      disabled={buttonDisabled}
     >
       {t('new_record_button')}
     </HyButton>
@@ -70,7 +71,7 @@ const NewRecord = ({ selectedSeries = '' }) => {
   const hide = () => {
     reset();
     setShowDialog(false);
-    if (record.selectedSeries === collection?.identifier) {
+    if (record.selectedSeries === collection?.identifier && progress.status !== ProgressStatus.NEW_RECORD.NOT_STARTED) {
       reloadCollection();
     }
   };
