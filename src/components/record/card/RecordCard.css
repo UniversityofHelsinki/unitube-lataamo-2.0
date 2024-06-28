@@ -35,6 +35,10 @@ a.record-card-content-details {
   cursor: pointer;
 }
 
+.record-card-content-details:focus-visible {
+  border: 2px solid var(--huds-brand-main);
+}
+
 .record-card-content-details:hover strong {
   text-decoration: underline;
 }
