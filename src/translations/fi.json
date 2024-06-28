@@ -363,8 +363,8 @@
   "update_records_deletion_dates_dialog_error": "Virhe!",
   "update_records_deletion_dates_dialog_done": "Valmis!",
   "update_records_deletion_dates_dialog_saving": "Päivitetään voimassaolopäivämääriä...",
-  "crisis_banner_heading": "",
-  "crisis_banner_content": "",
+  "crisis_banner_heading": "Unitubessa päivityksen takia käyttökatko 1.–7.7.2024!",
+  "crisis_banner_content": "Unitubea päivitetään 1.7.–7.2024. Unitube-lataamo saattaa olla ajoittain avoinna tällä viikolla testikäyttöä varten.",
   "crisis_banner_link_location": "",
   "crisis_banner_link_label": "",
   "record_has_other_contributors": "Tallenteella muita omistajia!",
@@ -394,6 +394,6 @@
   "opens_in_new_tab": "Avautuu uuteen välilehteen",
   "collection_error_page_inbox_content": "Virhe ladattaessa kokoelmaa.",
   "collection_error_page_http_content": "Virhe ladattaessa kokoelmaa.",
-  "collection_error_page_http_help_content": "???",
+  "collection_error_page_http_help_content": "Tarkista, että sinulla on oikeudet muokata kokoelmaa, ja että yrität avata oikean kokoelman! Joskus kokoelma saattaa myös jäädä pidemmäksi aikaa käsittelyyn. Tällöin kannattaa yrittää hetken päästä uudelleen.",
   "record_views_header": "Katselukerrat"
 }
