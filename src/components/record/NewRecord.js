@@ -71,7 +71,7 @@ const NewRecord = ({ selectedSeries = '', buttonDisabled = false }) => {
   const hide = () => {
     reset();
     setShowDialog(false);
-    if (record.selectedSeries === collection?.identifier) {
+    if (record.selectedSeries === collection?.identifier && progress.status !== ProgressStatus.NEW_RECORD.NOT_STARTED) {
       reloadCollection();
     }
   };
