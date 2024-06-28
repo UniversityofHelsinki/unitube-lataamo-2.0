@@ -50,13 +50,13 @@ const CollectionRecords = ({ collection, records, disabled }) => {
             selectedRecords={selectedRecords}
           />
           <div>
-            <NewRecord selectedSeries={collection?.identifier} />
+            <NewRecord selectedSeries={collection?.identifier} buttonDisabled={disabled} />
           </div>
         </div>
     }
     return <div className="collection-records-bulk-actions-container collection-records-bulk-actions-container-empty">
       <div>
-        <NewRecord selectedSeries={collection?.identifier} />
+        <NewRecord selectedSeries={collection?.identifier} buttonDisabled={disabled} />
       </div>
     </div>;
   })();
@@ -83,7 +83,7 @@ const CollectionRecords = ({ collection, records, disabled }) => {
       </Row>
       <Row>
         <Col>
-            {bulkActions}
+          {bulkActions}
         </Col>
       </Row>
     </Container>
