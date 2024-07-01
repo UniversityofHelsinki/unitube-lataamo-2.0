@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <title>Saavutettavuusseloste – Unitube-lataamo</title>
+  <style type="text/css">
+      body {
+          font-family: sans-serif;
+      }
+
+      .row {
+          margin: 25px 0;
+      }
+
+      .row .deficiency-section {
+          margin: 15px;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+          margin: 10px 0 5px;
+      }
+
+      .statement__section {
+          margin-bottom: 4em;
+      }
+
+      .statement__inaccessible {
+          margin-bottom: 2em;
+      }
+
+      .flaws {
+          padding-left: 0;
+      }
+
+      .flaw {
+          margin-bottom: 1em;
+          list-style: none;
+          background-color: #f0f0f0;
+          padding: 0.5em;
+      }
+
+      .flaw__title {
+      }
+
+      .flaw__subtitle {
+      }
+
+      .flaw p {
+          margin-bottom: 1em;
+      }
+
+      .flaw ul {
+          margin-bottom: 1em;
+      }
+
+      .flaw__wcag li {
+          margin: 0;
+      }
+
+      .screen-reader-text {
+          position: absolute;
+          width: 1px;
+          clip: rect(0 0 0 0);
+          overflow: hidden;
+          white-space: nowrap;
+      }
+  </style>
+</head>
+<body>
+  <article>
+    <header>
+      <h1>Saavutettavuusseloste</h1>
+    </header>
+    <section class="statement__section">
+      <p>
+        Tämä saavutettavuusseloste koskee Helsingin yliopiston sivustoa
+        Unitube-lataamo (https://lataamo.helsinki.fi/) ja on
+        päivitetty 28.6.2024. Palvelua koskee laki digitaalisten palvelujen
+        tarjoamisesta, jossa edellytetään, että julkisten verkkopalvelujen on
+        oltava saavutettavia.
+      </p>
+      <p>Olemme arvioineet palvelun saavutettavuuden itse.</p>
+    </section>
+
+    <section class="statement__section">
+      <h2>Digipalvelun saavutettavuuden tila</h2>
+      <p>Täyttää saavutettavuusvaatimukset osittain.</p>
+    </section>
+    <h2>Ei-saavutettava sisältö</h2>
+
+    <section class="statement__section">
+      <section class="statement__inaccessible">
+        <h3>Verkkosivusto ei ole vielä kaikilta osin vaatimusten mukainen</h3>
+
+        <ul class="flaws">
+          <li class="flaw">
+            <h4 class="flaw__title">
+              Havaittava: Ruudunlukija lukee turhaan osan ikoneista
+            </h4>
+            <h5 class="flaw__subtitle">
+              Saavuttamaton sisältö ja sen puutteet
+            </h5>
+            <p>
+              Sivulla on ikoneita, kuten suurennuslasi, jotka ruudunlukija lukee turhaan kuvina.
+            </p>
+            <h5>Saavutettavuusvaatimukset jotka eivät täyty</h5>
+            <ul class="flaw__wcag">
+              <li>1.1.1 Ei-tekstuaalinen sisältö</li>
+            </ul>
+          </li>
+          <li class="flaw">
+            <h4 class="flaw__title">
+              Havaittava: Osa sisällöstä ei näy 400 prosentin suurennoksella
+            </h4>
+            <h5 class="flaw__subtitle">
+              Saavuttamaton sisältö ja sen puutteet
+            </h5>
+            <p>
+              Sivun pääsisältö jää muiden elementtien alle, kun suurennos
+              on 400 prosenttia.
+            </p>
+            <h5>Saavutettavuusvaatimukset jotka eivät täyty</h5>
+            <ul class="flaw__wcag">
+              <li>1.4.10 Responsiivisuus</li>
+            </ul>
+          </li>
+          <li class="flaw">
+            <h4 class="flaw__title">
+              Ymmärrettävä: Ruudunlukija ei ilmoita päivämääräformaattia
+            </h4>
+            <h5 class="flaw__subtitle">
+              Saavuttamaton sisältö ja sen puutteet
+            </h5>
+            <p>
+              Päivämääräkentästä ei pysty ruudunlukijan avulla päättelemään,
+              mikä on oikea päivämäärämuoto.
+            </p>
+            <h5>Saavutettavuusvaatimukset jotka eivät täyty</h5>
+            <ul class="flaw__wcag">
+              <li>3.3.2 Nimilaput tai ohjeet</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </section>
+
+    <section class="statement__section">
+      <h2>
+        Huomasitko saavutettavuuspuutteen digipalvelussamme? Kerro se meille
+        ja teemme parhaamme puutteen korjaamiseksi
+      </h2>
+
+      <h3>Sähköpostilla</h3>
+      <p>
+        <a href="mailto:unitube-lataamo@helsinki.fi">
+          unitube-lataamo@helsinki.fi
+          <span class="screen-reader-text">Avautuu sähköpostiohjelmaan</span>
+        </a>
+      </p>
+    </section>
+
+    <section class="statement__section">
+      <h2>Valvontaviranomainen</h2>
+      <p>
+        Jos huomaat sivustolla saavutettavuusongelmia, anna ensin palautetta
+        meille eli sivuston ylläpitäjälle. Vastauksessa voi mennä 14 päivää.
+        Jos et ole tyytyväinen saamaasi vastaukseen tai et saa vastausta
+        lainkaan kahden viikon aikana, voit tehdä ilmoituksen Etelä-Suomen
+        aluehallintovirastoon.
+        <a href="https://www.saavutettavuusvaatimukset.fi/kayttajan-oikeudet/" target="_blank">
+          Etelä-Suomen aluehallintoviraston sivulla<span class="screen-reader-text">Avautuu uuteen ikkunaan</span></a>
+        kerrotaan tarkasti, miten ilmoituksen voi tehdä ja miten asia
+        käsitellään.
+      </p>
+
+      <h2>Valvontaviranomaisen yhteystiedot</h2>
+      <p>
+        Etelä-Suomen aluehallintovirasto<br />
+        Saavutettavuuden valvonnan yksikkö<br />
+        <a href="https://www.saavutettavuusvaatimukset.fi" target="_blank">
+          www.saavutettavuusvaatimukset.fi
+          <span class="screen-reader-text">Avautuu uuteen ikkunaan</span>
+        </a>
+        <br />
+        <a href="mailto:saavutettavuus@avi.fi">
+          saavutettavuus@avi.fi
+          <span class="screen-reader-text">Avautuu sähköpostiohjelmaan</span>
+        </a><br />
+        puhelinnumero vaihde
+        <a href="tel:+358295016000">
+          0295 016 000
+          <span class="screen-reader-text">Avaa linkki soittaaksesi</span>
+        </a>
+      </p>
+    </section>
+  </article>
+</body>
+</html>

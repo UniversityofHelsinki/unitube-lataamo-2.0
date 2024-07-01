@@ -7,7 +7,7 @@ import {useTranslation} from "react-i18next";
 
 const CollectionMoodleCourse = ({ onRemove, Icon, label, disabled }) => {
     const { t } = useTranslation();
-  
+
     const disabledClass = disabled ? 'collection-moodle-course-disabled' : '';
 
     return (
@@ -19,7 +19,7 @@ const CollectionMoodleCourse = ({ onRemove, Icon, label, disabled }) => {
             {label}
           </div>
           <div className="collection-moodle-course-action">
-            <RemoveIcon role="button" tabIndex={0} aria-label={t('remove')} aria-disabled={disabled} onClick={disabled ? () => {} : onRemove} onKeyDown={disabled ? () => {} : onKeyDown(onRemove)} width="30px" height="15px" />
+            <RemoveIcon role="button" tabIndex={0} aria-label={`${t('collection_moodle_course_remove')} ${label}`} aria-disabled={disabled} onClick={disabled ? () => {} : onRemove} onKeyDown={disabled ? () => {} : onKeyDown(onRemove)} width="30px" height="15px" />
           </div>
         </div>
     );
