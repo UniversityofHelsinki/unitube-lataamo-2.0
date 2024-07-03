@@ -34,6 +34,8 @@ const NewRecordProgress = ({ progress }) => {
     [ProgressStatus.NEW_RECORD.PROCESSING]: t('new_record_upload_processing')
   }[progress.status] || '';
 
+  console.log('progress:', progress);
+
   const progressClass = {
     [ProgressStatus.NEW_RECORD.ERROR]: 'error',
     [ProgressStatus.NEW_RECORD.DONE]: 'done',
@@ -54,7 +56,12 @@ const NewRecordProgress = ({ progress }) => {
         </AlertMessage>
       );
     } 
-    if (progress.status === ProgressStatus.NEW_RECORD.PROCESSING || progress.status === ProgressStatus.NEW_RECORD.SENDING_SUBTITLES || ProgressStatus.NEW_RECORD.PROCESSING_SUBTITLES || progress.status === ProgressStatus.NEW_RECORD.SENDING_SUBTITLE_ORDER) {
+    if (
+      progress.status === ProgressStatus.NEW_RECORD.PROCESSING || 
+      progress.status === ProgressStatus.NEW_RECORD.SENDING_SUBTITLES || 
+      progress.status === ProgressStatus.NEW_RECORD.PROCESSING_SUBTITLES || 
+      progress.status === ProgressStatus.NEW_RECORD.SENDING_SUBTITLE_ORDER
+    ) {
         return (
           <AlertMessage type="transparent">
           {t('new_record_footer_alert_processing')}

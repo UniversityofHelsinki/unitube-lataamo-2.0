@@ -116,7 +116,6 @@ sonarqube-check:
     - sonar-scanner -Dsonar.scm.provider=git
   allow_failure: true
   only:
-    - oc-test
     - master
 # common script for all deploy jobs
 # substitute variables
