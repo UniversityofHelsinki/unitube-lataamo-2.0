@@ -14,7 +14,8 @@ const recordIsInProgress = (record) => {
   if (record) {
     const processingRecord = record.processing_state === 'RUNNING' || record.processing_state === 'EVENTS.EVENTS.STATUS.PROCESSING';
     const processingSubtitles = record.jobs && record.jobs.type === JOB_TYPES_TRANSCRIPTION && record.jobs.status === JOB_STATUS_STARTED;
-    return processingRecord || processingSubtitles;
+    const hasNoDownloadableMedia = !record.downloadableMedia || Object.values(record.downloadableMedia).length === 0;
+    return processingRecord || processingSubtitles || hasNoDownloadableMedia;
   }
   return false;
 };
