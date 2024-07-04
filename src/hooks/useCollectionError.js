@@ -2,9 +2,11 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import CollectionErrorPage from "../components/collection/CollectionErrorPage";
 import HelpDialog from "../components/dialog/HelpDialog";
+import useUser from "./useUser";
 
 const useCollectionError = (collection, httpError) => {
   const { t } = useTranslation();
+  const [user] = useUser();
 
   if (httpError) {
     return (
@@ -23,7 +25,7 @@ const useCollectionError = (collection, httpError) => {
     );
   }
 
-  if (collection && collection.title.includes('inbox')) {
+  if (collection && collection.title === `inbox ${user.eppn}`) {
     return (
       <CollectionErrorPage>
         <div className="collection-error-page-content">
