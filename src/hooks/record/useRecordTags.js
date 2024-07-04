@@ -58,8 +58,9 @@ const expiring = () => (record) => {
 export const processing = () => (record) => {
   const processingRecord = record.processing_state === 'RUNNING' || record.processing_state === 'EVENTS.EVENTS.STATUS.PROCESSING';
   const processingSubtitles = record.jobs && record.jobs.type === JOB_TYPES_TRANSCRIPTION && record.jobs.status === JOB_STATUS_STARTED;
+  const hasNoDownloadableMedia = !record.downloadableMedia || Object.values(record.downloadableMedia).length === 0;
 
-  if (processingRecord || processingSubtitles) {
+  if (processingRecord || processingSubtitles || hasNoDownloadableMedia) {
     return {
       label: 'tag_processing',
       ariaLabel: 'tag_processing_aria',
