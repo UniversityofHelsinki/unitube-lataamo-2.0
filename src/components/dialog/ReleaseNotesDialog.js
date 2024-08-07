@@ -11,7 +11,7 @@ import { ReactComponent as InfoDialog } from '../utilities/icons/info-dialog-inv
 
 
 const modifyDate = (releaseDate) => {
-    const formattedDate = new Intl.DateTimeFormat(i18n.language, {
+    const formattedDate = new Intl.DateTimeFormat('fi-FI', {
         day: '2-digit', month: '2-digit', year: 'numeric'
     }).format(new Date(releaseDate));
     return formattedDate;

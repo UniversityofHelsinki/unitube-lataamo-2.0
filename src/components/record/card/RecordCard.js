@@ -22,7 +22,7 @@ const RecordCard = ({ record, onClick, selected = false, containerRef, highlight
   const [tags] = useRecordTags([record]);
   const isDeleted = DELETED_SERIES_REG_EXP(user.eppn).test(record.series);
   const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-  const date = record.deletionDate && !isDeleted ? new Intl.DateTimeFormat(i18n.language, options).format(new Date(record.deletionDate)) : null;
+  const date = record.deletionDate && !isDeleted ? new Intl.DateTimeFormat('fi-FI', options).format(new Date(record.deletionDate)) : null;
 
   const series = (() => {
     const belongsToDefaultCollection = record.series === `inbox ${user.eppn}`;
@@ -47,7 +47,7 @@ const RecordCard = ({ record, onClick, selected = false, containerRef, highlight
   const realDeletionDate = record.realDeletionDate && isDeleted ? (() => {
     const date = new Date(record.realDeletionDate);
     date.setMonth(date.getMonth());
-    return new Intl.DateTimeFormat(i18n.language, options).format(date);
+    return new Intl.DateTimeFormat('fi-FI', options).format(date);
   })() : null;
 
   return (
@@ -65,10 +65,10 @@ const RecordCard = ({ record, onClick, selected = false, containerRef, highlight
             <RecordCardDetails labelId={labelId} record={record} deleted={isDeleted} highlight={highlight} />
           </div>
           <div className="record-card-content-details-bottom">
-            {!isDeleted 
-              ? <CardHighlight 
-                  input={t('record_card_valid_until', { deletionDate: date })} 
-                  what={highlight} 
+            {!isDeleted
+              ? <CardHighlight
+                  input={t('record_card_valid_until', { deletionDate: date })}
+                  what={highlight}
                 />
               : <CardHighlight
                   input={t('record_card_restorable_until', { realDeletionDate })}
@@ -85,9 +85,9 @@ const RecordCard = ({ record, onClick, selected = false, containerRef, highlight
               <CardHighlight input={record.duration} what={highlight} />
             </span>
           </div>
-            <a 
+            <a
               aria-hidden
-              href={`?record=${record.identifier}`} 
+              href={`?record=${record.identifier}`}
               onClick={handleClick}
               onKeyDown={onKeyDown(handleClick)}
               tabIndex={-1}
