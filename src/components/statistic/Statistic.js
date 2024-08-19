@@ -43,7 +43,7 @@ const Statistic = () => {
                 stat.end_before_timestamp === Number(searchParams?.end_before_timestamp)
         );
         if (statistic) {
-            const formattedDate = new Intl.DateTimeFormat(i18n.language, {
+            const formattedDate = new Intl.DateTimeFormat('fi-FI', {
                 day: "2-digit",
                 month: "2-digit",
                 year: "numeric",

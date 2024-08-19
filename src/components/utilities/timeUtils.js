@@ -28,10 +28,10 @@ export const getTimeFormat = (start, end) => {
     const optionsDate = { day: '2-digit', month: '2-digit', year: 'numeric' };
     const optionsTime = { hour: '2-digit', minute: '2-digit' };
 
-    const formattedStartDate = new Intl.DateTimeFormat(i18n.language, optionsDate).format(startDate);
-    const startHours = startDate.toLocaleTimeString(i18n.language, optionsTime);
+    const formattedStartDate = new Intl.DateTimeFormat('fi-FI', optionsDate).format(startDate);
+    const startHours = startDate.toLocaleTimeString('fi-FI', optionsTime);
 
-    const endHours = endDate.toLocaleTimeString(i18n.language, optionsTime);
+    const endHours = endDate.toLocaleTimeString('fi-FI', optionsTime);
 
     return `${formattedStartDate} ${startHours} - ${endHours}`;
 };

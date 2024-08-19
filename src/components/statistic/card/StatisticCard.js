@@ -29,7 +29,7 @@ const StatisticCard = ({ statistic, onClick, selected = false }) => {
     const { t } = useTranslation();
     const labelId = useId();
     const selectedClass = selected ? 'statistic-card-selected' : '';
-    const formattedDate = new Intl.DateTimeFormat(i18n.language, {
+    const formattedDate = new Intl.DateTimeFormat('fi-FI', {
         day: '2-digit', month: '2-digit', year: 'numeric'
     }).format(new Date(statistic.start_timestamp));
     const duration = getDurationInHoursMinutesSeconds(statistic.start_timestamp, statistic.end_before_timestamp);
