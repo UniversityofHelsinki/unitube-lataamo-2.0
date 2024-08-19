@@ -16,7 +16,7 @@ const dateFormat = (language) => (value) => {
   }
 
   try {
-    return new Intl.DateTimeFormat(language, {day: '2-digit', month: '2-digit', year: 'numeric'}).format(new Date(value));
+    return new Intl.DateTimeFormat('fi-FI', {day: '2-digit', month: '2-digit', year: 'numeric'}).format(new Date(value));
   } catch (error) {
     return '';
   }
@@ -25,8 +25,8 @@ const dateFormat = (language) => (value) => {
 const useRecordSearch = (records = [], searchQuery = '') => {
   const { i18n } = useTranslation();
   const transforms = {
-    created: dateFormat(i18n.language),
-    deletionDate: dateFormat(i18n.language)
+    created: dateFormat('fi-FI'),
+    deletionDate: dateFormat('fi-FI')
   };
 
   const filteredRecords = useSearch(records, searchQuery, properties, transforms);

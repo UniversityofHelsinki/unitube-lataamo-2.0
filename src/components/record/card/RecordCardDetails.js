@@ -7,7 +7,7 @@ import { CardHighlight } from '../../utilities/Highlight';
 const RecordCardDetails = ({ record, labelId, deleted, highlight }) => {
     const { t, i18n } = useTranslation();
     const deletedClass = deleted ? 'record-card-details-deleted' : '';
-    const created = new Intl.DateTimeFormat(i18n.language, {
+    const created = new Intl.DateTimeFormat('fi-FI', {
         day: '2-digit', month: '2-digit', year: 'numeric'
     }).format(new Date(record.created));
 

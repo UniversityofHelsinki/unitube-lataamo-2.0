@@ -10,14 +10,14 @@ const DateView = ({ ISO }) => {
     return <span>{t('N/A')}</span>;
   }
 
-  const options = { 
-    day: '2-digit', 
-    month: '2-digit', 
-    year: 'numeric' 
+  const options = {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
   };
 
   const date = new Intl.DateTimeFormat(
-    i18n.language, 
+    'fi-FI',
     options
   ).format(new Date(ISO));
 
