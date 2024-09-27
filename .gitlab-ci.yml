@@ -10,6 +10,8 @@ cache:
 stages:
   - compile
   - build
+  - dependency-check
+  - sonarqube-check
   - test
   - sonarqube
   - deploy
