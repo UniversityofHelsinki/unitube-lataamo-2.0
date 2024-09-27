@@ -130,7 +130,7 @@ dependency-check:
   script:
     - >
       /usr/share/dependency-check/bin/dependency-check.sh
-      --project unitube-poistamo --scan .
+      --project unitube-lataamo-2.0 --scan .
       --format JSON --format HTML -nvdApiKey $NVD_API_KEY
   artifacts:
     when: always
