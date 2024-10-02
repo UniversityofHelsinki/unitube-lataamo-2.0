@@ -191,6 +191,8 @@ deploy_test:
   stage: deploy
   tags:
     - ohtu-build-3
+  except:
+    - schedules
   environment:
     name: test
     url: https://$LATAAMO_TEST
@@ -207,6 +209,8 @@ deploy_oc_test:
   stage: deploy
   tags:
     - ohtu-build-3
+  except:
+    - schedules
   environment:
     name: development
     url: https://$LATAAMO_OC_TEST
@@ -221,6 +225,8 @@ deploy_oc_test:
 # deploy to prod environment
 deploy_prod:
   stage: deploy
+  except:
+    - schedules
   tags:
     - ohtu-build-3
   environment:
