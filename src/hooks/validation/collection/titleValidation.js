@@ -1,5 +1,4 @@
-import { FIELD_IS_VALID } from "../../../Constants";
-
+import { FIELD_IS_VALID, FORBIDDEN_CHARACTERS } from "../../../Constants";
 
 const validateTitle = (title) => {
   if (!title || title.length === 0) {
@@ -12,6 +11,10 @@ const validateTitle = (title) => {
 
   if (title.toLowerCase().includes('trash')) {
     return 'collection_validation_title_contains_word_trash';
+  }
+
+  if (title.includes(FORBIDDEN_CHARACTERS)) {
+    return 'collection_validation_title_contains_forbidden_characters';
   }
 
   return FIELD_IS_VALID;

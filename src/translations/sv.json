@@ -397,5 +397,7 @@
   "collection_error_page_http_content": "Fel vid laddning av samlingen.",
   "collection_error_page_http_help_content": "Kontrollera att du har behörigheter att redigera samlingen och att du försöker öppna rätt samling! Ibland kan samlingen också ta längre tid att bearbeta. Då är det värt att försöka igen om en stund.",
   "collection_identifier_copy": "Kopiera samlingens kod",
-  "record_views_header": "Visningar"
+  "record_views_header": "Visningar",
+  "record_validation_title_contains_forbidden_characters": "Name contains a forbidden character.",
+  "collection_validation_title_contains_forbidden_characters": "Name contains a forbidden character."
 }
