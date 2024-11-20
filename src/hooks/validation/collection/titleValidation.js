@@ -13,7 +13,7 @@ const validateTitle = (title) => {
     return 'collection_validation_title_contains_word_trash';
   }
 
-  if (title.includes(FORBIDDEN_CHARACTERS)) {
+  if (FORBIDDEN_CHARACTERS.test(title)) {
     return 'collection_validation_title_contains_forbidden_characters';
   }
 
