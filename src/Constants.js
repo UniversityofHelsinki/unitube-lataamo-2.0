@@ -132,3 +132,4 @@ export const JOB_TYPES_TRANSCRIPTION = 'transcription';
 export const JOB_STATUS_STARTED = 'STARTED';
 
 export const MOODLE_NUMBER_LIMIT = 20;
+export const FORBIDDEN_CHARACTERS = /[%]/;

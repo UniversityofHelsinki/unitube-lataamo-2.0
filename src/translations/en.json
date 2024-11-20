@@ -398,5 +398,8 @@
   "collection_error_page_http_content": "Error loading collection.",
   "collection_error_page_http_help_content": "Check that you have the rights to edit the collectino, and that you are trying to open the correct collection! Sometimes a collection may also be processed for a longer period of time. In this case, you should try again after a while.",
   "collection_identifier_copy": "Copy collection identifier",
-  "record_views_header": "Views"
+  "record_views_header": "Views",
+  "record_validation_title_contains_forbidden_characters": "Name contains a forbidden character.",
+  "collection_validation_title_contains_forbidden_characters": "Name contains a forbidden character."
+
 }
