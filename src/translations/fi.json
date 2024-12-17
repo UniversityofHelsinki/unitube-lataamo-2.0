@@ -394,6 +394,8 @@
   "footer_hy_phone_switchboard": "Puhelinvaihde: 02941 911",
   "footer_hy_maintenance": "Unitube-lataamon huoltoikkuna on tiistaisin klo 8.00–10.00. Palvelussa saattaa tuolloin ilmetä pieniä häiriöitä!",
   "footer_release_notes_label": "Julkaisutiedot",
+  "footer_privacy_statement_label": "Tietosuojaseloste",
+  "footer_privacy_statement_link": "https://www.helsinki.fi/fi/tutustu-meihin/tietojen-kasittely-yliopistolla/tietosuoja#tietotekniikkakeskus",
   "opens_in_new_tab": "Avautuu uuteen välilehteen",
   "collection_error_page_inbox_content": "Virhe ladattaessa kokoelmaa.",
   "collection_error_page_http_content": "Virhe ladattaessa kokoelmaa.",

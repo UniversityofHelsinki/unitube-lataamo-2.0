@@ -184,6 +184,8 @@
   "footer_hy_phone_switchboard": "Telefonväxel: 02941 911",
   "footer_hy_maintenance": "Underhållsfönstret för Unitube är varje tisdag kl. 8.00–10.00. Små störningar kan förekomma under tiden!",
   "footer_release_notes_label": "Versionsinformation",
+  "footer_privacy_statement_label": "Sekretesspolicy",
+  "footer_privacy_statement_link": "https://www.helsinki.fi/sv/om-oss/behandling-av-uppgifter-vid-universitetet/dataskydd#center-f%C3%B6r-informationsteknologi-",
   "opens_in_new_tab": "Öppnas i ny flik",
   "record_identifier_header_copy_aria": "Kopiera inspelningens kod",
   "record_link_copy_aria": "Kopiera länk",
