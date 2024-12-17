@@ -1,5 +1,5 @@
 .collection-moodle-courses-list {
-    padding-left: 0px;
+    padding-left: 0;
     width: 100%;
 }
 
@@ -23,7 +23,7 @@
 }
 
 .collection-moodle-courses-limit-exceeded {
-  dislay: flex;
+  display: flex;
   justify-content: center;
   text-align: center;
   background-color: var(--hy-light-silver);
