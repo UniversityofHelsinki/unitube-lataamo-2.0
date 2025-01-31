@@ -29,7 +29,9 @@ export const validateExistingDeletionDate = (record) => {
       return 'record_validation_deletion_date_is_empty';
     } else if (!equalsOriginal && date < addMonths(today, DELETION_DATE_MIN_MONTHS)) {
       return 'record_validation_deletion_date_too_soon';
-    } 
+    } else if (midnight(date) > addYears(today, DELETION_DATE_MAX_YEARS)) {
+      return 'record_validation_deletion_date_too_late';
+    }
   };
 };
 

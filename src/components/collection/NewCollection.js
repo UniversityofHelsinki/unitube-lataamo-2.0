@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './NewCollection.css';
 import { useTranslation } from 'react-i18next';
-import { Button, Col, Container, Form, Modal, Row } from 'react-bootstrap';
+import { Col, Container, Form, Modal, Row } from 'react-bootstrap';
 import useCollectionModification from '../../hooks/useCollectionModification';
 import FormDialog from '../dialog/FormDialog';
 import CollectionName from './name/CollectionName';
@@ -55,11 +55,10 @@ const NewCollection = () => {
 
   const saveInProgress = progress.status === ProgressStatus.NEW_COLLECTION.SENDING;
   const errorOccurred = progress.status === ProgressStatus.NEW_COLLECTION.ERROR;
-  const savingDone = progress.status == ProgressStatus.NEW_COLLECTION.DONE;
+  const savingDone = progress.status === ProgressStatus.NEW_COLLECTION.DONE;
   const fieldsDisabled = saveInProgress || errorOccurred || savingDone;
 
   const closeButton = { closeButton: true };
-  const disabled = isValid;
 
   const hide = () => {
     undo();
@@ -70,8 +69,8 @@ const NewCollection = () => {
 
   const tryAgain = save;
 
-  const clearForm = () => { 
-    undo(); 
+  const clearForm = async () => {
+    await undo();
     resetProgress();
   };
 
