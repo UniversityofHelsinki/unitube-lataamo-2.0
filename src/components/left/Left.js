@@ -1,8 +1,5 @@
 import React, { useState, useRef } from 'react';
 import './Left.css';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 import LeftList from './LeftList';
 import Navigation from './Navigation';
 import RecordCard from '../record/card/RecordCard';
@@ -22,7 +19,7 @@ import useCollectionSort, {defaultCriterias as collectionsDefaultCriterias}  fro
 import useRecordTagFilter from '../../hooks/record/useRecordTagFilter';
 import useRecordSearch from '../../hooks/record/useRecordSearch';
 import useCollectionSearch from '../../hooks/collection/useCollectionSearch';
-import { belowBreakpoint, toggleLeftSide } from '../utilities/visibilities';
+import { belowBreakpoint, hideLeft, showRight } from '../utilities/visibilities';
 import useCollectionTagFilter from '../../hooks/collection/useCollectionTagFilter';
 import ListActions from './ListActions';
 import PropTypes from "prop-types";
@@ -64,18 +61,8 @@ const NoStatistics = () => {
     );
 };
 
-const userScrolledDown = (previous, current, threshold) => {
-  return current - previous > threshold;
-};
-
-const userScrolledUp = (previous, current, threshold) => {
-  return previous - current > threshold;
-};
-
 const Left = () => {
     const [path] = useLocation();
-    const scrollTop = useRef(0);
-    const upside = useRef();
 
     const [recordOptions, setRecordOptions] = useState({
         searchValue: '',
@@ -110,7 +97,8 @@ const Left = () => {
       onSelectedRecordTagChange,
       clearSelectedRecordTags
     ]  = useRecordTagFilter(
-        sortedRecords
+        sortedRecords,
+        loadingRecords
     );
 
     const searchQueryFilteredRecords = useRecordSearch(
@@ -142,7 +130,8 @@ const Left = () => {
       onSelectedCollectionTagChange,
       clearSelectedCollectionTags
     ] = useCollectionTagFilter(
-      sortedCollections
+      sortedCollections,
+      loadingCollections
     );
 
     const searchQueryFilteredCollections = useCollectionSearch(
@@ -161,7 +150,7 @@ const Left = () => {
     const onRecordCardClick = (record) => {
         setSearchParams({ 'record': record.identifier });
         if (belowBreakpoint()) {
-          toggleLeftSide();
+          hideLeft();
         }
     };
 
@@ -172,14 +161,14 @@ const Left = () => {
             'end_before_timestamp': statistic.end_before_timestamp
         });
         if (belowBreakpoint()) {
-          toggleLeftSide();
+          hideLeft();
         }
     };
 
     const onCollectionCardClick = (collection) => {
         setSearchParams({ 'collection': collection.identifier });
         if (belowBreakpoint()) {
-          toggleLeftSide();
+          hideLeft();
         }
     };
 
@@ -190,7 +179,8 @@ const Left = () => {
             record={record}
             selected={record.identifier === searchParams.record }
             containerRef={listRef}
-            highlight={recordOptions.searchValue} />,
+            highlight={recordOptions.searchValue} 
+          />,
             record.identifier]
     );
 
@@ -301,62 +291,25 @@ const Left = () => {
         }
     };
 
-  const hideUpSide = (event) => {
-    if (scrollTop.current > event.target.scrollHeight) {
-      scrollTop.current = 0;
-    }
-
-    const previousScrollTop = scrollTop.current;
-    const currentScrollTop = event.target.scrollTop;
-
-    const threshold = 50;
-
-    if (userScrolledDown(previousScrollTop, currentScrollTop, threshold)) {
-      if (upside.current && belowBreakpoint()) {
-        upside.current.classList.add("hidden");
-      }
-    } else if (userScrolledUp(previousScrollTop, currentScrollTop, threshold)) {
-      if (upside.current) {
-        upside.current.classList.remove("hidden");
-      }
-    }
-
-    const scrolledEnough = Math.abs(previousScrollTop - currentScrollTop) >= threshold;
-    if (scrolledEnough) {
-      scrollTop.current = currentScrollTop;
-    }
-  };
-
   return (
       <div className="left">
-        <div className="left-up">
-          <Container className="up-left border-bottom">
-            <Row>
-              <Col className="no-padding up-left-navigation">
-                <Navigation />
-              </Col>
-            </Row>
-            <Row ref={upside} className="border-start border-end border-black">
-              <Col className="mt-3 mb-3">
-                {actionElement[path]}
-              </Col>
-            </Row>
-            <Row className="border-start border-end border-black">
-              <Col>
-                <div className="left-list-actions">
-                  <ListActions 
-                    currentSortCriteria={sortOptions?.criteria}
-                    sortCriterias={sortCriterias}
-                    descending={sortOptions?.descending}
-                    onSortOptionChange={onSortOptionChange}
-                    reload={reloadFunction}
-                  />
-                </div>
-              </Col>
-            </Row>
-          </Container>
+        <div className="left-navigation">
+          <Navigation />
         </div>
-        <div ref={listRef} className="left-down border border-top-0 border-black" onScroll={hideUpSide}>
+        <div className="left-content" ref={listRef}>
+          <div>
+            {actionElement[path]}
+          </div>
+          <div className="left-content-list-actions shadow-line">
+            <ListActions 
+              currentSortCriteria={sortOptions?.criteria}
+              sortCriterias={sortCriterias}
+              descending={sortOptions?.descending}
+              onSortOptionChange={onSortOptionChange}
+              reload={reloadFunction}
+            />
+          </div>
+          <div className="left-down">
             <Loading loading={Boolean(loading[path])}>
               <LeftList>
                 {(() => {
@@ -371,6 +324,7 @@ const Left = () => {
                 })()}
               </LeftList>
             </Loading>
+          </div>
         </div>
       </div>
   );

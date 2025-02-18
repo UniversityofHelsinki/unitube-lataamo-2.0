@@ -29,11 +29,12 @@ const StatisticCard = ({ statistic, onClick, selected = false }) => {
     const { t } = useTranslation();
     const labelId = useId();
     const selectedClass = selected ? 'statistic-card-selected' : '';
-    const formattedDate = new Intl.DateTimeFormat(i18n.language, {
+    const formattedDate = new Intl.DateTimeFormat('fi-FI', {
         day: '2-digit', month: '2-digit', year: 'numeric'
     }).format(new Date(statistic.start_timestamp));
     const duration = getDurationInHoursMinutesSeconds(statistic.start_timestamp, statistic.end_before_timestamp);
     statistic = {...statistic, formattedDate: formattedDate, duration : duration};
+    const streamAriaLabel = `${t('stream-location')}: ${statistic.location}, ${t('stream-date')}: ${formattedDate}`;
 
     const handleClick = (event) => {
         event.preventDefault();
@@ -52,18 +53,22 @@ const StatisticCard = ({ statistic, onClick, selected = false }) => {
                                href={`?room=${statistic.room}&start_timestamp=${statistic.start_timestamp}&end_before_timestamp=${statistic.end_before_timestamp}`}
                                onClick={handleClick}
                                onKeyDown={onKeyDown(handleClick)}
-                               aria-labelledby={labelId}
                                aria-current={selected ? 'page' : false}
-                            >{statistic.location}</a>
+                               aria-label={streamAriaLabel}
+                            >
+                                <strong id={labelId}>
+                                    {t('stream-location')}: {statistic.location}
+                                </strong>
+                            </a>
                         </div>
                         <div>
-                            {formattedDate}
+                            {(t('stream-date'))}: {formattedDate}
                         </div>
                         <div>
-                            {t('stream_max_viewers')} {statistic.maxViewers}
+                            {t('stream_max_viewers')}: {statistic.maxViewers}
                         </div>
                         <div>
-                            {t('stream_duration')} {duration}
+                            {t('stream_duration')}: {duration}
                         </div>
                     </div>
                 </Col>

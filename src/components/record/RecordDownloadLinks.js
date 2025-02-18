@@ -27,16 +27,15 @@ const RecordDownloadLinks = ({ downloadableMedia }) => {
     <Container>
       <Row>
         <Col>
-          <ElementHeader>
+          <ElementHeader 
+            helpDialog={(
+              <HelpDialog label={t('record_download_links_help_label')}>
+                {t('record_download_links_help_content')}
+              </HelpDialog>
+            )}
+          >
             {t('record_download_links_header')}
           </ElementHeader>
-        </Col>
-      </Row>
-      <Row className="mb-3">
-        <Col>
-          <HelpDialog label={t('record_download_links_help_label')}>
-            {t('record_download_links_help_content')}
-          </HelpDialog>
         </Col>
       </Row>
       <Row>

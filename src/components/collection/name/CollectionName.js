@@ -20,19 +20,21 @@ const CollectionName = ({ name, onChange, message, disabled }) => {
             <Form.Group>
                 <Row>
                     <Col>
-                        <FormElementHeader componentId={id}>{t('collection_form_name_header')}</FormElementHeader> 
+                        <FormElementHeader 
+                          id={id}
+                          helpDialog={(
+                            <HelpDialog label={t('collection_form_name_help_label')}>
+                              {t('collection_form_name_help_content')}
+                            </HelpDialog>
+                          )}
+                        >
+                          {t('collection_form_name_header')}
+                        </FormElementHeader> 
                     </Col>
-                </Row>
-                <Row className="mb-3">
-                  <Col>
-                    <HelpDialog label={t('collection_form_name_help_label')}>
-                      {t('collection_form_name_help_content')}
-                    </HelpDialog>
-                  </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <InputField id={id} label={name} placeholder={t('collection_form_name_placeholder')} value={name} onChange={nameChanged} message={message} disabled={disabled} required />
+                        <InputField aria-labelledby={id} label={name} placeholder={t('collection_form_name_placeholder')} value={name} onChange={nameChanged} message={message} disabled={disabled} aria-required />
                     </Col>
                 </Row>
             </Form.Group>

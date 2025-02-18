@@ -8,7 +8,6 @@ import RecordForm from './RecordForm';
 import RecordStaticInformation from './RecordStaticInformation';
 import './Record.css';
 import Loading from '../utilities/Loading';
-import RecordsBreadCrumb from "../form/RecordsBreadCrumb";
 import RecordBottomBar from './RecordBottomBar';
 import useRecordValidation from '../../hooks/validation/record/useRecordValidation';
 import useRecordSave from '../../hooks/record/useRecordSave';
@@ -30,7 +29,7 @@ const Record = () => {
     const [resetSubtitleDownloadLinks, setResetSubtitleDownloadLinks] = useState(false);
 
     const [isValid, messages, validate] = useRecordValidation([
-      'title', 'description', 'deletionDate', 'license', 'subtitles'
+      'title', 'description', 'deletionDate', 'license', 'selectedSubtitles'
     ], originalRecord);
     const [record, onChange, modified, undo] = useRecordModification(originalRecord, validate, resetProgress);
     const formRef = useRef();
@@ -88,18 +87,18 @@ const Record = () => {
               <Col>
                 <Container className="ps-0">
                   <Row className="top-row-container">
-                    <div className="top-row-container-div">
-                      <div>
-                        <RecordsBreadCrumb record={originalRecord} />
-                      </div>
-                      <div className="top-row-record-actions">
-                        <RecordTopRow record={originalRecord} disabled={saveInProgress} reload={reload} />
-                      </div>
-                    </div>
+                    <Col className="p-0">
+                      <RecordTopRow record={originalRecord} disabled={saveInProgress} reload={reload} />
+                    </Col>
                   </Row>
                   <Row>
                     <Col xl={5} className="ps-0">
-                      <RecordStaticInformation record={originalRecord} onChange={onChange} resetSubtitleDownloadLinks={resetSubtitleDownloadLinks} disabled={saveInProgress}  />
+                      <RecordStaticInformation 
+                        record={originalRecord} 
+                        onChange={onChange} 
+                        resetSubtitleDownloadLinks={resetSubtitleDownloadLinks} 
+                        disabled={saveInProgress}  
+                      />
                     </Col>
                     <Col xl className="ps-0">
                       <RecordForm

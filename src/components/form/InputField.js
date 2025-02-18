@@ -5,14 +5,16 @@ import './InputField.css';
 import Message from './Message';
 
 const InputField = ({ message, hideMessage, ...rest }) => {
-    const messageId = useId();
-    const isInvalid = !!message?.content;
+  const messageId = useId();
+  const isInvalid = !!message?.content;
+
+  const ariaDescribedBy = hideMessage ? {} : { 'aria-describedby': messageId };
 
   return (
-      <>
-        <Form.Control type={ rest.type || "text" } aria-invalid={isInvalid} aria-describedby={messageId} { ...rest } />
-        {!hideMessage && <Message messageId={messageId} type={message?.type}>{message?.content}</Message>}
-      </>
+    <>
+      <Form.Control type={ rest.type || "text" } aria-invalid={isInvalid} { ...ariaDescribedBy } { ...rest } />
+      {!hideMessage && <Message messageId={messageId} type={message?.type}>{message?.content}</Message>}
+    </>
   );
 };
 

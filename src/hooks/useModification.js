@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useState} from "react";
 
 const useModification = (object, validate, resetProgress) => {
   const [modifiedObject, setModifiedObject] = useState(null);
@@ -35,8 +35,7 @@ const useModification = (object, validate, resetProgress) => {
     })();
 
     if (validate) {
-      const previousObject = modifiedObject;
-      validate(newModifiedObject, previousObject);
+      validate(newModifiedObject, modifiedObject);
     }
 
     setModifiedObject(newModifiedObject);

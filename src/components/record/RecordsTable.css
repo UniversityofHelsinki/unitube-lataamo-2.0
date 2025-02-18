@@ -94,7 +94,15 @@
   margin-left: 1em;
   word-break: break-all;
   min-width: fit-content;
+  color: var(--huds-grayscale-black);
 }
+
+.records-table-title-label {
+  margin-left: 1em;
+  word-break: break-all;
+  min-width: fit-content;
+}
+
 
 .records-table-checkbox {
   display: flex;
@@ -111,4 +119,8 @@
 
 .records-table-heading-checkbox {
   min-width: 40px;
+}
+
+svg.records-table-no-direction * {
+  fill: var(--huds-grayscale-medium) !important;
 }

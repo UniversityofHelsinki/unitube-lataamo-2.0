@@ -1,9 +1,7 @@
 import useDistinctTags from "../useDistinctTags";
-import useRecordTags from "./useRecordTags";
 
-const useDistinctRecordTags = (records = []) => {
-  const allTags = useRecordTags(records);
-  const distinctTags = useDistinctTags(allTags.flat());
+const useDistinctRecordTags = (tags = []) => {
+  const distinctTags = useDistinctTags(tags.flat());
 
   return distinctTags;
 };

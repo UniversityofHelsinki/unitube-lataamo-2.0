@@ -1,3 +1,16 @@
-label.form-element-header {
+.form-element-header {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  word-break: break-all;
+}
+
+.form-element-header h3 {
   font-size: 1.2rem;
+}
+
+
+.form-element-header svg {
+  min-width: 1.5em;
+  min-height: 1.5em;
 }

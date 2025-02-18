@@ -20,21 +20,21 @@ const RecordDescription = ({ description, onChange, message, disabled = false })
             <Form.Group>
             <Row>
                 <Col>
-                    <FormElementHeader componentId={id}>
+                    <FormElementHeader 
+                      id={id}
+                      helpDialog={(
+                        <HelpDialog label={t('record_description_help_label')} >
+                          {t('record_description_help_content')}
+                        </HelpDialog>
+                      )}
+                    >
                       {t('record_form_description_header')}
                     </FormElementHeader>
                 </Col>
             </Row>
-            <Row className="mb-3">
-                <Col>
-                    <HelpDialog label={t('record_description_help_label')} >
-                        {t('record_description_help_content')}
-                    </HelpDialog>
-                </Col>
-            </Row>
             <Row>
                 <Col>
-                    <TextArea id={id} value={description} onChange={(e) => onChange(e.target.value)} message={message} disabled={disabled} required />
+                    <TextArea aria-labelledby={id} value={description} onChange={(e) => onChange(e.target.value)} message={message} disabled={disabled} aria-required />
                 </Col>
             </Row>
             </Form.Group>

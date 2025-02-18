@@ -12,7 +12,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import {useTranslation} from "react-i18next";
-import HeaderMenu from "../header/HeaderMenu";
 
 const StatisticsComponents = ({ processedStatistics }) => (
     <>
@@ -44,7 +43,7 @@ const Statistic = () => {
                 stat.end_before_timestamp === Number(searchParams?.end_before_timestamp)
         );
         if (statistic) {
-            const formattedDate = new Intl.DateTimeFormat(i18n.language, {
+            const formattedDate = new Intl.DateTimeFormat('fi-FI', {
                 day: "2-digit",
                 month: "2-digit",
                 year: "numeric",
@@ -75,22 +74,19 @@ const Statistic = () => {
         <>
             {statistic && (
                 <>
-                    <div className="statistic-top-row">
-                        <HeaderMenu/>
-                    </div>
                     <Container className="ps-0">
                         <Row className="mb-4">
                             <Col xs={6}>
-                                <h3>{statistic.location}</h3>
-                                <h4>{statistic.timeString}</h4>
+                                <h2>{statistic.location}</h2>
+                                <h3>{statistic.timeString}</h3>
                             </Col>
                         </Row>
                         <Row className="mb-4">
                             <Col xs={6}>
-                                <h5> {t('stream_duration')} {statistic.duration} </h5>
+                                <h3> {t('stream_duration')}</h3> {statistic.duration}
                             </Col>
                             <Col xs={6}>
-                                <h5> {t('stream_max_viewers')} {statistic.maxViewers} </h5>
+                                <h3> {t('stream_max_viewers')}</h3> {statistic.maxViewers}
                             </Col>
                         </Row>
                     </Container>

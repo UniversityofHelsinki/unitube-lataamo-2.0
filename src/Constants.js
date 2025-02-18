@@ -5,7 +5,7 @@ export const DEFAULT_LANGUAGES = ['fi-FI', 'sv-SE', 'en-US'];
 export const MAX_FILE_SIZE_LIMIT = 2.5e+10;
 export const MIN_VIDEO_DURATION = 1;
 
-export const ACCEPTED_MIME_TYPES = "video/mp4,video/x-m4v,video/*";
+export const ACCEPTED_MIME_TYPES = "video/mp4,video/quicktime,video/x-msvideo";
 
 export const ACCEPTED_VTT_MIME_TYPES = "vtt, srt";
 
@@ -126,6 +126,10 @@ export const BREAKPOINT = 'xl';
 
 export const LEFT_CONTAINER_ID = 'left-col';
 export const RIGHT_CONTAINER_ID = 'right-col';
+export const MENU_ICON_ID = 'header-menu-icon';
 
 export const JOB_TYPES_TRANSCRIPTION = 'transcription';
 export const JOB_STATUS_STARTED = 'STARTED';
+
+export const MOODLE_NUMBER_LIMIT = 20;
+export const FORBIDDEN_CHARACTERS = /[%]/;

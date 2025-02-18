@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ProgressStatus } from "../../Constants";
 
-const put = async (body, identifier) => {
+export const put = async (body, identifier) => {
   const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/moveEventToTrash/${identifier}`;
   try {
     const response = await fetch(URL, {

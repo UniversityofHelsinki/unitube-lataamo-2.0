@@ -25,16 +25,16 @@ const RecordEndDate = ({ endDate, onChange, message, disabled = false }) => {
     <Container className="record-end-date">
       <Row>
         <Col>
-          <FormElementHeader componentId={id}>
+          <FormElementHeader 
+            id={id}
+            helpDialog={(
+              <HelpDialog label={t('record_end_date_help_label')}>
+                {t('record_end_date_help_content')}
+              </HelpDialog>
+            )}
+          >
             {t('record_form_end_date_header')}
           </FormElementHeader>
-        </Col>
-      </Row>
-      <Row className="mb-3">
-        <Col>
-          <HelpDialog label={t('record_end_date_help_label')}>
-            {t('record_end_date_help_content')}
-          </HelpDialog>
         </Col>
       </Row>
       <Row>
@@ -47,8 +47,8 @@ const RecordEndDate = ({ endDate, onChange, message, disabled = false }) => {
             onChange={onChange}
             message={message}
             disabled={disabled}
-            id={id}
-            required
+            ariaLabelledBy={id}
+            aria-required
           />
         </Col>
       </Row>

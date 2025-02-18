@@ -39,15 +39,17 @@ const RecordSubtitle = ({ onChange, message, subtitles, disabled }) => {
             <Form.Group>
                 <Row className="record-subtitle-row mb-2">
                     <Col>
-                        <ElementHeader label={t('record_subtitle_header')}> {t('record_subtitle_header')} </ElementHeader>
+                        <ElementHeader 
+                          label={t('record_subtitle_header')}
+                          helpDialog={(
+                            <HelpDialog label={t('record_subtitle_help_label')}>
+                              {t('record_subtitle_help_content')}
+                            </HelpDialog>
+                          )}
+                        >
+                          {t('record_subtitle_header')}
+                        </ElementHeader>
                     </Col>
-                </Row>
-                <Row className="mb-2">
-                  <Col>
-                    <HelpDialog label={t('record_subtitle_help_label')}>
-                      {t('record_subtitle_help_content')}
-                    </HelpDialog>
-                  </Col>
                 </Row>
                 <Row>
                     <Col>

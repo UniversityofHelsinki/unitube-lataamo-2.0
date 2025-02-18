@@ -8,6 +8,7 @@ import HelpDialog from '../../dialog/HelpDialog';
 import RecordsTable from '../../record/RecordsTable';
 import { useState } from 'react';
 import CollectionRecordsBulkActions from './CollectionRecordsBulkActions';
+import NewRecord from '../../record/NewRecord';
 
 const NoRecords = () => {
   const { t } = useTranslation();
@@ -18,7 +19,7 @@ const NoRecords = () => {
   );
 };
 
-const CollectionRecords = ({ records, disabled }) => {
+const CollectionRecords = ({ collection, records, disabled }) => {
   const { t } = useTranslation();
   const tableRowRef = useRef();
   const [selectedRecords, setSelectedRecords] = useState([]);
@@ -42,33 +43,37 @@ const CollectionRecords = ({ records, disabled }) => {
   })();
 
   const bulkActions = (() => {
-    if (selectedRecords.length > 0) {
-      return (
-        <div className="collection-records-bulk-actions-container" aria-live="polite">
+    if (records.length > 0) {
+        return <div className="collection-records-bulk-actions-container" aria-live="polite">
           <CollectionRecordsBulkActions 
             records={records}
             selectedRecords={selectedRecords}
           />
+          <div>
+            <NewRecord selectedSeries={collection?.identifier} buttonDisabled={disabled} />
+          </div>
         </div>
-      );
     }
-    return <div aria-live="polite"></div>
+    return <div className="collection-records-bulk-actions-container collection-records-bulk-actions-container-empty">
+      <div>
+        <NewRecord selectedSeries={collection?.identifier} buttonDisabled={disabled} />
+      </div>
+    </div>;
   })();
 
   return (
     <Container className="ps-0">
       <Row>
         <Col>
-          <ElementHeader>
+          <ElementHeader
+            helpDialog={(
+              <HelpDialog label={t('collection_form_collection_records_help_label')}>
+                {t('collection_form_collection_records_help_content')}
+              </HelpDialog>
+            )}
+          >
             {t('collection_form_collection_records_form_header')}
           </ElementHeader>
-        </Col>
-      </Row>
-      <Row className="mb-3">
-        <Col>
-          <HelpDialog label={t('collection_form_collection_records_help_label')}>
-            {t('collection_form_collection_records_help_content')}
-          </HelpDialog>
         </Col>
       </Row>
       <Row ref={tableRowRef} className="collection-records-table-row">
@@ -78,7 +83,7 @@ const CollectionRecords = ({ records, disabled }) => {
       </Row>
       <Row>
         <Col>
-            {bulkActions}
+          {bulkActions}
         </Col>
       </Row>
     </Container>

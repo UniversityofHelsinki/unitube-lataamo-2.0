@@ -10,24 +10,15 @@ const useRecordActions = (record, disabled = false) => {
 
   const defaultActions = [];
 
-  const RestoreAction = () => {
-    return (
-      <RestoreRecord record={record} buttonDisabled={disabled} />
-    );
-  };
+  const restoreAction = <RestoreRecord record={record} buttonDisabled={disabled} />
 
-  const DeleteAction = () => {
-    return (
-      <DeleteRecord record={record} buttonDisabled={disabled} />
-    );
-  };
-
+  const deleteAction = <DeleteRecord record={record} buttonDisabled={disabled} />;
 
   if (isDeleted) {
-    return [ ...defaultActions, RestoreAction ];
+    return [ ...defaultActions, restoreAction ];
   }
   
-  return [ ...defaultActions, DeleteAction ];
+  return [ ...defaultActions, deleteAction ];
 };
 
 export default useRecordActions;

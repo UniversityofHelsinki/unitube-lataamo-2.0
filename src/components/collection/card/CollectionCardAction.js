@@ -1,16 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './CollectionCardAction.css';
-import { Button } from 'react-bootstrap';
+import HyButton from '../../utilities/HyButton';
 
-const CollectionCardAction = ({ icon, label, variant = 'outline-primary', onClick, showLabel = true, disabled = false, opensDialog = false, ariaLabel }) => {
+const CollectionCardAction = ({ icon, label, variant = 'secondary', onClick, showLabel = true, disabled = false, opensDialog = false, ariaLabel, title = '' }) => {
 
-    const marginClass = (() => {
-        if (showLabel) {
-            return 'me-1';
-        }
-        return '';
-    })();
+    const onButtonClick = (event) => {
+      event.preventDefault();
+      onClick(event);
+    };
 
     const ariaDialog = (() => {
         if (opensDialog) {
@@ -20,10 +18,9 @@ const CollectionCardAction = ({ icon, label, variant = 'outline-primary', onClic
     })();
 
     return (
-        <Button size="sm" variant={variant} onClick={onClick} className="collection-card-action p-0 px-1 m-0" aria-label={ariaLabel || label} disabled={disabled} { ...ariaDialog }>
-            <span className={`${marginClass} collection-card-action-icon-${variant}`}>{icon}</span>
+        <HyButton variant={variant} onClick={onButtonClick} aria-label={ariaLabel || label} disabled={disabled} { ...ariaDialog } mini leftIcon={icon} title={title}>
             <span>{showLabel && label}</span>
-        </Button>
+        </HyButton>
     );
 };
 
@@ -35,9 +32,7 @@ CollectionCardAction.propTypes = {
     disabled: PropTypes.bool,
     opensDialog: PropTypes.bool,
     variant: PropTypes.oneOf([
-        'primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark', 'link',
-        'outline-primary', 'outline-secondary', 'outline-success', 'outline-warning', 'outline-danger', 'outline-info', 'outline-light', 'outline-dark', 'outline-link'
-
+        'primary', 'secondary', 'danger'
     ])
 };
 

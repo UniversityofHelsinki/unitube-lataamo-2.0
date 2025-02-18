@@ -1,7 +1,7 @@
 import React, { useId, useState } from 'react';
-import PropTypes, {number} from 'prop-types';
+import PropTypes from 'prop-types';
 import './CollectionMoodleCourses.css';
-import {Button, Col, Container, Row} from 'react-bootstrap';
+import {Col, Container, Row} from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as CourseIcon } from '../../utilities/icons/opinder-logo.svg';
 import FormElementHeader from '../../form/FormElementHeader';
@@ -9,6 +9,8 @@ import CollectionMoodleCourse from "./CollectionMoodleCourse";
 import InputField from "../../form/InputField";
 import HelpDialog from '../../dialog/HelpDialog';
 import { onEnter } from '../../accessibility/keydown';
+import HyButton from '../../utilities/HyButton';
+import { MOODLE_NUMBER_LIMIT } from '../../../Constants';
 
 const CollectionMoodleCourses = ({ moodleNumbers = [], onMoodleNumberChange, disabled }) => {
     const [value, setValue] = useState(null);
@@ -51,27 +53,48 @@ const CollectionMoodleCourses = ({ moodleNumbers = [], onMoodleNumberChange, dis
       }
     };
 
+    const moodleNumberLimitExceeded = moodleNumbers.length >= MOODLE_NUMBER_LIMIT;
+
+    const tooManyMoodleNumbers = (() => {
+      if (moodleNumberLimitExceeded) {
+        return (
+          <div className="collection-moodle-courses-limit-exceeded">
+            <p>{t('collection_moodle_courses_limit_exceeded')}</p>
+          </div>
+        );
+      }
+      return <></>;
+    })();
+
+
     return (
         <Container className="collection-moodle-courses ps-0">
             <Row>
               <Col>
-                <FormElementHeader componentId={id}>{t('collection_moodle_courses_form_header')}</FormElementHeader>
+                <FormElementHeader 
+                  id={id}
+                  helpDialog={(
+                    <HelpDialog label={t('collection_moodle_courses_help_label')}>
+                      {t('collection_moodle_courses_help_content')}
+                    </HelpDialog>
+                  )}
+                >
+                  {t('collection_moodle_courses_form_header')}
+                </FormElementHeader>
               </Col>
-            </Row>
-            <Row className="mb-3">
-                <Col>
-                  <HelpDialog label={t('collection_moodle_courses_help_label')}>
-                    {t('collection_moodle_courses_help_content')}
-                  </HelpDialog>
-                </Col>
             </Row>
             <Row className="mb-2">
                 <Col>
                   <div className="collection-moodle-courses-input">
-                    <InputField id={id} type={'text'} label={t('aaa')} placeholder={t('moodle_course_placeholder')} value={value || ''} onChange={handleMoodleInputChange} disabled={disabled} onKeyDown={onEnterAddMoodleCourse} hideMessage={true} />
-                    <Button className="btn btn-primary collection-moodle-courses-add-button" onClick={addMoodleCourse} disabled={!inputFieldContainsValidMoodleCourse}>Lisää</Button>
+                    <InputField aria-labelledby={id} type={'text'} placeholder={t('moodle_course_placeholder')} value={value || ''} onChange={handleMoodleInputChange} disabled={disabled || moodleNumberLimitExceeded} onKeyDown={onEnterAddMoodleCourse} hideMessage={true} />
+                    <HyButton variant="primary" className="collection-moodle-courses-add-button" onClick={addMoodleCourse} disabled={!inputFieldContainsValidMoodleCourse}>{t('collection_moodle_courses_add_button')}</HyButton>
                   </div>
                 </Col>
+            </Row>
+            <Row>
+              <Col>
+                  <span aria-live="polite"> {tooManyMoodleNumbers} </span>
+              </Col>
             </Row>
             <Row>
                 <Col>

@@ -6,6 +6,7 @@ import { ProgressStatus } from '../../Constants';
 import AlertMessage from '../utilities/AlertMessage';
 import { useTranslation } from 'react-i18next';
 import ProgressBar from '../form/ProgressBar';
+import HyButton from '../utilities/HyButton';
 
 const DeleteCollectionFooter = ({ progress, hide }) => {
     const { t } = useTranslation();
@@ -56,12 +57,12 @@ const DeleteCollectionFooter = ({ progress, hide }) => {
                     <ProgressBar { ...progressBarProps } />
                 </div>}
             <div className="delete-collection-footer-buttons">
-                <Button variant="outline-secondary" onClick={hide} disabled={deleteInProgress}>
+                <HyButton variant="secondary" onClick={hide} disabled={deleteInProgress}>
                     {cancelButtonLabel}
-                </Button>
-                <Button variant="danger" type="submit" className={(deleteInProgress || deleteDone) ? "delete-collection-footer-buttons-hide" : "" } >
+                </HyButton>
+                <HyButton variant="danger" type="submit" className={(deleteInProgress || deleteDone) ? "delete-collection-footer-buttons-hide" : "" } >
                     {t('delete_collection_footer_submit_button')}
-                </Button>
+                </HyButton>
             </div>
         </div>
     );

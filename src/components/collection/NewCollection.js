@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './NewCollection.css';
 import { useTranslation } from 'react-i18next';
-import { Button, Col, Container, Form, Modal, Row } from 'react-bootstrap';
+import { Col, Container, Form, Modal, Row } from 'react-bootstrap';
 import useCollectionModification from '../../hooks/useCollectionModification';
 import FormDialog from '../dialog/FormDialog';
 import CollectionName from './name/CollectionName';
@@ -15,6 +15,8 @@ import NewCollectionFooter from './NewCollectionFooter';
 import useCollectionSave from '../../hooks/collection/useCollectionSave';
 import { ProgressStatus } from '../../Constants';
 import useCollectionValidation from '../../hooks/validation/collection/useCollectionValidation';
+import HyButton from '../utilities/HyButton';
+import useCollectionDropdown from '../../hooks/collection/useCollectionDropdown';
 
 const NewCollection = () => {
   const { t } = useTranslation();
@@ -24,6 +26,7 @@ const NewCollection = () => {
   const [isValid, messages, validate] = useCollectionValidation([
     'title', 'description', 'published',
   ]);
+  const [_collectionDropDown, _loading, reloadCollectionDropdown] = useCollectionDropdown(true);
 
   const defaultPersons = [user.eppn];
   const emptyCollection = {
@@ -41,33 +44,33 @@ const NewCollection = () => {
   );
 
   const theButton = (
-    <Button 
+    <HyButton 
       variant="primary" 
       className="new-collection-button"
       onClick={() => setShowForm(true)}
     >
       {t('new_collection_button')}
-    </Button>
+    </HyButton>
   );
 
   const saveInProgress = progress.status === ProgressStatus.NEW_COLLECTION.SENDING;
   const errorOccurred = progress.status === ProgressStatus.NEW_COLLECTION.ERROR;
-  const savingDone = progress.status == ProgressStatus.NEW_COLLECTION.DONE;
+  const savingDone = progress.status === ProgressStatus.NEW_COLLECTION.DONE;
   const fieldsDisabled = saveInProgress || errorOccurred || savingDone;
 
   const closeButton = { closeButton: true };
-  const disabled = isValid;
 
   const hide = () => {
     undo();
     resetProgress();
     setShowForm(false);
+    reloadCollectionDropdown();
   };
 
   const tryAgain = save;
 
-  const clearForm = () => { 
-    undo(); 
+  const clearForm = async () => {
+    await undo();
     resetProgress();
   };
 
@@ -89,7 +92,7 @@ const NewCollection = () => {
       showComponent={theButton} 
       show={showForm}
       size="xl"
-      touched={modified}
+      touched={modified && progress.status !== ProgressStatus.NEW_COLLECTION.DONE}
     >
       <Modal.Header { ...closeButton }>{t('new_collection_form_header')}</Modal.Header>
       <Form className="new-collection-form ms-3 me-3" onSubmit={onSubmit}>

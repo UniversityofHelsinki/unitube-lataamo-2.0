@@ -36,7 +36,7 @@ const CollectionCard = ({ collection, onClick, selected = false, containerRef, h
                 <CardHighlight input={collection.title} what={highlight} />
               </span>
             </a>
-            { !collectionHasRecords && <CollectionActions collection={collection}/> }
+            {<CollectionActions collection={collection} disabled={collectionHasRecords}/> }
           </div>
         </Col>
       </Row>

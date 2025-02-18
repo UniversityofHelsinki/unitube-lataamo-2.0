@@ -5,13 +5,14 @@ import NewRecordProgress from './NewRecordProgress';
 import { Button, Container, Col, Row } from 'react-bootstrap';
 import { ProgressStatus } from '../../Constants';
 import { useTranslation } from 'react-i18next';
+import HyButton from '../utilities/HyButton';
 
 const SendButton = ({ disabled, label }) => {
-  return <Button type="submit" variant="primary" disabled={disabled}>{label}</Button>;
+  return <HyButton type="submit" variant="primary" disabled={disabled}>{label}</HyButton>;
 };
 
 const CancelButton = ({ onClick, disabled, label }) => {
-  return <Button variant="outline-secondary" onClick={onClick} disabled={disabled}>{label}</Button>
+  return <HyButton variant="secondary" onClick={onClick} disabled={disabled}>{label}</HyButton>
 };
 
 
@@ -53,7 +54,7 @@ const NewRecordFooter = ({ progress, onCancel, isValid, onClick }) => {
           <NewRecordProgress progress={progress} />
         </Col>
         <Col className="new-record-footer-button">
-          <Button variant="primary" onClick={onClick} { ...buttonDisabled }><span>{buttonLabel}</span></Button>
+          <HyButton variant="primary" onClick={onClick} { ...buttonDisabled }><span>{buttonLabel}</span></HyButton>
         </Col>
       </Row>
     </Container>

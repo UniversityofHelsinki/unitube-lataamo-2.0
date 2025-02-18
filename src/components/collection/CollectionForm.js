@@ -18,7 +18,6 @@ import CollectionBottomBar from './CollectionBottomBar';
 import useCollectionModification from '../../hooks/useCollectionModification';
 import useCollectionUpdate from '../../hooks/collection/useCollectionUpdate';
 import { ProgressStatus } from '../../Constants';
-import CollectionButtons from "./CollectionButtons";
 import useTitle from '../../hooks/useTitle';
 import useCollections from '../../hooks/useCollections';
 import useCollectionError from '../../hooks/useCollectionError';
@@ -27,6 +26,7 @@ import ListReloadButton from '../left/ListReloadButton';
 import TopRow from '../right/TopRow';
 import useCollectionTags from '../../hooks/collection/useCollectionTags';
 import CardTags from '../utilities/CardTags';
+import CollectionClipBoardElement from "./CollectionClipBoardElement";
 
 const resolveVisibility = (published, contributors = []) => {
   const visibilities = [];
@@ -46,7 +46,7 @@ const resolveVisibility = (published, contributors = []) => {
 const CollectionForm = () => {
   const [setTitle] = useTitle();
   const [originalCollection, loading, reload, httpError] = useCollection(true);
-  const errorPage = useCollectionError(httpError);
+  const errorPage = useCollectionError(originalCollection, httpError);
   const [progress, update, resetProgress] = useCollectionUpdate();
   const [_collections, _loading, reloadCollections] = useCollections();
   const [isValid, messages, validate] = useCollectionValidation(['title', 'description']);
@@ -83,6 +83,10 @@ const CollectionForm = () => {
     undo();
   };
 
+  const breadcrumb = (
+    <CollectionsBreadCrumb collection={originalCollection || {}} />
+  );
+
   return (
     <form onSubmit={saveCollection}>
       <Container className="collection-container">
@@ -91,36 +95,24 @@ const CollectionForm = () => {
             <Col>
               <Container className="collection-form ps-0">
                 <Row className="top-row-container">
-                  <div className="top-row-container-div">
-                    <div>
-                      <CollectionsBreadCrumb collection={originalCollection || {}} />
-                    </div>
-                    <div>
-                      <TopRow>
-                        <ListReloadButton onClick={reload} />
-                        <CardTags tags={[ ...tags ]} />
-                        {!collectionHasRecords && <CollectionActions collection={collection} />}
-                      </TopRow>
-                    </div>
-                  </div>
+                  <Col className="p-0">
+                    <TopRow breadcrumb={breadcrumb}>
+                      <CardTags tags={[ ...tags ]} />
+                      <ListReloadButton onClick={reload} />
+                      {!collectionHasRecords && <CollectionActions collection={collection} disabled={saveInProgress} />}
+                      <CollectionClipBoardElement collection={collection} />
+                    </TopRow>
+                  </Col>
                 </Row>
                 <Row className="mb-2">
                   <Col className="ps-1">
-                    <CollectionRecords records={collection?.eventColumns || []} disabled={saveInProgress} />
+                    <CollectionRecords collection={collection} records={collection?.eventColumns || []} disabled={saveInProgress} />
                   </Col>
                 </Row>
                 <Row>
                   <Col>
                   </Col>
                 </Row>
-                <Row className="mb-3">
-                  <Col className="ps-1">
-                    <CollectionButtons
-                        collection={collection}
-                        disabled={saveInProgress}/>
-                  </Col>
-                </Row>
-
                 <Row className="mb-2">
                   <Col className="ps-1">
                       <CollectionName 

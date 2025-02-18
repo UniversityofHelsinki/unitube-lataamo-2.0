@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './CollectionCardRecord.css';
-import { Col, Container, Row } from 'react-bootstrap';
 import Thumbnail from "../../utilities/Thumbnail";
 import useSearchParams from "../../../hooks/useSearchParams";
 import onKeyDown from "../../accessibility/keydown";
-import { belowBreakpoint, toggleLeftSide } from '../../utilities/visibilities';
+import { belowBreakpoint, hideLeft } from '../../utilities/visibilities';
 
 const CollectionCardRecord = ({ record, containerRef }) => {
     const [searchParameters, setSearchParams] = useSearchParams();
@@ -13,7 +12,7 @@ const CollectionCardRecord = ({ record, containerRef }) => {
     const openRecord = (event) => {
         event.preventDefault();
         if (belowBreakpoint()) {
-          toggleLeftSide();
+          hideLeft();
         }
         setSearchParams({
             record: record.id
@@ -21,18 +20,19 @@ const CollectionCardRecord = ({ record, containerRef }) => {
     };
 
     const selected = searchParameters?.record === record?.id;
+    const selectedClass = selected ? 'collection-card-record-selected' : '';
 
   return (
-    <Container className={`collection-card-record ${selected ? 'collection-card-record-selected' : ''}`}>
-      <Row as="a" href={`?record=${record.id}`} style={{ height: '100%' }}onClick={openRecord} onKeyDown={onKeyDown(openRecord)}>
-        <Col className="collection-card-record-thumb p-0" aria-hidden>
-          <Thumbnail width="40" height="40" record={{ ...record, identifier: record.id }} altText={'collection_card_thumbnail_alt_text'} containerRef={containerRef}></Thumbnail>
-        </Col>
-        <Col className="col-sm-8 collection-card-record-details">
+    <div className={`collection-card-record ${selectedClass}`}>
+      <div className="collection-card-record-thumbnail" aria-hidden>
+        <Thumbnail width="40" height="40" record={{ ...record, identifier: record.id }} altText={'record_thumbnail_alt_text'} containerRef={containerRef}/>
+      </div>
+      <div className="collection-card-record-details">
+        <a href={`?record=${record.id}`} onClick={openRecord} onKeyDown={onKeyDown(openRecord)}>
           {record.title}
-        </Col>
-      </Row>
-    </Container>
+        </a>
+      </div>
+    </div>
   );
 };
 

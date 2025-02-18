@@ -3,7 +3,7 @@ import useCollectionTags from "./useCollectionTags";
 import useDistinctCollectionTags from "./useDistinctCollectionTags";
 import useSelectedCollectionTags from "./useSelectedCollectionTags";
 
-const useCollectionTagFilter = (collections = []) => {
+const useCollectionTagFilter = (collections = [], loadingCollections) => {
   const tags = useCollectionTags(collections);
 
   const distinctTags = useDistinctCollectionTags(
@@ -11,7 +11,8 @@ const useCollectionTagFilter = (collections = []) => {
   );
 
   const [selectedTags, onSelectedTagChange, clearSelectedTags] = useSelectedCollectionTags(
-    distinctTags
+    distinctTags,
+    loadingCollections
   );
 
   const filteredRecords = useTagFilter(collections, selectedTags, tags);

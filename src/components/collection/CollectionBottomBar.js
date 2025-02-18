@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import UnsavedChanges from '../right/UnsavedChanges';
 import CollectionBottomBarProgress from './CollectionBottomBarProgress';
 import { ProgressStatus } from '../../Constants';
+import HyButton from '../utilities/HyButton';
 
 const CollectionBottomBar = ({ progress, collection, modified, isValid, undo, disabled }) => {
   const { t } = useTranslation();
@@ -35,12 +36,12 @@ const CollectionBottomBar = ({ progress, collection, modified, isValid, undo, di
     <BottomBar 
       notifications={notifications}
       buttons={<>
-        <Button onClick={undo} variant="danger" disabled={!modified || disabled}>
+        <HyButton onClick={undo} variant="danger" disabled={!modified || disabled}>
           {t('undo_button')}
-        </Button>
-        <Button type="submit" disabled={!isValid || disabled}>
+        </HyButton>
+        <HyButton variant="primary" type="submit" disabled={!isValid || disabled}>
           {t('save_button')}
-        </Button>
+        </HyButton>
       </>}
     />
   );

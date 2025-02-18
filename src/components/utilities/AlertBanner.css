@@ -1,0 +1,52 @@
+.alert-banner {
+    width: 100%;
+    height: calc(var(--header-height) - 20px);
+    display: flex;
+    align-items: center;
+    background: linear-gradient(white 75%, var(--huds-grayscale-light));
+}
+
+.alert-banner-warning {
+    background-color: var(--huds-additional-yellow);
+    align-self: stretch;
+
+    display: flex;
+    align-items: center;
+
+    padding: 8px;
+}
+
+.alert-banner-warning svg {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.alert-banner-warning svg * {
+    fill: var(--huds-grayscale-white);
+}
+
+.alert-banner-content {
+    flex-basis: 100%;
+    align-self: stretch;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.alert-banner-heading {
+    font-weight: 600;
+}
+
+.alert-banner-explanation {
+}
+
+.alert-banner-trailer {
+    min-width: max-content;
+    align-self: center;
+}
+
+.alert-banner-container {
+    position: relative;
+}

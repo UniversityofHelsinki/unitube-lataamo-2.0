@@ -4,6 +4,7 @@ import './HelpDialog.css';
 import Dialog from './Dialog';
 import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { ReactComponent as InfoDialog } from '../utilities/icons/info-dialog.svg';
 
 const alreadyInDialog = () => {
   const body = document.querySelector('body');
@@ -50,10 +51,14 @@ const HelpDialog = ({ label, children }) => {
 
   const hideDialog = () => setShow(false);
   const toggle = () => setShow(!show);
-  
+
   const headerId = useId();
 
-  const showLink = <Button variant="link" onClick={toggle} className="p-0 help-dialog-button" aria-haspopup="dialog">{label}</Button>;
+  const showLink = <Button variant="link" onClick={toggle} className="p-0 help-dialog-button" aria-haspopup="dialog" title={label}>
+    <InfoDialog width="1.5em" height="1.5em" />
+    <span className="mx-1"></span>
+    <span>{label}</span>
+  </Button>;
 
   const header = label;
 

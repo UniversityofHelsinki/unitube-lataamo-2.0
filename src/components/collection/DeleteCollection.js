@@ -38,16 +38,11 @@ const DeleteCollection = ({ collection, showLabel = true, reloadCollectionOnRemo
         setShowForm(true);
     };
 
-    const iconProps = {
-        width: '16px',
-        height: '16px',
-        fill: 'var(--hy-blue)'
-    };
-
     const button = (
         <CollectionCardAction
-            icon={<DeleteIcon { ...iconProps } />}
+            icon={<DeleteIcon />}
             label={t('collection_card_action_delete')}
+            title={t('collection_card_action_delete_title')}
             ariaLabel={t('collection_card_action_delete_aria', { title: collection.title})}
             onClick={show}
             showLabel={showLabel}
@@ -80,16 +75,14 @@ const DeleteCollection = ({ collection, showLabel = true, reloadCollectionOnRemo
                     <Container>
                         <Row>
                             <Col>
-                                <ElementHeader label={t('delete_collection_form_body_header')}>
+                                <ElementHeader 
+                                  helpDialog={(
+                                    <HelpDialog label={t('delete_collection_form_help_header')}>
+                                      {t('delete_collection_form_help_content')}
+                                    </HelpDialog>
+                                  )}>
                                     {t('delete_collection_form_body_header')}
                                 </ElementHeader>
-                            </Col>
-                        </Row>
-                        <Row className="mb-3">
-                            <Col>
-                                <HelpDialog label={t('delete_collection_form_help_header')}>
-                                    {t('delete_collection_form_help_content')}
-                                </HelpDialog>
                             </Col>
                         </Row>
                         <Row>

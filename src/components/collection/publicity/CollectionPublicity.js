@@ -21,21 +21,21 @@ const CollectionPublicity = ({ publicity, onChange, message, disabled }) => {
           <Form.Group>
               <Row>
                   <Col>
-                      <ElementHeader label={t('collection_form_publicity_header')}>
+                      <ElementHeader 
+                        label={t('collection_form_publicity_header')}
+                        helpDialog={(
+                          <HelpDialog label={t('collection_form_publicity_help_label')}>
+                            {t('collection_form_publicity_help_content')}
+                          </HelpDialog>
+                        )}
+                      >
                         {t('collection_form_publicity_header')}
                       </ElementHeader>
                   </Col>
               </Row>
-              <Row className="mb-3">
-                <Col>
-                  <HelpDialog label={t('collection_form_publicity_help_label')}>
-                    {t('collection_form_publicity_help_content')}
-                  </HelpDialog>
-                </Col>
-              </Row>
               <Row>
                   <Col>
-                    <RadioButtonGroup options={PUBLICITIES} value={publicity} onChange={changePublicity} disabled={disabled} required />
+                    <RadioButtonGroup options={PUBLICITIES} value={publicity} onChange={changePublicity} disabled={disabled} aria-required />
                   </Col>
               </Row>
           </Form.Group>

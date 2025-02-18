@@ -1,9 +1,7 @@
 .left-list-container {
   display: flex;
   flex-direction: column;
-}
-
-.left-list {
+  margin-top: 8px;
 }
 
 .left-list-actions {

@@ -1,5 +1,5 @@
 .collection-moodle-courses-list {
-    padding-left: 0px;
+    padding-left: 0;
     width: 100%;
 }
 
@@ -20,4 +20,13 @@
 
 .collection-moodle-courses-add-button {
   margin-left: 8px;
+}
+
+.collection-moodle-courses-limit-exceeded {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--hy-light-silver);
+  padding: 8px 4px 8px 4px;
+  margin-bottom: 8px;
 }

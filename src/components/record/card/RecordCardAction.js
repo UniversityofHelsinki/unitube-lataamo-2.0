@@ -1,16 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './RecordCardAction.css';
-import { Button } from 'react-bootstrap';
+import HyButton from '../../utilities/HyButton';
 
-const RecordCardAction = ({ icon, label, variant = 'outline-primary', onClick, showLabel = true, disabled = false, opensDialog = false, ariaLabel }) => {
-
-  const marginClass = (() => {
-    if (showLabel) {
-      return 'me-1';
-    }
-    return '';
-  })();
+const RecordCardAction = ({ icon, label, variant = 'primary', onClick, showLabel = true, disabled = false, opensDialog = false, ariaLabel, title = '' }) => {
 
   const ariaDialog = (() => {
     if (opensDialog) {
@@ -19,11 +12,15 @@ const RecordCardAction = ({ icon, label, variant = 'outline-primary', onClick, s
     return {};
   })();
 
+  const onButtonClick = (event) => {
+    event.preventDefault();
+    onClick(event);
+  };
+
   return (
-    <Button size="sm" variant={variant} onClick={onClick} className="record-card-action p-0 px-1 m-0" aria-label={ariaLabel || label} disabled={disabled} { ...ariaDialog }>
-      <span className={`${marginClass} record-card-action-icon-${variant}`}>{icon}</span>
+    <HyButton variant={variant} onClick={onButtonClick} aria-label={ariaLabel || label} title={title} disabled={disabled} { ...ariaDialog } leftIcon={icon} mini>
       <span>{showLabel && label}</span>
-    </Button>
+    </HyButton>
   );
 };
 
@@ -35,9 +32,7 @@ RecordCardAction.propTypes = {
   disabled: PropTypes.bool,
   opensDialog: PropTypes.bool,
   variant: PropTypes.oneOf([
-    'primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark', 'link',
-    'outline-primary', 'outline-secondary', 'outline-success', 'outline-warning', 'outline-danger', 'outline-info', 'outline-light', 'outline-dark', 'outline-link'
-
+    'primary', 'secondary', 'danger'
   ])
 };
 
