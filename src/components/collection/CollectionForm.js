@@ -27,6 +27,7 @@ import TopRow from '../right/TopRow';
 import useCollectionTags from '../../hooks/collection/useCollectionTags';
 import CardTags from '../utilities/CardTags';
 import CollectionClipBoardElement from "./CollectionClipBoardElement";
+import ClipBoardFormElement from '../form/ClipBoardFormElement';
 
 const resolveVisibility = (published, contributors = []) => {
   const visibilities = [];

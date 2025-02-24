@@ -401,5 +401,6 @@
   "collection_identifier_copy": "Kopiera samlingens kod",
   "record_views_header": "Visningar",
   "record_validation_title_contains_forbidden_characters": "Name contains a forbidden character.",
-  "collection_validation_title_contains_forbidden_characters": "Name contains a forbidden character."
+  "collection_validation_title_contains_forbidden_characters": "Name contains a forbidden character.",
+  "clipboard_copied_to_clipboard": "clipboard_copied_to_clipboard"
 }
