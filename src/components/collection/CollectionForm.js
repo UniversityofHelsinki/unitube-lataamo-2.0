@@ -26,7 +26,7 @@ import ListReloadButton from '../left/ListReloadButton';
 import TopRow from '../right/TopRow';
 import useCollectionTags from '../../hooks/collection/useCollectionTags';
 import CardTags from '../utilities/CardTags';
-import CollectionClipBoardElement from "./CollectionClipBoardElement";
+import CollectionIdentifier from './CollectionIdentifier';
 
 const resolveVisibility = (published, contributors = []) => {
   const visibilities = [];
@@ -100,7 +100,6 @@ const CollectionForm = () => {
                       <CardTags tags={[ ...tags ]} />
                       <ListReloadButton onClick={reload} />
                       {!collectionHasRecords && <CollectionActions collection={collection} disabled={saveInProgress} />}
-                      <CollectionClipBoardElement collection={collection} />
                     </TopRow>
                   </Col>
                 </Row>
@@ -111,6 +110,11 @@ const CollectionForm = () => {
                 </Row>
                 <Row>
                   <Col>
+                  </Col>
+                </Row>
+                <Row className="mb-4">
+                  <Col className="ps-1">
+                    <CollectionIdentifier identifier={collection?.identifier} />
                   </Col>
                 </Row>
                 <Row className="mb-2">
