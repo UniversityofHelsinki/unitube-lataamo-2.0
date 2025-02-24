@@ -1,0 +1,4 @@
+
+.collection-identifier {
+  padding-right: calc(var(--bs-gutter-x) * .5);
+}
