@@ -2,7 +2,6 @@ import React from "react";
 import { DELETED_SERIES_REG_EXP } from "../../Constants";
 import useUser from "../useUser";
 import RestoreRecord from "../../components/record/RestoreRecord";
-import DeleteRecord from "../../components/record/DeleteRecord";
 
 const useRecordActions = (record, disabled = false) => {
   const [user] = useUser();
@@ -12,13 +11,11 @@ const useRecordActions = (record, disabled = false) => {
 
   const restoreAction = <RestoreRecord record={record} buttonDisabled={disabled} />
 
-  const deleteAction = <DeleteRecord record={record} buttonDisabled={disabled} />;
-
   if (isDeleted) {
     return [ ...defaultActions, restoreAction ];
   }
   
-  return [ ...defaultActions, deleteAction ];
+  return [ ...defaultActions ];
 };
 
 export default useRecordActions;

@@ -405,5 +405,10 @@
   "collection_validation_title_contains_forbidden_characters": "Nimi sisältää kielletyn %-merkin.",
   "clipboard_copied_to_clipboard": "Kopioitu leikepöydälle!",
   "collection_form_identifier": "Tunniste",
-  "collection_form_copy_identifier": "Kopioi kokoelman tunniste"
+  "collection_form_copy_identifier": "Kopioi kokoelman tunniste",
+  "left_list_select_element_title": "Valitse",
+  "left_list_select_element": "Valitse",
+  "record_bulk_actions_delete_selected": "Poista valitut",
+  "bulk_actions_select_all": "Valitse kaikki",
+  "left_bulk_actions_select": "Valittu {{count}} tallennetta."
 }

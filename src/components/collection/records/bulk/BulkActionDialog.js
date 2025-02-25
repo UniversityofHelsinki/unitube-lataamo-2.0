@@ -9,6 +9,7 @@ import useCollections from '../../../../hooks/useCollections';
 import useRecords from '../../../../hooks/useRecords';
 import HyButton from '../../../utilities/HyButton';
 import useRecord from '../../../../hooks/useRecord';
+import useAllRecords from '../../../../hooks/useAllRecords';
 
 const BulkActionDialog = ({
   records,
@@ -26,6 +27,7 @@ const BulkActionDialog = ({
   const [_collection, _loading, reloadCollection] = useCollection();
   const [_collections, _loadingCollections, reloadCollections] = useCollections();
   const [_records, _loadingRecords, reloadRecords] = useRecords();
+  const [_allRecords, _loadingAllRecords, reloadAllRecords] = useAllRecords();
   const [_record, _loadingRecord, reloadRecord] = useRecord();
 
   const hide = () => {
@@ -33,6 +35,7 @@ const BulkActionDialog = ({
       reloadCollection();
       reloadCollections();
       reloadRecords();
+      reloadAllRecords();
       reloadRecord();
     }
 
@@ -41,9 +44,17 @@ const BulkActionDialog = ({
   };
 
   const open = () => setShow(true);
-  const opener = (<HyButton onClick={open} aria-haspopup="dialog" variant={openerProps.variant} title={openerProps.title} disabled={records.length === 0}>
-    {openerProps.label}
-  </HyButton>);
+  const opener = (
+    <HyButton 
+      onClick={open}
+      aria-haspopup="dialog"
+      variant={openerProps.variant}
+      title={openerProps.title}
+      mini={openerProps.mini}
+      disabled={records.length === 0 || openerProps.disabled}>
+      {openerProps.label}
+    </HyButton>
+  );
 
   const save = async () => {
     await start();
