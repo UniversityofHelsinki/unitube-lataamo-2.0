@@ -33,7 +33,7 @@ const RecordsTableDialog = ({
       <Modal.Body>
         <div className="records-table-dialog">
           <div ref={dialogContainerRef} className="records-table-dialog-table">
-            <ElementHeader label={recordsLabel}>
+            <ElementHeader label={recordsLabel} helpDialog={null}>
               {recordsLabel}
             </ElementHeader>
             <RecordsTable 

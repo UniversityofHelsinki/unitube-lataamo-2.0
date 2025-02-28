@@ -193,7 +193,7 @@ const RecordsTable = ({
       <tbody>
         {[ ...records ].sort(propertyComparator(sortOpts.criteria, sortOpts.direction)).map((record) => {
           return (
-            <tr key={record.id} className="records-table-row">
+            <tr key={record.id || record.identifier} className="records-table-row">
               <td>
                 <CheckBox 
                   onChange={() => selectItem(records.indexOf(record))} 

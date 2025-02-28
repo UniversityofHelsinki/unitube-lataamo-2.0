@@ -3,7 +3,11 @@ import useSteps from "../useSteps";
 import { put as moveRecord } from "./useRecordUpdate";
 
 const moveRecords = async (records = [], destination) => {
-  return Promise.all(records.map(record => {
+
+  const alreadyInDestination = (record) => 
+    record?.is_part_of !== destination
+
+  return Promise.all(records.filter(alreadyInDestination).map(record => {
     return moveRecord({ ...record, isPartOf: destination });
   }));
 };
