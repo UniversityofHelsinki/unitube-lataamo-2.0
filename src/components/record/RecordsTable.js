@@ -129,7 +129,8 @@ const RecordsTable = ({
   disabled,
   caption = 'records',
   copyVisible = true,
-  containerRef
+  containerRef,
+  showSeries = false
 }) => {
   const { t } = useTranslation();
   const [copy] = useClipboard();
@@ -159,6 +160,12 @@ const RecordsTable = ({
     }
   };
 
+  const translateSeries = (record) => {
+    record.series = 
+      new RegExp('^inbox \\w+$').test(record.series) ? t('collections_default') : record.series;
+    return record;
+  };
+
   return (
     <table className="records-table">
       <caption className="screenreader-only">
@@ -185,13 +192,23 @@ const RecordsTable = ({
                 {t(`records_table_${key}`)}
             </SortTh>
           ))}
+          {showSeries && 
+            <SortTh 
+              direction={sortOpts.criteria === 'series' ? sortOpts.direction : ''}
+              onDirectionChange={(direction) => setSortOpts({ criteria: 'series', direction })}>
+              {t(`records_table_series`)}
+            </SortTh>
+          }
           {copyVisible && <th>
             {t(`records_table_embed_code`)}
           </th>}
         </tr>
       </thead>
       <tbody>
-        {[ ...records ].sort(propertyComparator(sortOpts.criteria, sortOpts.direction)).map((record) => {
+        {[ ...records ]
+            .map(translateSeries)
+            .sort(propertyComparator(sortOpts.criteria, sortOpts.direction))
+            .map((record) => {
           return (
             <tr key={record.id || record.identifier} className="records-table-row">
               <td>
@@ -207,6 +224,13 @@ const RecordsTable = ({
               </td>
               <td><DateView ISO={record.created} /></td>
               <td><DateView ISO={record.deletion_date} /></td>
+              {showSeries && 
+                  <td>
+                    <span>
+                      {record.series}
+                    </span>
+                  </td>
+              }
               {copyVisible && 
               <td>
                 <Button 
