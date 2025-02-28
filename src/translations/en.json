@@ -409,6 +409,6 @@
   "record_bulk_actions_delete_selected": "Delete selected",
   "record_bulk_actions_move_selected": "Move selected",
   "bulk_actions_select_all": "Select all",
-  "left_bulk_actions_select": "{{count}} chosen records."
-
+  "left_bulk_actions_select": "{{count}} chosen records.",
+  "records_table_series": "Collection"
 }
