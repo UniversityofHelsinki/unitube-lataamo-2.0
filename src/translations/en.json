@@ -402,6 +402,6 @@
   "collection_identifier_copy": "Copy collection identifier",
   "record_views_header": "Views",
   "record_validation_title_contains_forbidden_characters": "Name contains a forbidden character.",
-  "collection_validation_title_contains_forbidden_characters": "Name contains a forbidden character."
-
+  "collection_validation_title_contains_forbidden_characters": "Name contains a forbidden character.",
+  "record_validation_description_is_too_long": "Description is too long"
 }

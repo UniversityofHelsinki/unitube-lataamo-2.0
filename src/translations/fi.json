@@ -402,5 +402,6 @@
   "collection_error_page_http_help_content": "Tarkista, että sinulla on oikeudet muokata kokoelmaa, ja että yrität avata oikean kokoelman! Joskus kokoelma saattaa myös jäädä pidemmäksi aikaa käsittelyyn. Tällöin kannattaa yrittää hetken päästä uudelleen.",
   "record_views_header": "Katselukerrat",
   "record_validation_title_contains_forbidden_characters": "Nimi sisältää kielletyn %-merkin.",
-  "collection_validation_title_contains_forbidden_characters": "Nimi sisältää kielletyn %-merkin."
+  "collection_validation_title_contains_forbidden_characters": "Nimi sisältää kielletyn %-merkin.",
+  "record_validation_description_is_too_long": "Kuvaus on liian pitkä"
 }
