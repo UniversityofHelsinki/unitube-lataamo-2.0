@@ -142,9 +142,9 @@
 }
 
 .hy-button-neutral {
-  --hy-button-background-color: var(--hy-dark-orange);
-  --hy-button-text-color: var(--hy-white);
-  --hy-button-border-color: var(--hy-dark-orange);
+  --hy-button-background-color: var(--hy-orange);
+  --hy-button-text-color: var(--huds-grayscale-black);
+  --hy-button-border-color: var(--hy-orange);
   --hy-button-bottom-color: var(--hy-dark-orange);
   --hy-button-icon-separator-color: var(--huds-grayscale-black);
 }
@@ -157,11 +157,11 @@
 }
 
 .hy-button-neutral:enabled:hover {
-  --hy-button-background-color: var(--hy-mid-orange);
-  --hy-button-border-color: var(--hy-dark-orange);
+  --hy-button-background-color: #f9911b;
+  --hy-button-border-color: var(--hy-orange);
 }
 
 .hy-button-neutral:enabled:active {
-  --hy-button-background-color: var(--hy-dark-orange);
+  --hy-button-background-color: var(--hy-orange);
 }
 

@@ -7,9 +7,31 @@ const moveRecords = async (records = [], destination) => {
   const alreadyInDestination = (record) => 
     record?.is_part_of !== destination
 
-  return Promise.all(records.filter(alreadyInDestination).map(record => {
-    return moveRecord({ ...record, isPartOf: destination });
-  }));
+  const batches = records
+    .filter(alreadyInDestination)
+    .reduce((batches, record) => {
+
+      const currentBatch = batches[batches.length - 1];
+      const isFull = currentBatch.length === 10;
+
+      if (isFull) {
+        batches.push([]);
+      }
+
+      const nextBatch = batches[batches.length - 1];
+      nextBatch.push(record);
+
+      return batches;
+    }, [[]]);
+
+  const moved = [];
+  for (const batch of batches) {
+    moved.push(await Promise.all(batch.map(record =>
+      moveRecord({ ...record, isPartOf: destination })
+    )));
+  }
+
+  return moved;
 };
 
 const useRecordsMove = (records = [], destination) => {
