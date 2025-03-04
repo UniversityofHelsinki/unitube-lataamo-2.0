@@ -14,6 +14,7 @@ import { RECORD_EMBED_CODE } from '../../Constants';
 import DateView from '../utilities/DateView';
 import { integerComparator, stringComparator } from '../utilities/comparators';
 import { useId } from 'react';
+import { useNotification } from '../notification/NotificationContext';
 
 const isoStringComparator = (a, b) => {
   const aEpoch = a ? new Date(a) : 0;
@@ -137,6 +138,8 @@ const RecordsTable = ({
     direction: 'ascending'
   });
 
+  const { setNotification } = useNotification();
+
   const selectItem = (i) => {
     if (selectedRecords.includes(i)) {
       onSelect(selectedRecords.filter(si => si !== i));
@@ -206,7 +209,15 @@ const RecordsTable = ({
               <td><DateView ISO={record.deletion_date} /></td>
               {copyVisible && 
               <td>
-                <Button variant="link" onClick={() => copy(RECORD_EMBED_CODE(record.id))} aria-label={t('records_table_embed_code_aria', { record: record.title })} title={t('records_table_embed_code_aria', { record: record.title })}>
+                <Button 
+                  variant="link" 
+                  onClick={() => { 
+                    copy(RECORD_EMBED_CODE(record.id));
+                    setNotification(t('clipboard_copied_to_clipboard'), 'success', true);
+                  }} 
+                  aria-label={t('records_table_embed_code_aria', { record: record.title })}
+                  title={t('records_table_embed_code_aria', { record: record.title })}
+                >
                   <CopyIcon width="1.5em" height="1.5em" />
                   <span className="screenreader-only">{t('clipboard_copy')}</span>
                 </Button>

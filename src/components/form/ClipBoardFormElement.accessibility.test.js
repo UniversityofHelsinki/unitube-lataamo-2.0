@@ -2,6 +2,7 @@ import {render} from "@testing-library/react";
 import ClipBoardFormElement from "./ClipBoardFormElement";
 import React from "react";
 import {axe} from "jest-axe";
+import NotificationProvider from "../notification/NotificationContext";
 
 
 describe('ClipBoardFormElement', () => {
@@ -10,10 +11,14 @@ describe('ClipBoardFormElement', () => {
 
     it('should not have any accessibility violations', async () => {
 
-        const { container } = render(<ClipBoardFormElement
-            label={label}
-            content={content}>
-        </ClipBoardFormElement>);
+        const { container } = render(
+          <NotificationProvider>
+            <ClipBoardFormElement
+              label={label}
+              content={content}>
+            </ClipBoardFormElement>
+          </NotificationProvider>
+        );
         const results = await axe(container);
 
         // use the matcher function in the test

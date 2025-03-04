@@ -402,6 +402,7 @@
   "collection_identifier_copy": "Copy collection identifier",
   "record_views_header": "Views",
   "record_validation_title_contains_forbidden_characters": "Name contains a forbidden character.",
-  "collection_validation_title_contains_forbidden_characters": "Name contains a forbidden character."
+  "collection_validation_title_contains_forbidden_characters": "Name contains a forbidden character.",
+  "clipboard_copied_to_clipboard": "Copied to clipboard!"
 
 }
