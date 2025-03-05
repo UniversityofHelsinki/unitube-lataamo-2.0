@@ -412,5 +412,6 @@
   "record_bulk_actions_move_selected": "Siirrä valitut",
   "bulk_actions_select_all": "Valitse kaikki",
   "left_bulk_actions_select": "Valittu {{count}} tallennetta.",
-  "collections_select_collection": "Valitse kokoelma"
+  "collections_select_collection": "Valitse kokoelma",
+  "records_table_series": "Kokoelma"
 }
