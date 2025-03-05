@@ -409,5 +409,6 @@
   "record_bulk_actions_move_selected": "Move selected",
   "bulk_actions_select_all": "Select all",
   "left_bulk_actions_select": "{{count}} chosen records.",
-  "records_table_series": "Collection"
+  "records_table_series": "Collection",
+  "clipboard_copied_to_clipboard": "Kopierade till urklipp"
 }
