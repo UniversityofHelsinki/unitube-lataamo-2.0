@@ -3,9 +3,30 @@ import useSteps from "../useSteps";
 import { put } from "./useRecordDelete";
 
 const deleteRecords = async (records = []) => {
-  return await Promise.all(records.map((record) => {
-    return put(record, record.identifier);
-  }));
+  const batches = records
+    .reduce((batches, record) => {
+
+      const currentBatch = batches[batches.length - 1];
+      const isFull = currentBatch.length === 10;
+
+      if (isFull) {
+        batches.push([]);
+      }
+
+      const nextBatch = batches[batches.length - 1];
+      nextBatch.push(record);
+
+      return batches;
+    }, [[]]);
+
+  const deleted = [];
+  for (const batch of batches) {
+    deleted.push(await Promise.all(batch.map(record =>
+      put(record, record.identifier)
+    )));
+  }
+
+  return deleted;
 };
 
 const useRecordsDelete = (records = []) => {

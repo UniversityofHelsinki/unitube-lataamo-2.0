@@ -26,6 +26,7 @@ const RecordsTableDialog = ({
       show={show} 
       showComponent={opener}
       closeable={closeable}
+      size="xl"
     >
       <Modal.Header closeButton={closeable}>
         <span>{headerLabel}</span>
@@ -33,7 +34,7 @@ const RecordsTableDialog = ({
       <Modal.Body>
         <div className="records-table-dialog">
           <div ref={dialogContainerRef} className="records-table-dialog-table">
-            <ElementHeader label={recordsLabel}>
+            <ElementHeader label={recordsLabel} helpDialog={null}>
               {recordsLabel}
             </ElementHeader>
             <RecordsTable 
@@ -43,6 +44,7 @@ const RecordsTableDialog = ({
               disabled={true}
               onSelect={() => {}}
               copyVisible={false}
+              showSeries={true}
             />
           </div>
           <div className="records-table-dialog-content">

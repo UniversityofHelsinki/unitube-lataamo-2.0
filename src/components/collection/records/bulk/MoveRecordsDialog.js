@@ -6,12 +6,12 @@ import useRecordsMove from '../../../../hooks/record/useRecordsMove';
 import BulkActionDialog from './BulkActionDialog';
 import RecordCollections from '../../../record/RecordCollections';
 
-const MoveRecordsDialog = ({ records = [] }) => {
+const MoveRecordsDialog = ({ records = [], openerProps = {} }) => {
   const { t } = useTranslation();
 
   const [collection, setCollection] = useState(null);
   const [currentState, start, reset] = useRecordsMove(records, collection);
-  const openerProps = {
+  const defaultOpenerProps = {
     label: t('move_records_dialog_open_button_label'),
     title: t('move_records_dialog_open_button_title'),
     variant: 'primary'
@@ -41,20 +41,26 @@ const MoveRecordsDialog = ({ records = [] }) => {
     }
   };
 
+  const alreadyInDestination = (record) =>
+    record.is_part_of === collection
+
+  const allRecordsInDestination = 
+    records.every(alreadyInDestination) && records.length > 0;
+
   return (
     <BulkActionDialog
       records={records}
-      openerProps={openerProps}
+      openerProps={{ ...defaultOpenerProps, ...openerProps }}
       recordsTableProps={recordTableProps}
       currentState={currentState}
       start={start}
       resetState={reset}
       closeable={currentState !== 'in_progress'}
-      submittable={collection && collection !== records[0]?.is_part_of}
+      submittable={collection && !allRecordsInDestination}
       progressBarProps={progressBarProps}
     >
       <RecordCollections
-        collection={collection || records[0]?.is_part_of || ''}
+        collection={collection}
         onChange={(collection) => setCollection(collection)}
         message={null}
         disabled={currentState === 'in_progress'} 

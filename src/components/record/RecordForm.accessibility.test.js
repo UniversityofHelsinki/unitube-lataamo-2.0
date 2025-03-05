@@ -8,8 +8,15 @@ import {axe} from "jest-axe";
 describe('RecordForm', () => {
     it('should not have any accessibility violations', async () => {
 
-        const { container } = render(<MockProvider mockReducers={{ collections: { collections: [{ identifier: 'asdf-asdf', title: 'asdfasdf' }] } }}>
-            <RecordForm record={{ deletionDate: new Date().toISOString() }} />
+      const { container } = render(<MockProvider mockReducers={
+        { collections: { 
+          collections: 
+            [{ identifier: 'asdf-asdf', title: 'asdfasdf' }],
+            collectionDropDown: [{ identifier: 'asdf', title: 'inbox baabenom' }] 
+          }
+        }
+        }>
+          <RecordForm record={{ deletionDate: new Date().toISOString() }} onChange={() => {}} />
         </MockProvider>);
         const results = await axe(container);
 
