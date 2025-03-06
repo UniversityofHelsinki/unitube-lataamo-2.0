@@ -112,11 +112,6 @@ const CollectionForm = () => {
                   <Col>
                   </Col>
                 </Row>
-                <Row className="mb-4">
-                  <Col className="ps-1">
-                    <CollectionIdentifier identifier={collection?.identifier} />
-                  </Col>
-                </Row>
                 <Row className="mb-2">
                   <Col className="ps-1">
                       <CollectionName 
@@ -135,6 +130,11 @@ const CollectionForm = () => {
                         message={messages.description}
                         disabled={saveInProgress}
                       />
+                  </Col>
+                </Row>
+                <Row className="mb-4">
+                  <Col className="ps-1">
+                    <CollectionIdentifier identifier={collection?.identifier} />
                   </Col>
                 </Row>
                 <Row className="mb-2">
