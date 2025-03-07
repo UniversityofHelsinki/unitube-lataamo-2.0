@@ -413,5 +413,6 @@
   "bulk_actions_select_all": "Valitse kaikki",
   "left_bulk_actions_select": "Valittu {{count}} tallennetta.",
   "collections_select_collection": "Valitse kokoelma",
-  "records_table_series": "Kokoelma"
+  "records_table_series": "Kokoelma",
+  "record_validation_description_is_too_long": "Kuvaus on liian pitkä"
 }
