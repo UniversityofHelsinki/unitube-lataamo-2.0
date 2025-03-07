@@ -1,8 +1,0 @@
-.collection-publicity {
-    margin-left: calc(.55* var(--bs-gutter-x));
-    outline: 2px solid var(--hy-blue);
-    padding-top: 5px;
-    border-radius: 0;
-    box-shadow: initial;
-    transition: none;
-}
