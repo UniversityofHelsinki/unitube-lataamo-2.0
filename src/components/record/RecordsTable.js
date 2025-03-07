@@ -14,6 +14,7 @@ import { RECORD_EMBED_CODE } from '../../Constants';
 import DateView from '../utilities/DateView';
 import { integerComparator, stringComparator } from '../utilities/comparators';
 import { useId } from 'react';
+import { useNotification } from '../notification/NotificationContext';
 
 const isoStringComparator = (a, b) => {
   const aEpoch = a ? new Date(a) : 0;
@@ -128,7 +129,8 @@ const RecordsTable = ({
   disabled,
   caption = 'records',
   copyVisible = true,
-  containerRef
+  containerRef,
+  showSeries = false
 }) => {
   const { t } = useTranslation();
   const [copy] = useClipboard();
@@ -136,6 +138,8 @@ const RecordsTable = ({
     criteria: 'title',
     direction: 'ascending'
   });
+
+  const { setNotification } = useNotification();
 
   const selectItem = (i) => {
     if (selectedRecords.includes(i)) {
@@ -154,6 +158,12 @@ const RecordsTable = ({
     } else {
       onSelect(records.map((_, i) => i));
     }
+  };
+
+  const translateSeries = (record) => {
+    record.series = 
+      new RegExp('^inbox \\w+$').test(record.series) ? t('collections_default') : record.series;
+    return record;
   };
 
   return (
@@ -182,15 +192,25 @@ const RecordsTable = ({
                 {t(`records_table_${key}`)}
             </SortTh>
           ))}
+          {showSeries && 
+            <SortTh 
+              direction={sortOpts.criteria === 'series' ? sortOpts.direction : ''}
+              onDirectionChange={(direction) => setSortOpts({ criteria: 'series', direction })}>
+              {t(`records_table_series`)}
+            </SortTh>
+          }
           {copyVisible && <th>
             {t(`records_table_embed_code`)}
           </th>}
         </tr>
       </thead>
       <tbody>
-        {[ ...records ].sort(propertyComparator(sortOpts.criteria, sortOpts.direction)).map((record) => {
+        {[ ...records ]
+            .map(translateSeries)
+            .sort(propertyComparator(sortOpts.criteria, sortOpts.direction))
+            .map((record) => {
           return (
-            <tr key={record.id} className="records-table-row">
+            <tr key={record.id || record.identifier} className="records-table-row">
               <td>
                 <CheckBox 
                   onChange={() => selectItem(records.indexOf(record))} 
@@ -204,9 +224,24 @@ const RecordsTable = ({
               </td>
               <td><DateView ISO={record.created} /></td>
               <td><DateView ISO={record.deletion_date} /></td>
+              {showSeries && 
+                  <td>
+                    <span>
+                      {record.series}
+                    </span>
+                  </td>
+              }
               {copyVisible && 
               <td>
-                <Button variant="link" onClick={() => copy(RECORD_EMBED_CODE(record.id))} aria-label={t('records_table_embed_code_aria', { record: record.title })} title={t('records_table_embed_code_aria', { record: record.title })}>
+                <Button 
+                  variant="link" 
+                  onClick={() => { 
+                    copy(RECORD_EMBED_CODE(record.id));
+                    setNotification(t('clipboard_copied_to_clipboard'), 'success', true);
+                  }} 
+                  aria-label={t('records_table_embed_code_aria', { record: record.title })}
+                  title={t('records_table_embed_code_aria', { record: record.title })}
+                >
                   <CopyIcon width="1.5em" height="1.5em" />
                   <span className="screenreader-only">{t('clipboard_copy')}</span>
                 </Button>

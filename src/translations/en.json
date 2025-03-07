@@ -403,5 +403,13 @@
   "record_views_header": "Views",
   "record_validation_title_contains_forbidden_characters": "Name contains a forbidden character.",
   "collection_validation_title_contains_forbidden_characters": "Name contains a forbidden character.",
+  "clipboard_copied_to_clipboard": "Copied to clipboard!",
+  "left_list_select_element_title": "Choose",
+  "left_list_select_element": "Choose",
+  "record_bulk_actions_delete_selected": "Delete selected",
+  "record_bulk_actions_move_selected": "Move selected",
+  "bulk_actions_select_all": "Select all",
+  "left_bulk_actions_select": "{{count}} chosen records.",
+  "records_table_series": "Collection",
   "record_validation_description_is_too_long": "Description is too long"
 }

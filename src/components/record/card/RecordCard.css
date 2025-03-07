@@ -69,6 +69,10 @@ a.record-card-content-details {
   justify-content: start;
 }
 
+.record-card-content-details-top .card-tags {
+  margin-right: calc(1em + 2px);
+}
+
 .record-card-content-details-top p,strong {
   display: block;
   max-width: 100%;

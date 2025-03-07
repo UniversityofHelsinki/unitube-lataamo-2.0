@@ -5,6 +5,8 @@
   max-height: calc(100dvh - var(--header-height) - var(--right-bottom-bar-height));
   border-bottom: 1px solid var(--hy-black);
   margin-right: 8px;
+
+  position: relative;
 }
 
 .left-content {
@@ -27,6 +29,44 @@
   margin-bottom: 1px;
 }
 
+.bulk-actions {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+
+.bulk-actions > div {
+  display: flex;
+  margin-bottom: 8px
+}
+
+.bulk-actions-information {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+}
+
+.bulk-actions-select-all {
+  display: flex;
+  align-items: center;
+
+  flex-direction: row;
+
+  background-color: unset;
+  padding: unset;
+  border: unset;
+}
+
+.bulk-actions-select-all > div {
+  display: flex;
+}
+
+.bulk-actions-select-all svg {
+  min-width: 1em;
+  min-height: 1em;
+}
+
 .left-content > div {
   margin-top: 8px;
 }
@@ -44,4 +84,13 @@
 
 .left-no p {
   padding: 10px;
+}
+
+.left-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-bottom-not-selected {
+  color: #767676;
 }
