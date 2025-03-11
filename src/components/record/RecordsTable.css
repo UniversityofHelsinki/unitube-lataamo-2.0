@@ -124,3 +124,21 @@
 svg.records-table-no-direction * {
   fill: var(--huds-grayscale-medium) !important;
 }
+
+.records-table-total-text {
+  text-align: right;
+  font-weight: bold;
+}
+
+.records-table-total-not-ready {
+  text-align: center;
+  position: relative;
+  top: -7px;
+  font-weight: bold;
+}
+
+
+.records-table-total {
+  text-align: center;
+  font-weight: bold;
+}

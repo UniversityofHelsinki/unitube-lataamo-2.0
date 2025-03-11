@@ -39,6 +39,7 @@ const CollectionRecords = ({ collection, records, disabled }) => {
       onSelect={onRecordSelect} 
       containerRef={tableRowRef}
       selectedRecords={selectedRecords}
+      showDuration={true}
     />);
   })();
 

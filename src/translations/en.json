@@ -346,6 +346,8 @@
   "records_table_deletion_date": "Date of expiry",
   "records_table_embed_code": "Embed code",
   "records_table_embed_code_aria": "Embed code",
+  "records_table_video_length": "Recording duration",
+  "records_table_in_total": "In total",
   "collection_records_bulk_actions_move": "Move",
   "reload": "Reload",
   "collection_card_action_delete": "Delete",

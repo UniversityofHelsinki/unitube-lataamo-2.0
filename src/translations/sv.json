@@ -344,6 +344,8 @@
   "records_table_deletion_date": "Utgångsdatum",
   "records_table_embed_code": "Kopiera inbäddningskod",
   "records_table_embed_code_aria": "Kopiera inbäddningskoden för inspelningen {{ record }} till urklipp",
+  "records_table_video_length": "Inspelningslängd",
+  "records_table_in_total": "Totalt",
   "collection_records_bulk_actions_move": "Flytta",
   "reload": "Uppdatera",
   "collection_card_action_delete": "Radera",
