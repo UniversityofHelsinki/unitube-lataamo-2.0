@@ -8,7 +8,7 @@ describe('CollectionRecords', () => {
     it('should not have any accessibility violations', async () => {
 
         const { container } = render(<MockProvider>
-            <CollectionRecords records={[{ identifier: 'sadf', title: 'asdfasf' }, { identifier: 'fdsa', title: 'hei' }]} />
+            <CollectionRecords records={[{ identifier: 'sadf', title: 'asdfasf', publications: []}, { identifier: 'fdsa', title: 'hei', publications: []}]} />
         </MockProvider>);
         const results = await axe(container);
 
