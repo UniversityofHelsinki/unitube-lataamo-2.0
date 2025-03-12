@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './ContactDetails.css';
 import { useTranslation } from 'react-i18next';
 
@@ -14,9 +13,10 @@ const ContactDetails = () => {
       </p>
       <p>
           {t('footer_hy_address_line_1')}
-          <br />
-          {t('footer_hy_address_line_2')}
       </p>
+        <p>
+          {t('footer_hy_address_line_2')}
+        </p>
       <p>
           {t('footer_hy_phone_switchboard')}
       </p>
