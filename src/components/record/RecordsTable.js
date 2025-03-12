@@ -137,8 +137,6 @@ const formatDuration = (ms) => {
 
   const inSeconds = ms / 1000;
 
-  console.log('inSeconds:', inSeconds);
-
   const hours = Math.floor(inSeconds / 3600);
   const minutes = Math.floor((inSeconds - hours * 3600) / 60);
   const seconds = Math.floor((inSeconds - hours * 3600 - minutes * 60));
