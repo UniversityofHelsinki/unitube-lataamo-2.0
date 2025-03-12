@@ -22,11 +22,19 @@ const isoStringComparator = (a, b) => {
   return integerComparator(aEpoch, bEpoch);
 };
 
+const durationComparator = (a, b) => {
+  const aDur = a[0]?.media[0]?.duration || 0;
+  const bDur = b[0]?.media[0]?.duration || 0;
+
+  return integerComparator(aDur, bDur);
+};
+
 const propertyComparator = (property, direction) => (a, b) => {
 
   const comparators = {
     created: isoStringComparator,
-    deletion_date: isoStringComparator
+    deletion_date: isoStringComparator,
+    publications: durationComparator
   };
 
   const comparator = comparators[property] || stringComparator;
@@ -122,35 +130,21 @@ const SortTh = ({ children = [], direction, onDirectionChange }) => {
   </th>);
 };
 
-let formattedTimesArray = [];
+const formatDuration = (ms) => {
+  if (!ms) {
+    return 'N/A';
+  };
 
-const getTotalTime =() => {
-  let totalSeconds = 0;
+  const inSeconds = ms / 1000;
 
-  for (let time of formattedTimesArray) {
-    let [hours, minutes, seconds] = time.split(':').map(Number);
-    totalSeconds += hours * 3600 + minutes * 60 + seconds;
-  }
+  const hours = Math.floor(inSeconds / 3600);
+  const minutes = Math.floor((inSeconds - hours * 3600) / 60);
+  const seconds = Math.floor((inSeconds - minutes * 60));
 
-  let hours = Math.floor(totalSeconds / 3600).toString().padStart(2, '0');
-  let minutes = Math.floor((totalSeconds % 3600) / 60).toString().padStart(2, '0');
-  let seconds = (totalSeconds % 60).toString().padStart(2, '0');
-  if (isNaN(hours) && isNaN(hours) &&isNaN(hours)) {
-    return '_'.repeat(10);
-  }
-  return `${hours}:${minutes}:${seconds}`;
-}
+  const pad = (s) => `${s}`.padStart(2, "0");
 
-const formatDuration = (milliseconds) => {
-    let totalSeconds = Math.floor(milliseconds / 1000);
-    let hours = Math.floor(totalSeconds / 3600).toString().padStart(2, '0');
-    let minutes = Math.floor((totalSeconds % 3600) / 60).toString().padStart(2, '0');
-    let seconds = (totalSeconds % 60).toString().padStart(2, '0');
-
-    formattedTimesArray.push(`${hours}:${minutes}:${seconds}`);
-
-    return `${hours}:${minutes}:${seconds}`;
-}
+  return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+};
 
 const RecordsTable = ({ 
   records,
@@ -196,15 +190,11 @@ const RecordsTable = ({
       new RegExp('^inbox \\w+$').test(record.series) ? t('collections_default') : record.series;
     return record;
   };
-  formattedTimesArray = [];
-  const getTextWithBreaks = (headerKey) => {
-    return t(headerKey).split('<br>').map((text, index) => (
-        <React.Fragment key={index}>
-          {text}
-          {index !== 1 && <br />}
-        </React.Fragment>
-    ));
-  };
+
+  const durationSum = records?.reduce(
+    (sum, record) => sum + (record.publications[0]?.media[0]?.duration || 0), 
+    0
+  );
 
   return (
     <table className="records-table">
@@ -229,10 +219,16 @@ const RecordsTable = ({
                 key={key}
                 direction={sortOpts.criteria === key ? sortOpts.direction : ''}
                 onDirectionChange={(direction) => setSortOpts({criteria: key, direction})}>
-              {getTextWithBreaks(`records_table_${key}`)}
+              {t(`records_table_${key}`)}
             </SortTh>
         ))}
-        {showDuration && <th>{t('records_table_video_length')}</th>}
+        {showDuration && 
+          <SortTh
+            direction={sortOpts.criteria === 'publications' ? sortOpts.direction : ''}
+            onDirectionChange={(direction) => setSortOpts({ criteria: 'publications', direction})}>
+            {t('records_table_video_duration')}
+          </SortTh>
+        }
         {showSeries &&
             <SortTh
                 direction={sortOpts.criteria === 'series' ? sortOpts.direction : ''}
@@ -265,7 +261,9 @@ const RecordsTable = ({
                   </td>
                   <td><DateView ISO={record.created}/></td>
                   <td><DateView ISO={record.deletion_date}/></td>
-                  {showDuration && <td>{formatDuration(record.publications[0]?.media[0]?.duration)}</td>}
+                  {showDuration && 
+                    <td>{formatDuration(record.publications[0]?.media[0]?.duration)}</td>
+                  }
                   {showSeries &&
                       <td>
                 <span>
@@ -292,18 +290,17 @@ const RecordsTable = ({
             );
           })}
       </tbody>
-      {showDuration &&
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td className="records-table-total-text">{t('records_table_in_total')}</td>
-            <td className={getTotalTime().startsWith('_') ? 'records-table-total-not-ready' : 'records-table-total'}>
-               {getTotalTime()}
-            </td>
-            <td></td>
-          </tr>
-      }
+      <tfoot>
+        {showDuration &&
+            <tr className="records-table-duration-total-row">
+              <th colSpan="4" scope="col">
+                {t('records_table_in_total')}
+              </th>
+              <td>{formatDuration(durationSum)}</td>
+              <td aria-hidden></td>
+            </tr>
+        }
+      </tfoot>
     </table>
   );
 };
