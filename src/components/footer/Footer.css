@@ -2,6 +2,8 @@ footer {
   background-color: var(--hy-black);
   padding-top: 20px;
   padding-bottom: 20px;
+  flex-wrap: wrap;
+  display: flex;
 }
 
 footer p {
@@ -21,7 +23,13 @@ footer li > a {
     text-align: center;
   }
 
+  footer ul {
+    padding-left: unset;
+    word-break: break-word;
+  }
+
   .footer-hy-logo {
     text-align: center !important;
+    margin-bottom: 15px;
   }
 }
