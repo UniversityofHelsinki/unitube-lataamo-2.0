@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './Footer.css';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -13,15 +12,15 @@ const Footer = () => {
   return (
     <Container>
       <Row>
-        <Col className="text-end footer-hy-logo">
+        <Col lg={1} className="footer-hy-logo">
           <div>
             <HyLogo fill={Colors.white} />
           </div>
         </Col>
-        <Col>
+        <Col lg={3}>
           <ContactDetails />
         </Col>
-        <Col>
+        <Col lg={3}>
           <FooterLinks />
         </Col>
       </Row>
