@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import './LeftList.css';
 import { useTranslation } from 'react-i18next';
 
-const SelectElement = ({ checked, onSelect }) => {
+const SelectElement = ({ checked, onSelect, isDisabled }) => {
   const { t } = useTranslation();
 
   return (
-    <input 
+    <input
+      disabled={isDisabled}
       type="checkbox" 
       aria-label={t('left_list_select_element')} 
       checked={checked} 
@@ -17,6 +18,11 @@ const SelectElement = ({ checked, onSelect }) => {
   );
 
 };
+
+const isProcessing = (processing_state) => {
+    console.log("STATE", processing_state);
+    return processing_state === 'RUNNING';
+}
 
 const LeftList = React.forwardRef(({ children = [], selected, onSelect, canBeSelected = [] }, ref) => {
 
@@ -31,7 +37,7 @@ const LeftList = React.forwardRef(({ children = [], selected, onSelect, canBeSel
                 <div className="left-list-main-element">
                   {element}
                   <div className="left-list-select-container">
-                    {selectionSupported && canBeSelected.includes(identifier) && <SelectElement checked={selected.has(identifier)} onSelect={() => onSelect(identifier)} />}
+                    {selectionSupported && canBeSelected.includes(identifier) && <SelectElement checked={selected.has(identifier)} onSelect={() => onSelect(identifier)} isDisabled={isProcessing(element?.props?.record?.processing_state)} />}
                   </div>
                 </div>
               </li>
