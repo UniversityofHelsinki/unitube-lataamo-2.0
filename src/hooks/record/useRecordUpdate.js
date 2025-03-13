@@ -21,6 +21,8 @@ export const put = async (record) => {
     if (response.ok) {
       return await response.json();
     }
+
+    throw new Error(`Unexpected status code ${response.status} from ${URL}.`);
   } catch (error) {
     console.error(error);
     throw new Error('error_record_update', {
