@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { ProgressStatus } from "../Constants";
 import useMonitor from "./useMonitor";
 
-const send = (record, setProgress) => async (dispatch) => {
+const send = (record, setProgress) => async () => {
   return new Promise((resolve, reject) => {
     const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/userVideos`;
     const request = new XMLHttpRequest();
@@ -17,7 +16,7 @@ const send = (record, setProgress) => async (dispatch) => {
       const done = {
         percentage: 100,
         timeLeft: 0,
-        status: ProgressStatus.NEW_RECORD.DONE
+        status: ProgressStatus.NEW_RECORD.PROCESSING
       };
       setProgress(done);
     });
@@ -71,14 +70,13 @@ const useUploadRecord = () => {
     percentage: 0
   });
   const [startJob] = useMonitor();
-  const dispatch = useDispatch();
 
   const sendRecord = async (record) => {
     const data = new FormData();
     Object.keys(record).forEach(key => {
       data.append(key, record[key]);
     });
-    const job = await send(data, setProgress)(dispatch);
+    const job = await send(data, setProgress)();
     const eventId = job.eventId;
     setProgress({
       status: monitorStatuses[job.status],
