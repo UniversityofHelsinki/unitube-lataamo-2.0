@@ -7,31 +7,24 @@ const moveRecords = async (records = [], destination) => {
   const alreadyInDestination = (record) => 
     record?.is_part_of !== destination
 
-  const batches = records
-    .filter(alreadyInDestination)
-    .reduce((batches, record) => {
+  const notInDestination = records
+    .filter(alreadyInDestination);
 
-      const currentBatch = batches[batches.length - 1];
-      const isFull = currentBatch.length === 10;
-
-      if (isFull) {
-        batches.push([]);
-      }
-
-      const nextBatch = batches[batches.length - 1];
-      nextBatch.push(record);
-
-      return batches;
-    }, [[]]);
-
-  const moved = [];
-  for (const batch of batches) {
-    moved.push(await Promise.all(batch.map(record =>
-      moveRecord({ ...record, isPartOf: destination })
-    )));
+  const failures = [];
+  for (const record of notInDestination) {
+    try {
+      await moveRecord({ ...record, isPartOf: destination });
+    } catch (error) {
+      failures.push(record);
+    }
+  }
+  
+  if (failures.length > 0) {
+    throw new Error('bulk_records_move_error', {
+      cause: failures
+    });
   }
 
-  return moved;
 };
 
 const useRecordsMove = (records = [], destination) => {
