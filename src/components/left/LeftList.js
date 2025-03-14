@@ -7,7 +7,7 @@ const SelectElement = ({ checked, onSelect }) => {
   const { t } = useTranslation();
 
   return (
-    <input 
+    <input
       type="checkbox" 
       aria-label={t('left_list_select_element')} 
       checked={checked} 

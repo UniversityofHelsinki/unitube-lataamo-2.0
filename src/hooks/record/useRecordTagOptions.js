@@ -31,7 +31,7 @@ const expiring = (t) =>  (record) => {
     }
 };
 
-const processing = (t) => (record) => {
+export const processing = (t) => (record) => {
     const processing_record = record.processing_state === 'RUNNING';
 
     if (processing_record) {
