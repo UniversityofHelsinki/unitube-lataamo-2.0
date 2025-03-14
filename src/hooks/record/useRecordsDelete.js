@@ -3,30 +3,21 @@ import useSteps from "../useSteps";
 import { put } from "./useRecordDelete";
 
 const deleteRecords = async (records = []) => {
-  const batches = records
-    .reduce((batches, record) => {
-
-      const currentBatch = batches[batches.length - 1];
-      const isFull = currentBatch.length === 10;
-
-      if (isFull) {
-        batches.push([]);
-      }
-
-      const nextBatch = batches[batches.length - 1];
-      nextBatch.push(record);
-
-      return batches;
-    }, [[]]);
-
-  const deleted = [];
-  for (const batch of batches) {
-    deleted.push(await Promise.all(batch.map(record =>
-      put(record, record.identifier)
-    )));
+  const failures = [];
+  for (const record of records) {
+    try {
+      await put(record, record.identifier)
+    } catch (error) {
+      failures.push(record);
+    }
+  }
+  
+  if (failures.length > 0) {
+    throw new Error('bulk_records_move_error', {
+      cause: failures
+    });
   }
 
-  return deleted;
 };
 
 const useRecordsDelete = (records = []) => {
