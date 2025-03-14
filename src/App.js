@@ -12,6 +12,7 @@ import lataamoReducer from './redux/reducers';
 import Lataamo from './Lataamo';
 import { DEFAULT_LANGUAGE } from './Constants';
 import { listenForBreakpointChanges } from './components/utilities/visibilities';
+import NotificationProvider from './components/notification/NotificationContext';
 
 const store = createStore(lataamoReducer, applyMiddleware(thunk));
 
@@ -44,7 +45,9 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <Lataamo />
+      <NotificationProvider>
+        <Lataamo />
+      </NotificationProvider>
     </Provider>
   );
 };

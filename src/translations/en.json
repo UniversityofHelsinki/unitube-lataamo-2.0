@@ -346,6 +346,8 @@
   "records_table_deletion_date": "Date of expiry",
   "records_table_embed_code": "Embed code",
   "records_table_embed_code_aria": "Embed code",
+  "records_table_video_duration": "Recording duration",
+  "records_table_in_total": "In total",
   "collection_records_bulk_actions_move": "Move",
   "reload": "Reload",
   "collection_card_action_delete": "Delete",
@@ -401,7 +403,18 @@
   "collection_error_page_http_help_content": "Check that you have the rights to edit the collectino, and that you are trying to open the correct collection! Sometimes a collection may also be processed for a longer period of time. In this case, you should try again after a while.",
   "collection_identifier_copy": "Copy collection identifier",
   "record_views_header": "Views",
-  "record_validation_title_contains_forbidden_characters": "Name contains a forbidden character.",
-  "collection_validation_title_contains_forbidden_characters": "Name contains a forbidden character."
-
+  "record_validation_title_contains_forbidden_characters": "Name contains a forbidden % character.",
+  "collection_validation_title_contains_forbidden_characters": "Name contains a forbidden % character.",
+  "clipboard_copied_to_clipboard": "Copied to clipboard!",
+  "left_list_select_element_title": "Choose",
+  "left_list_select_element": "Choose",
+  "record_bulk_actions_delete_selected": "Delete selected",
+  "record_bulk_actions_move_selected": "Move selected",
+  "bulk_actions_select_all": "Select all",
+  "left_bulk_actions_select": "{{count}} chosen records.",
+  "records_table_series": "Collection",
+  "record_validation_description_is_too_long": "Description is too long",
+  "collections_select_collection": "Select collection",
+  "collection_form_identifier": "Identifier",
+  "collection_form_copy_identifier": "Copy collection identifier"
 }

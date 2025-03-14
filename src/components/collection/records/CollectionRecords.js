@@ -9,6 +9,7 @@ import RecordsTable from '../../record/RecordsTable';
 import { useState } from 'react';
 import CollectionRecordsBulkActions from './CollectionRecordsBulkActions';
 import NewRecord from '../../record/NewRecord';
+import {processing} from '../../../hooks/record/useRecordTagOptions';
 
 const NoRecords = () => {
   const { t } = useTranslation();
@@ -24,8 +25,10 @@ const CollectionRecords = ({ collection, records, disabled }) => {
   const tableRowRef = useRef();
   const [selectedRecords, setSelectedRecords] = useState([]);
 
-  const onRecordSelect = (records) => {
-    setSelectedRecords(records);
+  const onRecordSelect = (selectedRecordsIndices) => {
+    const notInProcessing = i =>
+      !processing(t)(records[i]);
+    setSelectedRecords(selectedRecordsIndices.filter(notInProcessing));
   };
 
   const recordsTable = (() => {
@@ -39,6 +42,7 @@ const CollectionRecords = ({ collection, records, disabled }) => {
       onSelect={onRecordSelect} 
       containerRef={tableRowRef}
       selectedRecords={selectedRecords}
+      showDuration={true}
     />);
   })();
 

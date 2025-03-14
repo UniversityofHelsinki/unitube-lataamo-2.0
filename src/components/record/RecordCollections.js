@@ -1,4 +1,4 @@
-import React, {useId} from 'react';
+import React, {useEffect, useId} from 'react';
 import PropTypes from 'prop-types';
 import './RecordCollections.css';
 import FormElementHeader from '../form/FormElementHeader';
@@ -23,12 +23,24 @@ const RecordCollections = ({ collection, onChange, message, disabled = false, sh
     const [_searchParams, setSearchParams] = useSearchParams();
     const [user] = useUser();
 
-    const defaultCollection = collections?.find(collection => collection.title === `inbox ${user.eppn}`);
+    const inbox = collections?.find(collection => collection.title === `inbox ${user.eppn}`);
 
-    const moveToCollection = (event) => {
+    useEffect(() => {
+      if (!collection && inbox) {
+        onChange(inbox.identifier)
+      }
+    }, [collection]);
+
+    const goToCollection = (event) => {
       event.preventDefault();
       setSearchParams({ collection });
     };
+
+    const options = (collections || []).map((c) => ({
+      value: c.identifier,
+      label: `${/^inbox \w{1,8}$/.test(c.title) ? t('collections_default') : c.title} (${translateVisibilities(t, c.visibility || [])})`,
+      selected: c.identifier === collection
+    }));
 
     return (
         <Loading loading={loadingCollections}>
@@ -50,8 +62,8 @@ const RecordCollections = ({ collection, onChange, message, disabled = false, sh
               <Row>
                 <Col>
                     <div className="record-collections-move-to-collection">
-                      {collection && collection !== defaultCollection?.identifier && showLink &&
-                      <a href={`?collection=${collection}`} onClick={moveToCollection} aria-label={t('record_collection_move_aria')} title={t('record_collection_move_aria')}>
+                      {collection && collection !== inbox?.identifier && showLink &&
+                      <a href={`?collection=${collection}`} onClick={goToCollection} aria-label={t('record_collection_move_aria')} title={t('record_collection_move_aria')}>
                         {t('record_collection_move')}
                         <span className="mx-1"></span>
                         <LinkArrow width="1em" height="1em" aria-hidden />
@@ -64,13 +76,7 @@ const RecordCollections = ({ collection, onChange, message, disabled = false, sh
                       <DropDown 
                         aria-labelledby={id}
                         onChange={(e) => onChange(e.target.value)}
-                        options={
-                          (collections || []).map((c) => ({
-                            value: c.identifier,
-                            label: `${/^inbox \w{1,8}$/.test(c.title) ? t('collections_default') : c.title} (${translateVisibilities(t, c.visibility || [])})`,
-                            selected: c.identifier === collection
-                          }))
-                        } 
+                        options={options} 
                         value={collection}
                         message={message}
                         disabled={disabled}
@@ -90,7 +96,8 @@ RecordCollections.propTypes = {
     }),
     onChange: PropTypes.func.isRequired,
     disabled: PropTypes.bool,
-    collection: PropTypes.string.isRequired,
+    collection: PropTypes.string,
+    defaultCollection: PropTypes.string,
 };
 
 export default RecordCollections;

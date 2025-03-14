@@ -4,6 +4,7 @@ import { applyMiddleware, createStore } from "redux";
 import { thunk } from "redux-thunk";
 import lataamoReducer from '.';
 import PropTypes from 'prop-types';
+import NotificationProvider from "../../components/notification/NotificationContext";
 
 const mockRecord = {
   identifier: 'test-record-id',
@@ -108,7 +109,9 @@ const defaultMockReducers = {
 export const MockProvider = ({ children, mockReducers }) => {
   return (
     <Provider store={createStore(() => ({ ...lataamoReducer, ...defaultMockReducers, ...mockReducers }), applyMiddleware(thunk))}>
-      {children}
+      <NotificationProvider>
+        {children}
+      </NotificationProvider>
     </Provider>
   );
 };

@@ -17,6 +17,7 @@ import { hideRight, showCloseIcon, showHamburgerIcon, showRight } from './compon
 import useLocalStorage from './hooks/useLocalStorage';
 import { useTranslation } from 'react-i18next';
 import useBreakpoint from './hooks/useBreakpoint';
+import NotificationArea from './components/notification/NotificationArea';
 
 const Lataamo = () => {
   useHistory();
@@ -86,6 +87,9 @@ const Lataamo = () => {
                 xl={8}>
                 <Right />
               </Col>
+              <div className="main-content-notification-area" aria-live="assertive">
+                <NotificationArea />
+              </div>
             </Row>
             <Row>
               <Col as="footer" role="contentinfo" className="px-0">

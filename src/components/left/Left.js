@@ -23,6 +23,12 @@ import { belowBreakpoint, hideLeft, showRight } from '../utilities/visibilities'
 import useCollectionTagFilter from '../../hooks/collection/useCollectionTagFilter';
 import ListActions from './ListActions';
 import PropTypes from "prop-types";
+import RecordBulkActions from './bulk/RecordBulkActions';
+import useBulkRecordSelect from '../../hooks/useBulkRecordSelect';
+
+import { ReactComponent as Unchecked } from '../utilities/icons/square.svg';
+import { ReactComponent as Checked } from '../utilities/icons/square-checked.svg';
+import { ReactComponent as AlmostChecked } from '../utilities/icons/Square-indeterminate.svg';
 
 const No = ({ children }) => {
     return (
@@ -62,6 +68,7 @@ const NoStatistics = () => {
 };
 
 const Left = () => {
+    const { t } = useTranslation();
     const [path] = useLocation();
 
     const [recordOptions, setRecordOptions] = useState({
@@ -105,6 +112,14 @@ const Left = () => {
       tagFilteredRecords, 
       recordOptions.searchValue
     );
+
+    const {
+      selectedRecords, 
+      onSelectRecord, 
+      canBeSelected: canBeSelectedRecords, 
+      toggleSelectedRecords,
+      allRecordsSelected
+    } = useBulkRecordSelect(searchQueryFilteredRecords);
 
     const [collectionSortOptions, setCollectionSortOptions] = useState({
         criteria: 'created',
@@ -177,7 +192,7 @@ const Left = () => {
             key={record.identifier}
             onClick={() => onRecordCardClick(record)}
             record={record}
-            selected={record.identifier === searchParams.record }
+            selected={record.identifier === searchParams.record}
             containerRef={listRef}
             highlight={recordOptions.searchValue} 
           />,
@@ -238,6 +253,22 @@ const Left = () => {
         '/statistics': statisticCards
     };
 
+    const selectedElements = {
+      '/records': selectedRecords
+    };
+
+    const selectableElements = {
+      '/records': canBeSelectedRecords
+    };
+
+    const onSelectElement = {
+      '/records': onSelectRecord
+    };
+
+    const canBeSelected = {
+      '/records': canBeSelectedRecords
+    };
+
     const actionElement = {
         '/records': <RecordListActions
             options={recordOptions}
@@ -255,6 +286,17 @@ const Left = () => {
             onTagClear={clearSelectedCollectionTags}
             selectedTags={selectedCollectionTags}
         />
+    };
+
+    const showBulkActions = {
+      '/records': searchQueryFilteredRecords.length > 0 && selectableElements[path]?.length > 0 
+    };
+
+    const bulkActions = {
+      '/records': <RecordBulkActions 
+        records={searchQueryFilteredRecords} 
+        selectedRecords={selectedRecords} 
+      />
     };
 
     const loading = {
@@ -300,18 +342,44 @@ const Left = () => {
           <div>
             {actionElement[path]}
           </div>
-          <div className="left-content-list-actions shadow-line">
-            <ListActions 
-              currentSortCriteria={sortOptions?.criteria}
-              sortCriterias={sortCriterias}
-              descending={sortOptions?.descending}
-              onSortOptionChange={onSortOptionChange}
-              reload={reloadFunction}
-            />
+          <div className="left-content-list-actions">
+            <div className="shadow-line">
+              <ListActions 
+                currentSortCriteria={sortOptions?.criteria}
+                sortCriterias={sortCriterias}
+                descending={sortOptions?.descending}
+                onSortOptionChange={onSortOptionChange}
+                reload={reloadFunction}
+              />
+            </div>
+            {showBulkActions[path] &&
+              <div className="bulk-actions shadow-line">
+                <div className="bulk-actions-information">
+                  <button className="bulk-actions-select-all" onClick={toggleSelectedRecords} disabled={!selectableElements[path].length}>
+                    <span>{t('bulk_actions_select_all')}</span>
+                    <span className="me-1"></span>
+                    <div aria-hidden="true">
+                      {(() => {
+                        if (allRecordsSelected && selectedRecords.size > 0) {
+                          return <Checked />;
+                        } else if (selectedRecords.size > 0) {
+                          return <AlmostChecked />;
+                        }
+                        return <Unchecked />;
+                      })()}
+                    </div>
+                  </button>
+                </div>
+              </div>
+            }
           </div>
           <div className="left-down">
             <Loading loading={Boolean(loading[path])}>
-              <LeftList>
+              <LeftList 
+                selected={selectedElements[path]} 
+                onSelect={onSelectElement[path]} 
+                canBeSelected={canBeSelected[path]}
+              >
                 {(() => {
                   if (listElements[path]?.length > 0) {
                     return listElements[path];
@@ -326,6 +394,21 @@ const Left = () => {
             </Loading>
           </div>
         </div>
+        {showBulkActions[path] && <div className="left-bottom">
+          <div>
+            {bulkActions[path]}
+          </div>
+          {selectableElements[path].length > 0 &&
+            <div
+              className={selectedElements[path].size === 0 ? 'left-bottom-not-selected' : ''} 
+            >
+              <span className="screenreader-only" aria-live="assertive">
+                {t('left_bulk_actions_select', { count: selectedElements[path].size })}
+              </span>
+              <span aria-hidden>{selectedElements[path].size}/{selectableElements[path].length}</span>
+            </div>
+          }
+        </div>}
       </div>
   );
 };

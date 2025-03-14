@@ -22,3 +22,10 @@
   width: 400px;
   opacity: 0%;
 }
+
+.main-content-notification-area {
+    position: fixed;
+    max-width: fit-content;
+    bottom: 2dvh;
+    z-index: 1;
+}

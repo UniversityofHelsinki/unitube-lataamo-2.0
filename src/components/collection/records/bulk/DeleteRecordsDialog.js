@@ -7,15 +7,16 @@ import BulkActionDialog from './BulkActionDialog';
 import useUser from "../../../../hooks/useUser";
 import AlertBanner from "../../../utilities/AlertBanner";
 
-const DeleteRecordsDialog = ({ records = [] }) => {
+const DeleteRecordsDialog = ({ records = [], openerProps = {} }) => {
   const { t } = useTranslation();
   const [user] = useUser();
   const [currentState, startDeleting, reset] = useRecordsDelete(records);
 
-  const openerProps = {
+  const defaultOpenerProps = {
     label: t('delete_records_dialog_open_button_label'),
     title: t('delete_records_dialog_open_button_title'),
-    variant: 'danger'
+    variant: 'danger',
+    mini: false
   };
 
   const tableProps = {
@@ -43,20 +44,14 @@ const DeleteRecordsDialog = ({ records = [] }) => {
     }
   };
 
-  // Initialize otherContributors as false
-  let otherContributors = false;
-
-  // Check each record's contributors for usernames other than the provided username
-  records.forEach(record => {
-    if (record.contributors.some(contributor => contributor !== user.eppn)) {
-      otherContributors = true;
-    }
-  });
+  const otherContributors = records
+      .flatMap(record => record.contributors)
+      .some(contributor => contributor !== user.eppn);
 
   return (
     <BulkActionDialog
       records={records}
-      openerProps={openerProps}
+      openerProps={{ ...defaultOpenerProps, ...openerProps }}
       recordsTableProps={tableProps}
       resetState={reset}
       start={startDeleting}
@@ -78,7 +73,8 @@ const DeleteRecordsDialog = ({ records = [] }) => {
 };
 
 DeleteRecordsDialog.propTypes = {
-  records: PropTypes.arrayOf(PropTypes.object)
+  records: PropTypes.arrayOf(PropTypes.object),
+  openerProps: PropTypes.object
 };
 
 export default DeleteRecordsDialog;
