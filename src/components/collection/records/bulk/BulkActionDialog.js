@@ -31,7 +31,7 @@ const BulkActionDialog = ({
   const [_record, _loadingRecord, reloadRecord] = useRecord();
 
   const hide = () => {
-    if (currentState === 'done') {
+    if (currentState === 'done' || currentState === 'error') {
       reloadCollection();
       reloadCollections();
       reloadRecords();
