@@ -187,6 +187,7 @@
   "footer_privacy_statement_label": "Sekretesspolicy",
   "footer_privacy_statement_link": "https://www.helsinki.fi/sv/om-oss/behandling-av-uppgifter-vid-universitetet/dataskydd#center-f%C3%B6r-informationsteknologi-",
   "opens_in_new_tab": "Öppnas i ny flik",
+  "opens_in_email_client": "Öppnas i e-postprogram",
   "record_identifier_header_copy_aria": "Kopiera inspelningens kod",
   "record_link_copy_aria": "Kopiera länk",
   "record_embed_code_copy_aria": "Kopiera inbäddningskod",

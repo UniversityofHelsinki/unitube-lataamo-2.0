@@ -399,6 +399,7 @@
   "footer_privacy_statement_label": "Tietosuojaseloste",
   "footer_privacy_statement_link": "https://www.helsinki.fi/fi/tutustu-meihin/tietojen-kasittely-yliopistolla/tietosuoja#tietotekniikkakeskus",
   "opens_in_new_tab": "Avautuu uuteen välilehteen",
+  "opens_in_email_client": "Avautuu sähköpostiohjelmaan",
   "collection_error_page_inbox_content": "Virhe ladattaessa kokoelmaa.",
   "collection_error_page_http_content": "Virhe ladattaessa kokoelmaa.",
   "collection_error_page_http_help_content": "Tarkista, että sinulla on oikeudet muokata kokoelmaa, ja että yrität avata oikean kokoelman! Joskus kokoelma saattaa myös jäädä pidemmäksi aikaa käsittelyyn. Tällöin kannattaa yrittää hetken päästä uudelleen.",

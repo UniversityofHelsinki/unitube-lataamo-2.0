@@ -25,7 +25,7 @@ const Logo = () => {
   return (
     <div className="logo">
       <div aria-hidden="true">
-      <HyLogo aria-hidden="true" width={48} height={48} fill={HyColors.black} />
+        <HyLogo width={48} height={48} fill={HyColors.black} />
       </div>
       <a href="/" onClick={onClick}>
         <h1>
