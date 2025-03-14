@@ -204,6 +204,7 @@
   "footer_privacy_statement_label": "Privacy statement",
   "footer_privacy_statement_link": "https://www.helsinki.fi/en/about-us/processing-data-university/data-protection#center-for-information-technology-",
   "opens_in_new_tab": "Opens in new tab",
+  "opens_in_email_client": "Opens in e-mail client",
   "record_identifier_header_copy_aria": "Copy recording identifier",
   "record_link_copy_aria": "Copy link",
   "record_embed_code_copy_aria": "Copy embed code",
