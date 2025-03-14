@@ -200,7 +200,8 @@ const RecordsTable = ({
   };
 
   const durationSum = records?.reduce(
-    (sum, record) => sum + (record.publications[0]?.media[0]?.duration || 0), 
+    (sum, record) => sum + (record.publications[0]?.media[0]?.duration || 0)
+      - (record.publications[0]?.media[0]?.duration % 1000), 
     0
   );
 
