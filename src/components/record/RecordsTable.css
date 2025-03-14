@@ -90,19 +90,26 @@
   max-height: 40px;
 }
 
-.records-table-title > a {
+.records-table-title-label {
   margin-left: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.records-table-title-label > a {
   word-break: break-all;
   min-width: fit-content;
   color: var(--huds-grayscale-black);
 }
 
-.records-table-title-label {
-  margin-left: 1em;
+.records-table-title-label > span {
   word-break: break-all;
   min-width: fit-content;
 }
 
+.records-table-title-label .secondary-text {
+  font-size: 0.8em;
+}
 
 .records-table-checkbox {
   display: flex;

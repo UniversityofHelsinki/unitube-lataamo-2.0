@@ -15,6 +15,7 @@ import DateView from '../utilities/DateView';
 import { integerComparator, stringComparator } from '../utilities/comparators';
 import { useId } from 'react';
 import { useNotification } from '../notification/NotificationContext';
+import {processing} from '../../hooks/record/useRecordTagOptions';
 
 const isoStringComparator = (a, b) => {
   const aEpoch = a ? new Date(a) : 0;
@@ -46,7 +47,8 @@ const propertyComparator = (property, direction) => (a, b) => {
   return results;
 };
 
-const RecordTitle = ({ record, containerRef, linkDisabled = false }) => {
+const RecordTitle = ({ record, containerRef, linkDisabled = false, isInProcessing }) => {
+  const { t } = useTranslation();
   const [_searchParams, setSearchParams] = useSearchParams();
 
   const openRecord = (event) => {
@@ -69,12 +71,17 @@ const RecordTitle = ({ record, containerRef, linkDisabled = false }) => {
         containerRef={containerRef} 
         altText="record_thumbnail_alt_text" />
     </div>
-    {linkDisabled && <span className="records-table-title-label">{record.title}</span> || <a 
-      href={`?record=${record.id}`} 
-      onClick={onLinkClick}
-    >
-      {record.title}
-    </a>}
+    <div className="records-table-title-label">
+      {linkDisabled && <span>{record.title}</span> || <a 
+        href={`?record=${record.id}`} 
+        onClick={onLinkClick}
+      >
+        {record.title}
+      </a>}
+      <span className="secondary-text">
+        {isInProcessing && t('tag_processing')}
+      </span>
+    </div>
   </div>);
 };
 
@@ -174,7 +181,8 @@ const RecordsTable = ({
     }
   };
 
-  const allSelected = selectedRecords.length === records.length;
+  const notInProcessing = records.filter(r => !processing(t)(r));
+  const allSelected = selectedRecords.length > 0 && selectedRecords.length === notInProcessing.length;
   const someSelected = selectedRecords.length > 0 && !allSelected;
 
   const selectAll = () => {
@@ -209,7 +217,7 @@ const RecordsTable = ({
                 onChange={selectAll}
                 checked={allSelected}
                 indeterminate={someSelected}
-                disabled={disabled}
+                disabled={disabled || notInProcessing.length === 0}
                 label={t('records_table_select_all')}
             />
           </div>
@@ -252,12 +260,12 @@ const RecordsTable = ({
                     <CheckBox
                         onChange={() => selectItem(records.indexOf(record))}
                         checked={selectedRecords.includes(records.indexOf(record))}
-                        disabled={disabled}
+                        disabled={disabled || processing(t)(record)}
                         label={t('records_table_select', {record: record.title})}
                     />
                   </td>
                   <td>
-                    <RecordTitle record={record} containerRef={containerRef} linkDisabled={disabled}/>
+                    <RecordTitle record={record} containerRef={containerRef} linkDisabled={disabled} isInProcessing={processing(t)(record)}/>
                   </td>
                   <td><DateView ISO={record.created}/></td>
                   <td><DateView ISO={record.deletion_date}/></td>
@@ -266,9 +274,9 @@ const RecordsTable = ({
                   }
                   {showSeries &&
                       <td>
-                <span>
-                  {record.series}
-                </span>
+                        <span>
+                          {record.series}
+                        </span>
                       </td>
                   }
                   {copyVisible &&

@@ -48,13 +48,6 @@ const expiring = () => (record) => {
   }
 };
 
-/**
- * Checks if there are closed captions available for a given record.
- *
- * @param {function} t - Translation function.
- * @param {Object} record - The record object to check for closed captions.
- * @returns {Object|undefined} - Returns an object with label and color properties if closed captions are available, otherwise undefined.
- */
 export const processing = () => (record) => {
   const processingRecord = record.processing_state === 'RUNNING' || record.processing_state === 'EVENTS.EVENTS.STATUS.PROCESSING';
   const processingSubtitles = record.jobs && record.jobs.type === JOB_TYPES_TRANSCRIPTION && record.jobs.status === JOB_STATUS_STARTED;

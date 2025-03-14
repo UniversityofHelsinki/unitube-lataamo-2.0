@@ -1,4 +1,5 @@
 import { DELETED_SERIES_REG_EXP } from "../Constants";
+import {processing} from "./record/useRecordTags";
 import useBulkSelect from "./useBulkSelect";
 import useUser from "./useUser";
 
@@ -9,7 +10,11 @@ const useBulkRecordSelect = (records) => {
     record => !DELETED_SERIES_REG_EXP(user.eppn).test(record.series)
   );
 
-  const canBeSelected = withoutDeleted.map(record => record.identifier);
+  const withoutInProcessing = withoutDeleted.filter(
+    record => !processing()(record)
+  );
+
+  const canBeSelected = withoutInProcessing.map(record => record.identifier);
 
   const { 
     selected: selectedRecords, 
@@ -18,7 +23,7 @@ const useBulkRecordSelect = (records) => {
     clear,
     toggle: toggleSelectedRecords,
     allSelected: allRecordsSelected
-  } = useBulkSelect(withoutDeleted.map(r => r.identifier));
+  } = useBulkSelect(withoutInProcessing.map(r => r.identifier));
 
   return { selectedRecords, onSelectRecord, canBeSelected, selectAll, clear, toggleSelectedRecords, allRecordsSelected };
   
