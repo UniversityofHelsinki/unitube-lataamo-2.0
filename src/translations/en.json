@@ -417,5 +417,8 @@
   "record_validation_description_is_too_long": "Description is too long",
   "collections_select_collection": "Select collection",
   "collection_form_identifier": "Identifier",
-  "collection_form_copy_identifier": "Copy collection identifier"
+  "collection_form_copy_identifier": "Copy collection identifier",
+  "record_validation_name_is_too_long": "Name is too long",
+  "collection_validation_title_is_too_long": "Name is too long",
+  "collection_validation_description_is_too_long": "Description is too long"
 }

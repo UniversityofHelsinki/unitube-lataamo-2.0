@@ -413,9 +413,12 @@
   "bulk_actions_select_all": "Välj alla",
   "left_bulk_actions_select": "{{count}} valda poster.",
   "records_table_series": "Samling",
-  "record_validation_description_is_too_long": "Beskrivningen är for lång",
+  "record_validation_description_is_too_long": "Beskrivningen är för lång",
   "collections_select_collection": "Välj kollektion",
   "collection_form_identifier": "Identifierare",
   "collection_form_copy_identifier": "Kopiera samlingens identifierare",
-  "record_validation_file_invalid_format": "Felaktigt filformat"
+  "record_validation_file_invalid_format": "Felaktigt filformat",
+  "record_validation_name_is_too_long": "Namnet är för lång",
+  "collection_validation_title_is_too_long": "Namnet är för lång",
+  "collection_validation_description_is_too_long": "Beskrivningen är för lång"
 }
