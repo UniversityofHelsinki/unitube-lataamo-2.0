@@ -204,6 +204,7 @@
   "footer_privacy_statement_label": "Privacy statement",
   "footer_privacy_statement_link": "https://www.helsinki.fi/en/about-us/processing-data-university/data-protection#center-for-information-technology-",
   "opens_in_new_tab": "Opens in new tab",
+  "opens_in_email_client": "Opens in e-mail client",
   "record_identifier_header_copy_aria": "Copy recording identifier",
   "record_link_copy_aria": "Copy link",
   "record_embed_code_copy_aria": "Copy embed code",
@@ -416,5 +417,8 @@
   "record_validation_description_is_too_long": "Description is too long",
   "collections_select_collection": "Select collection",
   "collection_form_identifier": "Identifier",
-  "collection_form_copy_identifier": "Copy collection identifier"
+  "collection_form_copy_identifier": "Copy collection identifier",
+  "move_records_following_records": "The following records couldn't be moved: {{failures}}.",
+  "delete_records_following_records": "The following records couldn't be deleted: {{failures}}.",
+  "update_records_deletion_dates_following_records": "The following records couldn't be updated: {{failures}}."
 }

@@ -3,12 +3,18 @@ import PropTypes from 'prop-types';
 import { ReactComponent as FeedbackIcon } from '../utilities/icons/mail.svg';
 import Colors from '../utilities/HyColors';
 import './Feedback.css';
+import {useTranslation} from "react-i18next";
 
 const Feedback = ({ to, label, fill, height = 12, width = 12 }) => {
+    const {t} = useTranslation();
     return (
         <>
-            <a href={to} aria-haspopup="dialog" target="_blank" rel="noreferrer noopener" style={{ paddingRight: '8px' }}>{label}</a>
-            <FeedbackIcon className="footer-feedback-icon" height={height} width={width} fill={fill || Colors.white} />
+            <a href={to} target="_blank" rel="noreferrer noopener" style={{paddingRight: '8px'}}>
+                {label}
+                <div className="screenreader-only"> {t('opens_in_email_client')} </div>
+            </a>
+            <FeedbackIcon aria-hidden="true" className="footer-feedback-icon" height={height} width={width}
+                          fill={fill || Colors.white}/>
         </>
     );
 };

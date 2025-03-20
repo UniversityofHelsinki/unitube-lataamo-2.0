@@ -399,6 +399,7 @@
   "footer_privacy_statement_label": "Tietosuojaseloste",
   "footer_privacy_statement_link": "https://www.helsinki.fi/fi/tutustu-meihin/tietojen-kasittely-yliopistolla/tietosuoja#tietotekniikkakeskus",
   "opens_in_new_tab": "Avautuu uuteen välilehteen",
+  "opens_in_email_client": "Avautuu sähköpostiohjelmaan",
   "collection_error_page_inbox_content": "Virhe ladattaessa kokoelmaa.",
   "collection_error_page_http_content": "Virhe ladattaessa kokoelmaa.",
   "collection_error_page_http_help_content": "Tarkista, että sinulla on oikeudet muokata kokoelmaa, ja että yrität avata oikean kokoelman! Joskus kokoelma saattaa myös jäädä pidemmäksi aikaa käsittelyyn. Tällöin kannattaa yrittää hetken päästä uudelleen.",
@@ -416,5 +417,8 @@
   "left_bulk_actions_select": "Valittu {{count}} tallennetta.",
   "collections_select_collection": "Valitse kokoelma",
   "records_table_series": "Kokoelma",
-  "record_validation_description_is_too_long": "Kuvaus on liian pitkä"
+  "record_validation_description_is_too_long": "Kuvaus on liian pitkä",
+  "move_records_following_records": "Seuraavia tallenteita ei voitu siirtää: {{failures}}.",
+  "delete_records_following_records": "Seuraavia tallenteita ei voitu poistaa: {{failures}}.",
+  "update_records_deletion_dates_following_records": "Seuraavia tallenteita ei voitu päivittää: {{failures}}."
 }

@@ -13,7 +13,7 @@ const DownloadLink = ({ i, to, width, height, size, bitrate}) => {
   const bitrateKbps = `${Math.ceil(bitrate / 2**10)} kbps`;
   return (
     <>
-      <DownloadIcon width="2em" height="2em" />
+      <DownloadIcon aria-hidden="true" width="2em" height="2em" />
       <span className="ms-1">{i+1}.</span>
       <a download className="ms-2" href={to}>{resolution} - {bitrateKbps} - {sizeMB}</a>
     </>

@@ -18,7 +18,7 @@ const DeletionDateUpdateDialog = ({ records = [] }) => {
     addMonths(new Date(), DELETION_DATE_MIN_MONTHS).toISOString()
   );
 
-  const [currentState, startUpdating, reset] = useRecordsDeletionDatesUpdate(records.map(r => ({ identifier: r.identifier, deletionDate })));
+  const [currentState, startUpdating, reset, failures] = useRecordsDeletionDatesUpdate(records.map(r => ({ identifier: r.identifier, deletionDate, title: r.title })));
 
   const [
     isValid, 
@@ -52,7 +52,8 @@ const DeletionDateUpdateDialog = ({ records = [] }) => {
     },
     'error': {
       label: t('update_records_deletion_dates_dialog_error'),
-      type: 'error'
+      type: 'error',
+      alertMessage: t('update_records_deletion_dates_following_records', { failures: (failures || []).map(f => f.title).join(', ')})
     }
   };
 

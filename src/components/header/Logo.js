@@ -24,7 +24,9 @@ const Logo = () => {
 
   return (
     <div className="logo">
-      <HyLogo width={48} height={48} fill={HyColors.black} />
+      <div aria-hidden="true">
+        <HyLogo width={48} height={48} fill={HyColors.black} />
+      </div>
       <a href="/" onClick={onClick}>
         <h1>
           {t('unitube_lataamo')}

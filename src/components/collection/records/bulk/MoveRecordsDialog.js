@@ -10,7 +10,7 @@ const MoveRecordsDialog = ({ records = [], openerProps = {} }) => {
   const { t } = useTranslation();
 
   const [collection, setCollection] = useState(null);
-  const [currentState, start, reset] = useRecordsMove(records, collection);
+  const [currentState, start, reset, failures] = useRecordsMove(records, collection);
   const defaultOpenerProps = {
     label: t('move_records_dialog_open_button_label'),
     title: t('move_records_dialog_open_button_title'),
@@ -37,7 +37,8 @@ const MoveRecordsDialog = ({ records = [], openerProps = {} }) => {
     },
     'error': {
       label: t('move_records_dialog_error'),
-      type: 'error'
+      type: 'error',
+      alertMessage: t('move_records_following_records', { failures: (failures || []).map(f => f.title).join(', ')})
     }
   };
 
