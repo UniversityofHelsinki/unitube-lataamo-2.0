@@ -417,5 +417,8 @@
   "left_bulk_actions_select": "Valittu {{count}} tallennetta.",
   "collections_select_collection": "Valitse kokoelma",
   "records_table_series": "Kokoelma",
-  "record_validation_description_is_too_long": "Kuvaus on liian pitkä"
+  "record_validation_description_is_too_long": "Kuvaus on liian pitkä",
+  "move_records_following_records": "Seuraavia tallenteita ei voitu siirtää: {{failures}}.",
+  "delete_records_following_records": "Seuraavia tallenteita ei voitu poistaa: {{failures}}.",
+  "update_records_deletion_dates_following_records": "Seuraavia tallenteita ei voitu päivittää: {{failures}}."
 }

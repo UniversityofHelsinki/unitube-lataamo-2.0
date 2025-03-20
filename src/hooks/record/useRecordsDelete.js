@@ -22,6 +22,7 @@ const deleteRecords = async (records = []) => {
 
 const useRecordsDelete = (records = []) => {
   const [currentState, setCurrentState] = useState('not_started');
+  const [failures, setFailures] = useState([]);
 
   const [states] = useState([
     'in_progress',
@@ -36,8 +37,10 @@ const useRecordsDelete = (records = []) => {
     setCurrentState(states[index]);
   };
 
-  const onError = () => {
+  const onError = (_i, error) => {
+    const recordsNotDeleted = error.cause;
     setCurrentState('error');
+    setFailures(recordsNotDeleted);
   };
 
   const reset = () => {
@@ -47,7 +50,8 @@ const useRecordsDelete = (records = []) => {
   return [
     currentState, 
     () => startDeleting(updateState, onError), 
-    reset
+    reset,
+    failures
   ];
 };
 

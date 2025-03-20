@@ -10,7 +10,7 @@ import AlertBanner from "../../../utilities/AlertBanner";
 const DeleteRecordsDialog = ({ records = [], openerProps = {} }) => {
   const { t } = useTranslation();
   const [user] = useUser();
-  const [currentState, startDeleting, reset] = useRecordsDelete(records);
+  const [currentState, startDeleting, reset, failures] = useRecordsDelete(records);
 
   const defaultOpenerProps = {
     label: t('delete_records_dialog_open_button_label'),
@@ -40,7 +40,8 @@ const DeleteRecordsDialog = ({ records = [], openerProps = {} }) => {
     },
     'error': {
       label: 'delete_records_dialog_error',
-      type: 'error'
+      type: 'error',
+      alertMessage: t('delete_records_following_records', { failures: (failures || []).map(f => f.title).join(', ')})
     }
   };
 

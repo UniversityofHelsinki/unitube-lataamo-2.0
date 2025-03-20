@@ -5,6 +5,7 @@ import ProgressBar from '../../../form/ProgressBar';
 import { useTranslation } from 'react-i18next';
 import { useId } from 'react';
 import HyButton from '../../../utilities/HyButton';
+import AlertMessage from '../../../utilities/AlertMessage';
 
 const Footer = ({ 
   progress, 
@@ -48,13 +49,15 @@ const Footer = ({
   const label = progressBarProps.label;
   const type = progressBarProps.type;
   const animated = progressBarProps.animated;
+  const alertMessage = progressBarProps.alertMessage && 
+    <AlertMessage type="warning">{progressBarProps.alertMessage || null}</AlertMessage>;
 
   const showProgressBar = progress !== 'not_started';
 
   return (
     <div className="bulk-actions-dialog-footer">
       <div className="bulk-actions-dialog-footer-progress-bar">
-        {showProgressBar && <ProgressBar type={type} now={100} label={t(label)} alertMessage={<></>} animated={animated} />}
+        {showProgressBar && <ProgressBar type={type} now={100} label={t(label)} alertMessage={alertMessage} animated={animated} />}
       </div>
       <div className="mx-1"></div>
       <div className="bulk-actions-dialog-footer-buttons">

@@ -417,5 +417,8 @@
   "collections_select_collection": "Välj kollektion",
   "collection_form_identifier": "Identifierare",
   "collection_form_copy_identifier": "Kopiera samlingens identifierare",
-  "record_validation_file_invalid_format": "Felaktigt filformat"
+  "record_validation_file_invalid_format": "Felaktigt filformat",
+  "move_records_following_records": "Följande inspelningar kunde inte överföras: {{failures}}.",
+  "delete_records_following_records": "Följande inspelningar kunde inte tas bort: {{failures}}.",
+  "update_records_deletion_dates_following_records": "De följande posterna kunde inte uppdateras: {{failures}}."
 }
