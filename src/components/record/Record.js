@@ -55,13 +55,20 @@ const Record = () => {
         undo();
     };
 
+    const unitubeAllrightsLicenseUpdate = () => {
+       let recordCopy = {...record};
+       recordCopy.license = recordCopy.license.replace("UNITUBE-ALLRIGHTS", "ALLRIGHTS");
+       return recordCopy;
+    };
+
     const handleSave = async (event) => {
       event.preventDefault();
+      let record = {};
+      record = unitubeAllrightsLicenseUpdate();
       const userDeletedSubtitles = record.deleteSubtitle;
-
       const success = await save({
         record,
-        subtitles: 
+        subtitles:
           record.selectedSubtitles?.type === 'subtitleFile' ? { ...record.selectedSubtitles, identifier: record.identifier } : undefined,
         orderSubtitles: record.selectedSubtitles?.type === 'automaticSubtitles' ? { ...record.selectedSubtitles, identifier: record.identifier } : undefined,
         deleteSubtitle: (userDeletedSubtitles && !record.selectedSubtitles) ? { eventId: record.identifier, deleteSubtitle: true } : undefined
