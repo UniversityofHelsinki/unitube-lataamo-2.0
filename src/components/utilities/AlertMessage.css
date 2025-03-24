@@ -55,4 +55,5 @@
 .alert-message p {
   margin-bottom: 0px;
   display: inline-block;
+  vertical-align: middle;
 }

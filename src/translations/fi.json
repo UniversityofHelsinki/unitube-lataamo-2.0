@@ -420,5 +420,8 @@
   "record_validation_description_is_too_long": "Kuvaus on liian pitkä",
   "record_validation_name_is_too_long": "Nimi on liian pitkä",
   "collection_validation_title_is_too_long": "Nimi on liian pitkä",
-  "collection_validation_description_is_too_long": "Kuvaus on liian pitkä"
+  "collection_validation_description_is_too_long": "Kuvaus on liian pitkä",
+  "move_records_following_records": "Seuraavia tallenteita ei voitu siirtää: {{failures}}.",
+  "delete_records_following_records": "Seuraavia tallenteita ei voitu poistaa: {{failures}}.",
+  "update_records_deletion_dates_following_records": "Seuraavia tallenteita ei voitu päivittää: {{failures}}."
 }

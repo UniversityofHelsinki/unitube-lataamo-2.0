@@ -420,5 +420,8 @@
   "record_validation_file_invalid_format": "Felaktigt filformat",
   "record_validation_name_is_too_long": "Namnet är för lång",
   "collection_validation_title_is_too_long": "Namnet är för lång",
-  "collection_validation_description_is_too_long": "Beskrivningen är för lång"
+  "collection_validation_description_is_too_long": "Beskrivningen är för lång",
+  "move_records_following_records": "Följande inspelningar kunde inte överföras: {{failures}}.",
+  "delete_records_following_records": "Följande inspelningar kunde inte tas bort: {{failures}}.",
+  "update_records_deletion_dates_following_records": "De följande posterna kunde inte uppdateras: {{failures}}."
 }

@@ -420,5 +420,8 @@
   "collection_form_copy_identifier": "Copy collection identifier",
   "record_validation_name_is_too_long": "Name is too long",
   "collection_validation_title_is_too_long": "Name is too long",
-  "collection_validation_description_is_too_long": "Description is too long"
+  "collection_validation_description_is_too_long": "Description is too long",
+  "move_records_following_records": "The following records couldn't be moved: {{failures}}.",
+  "delete_records_following_records": "The following records couldn't be deleted: {{failures}}.",
+  "update_records_deletion_dates_following_records": "The following records couldn't be updated: {{failures}}."
 }
