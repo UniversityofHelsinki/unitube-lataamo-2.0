@@ -1,4 +1,4 @@
-export const DEFAULT_LICENSES = ['UNITUBE-ALLRIGHTS', 'CC-BY', 'CC-BY-NC-ND', 'CC0'];
+export const DEFAULT_LICENSES = ['ALLRIGHTS', 'CC-BY', 'CC-BY-NC-ND', 'CC0'];
 export const DEFAULT_LANGUAGE_MODELS = ['MS_WHISPER', 'MS_ASR'];
 export const DEFAULT_LANGUAGES = ['fi-FI', 'sv-SE', 'en-US'];
 

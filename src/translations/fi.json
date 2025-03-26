@@ -103,7 +103,7 @@
   "fi-FI": "suomi",
   "sv-SE": "ruotsi",
   "en-US": "englanti",
-  "UNITUBE-ALLRIGHTS": "\"Kaikki oikeudet pidätetään\" Unituben käyttösääntöjen mukaan",
+  "ALLRIGHTS": "\"Kaikki oikeudet pidätetään\" Unituben käyttösääntöjen mukaan",
   "CC-BY": "CC-BY – voi muokata ja hyödyntää vapaasti, lähde mainittava",
   "CC-BY-NC-ND": "CC BY-NC-ND – vapaasti jaettava ei-kaupalliseen käyttöön",
   "CC0": "CC0 – tekijänoikeudeton, vapaasti hyödynnettävissä",
@@ -418,6 +418,9 @@
   "collections_select_collection": "Valitse kokoelma",
   "records_table_series": "Kokoelma",
   "record_validation_description_is_too_long": "Kuvaus on liian pitkä",
+  "record_validation_name_is_too_long": "Nimi on liian pitkä",
+  "collection_validation_title_is_too_long": "Nimi on liian pitkä",
+  "collection_validation_description_is_too_long": "Kuvaus on liian pitkä",
   "move_records_following_records": "Seuraavia tallenteita ei voitu siirtää: {{failures}}.",
   "delete_records_following_records": "Seuraavia tallenteita ei voitu poistaa: {{failures}}.",
   "update_records_deletion_dates_following_records": "Seuraavia tallenteita ei voitu päivittää: {{failures}}."

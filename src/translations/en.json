@@ -89,7 +89,7 @@
   "fi-FI": "Finnish",
   "sv-SE": "Swedish",
   "en-US": "English",
-  "UNITUBE-ALLRIGHTS": "\"All rights reserved\" in accordance with the Unitube rules of use",
+  "ALLRIGHTS": "\"All rights reserved\" in accordance with the Unitube rules of use",
   "CC-BY": "CC-BY – may be modified and utilised freely; source must be mentioned",
   "CC-BY-NC-ND": "CC BY-NC-ND – may be distributed freely for non-commercial use",
   "CC0": "CC0 – No copyright reserved, free to use",
@@ -418,6 +418,9 @@
   "collections_select_collection": "Select collection",
   "collection_form_identifier": "Identifier",
   "collection_form_copy_identifier": "Copy collection identifier",
+  "record_validation_name_is_too_long": "Name is too long",
+  "collection_validation_title_is_too_long": "Name is too long",
+  "collection_validation_description_is_too_long": "Description is too long",
   "move_records_following_records": "The following records couldn't be moved: {{failures}}.",
   "delete_records_following_records": "The following records couldn't be deleted: {{failures}}.",
   "update_records_deletion_dates_following_records": "The following records couldn't be updated: {{failures}}."
