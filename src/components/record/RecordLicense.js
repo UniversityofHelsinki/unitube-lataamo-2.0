@@ -45,7 +45,7 @@ const RecordLicense = ({ license, onChange, message, disabled = false }) => {
       </Row>
       <Row>
         <Col>
-          <DropDown aria-labelledby={id} value={license === "UNITUBE-ALLRIGHTS" ? "ALLRIGHTS" : license} onChange={(e) => onChange(e.target.value)} options={licenses.map(asOption)} message={message} disabled={disabled} aria-required />
+          <DropDown aria-labelledby={id} value={license} onChange={(e) => onChange(e.target.value)} options={licenses.map(asOption)} message={message} disabled={disabled} aria-required />
         </Col>
       </Row>
     </Container>

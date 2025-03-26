@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -55,16 +55,8 @@ const Record = () => {
         undo();
     };
 
-    const unitubeAllrightsLicenseUpdate = () => {
-       let recordCopy = {...record};
-       recordCopy.license = recordCopy.license.replace("UNITUBE-ALLRIGHTS", "ALLRIGHTS");
-       return recordCopy;
-    };
-
     const handleSave = async (event) => {
       event.preventDefault();
-      let record = {};
-      record = unitubeAllrightsLicenseUpdate();
       const userDeletedSubtitles = record.deleteSubtitle;
       const success = await save({
         record,
