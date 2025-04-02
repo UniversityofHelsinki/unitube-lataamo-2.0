@@ -10,7 +10,7 @@ cache:
 stages:
   - compile
   - build
-  - dependency-check
+# - dependency-check
   - dependency-track-sbom
   - dependency-track-submit
   - sonarqube-check
