@@ -117,9 +117,6 @@ sonarqube-check:
     - sonar-scanner
   only:
     - master
-  needs:
-    - job: dependency-check
-      artifacts: true
 
 generate-sbom:
     stage: dependency-track-sbom
