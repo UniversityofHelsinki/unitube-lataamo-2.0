@@ -6,8 +6,8 @@ import useSubtitleUpload from "./useSubtitleUpload";
 
 const useNewRecordSave = () => {
   const [
-    sendRecord, 
-    recordUploadProgress, 
+    sendRecord,
+    recordUploadProgress,
     resetRecordUploadProgress
   ] = useUploadRecord();
   const [startMonitoring, abortMonitoring] = useMonitor();
@@ -24,8 +24,8 @@ const useNewRecordSave = () => {
   const save = async (record, subtitles) => {
     try {
       if (subtitles && subtitles.type === 'automaticSubtitles') {
-        const eventId = await sendRecord({ 
-          ...record, 
+        const eventId = await sendRecord({
+          ...record,
           translationModel: subtitles.translationModel,
           translationLanguage: subtitles.translationLanguage
         });
@@ -40,7 +40,15 @@ const useNewRecordSave = () => {
           status: ProgressStatus.NEW_RECORD.SENDING_SUBTITLES,
           percentage: 100,
         });
-        const subtitleMonitor = await uploadSubtitles({ file: subtitles.file, identifier: eventId });
+
+        const allFiles = {
+          video_text_track_file_finnish: subtitles.allFiles?.video_text_track_file_finnish,
+          video_text_track_file_swedish: subtitles.allFiles?.video_text_track_file_swedish,
+          video_text_track_file_english: subtitles.allFiles?.video_text_track_file_english,
+        };
+
+
+        const subtitleMonitor = await uploadSubtitles({ ...allFiles, identifier: eventId });
         setProgress({
           status: ProgressStatus.NEW_RECORD.PROCESSING_SUBTITLES,
           percentage: 100,
