@@ -61,7 +61,7 @@ const Record = () => {
       const success = await save({
         record,
         subtitles:
-          record.selectedSubtitles?.type === 'subtitleFile' ? { ...record.selectedSubtitles, identifier: record.identifier } : undefined,
+          record.selectedSubtitles?.type === 'subtitleFile' ? { ...record.selectedSubtitles.allFiles, identifier: record.identifier } : undefined,
         orderSubtitles: record.selectedSubtitles?.type === 'automaticSubtitles' ? { ...record.selectedSubtitles, identifier: record.identifier } : undefined,
         deleteSubtitle: (userDeletedSubtitles && !record.selectedSubtitles) ? { eventId: record.identifier, deleteSubtitle: true } : undefined
       });

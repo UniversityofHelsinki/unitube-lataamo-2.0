@@ -11,7 +11,8 @@ import RecordCollections from "./RecordCollections";
 import RecordSubtitle from "./RecordSubtitle";
 import RecordLicense from './RecordLicense';
 
-const RecordForm = ({ 
+const RecordForm = ({
+  onDeleteSubtitleFile,
   record,
   validationMessages,
   onChange,
@@ -79,7 +80,7 @@ const RecordForm = ({
           </Row>
           <Row className="mb-2">
             <Col>
-              <RecordSubtitle 
+              <RecordSubtitle
                 onChange={(value) => onChange('selectedSubtitles', value)}
                 message={validationMessages?.selectedSubtitles}
                 subtitles={record.selectedSubtitles}
