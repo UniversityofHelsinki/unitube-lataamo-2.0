@@ -69,6 +69,7 @@ const RecordSubtitleFiles = ({ onChange, allFiles, message, disabled = false }) 
 
 RecordSubtitleFiles.propTypes = {
     onChange: PropTypes.func.isRequired,
+    allFiles: PropTypes.object,
     message: PropTypes.shape({
         content: PropTypes.string,
         type: PropTypes.oneOf(['light', 'neutral', 'warning'])

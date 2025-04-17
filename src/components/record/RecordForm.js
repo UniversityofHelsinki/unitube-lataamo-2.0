@@ -12,7 +12,6 @@ import RecordSubtitle from "./RecordSubtitle";
 import RecordLicense from './RecordLicense';
 
 const RecordForm = ({
-  onDeleteSubtitleFile,
   record,
   validationMessages,
   onChange,
@@ -95,7 +94,8 @@ const RecordForm = ({
 RecordForm.propTypes = {
   record: PropTypes.object,
   onChange: PropTypes.func,
-  validationMessages: PropTypes.object
+  validationMessages: PropTypes.object,
+  disabled: PropTypes.bool
 };
 
 export default RecordForm;

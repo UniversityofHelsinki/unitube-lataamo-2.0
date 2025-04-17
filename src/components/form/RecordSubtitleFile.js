@@ -18,7 +18,6 @@ const RecordSubtitleFile = ({ videoFile, onDeleteSubtitleFile, recordSubtitleFil
 
     const fileInputRef = useRef();
     const onRemoveSubtitleFile = (event) => {
-        console.log('recordSubtitleFileLanguage', recordSubtitleFileLanguage);
         event.preventDefault();
         //onClick(event);
         if (fileInputRef.current) {
@@ -62,6 +61,9 @@ const RecordSubtitleFile = ({ videoFile, onDeleteSubtitleFile, recordSubtitleFil
 };
 
 RecordSubtitleFile.propTypes = {
+    videoFile: PropTypes.object,
+    onDeleteSubtitleFile: PropTypes.func.isRequired,
+    recordSubtitleFileLanguage: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     message: PropTypes.shape({
         content: PropTypes.string,
