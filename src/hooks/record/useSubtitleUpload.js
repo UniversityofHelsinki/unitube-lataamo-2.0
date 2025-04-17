@@ -28,7 +28,9 @@ const useSubtitleUpload = () => {
 
   const save = async (input) => {
     const formData = new FormData();
-    formData.append('video_text_track_file', input.file);
+    if (input.video_text_track_file_finnish) formData.append('video_text_track_file_finnish', input.video_text_track_file_finnish);
+    if (input.video_text_track_file_swedish) formData.append('video_text_track_file_swedish', input.video_text_track_file_swedish);
+    if (input.video_text_track_file_english) formData.append('video_text_track_file_english', input.video_text_track_file_english);
     formData.append('eventId', input.identifier);
     const job = await upload(formData);
 
