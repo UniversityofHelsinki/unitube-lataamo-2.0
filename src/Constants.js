@@ -5,7 +5,7 @@ export const DEFAULT_LANGUAGES = ['fi-FI', 'sv-SE', 'en-US'];
 export const MAX_FILE_SIZE_LIMIT = 2.5e+10;
 export const MIN_VIDEO_DURATION = 1;
 
-export const ACCEPTED_MIME_TYPES = "video/mp4,video/quicktime,video/x-msvideo";
+export const ACCEPTED_MIME_TYPES = "video/mp4, video/quicktime, video/x-msvideo, video/webm";
 
 export const ACCEPTED_VTT_MIME_TYPES = "vtt, srt";
 
