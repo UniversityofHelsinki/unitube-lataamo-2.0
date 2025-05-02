@@ -4,11 +4,10 @@ import './RecordSubtitle.css';
 import {Col, Container, Form, Row} from 'react-bootstrap';
 import {useTranslation} from "react-i18next";
 import Toggle from "../form/Toggle";
-import RecordSubtitleFile from "../form/RecordSubtitleFile";
 import RecordAutomaticSubtitleFile from "../form/RecordAutomaticSubtitleFile";
 import ElementHeader from "../form/ElementHeader";
 import HelpDialog from '../dialog/HelpDialog';
-
+import RecordSubtitleFiles from "./RecordSubtitleFiles";
 
 const RecordSubtitle = ({ onChange, message, subtitles, disabled }) => {
     const { t } = useTranslation();
@@ -30,9 +29,27 @@ const RecordSubtitle = ({ onChange, message, subtitles, disabled }) => {
       return undefined;
     };
 
-    const subtitleFileMessages = typeof message?.content === 'string' ? message : undefined;
     const automaticFileMessages = typeof message?.content === 'object' ? message : undefined;
 
+    const allFiles = subtitles?.type === 'subtitleFile' ? {
+        video_text_track_file_finnish: subtitles.allFiles?.video_text_track_file_finnish,
+        video_text_track_file_swedish: subtitles.allFiles?.video_text_track_file_swedish,
+        video_text_track_file_english: subtitles.allFiles?.video_text_track_file_english
+    } : {
+        video_text_track_file_finnish: undefined,
+        video_text_track_file_swedish: undefined,
+        video_text_track_file_english: undefined
+    };
+
+    const handleSubTitleFiles = (allFiles) => {
+       if (allFiles?.video_text_track_file_finnish === undefined &&
+           allFiles?.video_text_track_file_swedish === undefined &&
+           allFiles?.video_text_track_file_english === undefined) {
+           onChange({ type: 'subtitleFile' });
+       } else {
+           onChange({ type: 'subtitleFile', allFiles });
+       }
+    }
 
     return (
         <Container>
@@ -61,10 +78,11 @@ const RecordSubtitle = ({ onChange, message, subtitles, disabled }) => {
                           onSelect={onSelect}
                           selected={selected}
                           disabled={disabled}>
-                            <RecordSubtitleFile 
-                              onChange={(file) => onChange({ type: 'subtitleFile', file })}
+                            <RecordSubtitleFiles
+                              allFiles={allFiles}
+                              onChange={handleSubTitleFiles}
                               disabled={disabled} 
-                              message={subtitleFileMessages} 
+                              message={message}
                             />
                             <RecordAutomaticSubtitleFile 
                               onChange={(value) => onChange({ type: 'automaticSubtitles', ...value })} 

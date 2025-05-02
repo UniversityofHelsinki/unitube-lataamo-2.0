@@ -4,5 +4,22 @@
 }
 
 .record-subtitle-file > div {
-  margin-bottom: 8px;
+  display: flex;
+}
+
+.record-subtitle-file-language {
+  margin-top: 5px;
+  padding-right: 0px;
+  min-width: 85px;
+}
+
+.record-subtitle-file-input {
+  width: 320px;
+  margin-right: 2px;
+}
+
+.record-subtitle-file-input-strike-through {
+  text-decoration: line-through;
+  width: 320px;
+  margin-right: 2px;
 }

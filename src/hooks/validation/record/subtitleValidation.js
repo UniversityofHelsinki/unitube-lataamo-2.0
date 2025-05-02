@@ -11,7 +11,7 @@ const validateSubtitles = (subtitles, _record) => {
   if (subtitles.type === 'automaticSubtitles') {
     return validateAutomaticSubtitles(subtitles, _record);
   } else if (subtitles.type === 'subtitleFile') {
-    return validateSubtitleFile(subtitles.file, _record);
+    return validateSubtitleFile(subtitles.allFiles, _record);
   }
 
 };
