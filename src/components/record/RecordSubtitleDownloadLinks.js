@@ -79,48 +79,54 @@ const RemoveSubtitleButton = ({ onClick, markedForDeletion, disabled }) => {
  */
 const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloadLinks, disabled }) => {
     const { t } = useTranslation();
-    // Create the structure to hold the unique subtitles
-    const uniqueIds = Array.from(new Set(subtitles.map(subtitle => subtitle.id)));
+
+    // Flatten the array and filter valid subtitles
+    const flatSubtitles = subtitles?.[0]?.filter(subtitle =>
+        subtitle && subtitle.filename !== 'empty.vtt'
+    ) || [];
+
+    if (flatSubtitles.length === 0) {
+        return null;
+    }
+
     return (
-        <>
-            {subtitles && subtitles.length > 0 && subtitles[0]?.filename !== 'empty.vtt' && (
-                <Container>
-                    <Row>
-                        <Col>
-                            <ElementHeader>
-                                {t('record_subtitle_download_links_header')}
-                            </ElementHeader>
-                        </Col>
-                    </Row>
-                    <Row className="mb-3">
-                    </Row>
-                    <Row>
-                        <Col>
-                            <ul className="blockquote record-subtitle-download-link-list">
-                                {uniqueIds.map(uniqueId => {
-                                    const subtitle = subtitles.find(sub => sub.id === uniqueId && sub.filename !== 'empty.vtt');
+        <Container>
+            <Row>
+                <Col>
+                    <ElementHeader>
+                        {t('record_subtitle_download_links_header')}
+                    </ElementHeader>
+                </Col>
+            </Row>
+            <Row className="mb-3" />
+            <Row>
+                <Col>
+                    <ul className="blockquote record-subtitle-download-link-list">
+                        {flatSubtitles.map(subtitle => {
+                            const language = subtitle.tags?.tag
+                                ?.find(tag => tag.startsWith('lang:'))
+                                ?.split(':')[1]
+                                ?.toUpperCase() || 'Unknown';
 
-                                    // Return null if no subtitle was found with the unique id
-                                    if (!subtitle) return null;
-
-                                    return (
-                                        <li key={subtitle.id}>
-                                            <DownloadLink
-                                                onChange={onChange}
-                                                to={`${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/vttFile/` + subtitle.url}
-                                                label={subtitle.filename}
-                                                resetSubtitleDownloadLinks={resetSubtitleDownloadLinks}
-                                                disabled={disabled}
-                                            />
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                        </Col>
-                    </Row>
-                </Container>
-            )}
-        </>
+                            return (
+                                <li key={subtitle.id}>
+                                    <div className="d-flex align-items-center">
+                                        <span className="me-2 badge bg-secondary">{language}</span>
+                                        <DownloadLink
+                                            onChange={onChange}
+                                            to={`${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/vttFile/` + subtitle.url}
+                                            label={subtitle.filename || subtitle.url.split('/').pop()}
+                                            resetSubtitleDownloadLinks={resetSubtitleDownloadLinks}
+                                            disabled={disabled}
+                                        />
+                                    </div>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </Col>
+            </Row>
+        </Container>
     );
 };
 
