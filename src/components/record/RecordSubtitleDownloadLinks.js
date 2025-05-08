@@ -82,12 +82,45 @@ const RemoveSubtitleButton = ({ onClick, markedForDeletion, disabled }) => {
 const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloadLinks, disabled }) => {
     const { t } = useTranslation();
 
-    console.log(subtitles);
+    const SUBTITLE_PRIORITIES = {
+        FINNISH: 0,
+        SWEDISH: 1,
+        ENGLISH: 2,
+        ARCHIVED: 3
+    };
 
-    // Flatten the array and filter valid subtitles
-    const flatSubtitles = subtitles?.[0]?.filter(subtitle =>
-        subtitle && subtitle.filename !== 'empty.vtt'
-    ) || [];
+    const getLanguageFromTag = (langTag) => langTag?.split(':')[1];
+
+    const getSubtitlePriority = (subtitle) => {
+        const tags = Array.isArray(subtitle.tags?.tag)
+            ? subtitle.tags.tag
+            : [subtitle.tags?.tag];
+
+        // Archived subtitles always come last
+        if (tags.includes('archived')) {
+            return SUBTITLE_PRIORITIES.ARCHIVED;
+        }
+
+        const languageTag = tags.find(tag => tag?.startsWith('lang:'));
+
+        // Determine priority based on language
+        const language = getLanguageFromTag(languageTag);
+        switch (language) {
+            case 'fin': return SUBTITLE_PRIORITIES.FINNISH;
+            case 'swe': return SUBTITLE_PRIORITIES.SWEDISH;
+            case 'eng': return SUBTITLE_PRIORITIES.ENGLISH;
+        }
+    };
+
+    const compareSubtitles = (a, b) => getSubtitlePriority(a) - getSubtitlePriority(b);
+
+    const flatSubtitles = subtitles?.[0]
+            ?.filter(subtitle => subtitle && subtitle.filename !== 'empty.vtt')
+            ?.sort(compareSubtitles)
+        || [];
+
+
+
 
     if (flatSubtitles.length === 0) {
         return null;
@@ -114,8 +147,6 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloa
                                 const tags = Array.isArray(subtitle.tags.tag)
                                     ? subtitle.tags.tag
                                     : [subtitle.tags.tag];
-
-                                console.log(tags);
 
                                 const langTag = tags.find(tag => tag?.startsWith('lang:'));
                                 return langTag ? langTag.split(':')[1]?.toUpperCase() : tags[0];
