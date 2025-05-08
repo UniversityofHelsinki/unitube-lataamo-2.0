@@ -27,7 +27,7 @@ const Record = () => {
     const [_collections, _loadingCollections, reloadCollections] = useCollections();
     const [visibleCollection, _loadingVisibleCollection, reloadVisibleCollection] = useCollection();
     const [resetSubtitleDownloadLinks, setResetSubtitleDownloadLinks] = useState(false);
-
+    const [subtitlesToDelete, setSubtitlesToDelete] = useState(new Set());
     const [isValid, messages, validate] = useRecordValidation([
       'title', 'description', 'deletionDate', 'license', 'selectedSubtitles'
     ], originalRecord);
@@ -55,6 +55,24 @@ const Record = () => {
         undo();
     };
 
+    const handleSubtitleChange = (action, data) => {
+        if (action === 'deleteSubtitle') {
+            const newSubtitlesToDelete = new Set(subtitlesToDelete);
+            if (data) {
+                newSubtitlesToDelete.add(data.language);
+            } else {
+                newSubtitlesToDelete.clear();
+            }
+            setSubtitlesToDelete(newSubtitlesToDelete);
+            onChange('deleteSubtitle', {
+                languages: Array.from(newSubtitlesToDelete),
+                deleteSubtitle: newSubtitlesToDelete.size > 0
+            });
+        } else {
+            onChange(action, data);
+        }
+    };
+
     const handleSave = async (event) => {
       event.preventDefault();
       const userDeletedSubtitles = record.deleteSubtitle;
@@ -63,7 +81,11 @@ const Record = () => {
         subtitles:
           record.selectedSubtitles?.type === 'subtitleFile' ? { ...record.selectedSubtitles.allFiles, identifier: record.identifier } : undefined,
         orderSubtitles: record.selectedSubtitles?.type === 'automaticSubtitles' ? { ...record.selectedSubtitles, identifier: record.identifier } : undefined,
-        deleteSubtitle: (userDeletedSubtitles && !record.selectedSubtitles) ? { eventId: record.identifier, deleteSubtitle: true } : undefined
+          deleteSubtitle: (userDeletedSubtitles && !record.selectedSubtitles) ? {
+              eventId: record.identifier,
+              deleteSubtitle: true,
+              languages: userDeletedSubtitles.languages // Array of languages to delete
+          } : undefined
       });
 
       if (success) {
@@ -92,11 +114,11 @@ const Record = () => {
                   </Row>
                   <Row>
                     <Col xl={5} className="ps-0">
-                      <RecordStaticInformation 
-                        record={originalRecord} 
-                        onChange={onChange} 
-                        resetSubtitleDownloadLinks={resetSubtitleDownloadLinks} 
-                        disabled={saveInProgress}  
+                      <RecordStaticInformation
+                        record={originalRecord}
+                        onChange={handleSubtitleChange}
+                        resetSubtitleDownloadLinks={resetSubtitleDownloadLinks}
+                        disabled={saveInProgress}
                       />
                     </Col>
                     <Col xl className="ps-0">

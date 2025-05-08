@@ -36,7 +36,7 @@ const getLanguageFromTags = (tags) => {
     return lang?.toUpperCase() || '';
 };
 
-const DownloadLink = ({ onChange, to, label, resetSubtitleDownloadLinks, disabled, isArchived }) => {
+const DownloadLink = ({ onChange, to, label, resetSubtitleDownloadLinks, disabled, isArchived, language}) => {
     const [markedForDeletion, setMarkedForDeletion] = useState(false);
     const linkClass = markedForDeletion ? "record-subtitle-download-link-deleted" : "record-subtitle-download-link";
 
@@ -47,7 +47,10 @@ const DownloadLink = ({ onChange, to, label, resetSubtitleDownloadLinks, disable
     const handleClick = () => {
         const updatedMarkedForDeletion = !markedForDeletion;
         setMarkedForDeletion(updatedMarkedForDeletion);
-        onChange('deleteSubtitle', updatedMarkedForDeletion || undefined);
+        onChange('deleteSubtitle', updatedMarkedForDeletion ? {
+            language: `lang:${language.toLowerCase()}`
+        } : null);
+
     };
 
     return (
@@ -121,6 +124,7 @@ const SubtitleItem = ({ subtitle, onChange, resetSubtitleDownloadLinks, disabled
                     resetSubtitleDownloadLinks={resetSubtitleDownloadLinks}
                     disabled={disabled}
                     isArchived={archived}
+                    language={language}
                 />
             </div>
         </li>
@@ -128,8 +132,6 @@ const SubtitleItem = ({ subtitle, onChange, resetSubtitleDownloadLinks, disabled
 };
 
 const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloadLinks, disabled }) => {
-    console.log(subtitles);
-
     const { t } = useTranslation();
 
     const getSubtitlePriority = (subtitle) => {
