@@ -19,7 +19,6 @@ const useDeleteSubtitle = () => {
     };
 
     const deleteSubtitle = async (input) => {
-        console.log(input.languages);
         if (input.deleteSubtitle && input.languages) {
             actionDeleteVideoVTTFile(input.eventId, input.languages)
         }
