@@ -22,7 +22,7 @@ const VideoPreviewLabel = ({ video }) => {
 
 const RecordStaticInformation = ({ record, onChange, resetSubtitleDownloadLinks, disabled }) => {
     const videos = useVideos(record.identifier);
-    const subtitles = videos?.map((video) => video.vttFiles).filter(file => file !== undefined && file !== '');
+    const subtitles = videos?.flatMap(video => video.vttFiles || []).filter(file => file);
     console.log(subtitles);
     const publishedLink = `${process.env.REACT_APP_KATSOMO_PUBLISHED_LINK_URL}${record.identifier}`;
     return (

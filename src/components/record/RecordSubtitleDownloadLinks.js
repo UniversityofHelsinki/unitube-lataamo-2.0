@@ -128,6 +128,8 @@ const SubtitleItem = ({ subtitle, onChange, resetSubtitleDownloadLinks, disabled
 };
 
 const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloadLinks, disabled }) => {
+    console.log(subtitles);
+
     const { t } = useTranslation();
 
     const getSubtitlePriority = (subtitle) => {
@@ -144,10 +146,11 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloa
         }
     };
 
-    const flatSubtitles = subtitles?.[0]
+    const flatSubtitles = subtitles
             ?.filter(subtitle => subtitle && subtitle.filename !== 'empty.vtt')
             ?.sort((a, b) => getSubtitlePriority(a) - getSubtitlePriority(b))
         || [];
+
 
     if (flatSubtitles.length === 0) {
         return null;
