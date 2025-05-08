@@ -17,7 +17,7 @@ import ElementHeader from "../form/ElementHeader";
  * @param {String} props.label - The label of the download link.
  * @returns {JSX.Element} The download link component.
  */
-const DownloadLink = ({ onChange, to, label, resetSubtitleDownloadLinks, disabled }) => {
+const DownloadLink = ({ onChange, to, label, resetSubtitleDownloadLinks, disabled, isArchived }) => {
     const [markedForDeletion, setMarkedForDeletion] = useState(false);
     const linkClass = markedForDeletion ? "record-subtitle-download-link-deleted" : "record-subtitle-download-link";
 
@@ -37,9 +37,11 @@ const DownloadLink = ({ onChange, to, label, resetSubtitleDownloadLinks, disable
                 <DownloadIcon width="2em" height="2em"/>
                 <a title={label} className={`ms-2 ${linkClass}`} download href={to}>{label}</a>
             </div>
-            <div className="record-subtitle-download-link-remove-button">
-                <RemoveSubtitleButton onClick={handleClick} markedForDeletion={markedForDeletion} disabled={disabled }/>
-            </div>
+            {!isArchived && (
+                <div className="record-subtitle-download-link-remove-button">
+                    <RemoveSubtitleButton onClick={handleClick} markedForDeletion={markedForDeletion} disabled={disabled}/>
+                </div>
+            )}
         </div>
     );
 };
@@ -80,6 +82,8 @@ const RemoveSubtitleButton = ({ onClick, markedForDeletion, disabled }) => {
 const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloadLinks, disabled }) => {
     const { t } = useTranslation();
 
+    console.log(subtitles);
+
     // Flatten the array and filter valid subtitles
     const flatSubtitles = subtitles?.[0]?.filter(subtitle =>
         subtitle && subtitle.filename !== 'empty.vtt'
@@ -103,10 +107,20 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloa
                 <Col>
                     <ul className="blockquote record-subtitle-download-link-list">
                         {flatSubtitles.map(subtitle => {
-                            const language = subtitle.tags?.tag
-                                ?.find(tag => tag.startsWith('lang:'))
-                                ?.split(':')[1]
-                                ?.toUpperCase() || 'Unknown';
+                            const language = (() => {
+                                if (!subtitle.tags?.tag) return '';
+
+                                // Handle both array and string cases
+                                const tags = Array.isArray(subtitle.tags.tag)
+                                    ? subtitle.tags.tag
+                                    : [subtitle.tags.tag];
+
+                                console.log(tags);
+
+                                const langTag = tags.find(tag => tag?.startsWith('lang:'));
+                                return langTag ? langTag.split(':')[1]?.toUpperCase() : tags[0];
+                            })();
+
 
                             return (
                                 <li key={subtitle.id}>
@@ -118,7 +132,13 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloa
                                             label={subtitle.filename || subtitle.url.split('/').pop()}
                                             resetSubtitleDownloadLinks={resetSubtitleDownloadLinks}
                                             disabled={disabled}
+                                            isArchived={subtitle.tags?.tag && (
+                                                Array.isArray(subtitle.tags.tag)
+                                                    ? subtitle.tags.tag.includes('archived')
+                                                    : subtitle.tags.tag === 'archive'
+                                            )}
                                         />
+
                                     </div>
                                 </li>
                             );
