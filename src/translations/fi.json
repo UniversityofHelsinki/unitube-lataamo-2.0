@@ -428,5 +428,9 @@
   "collection_validation_description_is_too_long": "Kuvaus on liian pitkä",
   "move_records_following_records": "Seuraavia tallenteita ei voitu siirtää: {{failures}}.",
   "delete_records_following_records": "Seuraavia tallenteita ei voitu poistaa: {{failures}}.",
-  "update_records_deletion_dates_following_records": "Seuraavia tallenteita ei voitu päivittää: {{failures}}."
+  "update_records_deletion_dates_following_records": "Seuraavia tallenteita ei voitu päivittää: {{failures}}.",
+  "tag_failure": "Käsittely epäonnistui",
+  "record_error_page_processing_failure_content": "record_error_page_processing_failure_content",
+  "record_error_page_processing_failure_help_label": "record_error_page_processing_failure_help_label",
+  "record_error_page_processing_failure_help_content": "record_error_page_processing_failure_help_content"
 }

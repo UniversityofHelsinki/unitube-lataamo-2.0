@@ -20,6 +20,13 @@ const recordIsInProgress = (record) => {
   return false;
 };
 
+const recordIsInFailure = (record) => {
+  if (record) {
+    return record?.processing_state === 'FAILED';
+  }
+  return false;
+};
+
 const useRecordError = (record, httpError, reload) => {
   const { t } = useTranslation();
   const [user] = useUser();
@@ -53,6 +60,23 @@ const useRecordError = (record, httpError, reload) => {
       <div className="record-error-page-content">
         <span><b>{record.title}</b></span>
         {t('record_error_page_deleted_content')}
+      </div>
+    </RecordErrorPage>
+  }
+
+  if (recordIsInFailure(record)) {
+    return <RecordErrorPage
+      helpDialog={
+        <HelpDialog
+          label={t('record_error_page_processing_failure_help_label')}>
+          {t('record_error_page_processing_failure_help_content')}
+        </HelpDialog>
+      }
+      record={record}
+      reload={reload}>
+      <div className="record-error-page-content">
+        <span><b>{record.title}</b></span>
+        {t('record_error_page_processing_failure_content')}
       </div>
     </RecordErrorPage>
   }
