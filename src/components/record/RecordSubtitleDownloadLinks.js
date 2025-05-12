@@ -115,7 +115,7 @@ const SubtitleItem = ({ subtitle, onChange, resetSubtitleDownloadLinks, disabled
         <li key={subtitle.id}>
             <div className="d-flex align-items-center">
                 {!archived && language && (
-                    <span className="card-tag badge bg-primary">{getLanguageNativeName(language)}</span>
+                    <span className="card-tag badge bg-success">{getLanguageNativeName(language)}</span>
                 )}
                 <DownloadLink
                     onChange={onChange}

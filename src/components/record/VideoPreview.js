@@ -35,15 +35,12 @@ const createVTTTracks = (vttFiles, getLanguageDisplay) => {
     const languageTracksMap = new Map();
 
     vttFiles?.forEach((vttFile) => {
-        console.log('VTT File:', vttFile); // Debug log
-
         if (vttFile.filename === 'empty.vtt') {
             return;
         }
 
         // Handle archived VTT file
         if (vttFile.tags === "archive") {
-            console.log('Archive file found'); // Debug log
             languageTracksMap.set('archived', {
                 ...vttFile,
                 language: 'en',
