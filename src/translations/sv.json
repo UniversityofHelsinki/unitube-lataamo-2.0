@@ -198,6 +198,7 @@
   "record_embed_code_copy_aria": "Kopiera inbäddningskod",
   "record_download_links_header": "Ladda ner inspelning",
   "record_subtitle_download_links_header": "Ladda ner undertexter",
+  "record_archived_subtitle_download_link_header": "Ladda ner arkiverad undertext",
   "record_subtitle_undo_button": "Ångra",
   "record_subtitle_delete_button": "Radera",
   "record_collection_move": "Gå till samlingen",
@@ -428,5 +429,9 @@
   "collection_validation_description_is_too_long": "Beskrivningen är för lång",
   "move_records_following_records": "Följande inspelningar kunde inte överföras: {{failures}}.",
   "delete_records_following_records": "Följande inspelningar kunde inte tas bort: {{failures}}.",
-  "update_records_deletion_dates_following_records": "De följande posterna kunde inte uppdateras: {{failures}}."
+  "update_records_deletion_dates_following_records": "De följande posterna kunde inte uppdateras: {{failures}}.",
+  "tag_failure": "Bearbetningen misslyckades",
+  "record_error_page_processing_failure_content": "record_error_page_processing_failure_content",
+  "record_error_page_processing_failure_help_label": "record_error_page_processing_failure_help_label",
+  "record_error_page_processing_failure_help_content": "record_error_page_processing_failure_help_content"
 }

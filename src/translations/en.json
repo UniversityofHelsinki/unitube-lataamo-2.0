@@ -210,6 +210,7 @@
   "record_embed_code_copy_aria": "Copy embed code",
   "record_subtitle_file_help_label": "Information about subtitle files",
   "record_subtitle_download_links_header": "Download or delete subtitle file",
+  "record_archived_subtitle_download_link_header": "Download archived subtitle file",
   "record_subtitle_undo_button": "Undo",
   "record_subtitle_delete_button": "Delete",
   "record_collection_move": "Go to collection",
@@ -428,5 +429,9 @@
   "collection_validation_description_is_too_long": "Description is too long",
   "move_records_following_records": "The following records couldn't be moved: {{failures}}.",
   "delete_records_following_records": "The following records couldn't be deleted: {{failures}}.",
-  "update_records_deletion_dates_following_records": "The following records couldn't be updated: {{failures}}."
+  "update_records_deletion_dates_following_records": "The following records couldn't be updated: {{failures}}.",
+  "tag_failure": "Processing failed",
+  "record_error_page_processing_failure_content": "record_error_page_processing_failure_content",
+  "record_error_page_processing_failure_help_label": "record_error_page_processing_failure_help_label",
+  "record_error_page_processing_failure_help_content": "record_error_page_processing_failure_help_content"
 }
