@@ -198,6 +198,7 @@
   "record_embed_code_copy_aria": "Kopiera inbäddningskod",
   "record_download_links_header": "Ladda ner inspelning",
   "record_subtitle_download_links_header": "Ladda ner undertexter",
+  "record_archived_subtitle_download_link_header": "Ladda ner arkiverad undertext",
   "record_subtitle_undo_button": "Ångra",
   "record_subtitle_delete_button": "Radera",
   "record_collection_move": "Gå till samlingen",

@@ -27,6 +27,7 @@
   "record_subtitle_file_delete_title": "Poista tallenne",
   "record_subtitle_file_delete_aria": "Poista",
   "record_subtitle_download_links_header": "Lataa tai poista tekstitystiedosto",
+  "record_archived_subtitle_download_link_header": "Lataa arkistoitu tekstitystiedosto",
   "record_subtitle_undo_button": "Kumoa",
   "record_subtitle_delete_button": "Poista",
   "record_download_links_help_label": "Minkä tiedoston valitsen?",

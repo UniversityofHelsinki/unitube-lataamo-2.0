@@ -149,9 +149,13 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloa
     };
 
     const flatSubtitles = subtitles
-            ?.filter(subtitle => subtitle && subtitle.filename !== 'empty.vtt')
-            ?.sort((a, b) => getSubtitlePriority(a) - getSubtitlePriority(b))
-        || [];
+        ?.filter(subtitle => subtitle && subtitle.filename !== 'empty.vtt') || [];
+
+    const archivedSubtitles = flatSubtitles.filter(subtitle => isArchivedOnly(subtitle.tags?.tag));
+    const nonArchivedSubtitles = flatSubtitles
+        .filter(subtitle => !isArchivedOnly(subtitle.tags?.tag))
+        .sort((a, b) => getSubtitlePriority(a) - getSubtitlePriority(b));
+
 
 
     if (flatSubtitles.length === 0) {
@@ -167,11 +171,11 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloa
                     </ElementHeader>
                 </Col>
             </Row>
-            <Row className="mb-3" />
+            <Row/>
             <Row>
                 <Col>
                     <ul className="blockquote record-subtitle-download-link-list">
-                        {flatSubtitles.map(subtitle => (
+                        {nonArchivedSubtitles.map(subtitle => (
                             <SubtitleItem
                                 key={subtitle.id}
                                 subtitle={subtitle}
@@ -183,15 +187,73 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloa
                     </ul>
                 </Col>
             </Row>
+            <Row>
+                <Col>
+                    <ElementHeader>
+                        {t('record_archived_subtitle_download_link_header')}
+                    </ElementHeader>
+                    <ul className="blockquote record-subtitle-download-link-list">
+                        {archivedSubtitles.map((subtitle) => (
+                            <SubtitleItem
+                                key={subtitle.id}
+                                subtitle={subtitle}
+                                onChange={onChange}
+                                resetSubtitleDownloadLinks={resetSubtitleDownloadLinks}
+                                disabled={disabled}
+                            />
+                        ))}
+                    </ul>
+                </Col>
+            </Row>
+
         </Container>
     );
 };
 
 RecordSubtitleDownloadLinks.propTypes = {
-    subtitles: PropTypes.array,
-    onChange: PropTypes.func,
-    resetSubtitleDownloadLinks: PropTypes.bool,
-    disabled: PropTypes.bool,
+    subtitles: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+            filename: PropTypes.string,
+            url: PropTypes.string,
+            tags: PropTypes.shape({
+                tag: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
+            })
+        })
+    ),
+    onChange: PropTypes.func.isRequired,
+    resetSubtitleDownloadLinks: PropTypes.bool.isRequired,
+    disabled: PropTypes.bool.isRequired,
+};
+
+SubtitleItem.propTypes = {
+    subtitle: PropTypes.shape({
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+        filename: PropTypes.string,
+        url: PropTypes.string,
+        tags: PropTypes.shape({
+            tag: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
+        })
+    }).isRequired,
+    onChange: PropTypes.func.isRequired,
+    resetSubtitleDownloadLinks: PropTypes.bool.isRequired,
+    disabled: PropTypes.bool.isRequired,
+};
+
+DownloadLink.propTypes = {
+    onChange: PropTypes.func.isRequired,
+    to: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    resetSubtitleDownloadLinks: PropTypes.bool.isRequired,
+    disabled: PropTypes.bool.isRequired,
+    isArchived: PropTypes.bool.isRequired,
+    language: PropTypes.string.isRequired,
+};
+
+RemoveSubtitleButton.propTypes = {
+    onClick: PropTypes.func.isRequired,
+    markedForDeletion: PropTypes.bool.isRequired,
+    disabled: PropTypes.bool.isRequired,
 };
 
 export default RecordSubtitleDownloadLinks;
