@@ -53,7 +53,15 @@ export const processing = () => (record) => {
   const processingSubtitles = record.jobs && record.jobs.type === JOB_TYPES_TRANSCRIPTION && record.jobs.status === JOB_STATUS_STARTED;
   const hasNoDownloadableMedia = !record.downloadableMedia || Object.values(record.downloadableMedia).length === 0;
 
-  if (processingRecord || processingSubtitles || hasNoDownloadableMedia) {
+  const isInFailure = record.processing_state === 'FAILED';
+
+  if (isInFailure) {
+    return {
+      label: 'tag_failure',
+      ariaLabel: 'tag_failure',
+      color: 'orange'
+    };
+  } else if (processingRecord || processingSubtitles || hasNoDownloadableMedia) {
     return {
       label: 'tag_processing',
       ariaLabel: 'tag_processing_aria',
@@ -62,7 +70,7 @@ export const processing = () => (record) => {
   }
 };
 
-const cc = (t) => record => {
+const cc = () => record => {
   if (record.subtitles) {
     return {
       label: 'tag_cc',
@@ -192,7 +200,7 @@ const useRecordTags = (records = []) => {
     expiring(), 
     missingDetails(isValids),
     cc(), 
-    status(),
+    status()
   ];
   
   const tags = records.map((record, i) => {
