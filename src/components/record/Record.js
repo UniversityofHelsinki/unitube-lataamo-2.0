@@ -18,10 +18,12 @@ import useCollections from '../../hooks/useCollections';
 import useCollection from '../../hooks/useCollection';
 import useTitle from '../../hooks/useTitle';
 import useRecordError from '../../hooks/useRecordError';
+import useVTTFiles from "../../hooks/useVTTFiles";
 
 const Record = () => {
     const [setTitle] = useTitle();
     const [originalRecord, loading, reload, httpError] = useRecord(true);
+    const [vttFiles, loadingVTTFiles, reloadVTTFiles, httpErrorVTT] = useVTTFiles(true);
     const errorPage = useRecordError(originalRecord, httpError, reload);
     const [progress, save, resetProgress] = useRecordSave();
     const [_collections, _loadingCollections, reloadCollections] = useCollections();
@@ -63,7 +65,8 @@ const Record = () => {
         subtitles:
           record.selectedSubtitles?.type === 'subtitleFile' ? { ...record.selectedSubtitles.allFiles, identifier: record.identifier } : undefined,
         orderSubtitles: record.selectedSubtitles?.type === 'automaticSubtitles' ? { ...record.selectedSubtitles, identifier: record.identifier } : undefined,
-        deleteSubtitle: (userDeletedSubtitles && !record.selectedSubtitles) ? { eventId: record.identifier, deleteSubtitle: true } : undefined
+        deleteSubtitle: (userDeletedSubtitles && !record.selectedSubtitles) ? { eventId: record.identifier, deleteSubtitle: true } : undefined,
+        updateSubtitles: record.selectedSubtitles?.type === 'translationSubtitles' ? { eventId: record.identifier, value: record.selectedSubtitles.value} : undefined
       });
 
       if (success) {
@@ -102,6 +105,7 @@ const Record = () => {
                     <Col xl className="ps-0">
                       <RecordForm
                         record={record}
+                        vttFiles={vttFiles}
                         onChange={onChange}
                         validationMessages={messages}
                         disabled={saveInProgress}

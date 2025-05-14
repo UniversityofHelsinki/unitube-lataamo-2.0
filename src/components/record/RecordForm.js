@@ -13,6 +13,7 @@ import RecordLicense from './RecordLicense';
 
 const RecordForm = ({
   record,
+  vttFiles,
   validationMessages,
   onChange,
   disabled
@@ -83,7 +84,8 @@ const RecordForm = ({
                 onChange={(value) => onChange('selectedSubtitles', value)}
                 message={validationMessages?.selectedSubtitles}
                 subtitles={record.selectedSubtitles}
-                disabled={disabled} 
+                vttFiles={vttFiles}
+                disabled={disabled}
               />
             </Col>
           </Row>
