@@ -115,7 +115,7 @@ const NewRecord = ({ selectedSeries = '', buttonDisabled = false }) => {
             <RecordCollections collection={record.selectedSeries} onChange={(collection) => onChange('selectedSeries', collection)} message={messages.selectedSeries} disabled={disabled} showLink={false} />
             <RecordSubtitle onChange={(subtitles) => onChange('subtitles', subtitles)}
                             subtitles={record.subtitles} disabled={disabled}
-                            message={messages.subtitles} />
+                            message={messages.subtitles} newRecord={true} />
         </Modal.Body>
         <Modal.Footer>
           <NewRecordFooter onCancel={hide} progress={progress} isValid={isValid} onClick={onProgressButtonClick} />

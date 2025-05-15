@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import {DEFAULT_LANGUAGE_MODELS, DEFAULT_LANGUAGES} from '../../Constants.js';
 import HelpDialog from "../dialog/HelpDialog";
 import CheckBox from "./CheckBox";
+import Message from "./Message";
 
 const RecordTranslationSubtitles = ({ vttFiles, onChange, message, disabled = false, value = {} }) => {
     const { t } = useTranslation();
@@ -27,6 +28,7 @@ const RecordTranslationSubtitles = ({ vttFiles, onChange, message, disabled = fa
 
     useEffect(() => {
         setOptions(options.map(option => ({ ...option, isChecked: false })));
+        onChange(selectedLanguage, options);
     }, [selectedLanguage]);
 
     const handleChange = (what, fieldValue) => {
@@ -93,8 +95,8 @@ const RecordTranslationSubtitles = ({ vttFiles, onChange, message, disabled = fa
                     <DropDown aria-labelledby={languageHeaderId} aria-required value={selectedLanguage}
                               onChange={(e) => handleChange('translationLanguage', e.target.value)}
                               options={vttLanguages.map(asLanguageOption)}
-                              message={validationMessages('translationLanguage')} disabled={disabled}/>
-                    <p className="mt-0">Valittu tiedosto: {findUrlByLang(selectedLanguage)}</p>
+                              disabled={disabled}/>
+                    <p className="mt-0">{t('record_translation_for_subtitle_file')}: {findUrlByLang(selectedLanguage)}</p>
                 </Col>
             </Row>
             <Row>
@@ -116,6 +118,9 @@ const RecordTranslationSubtitles = ({ vttFiles, onChange, message, disabled = fa
                             />
                         </Col>
                     ))}
+                    <Message type={"warning"}>
+                        {message?.content['translationLanguage']}
+                    </Message>
                 </Row>
         </Container>
     );
