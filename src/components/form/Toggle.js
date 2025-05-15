@@ -13,6 +13,7 @@ const Toggle = ({ children, labels, onSelect, selected, disabled }) => {
     return (
         <ul className="toggle form-check">
             {children.map((item, index) => {
+                if (item === null) return null;
                 const checked = index === selected;
                  return (<li key={`${id}-${index}`} className="mb-1">
                     <input 
