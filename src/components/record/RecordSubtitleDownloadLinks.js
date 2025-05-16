@@ -131,6 +131,7 @@ const SubtitleItem = ({ subtitle, onChange, resetSubtitleDownloadLinks, disabled
     );
 };
 
+
 const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloadLinks, disabled }) => {
     const { t } = useTranslation();
 
@@ -156,6 +157,8 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloa
         .filter(subtitle => !isArchivedOnly(subtitle.tags?.tag))
         .sort((a, b) => getSubtitlePriority(a) - getSubtitlePriority(b));
 
+    const showArchivedSubtitles = archivedSubtitles.length > 0;
+    const showNonArchivedSubtitles = nonArchivedSubtitles.length > 0;
 
 
     if (flatSubtitles.length === 0) {
@@ -164,30 +167,34 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloa
 
     return (
         <Container>
-            <Row>
-                <Col>
-                    <ElementHeader>
-                        {t('record_subtitle_download_links_header')}
-                    </ElementHeader>
-                </Col>
-            </Row>
-            <Row/>
-            <Row>
-                <Col>
-                    <ul className="blockquote record-subtitle-download-link-list">
-                        {nonArchivedSubtitles.map(subtitle => (
-                            <SubtitleItem
-                                key={subtitle.id}
-                                subtitle={subtitle}
-                                onChange={onChange}
-                                resetSubtitleDownloadLinks={resetSubtitleDownloadLinks}
-                                disabled={disabled}
-                            />
-                        ))}
-                    </ul>
-                </Col>
-            </Row>
-            <Row>
+
+            {showNonArchivedSubtitles && 
+            <>
+              <Row>
+                  <Col>
+                      <ElementHeader>
+                          {t('record_subtitle_download_links_header')}
+                      </ElementHeader>
+                  </Col>
+              </Row>
+              <Row>
+                  <Col>
+                      <ul className="blockquote record-subtitle-download-link-list">
+                          {nonArchivedSubtitles.map(subtitle => (
+                              <SubtitleItem
+                                  key={subtitle.id}
+                                  subtitle={subtitle}
+                                  onChange={onChange}
+                                  resetSubtitleDownloadLinks={resetSubtitleDownloadLinks}
+                                  disabled={disabled}
+                              />
+                          ))}
+                      </ul>
+                  </Col>
+              </Row>
+            </>
+            }
+            {showArchivedSubtitles && <Row>
                 <Col>
                     <ElementHeader>
                         {t('record_archived_subtitle_download_link_header')}
@@ -204,7 +211,7 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloa
                         ))}
                     </ul>
                 </Col>
-            </Row>
+            </Row>}
 
         </Container>
     );
