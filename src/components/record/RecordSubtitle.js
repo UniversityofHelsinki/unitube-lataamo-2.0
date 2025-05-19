@@ -13,7 +13,11 @@ const RecordSubtitle = ({ onChange, message, subtitles, disabled }) => {
     const { t } = useTranslation();
     const options = ['subtitleFile', 'automaticSubtitles'];
     const selected = options.indexOf(subtitles?.type);
-
+    let replacements = {
+        'fi-FI': 'fin',
+        'sv-SE': 'swe',
+        'en-US': 'eng'
+    };
     const onSelect = (index) => {
       if (selected === index) {
         onChange(undefined);
@@ -51,6 +55,15 @@ const RecordSubtitle = ({ onChange, message, subtitles, disabled }) => {
        }
     }
 
+    const handleAutomaticSubtitles = (newValue, value)  => {
+        let toLanguages = value.map(item => replacements[item] || item);
+        const resultObject = {
+            ...newValue,
+            targetLanguages: toLanguages
+        };
+        onChange({ type: 'automaticSubtitles' , ...resultObject });
+    }
+
     return (
         <Container>
             <Form.Group>
@@ -84,7 +97,8 @@ const RecordSubtitle = ({ onChange, message, subtitles, disabled }) => {
                               disabled={disabled} 
                               message={message}
                             />
-                            <RecordAutomaticSubtitleFile 
+                            <RecordAutomaticSubtitleFile
+                              onChangeToLanguages={handleAutomaticSubtitles}
                               onChange={(value) => onChange({ type: 'automaticSubtitles', ...value })} 
                               value={getValue('automaticSubtitles')} 
                               disabled={disabled} 

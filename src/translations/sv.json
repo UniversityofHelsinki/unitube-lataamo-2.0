@@ -76,6 +76,7 @@
   "record_automatic_subtitle_help_label_content": "Välj om du vill använda Microsofts egen eller OpenAI:s Whisper-språkmodell. Microsofts fördel är lite bättre igenkänning av skiftande språk, medan OpenAI skapar mer lättlästa textremsor!",
   "record_automatic_subtitle_language_model_header": "Språkmodell",
   "record_automatic_subtitle_language_header": "Välj det språk som talas i videon",
+  "record_automatic_subtitle_language_checkboxes": "Översättning till sråk:",
   "record_automatic_subtitle_default_language_model": "Välj språkmodell",
   "record_automatic_subtitle_default_language": "Välj språk",
   "record_bottom_bar_progress_saving_subtitles": "Bearbetar undertexter",
