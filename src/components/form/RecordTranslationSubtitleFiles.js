@@ -2,24 +2,19 @@ import React, {useEffect, useId, useState} from 'react';
 import PropTypes from 'prop-types';
 import './RecordAutomaticSubtitleFile.css';
 import FormElementHeader from '../form/FormElementHeader';
-import { Col, Container, Form, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import DropDown from '../form/DropDown';
 import { useTranslation } from 'react-i18next';
-import {DEFAULT_LANGUAGE_MODELS, DEFAULT_LANGUAGES} from '../../Constants.js';
-import HelpDialog from "../dialog/HelpDialog";
 import CheckBox from "./CheckBox";
 import Message from "./Message";
 
-const RecordTranslationSubtitles = ({ vttFiles, onChange, message, disabled = false, value = {} }) => {
+const RecordTranslationSubtitles = ({ vttFiles, onChange, message, disabled = false }) => {
     const { t } = useTranslation();
-    const languageModelHeaderId = useId();
     const languageHeaderId = useId();
-    const empty = '';
     const allPossibleLanguages = ['fin', 'swe', 'eng'];
     let vttLanguages = Object.values(vttFiles).map(item => item.lang);
     const [selectedLanguage, setSelectedLanguage] = useState(vttLanguages[0]);
     let [checkBoxes, setCheckBoxes] = useState(allPossibleLanguages.filter(lang => lang !== selectedLanguage));
-    const [selectedOption, setSelectedOption] = useState(vttLanguages[0] || '');
     const [options, setOptions] = useState([
         {lang: 'fin', isChecked: false},
         {lang: 'swe', isChecked: false},
@@ -32,9 +27,8 @@ const RecordTranslationSubtitles = ({ vttFiles, onChange, message, disabled = fa
     }, [selectedLanguage]);
 
     const handleChange = (what, fieldValue) => {
-        const newValue = { ...value, [what]: fieldValue };
         setSelectedLanguage(fieldValue);
-        let toLanguages = vttLanguages.filter(lang => lang !== fieldValue)
+        let toLanguages = allPossibleLanguages.filter(lang => lang !== fieldValue)
         setCheckBoxes(toLanguages);
     };
 
@@ -43,15 +37,6 @@ const RecordTranslationSubtitles = ({ vttFiles, onChange, message, disabled = fa
             return { value: language, label: t(language) };
         }
         return { value: '', label: t('record_automatic_subtitle_default_language') };
-    };
-
-    const validationMessages = (type) => {
-        if (message?.content) {
-            return {
-                content: message.content[type],
-                type: 'warning'
-            };
-        }
     };
 
     const selectItem = (lang) => {
@@ -107,10 +92,9 @@ const RecordTranslationSubtitles = ({ vttFiles, onChange, message, disabled = fa
                 </Col>
             </Row>
                 <Row>
-                    {checkBoxes.slice(0, 2).map((lang, index) => (
-                        <Col className="record-translation-subtitle-file-col">
+                    {checkBoxes.slice(0, 2).map((lang) => (
+                        <Col key={lang} className="record-translation-subtitle-file-col">
                             <CheckBox
-                                key={index}
                                 onChange={() => selectItem(lang)}
                                 checked={markChecked(lang)}
                                 disabled={disabled}
@@ -127,14 +111,18 @@ const RecordTranslationSubtitles = ({ vttFiles, onChange, message, disabled = fa
 };
 
 RecordTranslationSubtitles.propTypes = {
-    vttFiles: PropTypes.object,
-    value: PropTypes.string,
+    vttFiles: PropTypes.objectOf(PropTypes.shape({
+        lang: PropTypes.string.isRequired,
+        url: PropTypes.string.isRequired
+    })).isRequired,
     message: PropTypes.shape({
-        content: PropTypes.object,
+        content: PropTypes.shape({
+            translationLanguage: PropTypes.string
+        }),
         type: PropTypes.oneOf(['light', 'neutral', 'warning'])
     }),
     onChange: PropTypes.func.isRequired,
-    disabled: PropTypes.bool,
+    disabled: PropTypes.bool
 };
 
 export default RecordTranslationSubtitles;
