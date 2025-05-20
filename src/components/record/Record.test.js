@@ -12,7 +12,22 @@ const reducers = {
   },
   collections: {
     collections: [{ identifier: 'asdf-asdf', title: 'asdfasdf' }]
-  }
+  },
+  vttfiles: {
+    vttfilesdata: [
+      {
+        lang: "swe",
+        url: "ruotsi.vtt"
+      },
+      {
+        lang: "eng",
+        url: "englanti.vtt"
+      },
+      {
+        lang: "fin",
+        url: "suomi_teksti.vtt"
+      }
+  ]},
 };
 
 it('renders', () => {
