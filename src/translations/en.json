@@ -84,6 +84,7 @@
   "record_automatic_subtitle_help_label_content": "Select whether you want to use Microsoft´s own or the OpenAI Whisper language model. The advantage of the Microsoft model is e.g. the ability to perceive a changing language on the fly, while Whisper creates text blocks that are easier to read",
   "record_automatic_subtitle_language_model_header": "Language model",
   "record_automatic_subtitle_language_header": "Select the language spoken in the video",
+  "record_automatic_subtitle_language_checkboxes": "Translation to languages:",
   "record_automatic_subtitle_default_language_model": "Select language model",
   "record_automatic_subtitle_default_language": "Select language",
   "record_bottom_bar_progress_saving_subtitles": "Processing subtitles",

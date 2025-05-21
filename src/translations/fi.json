@@ -104,6 +104,7 @@
   "record_automatic_subtitle_help_label_content": "Valitse haluatko käyttää Microsoftin omaa vai OpenAI:n Whisper-kielimallia. Microsoftin etu on vaihtuvan kielen hieman parempi hahmottaminen, kun taas OpenAI tekee helpommin luettavia tekstipalkkeja!",
   "record_automatic_subtitle_language_model_header": "Kielimalli",
   "record_automatic_subtitle_language_header": "Valitse videolla puhuttu kieli",
+  "record_automatic_subtitle_language_checkboxes": "Käännös kielille:",
   "record_automatic_subtitle_default_language_model": "Valitse kielimalli",
   "record_automatic_subtitle_default_language": "Valitse kieli",
   "record_bottom_bar_progress_saving_subtitles": "Käsitellään tekstityksiä",

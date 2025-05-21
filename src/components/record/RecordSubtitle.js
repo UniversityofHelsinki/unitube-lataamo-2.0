@@ -15,7 +15,11 @@ const RecordSubtitle = ({ onChange, message, subtitles, vttFiles, disabled, newR
     const options = newRecord ?
         ['subtitleFile', 'automaticSubtitles'] : ['subtitleFile', 'automaticSubtitles', 'translationSubtitles'];
     const selected = options.indexOf(subtitles?.type);
-
+    let replacements = {
+        'fi-FI': 'fin',
+        'sv-SE': 'swe',
+        'en-US': 'eng'
+    };
     const onSelect = (index) => {
       if (selected === index) {
         onChange(undefined);
@@ -52,6 +56,15 @@ const RecordSubtitle = ({ onChange, message, subtitles, vttFiles, disabled, newR
            onChange({ type: 'subtitleFile', allFiles });
        }
     }
+
+    const handleAutomaticSubtitles = (newValue, value)  => {
+        let toLanguages = value.map(item => replacements[item] || item);
+        const resultObject = {
+            ...newValue,
+            targetLanguages: toLanguages
+        };
+        onChange({ type: 'automaticSubtitles' , ...resultObject });
+      };
 
     const handleTranslationSubtitles = (from, ...value)  => {
         value.unshift({from: from});
@@ -96,7 +109,8 @@ const RecordSubtitle = ({ onChange, message, subtitles, vttFiles, disabled, newR
                               disabled={disabled} 
                               message={message}
                             />
-                            <RecordAutomaticSubtitleFile 
+                            <RecordAutomaticSubtitleFile
+                              onChangeToLanguages={handleAutomaticSubtitles}
                               onChange={(value) => onChange({ type: 'automaticSubtitles', ...value })} 
                               value={getValue('automaticSubtitles')} 
                               disabled={disabled} 
