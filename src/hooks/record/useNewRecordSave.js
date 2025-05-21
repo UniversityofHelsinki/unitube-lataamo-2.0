@@ -27,7 +27,8 @@ const useNewRecordSave = () => {
         const eventId = await sendRecord({
           ...record,
           translationModel: subtitles.translationModel,
-          translationLanguage: subtitles.translationLanguage
+          translationLanguage: subtitles.translationLanguage,
+          targetLanguages: subtitles.targetLanguages
         });
         setProgress({
           status: ProgressStatus.NEW_RECORD.SENDING_SUBTITLE_ORDER,
