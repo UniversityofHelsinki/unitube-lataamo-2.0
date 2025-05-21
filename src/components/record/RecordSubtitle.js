@@ -8,10 +8,12 @@ import RecordAutomaticSubtitleFile from "../form/RecordAutomaticSubtitleFile";
 import ElementHeader from "../form/ElementHeader";
 import HelpDialog from '../dialog/HelpDialog';
 import RecordSubtitleFiles from "./RecordSubtitleFiles";
+import RecordTranslationSubtitleFiles from "../form/RecordTranslationSubtitleFiles";
 
-const RecordSubtitle = ({ onChange, message, subtitles, disabled }) => {
+const RecordSubtitle = ({ onChange, message, subtitles, vttFiles, disabled, newRecord= false }) => {
     const { t } = useTranslation();
-    const options = ['subtitleFile', 'automaticSubtitles'];
+    const options = newRecord ?
+        ['subtitleFile', 'automaticSubtitles'] : ['subtitleFile', 'automaticSubtitles', 'translationSubtitles'];
     const selected = options.indexOf(subtitles?.type);
     let replacements = {
         'fi-FI': 'fin',
@@ -62,6 +64,19 @@ const RecordSubtitle = ({ onChange, message, subtitles, disabled }) => {
             targetLanguages: toLanguages
         };
         onChange({ type: 'automaticSubtitles' , ...resultObject });
+      };
+
+    const handleTranslationSubtitles = (from, ...value)  => {
+        value.unshift({from: from});
+        onChange({ type: 'translationSubtitles' , value });
+    }
+
+    let labels = [
+        t('record_subtitle_file_header'),
+        t('record_automatic_subtitle_header')
+    ];
+    if (!newRecord) {
+        labels.push(t('record_translation_subtitle_header'));
     }
 
     return (
@@ -84,10 +99,7 @@ const RecordSubtitle = ({ onChange, message, subtitles, disabled }) => {
                 <Row>
                     <Col>
                         <Toggle 
-                          labels={[
-                            t('record_subtitle_file_header'), 
-                            t('record_automatic_subtitle_header')
-                          ]}
+                          labels={labels}
                           onSelect={onSelect}
                           selected={selected}
                           disabled={disabled}>
@@ -104,6 +116,13 @@ const RecordSubtitle = ({ onChange, message, subtitles, disabled }) => {
                               disabled={disabled} 
                               message={automaticFileMessages} 
                             />
+                            {!newRecord ? <RecordTranslationSubtitleFiles
+                                vttFiles={vttFiles}
+                                onChange={handleTranslationSubtitles}
+                                value={getValue('translationSubtitles')}
+                                disabled={disabled}
+                                message={message}
+                            /> : null}
                         </Toggle>
                     </Col>
                 </Row>

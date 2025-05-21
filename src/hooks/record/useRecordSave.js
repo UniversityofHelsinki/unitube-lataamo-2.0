@@ -6,6 +6,7 @@ import useSubtitleOrder from "./useSubtitleOrder";
 import useSubtitleUpload from "./useSubtitleUpload";
 import useDeleteSubtitle from "./useDeleteSubtitle";
 import useAllRecords from "../useAllRecords";
+import useSubtitlesUpdate from "./useSubtitlesUpdate";
 
 const statuses = {
   'done': ProgressStatus.RECORD_SAVE.DONE
@@ -16,6 +17,7 @@ const progressPercentage = {
   [ProgressStatus.RECORD_SAVE.IN_PROGRESS_ORDERSUBTITLES]: () => 100,
   [ProgressStatus.RECORD_SAVE.IN_PROGRESS_SUBTITLES]: () => 100,
   [ProgressStatus.RECORD_SAVE.IN_PROGRESS_DELETESUBTITLE]: () => 100,
+  [ProgressStatus.RECORD_SAVE.IN_PROGRESS_UPDATESUBTITLES]: () => 100,
   [ProgressStatus.RECORD_SAVE.DONE]: () => 100,
 };
 
@@ -24,6 +26,7 @@ const useRecordSave = () => {
   const [uploadSubtitles] = useSubtitleUpload();
   const [orderSubtitles] = useSubtitleOrder();
   const [deleteSubtitle] = useDeleteSubtitle();
+  const [updateSubtitles] = useSubtitlesUpdate();
   const [_records, _loadingRecords, reloadRecords] = useRecords();
   const [_allRecords, _loadingAllRecords, reloadAllRecords] = useAllRecords();
   const [progress, setProgress] = useState({
@@ -44,6 +47,7 @@ const useRecordSave = () => {
   saveFunctions.set('deleteSubtitle', deleteSubtitle);
   saveFunctions.set('subtitles', uploadSubtitles);
   saveFunctions.set('orderSubtitles', orderSubtitles);
+  saveFunctions.set('updateSubtitles', updateSubtitles);
   saveFunctions.set('done', done);
 
   const save = async (inputs) => {
