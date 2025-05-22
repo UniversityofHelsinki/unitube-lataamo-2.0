@@ -16,6 +16,7 @@ export const DELETION_DATE_MAX_YEARS = 3;
 
 export const DEFAULT_LANGUAGE = 'fi';
 export const LANGUAGES = ['fi', 'sv', 'en'];
+export const TRANSLATION_SUBTITLES_SUPPORTED_LANGUAGES = ['fin', 'swe', 'eng'];
 
 export const ProgressStatus = {
   NEW_RECORD: {
