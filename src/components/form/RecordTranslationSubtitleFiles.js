@@ -7,12 +7,19 @@ import DropDown from '../form/DropDown';
 import { useTranslation } from 'react-i18next';
 import CheckBox from "./CheckBox";
 import Message from "./Message";
+import {TRANSLATION_SUBTITLES_SUPPORTED_LANGUAGES} from "../../Constants";
 
 const RecordTranslationSubtitles = ({ vttFiles, onChange, message, disabled = false }) => {
     const { t } = useTranslation();
     const languageHeaderId = useId();
-    const allPossibleLanguages = ['fin', 'swe', 'eng'];
-    let vttLanguages = Object.values(vttFiles).map(item => item.lang);
+    const allPossibleLanguages = TRANSLATION_SUBTITLES_SUPPORTED_LANGUAGES;
+
+    let vttLanguages = allPossibleLanguages.filter(lang =>
+        Object.values(vttFiles).some(file =>
+            file.lang === lang && !file.url.endsWith(['empty.vtt'])
+        )
+    );
+
     const [selectedLanguage, setSelectedLanguage] = useState(vttLanguages[0]);
     let [checkBoxes, setCheckBoxes] = useState(allPossibleLanguages.filter(lang => lang !== selectedLanguage));
     const [options, setOptions] = useState([
@@ -81,14 +88,14 @@ const RecordTranslationSubtitles = ({ vttFiles, onChange, message, disabled = fa
                               onChange={(e) => handleChange('translationLanguage', e.target.value)}
                               options={vttLanguages.map(asLanguageOption)}
                               disabled={disabled}/>
-                    <p className="mt-0">{t('record_translation_for_subtitle_file')}: {findUrlByLang(selectedLanguage)}</p>
+                    <p className="mt-0" aria-live="polite">{t('record_translation_for_subtitle_file')}: {findUrlByLang(selectedLanguage)}</p>
                 </Col>
             </Row>
             <Row>
             </Row>
             <Row>
                 <Col>
-                    <FormElementHeader id={languageHeaderId}>{t('record_translation_for_subtitle_languages')}</FormElementHeader>
+                    <FormElementHeader>{t('record_translation_for_subtitle_languages')}</FormElementHeader>
                 </Col>
             </Row>
                 <Row>
@@ -99,6 +106,7 @@ const RecordTranslationSubtitles = ({ vttFiles, onChange, message, disabled = fa
                                 checked={markChecked(lang)}
                                 disabled={disabled}
                                 label={t(lang)}
+                                id={`translation-checkbox-${lang}`}
                             />
                         </Col>
                     ))}
