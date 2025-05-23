@@ -448,5 +448,6 @@
   "tag_failure": "Käsittely epäonnistui",
   "record_error_page_processing_failure_content": "record_error_page_processing_failure_content",
   "record_error_page_processing_failure_help_label": "record_error_page_processing_failure_help_label",
-  "record_error_page_processing_failure_help_content": "record_error_page_processing_failure_help_content"
+  "record_error_page_processing_failure_help_content": "record_error_page_processing_failure_help_content",
+  "date_format_aria": "Ilmoita päivämäärä muodossa pp.kk.vvvv"
 }
