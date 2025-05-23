@@ -1,4 +1,4 @@
-import React, {useId, useState} from 'react';
+import React, {useId} from 'react';
 import PropTypes from 'prop-types';
 import './RecordCard.css';
 import RecordCardDetails from './RecordCardDetails';
@@ -17,7 +17,7 @@ const RecordCard = ({ record, onClick, selected = false, containerRef, highlight
   const selectedClass = selected ? 'record-card-selected' : '';
   const [user] = useUser();
   const labelId = useId();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const [tags] = useRecordTags([record]);
   const isDeleted = DELETED_SERIES_REG_EXP(user.eppn).test(record.series);
@@ -66,14 +66,20 @@ const RecordCard = ({ record, onClick, selected = false, containerRef, highlight
           </div>
           <div className="record-card-content-details-bottom">
             {!isDeleted
-              ? <CardHighlight
-                  input={t('record_card_valid_until', { deletionDate: date })}
-                  what={highlight}
-                />
-              : <CardHighlight
-                  input={t('record_card_restorable_until', { realDeletionDate })}
-                  what={highlight}
-                />}
+              ? <p title={t('record_card_content_details_bottom_valid_until')}>
+                  <CardHighlight
+                    input={t('record_card_valid_until', { deletionDate: date })}
+                    what={highlight}
+                  />
+                </p>
+              : <p title={t('record_card_content_details_bottom_restorable_until')}>
+                  <CardHighlight
+                    input={t('record_card_restorable_until', { realDeletionDate })}
+                    what={highlight}
+                  />
+                </p>
+
+            }
           </div>
         </a>
       </div>
@@ -81,11 +87,15 @@ const RecordCard = ({ record, onClick, selected = false, containerRef, highlight
         <div className="record-card-left-side">
           {series}
           <div className="record-card-duration">
-            <span title={record.duration}>
-              <CardHighlight input={record.duration} what={highlight} />
+            <span title={t('record_card_duration_title')}>
+              <span className="screenreader-only">{t('record_card_duration_title')}: {record.duration}</span>
+              <span aria-hidden>
+                <CardHighlight input={record.duration} what={highlight} />
+              </span>
             </span>
           </div>
-            <a
+
+          <a
               aria-hidden
               href={`?record=${record.identifier}`}
               onClick={handleClick}
