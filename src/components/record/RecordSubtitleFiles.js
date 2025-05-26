@@ -32,6 +32,13 @@ const RecordSubtitleFiles = ({ onChange, allFiles, message, disabled = false }) 
         } : ''
     };
 
+    const messageMarginBlock = (show) => {
+      if (show) {
+        return <div className="record-subtitle-files-margin-block"></div>
+      }
+      return <></>;
+    };
+
     return (
         <>
             <div className="record-subtitle-file-help">
@@ -47,6 +54,7 @@ const RecordSubtitleFiles = ({ onChange, allFiles, message, disabled = false }) 
                 disabled={disabled}
                 message={messages.finnish}
             />
+            {messageMarginBlock(!messages.finnish)}
             <RecordSubtitleFile
                 videoFile={allFiles?.video_text_track_file_swedish}
                 onDeleteSubtitleFile={(file) => onChangeAllFiles('video_text_track_file_swedish', undefined)}
@@ -55,6 +63,7 @@ const RecordSubtitleFiles = ({ onChange, allFiles, message, disabled = false }) 
                 disabled={disabled}
                 message={messages.swedish}
             />
+            {messageMarginBlock(!messages.swedish)}
             <RecordSubtitleFile
                 videoFile={allFiles?.video_text_track_file_english}
                 onDeleteSubtitleFile={(file) => onChangeAllFiles('video_text_track_file_english', undefined)}
@@ -63,6 +72,7 @@ const RecordSubtitleFiles = ({ onChange, allFiles, message, disabled = false }) 
                 disabled={disabled}
                 message={messages.english}
             />
+            {messageMarginBlock(!messages.english)}
         </>
     );
 };
