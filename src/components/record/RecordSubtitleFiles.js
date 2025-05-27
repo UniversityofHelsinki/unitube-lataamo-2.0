@@ -1,4 +1,3 @@
-import React, {useId, useState} from 'react';
 import PropTypes from 'prop-types';
 import './RecordSubtitleFiles.css';
 import { useTranslation } from 'react-i18next';
@@ -7,7 +6,6 @@ import HelpDialog from "../dialog/HelpDialog";
 
 const RecordSubtitleFiles = ({ onChange, allFiles, message, disabled = false }) => {
     const { t } = useTranslation();
-    const id = useId();
 
     const onChangeAllFiles =  (language, file) => {
         const current = {

@@ -28,7 +28,7 @@ const RecordAutomaticSubtitle = ({ onChangeToLanguages, onChange, message, disab
     useEffect(() => {
         setOptions(options.map(option => ({ ...option, isChecked: false })));
     }, [selectedLanguage]);
-    
+
     const handleChangeModel = (what, fieldValue) => {
       const newValue = { ...value, [what]: fieldValue };
       onChange(newValue);
@@ -64,7 +64,7 @@ const RecordAutomaticSubtitle = ({ onChangeToLanguages, onChange, message, disab
         }
         return { value: '', label: t('record_automatic_subtitle_default_language') };
     };
-  
+
 
     const validationMessages = (type) => {
       if (message?.content) {
@@ -103,7 +103,7 @@ const RecordAutomaticSubtitle = ({ onChangeToLanguages, onChange, message, disab
             </Row>
             <Row>
                 <Col>
-                    <FormElementHeader 
+                    <FormElementHeader
                       id={languageModelHeaderId}
                       helpDialog={(
                         <HelpDialog label={t('record_automatic_subtitle_help_label')} >
@@ -136,10 +136,12 @@ const RecordAutomaticSubtitle = ({ onChangeToLanguages, onChange, message, disab
                 </Col>
             </Row>
             <Row>
-                {checkBoxes.slice(0, 2).map((lang, index) => (
-                    <Col className="record-translation-subtitle-file-col">
+                {checkBoxes.slice(0, 2).map((lang) => (
+                    <Col
+                        key={lang}
+                        className="record-translation-subtitle-file-col"
+                    >
                         <CheckBox
-                            key={index}
                             onChange={() => selectItem(lang)}
                             checked={markChecked(lang)}
                             disabled={disabled}
@@ -151,6 +153,7 @@ const RecordAutomaticSubtitle = ({ onChangeToLanguages, onChange, message, disab
                     {message?.content['translationLanguageSelected']}
                 </Message>
             </Row>
+
         </Container>
     );
 };

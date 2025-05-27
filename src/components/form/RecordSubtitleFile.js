@@ -27,7 +27,7 @@ const RecordSubtitleFile = ({ videoFile, onDeleteSubtitleFile, recordSubtitleFil
 
     return (
       <div className="record-subtitle-file">
-              <label for={id} className="record-subtitle-file-language">{t('record_subtitle_' + recordSubtitleFileLanguage)} </label>
+              <label htmlFor={id} className="record-subtitle-file-language">{t('record_subtitle_' + recordSubtitleFileLanguage)} </label>
               <div className="record-subtitle-file-margin-block"></div>
               <div className="record-subtitle-file-input">
               <InputField
