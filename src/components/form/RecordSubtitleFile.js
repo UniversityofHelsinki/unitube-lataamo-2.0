@@ -12,14 +12,12 @@ const RecordSubtitleFile = ({ videoFile, onDeleteSubtitleFile, recordSubtitleFil
     const id = useId();
 
     const onAddRecordsubtitleFile = (file) => {
-        //onShowLabelSet(recordSubtitleFileLanguage, true);
         onChange(file);
     }
 
     const fileInputRef = useRef();
     const onRemoveSubtitleFile = (event) => {
         event.preventDefault();
-        //onClick(event);
         if (fileInputRef.current) {
             fileInputRef.current.setAttribute('type', '');
             fileInputRef.current.setAttribute('type', 'file');
@@ -29,11 +27,11 @@ const RecordSubtitleFile = ({ videoFile, onDeleteSubtitleFile, recordSubtitleFil
 
     return (
       <div className="record-subtitle-file">
-        <div>
-          <div className="record-subtitle-file-language">{t('record_subtitle_' + recordSubtitleFileLanguage)} </div>
-          <div>
+              <label htmlFor={id} className="record-subtitle-file-language">{t('record_subtitle_' + recordSubtitleFileLanguage)} </label>
+              <div className="record-subtitle-file-margin-block"></div>
+              <div className="record-subtitle-file-input">
               <InputField
-                className= {videoFile === null ? "record-subtitle-file-input-strike-through" : "record-subtitle-file-input"}
+                className= {videoFile === null ? "record-subtitle-file-input-strike-through" : ""}
                 aria-label={t('choose_file')}
                 id={id}
                 ref={fileInputRef}
@@ -44,8 +42,8 @@ const RecordSubtitleFile = ({ videoFile, onDeleteSubtitleFile, recordSubtitleFil
                 disabled={disabled}
                 aria-required
               />
-          </div>
-          <div>
+              </div>
+              <div className="record-subtitle-file-margin-block"></div>
               <HyButton
                   variant='danger'
                   onClick={(e) => onRemoveSubtitleFile(e)}
@@ -54,8 +52,6 @@ const RecordSubtitleFile = ({ videoFile, onDeleteSubtitleFile, recordSubtitleFil
                   title={(videoFile == null) ? null : t('record_subtitle_file_delete_title')}>
                   <span>{t('record_subtitle_file_delete_aria')}</span>
               </HyButton>
-          </div>
-        </div>
       </div>
     );
 };
