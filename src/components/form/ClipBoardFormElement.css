@@ -4,9 +4,18 @@
 }
 
 .clipboard-form-element-header button {
-  padding: 0px;
+  padding: 0;
 }
 
 .clipboard-form-element-header button svg {
   margin-right: 4px;
+}
+
+@media (max-width: 480px) {
+  .clipboard-form-element-content > pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    overflow: hidden;
+  }
 }

@@ -19,9 +19,19 @@
 }
 
 .top-row-container {
-  position: sticky;
-  top: 0px;
+  top: 0;
   background-color: var(--hy-white);
   z-index: 1;
 }
 
+@media (min-height: 480px) {
+  .top-row-container {
+    position: sticky;
+  }
+}
+
+@media (max-height: 480px) {
+  .record {
+    height: auto;
+  }
+}

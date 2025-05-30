@@ -31,3 +31,14 @@
 .record-subtitle-download-link-remove-button {
     min-width: max-content;
 }
+
+@media (max-width: 480px) {
+    .record-subtitle-download-link-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .record-subtitle-download-link-item-link {
+        max-width: 80%;
+        width: 80%;
+    }
+}

@@ -42,3 +42,12 @@
     left: 0;
   }
 }
+
+@media (max-width: 480px) {
+  .header {
+    flex-flow: row wrap;
+    word-break: break-all;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+}
