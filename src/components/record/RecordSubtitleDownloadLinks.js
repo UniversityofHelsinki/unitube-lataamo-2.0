@@ -7,6 +7,7 @@ import './RecordSubtitleDownloadLinks.css';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import ElementHeader from "../form/ElementHeader";
+import HelpDialog from "../dialog/HelpDialog";
 
 const SUBTITLE_PRIORITIES = {
     FINNISH: 0,
@@ -196,9 +197,16 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloa
             }
             {showArchivedSubtitles && <Row>
                 <Col>
-                    <ElementHeader>
-                        {t('record_archived_subtitle_download_link_header')}
-                    </ElementHeader>
+                    <div className="record-archived-subtitle-download-links-help-label">
+                        <ElementHeader
+                            helpDialog={(
+                                <HelpDialog label={t('record_archived_subtitle_download_links_help_label')}>
+                                    {t('record_archived_subtitle_download_links_help_content')}
+                                </HelpDialog>
+                            )}>
+                            {t('record_archived_subtitle_download_link_header')}
+                        </ElementHeader>
+                    </div>
                     <ul className="blockquote record-subtitle-download-link-list">
                         {archivedSubtitles.map((subtitle) => (
                             <SubtitleItem
