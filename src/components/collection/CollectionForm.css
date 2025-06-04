@@ -7,3 +7,9 @@
   height: calc(100% - var(--right-bottom-bar-height));
   overflow: auto;
 }
+
+@media (max-width: 480px) {
+  .collection-container {
+    height: auto;
+  }
+}
