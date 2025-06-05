@@ -64,6 +64,7 @@
   "record_validation_description_is_empty": "Beskrivning är obligatorisk.",
   "record_validation_file_is_empty": "Lägg till fil.",
   "record_validation_file_size_exceeded": "Filstorleken är större än den maximala filstorleken (25 gigabyte)!",
+  "record_validation_file_size_too_small": "????",
   "record_validation_file_size_duration_too_short": "Den uppladdade videons längd är mindre än en sekund! Försök ladda upp en längre video.",
   "record_validation_license_invalid": "Licens är obligatorisk.",
   "record_validation_subtitle_file_empty": "Lägg till fil.",
