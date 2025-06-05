@@ -29,7 +29,7 @@
   "record_subtitle_download_links_header": "Lataa tai poista tekstitystiedosto",
   "record_archived_subtitle_download_link_header": "Lataa arkistoitu tekstitystiedosto",
   "record_archived_subtitle_download_links_help_label": "Tietoa arkistoidusta tekstitystiedostosta",
-  "record_archived_subtitle_download_links_help_content": "???",
+  "record_archived_subtitle_download_links_help_content": "Arkistoidut tekstitystiedostot ovat Unitubeen ennen heinäkuuta 2025 ladattuja tekstityksiä, joissa ei ole vielä tukea monikielisyydelle. Ne näkyvät edelleen videolla soittimessa, mutta ilman tietoa kielisyydestä. Jos haluat muuttaa tekstityksen uuteen muotoon tai tilata tekstitykselle automaattiset käännökset pohjatekstiksi, tekstitys pitää ensin muuttaa uuteen muotoon. Lataa ensin tekstitys koneellesi painamalla oheista latauspainiketta. Tallenna se sitten uudelleen videolle. Samalla voit tilata palvelussa automaattitekstitykset muille kielille. Toistaiseksi Unitubessa tuetut kielet ovat suomi, ruotsi ja englanti.",
   "record_subtitle_undo_button": "Kumoa",
   "record_subtitle_delete_button": "Poista",
   "record_download_links_help_label": "Minkä tiedoston valitsen?",
