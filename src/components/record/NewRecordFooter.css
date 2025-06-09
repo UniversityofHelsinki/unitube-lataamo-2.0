@@ -3,7 +3,7 @@
 }
 
 .new-record-footer.container {
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 .new-record-footer-progress-bar {
@@ -26,4 +26,10 @@
 .new-record-footer .alert-message.transparent path {
   height: 32px;
   fill: var(--hy-red);
+}
+
+@media (max-width: 480px) {
+  .new-record-footer > div {
+    flex-flow: column wrap;
+  }
 }
