@@ -19,6 +19,7 @@ import useCollection from '../../hooks/useCollection';
 import useTitle from '../../hooks/useTitle';
 import useRecordError from '../../hooks/useRecordError';
 import useVTTFiles from "../../hooks/useVTTFiles";
+import useSubtitleConversion from "../../hooks/record/useSubtitleConversion";
 
 const Record = () => {
     const [setTitle] = useTitle();
@@ -34,6 +35,7 @@ const Record = () => {
       'title', 'description', 'deletionDate', 'license', 'selectedSubtitles'
     ], originalRecord);
     const [record, onChange, modified, undo] = useRecordModification(originalRecord, validate, resetProgress);
+    const [doConvert, message, error] = useSubtitleConversion();
     const formRef = useRef();
 
     if (errorPage && !loading) {
@@ -88,7 +90,8 @@ const Record = () => {
               deleteSubtitle: true,
               languages: userDeletedSubtitles.languages // Array of languages to delete
           } : undefined,
-        updateSubtitles: record.selectedSubtitles?.type === 'translationSubtitles' ? { eventId: record.identifier, value: record.selectedSubtitles.value} : undefined
+        updateSubtitles: record.selectedSubtitles?.type === 'translationSubtitles' ? { eventId: record.identifier, value: record.selectedSubtitles.value} : undefined,
+        subtitleConversion: undefined
       });
 
       if (success) {

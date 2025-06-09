@@ -230,6 +230,8 @@
   "record_archived_subtitle_download_links_help_content": "Archived subtitle files are subtitles uploaded to Unitube before July 2025 that do not yet support multiple caption languages. They will still be visible on the video player, but without language information. If you want to convert the subtitles to a new format, or to request automatic translations of the subtitles as a base text, you must first convert the subtitles to the new format. First, download the subtitles to your computer by clicking the download button below. Then upload them to the video again. At the same time, you can request automatic subtitles for other languages in the service. Currently, Unitube supports Finnish, Swedish, and English.",
   "record_subtitle_undo_button": "Undo",
   "record_subtitle_delete_button": "Delete",
+  "record_subtitle_convert_button": "New translation",
+  "record_subtitle_archived": "Archived, does not support subtitles",
   "record_collection_move": "Go to collection",
   "record_collection_move_aria": "Go to the selected collection",
   "record_collections_help_label": "Information about collections",
