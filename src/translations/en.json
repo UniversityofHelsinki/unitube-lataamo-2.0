@@ -61,6 +61,7 @@
   "record_validation_file_is_empty": "Select a file.",
   "record_validation_file_invalid_format": "Invalid file format",
   "record_validation_file_size_exceeded": "File size exceeds 25 gigabytes, which is the maximum size allowed.",
+  "record_validation_file_size_too_small": "????",
   "record_validation_file_size_duration_too_short": "The duration of the video is shorter than 1 second! Try uploading a longer video",
   "record_validation_license_invalid": "Select a license.",
   "record_validation_subtitle_file_empty": "Select a file.",

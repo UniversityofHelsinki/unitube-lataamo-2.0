@@ -1,8 +1,12 @@
-import { FIELD_IS_VALID, MAX_FILE_SIZE_LIMIT, MIN_VIDEO_DURATION } from "../../../Constants";
+import {FIELD_IS_VALID, MAX_FILE_SIZE_LIMIT, MIN_FILE_SIZE_LIMIT, MIN_VIDEO_DURATION} from "../../../Constants";
 import PropTypes from 'prop-types';
 
-const validateSize = (file) => {
+const validateMaxSize = (file) => {
   return file.size > MAX_FILE_SIZE_LIMIT;
+};
+
+const validateMinSize = (file) => {
+  return file.size < MIN_FILE_SIZE_LIMIT;
 };
 
 const validateDuration = (videoFile) => {
@@ -31,8 +35,12 @@ const validateFile = async (file, record) => {
     return 'record_validation_file_is_empty';
   }
 
-  if (validateSize(file)) {
+  if (validateMaxSize(file)) {
     return 'record_validation_file_size_exceeded';
+  }
+
+  if (validateMinSize(file)) {
+    return 'record_validation_file_size_too_small';
   }
 
   const video = await convert(file);

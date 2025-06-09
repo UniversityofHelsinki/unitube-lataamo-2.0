@@ -88,6 +88,7 @@
   "record_validation_file_is_empty": "Lisää tiedosto.",
   "record_validation_file_invalid_format": "Virheellinen tiedostomuoto.",
   "record_validation_file_size_exceeded": "Tiedoston koko on suurempi kuin tiedostojen maksimikoko (25 gigatavua)!",
+  "record_validation_file_size_too_small": "???",
   "record_validation_file_size_duration_too_short": "Ladattavan videon kesto on alle yksi sekunti! Yritä ladata pidempi video.",
   "record_validation_license_invalid": "Julkaisulisenssi on pakollinen.",
   "record_validation_subtitle_invalid_format": "Virheellinen tiedoston formaatti",
