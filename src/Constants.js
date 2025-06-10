@@ -3,6 +3,7 @@ export const DEFAULT_LANGUAGE_MODELS = ['MS_WHISPER', 'MS_ASR'];
 export const DEFAULT_LANGUAGES = ['fi-FI', 'sv-SE', 'en-US'];
 
 export const MAX_FILE_SIZE_LIMIT = 2.5e+10;
+export const MIN_FILE_SIZE_LIMIT = 1e+6;
 export const MIN_VIDEO_DURATION = 1;
 
 export const ACCEPTED_MIME_TYPES = "video/mp4, video/quicktime, video/x-msvideo, video/webm";
@@ -48,6 +49,7 @@ export const ProgressStatus = {
     IN_PROGRESS_ORDERSUBTITLES: 'in_progress_ordersubtitles',
     IN_PROGRESS_DELETESUBTITLE :'in_progress_deletesubtitle',
     IN_PROGRESS_UPDATESUBTITLES :'in_progress_updatesubtitles',
+    IN_PROGRESS_SUBTITLECONVERSION :'in_progress_subtitleconversion',
     DONE: 'done',
     ERROR: 'error'
   },
