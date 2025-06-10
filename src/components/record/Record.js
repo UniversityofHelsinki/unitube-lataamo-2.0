@@ -91,7 +91,7 @@ const Record = () => {
               languages: userDeletedSubtitles.languages // Array of languages to delete
           } : undefined,
         updateSubtitles: record.selectedSubtitles?.type === 'translationSubtitles' ? { eventId: record.identifier, value: record.selectedSubtitles.value} : undefined,
-        subtitleConversion: undefined
+        subtitleConversion: {identifier: record.identifier}
       });
 
       if (success) {
