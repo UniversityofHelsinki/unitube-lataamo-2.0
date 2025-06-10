@@ -6,6 +6,14 @@
     fill: var(--hy-red);
 }
 
+.subtitle-renew-button{
+    fill: var(--hy-blue);
+
+}
+.oneline {
+    white-space: nowrap;
+}
+
 .record-subtitle-download-link-deleted {
     text-decoration: line-through;
 }

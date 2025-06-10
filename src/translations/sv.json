@@ -213,6 +213,8 @@
   "record_archived_subtitle_download_links_help_content": "Arkiverade textfiler är undertexter som laddats upp till Unitube före juli 2025 och som ännu inte har stöd för flerspråkighet. De visas fortfarande i videon i spelaren, men utan information om språk. Om du vill ändra undertexterna till ett nytt format eller beställa automatiska översättningar av undertexterna till grundtexten måste du först ändra undertexterna till ett nytt format. Ladda först ner undertexterna till din dator genom att klicka på nedladdningsknappen. Spara dem sedan på nytt i videon. Samtidigt kan du beställa automatiska undertexter till andra språk i tjänsten. Hittills är de språk som stöds av Unitube finska, svenska och engelska.",
   "record_subtitle_undo_button": "Ångra",
   "record_subtitle_delete_button": "Radera",
+  "record_subtitle_convert_button": "Ny översättning",
+  "record_subtitle_archived": "Arkiverad, stöder inte undertexter",
   "record_collection_move": "Gå till samlingen",
   "record_collection_move_aria": "Gå till samlingen",
   "record_collections_help_label": "Information om samlingar",
