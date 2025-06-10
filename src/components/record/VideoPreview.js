@@ -61,9 +61,14 @@ const createVTTTracks = (vttFiles, getLanguageDisplay) => {
         }
     });
 
+    const langCount = Array.from(languageTracksMap.entries()).length;
+
     return Array.from(languageTracksMap.entries())
-        .map(([language, vttFile], index) =>
-            createTrackElement(vttFile, language, getLanguageDisplay, index)
+        .map(([language, vttFile], index) => {
+                if (!(langCount > 1 && vttFile.isArchived) || (langCount === 1 && vttFile.isArchived)) {
+                    return createTrackElement(vttFile, language, getLanguageDisplay, index);
+                }
+            }
         );
 };
 
