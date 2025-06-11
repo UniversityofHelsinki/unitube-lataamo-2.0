@@ -173,6 +173,7 @@
   "record_card_details_created_title": "Recording upload date",
   "record_card_details_name_title": "Recording name",
   "record_card_details_description_title": "Recording description",
+  "record_card_details_record_title_a11y": "Recording: {{ title }}",
   "record_card_content_details_bottom_valid_until": "Recording date of expiry",
   "record_card_content_details_bottom_restorable_until": "Recording deletion date",
   "search_options_filter_records_in_collections": "Also show recordings in collections",
