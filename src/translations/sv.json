@@ -215,6 +215,7 @@
   "record_subtitle_delete_button": "Radera",
   "record_subtitle_convert_button": "Ny översättning",
   "record_subtitle_archived": "Arkiverad, stöder inte undertexter",
+  "archived_subtitle": "archived_subtitle",
   "record_collection_move": "Gå till samlingen",
   "record_collection_move_aria": "Gå till samlingen",
   "record_collections_help_label": "Information om samlingar",

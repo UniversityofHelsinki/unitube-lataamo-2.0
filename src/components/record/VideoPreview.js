@@ -37,19 +37,20 @@ const processVTTFile = (vttFile) => {
     };
 };
 
-const createTrackElement = (vttFile, language, getLanguageDisplay, index) => (
+const createTrackElement = (vttFile, language, getLanguageDisplay, index, t) => (
+
     <track
         key={`track-${language}`}
         data-testid="caption-track"
         src={buildUrl.vtt(vttFile)}
         kind="captions"
         srcLang={vttFile.language}
-        label={vttFile.isArchived ? "archived" : getLanguageDisplay(vttFile.language)}
+        label={vttFile.isArchived ? t('archived_subtitle') : getLanguageDisplay(vttFile.language)}
         default={index === 0}
     />
 );
 
-const createVTTTracks = (vttFiles, getLanguageDisplay) => {
+const createVTTTracks = (vttFiles, getLanguageDisplay, t) => {
     if (!Array.isArray(vttFiles)) return [];
 
     const languageTracksMap = new Map();
@@ -66,7 +67,7 @@ const createVTTTracks = (vttFiles, getLanguageDisplay) => {
     return Array.from(languageTracksMap.entries())
         .map(([language, vttFile], index) => {
                 if (!(langCount > 1 && vttFile.isArchived) || (langCount === 1 && vttFile.isArchived)) {
-                    return createTrackElement(vttFile, language, getLanguageDisplay, index);
+                    return createTrackElement(vttFile, language, getLanguageDisplay, index, t);
                 }
             }
         );
@@ -98,6 +99,7 @@ const useThumbnail = (video) => {
 const VideoPlayer = ({ video }) => {
     const thumbnailUrl = useThumbnail(video);
     const getLanguageDisplay = useLanguageDisplay();
+    const { t } = useTranslation();
 
     return (
         <Loading loading={!video}>
@@ -114,7 +116,7 @@ const VideoPlayer = ({ video }) => {
             >
                 <source data-testid="source" src={buildUrl.video(video?.url)} />
                 {video?.vttFiles?.length > 0
-                    ? createVTTTracks(video.vttFiles, getLanguageDisplay)
+                    ? createVTTTracks(video.vttFiles, getLanguageDisplay, t)
                     : ''
                 }
             </video>
