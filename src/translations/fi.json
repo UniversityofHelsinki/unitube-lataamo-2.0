@@ -248,6 +248,7 @@
   "delete_record_form_help_header": "Tietoa tallenteen poistamisesta",
   "delete_record_form_help_content": "Poistetut tallenteet löytyvät Tallenteet-välilehdeltä Näytä poistetut -valintapainiketta painamalla. Poistettujen tallenteiden sisältö häviää lopullisesti palvelusta automaattisesti tietyn ajan kuluttua.",
   "left_user_has_no_records": "Ei tallenteita. Voit lisätä uuden tallenteen Uusi tallenne -toiminnolla. Kokoelmiin kuuluvat tallenteet löytyvät Kokoelmat-välilehdeltä.",
+  "left_error_when_reading_records": "Virhe tallenteiden haussa.",
   "left_user_has_no_collections": "Ei kokoelmia. Lisää uusi kokoelma Uusi kokoelma -toiminnolla.",
   "left_user_has_no_statistics": "Ei striimejä! Tämä sivu näyttää Unitube-laitteilla varustetuissa tiloissa käyttäjätunnuksellasi tehtyjen striimien eli suoratoistolähetysten katselijamääriä.",
   "record_automatic_subtitles_translation_language_empty": "Kieli on pakollinen.",
