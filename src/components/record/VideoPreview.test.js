@@ -37,7 +37,7 @@ describe('VideoPreview component', () => {
         const captionTrack = screen.getByTestId('caption-track');
         expect(captionTrack).toBeInTheDocument();
         expect(captionTrack).toHaveAttribute('src', `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/vttFile/mock-vtt-url`);
-        expect(captionTrack).toHaveAttribute('label', 'archived');
+        expect(captionTrack).toHaveAttribute('label', 'archived_subtitle');
     });
 
     test('handles play button click', () => {

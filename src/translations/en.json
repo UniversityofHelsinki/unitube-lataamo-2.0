@@ -233,6 +233,7 @@
   "record_subtitle_delete_button": "Delete",
   "record_subtitle_convert_button": "New translation",
   "record_subtitle_archived": "Archived, does not support subtitles",
+  "archived_subtitle": "archived_subtitle",
   "record_collection_move": "Go to collection",
   "record_collection_move_aria": "Go to the selected collection",
   "record_collections_help_label": "Information about collections",
