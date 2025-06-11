@@ -308,6 +308,7 @@
   "record_card_details_created_title": "Inspelningens uppladdningsdatum",
   "record_card_details_name_title": "Inspelningens namn",
   "record_card_details_description_title": "Inspelningens beskrivning",
+  "record_card_details_record_title_a11y": "Inspelningen: {{ title }}",
   "record_card_content_details_bottom_valid_until": "Inspelningens sista giltighetsdatum",
   "record_card_content_details_bottom_restorable_until": "Inspelningens raderingsdatum",
   "collections_default": "Inte i samlingar",

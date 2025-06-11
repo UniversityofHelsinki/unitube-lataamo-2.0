@@ -16,7 +16,10 @@ const RecordCardDetails = ({ record, labelId, deleted, highlight }) => {
     return (
         <div className="record-card-details">
             <strong id={labelId} title={t('record_card_details_name_title')} className={`record-card-details-title ${deletedClass}`}>
-              <CardHighlight input={record.title} what={highlight} />
+                <span aria-hidden>
+                    <CardHighlight input={record.title} what={highlight} />
+                </span>
+                <span className="screenreader-only"> {t('record_card_details_record_title_a11y', {title: record.title})} </span>
             </strong>
             <p className="record-card-details-created" title={t('record_card_details_created_title')}>
               <CardHighlight input={t('record_card_details_created', { created })} what={highlight} />
