@@ -236,7 +236,7 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloa
               </Row>
             </>
             }
-            {showArchivedSubtitles && <Row>
+            {!showNonArchivedSubtitles && showArchivedSubtitles && <Row>
                 <Col>
                     <div className="record-archived-subtitle-download-links-help-label">
                         <ElementHeader

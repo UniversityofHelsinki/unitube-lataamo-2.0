@@ -34,6 +34,7 @@
   "record_subtitle_delete_button": "Poista",
   "record_subtitle_convert_button": "Uusi käännös",
   "record_subtitle_archived": "Arkistoitu, ei tue tekstityksiä",
+  "archived_subtitle": "archived_subtitle",
   "record_download_links_help_label": "Minkä tiedoston valitsen?",
   "record_download_links_help_content": "Kaikista tallenteista on mahdollista ladata kaksi eri versiota, joista toinen on yleensä korkealaatuisempi ja toinen pienempi, pakatumpi versio.",
   "record_file_header": "Tiedosto",
