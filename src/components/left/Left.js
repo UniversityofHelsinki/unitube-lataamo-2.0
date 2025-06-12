@@ -40,6 +40,24 @@ const No = ({ children }) => {
     );
 };
 
+const ErrorOccured = () => {
+    const { t } = useTranslation();
+    return (
+        <No>
+            {t('left_error_when_reading_records')}
+        </No>
+    );
+};
+
+const ErrorMsg = () => {
+    const { t } = useTranslation();
+    return (
+        <No>
+            {t('left_error_when_reading_records')}
+        </No>
+    );
+};
+
 const NoRecords = () => {
     const { t } = useTranslation();
     return (
@@ -81,7 +99,7 @@ const Left = () => {
         searchValue: '',
     });
 
-    const [records, loadingRecords, reloadRecords] = useVisibleRecords({
+    const [records, loadingRecords, reloadRecords, error, error_msg] = useVisibleRecords({
         showAll: recordOptions.showRecordsInCollections,
         load: path === '/records'
     });
@@ -305,6 +323,14 @@ const Left = () => {
         '/statistics': loadingStatistics
     };
 
+    const errors = {
+        '/records': error,
+    }
+
+    const errorMessage = {
+        '/records': error_msg,
+    }
+
     const sortOptions = {
         '/records': recordSortOptions,
         '/collections': collectionSortOptions
@@ -381,6 +407,16 @@ const Left = () => {
                 canBeSelected={canBeSelected[path]}
               >
                 {(() => {
+                  if (errors[path]) {
+                      return [[
+                          <ErrorOccured />
+                      ]]
+                  }
+                  if (errors[path]) {
+                      return [[
+                          <ErrorMsg/>
+                      ]]
+                  }
                   if (listElements[path]?.length > 0) {
                     return listElements[path];
                   }

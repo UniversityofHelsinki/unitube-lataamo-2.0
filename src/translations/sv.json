@@ -292,6 +292,7 @@
   "delete_record_form_help_header": "Information om att radera inspelningar",
   "delete_record_form_help_content": "Raderade inspelningar kan hittas under fliken Inspelningar genom att trycka på filterknappen Raderade. Innehållet i raderade inspelningar försvinner permanent från tjänsten automatiskt efter en viss tid.",
   "left_user_has_no_records": "Inga inspelningar. Du kan lägga till en ny inspelning med funktionen Ny inspelning. Inspelningar som ingår i samlingar finns under fliken Samlingar.",
+  "left_error_when_reading_records": "Fel vid hämtning av inspelningar.",
   "left_user_has_no_collections": "Inga samlingar. Lägg till en ny samling med funktionen Ny samling.",
   "left_user_has_no_statistics": "Inga strömmar. Denna sida visar antalet tittare för strömmar, det vill säga direktsändningar, som gjorts med ditt användarnamn i utrymmen utrustade med Unitube-enheter.",
   "new_record_upload_sending_subtitles": "Skickar och bearbetar undertexter...",
