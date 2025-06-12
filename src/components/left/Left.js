@@ -40,7 +40,7 @@ const No = ({ children }) => {
     );
 };
 
-const ErrorOccured = () => {
+const ErrorAllRecords = () => {
     const { t } = useTranslation();
     return (
         <No>
@@ -49,7 +49,16 @@ const ErrorOccured = () => {
     );
 };
 
-const ErrorMsg = () => {
+const ErrorInbox = () => {
+    const { t } = useTranslation();
+    return (
+        <No>
+            {t('left_error_when_reading_records')}
+        </No>
+    );
+};
+
+const ErrorTrash = () => {
     const { t } = useTranslation();
     return (
         <No>
@@ -99,7 +108,7 @@ const Left = () => {
         searchValue: '',
     });
 
-    const [records, loadingRecords, reloadRecords, error, error_msg] = useVisibleRecords({
+    const [records, loadingRecords, reloadRecords, error_allrecords, error_inbox, error_trash] = useVisibleRecords({
         showAll: recordOptions.showRecordsInCollections,
         load: path === '/records'
     });
@@ -323,12 +332,16 @@ const Left = () => {
         '/statistics': loadingStatistics
     };
 
-    const errors = {
-        '/records': error,
+    const errorAllrecords = {
+        '/records': error_allrecords,
     }
 
-    const errorMessage = {
-        '/records': error_msg,
+    const errorInbox = {
+        '/records': error_inbox,
+    }
+
+    const errorTrash = {
+        '/records': error_trash,
     }
 
     const sortOptions = {
@@ -407,16 +420,21 @@ const Left = () => {
                 canBeSelected={canBeSelected[path]}
               >
                 {(() => {
-                  if (errors[path]) {
+                  if (errorAllrecords[path]) {
                       return [[
-                          <ErrorOccured />
+                          <ErrorAllRecords />
                       ]]
                   }
-                  if (errors[path]) {
+                  if (errorInbox[path]) {
                       return [[
-                          <ErrorMsg/>
+                          <ErrorInbox/>
                       ]]
                   }
+                    if (errorTrash[path]) {
+                        return [[
+                            <ErrorTrash/>
+                        ]]
+                    }
                   if (listElements[path]?.length > 0) {
                     return listElements[path];
                   }
