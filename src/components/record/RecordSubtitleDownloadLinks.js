@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from "prop-types";
 import { ReactComponent as DownloadIcon } from '../utilities/icons/download.svg';
 import { ReactComponent as RemoveIcon } from '../utilities/icons/remove.svg';
+import { ReactComponent as UploadIcon } from '../utilities/icons/link-arrow-up.svg';
 import { ReactComponent as UndoIcon } from '../utilities/icons/rotate-left.svg';
 import './RecordSubtitleDownloadLinks.css';
 import { Button, Col, Container, Row } from 'react-bootstrap';
@@ -91,11 +92,44 @@ const RemoveSubtitleButton = ({ onClick, markedForDeletion, disabled }) => {
     );
 };
 
-const SubtitleItem = ({ subtitle, onChange, resetSubtitleDownloadLinks, disabled }) => {
+const SubtitleConversionButton = ({ onClick, markedForConverion, disabled }) => {
+    const { t } = useTranslation();
+    const label = markedForConverion ? t('record_subtitle_undo_button') : t('record_subtitle_convert_button');
+    const iconProps = { width: "2em", height: "1.2em", fill: "blue" };
+    const icon = markedForConverion ? <UndoIcon {...iconProps} /> : <UploadIcon {...iconProps} />;
+
+    return (
+        <Button
+            className="subtitle-renew-button"
+            onClick={onClick}
+            variant="link"
+            disabled={disabled}
+        >
+            {icon}{label}
+        </Button>
+    );
+};
+
+const SubtitleItem = ({ subtitle, onChange, resetSubtitleDownloadLinks, disabled, archivedText, nonArchivedSubtitlesExist}) => {
+    const { t } = useTranslation();
     const language = getLanguageFromTags(subtitle.tags?.tag);
     const archived = isArchivedOnly(subtitle.tags?.tag);
+    const [markedForSubtitleConversion, setMarkedForSubtitleConversion] = useState(false);
 
     const { i18n } = useTranslation();
+
+    useEffect(() => {
+        setMarkedForSubtitleConversion(false);
+    }, [resetSubtitleDownloadLinks]);
+
+    const handleClick = () => {
+        const updatedMarkedForSubtitleConversion = !setMarkedForSubtitleConversion;
+        setMarkedForSubtitleConversion(updatedMarkedForSubtitleConversion);
+        onChange('subtitleConversion', updatedMarkedForSubtitleConversion ? {
+            language: `lang:${language.toLowerCase()}`
+        } : null);
+    };
+
 
     const getLanguageNativeName = (code) => {
         if (!code) {
@@ -128,13 +162,18 @@ const SubtitleItem = ({ subtitle, onChange, resetSubtitleDownloadLinks, disabled
                     language={language}
                 />
             </div>
+            {archivedText && !nonArchivedSubtitlesExist &&
+                <div className="oneline d-flex align-items-center">
+                    <span>{t('record_subtitle_archived')}</span>
+                    <SubtitleConversionButton onClick={handleClick}></SubtitleConversionButton>
+                </div>}
         </li>
     );
 };
 
 
 const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloadLinks, disabled }) => {
-    const { t } = useTranslation();
+    const {t} = useTranslation();
 
     const getSubtitlePriority = (subtitle) => {
         if (isArchivedOnly(subtitle.tags?.tag)) {
@@ -188,6 +227,8 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloa
                                   onChange={onChange}
                                   resetSubtitleDownloadLinks={resetSubtitleDownloadLinks}
                                   disabled={disabled}
+                                  archivedText={false}
+                                  nonArchivedSubtitlesExist={showNonArchivedSubtitles}
                               />
                           ))}
                       </ul>
@@ -195,7 +236,7 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloa
               </Row>
             </>
             }
-            {showArchivedSubtitles && <Row>
+            {!showNonArchivedSubtitles && showArchivedSubtitles && <Row>
                 <Col>
                     <div className="record-archived-subtitle-download-links-help-label">
                         <ElementHeader
@@ -215,6 +256,8 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloa
                                 onChange={onChange}
                                 resetSubtitleDownloadLinks={resetSubtitleDownloadLinks}
                                 disabled={disabled}
+                                archivedText={true}
+                                nonArchivedSubtitlesExist={showNonArchivedSubtitles}
                             />
                         ))}
                     </ul>
