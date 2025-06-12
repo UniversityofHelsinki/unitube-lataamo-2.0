@@ -49,6 +49,15 @@ const ErrorOccured = () => {
     );
 };
 
+const ErrorMsg = () => {
+    const { t } = useTranslation();
+    return (
+        <No>
+            {t('left_error_when_reading_records')}
+        </No>
+    );
+};
+
 const NoRecords = () => {
     const { t } = useTranslation();
     return (
@@ -90,7 +99,7 @@ const Left = () => {
         searchValue: '',
     });
 
-    const [records, loadingRecords, reloadRecords, error] = useVisibleRecords({
+    const [records, loadingRecords, reloadRecords, error, error_msg] = useVisibleRecords({
         showAll: recordOptions.showRecordsInCollections,
         load: path === '/records'
     });
@@ -318,6 +327,10 @@ const Left = () => {
         '/records': error,
     }
 
+    const errorMessage = {
+        '/records': error_msg,
+    }
+
     const sortOptions = {
         '/records': recordSortOptions,
         '/collections': collectionSortOptions
@@ -397,6 +410,11 @@ const Left = () => {
                   if (errors[path]) {
                       return [[
                           <ErrorOccured />
+                      ]]
+                  }
+                  if (errors[path]) {
+                      return [[
+                          <ErrorMsg/>
                       ]]
                   }
                   if (listElements[path]?.length > 0) {
