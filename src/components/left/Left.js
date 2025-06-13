@@ -40,6 +40,33 @@ const No = ({ children }) => {
     );
 };
 
+const ErrorAllRecords = () => {
+    const { t } = useTranslation();
+    return (
+        <No>
+            {t('left_error_when_reading_records')}
+        </No>
+    );
+};
+
+const ErrorInbox = () => {
+    const { t } = useTranslation();
+    return (
+        <No>
+            {t('left_error_when_reading_records')}
+        </No>
+    );
+};
+
+const ErrorTrash = () => {
+    const { t } = useTranslation();
+    return (
+        <No>
+            {t('left_error_when_reading_records')}
+        </No>
+    );
+};
+
 const NoRecords = () => {
     const { t } = useTranslation();
     return (
@@ -81,7 +108,7 @@ const Left = () => {
         searchValue: '',
     });
 
-    const [records, loadingRecords, reloadRecords] = useVisibleRecords({
+    const [records, loadingRecords, reloadRecords, error_allrecords, error_inbox, error_trash] = useVisibleRecords({
         showAll: recordOptions.showRecordsInCollections,
         load: path === '/records'
     });
@@ -305,6 +332,18 @@ const Left = () => {
         '/statistics': loadingStatistics
     };
 
+    const errorAllrecords = {
+        '/records': error_allrecords,
+    }
+
+    const errorInbox = {
+        '/records': error_inbox,
+    }
+
+    const errorTrash = {
+        '/records': error_trash,
+    }
+
     const sortOptions = {
         '/records': recordSortOptions,
         '/collections': collectionSortOptions
@@ -381,6 +420,21 @@ const Left = () => {
                 canBeSelected={canBeSelected[path]}
               >
                 {(() => {
+                  if (errorAllrecords[path]) {
+                      return [[
+                          <ErrorAllRecords />
+                      ]]
+                  }
+                  if (errorInbox[path]) {
+                      return [[
+                          <ErrorInbox/>
+                      ]]
+                  }
+                    if (errorTrash[path]) {
+                        return [[
+                            <ErrorTrash/>
+                        ]]
+                    }
                   if (listElements[path]?.length > 0) {
                     return listElements[path];
                   }

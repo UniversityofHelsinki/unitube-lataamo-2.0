@@ -20,26 +20,34 @@ const getRecords = async () => {
 };
 
 const useRecords = (load = false) => {
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const records = useSelector((state) => state.records.records);
 
   useEffect(() => {
     if (load && !records) {
       (async () => {
-        dispatch({ 
-          type: 'SET_RECORDS', 
-          payload: await getRecords() 
-        });
+        try {
+          dispatch({
+            type: 'SET_RECORDS',
+            payload: await getRecords()
+          });
+          setError(null);
+        } catch (error) {
+          console.error(error.message);
+          setError({ source: error });
+        }
       })();
     }
-  }, [load, records, dispatch]);
+  }, [load, records, dispatch, error]);
 
   const reload = () => {
     dispatch({ type: 'SET_RECORDS' });
   };
 
-  const loading = load && !records;
-  return [records, loading, reload];
+  const loading = (load && !records) && error === null;
+
+  return [records, loading, reload, error];
 };
 
 useRecords.PropTypes = {
