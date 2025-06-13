@@ -22,9 +22,8 @@
 }
 
 .left-content-list-actions {
-  position: sticky;
   z-index: 1;
-  top: 0px;
+  top: 0;
   background-color: var(--hy-white);
   margin-bottom: 1px;
 }
@@ -93,4 +92,10 @@
 
 .left-bottom-not-selected {
   color: #767676;
+}
+
+@media (max-height: 480px) {
+  .left {
+    max-height: 100%;
+  }
 }
