@@ -1,7 +1,6 @@
 .collection-records-bulk-actions {
   display: flex;
   align-items: center;
-  overflow: auto;
 }
 
 .collection-records-bulk-actions > span:first-of-type {
@@ -11,8 +10,8 @@
 
 .collection-records-bulk-actions ul {
   list-style: none;
-  padding-left: 0px;
-  margin-bottom: 0px;
+  padding-left: 0;
+  margin-bottom: 0;
   display: flex;
   align-content: center;
 }
@@ -23,4 +22,13 @@
 
 .collection-records-bulk-actions li:first-of-type {
   margin-left: 8px;
+}
+
+@media (max-width: 576px) {
+  .collection-records-bulk-actions-container {
+    flex-direction: column;
+  }
+  .collection-records-bulk-actions ul {
+    flex-flow: column wrap;
+  }
 }

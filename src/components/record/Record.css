@@ -34,4 +34,7 @@
   .record {
     height: auto;
   }
+  .record-row {
+    overflow: hidden;
+  }
 }

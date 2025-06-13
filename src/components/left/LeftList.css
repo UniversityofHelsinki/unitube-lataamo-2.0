@@ -5,9 +5,8 @@
 }
 
 .left-list-actions {
-  position: sticky;
   z-index: 1;
-  top: 0px;
+  top: 0;
   background-color: var(--hy-white);
 }
 
@@ -45,8 +44,6 @@ ul.left-list-list-container {
 
 .left-bottom {
   min-width: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
   padding: 10px 35px 10px 20px;
   background-color: var(--hy-white);
   border: 1px solid var(--hy-black);
@@ -55,4 +52,10 @@ ul.left-list-list-container {
 
   align-items: center;
   z-index: 1;
+}
+
+@media (min-height: 320px) {
+  .left-content-list-actions {
+    position: sticky;
+  }
 }

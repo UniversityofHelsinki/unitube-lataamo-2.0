@@ -12,4 +12,7 @@
   .collection-container {
     height: auto;
   }
+  .collection-form-row {
+    overflow: hidden;
+  }
 }
