@@ -296,6 +296,7 @@
   "delete_record_form_help_header": "Information about deleting recordings",
   "delete_record_form_help_content": "Deleting a recording will permanently remove it from Unitube.",
   "left_user_has_no_records": "No recordings. You can add a new recording using the New Recording function. You can find the recordings in your collections on the Collections tab.",
+  "left_error_when_reading_records": "Error retrieving recordings",
   "left_user_has_no_collections": "No collections. Add a new collection with the New collection function.",
   "left_user_has_no_statistics": "No streams! This page shows the number of viewers of streams made under your user name in Unitube-equipped rooms.",
   "new_record_upload_sending_subtitles": "Sending subtitles...",
