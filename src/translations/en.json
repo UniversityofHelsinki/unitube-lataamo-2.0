@@ -363,7 +363,7 @@
   "landing_page_introduction": "Welcome to Unitube Uploader!",
   "landing_page_description": "Unitube is a video service for all university users where you can download, watch and save videos. In the Unitube Uploader, you can publish and share your recordings for others to watch or manage. There are also Unitube studios and Unitube lecture rooms on different campuses that can be booked separately. There, you can stream and record directly to Unitube using your pre-registered card. On the Streams tab, you can see statistics on the number of viewers of your own streams.",
   "landing_page_unitube_instructions": "Unitube instructions",
-  "landing_page_unitube_instructions_link": "Unitube instructions link",
+  "landing_page_unitube_instructions_link": "https://helpdesk.it.helsinki.fi/en/help/10939",
   "records_table_select_all": "Select all",
   "records_table_title": "Title",
   "records_table_select": "Select",
