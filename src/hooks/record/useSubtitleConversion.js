@@ -14,7 +14,7 @@ const doSubtitleConverion = async (identifier) => {
     }
 };
 
-const useSubtitleConversion = (identifier) => {
+const useSubtitleConversion = () => {
     const dispatch = useDispatch();
     const [error, setError] = useState(null);
     const message = useSelector((state) => state.vttfiles.conversion);
@@ -22,7 +22,7 @@ const useSubtitleConversion = (identifier) => {
     useEffect(() => {
     }, [error, message]);
 
-    const save = async (record) => {
+    const convert = async (record) => {
                 try {
                     dispatch({
                         type: 'SET_CONVERSION',
@@ -34,7 +34,7 @@ const useSubtitleConversion = (identifier) => {
                     setError({ source: error, identifier: record?.identifier });
                 }
     }
-    return [save, message, error];
+    return [convert, message, error];
 };
 
 export default useSubtitleConversion;
