@@ -454,9 +454,9 @@
   "delete_records_following_records": "Seuraavia tallenteita ei voitu poistaa: {{failures}}.",
   "update_records_deletion_dates_following_records": "Seuraavia tallenteita ei voitu päivittää: {{failures}}.",
   "tag_failure": "Käsittely epäonnistui",
-  "record_error_page_processing_failure_content": "record_error_page_processing_failure_content",
-  "record_error_page_processing_failure_help_label": "record_error_page_processing_failure_help_label",
-  "record_error_page_processing_failure_help_content": "record_error_page_processing_failure_help_content",
+  "record_error_page_processing_failure_content": "Tallenteen käsittely epäonnistui!",
+  "record_error_page_processing_failure_help_label": "Tietoa käsittelyn epäonnistumisesta",
+  "record_error_page_processing_failure_help_content": "Videon tallennus ja käsittely taustajärjestelmässä voi joskus epäonnistua. Syynä tähän voi joskus olla vika taustajärjestelmässä, mutta useimmiten itse tallenteella on tallennus- ja pakkausvaiheessa tapahtunut jokin häiriö, joka aiheuttaa tallennuksen epäonnistumisen. Tällöin kannattaa kokeilla videon tallennusta uudestaan, ja mielellään vielä alkuperäisversiosta ja käyttämällä jotakin toista editointiohjelmaa kuin ensimmäisellä kerralla ennen uutta latausyritystä. Jos ongelma kuitenkin toistuu, kannattaa ottaa yhteyttä Helpdeskiin!",
   "date_format_aria": "Ilmoita päivämäärä muodossa pp.kk.vvvv",
   "record_subtitle_convert_checkbox": "Päivitä tekstitys ja lisää kielisyys"
 }
