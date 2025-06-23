@@ -73,7 +73,7 @@
   "record_validation_deletion_date_too_soon": "The date of expiry needs to be set at least six months ahead of the current date.",
   "record_validation_deletion_date_too_late": "The date of expiry cannot be set more than three years ahead of the current date.",
   "record_automatic_subtitle_header": "Automatic transcription",
-  "record_translation_subtitle_header": "Translation subtitles",
+  "record_translation_subtitle_header": "Translation from current subtitles",
   "record_translation_subtitle_language": "From language",
   "record_translation_for_subtitle_languages": "To languages",
   "record_translation_for_subtitle_file": "Selected file",
@@ -232,7 +232,7 @@
   "record_archived_subtitle_download_links_help_content": "Archived subtitle files are subtitles uploaded to Unitube before July 2025 that do not yet support multilingualism. They are still visible on the video player, but without language information. If you want to display the subtitle language in the video properties or order automatic translations of the subtitles into the base text, you must first convert the subtitles to the new format. You can convert archived subtitles to the new type by pressing the button below. After this, you can also order automatic subtitles for other languages in the service. Currently, Unitube recognizes subtitles in Finnish, Swedish, and English.",
   "record_subtitle_undo_button": "Undo",
   "record_subtitle_delete_button": "Delete",
-  "record_subtitle_convert_button": "Update subtitles and add language",
+  "record_subtitle_convert_button": "Update subtitles and add language information",
   "record_subtitle_archived": "Archived subtitles must be updated in order to order translations!",
   "archived_subtitle": "Archived subtitles",
   "record_collection_move": "Go to collection",
@@ -458,5 +458,5 @@
   "record_error_page_processing_failure_help_label": "record_error_page_processing_failure_help_label",
   "record_error_page_processing_failure_help_content": "record_error_page_processing_failure_help_content",
   "date_format_aria": "Enter the date in the dd.mm.yyyy format",
-  "record_subtitle_convert_checkbox": "???record_subtitle_convert_checkbox???"
+  "record_subtitle_convert_checkbox": "Update subtitles and add language information"
 }
