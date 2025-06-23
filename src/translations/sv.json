@@ -73,7 +73,7 @@
   "record_automatic_subtitles_translation_model_empty": "Språkmodell är obligatorisk.",
   "record_validation_subtitle_unknown_error": "Okänt fel vid filhantering. Kontrollera att filen och dess innehåll är i ordning innan du skickar igen!",
   "record_automatic_subtitle_header": "Automatiska undertexter",
-  "record_translation_subtitle_header": "Översättningstextning",
+  "record_translation_subtitle_header": "Översättning från nuvarande textning",
   "record_translation_subtitle_language": "Från språk",
   "record_translation_for_subtitle_languages": "Till språk",
   "record_translation_for_subtitle_file": "Vald fil",
@@ -458,5 +458,5 @@
   "record_error_page_processing_failure_help_label": "record_error_page_processing_failure_help_label",
   "record_error_page_processing_failure_help_content": "record_error_page_processing_failure_help_content",
   "date_format_aria": "Ange datum i formatet dd.mm.åååå",
-  "record_subtitle_convert_checkbox": "???record_subtitle_convert_checkbox???"
+  "record_subtitle_convert_checkbox": "Uppdatera undertexter och lägg till språk"
 }
