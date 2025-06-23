@@ -457,5 +457,6 @@
   "record_error_page_processing_failure_content": "record_error_page_processing_failure_content",
   "record_error_page_processing_failure_help_label": "record_error_page_processing_failure_help_label",
   "record_error_page_processing_failure_help_content": "record_error_page_processing_failure_help_content",
-  "date_format_aria": "Ange datum i formatet dd.mm.åååå"
+  "date_format_aria": "Ange datum i formatet dd.mm.åååå",
+  "record_subtitle_convert_checkbox": "???record_subtitle_convert_checkbox???"
 }
