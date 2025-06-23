@@ -35,7 +35,7 @@ const Record = () => {
       'title', 'description', 'deletionDate', 'license', 'selectedSubtitles'
     ], originalRecord);
     const [record, onChange, modified, undo] = useRecordModification(originalRecord, validate, resetProgress);
-    const [doConvert, message, error] = useSubtitleConversion();
+    const [convert, message, error] = useSubtitleConversion();
     const formRef = useRef();
 
     if (errorPage && !loading) {
@@ -78,7 +78,9 @@ const Record = () => {
     };
 
     const handleSave = async (event) => {
-      event.preventDefault();
+      console.log(record.subtitleConversion);
+
+        event.preventDefault();
       const userDeletedSubtitles = record.deleteSubtitle;
       const success = await save({
         record,
@@ -91,7 +93,7 @@ const Record = () => {
               languages: userDeletedSubtitles.languages // Array of languages to delete
           } : undefined,
         updateSubtitles: record.selectedSubtitles?.type === 'translationSubtitles' ? { eventId: record.identifier, value: record.selectedSubtitles.value} : undefined,
-        subtitleConversion: {identifier: record.identifier}
+        subtitleConversion: record.subtitleConversion ? {identifier: record.identifier} : undefined
       });
 
       if (success) {

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from "prop-types";
 import { ReactComponent as DownloadIcon } from '../utilities/icons/download.svg';
 import { ReactComponent as RemoveIcon } from '../utilities/icons/remove.svg';
-import { ReactComponent as UploadIcon } from '../utilities/icons/link-arrow-up.svg';
 import { ReactComponent as UndoIcon } from '../utilities/icons/rotate-left.svg';
 import './RecordSubtitleDownloadLinks.css';
 import { Button, Col, Container, Row } from 'react-bootstrap';
@@ -92,22 +91,28 @@ const RemoveSubtitleButton = ({ onClick, markedForDeletion, disabled }) => {
     );
 };
 
-const SubtitleConversionButton = ({ onClick, markedForConverion, disabled }) => {
+const SubtitleConversionCheckBox = ({ onChange, markedForConversion, disabled }) => {
     const { t } = useTranslation();
-    const label = markedForConverion ? t('record_subtitle_undo_button') : t('record_subtitle_convert_button');
-    const iconProps = { width: "2em", height: "1.2em", fill: "blue" };
-    const icon = markedForConverion ? <UndoIcon {...iconProps} /> : <UploadIcon {...iconProps} />;
+    const handleChange = (event) => {
+        onChange(event.target.checked);
+    };
 
     return (
-        <Button
-            className="subtitle-renew-button"
-            onClick={onClick}
-            variant="link"
-            disabled={disabled}
-        >
-            {icon}{label}
-        </Button>
+        <div className="subtitle-conversion-checkbox">
+            <input
+                type="checkbox"
+                id="subtitle-conversion"
+                className="form-check-input me-2"
+                checked={markedForConversion}
+                onChange={handleChange}
+                disabled={disabled}
+            />
+            <label htmlFor="subtitle-conversion" className="form-check-label">
+                {t('record_subtitle_convert_checkbox')}
+            </label>
+        </div>
     );
+
 };
 
 const SubtitleItem = ({ subtitle, onChange, resetSubtitleDownloadLinks, disabled, archivedText, nonArchivedSubtitlesExist}) => {
@@ -122,13 +127,13 @@ const SubtitleItem = ({ subtitle, onChange, resetSubtitleDownloadLinks, disabled
         setMarkedForSubtitleConversion(false);
     }, [resetSubtitleDownloadLinks]);
 
-    const handleClick = () => {
-        const updatedMarkedForSubtitleConversion = !setMarkedForSubtitleConversion;
-        setMarkedForSubtitleConversion(updatedMarkedForSubtitleConversion);
-        onChange('subtitleConversion', updatedMarkedForSubtitleConversion ? {
-            language: `lang:${language.toLowerCase()}`
-        } : null);
+    const handleConversionChange = (checked) => {
+        setMarkedForSubtitleConversion(checked);
+        onChange('subtitleConversion', checked ? true : undefined);
     };
+
+
+
 
 
     const getLanguageNativeName = (code) => {
@@ -163,9 +168,9 @@ const SubtitleItem = ({ subtitle, onChange, resetSubtitleDownloadLinks, disabled
                 />
             </div>
             {archivedText && !nonArchivedSubtitlesExist &&
-                <div className="oneline d-flex align-items-center">
-                    <span>{t('record_subtitle_archived')}</span>
-                    <SubtitleConversionButton onClick={handleClick}></SubtitleConversionButton>
+                <div className="oneline align-items-center">
+                    <div>{t('record_subtitle_archived')}</div>
+                    <SubtitleConversionCheckBox onChange={handleConversionChange} markedForConversion={markedForSubtitleConversion} disabled={disabled}></SubtitleConversionCheckBox>
                 </div>}
         </li>
     );
@@ -208,7 +213,7 @@ const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloa
     return (
         <Container>
 
-            {showNonArchivedSubtitles && 
+            {showNonArchivedSubtitles &&
             <>
               <Row>
                   <Col>
@@ -313,5 +318,12 @@ RemoveSubtitleButton.propTypes = {
     markedForDeletion: PropTypes.bool.isRequired,
     disabled: PropTypes.bool.isRequired,
 };
+
+SubtitleConversionCheckBox.propTypes = {
+    onChange: PropTypes.func.isRequired,
+    markedForConversion: PropTypes.bool.isRequired,
+    disabled: PropTypes.bool.isRequired,
+};
+
 
 export default RecordSubtitleDownloadLinks;
