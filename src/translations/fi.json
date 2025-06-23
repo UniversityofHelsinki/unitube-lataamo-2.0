@@ -98,7 +98,7 @@
   "record_validation_deletion_date_too_soon": "Voimassaolopäivän tulee olla vähintään kuuden kuukauden päässä nykyhetkestä.",
   "record_validation_deletion_date_too_late": "Voimassaolopäivän tulee olla korkeintaan kolmen vuoden päässä nykyhetkestä.",
   "record_automatic_subtitle_header": "Automaattitekstitys",
-  "record_translation_subtitle_header": "Käännöstekstitys",
+  "record_translation_subtitle_header": "Käännös nykyisestä tekstityksestä",
   "record_translation_subtitle_language": "Kielestä",
   "record_translation_for_subtitle_languages": "Kielille",
   "record_translation_for_subtitle_file": "Valittu tiedosto",
@@ -458,5 +458,5 @@
   "record_error_page_processing_failure_help_label": "record_error_page_processing_failure_help_label",
   "record_error_page_processing_failure_help_content": "record_error_page_processing_failure_help_content",
   "date_format_aria": "Ilmoita päivämäärä muodossa pp.kk.vvvv",
-  "record_subtitle_convert_checkbox": "???record_subtitle_convert_checkbox???"
+  "record_subtitle_convert_checkbox": "Päivitä tekstitys ja lisää kielisyys"
 }
