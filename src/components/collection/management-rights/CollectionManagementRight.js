@@ -13,7 +13,7 @@ const CollectionManagementRight = ({ onRemove, Icon, label, disabled }) => {
   return (
     <div className={`collection-management-right ${disabledClass}`}>
       <div className="collection-management-right-icon">
-        <Icon width="30px" height="30px" />
+        <Icon aria-hidden="true" width="30px" height="30px" />
       </div>
       <div className="collection-management-right-label">
         {label}

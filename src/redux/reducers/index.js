@@ -10,6 +10,7 @@ import statisticsReducer  from "./statisticsReducer";
 import statisticReducer from "./statisticReducer";
 import thumbnailReducer from './thumbnailReducer';
 import visibilityReducer from './visibilityReducer';
+import vttFilesReducer from "./vttFilesReducer";
 
 const reducers = {
   location: locationReducer,
@@ -21,7 +22,8 @@ const reducers = {
   thumbnails: thumbnailReducer,
   statistics : statisticsReducer,
   visibilities: visibilityReducer,
-  statistic : statisticReducer
+  statistic : statisticReducer,
+  vttfiles: vttFilesReducer
 };
 
 export default combineReducers(reducers);

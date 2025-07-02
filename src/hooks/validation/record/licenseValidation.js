@@ -1,4 +1,4 @@
-import { DEFAULT_LICENSES, FIELD_IS_VALID } from "../../../Constants";
+import {DEFAULT_LICENSES, FIELD_IS_VALID} from "../../../Constants";
 import PropTypes from 'prop-types';
 
 const validateLicense = (license, _record) => {

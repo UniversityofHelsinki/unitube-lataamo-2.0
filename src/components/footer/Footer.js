@@ -13,7 +13,7 @@ const Footer = () => {
     <Container>
       <Row>
         <Col lg={1} className="footer-hy-logo">
-          <div>
+          <div aria-hidden="true">
             <HyLogo fill={Colors.white} />
           </div>
         </Col>

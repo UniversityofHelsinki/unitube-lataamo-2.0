@@ -25,3 +25,21 @@
 .bottom-bar-buttons > button {
   margin-right: 8px;
 }
+
+@media (max-width: 480px) {
+  .bottom-bar {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 576px) {
+  .bottom-bar {
+    flex-direction: column;
+  }
+  .bottom-bar-buttons {
+    padding-bottom: 10px;
+  }
+  .bottom-bar-notifications {
+    padding-bottom: 30px;
+  }
+}

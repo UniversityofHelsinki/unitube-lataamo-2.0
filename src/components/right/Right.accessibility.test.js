@@ -20,6 +20,21 @@ describe('Right', () => {
                 title: 'asdfsafsd'
             }
         },
+        vttfiles: {
+            vttfilesdata: [
+                {
+                    lang: "swe",
+                    url: "ruotsi.vtt"
+                },
+                {
+                    lang: "eng",
+                    url: "englanti.vtt"
+                },
+                {
+                    lang: "fin",
+                    url: "suomi_teksti.vtt"
+                }
+        ]},
         autocompletion: {
             users: [{ userName: 'baabenom' }],
             groups: [{ grpName: 'grp-hy-test' }]

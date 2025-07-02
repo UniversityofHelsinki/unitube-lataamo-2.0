@@ -29,6 +29,7 @@ const moveRecords = async (records = [], destination) => {
 
 const useRecordsMove = (records = [], destination) => {
   const [currentState, setCurrentState] = useState('not_started');
+  const [failures, setFailures] = useState([]);
 
   const [states] = useState([
     'in_progress',
@@ -43,8 +44,10 @@ const useRecordsMove = (records = [], destination) => {
     setCurrentState(states[index]);
   }
 
-  const onError = () => {
+  const onError = (_i, error) => {
+    const recordsNotMoved = error.cause;
     setCurrentState('error');
+    setFailures(recordsNotMoved);
   };
 
   const reset = () => {
@@ -54,7 +57,8 @@ const useRecordsMove = (records = [], destination) => {
   return [
     currentState, 
     () => startMoving(updateState, onError),
-    reset
+    reset,
+    failures
   ];
 
 

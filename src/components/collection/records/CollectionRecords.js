@@ -54,13 +54,13 @@ const CollectionRecords = ({ collection, records, disabled }) => {
             selectedRecords={selectedRecords}
           />
           <div>
-            <NewRecord selectedSeries={collection?.identifier} buttonDisabled={disabled} />
+            <NewRecord selectedSeries={collection?.identifier} buttonDisabled={disabled} excludeFirstCollectionModification={false} />
           </div>
         </div>
     }
     return <div className="collection-records-bulk-actions-container collection-records-bulk-actions-container-empty">
       <div>
-        <NewRecord selectedSeries={collection?.identifier} buttonDisabled={disabled} />
+        <NewRecord selectedSeries={collection?.identifier} buttonDisabled={disabled} excludeFirstCollectionModification={false} />
       </div>
     </div>;
   })();
