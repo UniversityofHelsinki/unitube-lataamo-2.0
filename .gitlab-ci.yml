@@ -245,3 +245,21 @@ deploy_prod:
   before_script:
     - echo "====== Deploy to production server ========"
   extends: .deploy_script
+
+# deploy to prod environment periodically
+deploy_prod_periodically:
+  stage: deploy
+  tags:
+    - ohtu-build-3
+  environment:
+    name: production
+    url: https://$LATAAMO_PROD
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule" && $CI_COMMIT_BRANCH == "prod"'
+      when: always
+    - when: never
+  variables:
+    SERVER: $LATAAMO_PROD
+  before_script:
+    - echo "====== Deploy to production server ========"
+  extends: .deploy_script
