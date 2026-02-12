@@ -1,9 +1,12 @@
-
+const sanitizeInput = (text) => {
+  // Removes Vertical Tab
+  return text.replace(/[\x0b\x0c\x00-\x08\x0e-\x1f]/g, "");
+};
 
 const convertToBody = (record) => ({
   identifier: record.identifier,
-  description: record.description,
-  title: record.title,
+  description: sanitizeInput(record.description),
+  title: sanitizeInput(record.title),
   isPartOf: record.isPartOf,
   license: record.license
 });
