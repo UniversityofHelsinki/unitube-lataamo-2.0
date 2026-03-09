@@ -458,5 +458,7 @@
   "record_error_page_processing_failure_help_label": "Information about failed uploads",
   "record_error_page_processing_failure_help_content": "The upload and processing of a video may sometimes fail in the back-end system. This may sometimes be due to a fault in the background system. But in most cases, there may have been a problem in the editing and compression phase, causing the recording to fail. In this case, it is advisable to try saving the video again – preferably from the original version and using a different editing program than the first time – before attempting to upload it again. However, if the problem persists, please contact the Helpdesk!",
   "date_format_aria": "Enter the date in the dd.mm.yyyy format",
-  "record_subtitle_convert_checkbox": "Update subtitles and add language information"
+  "record_subtitle_convert_checkbox": "Update subtitles and add language information",
+  "collection_form_link": "Link",
+  "collection_form_copy_link": "Copy collection's link"
 }

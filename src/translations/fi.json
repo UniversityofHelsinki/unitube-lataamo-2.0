@@ -458,5 +458,7 @@
   "record_error_page_processing_failure_help_label": "Tietoa käsittelyn epäonnistumisesta",
   "record_error_page_processing_failure_help_content": "Videon tallennus ja käsittely taustajärjestelmässä voi joskus epäonnistua. Syynä tähän voi joskus olla vika taustajärjestelmässä, mutta useimmiten itse tallenteella on tallennus- ja pakkausvaiheessa tapahtunut jokin häiriö, joka aiheuttaa tallennuksen epäonnistumisen. Tällöin kannattaa kokeilla videon tallennusta uudestaan, ja mielellään vielä alkuperäisversiosta ja käyttämällä jotakin toista editointiohjelmaa kuin ensimmäisellä kerralla ennen uutta latausyritystä. Jos ongelma kuitenkin toistuu, kannattaa ottaa yhteyttä Helpdeskiin!",
   "date_format_aria": "Ilmoita päivämäärä muodossa pp.kk.vvvv",
-  "record_subtitle_convert_checkbox": "Päivitä tekstitys ja lisää kielisyys"
+  "record_subtitle_convert_checkbox": "Päivitä tekstitys ja lisää kielisyys",
+  "collection_form_link": "Linkki",
+  "collection_form_copy_link": "Kopioi kokoelman linkki"
 }
