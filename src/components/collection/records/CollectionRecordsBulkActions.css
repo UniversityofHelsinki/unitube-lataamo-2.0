@@ -23,12 +23,3 @@
 .collection-records-bulk-actions li:first-of-type {
   margin-left: 8px;
 }
-
-@media (max-width: 576px) {
-  .collection-records-bulk-actions-container {
-    flex-direction: column;
-  }
-  .collection-records-bulk-actions ul {
-    flex-flow: column wrap;
-  }
-}
