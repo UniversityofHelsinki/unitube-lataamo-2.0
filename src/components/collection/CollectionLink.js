@@ -7,7 +7,8 @@ import { useTranslation } from 'react-i18next';
 const CollectionLink = ({ identifier }) => {
   const { t } = useTranslation();
 
-  const link = `https://www.helsinki.fi/fi/ajankohtaista/unitube?search=${identifier}`;
+  const prefix = process.env.REACT_APP_KATSOMO_COLLECTION_LINK;
+  const link = `${prefix}${identifier}`;
 
   return (
     <div className="collection-link">
