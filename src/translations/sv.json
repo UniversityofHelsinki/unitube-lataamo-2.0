@@ -458,5 +458,7 @@
   "record_error_page_processing_failure_help_label": "Information om misslyckade uppladdningar",
   "record_error_page_processing_failure_help_content": "Uppladdning och bearbetning av en video kan ibland misslyckas i bakgrundssystemet. Detta kan ibland bero på ett fel i bakgrundssystemet, men oftast har det skett ett problem under inspelnings- och komprimeringsfasen som orsakar att uppladdningen misslyckas. I sådana fall är det lämpligt att försöka spara videon igen, helst från originalversionen och använda ett annat redigeringsprogram än första gången, innan du försöker ladda upp den igen. Om problemet ändå kvarstår, vänligen kontakta Helpdesk!",
   "date_format_aria": "Ange datum i formatet dd.mm.åååå",
-  "record_subtitle_convert_checkbox": "Uppdatera undertexter och lägg till språk"
+  "record_subtitle_convert_checkbox": "Uppdatera undertexter och lägg till språk",
+  "collection_form_link": "Samlingslänken",
+  "collection_form_copy_link": "Kopiera samlingslänken"
 }

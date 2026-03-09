@@ -5,6 +5,10 @@
   word-break: break-all;
 }
 
+.form-element-header .help-dialog-fallback {
+  word-break: break-word;
+}
+
 .form-element-header h3 {
   font-size: 1.2rem;
 }
