@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import './CollectionLink.css'
 import ClipBoardFormElement from '../form/ClipBoardFormElement';
 import { useTranslation } from 'react-i18next';
+import ExternalLink from '../utilities/ExternalLink';
+import Colors from "../utilities/HyColors";
 
 const CollectionLink = ({ identifier }) => {
   const { t } = useTranslation();
@@ -16,7 +18,7 @@ const CollectionLink = ({ identifier }) => {
         label={t('collection_form_link')} 
         content={link} 
         buttonAriaLabel={t('collection_form_copy_link')}>
-          <a href={link}>{link}</a>
+          <ExternalLink to={link} label={link} fill={Colors.black} height={16} width={16} />
         </ClipBoardFormElement>
     </div>
   );
