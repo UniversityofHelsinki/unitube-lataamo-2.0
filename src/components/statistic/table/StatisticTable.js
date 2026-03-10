@@ -21,8 +21,8 @@ const CustomStatisticTable = ({ processedStatistics }) => {
                 <tr style={{backgroundColor: '#f0f0f0'}}>
                     <th>{t('timestamp')}</th>
                     <th>{t('total_connections')}</th>
-                    <th>{t(`stream_statistics_table_toggle_button_status_${isCollapsed ? 'collapsed' : 'visible'}`)}</th>
-                    <th style={{textAlign: 'right'}}>
+                    <th aria-hidden="true">{t(`stream_statistics_table_toggle_button_status_${isCollapsed ? 'collapsed' : 'visible'}`)}</th>
+                    <th aria-hidden="true" style={{textAlign: 'right'}}>
                         <div>
                             <button className="stream-statistics-table-toggle-button"
                                     onClick={toggleCollapse}
@@ -41,7 +41,7 @@ const CustomStatisticTable = ({ processedStatistics }) => {
                     <tr key={index}>
                         <td>{formatTime(statistic.timestamp)}</td>
                         <td>{statistic.totalConnections}</td>
-                        <td></td>
+                        <td aria-hidden="true"></td>
                     </tr>
                 ))}
                 </tbody>}

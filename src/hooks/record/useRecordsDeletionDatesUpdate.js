@@ -21,15 +21,26 @@ const put = async (id, deletionDate) => {
   }
 };
 
-const updateDeletionDates = (records = []) => {
-  return Promise.all(
-    records.map((record) => 
-      put(record.identifier, record.deletionDate)
-  ));
+const updateDeletionDates = async (records = []) => {
+  const failures = [];
+  for (const record of records) {
+    try {
+      await put(record.identifier, record.deletionDate);
+    } catch (error) {
+      failures.push(record);
+    }
+  }
+
+  if (failures.length > 0) {
+    throw new Error('bulk_records_move_error', {
+      cause: failures
+    });
+  }
 }
 
 const useRecordsDeletionDatesUpdate = (inputs = []) => {
   const [currentState, setCurrentState] = useState('not_started');
+  const [failures, setFailures] = useState([]);
 
   const [states] = useState([
     'in_progress',
@@ -44,8 +55,10 @@ const useRecordsDeletionDatesUpdate = (inputs = []) => {
     setCurrentState(states[index]);
   };
 
-  const onError = () => {
+  const onError = (_i, error) => {
+    const recordsNotUpdated = error.cause;
     setCurrentState('error');
+    setFailures(recordsNotUpdated);
   };
 
   const reset = () => {
@@ -55,7 +68,8 @@ const useRecordsDeletionDatesUpdate = (inputs = []) => {
   return [
     currentState, 
     () => startUpdating(updateState, onError), 
-    reset
+    reset,
+    failures
   ];
 
 };

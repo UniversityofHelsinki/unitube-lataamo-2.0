@@ -6,18 +6,25 @@ import { Button } from 'react-bootstrap';
 import useClipboard from '../../hooks/useClipboard';
 import ElementHeader from './ElementHeader';
 import './ClipBoardFormElement.css';
+import { useNotification } from '../notification/NotificationContext';
 
 const ClipBoardFormElement = ({ label, content, children, buttonAriaLabel }) => {
     const { t } = useTranslation();
     const [copy] = useClipboard();
+    const { setNotification } = useNotification();
     const labelId = useId();
+
+    const handleClick = () => {
+      copy(content);
+      setNotification(t('clipboard_copied_to_clipboard'), 'success', true);
+    };
 
     return (
       <div className="clipboard-form-element">
         <div className="clipboard-form-element-header">
           <ElementHeader
             helpDialog={(
-              <Button variant="link" aria-label={buttonAriaLabel} onClick={() => copy(content)} title={buttonAriaLabel}>
+              <Button variant="link" aria-label={buttonAriaLabel} onClick={handleClick} title={buttonAriaLabel}>
                 <CopyIcon width="1em" height="1em" />
                 <span id={labelId}>{t('clipboard_copy')}</span>
               </Button>

@@ -13,6 +13,10 @@ const validateTitle = (title) => {
     return 'collection_validation_title_contains_word_trash';
   }
 
+  if (title.length > 150) {
+    return 'collection_validation_title_is_too_long';
+  }
+
   if (FORBIDDEN_CHARACTERS.test(title)) {
     return 'collection_validation_title_contains_forbidden_characters';
   }

@@ -63,8 +63,8 @@ const Search = ({ options, onOptionChange, type, startSearch = () => {}, stopSea
                       </button>
                     </div>
                 )}
-                <InputGroup.Text className="searchIconContainer">
-                  <SearchIcon width="20px" height="20px"/>
+                <InputGroup.Text aria-hidden="true" className="searchIconContainer">
+                  <SearchIcon aria-hidden="true" width="20px" height="20px"/>
                 </InputGroup.Text>
               </InputGroup>
             </div>

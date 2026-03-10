@@ -16,21 +16,29 @@ const get = async () => {
 };
 
 const useDeletedRecords = (load = false) => {
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const deletedRecords = useSelector((state) => state.records.deletedRecords); 
 
   useEffect(() => {
     if (load && !deletedRecords) {
       (async () => {
-        dispatch({ type: 'SET_DELETED_RECORDS', payload: await get() });
+        try {
+          dispatch({ type: 'SET_DELETED_RECORDS', payload: await get() });
+          setError(null);
+        } catch (error) {
+          console.error(error.message);
+          setError({ source: error });
+        }
       })();
     }
-  }, [deletedRecords, load, dispatch]);
+  }, [deletedRecords, load, dispatch, error]);
 
-  const loading = load && !deletedRecords;
+  const loading = (load && !deletedRecords) && error === null;
+
   const reload = () => dispatch({ type: 'SET_DELETED_RECORDS' });
 
-  return [deletedRecords, loading, reload];
+  return [deletedRecords, loading, reload, error];
 
 };
 

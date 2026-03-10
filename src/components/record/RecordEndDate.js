@@ -34,6 +34,9 @@ const RecordEndDate = ({ endDate, onChange, message, disabled = false }) => {
             )}
           >
             {t('record_form_end_date_header')}
+            <span className="screenreader-only">
+              {t('date_format_aria')}
+            </span>
           </FormElementHeader>
         </Col>
       </Row>

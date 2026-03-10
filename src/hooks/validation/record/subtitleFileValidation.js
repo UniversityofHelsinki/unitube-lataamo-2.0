@@ -1,4 +1,4 @@
-const validateSubtitleFile = async (file, record) => {
+const validateSubtitleFile = async (files, record) => {
 
     const send = async (file) => {
         const URL = `${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/validateVTTFile`;
@@ -19,10 +19,26 @@ const validateSubtitleFile = async (file, record) => {
         return "record_validation_subtitle_unknown_error";
     };
 
-    if (file) {
-        const data = new FormData();
-        data.append('video_text_track_file', file);
-        return await send(data);
+    const formatValidations = {};
+
+    if (files) {
+        for (let key in files) {
+            if (files.hasOwnProperty(key)) {
+                let value = files[key];
+                if (value) {
+                    const data = new FormData();
+                    data.append(key, value);
+                    let response = await send(data);
+                    if (response !== false) {
+                        formatValidations[key] = "record_validation_subtitle_invalid_format";
+                    }
+                }
+            }
+        }
+        if (Object.entries(formatValidations).length > 0) {
+            return formatValidations;
+        }
+        return false;
     }
     return 'record_validation_subtitle_file_empty';
 };

@@ -1,8 +1,39 @@
 .record-subtitle-file {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.record-subtitle-file-language {
+  flex-basis: 18%;
+  padding-top: 0.5em;
+}
+
+.record-subtitle-file-margin-block {
+  margin: 4px;
+}
+
+.record-subtitle-file button {
+  padding-top: 0.2em;
+  align-self: start;
+}
+
+.record-subtitle-file .hy-button-content {
+  height: unset;
+}
+
+.record-subtitle-file-input {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
   flex-direction: column;
 }
 
-.record-subtitle-file > div {
-  margin-bottom: 8px;
+.record-subtitle-file-input > * {
+  min-width: 100%;
+}
+
+.record-subtitle-file-input-strike-through {
+  text-decoration: line-through;
 }

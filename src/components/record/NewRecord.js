@@ -31,18 +31,29 @@ const emptyRecord = {
   deletionDate: addMonths(new Date(), 12).toISOString()
 };
 
-const NewRecord = ({ selectedSeries = '', buttonDisabled = false }) => {
+const NewRecord = ({ selectedSeries = '', buttonDisabled = false, excludeFirstCollectionModification = true }) => {
   const { t } = useTranslation();
   const [showDialog, setShowDialog] = useState(false);
   const [isValid, messages, validate] = useNewRecordValidation(
     ['file', 'title', 'description', 'license', 'deletionDate', 'subtitles']
   );
   const [send, progress, resetProgress] = useNewRecordSave();
-  const [record, onChange, modified, undo] = useRecordModification({ ...emptyRecord, selectedSeries }, validate, resetProgress);
+  const [record, modificationOnChange, modified, undo] = useRecordModification({ ...emptyRecord, selectedSeries }, validate, resetProgress);
   const [_records, _loadingRecords, reloadRecords] = useVisibleRecords({});
   const [collection, _loadingCollection, reloadCollection] = useCollection();
   const [_collections, _loadingCollections, reloadCollections] = useCollections();
   const formRef = useRef();
+  const [seriesModifiedCount, setSeriesModifiedCount] = useState(0);
+  const [somethingModified, setSomethingModified] = useState(false);
+
+  const onChange = (key, value) => {
+    if (key === 'selectedSeries' && excludeFirstCollectionModification) {
+      setSeriesModifiedCount(seriesModifiedCount + 1);
+    } else {
+      setSomethingModified(true);
+    }
+    modificationOnChange(key, value);
+  };
 
   const theButton = (
     <HyButton className="new-record-button" variant="primary" onClick={
@@ -71,6 +82,8 @@ const NewRecord = ({ selectedSeries = '', buttonDisabled = false }) => {
   const hide = () => {
     reset();
     setShowDialog(false);
+    setSeriesModifiedCount(0);
+    setSomethingModified(false);
     if (record.selectedSeries === collection?.identifier && progress.status !== ProgressStatus.NEW_RECORD.NOT_STARTED) {
       reloadCollection();
     }
@@ -100,7 +113,11 @@ const NewRecord = ({ selectedSeries = '', buttonDisabled = false }) => {
     [ProgressStatus.NEW_RECORD.DONE]: true,
   }[progress.status] || false;
 
-  const touched = modified && progress.status !== ProgressStatus.NEW_RECORD.PROCESSING && progress.status !== ProgressStatus.NEW_RECORD.PROCESSING_SUBTITLES && progress.status !== ProgressStatus.NEW_RECORD.DONE;
+  const touched = modified 
+    && (somethingModified || seriesModifiedCount > 1)
+    && progress.status !== ProgressStatus.NEW_RECORD.PROCESSING 
+    && progress.status !== ProgressStatus.NEW_RECORD.PROCESSING_SUBTITLES 
+    && progress.status !== ProgressStatus.NEW_RECORD.DONE;
 
   return (
     <FormDialog touched={touched} closeable={closeable} showComponent={theButton} show={showDialog} hide={hide}>
@@ -113,7 +130,9 @@ const NewRecord = ({ selectedSeries = '', buttonDisabled = false }) => {
             <RecordLicense license={record.license} aria-label={t('new_record_license_label')} onChange={(license) => onChange('license', license)} message={messages.license} disabled={disabled} />
             <RecordEndDate endDate={record.deletionDate} onChange={(date) => onChange('deletionDate', date)} message={messages.deletionDate} disabled={disabled} />
             <RecordCollections collection={record.selectedSeries} onChange={(collection) => onChange('selectedSeries', collection)} message={messages.selectedSeries} disabled={disabled} showLink={false} />
-            <RecordSubtitle onChange={(subtitles) => onChange('subtitles', subtitles)} subtitles={record.subtitles} disabled={disabled} message={messages.subtitles} />
+            <RecordSubtitle onChange={(subtitles) => onChange('subtitles', subtitles)}
+                            subtitles={record.subtitles} disabled={disabled}
+                            message={messages.subtitles} newRecord={true} />
         </Modal.Body>
         <Modal.Footer>
           <NewRecordFooter onCancel={hide} progress={progress} isValid={isValid} onClick={onProgressButtonClick} />

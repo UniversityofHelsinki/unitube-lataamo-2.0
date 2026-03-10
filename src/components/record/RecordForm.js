@@ -11,8 +11,9 @@ import RecordCollections from "./RecordCollections";
 import RecordSubtitle from "./RecordSubtitle";
 import RecordLicense from './RecordLicense';
 
-const RecordForm = ({ 
+const RecordForm = ({
   record,
+  vttFiles,
   validationMessages,
   onChange,
   disabled
@@ -79,11 +80,12 @@ const RecordForm = ({
           </Row>
           <Row className="mb-2">
             <Col>
-              <RecordSubtitle 
+              <RecordSubtitle
                 onChange={(value) => onChange('selectedSubtitles', value)}
                 message={validationMessages?.selectedSubtitles}
                 subtitles={record.selectedSubtitles}
-                disabled={disabled} 
+                vttFiles={vttFiles}
+                disabled={disabled}
               />
             </Col>
           </Row>
@@ -94,7 +96,8 @@ const RecordForm = ({
 RecordForm.propTypes = {
   record: PropTypes.object,
   onChange: PropTypes.func,
-  validationMessages: PropTypes.object
+  validationMessages: PropTypes.object,
+  disabled: PropTypes.bool
 };
 
 export default RecordForm;

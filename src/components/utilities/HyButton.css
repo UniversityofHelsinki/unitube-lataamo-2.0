@@ -140,3 +140,28 @@
   --hy-button-background-color: var(--huds-additional-red-dark-active);
   --hy-button-border-color: var(--huds-additional-red-dark-active);
 }
+
+.hy-button-neutral {
+  --hy-button-background-color: var(--hy-orange);
+  --hy-button-text-color: var(--huds-grayscale-black);
+  --hy-button-border-color: var(--hy-orange);
+  --hy-button-bottom-color: var(--hy-dark-orange);
+  --hy-button-icon-separator-color: var(--huds-grayscale-black);
+}
+
+.hy-button-neutral:disabled {
+  --hy-button-background-color: var(--hy-low-orange);
+  --hy-button-text-color: var(--hy-light-gray);
+  --hy-button-border-color: var(--hy-low-orange);
+  --hy-button-bottom-color: var(--hy-orange);
+}
+
+.hy-button-neutral:enabled:hover {
+  --hy-button-background-color: #f9911b;
+  --hy-button-border-color: var(--hy-orange);
+}
+
+.hy-button-neutral:enabled:active {
+  --hy-button-background-color: var(--hy-orange);
+}
+

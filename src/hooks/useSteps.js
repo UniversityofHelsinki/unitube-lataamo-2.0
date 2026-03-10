@@ -12,7 +12,7 @@ const useSteps = (functions = []) => {
         }
       } catch (error) {
         console.error(error.message);
-        errorCallback(i);
+        errorCallback(i, error);
       }
     }
   };

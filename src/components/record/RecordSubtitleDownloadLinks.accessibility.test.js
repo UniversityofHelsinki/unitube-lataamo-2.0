@@ -8,8 +8,18 @@ describe('RecordSubtitleDownloadLinks', () => {
 
     test('should have no accessibility violations', async () => {
         const subtitles = [
-            {id: '1', url: 'subtitle1.vtt', filename: 'Subtitle 1'},
-            {id: '2', url: 'subtitle2.vtt', filename: 'Subtitle 2'},
+            {id: '1', url: 'subtitle1.vtt', filename: 'Subtitle 1', "tags": {
+                    "tag": [
+                        "archive",
+                        "lang:fin"
+                    ]
+                }},
+            {id: '2', url: 'subtitle2.vtt', filename: 'Subtitle 2', "tags": {
+                    "tag": [
+                        "archive",
+                        "lang:eng"
+                    ]
+                }},
         ];
 
         const mockFn = jest.fn();

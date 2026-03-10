@@ -4,7 +4,7 @@ import { Form } from 'react-bootstrap';
 import './InputField.css';
 import Message from './Message';
 
-const InputField = ({ message, hideMessage, ...rest }) => {
+const InputField = React.forwardRef(({ message, hideMessage, ...rest }, ref) => {
   const messageId = useId();
   const isInvalid = !!message?.content;
 
@@ -12,11 +12,11 @@ const InputField = ({ message, hideMessage, ...rest }) => {
 
   return (
     <>
-      <Form.Control type={ rest.type || "text" } aria-invalid={isInvalid} { ...ariaDescribedBy } { ...rest } />
+      <Form.Control ref={ref} type={ rest.type || "text" } aria-invalid={isInvalid} { ...ariaDescribedBy } { ...rest } />
       {!hideMessage && <Message messageId={messageId} type={message?.type}>{message?.content}</Message>}
     </>
   );
-};
+});
 
 InputField.propTypes = {
   message: PropTypes.shape({

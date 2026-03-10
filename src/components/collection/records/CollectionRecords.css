@@ -23,6 +23,8 @@
   padding: 8px;
   display: flex;
   justify-content: space-between;
+
+  overflow-x: scroll;
 }
 
 .collection-records-bulk-actions-container-empty {

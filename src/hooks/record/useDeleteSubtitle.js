@@ -1,8 +1,9 @@
 const useDeleteSubtitle = () => {
 
-    const actionDeleteVideoVTTFile = async (eventId) => {
+    const actionDeleteVideoVTTFile = async (eventId, languages) => {
         try {
-            let response = await fetch(`${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/videoTextTrack/${eventId}`, {
+            const languagesParam = languages.join(',');
+            let response = await fetch(`${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/videoTextTrack/${eventId}/${languagesParam}`, {
                 method: 'DELETE'
             });
             if (response.ok) {
@@ -18,10 +19,11 @@ const useDeleteSubtitle = () => {
     };
 
     const deleteSubtitle = async (input) => {
-        if (input.deleteSubtitle) {
-            await actionDeleteVideoVTTFile(input.eventId);
+        if (input.deleteSubtitle && input.languages) {
+            actionDeleteVideoVTTFile(input.eventId, input.languages)
         }
     };
+
 
     return [deleteSubtitle];
 };

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './HyButton.css';
 
 const HyButton = ({ 
-  children = [], 
+  children, 
   className, 
   variant,
   leftIcon,
@@ -43,7 +43,7 @@ const HyButton = ({
 
 HyButton.propTypes = {
   className: PropTypes.string,
-  variant: PropTypes.oneOf(['primary', 'secondary', 'danger']).isRequired,
+  variant: PropTypes.oneOf(['primary', 'secondary', 'danger', 'neutral']).isRequired,
   leftIcon: PropTypes.node,
   rightIcon: PropTypes.node,
   mini: PropTypes.bool,

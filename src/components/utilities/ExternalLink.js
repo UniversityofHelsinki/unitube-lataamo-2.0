@@ -13,7 +13,7 @@ const ExternalLink = ({ to, label, fill, height = 12, width = 12 }) => {
             {label}
             <div className="screenreader-only"> {t('opens_in_new_tab')} </div>
         </a>
-        <ExternalLinkIcon className="footer-external-link-icon" height={height} width={width} fill={fill || Colors.white} />
+        <ExternalLinkIcon aria-hidden="true" className="footer-external-link-icon" height={height} width={width} fill={fill || Colors.white} />
     </>
   );
 };

@@ -1,0 +1,12 @@
+@media (max-width: 480px) {
+    .modal-body {
+        padding-top: unset;
+        padding-bottom: unset;
+    }
+}
+
+@media (max-width: 576px) {
+    .modal-footer {
+        background-color: var(--bs-modal-bg)
+    }
+}

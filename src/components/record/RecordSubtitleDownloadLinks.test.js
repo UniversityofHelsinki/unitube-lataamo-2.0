@@ -8,9 +8,20 @@ describe('RecordSubtitleDownloadLinks', () => {
 
     // Sample test case
     test('should render download links for subtitles', () => {
+
         const subtitles = [
-            {id: '1', url: 'subtitle1.vtt', filename: 'Subtitle 1'},
-            {id: '2', url: 'subtitle2.vtt', filename: 'Subtitle 2'},
+            {id: '1', url: 'subtitle1.vtt', filename: 'Subtitle 1', "tags": {
+                    "tag": [
+                        "archive",
+                        "lang:fin"
+                    ]
+                }},
+            {id: '2', url: 'subtitle2.vtt', filename: 'Subtitle 2', "tags": {
+                    "tag": [
+                        "archive",
+                        "lang:eng"
+                    ]
+                }}
         ];
 
         const mockFn = jest.fn();

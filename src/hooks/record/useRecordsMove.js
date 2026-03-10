@@ -3,13 +3,33 @@ import useSteps from "../useSteps";
 import { put as moveRecord } from "./useRecordUpdate";
 
 const moveRecords = async (records = [], destination) => {
-  return Promise.all(records.map(record => {
-    return moveRecord({ ...record, isPartOf: destination });
-  }));
+
+  const alreadyInDestination = (record) => 
+    record?.is_part_of !== destination
+
+  const notInDestination = records
+    .filter(alreadyInDestination);
+
+  const failures = [];
+  for (const record of notInDestination) {
+    try {
+      await moveRecord({ ...record, isPartOf: destination });
+    } catch (error) {
+      failures.push(record);
+    }
+  }
+  
+  if (failures.length > 0) {
+    throw new Error('bulk_records_move_error', {
+      cause: failures
+    });
+  }
+
 };
 
 const useRecordsMove = (records = [], destination) => {
   const [currentState, setCurrentState] = useState('not_started');
+  const [failures, setFailures] = useState([]);
 
   const [states] = useState([
     'in_progress',
@@ -24,8 +44,10 @@ const useRecordsMove = (records = [], destination) => {
     setCurrentState(states[index]);
   }
 
-  const onError = () => {
+  const onError = (_i, error) => {
+    const recordsNotMoved = error.cause;
     setCurrentState('error');
+    setFailures(recordsNotMoved);
   };
 
   const reset = () => {
@@ -35,7 +57,8 @@ const useRecordsMove = (records = [], destination) => {
   return [
     currentState, 
     () => startMoving(updateState, onError),
-    reset
+    reset,
+    failures
   ];
 
 

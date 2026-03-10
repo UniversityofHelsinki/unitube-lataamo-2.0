@@ -25,6 +25,16 @@ const SaveButton = ({ disabled }) => {
   );
 };
 
+/*const selectedSubtitles = (record) => {
+  if (record?.selectedSubtitles?.allFiles) {
+    return record?.selectedSubtitles?.allFiles?.video_text_track_file_finnish || record?.selectedSubtitles?.allFiles?.video_text_track_file_swedish ||
+        record?.selectedSubtitles?.allFiles?.video_text_track_file_english;
+  }
+
+  return false;
+}*/
+
+
 const RecordBottomBar = ({ progress, record, modified, undo, isValid }) => {
 
   const savingHasBegun = progress.status !== ProgressStatus.RECORD_SAVE.NOT_STARTED;
@@ -43,6 +53,8 @@ const RecordBottomBar = ({ progress, record, modified, undo, isValid }) => {
 
     return <></>;
   })();
+
+  //const subtitlesModidied = selectedSubtitles(record);
 
   return (
     <BottomBar 

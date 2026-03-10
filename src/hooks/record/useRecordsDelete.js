@@ -3,13 +3,26 @@ import useSteps from "../useSteps";
 import { put } from "./useRecordDelete";
 
 const deleteRecords = async (records = []) => {
-  return await Promise.all(records.map((record) => {
-    return put(record, record.identifier);
-  }));
+  const failures = [];
+  for (const record of records) {
+    try {
+      await put(record, record.identifier)
+    } catch (error) {
+      failures.push(record);
+    }
+  }
+  
+  if (failures.length > 0) {
+    throw new Error('bulk_records_move_error', {
+      cause: failures
+    });
+  }
+
 };
 
 const useRecordsDelete = (records = []) => {
   const [currentState, setCurrentState] = useState('not_started');
+  const [failures, setFailures] = useState([]);
 
   const [states] = useState([
     'in_progress',
@@ -24,8 +37,10 @@ const useRecordsDelete = (records = []) => {
     setCurrentState(states[index]);
   };
 
-  const onError = () => {
+  const onError = (_i, error) => {
+    const recordsNotDeleted = error.cause;
     setCurrentState('error');
+    setFailures(recordsNotDeleted);
   };
 
   const reset = () => {
@@ -35,7 +50,8 @@ const useRecordsDelete = (records = []) => {
   return [
     currentState, 
     () => startDeleting(updateState, onError), 
-    reset
+    reset,
+    failures
   ];
 };
 

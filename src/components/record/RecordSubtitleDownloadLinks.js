@@ -1,23 +1,43 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from "prop-types";
-import {ReactComponent as DownloadIcon} from '../utilities/icons/download.svg';
-import {ReactComponent as RemoveIcon} from '../utilities/icons/remove.svg';
-import {ReactComponent as UndoIcon} from '../utilities/icons/rotate-left.svg';
+import { ReactComponent as DownloadIcon } from '../utilities/icons/download.svg';
+import { ReactComponent as RemoveIcon } from '../utilities/icons/remove.svg';
+import { ReactComponent as UndoIcon } from '../utilities/icons/rotate-left.svg';
 import './RecordSubtitleDownloadLinks.css';
-import {Button, Col, Container, Row} from 'react-bootstrap';
-import {useTranslation} from 'react-i18next';
+import { Button, Col, Container, Row } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import ElementHeader from "../form/ElementHeader";
+import HelpDialog from "../dialog/HelpDialog";
 
-/**
- * Functional component that represents a download link for a subtitle.
- *
- * @param {Object} props - The component props.
- * @param {Function} props.onChange - Callback function to handle changes.
- * @param {String} props.to - The URL of the download link.
- * @param {String} props.label - The label of the download link.
- * @returns {JSX.Element} The download link component.
- */
-const DownloadLink = ({ onChange, to, label, resetSubtitleDownloadLinks, disabled }) => {
+const SUBTITLE_PRIORITIES = {
+    FINNISH: 0,
+    SWEDISH: 1,
+    ENGLISH: 2,
+    ARCHIVED: 3
+};
+
+const parseTags = (tags) => {
+    if (!tags) return [];
+    return Array.isArray(tags)
+        ? tags
+        : tags.split(',').map(tag => tag.trim());
+};
+
+const isArchivedOnly = (tags) => {
+    const tagArray = parseTags(tags);
+    return tagArray.length === 1 && tagArray[0] === 'archive';
+};
+
+const getLanguageFromTags = (tags) => {
+    const tagArray = parseTags(tags);
+    const langTag = tagArray.find(tag => tag?.startsWith('lang:'));
+    if (!langTag) return '';
+
+    const lang = langTag.split(':')[1];
+    return lang?.toUpperCase() || '';
+};
+
+const DownloadLink = ({ onChange, to, label, resetSubtitleDownloadLinks, disabled, isArchived, language}) => {
     const [markedForDeletion, setMarkedForDeletion] = useState(false);
     const linkClass = markedForDeletion ? "record-subtitle-download-link-deleted" : "record-subtitle-download-link";
 
@@ -28,7 +48,10 @@ const DownloadLink = ({ onChange, to, label, resetSubtitleDownloadLinks, disable
     const handleClick = () => {
         const updatedMarkedForDeletion = !markedForDeletion;
         setMarkedForDeletion(updatedMarkedForDeletion);
-        onChange('deleteSubtitle', updatedMarkedForDeletion || undefined);
+        onChange('deleteSubtitle', updatedMarkedForDeletion ? {
+            language: `lang:${language.toLowerCase()}`
+        } : null);
+
     };
 
     return (
@@ -37,103 +60,270 @@ const DownloadLink = ({ onChange, to, label, resetSubtitleDownloadLinks, disable
                 <DownloadIcon width="2em" height="2em"/>
                 <a title={label} className={`ms-2 ${linkClass}`} download href={to}>{label}</a>
             </div>
-            <div className="record-subtitle-download-link-remove-button">
-                <RemoveSubtitleButton onClick={handleClick} markedForDeletion={markedForDeletion} disabled={disabled }/>
-            </div>
+            {!isArchived && (
+                <div className="record-subtitle-download-link-remove-button">
+                    <RemoveSubtitleButton
+                        onClick={handleClick}
+                        markedForDeletion={markedForDeletion}
+                        disabled={disabled}
+                    />
+                </div>
+            )}
         </div>
     );
 };
 
-
-/**
- * A button component used for removing subtitles.
- *
- * @component
- * @example
- * <RemoveSubtitleButton
- *    onClick={() => handleRemoveSubtitle()}
- *    markedForDeletion={true}
- * />
- *
- * @param {Function} onClick - The function to be called when the button is clicked.
- * @param {boolean} markedForDeletion - A flag indicating whether the subtitle is marked for deletion.
- * @returns {JSX.Element} The rendered RemoveSubtitleButton component.
- */
 const RemoveSubtitleButton = ({ onClick, markedForDeletion, disabled }) => {
     const { t } = useTranslation();
     const label = markedForDeletion ? t('record_subtitle_undo_button') : t('record_subtitle_delete_button');
-    const iconProps = {width: "2em", height: "1.2em"};
+    const iconProps = { width: "2em", height: "1.2em" };
     const icon = markedForDeletion ? <UndoIcon {...iconProps} /> : <RemoveIcon {...iconProps} />;
+
     return (
-        <Button className="remove-subtitle-button" onClick={onClick} variant="link" disabled={disabled}>{icon}{label}</Button>
+        <Button
+            className="remove-subtitle-button"
+            onClick={onClick}
+            variant="link"
+            disabled={disabled}
+        >
+            {icon}{label}
+        </Button>
     );
 };
 
-/**
- * Renders a list of subtitle download links for a record.
- *
- * @param {Object} props - The component props.
- * @param {Array} props.subtitles - The list of subtitles to display.
- * @param {function} props.onChange - The onChange event handler.
- * @returns {JSX.Element|null} The subtitle download links component.
- */
-const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloadLinks, disabled }) => {
+const SubtitleConversionCheckBox = ({ onChange, markedForConversion, disabled }) => {
     const { t } = useTranslation();
-    // Create the structure to hold the unique subtitles
-    const uniqueIds = Array.from(new Set(subtitles.map(subtitle => subtitle.id)));
+    const handleChange = (event) => {
+        onChange(event.target.checked);
+    };
+
     return (
-        <>
-            {subtitles && subtitles.length > 0 && subtitles[0]?.filename !== 'empty.vtt' && (
-                <Container>
-                    <Row>
-                        <Col>
-                            <ElementHeader>
-                                {t('record_subtitle_download_links_header')}
-                            </ElementHeader>
-                        </Col>
-                    </Row>
-                    <Row className="mb-3">
-                    </Row>
-                    <Row>
-                        <Col>
-                            <ul className="blockquote record-subtitle-download-link-list">
-                                {uniqueIds.map(uniqueId => {
-                                    const subtitle = subtitles.find(sub => sub.id === uniqueId && sub.filename !== 'empty.vtt');
+        <div className="subtitle-conversion-checkbox">
+            <input
+                type="checkbox"
+                id="subtitle-conversion"
+                className="form-check-input me-2"
+                checked={markedForConversion}
+                onChange={handleChange}
+                disabled={disabled}
+            />
+            <label htmlFor="subtitle-conversion" className="form-check-label">
+                {t('record_subtitle_convert_checkbox')}
+            </label>
+        </div>
+    );
 
-                                    // Return null if no subtitle was found with the unique id
-                                    if (!subtitle) return null;
+};
 
-                                    return (
-                                        <li key={subtitle.id}>
-                                            <DownloadLink
-                                                onChange={onChange}
-                                                to={`${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/vttFile/` + subtitle.url}
-                                                label={subtitle.filename}
-                                                resetSubtitleDownloadLinks={resetSubtitleDownloadLinks}
-                                                disabled={disabled}
-                                            />
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                        </Col>
-                    </Row>
-                </Container>
-            )}
-        </>
+const SubtitleItem = ({ subtitle, onChange, resetSubtitleDownloadLinks, disabled, archivedText, nonArchivedSubtitlesExist}) => {
+    const { t } = useTranslation();
+    const language = getLanguageFromTags(subtitle.tags?.tag);
+    const archived = isArchivedOnly(subtitle.tags?.tag);
+    const [markedForSubtitleConversion, setMarkedForSubtitleConversion] = useState(false);
+
+    const { i18n } = useTranslation();
+
+    useEffect(() => {
+        setMarkedForSubtitleConversion(false);
+    }, [resetSubtitleDownloadLinks]);
+
+    const handleConversionChange = (checked) => {
+        setMarkedForSubtitleConversion(checked);
+        onChange('subtitleConversion', checked ? true : undefined);
+    };
+
+
+
+
+
+    const getLanguageNativeName = (code) => {
+        if (!code) {
+            return '';
+        }
+
+        if (!window.Intl || !Intl.DisplayNames) {
+            return code.toUpperCase();
+        }
+
+        const languageNames = new Intl.DisplayNames([i18n.language], { type: 'language' });
+        return languageNames.of(code.toLowerCase());
+    };
+
+
+
+    return (
+        <li key={subtitle.id}>
+            <div className="d-flex align-items-center">
+                {!archived && language && (
+                    <span className="card-tag badge bg-success">{getLanguageNativeName(language)}</span>
+                )}
+                <DownloadLink
+                    onChange={onChange}
+                    to={`${process.env.REACT_APP_LATAAMO_PROXY_SERVER}/api/vttFile/${subtitle.url}`}
+                    label={subtitle.filename || subtitle.url.split('/').pop()}
+                    resetSubtitleDownloadLinks={resetSubtitleDownloadLinks}
+                    disabled={disabled}
+                    isArchived={archived}
+                    language={language}
+                />
+            </div>
+            {archivedText && !nonArchivedSubtitlesExist &&
+                <div className="oneline align-items-center">
+                    <div>{t('record_subtitle_archived')}</div>
+                    <SubtitleConversionCheckBox onChange={handleConversionChange} markedForConversion={markedForSubtitleConversion} disabled={disabled}></SubtitleConversionCheckBox>
+                </div>}
+        </li>
     );
 };
 
-/**
- * Validates the propTypes of the RecordSubtitleDownloadLinks component.
- *
- * @param {object} props - The props object containing the component's properties.
- */
-RecordSubtitleDownloadLinks.propTypes = {
-    subtitles: PropTypes.array,
-    onChange: PropTypes.func,
-    resetSubtitleDownloadLinks: PropTypes.bool,
-    disabled: PropTypes.bool,
+
+const RecordSubtitleDownloadLinks = ({ subtitles, onChange, resetSubtitleDownloadLinks, disabled }) => {
+    const {t} = useTranslation();
+
+    const getSubtitlePriority = (subtitle) => {
+        if (isArchivedOnly(subtitle.tags?.tag)) {
+            return SUBTITLE_PRIORITIES.ARCHIVED;
+        }
+
+        const language = getLanguageFromTags(subtitle.tags?.tag);
+        switch (language) {
+            case 'FIN': return SUBTITLE_PRIORITIES.FINNISH;
+            case 'SWE': return SUBTITLE_PRIORITIES.SWEDISH;
+            case 'ENG': return SUBTITLE_PRIORITIES.ENGLISH;
+            default: return SUBTITLE_PRIORITIES.ARCHIVED;
+        }
+    };
+
+    const flatSubtitles = subtitles
+        ?.filter(subtitle => subtitle && subtitle.filename !== 'empty.vtt') || [];
+
+    const archivedSubtitles = flatSubtitles.filter(subtitle => isArchivedOnly(subtitle.tags?.tag));
+    const nonArchivedSubtitles = flatSubtitles
+        .filter(subtitle => !isArchivedOnly(subtitle.tags?.tag))
+        .sort((a, b) => getSubtitlePriority(a) - getSubtitlePriority(b));
+
+    const showArchivedSubtitles = archivedSubtitles.length > 0;
+    const showNonArchivedSubtitles = nonArchivedSubtitles.length > 0;
+
+
+    if (flatSubtitles.length === 0) {
+        return null;
+    }
+
+    return (
+        <Container>
+
+            {showNonArchivedSubtitles &&
+            <>
+              <Row>
+                  <Col>
+                      <ElementHeader>
+                          {t('record_subtitle_download_links_header')}
+                      </ElementHeader>
+                  </Col>
+              </Row>
+              <Row>
+                  <Col>
+                      <ul className="blockquote record-subtitle-download-link-list">
+                          {nonArchivedSubtitles.map(subtitle => (
+                              <SubtitleItem
+                                  key={subtitle.id}
+                                  subtitle={subtitle}
+                                  onChange={onChange}
+                                  resetSubtitleDownloadLinks={resetSubtitleDownloadLinks}
+                                  disabled={disabled}
+                                  archivedText={false}
+                                  nonArchivedSubtitlesExist={showNonArchivedSubtitles}
+                              />
+                          ))}
+                      </ul>
+                  </Col>
+              </Row>
+            </>
+            }
+            {!showNonArchivedSubtitles && showArchivedSubtitles && <Row>
+                <Col>
+                    <div className="record-archived-subtitle-download-links-help-label">
+                        <ElementHeader
+                            helpDialog={(
+                                <HelpDialog label={t('record_archived_subtitle_download_links_help_label')}>
+                                    {t('record_archived_subtitle_download_links_help_content')}
+                                </HelpDialog>
+                            )}>
+                            {t('record_archived_subtitle_download_link_header')}
+                        </ElementHeader>
+                    </div>
+                    <ul className="blockquote record-subtitle-download-link-list">
+                        {archivedSubtitles.map((subtitle) => (
+                            <SubtitleItem
+                                key={subtitle.id}
+                                subtitle={subtitle}
+                                onChange={onChange}
+                                resetSubtitleDownloadLinks={resetSubtitleDownloadLinks}
+                                disabled={disabled}
+                                archivedText={true}
+                                nonArchivedSubtitlesExist={showNonArchivedSubtitles}
+                            />
+                        ))}
+                    </ul>
+                </Col>
+            </Row>}
+
+        </Container>
+    );
 };
+
+RecordSubtitleDownloadLinks.propTypes = {
+    subtitles: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+            filename: PropTypes.string,
+            url: PropTypes.string,
+            tags: PropTypes.shape({
+                tag: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
+            })
+        })
+    ),
+    onChange: PropTypes.func.isRequired,
+    resetSubtitleDownloadLinks: PropTypes.bool.isRequired,
+    disabled: PropTypes.bool.isRequired,
+};
+
+SubtitleItem.propTypes = {
+    subtitle: PropTypes.shape({
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+        filename: PropTypes.string,
+        url: PropTypes.string,
+        tags: PropTypes.shape({
+            tag: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
+        })
+    }).isRequired,
+    onChange: PropTypes.func.isRequired,
+    resetSubtitleDownloadLinks: PropTypes.bool.isRequired,
+    disabled: PropTypes.bool.isRequired,
+};
+
+DownloadLink.propTypes = {
+    onChange: PropTypes.func.isRequired,
+    to: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    resetSubtitleDownloadLinks: PropTypes.bool.isRequired,
+    disabled: PropTypes.bool.isRequired,
+    isArchived: PropTypes.bool.isRequired,
+    language: PropTypes.string.isRequired,
+};
+
+RemoveSubtitleButton.propTypes = {
+    onClick: PropTypes.func.isRequired,
+    markedForDeletion: PropTypes.bool.isRequired,
+    disabled: PropTypes.bool.isRequired,
+};
+
+SubtitleConversionCheckBox.propTypes = {
+    onChange: PropTypes.func.isRequired,
+    markedForConversion: PropTypes.bool.isRequired,
+    disabled: PropTypes.bool.isRequired,
+};
+
 
 export default RecordSubtitleDownloadLinks;

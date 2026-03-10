@@ -18,7 +18,8 @@ describe('RecordCollections', () => {
           <MockProvider mockReducers={
             { 
               collections: {
-                collection: { identifier: 'asdf', title: 'asdfasdfa' } 
+                collection: { identifier: 'asdf', title: 'asdfasdfa' },
+                collectionDropDown: [{ identifier: 'asdf', title: 'inbox baabenom' }]
               }
             }}>
             <RecordCollections message={message} onChange={() => {}} />
