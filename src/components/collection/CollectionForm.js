@@ -27,6 +27,7 @@ import TopRow from '../right/TopRow';
 import useCollectionTags from '../../hooks/collection/useCollectionTags';
 import CardTags from '../utilities/CardTags';
 import CollectionIdentifier from './CollectionIdentifier';
+import CollectionLink from './CollectionLink';
 
 const resolveVisibility = (published, contributors = []) => {
   const visibilities = [];
@@ -135,6 +136,11 @@ const CollectionForm = () => {
                 <Row className="mb-4">
                   <Col className="ps-1">
                     <CollectionIdentifier identifier={collection?.identifier} />
+                  </Col>
+                </Row>
+                <Row className="mb-4">
+                  <Col className="ps-1">
+                    <CollectionLink identifier={collection?.identifier} />
                   </Col>
                 </Row>
                 <Row className="mb-2">

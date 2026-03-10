@@ -1,4 +1,4 @@
-import {FIELD_IS_VALID, MAX_FILE_SIZE_LIMIT, MIN_FILE_SIZE_LIMIT, MIN_VIDEO_DURATION} from "../../../Constants";
+import {ACCEPTED_MIME_TYPES, FIELD_IS_VALID, MAX_FILE_SIZE_LIMIT, MIN_FILE_SIZE_LIMIT, MIN_VIDEO_DURATION} from "../../../Constants";
 import PropTypes from 'prop-types';
 
 const validateMaxSize = (file) => {
@@ -11,6 +11,10 @@ const validateMinSize = (file) => {
 
 const validateDuration = (videoFile) => {
   return videoFile.duration < MIN_VIDEO_DURATION;
+};
+
+const validateMimeType = (mimeType) => {
+  return !ACCEPTED_MIME_TYPES.includes(mimeType);
 };
 
 const convert = (file) => {
@@ -41,6 +45,10 @@ const validateFile = async (file, record) => {
 
   if (validateMinSize(file)) {
     return 'record_validation_file_size_too_small';
+  }
+
+  if (validateMimeType(file.type)) {
+    return 'record_validation_file_invalid_format';
   }
 
   const video = await convert(file);
