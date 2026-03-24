@@ -13,14 +13,14 @@ const CollectionLink = ({ identifier }) => {
   const link = `${prefix}${identifier}`;
 
   return (
-    <div className="collection-link">
-      <ClipBoardFormElement 
-        label={t('collection_form_link')} 
-        content={link} 
-        buttonAriaLabel={t('collection_form_copy_link')}>
+      <div className="collection-link">
+        <ClipBoardFormElement
+          label={t('collection_form_link')}
+          content={link}
+          buttonAriaLabel={t('collection_form_copy_link')}>
           <ExternalLink to={link} label={link} fill={Colors.black} height={16} width={16} />
         </ClipBoardFormElement>
-    </div>
+      </div>
   );
 
 };
