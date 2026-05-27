@@ -449,12 +449,12 @@ const Left = () => {
           </div>
         </div>
         {showBulkActions[path] && <div className="left-bottom">
-          <div>
+          <div className="left-bottom-bulk-actions">
             {bulkActions[path]}
           </div>
           {selectableElements[path].length > 0 &&
             <div
-              className={selectedElements[path].size === 0 ? 'left-bottom-not-selected' : ''} 
+              className={selectedElements[path].size === 0 ? 'left-bottom-selection-count left-bottom-not-selected' : 'left-bottom-selection-count'} 
             >
               <span className="screenreader-only" aria-live="assertive">
                 {t('left_bulk_actions_select', { count: selectedElements[path].size })}

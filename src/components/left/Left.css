@@ -90,8 +90,17 @@
   justify-content: space-between;
 }
 
+.left-bottom-bulk-actions {
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
 .left-bottom-not-selected {
   color: #767676;
+}
+
+.left-bottom-selection-count {
+  padding-left: 4px;
 }
 
 @media (max-height: 480px) {
