@@ -2,6 +2,10 @@
     list-style: none;
 }
 
+.record-subtitle-download-link-list * {
+    text-wrap: wrap;
+}
+
 .remove-subtitle-button polygon {
     fill: var(--hy-red);
 }
@@ -16,10 +20,6 @@
 
 .record-subtitle-download-link-deleted {
     text-decoration: line-through;
-}
-
-.record-subtitle-download-link {
-
 }
 
 .record-subtitle-download-link-item {
