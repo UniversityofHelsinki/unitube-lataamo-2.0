@@ -4,9 +4,21 @@ import ClipBoardFormElement from '../form/ClipBoardFormElement';
 import Colors from "../utilities/HyColors";
 import PropTypes from "prop-types";
 import ExternalLink from '../utilities/ExternalLink';
+import ElementHeader from '../form/ElementHeader';
 
-const RecordLink = ({ to, label }) => {
+const RecordLink = ({ to, label, showNotice }) => {
     const { t } = useTranslation();
+
+    if (showNotice) {
+      return (
+        <>
+            <ElementHeader>
+                {t('record_link_private_header')}
+            </ElementHeader>
+            <span className="blockquote">{t('record_link_private_notice')}</span>
+        </>
+      );
+    }
 
     return (
       <ClipBoardFormElement label={t('record_link_header')} content={to} buttonAriaLabel={t('record_link_copy_aria')}>

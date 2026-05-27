@@ -460,5 +460,7 @@
   "date_format_aria": "Enter the date in the dd.mm.yyyy format",
   "record_subtitle_convert_checkbox": "Update subtitles and add language information",
   "collection_form_link": "Link",
-  "collection_form_copy_link": "Copy collection's link"
+  "collection_form_copy_link": "Copy collection's link",
+  "record_link_private_header": "Link & embed code",
+  "record_link_private_notice": "Publish the video in collection to share it."
 }
