@@ -28,6 +28,8 @@ import useCollectionTags from '../../hooks/collection/useCollectionTags';
 import CardTags from '../utilities/CardTags';
 import CollectionIdentifier from './CollectionIdentifier';
 import CollectionLink from './CollectionLink';
+import CollectionCreators from './creator/CollectionCreators';
+import useUser from '../../hooks/useUser';
 
 const resolveVisibility = (published, contributors = []) => {
   const visibilities = [];
@@ -54,6 +56,7 @@ const CollectionForm = () => {
   const [collection, onChange, modified, undo] = useCollectionModification(originalCollection, validate, resetProgress);
   const [tags] = useCollectionTags([ { ...originalCollection, visibility: resolveVisibility(originalCollection?.published, originalCollection?.contributors) }]);
   const collectionHasRecords = collection?.eventColumns?.length > 0;
+  const [user] = useUser();
 
   if (errorPage && !loading) {
     return errorPage;
@@ -66,6 +69,8 @@ const CollectionForm = () => {
   const users = collection?.persons || [];
 
   const groups = collection?.iamgroups || [];
+
+  const creators = collection?.creators || (collection?.creator && [{ displayName: collection?.creator, userName: collection?.creator }]) || [];
 
   const saveCollection = async (event) => {
     event.preventDefault();
@@ -152,6 +157,15 @@ const CollectionForm = () => {
                         onChange={(publicity) => onChange('published', publicity)}
                         message={messages.publicity}
                         disabled={saveInProgress}
+                      />
+                  </Col>
+                </Row>
+                <Row className="mb-2">
+                  <Col className="ps-1">
+                      <CollectionCreators 
+                        creators={creators}
+                        onChange={(creators) => onChange('creators', creators)}
+                        disabled={true}
                       />
                   </Col>
                 </Row>

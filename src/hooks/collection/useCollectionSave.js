@@ -31,7 +31,8 @@ const convertToBody = (collection) => ({
   contributors: [ ...collection.persons, ...collection.iamgroups ],
   description: collection.description,
   published: collection.published,
-  title: collection.title
+  title: collection.title,
+  creators: collection.creators,
 });
 
 const useCollectionSave = () => {

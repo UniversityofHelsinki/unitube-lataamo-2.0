@@ -17,6 +17,7 @@ import { ProgressStatus } from '../../Constants';
 import useCollectionValidation from '../../hooks/validation/collection/useCollectionValidation';
 import HyButton from '../utilities/HyButton';
 import useCollectionDropdown from '../../hooks/collection/useCollectionDropdown';
+import CollectionCreators from './creator/CollectionCreators';
 
 const NewCollection = () => {
   const { t } = useTranslation();
@@ -29,6 +30,7 @@ const NewCollection = () => {
   const [_collectionDropDown, _loading, reloadCollectionDropdown] = useCollectionDropdown(true);
 
   const defaultPersons = [user.eppn];
+  const defaultCreators = [{ ...user, userName: user.eppn }];
   const emptyCollection = {
     identifier: '',
     title: '',
@@ -36,7 +38,8 @@ const NewCollection = () => {
     iamgroups: [],
     persons: defaultPersons,
     published: '',
-    moodleNumbers: []
+    moodleNumbers: [],
+    creators: defaultCreators 
   };
 
   const [collection, onChange, modified, undo] = useCollectionModification(
@@ -100,6 +103,9 @@ const NewCollection = () => {
           <CollectionName name={collection?.title} onChange={(title) => onChange('title', title)} disabled={fieldsDisabled} message={messages?.title} />
           <CollectionDescription description={collection?.description} onChange={(description) => onChange('description', description)} disabled={fieldsDisabled} message={messages?.description} />
           <CollectionPublicity publicity={collection?.published} onChange={(publicity) => onChange('published', publicity)} disabled={fieldsDisabled} messages={messages?.published} />
+          <div className="ps-3">
+            <CollectionCreators creators={collection?.creators} onChange={(creators) => onChange('creators', creators)} disabled={fieldsDisabled} messages={messages?.creators} />
+          </div>
           <Container>
             <Row>
               <Col>
