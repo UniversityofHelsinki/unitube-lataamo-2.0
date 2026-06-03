@@ -460,5 +460,7 @@
   "date_format_aria": "Ange datum i formatet dd.mm.åååå",
   "record_subtitle_convert_checkbox": "Uppdatera undertexter och lägg till språk",
   "collection_form_link": "Samlingslänken",
-  "collection_form_copy_link": "Kopiera samlingslänken"
+  "collection_form_copy_link": "Kopiera samlingslänken",
+  "record_link_private_header": "Länk & Inbäddningskod",
+  "record_link_private_notice": "Publicera videon i en samling för att dela den."
 }

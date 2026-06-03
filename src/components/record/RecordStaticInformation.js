@@ -24,6 +24,7 @@ const RecordStaticInformation = ({ record, onChange, resetSubtitleDownloadLinks,
     const videos = useVideos(record.identifier);
     const subtitles = videos?.flatMap(video => video.vttFiles || []).filter(file => file);
     const publishedLink = `${process.env.REACT_APP_KATSOMO_PUBLISHED_LINK_URL}${record.identifier}`;
+    const isPublished = !(record?.visibility || []).includes('status_private');
     return (
         <Container className="ps-0">
             <Row className="mb-4">
@@ -47,14 +48,14 @@ const RecordStaticInformation = ({ record, onChange, resetSubtitleDownloadLinks,
             </Row>
             <Row className="mb-4">
                 <Col>
-                    <RecordLink to={publishedLink} label={publishedLink} />
+                    <RecordLink to={publishedLink} label={publishedLink} showNotice={!isPublished} /> 
                 </Col>
             </Row>
-            <Row className="mb-4">
+            {isPublished && <Row className="mb-4">
                 <Col>
                     <RecordEmbedCode identifier={record.identifier} />
                 </Col>
-            </Row>
+            </Row>}
             <Row className="mb-4">
                 <Col>
                     <RecordDownloadLinks downloadableMedia={record.downloadableMedia} />

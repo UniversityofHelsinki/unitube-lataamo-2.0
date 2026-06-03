@@ -460,5 +460,7 @@
   "date_format_aria": "Ilmoita päivämäärä muodossa pp.kk.vvvv",
   "record_subtitle_convert_checkbox": "Päivitä tekstitys ja lisää kielisyys",
   "collection_form_link": "Linkki",
-  "collection_form_copy_link": "Kopioi kokoelman linkki"
+  "collection_form_copy_link": "Kopioi kokoelman linkki",
+  "record_link_private_header": "Linkki & upotuskoodi",
+  "record_link_private_notice": "Julkaise video kokoelmassa, jotta voit jakaa sen"
 }
