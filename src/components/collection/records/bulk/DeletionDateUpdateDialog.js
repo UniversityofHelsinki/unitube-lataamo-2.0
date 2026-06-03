@@ -11,7 +11,7 @@ import { DELETION_DATE_MIN_MONTHS } from '../../../../Constants';
 import useValidation from '../../../../hooks/validation/useValidation';
 import validateDeletionDate from '../../../../hooks/validation/record/deletionDateValidation.js';
 
-const DeletionDateUpdateDialog = ({ records = [] }) => {
+const DeletionDateUpdateDialog = ({ records = [], openerProps = {} }) => {
   const { t } = useTranslation();
 
   const [deletionDate, setDeletionDate] = useState(
@@ -26,7 +26,7 @@ const DeletionDateUpdateDialog = ({ records = [] }) => {
     validate
   ] = useValidation([{ deletionDate: validateDeletionDate }], ['deletionDate']);
 
-  const openerProps = {
+  const defaultOpenerProps = {
     label: t('update_records_deletion_dates_dialog_open_button_label'),
     title: t('update_records_deletion_dates_dialog_open_button_title'),
     variant: 'primary'
@@ -65,7 +65,7 @@ const DeletionDateUpdateDialog = ({ records = [] }) => {
   return (
     <BulkActionDialog
       records={records}
-      openerProps={openerProps}
+      openerProps={{ ...defaultOpenerProps, ...openerProps }}
       recordsTableProps={recordTableProps}
       currentState={currentState}
       start={startUpdating}
