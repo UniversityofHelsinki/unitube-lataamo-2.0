@@ -5,6 +5,7 @@ import DeleteRecordsDialog from '../../collection/records/bulk/DeleteRecordsDial
 import { useTranslation } from 'react-i18next';
 import HyButton from '../../utilities/HyButton';
 import MoveRecordsDialog from '../../collection/records/bulk/MoveRecordsDialog';
+import DeletionDateUpdateDialog from '../../collection/records/bulk/DeletionDateUpdateDialog';
 
 const RecordBulkActions = ({ records, selectedRecords }) => {
   const { t } = useTranslation();
@@ -41,6 +42,16 @@ const RecordBulkActions = ({ records, selectedRecords }) => {
             disabled: input.length === 0,
             variant: 'neutral'
           }} />
+      </div>
+      <div className="mx-1"></div>
+      <div>
+        <DeletionDateUpdateDialog
+          records={input}
+          openerProps={{
+            mini: true,
+            disabled: input.length === 0,
+          }}
+        />
       </div>
     </div>
   );

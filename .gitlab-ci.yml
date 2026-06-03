@@ -174,22 +174,24 @@ submit-sbom:
 
 
 # deploy to development environment
-deploy_dev:
-  stage: deploy
-  tags:
-    - ohtu-build-3
-  environment:
-    name: development
-    url: https://$LATAAMO_DEV
-  only:
-    - master
-  except:
-    - schedules
-  variables:
-    SERVER: $LATAAMO_DEV
-  before_script:
-    - echo "====== Deploy to development server ========"
-  extends: .deploy_script
+# (commented out deployment)
+#deploy_dev:
+#  stage: deploy
+#  tags:
+#    - ohtu-build-3
+#  environment:
+#    name: development
+#    url: https://$LATAAMO_DEV
+#  only:
+#    - master
+#  except:
+#    - schedules
+#  variables:
+#    SERVER: $LATAAMO_DEV
+#  before_script:
+#    - echo "====== Deploy to development server ========"
+#  extends: .deploy_script
+
 
 # deploy to test environment
 deploy_test:
