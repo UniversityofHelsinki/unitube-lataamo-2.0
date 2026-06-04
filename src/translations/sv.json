@@ -462,5 +462,8 @@
   "collection_form_link": "Samlingslänken",
   "collection_form_copy_link": "Kopiera samlingslänken",
   "record_link_private_header": "Länk & Inbäddningskod",
-  "record_link_private_notice": "Publicera videon i en samling för att dela den."
+  "record_link_private_notice": "Publicera videon i en samling för att dela den.",
+  "collection_management_creator_form_header": "Skapare",
+  "collection_management_creator_help_label": "Information om skapare",
+  "collection_management_creator_help_content": "PLÖÖ PLÖÖ"
 }
