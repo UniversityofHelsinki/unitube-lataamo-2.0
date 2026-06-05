@@ -21,6 +21,7 @@ import HyButton from '../utilities/HyButton';
 import PropTypes from 'prop-types';
 import useCollection from '../../hooks/useCollection';
 import useCollections from '../../hooks/useCollections';
+import RecordSpokenLanguage from './RecordSpokenLanguage';
 
 const emptyRecord = {
   identifier: '',
@@ -130,6 +131,11 @@ const NewRecord = ({ selectedSeries = '', buttonDisabled = false, excludeFirstCo
             <RecordLicense license={record.license} aria-label={t('new_record_license_label')} onChange={(license) => onChange('license', license)} message={messages.license} disabled={disabled} />
             <RecordEndDate endDate={record.deletionDate} onChange={(date) => onChange('deletionDate', date)} message={messages.deletionDate} disabled={disabled} />
             <RecordCollections collection={record.selectedSeries} onChange={(collection) => onChange('selectedSeries', collection)} message={messages.selectedSeries} disabled={disabled} showLink={false} />
+            <RecordSpokenLanguage
+              language={record.language}
+              onChange={(language) => onChange('language', language)}
+              disabled={disabled}
+            />
             <RecordSubtitle onChange={(subtitles) => onChange('subtitles', subtitles)}
                             subtitles={record.subtitles} disabled={disabled}
                             message={messages.subtitles} newRecord={true} />
