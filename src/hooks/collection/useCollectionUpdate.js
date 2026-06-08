@@ -30,6 +30,7 @@ const convertToBody = (collection) => {
   const acl = asAccessControlLists(collection.published, collection.moodleNumbers);
   return {
     ...collection,
+    keywords: collection?.keywords?.map(kw => kw.label),
     acl,
     contributors: [ ...collection.persons, ...collection.iamgroups ],
     visibility: asVisibility(acl, collection.moodleNumbers)
