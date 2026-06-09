@@ -8,6 +8,7 @@ import InputField from '../../form/InputField';
 import HyButton from '../../utilities/HyButton';
 import { onEnter } from '../../accessibility/keydown';
 import CollectionKeyword from './CollectionKeyword';
+import HelpDialog from '../../dialog/HelpDialog';
 
 const CollectionKeywords = ({ keywords = [], onKeywordChange, disabled }) => {
     const [value, setValue] = useState('');
@@ -51,7 +52,11 @@ const CollectionKeywords = ({ keywords = [], onKeywordChange, disabled }) => {
         <Container className="collection-keywords ps-0">
             <Row>
                 <Col>
-                    <FormElementHeader id={id} helpDialog={null}>
+                    <FormElementHeader id={id} helpDialog={
+                      <HelpDialog label={t('collection_keywords_help_label')}>
+                        {t('collection_keywords_help_content')}
+                      </HelpDialog>
+                    }>
                         {t('collection_keywords_form_header')}
                     </FormElementHeader>
                 </Col>

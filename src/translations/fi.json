@@ -186,10 +186,12 @@
   "collection_moodle_courses_help_content": "Jos haluat rajoittaa tallenteiden näkyvyyden tietylle Moodle-kurssille tai helpottaa kokoelman sisällön jakamista tietyllä kurssilla, voit kytkeä kokoelman kurssiin liittämällä tähän sen tunnistenumeron (Moodle-ID). Lisäksi sinun pitää ottaa toiminnallisuus käyttöön Moodlen puolella. Hieman yksinkertaisempi tapa on rajata kokoelman tallenteiden näkyminen vain linkillä (tai upotuksen kautta): tällöin tätä Moodle-kytkyä ei tarvita. Lisää tietoa ja ohjeita kokoelmien ja Moodle-kurssien liittämisestä löydät HY:n opetusteknologiapalveluiden ohjeista!",
   "collection_moodle_courses_limit_exceeded": "Kokoelman voi liittää korkeintaan 20 Moodle-kurssiin.",
   "collection_moodle_course_remove": "Poista kytkentä Moodle-kurssiin",
-  "collection_keywords_form_header": "Avainsanat",
-  "collection_keywords_placeholder": "Lisää avainsana",
+  "collection_keywords_form_header": "Asiasanat",
+  "collection_keywords_placeholder": "Lisää asiasana",
   "collection_keywords_add_button": "Lisää",
-  "collection_keyword_remove": "Poista avainsana",
+  "collection_keyword_remove": "Poista asiasana",
+  "collection_keywords_help_label": "Tietoa asiasanoista",
+  "collection_keywords_help_content": "Tietoa asiasanoista",
   "collection_bottom_bar_in_progress": "Tallennetaan kokoelman tietoja...",
   "collection_bottom_bar_republishing_metadata": "Päivitetään kokoelman metatietoja",
   "collection_bottom_bar_done": "Valmis!",
@@ -475,5 +477,8 @@
   "record_form_spoken_language_header": "Puhuttu kieli",
   "spoken_language_selection_fi": "suomi",
   "spoken_language_selection_en": "englanti",
-  "spoken_language_selection_sv": "ruotsi"
+  "spoken_language_selection_sv": "ruotsi",
+  "record_collection_keywords_help_label": "Tietoa kokoelman asiasanoista",
+  "record_collection_keywords_help_content": "Tietoa kokoelman asiasanoista",
+  "record_collection_keywords_header": "Kokoelman asiasanat"
 }

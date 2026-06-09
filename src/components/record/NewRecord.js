@@ -22,6 +22,8 @@ import PropTypes from 'prop-types';
 import useCollection from '../../hooks/useCollection';
 import useCollections from '../../hooks/useCollections';
 import RecordSpokenLanguage from './RecordSpokenLanguage';
+import RecordCollectionKeywords from './RecordCollectionKeywords';
+import CollectionKeywords from '../collection/keyword/CollectionKeywords';
 
 const emptyRecord = {
   identifier: '',
@@ -29,7 +31,8 @@ const emptyRecord = {
   description: '',
   license: '',
   selectedSeries: '',
-  deletionDate: addMonths(new Date(), 12).toISOString()
+  deletionDate: addMonths(new Date(), 12).toISOString(),
+  keywords: []
 };
 
 const NewRecord = ({ selectedSeries = '', buttonDisabled = false, excludeFirstCollectionModification = true }) => {
@@ -131,6 +134,8 @@ const NewRecord = ({ selectedSeries = '', buttonDisabled = false, excludeFirstCo
             <RecordLicense license={record.license} aria-label={t('new_record_license_label')} onChange={(license) => onChange('license', license)} message={messages.license} disabled={disabled} />
             <RecordEndDate endDate={record.deletionDate} onChange={(date) => onChange('deletionDate', date)} message={messages.deletionDate} disabled={disabled} />
             <RecordCollections collection={record.selectedSeries} onChange={(collection) => onChange('selectedSeries', collection)} message={messages.selectedSeries} disabled={disabled} showLink={false} />
+            <RecordCollectionKeywords id={record.selectedSeries} onChange={undefined} disabled={undefined} />
+            <CollectionKeywords keywords={record.keywords} onKeywordChange={(keywords) => onChange('keywords', keywords)} disabled={disabled} />
             <RecordSpokenLanguage
               language={record.language}
               onChange={(language) => onChange('language', language)}

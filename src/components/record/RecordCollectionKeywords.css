@@ -1,0 +1,13 @@
+.new-record-collection-keywords {
+  padding-left: unset;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+.new-record-collection-keywords li {
+  width: fit-content;
+  max-width: fit-content;
+  min-width: fit-content;
+}
