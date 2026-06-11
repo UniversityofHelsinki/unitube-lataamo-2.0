@@ -10,6 +10,7 @@ import RecordEndDate from './RecordEndDate';
 import RecordCollections from "./RecordCollections";
 import RecordSubtitle from "./RecordSubtitle";
 import RecordLicense from './RecordLicense';
+import RecordSpokenLanguage from './RecordSpokenLanguage';
 
 const RecordForm = ({
   record,
@@ -76,6 +77,15 @@ const RecordForm = ({
                   onChange={(value) => onChange('isPartOf', value)} 
                   disabled={disabled}
                 />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <RecordSpokenLanguage
+                language={record.language}
+                onChange={(value) => onChange('language', value)}
+                disabled={disabled}
+              />
             </Col>
           </Row>
           <Row className="mb-2">

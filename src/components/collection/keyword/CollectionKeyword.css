@@ -1,0 +1,28 @@
+.collection-keyword {
+    border: 1px solid var(--hy-silver);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px;
+}
+
+.collection-keyword-label {
+    color: var(--hy-black);
+    flex-shrink: 1;
+    padding-left: 4px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.collection-keyword-action {
+    padding-bottom: 3px;
+}
+
+.collection-keyword-action polygon {
+    fill: var(--hy-red);
+}
+
+.collection-keyword-disabled .collection-keyword-action polygon {
+    fill: var(--hy-medium-silver);
+}

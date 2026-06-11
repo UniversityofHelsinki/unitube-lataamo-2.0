@@ -33,6 +33,7 @@ const convertToBody = (collection) => ({
   published: collection.published,
   title: collection.title,
   creators: collection.creators,
+  keywords: collection.keywords,
 });
 
 const useCollectionSave = () => {
