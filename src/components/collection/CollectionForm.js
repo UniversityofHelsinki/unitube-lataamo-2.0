@@ -29,6 +29,7 @@ import CardTags from '../utilities/CardTags';
 import CollectionIdentifier from './CollectionIdentifier';
 import CollectionLink from './CollectionLink';
 import CollectionCreators from './creator/CollectionCreators';
+import CollectionKeywords from './keyword/CollectionKeywords';
 import useUser from '../../hooks/useUser';
 
 const resolveVisibility = (published, contributors = []) => {
@@ -71,6 +72,8 @@ const CollectionForm = () => {
   const groups = collection?.iamgroups || [];
 
   const creators = collection?.creators || (collection?.creator && [{ displayName: collection?.creator, userName: collection?.creator }]) || [];
+
+  const keywords = collection?.keywords?.map(kw => kw.label);
 
   const saveCollection = async (event) => {
     event.preventDefault();
@@ -183,6 +186,15 @@ const CollectionForm = () => {
                     <CollectionMoodleCourses 
                       moodleNumbers={collection?.moodleNumbers} 
                       onMoodleNumberChange={(moodleNumbers) => onChange('moodleNumbers', moodleNumbers)}
+                      disabled={saveInProgress}
+                    />
+                  </Col>
+                </Row>
+                <Row className="mb-2">
+                  <Col className="ps-1">
+                    <CollectionKeywords 
+                      keywords={keywords} 
+                      onKeywordChange={(keywords) => onChange('keywords', keywords.map(kw => ({ label: kw })))}
                       disabled={saveInProgress}
                     />
                   </Col>

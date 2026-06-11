@@ -8,7 +8,8 @@ const convertToBody = (record) => ({
   description: sanitizeInput(record.description),
   title: sanitizeInput(record.title),
   isPartOf: record.isPartOf,
-  license: record.license
+  license: record.license,
+  language: record.language
 });
 
 export const put = async (record) => {

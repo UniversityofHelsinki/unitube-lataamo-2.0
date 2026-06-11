@@ -1,0 +1,23 @@
+.collection-keywords-list {
+    padding-left: 0;
+    width: 100%;
+}
+
+.collection-keywords-list li {
+    display: inline-block;
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+
+.collection-keywords-input {
+    display: flex;
+    justify-content: space-between;
+}
+
+.collection-keywords-input input {
+    flex-shrink: 1;
+}
+
+.collection-keywords-add-button {
+    margin-left: 8px;
+}

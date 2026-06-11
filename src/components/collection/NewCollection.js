@@ -18,6 +18,7 @@ import useCollectionValidation from '../../hooks/validation/collection/useCollec
 import HyButton from '../utilities/HyButton';
 import useCollectionDropdown from '../../hooks/collection/useCollectionDropdown';
 import CollectionCreators from './creator/CollectionCreators';
+import CollectionKeywords from './keyword/CollectionKeywords';
 
 const NewCollection = () => {
   const { t } = useTranslation();
@@ -39,7 +40,8 @@ const NewCollection = () => {
     persons: defaultPersons,
     published: '',
     moodleNumbers: [],
-    creators: defaultCreators 
+    creators: defaultCreators,
+    keywords: []
   };
 
   const [collection, onChange, modified, undo] = useCollectionModification(
@@ -119,6 +121,11 @@ const NewCollection = () => {
               </Col>
               <Col lg>
                 <CollectionMoodleCourses moodleNumbers={collection?.moodleNumbers} onMoodleNumberChange={(moodleNumbers) => onChange('moodleNumbers', moodleNumbers)} disabled={fieldsDisabled} /> 
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <CollectionKeywords keywords={collection?.keywords} onKeywordChange={(keywords) => onChange('keywords', keywords)} disabled={fieldsDisabled} />
               </Col>
             </Row>
           </Container>        
