@@ -1,12 +1,14 @@
 .collection-keywords-list {
     padding-left: 0;
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.6em;
 }
 
 .collection-keywords-list li {
     display: inline-block;
-    margin-right: 1em;
-    margin-bottom: 1em;
 }
 
 .collection-keywords-input {

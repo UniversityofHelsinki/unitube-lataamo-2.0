@@ -24,6 +24,7 @@ import useCollections from '../../hooks/useCollections';
 import RecordSpokenLanguage from './RecordSpokenLanguage';
 import RecordCollectionKeywords from './RecordCollectionKeywords';
 import CollectionKeywords from '../collection/keyword/CollectionKeywords';
+import ContentTypes from '../form/ContentTypes';
 
 const emptyRecord = {
   identifier: '',
@@ -32,14 +33,15 @@ const emptyRecord = {
   license: '',
   selectedSeries: '',
   deletionDate: addMonths(new Date(), 12).toISOString(),
-  keywords: []
+  keywords: [],
+  contentType: ''
 };
 
 const NewRecord = ({ selectedSeries = '', buttonDisabled = false, excludeFirstCollectionModification = true }) => {
   const { t } = useTranslation();
   const [showDialog, setShowDialog] = useState(false);
   const [isValid, messages, validate] = useNewRecordValidation(
-    ['file', 'title', 'description', 'license', 'deletionDate', 'subtitles']
+    ['file', 'title', 'description', 'license', 'deletionDate', 'subtitles', 'contentType']
   );
   const [send, progress, resetProgress] = useNewRecordSave();
   const [record, modificationOnChange, modified, undo] = useRecordModification({ ...emptyRecord, selectedSeries }, validate, resetProgress);
@@ -133,6 +135,7 @@ const NewRecord = ({ selectedSeries = '', buttonDisabled = false, excludeFirstCo
             <RecordDescription message={messages.description} onChange={(description) => onChange('description', description)} description={record.description} disabled={disabled} />
             <RecordLicense license={record.license} aria-label={t('new_record_license_label')} onChange={(license) => onChange('license', license)} message={messages.license} disabled={disabled} />
             <RecordEndDate endDate={record.deletionDate} onChange={(date) => onChange('deletionDate', date)} message={messages.deletionDate} disabled={disabled} />
+            <ContentTypes message={messages?.contentType} onChange={(contentType) => onChange('contentType', contentType)} disabled={disabled} selected={record.contentType} />
             <RecordCollections collection={record.selectedSeries} onChange={(collection) => onChange('selectedSeries', collection)} message={messages.selectedSeries} disabled={disabled} showLink={false} />
             <RecordCollectionKeywords id={record.selectedSeries} onChange={undefined} disabled={undefined} />
             <CollectionKeywords keywords={record.keywords} onKeywordChange={(keywords) => onChange('keywords', keywords)} disabled={disabled} />

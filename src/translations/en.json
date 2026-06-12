@@ -475,5 +475,19 @@
   "record_form_spoken_language_header": "Puhuttu kieli",
   "spoken_language_selection_fi": "suomi",
   "spoken_language_selection_en": "englanti",
-  "spoken_language_selection_sv": "ruotsi"
+  "spoken_language_selection_sv": "ruotsi",
+  "record_collection_keywords_help_label": "Information about collection keywords",
+  "record_collection_keywords_help_content": "Information about collection keywords",
+  "record_collection_keywords_header": "Collection keywords",
+  "content_type_header": "Content type",
+  "content_type_help_label": "Information about content type",
+  "content_type_help_content": "Information about content type",
+  "content_type_option_default_select": "Select content type",
+  "content_type_opetus": "Teaching",
+  "content_type_tapahtuma": "Event",
+  "content_type_tutkimus": "Research",
+  "content_type_ohjeet": "Instructions",
+  "content_type_muu": "Other",
+  "collection_validation_content_type_is_required": "Content type is required",
+  "record_collection_content_type": "Collection content type"
 }

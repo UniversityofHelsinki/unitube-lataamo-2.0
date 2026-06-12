@@ -49,7 +49,7 @@ const CollectionKeywords = ({ keywords = [], onKeywordChange, disabled }) => {
     };
 
     return (
-        <Container className="collection-keywords ps-0">
+        <Container className="collection-keywords">
             <Row>
                 <Col>
                     <FormElementHeader id={id} helpDialog={

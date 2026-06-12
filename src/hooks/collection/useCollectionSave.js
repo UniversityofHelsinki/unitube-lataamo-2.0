@@ -34,6 +34,7 @@ const convertToBody = (collection) => ({
   title: collection.title,
   creators: collection.creators,
   keywords: collection.keywords,
+  contentType: collection.contentType,
 });
 
 const useCollectionSave = () => {

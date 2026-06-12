@@ -10,7 +10,8 @@ const convertToBody = (record) => ({
   isPartOf: record.isPartOf,
   license: record.license,
   language: record.language,
-  keywords: record.keywords?.map(kw => kw.label) || []
+  keywords: record.keywords?.map(kw => kw.label) || [],
+  contentType: record.contentType
 });
 
 export const put = async (record) => {

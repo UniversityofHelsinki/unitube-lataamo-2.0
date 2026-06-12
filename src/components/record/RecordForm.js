@@ -13,6 +13,7 @@ import RecordLicense from './RecordLicense';
 import RecordSpokenLanguage from './RecordSpokenLanguage';
 import RecordCollectionKeywords from './RecordCollectionKeywords';
 import CollectionKeywords from '../collection/keyword/CollectionKeywords';
+import ContentTypes from '../form/ContentTypes';
 
 const RecordForm = ({
   record,
@@ -60,7 +61,7 @@ const RecordForm = ({
               />
             </Col>
           </Row>
-          <Row className="mb-2">
+          <Row>
             <Col>
               <RecordLicense
                 license={record.license}
@@ -74,6 +75,16 @@ const RecordForm = ({
           </Row>
           <Row>
             <Col>
+              <ContentTypes 
+                onChange={(contentType) => onChange('contentType', contentType)}
+                disabled={disabled} 
+                message={validationMessages?.contentType} 
+                selected={record.contentType || ''} 
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
                 <RecordCollections 
                   collection={record.isPartOf || record.is_part_of}
                   onChange={(value) => onChange('isPartOf', value)} 
@@ -81,12 +92,21 @@ const RecordForm = ({
                 />
             </Col>
           </Row>
+          <Row className="mb-4">
+            <Col>
+              <RecordCollectionKeywords
+                id={record.isPartOf || record.is_part_of}
+              />
+            </Col>
+          </Row>
           <Row>
-            <CollectionKeywords 
-              keywords={record.keywords.map(kw => kw.label)} 
-              onKeywordChange={(keywords) => onChange('keywords', keywords.map(kw => ({ label: kw })))} 
-              disabled={disabled} 
-            />
+            <Col>
+              <CollectionKeywords 
+                keywords={record.keywords?.map(kw => kw.label)} 
+                onKeywordChange={(keywords) => onChange('keywords', keywords.map(kw => ({ label: kw })))} 
+                disabled={disabled} 
+              />
+            </Col>
           </Row>
           <Row>
             <Col>

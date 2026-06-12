@@ -68,6 +68,16 @@ const RecordCollectionKeywords = ({ id, onChange, disabled }) => {
           </ul>
         </Col>
       </Row>
+      <Row>
+        <Col>
+          <FormElementHeader id={`${id}-content-type`} helpDialog={null}>
+            {t('record_collection_content_type')}
+          </FormElementHeader>
+          <div className="record-collection-content-type">
+            <CollectionKeyword label={collection?.contentType} onRemove={() => {}} disabled />
+          </div>
+        </Col>
+      </Row>
     </Container>
   );
 

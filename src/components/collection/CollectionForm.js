@@ -31,6 +31,7 @@ import CollectionLink from './CollectionLink';
 import CollectionCreators from './creator/CollectionCreators';
 import CollectionKeywords from './keyword/CollectionKeywords';
 import useUser from '../../hooks/useUser';
+import ContentTypes from '../form/ContentTypes';
 
 const resolveVisibility = (published, contributors = []) => {
   const visibilities = [];
@@ -53,7 +54,7 @@ const CollectionForm = () => {
   const errorPage = useCollectionError(originalCollection, httpError);
   const [progress, update, resetProgress] = useCollectionUpdate();
   const [_collections, _loading, reloadCollections] = useCollections();
-  const [isValid, messages, validate] = useCollectionValidation(['title', 'description']);
+  const [isValid, messages, validate] = useCollectionValidation(['title', 'description', 'contentType']);
   const [collection, onChange, modified, undo] = useCollectionModification(originalCollection, validate, resetProgress);
   const [tags] = useCollectionTags([ { ...originalCollection, visibility: resolveVisibility(originalCollection?.published, originalCollection?.contributors) }]);
   const collectionHasRecords = collection?.eventColumns?.length > 0;
@@ -191,11 +192,21 @@ const CollectionForm = () => {
                   </Col>
                 </Row>
                 <Row className="mb-2">
-                  <Col className="ps-1">
+                  <Col className="ps-0">
                     <CollectionKeywords 
                       keywords={keywords} 
                       onKeywordChange={(keywords) => onChange('keywords', keywords.map(kw => ({ label: kw })))}
                       disabled={saveInProgress}
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col className="ps-1">
+                    <ContentTypes 
+                      selected={collection?.contentType || ''}
+                      onChange={(contentType) => onChange('contentType', contentType)}
+                      disabled={saveInProgress} 
+                      message={messages?.contentType} 
                     />
                   </Col>
                 </Row>

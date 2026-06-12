@@ -1,3 +1,4 @@
+import contentTypeValidation from "../collection/contentTypeValidation";
 import useValidation from "../useValidation";
 import { validateExistingDeletionDate } from "./deletionDateValidation";
 import validateDescription from "./descriptionValidation";
@@ -12,7 +13,8 @@ const validationFunctions = (record) => ({
   description: validateDescription,
   license: validateLicense,
   deletionDate: validateExistingDeletionDate(record),
-  selectedSubtitles: validateSubtitles
+  selectedSubtitles: validateSubtitles,
+  contentType: contentTypeValidation
 });
 
 const useRecordsValidation = (fields, records = []) => {

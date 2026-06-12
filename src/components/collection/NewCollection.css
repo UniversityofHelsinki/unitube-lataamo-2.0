@@ -11,5 +11,7 @@
   margin-bottom: 10px;
 }
 
-
-
+.new-collection-form .content-types-container {
+  padding-left: unset;
+  padding-right: unset;
+}

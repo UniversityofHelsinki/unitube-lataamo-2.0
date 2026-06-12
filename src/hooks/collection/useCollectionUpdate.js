@@ -31,6 +31,7 @@ const convertToBody = (collection) => {
   return {
     ...collection,
     keywords: collection?.keywords?.map(kw => kw.label),
+    contentType: collection?.contentType,
     acl,
     contributors: [ ...collection.persons, ...collection.iamgroups ],
     visibility: asVisibility(acl, collection.moodleNumbers)

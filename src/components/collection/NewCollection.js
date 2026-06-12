@@ -19,6 +19,7 @@ import HyButton from '../utilities/HyButton';
 import useCollectionDropdown from '../../hooks/collection/useCollectionDropdown';
 import CollectionCreators from './creator/CollectionCreators';
 import CollectionKeywords from './keyword/CollectionKeywords';
+import ContentTypes from '../form/ContentTypes';
 
 const NewCollection = () => {
   const { t } = useTranslation();
@@ -26,7 +27,7 @@ const NewCollection = () => {
   const [showForm, setShowForm] = useState(false);
   const [progress, save, resetProgress] = useCollectionSave();
   const [isValid, messages, validate] = useCollectionValidation([
-    'title', 'description', 'published',
+    'title', 'description', 'published', 'contentType'
   ]);
   const [_collectionDropDown, _loading, reloadCollectionDropdown] = useCollectionDropdown(true);
 
@@ -41,7 +42,8 @@ const NewCollection = () => {
     published: '',
     moodleNumbers: [],
     creators: defaultCreators,
-    keywords: []
+    keywords: [],
+    contentType: ''
   };
 
   const [collection, onChange, modified, undo] = useCollectionModification(
@@ -124,8 +126,13 @@ const NewCollection = () => {
               </Col>
             </Row>
             <Row>
-              <Col>
+              <Col className="px-0">
                 <CollectionKeywords keywords={collection?.keywords} onKeywordChange={(keywords) => onChange('keywords', keywords)} disabled={fieldsDisabled} />
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <ContentTypes selected={collection.contentType} onChange={(contentType) => onChange('contentType', contentType)} disabled={fieldsDisabled} message={messages?.contentType} />
               </Col>
             </Row>
           </Container>        
