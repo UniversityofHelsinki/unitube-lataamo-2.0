@@ -475,5 +475,19 @@
   "record_form_spoken_language_header": "Puhuttu kieli",
   "spoken_language_selection_fi": "suomi",
   "spoken_language_selection_en": "englanti",
-  "spoken_language_selection_sv": "ruotsi"
+  "spoken_language_selection_sv": "ruotsi",
+  "record_collection_keywords_help_label": "Information om samlingens nyckelord",
+  "record_collection_keywords_help_content": "Information om samlingens nyckelord",
+  "record_collection_keywords_header": "Samlingens nyckelord",
+  "content_type_header": "Innehållstyp",
+  "content_type_help_label": "Information om innehållstyp",
+  "content_type_help_content": "Information om innehållstyp",
+  "content_type_option_default_select": "Välj innehållstyp",
+  "content_type_opetus": "Undervisning",
+  "content_type_tapahtuma": "Evenemang",
+  "content_type_tutkimus": "Forskning",
+  "content_type_ohjeet": "Instruktioner",
+  "content_type_muu": "Övrigt",
+  "collection_validation_content_type_is_required": "Innehållstyp är obligatoriskt",
+  "record_collection_content_type": "Samlingens innehållstyp"
 }

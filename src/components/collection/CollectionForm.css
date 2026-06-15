@@ -16,3 +16,12 @@
     overflow: hidden;
   }
 }
+
+.collection-container .content-types-container {
+  padding-left: unset;
+  padding-right: unset;
+}
+
+.collection-form .collection-keywords {
+  padding-left: .25rem;
+}

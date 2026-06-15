@@ -480,5 +480,16 @@
   "spoken_language_selection_sv": "ruotsi",
   "record_collection_keywords_help_label": "Tietoa kokoelman asiasanoista",
   "record_collection_keywords_help_content": "Tietoa kokoelman asiasanoista",
-  "record_collection_keywords_header": "Kokoelman asiasanat"
+  "record_collection_keywords_header": "Kokoelman asiasanat",
+  "content_type_header": "Sisältötyyppi",
+  "content_type_help_label": "Tietoa sisältötyypistä",
+  "content_type_help_content": "Tietoa sisältötyypistä",
+  "content_type_option_default_select": "Valitse sisältötyyppi",
+  "content_type_opetus": "Opetus",
+  "content_type_tapahtuma": "Tapahtuma",
+  "content_type_tutkimus": "Tutkimus",
+  "content_type_ohjeet": "Ohjeet",
+  "content_type_muu": "Muu",
+  "collection_validation_content_type_is_required": "Sisältötyyppi on pakollinen",
+  "record_collection_content_type": "Kokoelman sisältötyyppi"
 }

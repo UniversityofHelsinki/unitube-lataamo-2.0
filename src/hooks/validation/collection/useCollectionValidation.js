@@ -1,4 +1,5 @@
 import useValidation from "../useValidation";
+import contentTypeValidation from "./contentTypeValidation";
 import descriptionValidation from "./descriptionValidation";
 import publicityValidation from "./publicityValidation";
 import titleValidation from "./titleValidation";
@@ -7,6 +8,7 @@ const validationFunctions = {
   title: titleValidation,
   description: descriptionValidation,
   published: publicityValidation,
+  contentType: contentTypeValidation
 };
 
 const useCollectionValidation = (fields) => {

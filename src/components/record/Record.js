@@ -32,7 +32,7 @@ const Record = () => {
     const [resetSubtitleDownloadLinks, setResetSubtitleDownloadLinks] = useState(false);
     const [subtitlesToDelete, setSubtitlesToDelete] = useState(new Set());
     const [isValid, messages, validate] = useRecordValidation([
-        'title', 'description', 'deletionDate', 'license', 'selectedSubtitles'
+        'title', 'description', 'deletionDate', 'license', 'selectedSubtitles', 'contentType'
     ], originalRecord);
     const [record, onChange, modified, undo] = useRecordModification(originalRecord, validate, resetProgress);
     const [convert, message, error] = useSubtitleConversion();
