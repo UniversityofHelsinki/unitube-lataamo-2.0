@@ -11,6 +11,8 @@ import RecordCollections from "./RecordCollections";
 import RecordSubtitle from "./RecordSubtitle";
 import RecordLicense from './RecordLicense';
 import RecordSpokenLanguage from './RecordSpokenLanguage';
+import RecordCollectionKeywords from './RecordCollectionKeywords';
+import CollectionKeywords from '../collection/keyword/CollectionKeywords';
 
 const RecordForm = ({
   record,
@@ -21,7 +23,7 @@ const RecordForm = ({
 }) => {
 
   return (
-    <Container className="ps-0">
+    <Container className="ps-0 record-form">
           <Row className="mb-2">
             <Col>
                 <RecordName
@@ -78,6 +80,13 @@ const RecordForm = ({
                   disabled={disabled}
                 />
             </Col>
+          </Row>
+          <Row>
+            <CollectionKeywords 
+              keywords={record.keywords.map(kw => kw.label)} 
+              onKeywordChange={(keywords) => onChange('keywords', keywords.map(kw => ({ label: kw })))} 
+              disabled={disabled} 
+            />
           </Row>
           <Row>
             <Col>

@@ -9,7 +9,8 @@ const convertToBody = (record) => ({
   title: sanitizeInput(record.title),
   isPartOf: record.isPartOf,
   license: record.license,
-  language: record.language
+  language: record.language,
+  keywords: record.keywords?.map(kw => kw.label) || []
 });
 
 export const put = async (record) => {

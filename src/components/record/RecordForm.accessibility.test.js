@@ -16,7 +16,7 @@ describe('RecordForm', () => {
           }
         }
         }>
-          <RecordForm record={{ deletionDate: new Date().toISOString() }} onChange={() => {}} />
+          <RecordForm record={{ deletionDate: new Date().toISOString(), keywords: [] }} onChange={() => {}} />
         </MockProvider>);
         const results = await axe(container);
 
