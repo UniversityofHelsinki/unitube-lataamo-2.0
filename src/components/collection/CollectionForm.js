@@ -138,11 +138,13 @@ const CollectionForm = () => {
                     <CollectionIdentifier identifier={collection?.identifier} />
                   </Col>
                 </Row>
-                <Row className="mb-4">
-                  <Col className="ps-1">
-                    <CollectionLink identifier={collection?.identifier} />
-                  </Col>
-                </Row>
+                {originalCollection?.published === 'ROLE_ANONYMOUS' &&
+                 <Row className="mb-4">
+                    <Col className="ps-1">
+                      <CollectionLink identifier={collection?.identifier} />
+                    </Col>
+                  </Row>
+                }
                 <Row className="mb-2">
                   <Col className="ps-1">
                       <CollectionPublicity 
